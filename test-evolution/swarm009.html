@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let coverage;
+        let startOffSet;
+        let endOffSet;
+        let blockSize;
+        let functionName;
+        let hits;
+        let startx = 0;
+        let x = startx;
+        let y = 0;
+        let c = 0;
+        let i = 0;
+        let j = 0;
+        let k = 0;
+
+        //Prints the image in motion
+        //based on coverage data
+        //at each time step, print one tile, corresponding to one block in the code
+        //the size of the tile depends on the number of times the block is hit
+        //the color of the tile depends on the size of the block
+        //don't visualize the blocks that are never hit
+        //Is meant to fix the counters compared to swarm007
+
+        function preload() {
+            let url = 'coverage.json';
+            coverage = loadJSON(url);
+        }
+
+        function setup() {
+            canvas = createCanvas(windowWidth, windowHeight);
+            x=windowWidth/2-1;
+            y=windowHeight/2-1;
+            noFill();
+            background(51); //dark grey
+        }
+
+        //at each time step, print one tile, corresponding to one block in the code
+        function draw() {
+            frameRate(100);
+            if (i < coverage.length) {
+                if (j < coverage[i].functions.length) {
+                    if (k < coverage[i].functions[j].ranges.length) {
+                        startOffSet = coverage[i].functions[j].ranges[k].startOffset;
+                        endOffSet = coverage[i].functions[j].ranges[k].endOffset;
+                        blockSize = endOffSet - startOffSet;
+                        hits = coverage[i].functions[j].ranges[k].count; hits = 10 * hits;
+                        c = blockSize;
+                        if (hits > 0) {
+                            //the color of the circle depends on the size of the block
+                            stroke(255, c, c);
+                            //the size of the circle depends on the number of times the block is hit
+                            ellipse(x, y, hits, hits);
+                            console.log("[script " + i + "][function " + j + "][block " + k + "]")
+                        }
+                        k = k + 1;
+                    }
+                    else {
+                        k = 0;
+                        j = j + 1;
+                    }
+                }
+                else {
+                    j = 0;
+                    i = i + 1;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

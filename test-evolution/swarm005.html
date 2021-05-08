@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let maxX=0;
+        let maxY=0;
+        let radius=30;
+        let blue = "#1f1fff"; //rgb(31,31,255)
+        let white = "#FFFFFF";
+
+        function setup() {
+            canvas = createCanvas(windowWidth, windowHeight);
+            background(blue);
+            stroke(white);
+            noFill();
+            maxX=windowWidth/radius-1;
+            maxY=windowHeight/radius-1;
+        }
+
+        function draw() {
+            background(blue);
+            for (let i = 1; i < maxX; i++) {
+                for (let j = 1; j < maxY; j++){
+                    radius=30+random(-2,2);
+                    strokeWeight(random(10));
+                    arc(radius * i, radius * j, radius, radius, 0 - (PI / random(1, 10)), 0 + (PI / random(1, 10)))
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

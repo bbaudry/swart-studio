@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let coverage;
+        let startOffSet;
+        let endOffSet;
+        let blockSize;
+        let functionName;
+        let hits;
+        let startx = 0;
+        let x = startx;
+        let y = 0;
+        let c = 0;
+        let i =0;
+        let j=0;
+        let k=0;
+        let bCounter = 0; //block counter
+        let bNumer = 0; //number of blocks in the file
+
+        //Prints the whole image at once
+        //based on coverage data
+        //the size of the tiles depends on the size of the block and color depends on the number of times if the block is hit
+        //don't visualize the blocks that are never hit
+
+        function preload() {
+            let url = 'coverage.json';
+            coverage = loadJSON(url);
+        }
+        function setup() {
+            canvas = createCanvas(windowWidth, windowHeight);
+            background(51); //dark grey
+            //noStroke();
+            console.log("There are " + coverage.length + " scripts in this coverage file");
+            for (i = 0; i < coverage.length; i++) {
+                //console.log("Script number "+coverage[i].scriptId+" includes "+coverage[i].functions.length+" functions ")
+                for (j = 0; j < coverage[i].functions.length; j++) {
+                    //console.log("Function number "+j+" of script number "+i+" includes "+coverage[i].functions[j].ranges.length+" ranges")
+                    functionName = coverage[i].functions[j].functionName;
+                    for (k = 0; k < coverage[i].functions[j].ranges.length; k++) {
+                        startOffSet = coverage[i].functions[j].ranges[k].startOffset;
+                        endOffSet = coverage[i].functions[j].ranges[k].endOffset;
+                        blockSize = endOffSet - startOffSet;
+                        hits = coverage[i].functions[j].ranges[k].count;
+                        //console.log("Block "+k+" in function "+functionName+" of script "+i+" is of size "+blockSize+" and is hit "+hits+" times")
+                       if (hits > 0) { display(blockSize / 100, hits); }
+                   }
+                }
+            }
+        }
+
+
+        function display(size, hits) {
+            c = hits * 40;
+            fill(255, 204, c); // yellow
+            rect(x, y, size, size);
+            if (x < (windowWidth - 50) && y < (windowHeight - 50)) {//x<width
+                y = y + random(size);
+            }
+            else {
+                startx = startx + 40;
+                x = startx;
+                //c=c+10;
+                y = 0;
+            }
+        }
+
+
+
+    //saveCanvas(canvas, 'tests', 'jpg')
+
+
+    </script>
+</body>
+
+</html>

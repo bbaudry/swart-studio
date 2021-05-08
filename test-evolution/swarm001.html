@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let x = 0;
+        let y = 0;
+        let evolWidth = 0;
+        let evolHeight = 0;
+        let alpha = 0;
+        let g = 0;
+        let b =0;
+
+        function setup() {
+            canvas = createCanvas(windowWidth, windowHeight);
+            noStroke();
+        }
+
+        function draw() {
+            for (let i = 0; i < random(100); i++) {
+                g = random(255);
+                b = random(255);
+                alpha = random(255);
+                fill(255, g, b, alpha);
+                x = random(windowWidth);
+                y = random(windowHeight);
+                evolWidth = random(50);
+                evolHeight = random(50);
+                ellipse(x, y, evolWidth, evolHeight);
+                stroke(255, g, b)
+                line(x,y,x+evolWidth,y+evolHeight)
+            }
+        }
+        function mouseClicked() {
+            //save(canvas, 'myCanvas.jpg')
+            }
+    </script>
+</body>
+
+</html>

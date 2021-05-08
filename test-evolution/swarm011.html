@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let coverage;
+        let startOffSet;
+        let endOffSet;
+        let blockSize;
+        let functionName;
+        let hits;
+        let startx = 0;
+        let x = 0;
+        let y = 0;
+        let color = 0;
+        let i = 0;
+        let j = 0;
+        let k = 0;
+        let radius = 30;
+
+        //Prints the image in motion
+        //based on coverage data
+        //at each time step, print one tile, corresponding to one block in the code
+        //the size of the tile depends on the number of times the block is hit
+        //the color of the tile depends on the size of the block
+        //don't visualize the blocks that are never hit
+        //Is meant to fix the counters compared to swarm007
+
+        function preload() {
+            let url = 'coverage.json';
+            coverage = loadJSON(url);
+        }
+
+        function setup() {
+            canvas = createCanvas(windowWidth, windowHeight);
+            noFill();
+            let nB = numberBlocks();
+            let surf = (windowWidth * windowHeight) / nB;
+            radius = round(sqrt(surf));
+            startx = radius / 2
+            x = radius / 2;
+            y = radius / 2;
+            background(51); //dark grey
+            drawTrace();
+            //saveCanvas(canvas, 'swarm010c', 'jpg');
+        }
+
+        function numberBlocks() {
+            number = 0;
+            for (a = 0; a < coverage.length; a++) {
+                for (b = 0; b < coverage[a].functions.length; b++) {
+                    for (c = 0; c < coverage[a].functions[b].ranges.length; c++) {
+                        hits = coverage[a].functions[b].ranges[c].count;
+                        if (hits > 0) {
+                            number++;
+                        }
+                    }
+                }
+            }
+            return number;
+        }
+
+
+        function drawTrace() {
+            number = 0;
+            for (a = 0; a < coverage.length; a++) {
+                for (b = 0; b < coverage[a].functions.length; b++) {
+                    for (c = 0; c < coverage[a].functions[b].ranges.length; c++) {
+                        hits = coverage[a].functions[b].ranges[c].count;
+                        startOffSet = coverage[a].functions[b].ranges[c].startOffset;
+                        endOffSet = coverage[a].functions[b].ranges[c].endOffset;
+                        blockSize = endOffSet - startOffSet;
+                        if (hits > 0) {
+                            //the color of the circle depends on the size of the block
+                            //this instructions converts an integer into a color code
+                            color = "#" + ((blockSize) >>> 0).toString(16).slice(-6)
+                            stroke(color);
+                            strokeWeight(3);
+                            //the size of the circle is fixed by variable 'radius'
+                            ellipse(x, y, radius, radius);
+                            if (y < (windowHeight - (radius / 2))) {
+                                y = y + radius;
+                            }
+                            else {
+                                startx = startx + radius;
+                                x = startx;
+                                y = radius / 2;
+                            }
+                            number++;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
