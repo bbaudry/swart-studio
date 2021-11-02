@@ -1,0 +1,136 @@
+{
+    "Journal editorials": [
+        {
+            "begin": "2016",
+            "end": "present",
+            "role": "Associate editor for the Software Testing and Verification Journal"
+        },
+        {
+            "begin": "2012",
+            "end": "present",
+            "role": "Associate editor for the Software and Systems Modeling Journal"
+        },
+        {
+            "begin": "2012",
+            "end": "2015",
+            "role": "Area editor for Model-Driven Engineering in the Journal of Systems and Software"
+        },
+        {
+            "begin": "2011",
+            "end": "2011",
+            "role": "Co-editor of the special issue of the Information and Software Technology Journal on Mutation analysis"
+        }
+    ],
+    "Conferences": [
+        {
+            "year": "2019",
+            "role": "General Chain",
+            "conference": "CASTOR days"
+        },
+        {
+            "year": "2018",
+            "role": "General Chain",
+            "conference": "SSBSE"
+        },
+        {
+            "year": "2016",
+            "role": "General Chain",
+            "conference": "MODELS"
+        },
+        {
+            "year": "2015",
+            "role": "Workshop co-chair",
+            "conference": "ISSTA"
+        },
+        {
+            "year": "2014",
+            "role": "PC co-chair",
+            "conference": "NIER ICSE track"
+        },
+        {
+            "year": "2013",
+            "role": "PC co-chair",
+            "conference": "ICST"
+        },
+        {
+            "year": "2013",
+            "role": "Co-organizer",
+            "conference": "AMT workshop"
+        },
+        {
+            "year": "2013",
+            "role": "Poster co-chair",
+            "conference": "MODELS"
+        },
+        {
+            "year": "2012",
+            "role": "Steering committee chair",
+            "conference": "ICST"
+        },
+        {
+            "year": "2012",
+            "role": "Co-organizer",
+            "conference": "MDSec workshop"
+        },
+        {
+            "year": "2011",
+            "role": "Steering committee vice-chair",
+            "conference": "ICST"
+        },
+        {
+            "year": "2010",
+            "role": "PC chair",
+            "conference": "SC"
+        },
+        {
+            "year": "2010",
+            "role": "Organization chair",
+            "conference": "AOSD"
+        },
+        {
+            "year": "2009",
+            "role": "Steering committee vice-chair",
+            "conference": "ICST"
+        },
+        {
+            "year": "2009",
+            "role": "Co-organizer",
+            "conference": "Mutation workshop"
+        },
+        {
+            "year": "2008",
+            "role": "Steering committee vice-chair",
+            "conference": "ICST"
+        },
+        {
+            "year": "2008",
+            "role": "Co-organizer",
+            "conference": "Modeva workshop"
+        },
+        {
+            "year": "2006",
+            "role": "Co-organizer",
+            "conference": "Modeva workshop"
+        },
+        {
+            "year": "2006",
+            "role": "Co-organizer",
+            "conference": "Mutation workshop"
+        },
+        {
+            "year": "2005",
+            "role": "Workshop chair",
+            "conference": "SPLC"
+        },
+        {
+            "year": "2005",
+            "role": "Co-organizer",
+            "conference": "Modeva workshop"
+        },
+        {
+            "year": "2004",
+            "role": "Workshop chair",
+            "conference": "ISSRE"
+        }
+    ]
+}

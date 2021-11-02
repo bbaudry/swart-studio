@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+</head>
+<body>
+<script>
+// p5 script adapted from
+// https://generativeartistry.com/tutorials/tiled-lines/
+
+var palette2 = [ "#008460", "#F1C42F"];
+
+var w = 400;
+var h = 600;
+
+function setup() {
+  createCanvas(w, h);
+  step = 20;
+  for(var x = 0; x < w; x += step) {
+    r = random(palette2);
+    stroke(r);
+    for(var y = 0; y < h; y+= step) {
+      strokeWeight(4);
+      segment(x, y, step, step);    
+  }
+ }
+}
+
+function segment(x, y, width, height) {
+  var leftToRight = Math.random() >= 0.5;
+
+  if(leftToRight) {
+    line(x, y, x + width, y + height);    
+  } else {
+    line(x+width, y, x, y + height);
+  }
+}
+
+</script>
+</body>
+</html>

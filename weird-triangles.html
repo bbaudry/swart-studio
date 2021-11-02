@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+</head>
+<body>
+<script>
+// p5 script adapted from
+// https://generativeartistry.com/tutorials/triangular-mesh/
+
+var palette = ["#152A84", "#776EAA", "#201315", "#DB1D6B", "#CDE4CF", "#008460", "#DBE479", "#F1C42F", "#E22733", "#FFFFFF"];
+var w = 400;
+var h = 600;
+
+function setup(){
+    createCanvas(w, h);
+    background("#008460");
+    noFill();
+
+    gap = 40;
+    odd = false;
+    lines = [];
+    stroke("#F1C42F");
+    strokeWeight(8);
+    for(var y = gap / 2; y <= h; y+= gap) {
+        odd=!odd;
+        lineA = [];
+        for (var x = gap / 4; x <= w; x+= gap) {
+            if (odd) {t = x + (gap / 2);} else {t=x;}
+            dot={t,y};
+            lineA.push({ 
+                t: x + (Math.random()*.8 - .4) * gap  + (odd ? gap/2 : 0),
+                y: y + (Math.random()*.8 - .4) * gap
+            });
+        }
+        lines.push(lineA)
+    }
+    var dotLine;
+    odd = true;
+    for(var y = 0; y < lines.length - 1; y++) {
+            odd = !odd;
+            dotLine = [];
+            for(var i = 0; i < lines[y].length; i++) {
+            dotLine.push(odd ? lines[y][i]   : lines[y+1][i]);
+            dotLine.push(odd ? lines[y+1][i] : lines[y][i]);
+            }
+        for(var i = 0; i < dotLine.length - 2; i++) {
+        triangle(dotLine[i].t, dotLine[i].y, dotLine[i+1].t, dotLine[i+1].y,  dotLine[i+2].t, dotLine[i+2].y);
+    }
+    }
+}
+
+</script>
+</body>
+</html>

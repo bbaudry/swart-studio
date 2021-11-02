@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let coverage;
+        let i = 0;
+        let x = 0;
+        let y = 0;
+        let color = 0;
+        let radius = 0;
+
+        //visualizes the evolution of an coverage 
+        //each coverage snapshot corresponds to the code blocks used to load the search of "2021"
+        //the input json file contains the coverage snapshots collected, for the same load operation, every hour during a week
+        //each coverage snapshot is composed includes a sequence of (size, number of hits) of each code block
+
+        function preload() {
+            let url = 'coverage_bing_summary.json';
+            covSummary = loadJSON(url);
+        }
+
+        function setup() {
+            canvas = createCanvas(windowWidth, windowHeight);
+            noFill();
+        }
+
+        function draw() {
+            frameRate(5);
+            // for each coverage snapshot in the input file, fetch the info and call the visualization 
+            if (i < covSummary.length) {
+                console.log(covSummary[i].summary[0].size)
+                visualizeTrace(covSummary[i].summary)
+                i = i + 1;
+            }
+            //stop the animation when all coverage snapshot have been visualized
+            else{
+                noLoop()
+            }
+        }
+
+        //visualize every code block in the coverage snapshot passed as input
+        //each code block is visualized as a circle, the color of the circle depends on the number of hits of the code block
+        function visualizeTrace(trace){
+            //initialize the visualization: compute the space allocated to each block (radius), 
+            //depending on the size of the canvas and the number of blocks in the coverage snapshot
+            let nB = trace.length;
+            let surf = (windowWidth * windowHeight) / nB;
+            radius = round(sqrt(surf));
+            //center of circle to visualize the first code block
+            x = radius / 2;
+            y = radius / 2;
+            background(51); //dark grey
+            //loop to visualize each code block
+            for (a = 0; a < nB; a++) {
+                //the color of the circle depends on the size of the block
+                //this instructions converts an integer into a color code
+                color = "#" + ((trace[a].hits) >>> 0).toString(16).slice(-6)
+                //stroke(color);
+                noStroke()
+                fill(color)
+                if (trace[a].hits>10){console.log(trace[a].hits+" hits is in color: "+color)}
+                strokeWeight(6);
+                //the size of the circle is fixed by variable 'radius'
+                ellipse(x, y, radius, radius);
+                //this condtional updates x and Y values for next code block and handles the size of the canvas
+                if (y < (windowHeight - (radius / 2))) {
+                    y = y + radius;
+                }
+                else {
+                    x = x+ radius;
+                    y = radius / 2;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

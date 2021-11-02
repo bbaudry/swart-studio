@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+</head>
+<body>
+<script>
+
+//test with p5' sin()
+
+function setup() {
+    createCanvas(500, 400);
+}
+
+function draw() {
+    background(000);
+    strokeWeight(1);
+    stroke("#FFF");
+    let a = 0.0;
+    let inc = TWO_PI / 1000.0;
+    for (let i = 0; i < 1000; i++) {
+        line(i * 0.5, 200, i * 0.5, 200 + sin(a) * 200.0 * Math.random());
+        a = a + inc;
+    }
+    erase(); 
+}
+</script>
+</body>
+</html>
