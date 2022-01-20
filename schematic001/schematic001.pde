@@ -4,8 +4,7 @@ int w = 840;
 int h = 840;
 int step = 0;
 int maxSteps = 42*4;
-float x;
-float y;
+int variation = 10;
 int radius=0;
 float shape;
 float orientation;
@@ -26,12 +25,12 @@ void draw() {
   while (step<maxSteps){
     fill(#000000);
     shape=random(42*2);
-    x = random(42*2,w-42*2);
-    y = random(42,h-42); 
+    float x = random(42*2,w-42*2);
+    float y = random(42*2,h-42*2); 
     if (shape<42){
       //draw rectangle
       if (shape<42/10){radius=4;}
-      if (shape<42-((42/10)*4)){noFill();}
+      if (shape<42-16.8){noFill();}
       orientation=random(42);
       if (orientation<42/3){rect(x,y,random(42*5),random(42),radius);}   
       else {rect(x,y,random(42),random(42*5),radius);} 
@@ -49,7 +48,7 @@ void draw() {
     }
     step++;
   }
-  System.out.println("done!");
-  step=0;
-  save("schema.png");
+  //System.out.println("done!");
+  //step=0;
+  save("test.png");
 }
