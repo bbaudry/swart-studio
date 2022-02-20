@@ -1,5 +1,5 @@
 package art.studio;
-
+import java.util.Random;
 import processing.core.PApplet;
 
 public class Schotter extends PApplet {
@@ -7,8 +7,9 @@ public class Schotter extends PApplet {
     int w = 42*21;
     int h = 42*21;
     int side = w/10; //assume that w can be divided by 10
-    int x = 0;
-    int y = 0;
+    int x;
+    int y;
+    Random rd = new Random(); 
 
     @Override
     public void settings() {
@@ -18,12 +19,14 @@ public class Schotter extends PApplet {
     @Override
     public void setup() {
         frameRate(1);
-        background(0xffffff);
-        noLoop();
+//        noLoop();
     }
 
     @Override
     public void draw() {
+        y=0;
+        x=0;
+        background(0xffffff);
         stroke(0x000000);
         strokeWeight(6);
         noFill();
@@ -31,47 +34,26 @@ public class Schotter extends PApplet {
             rect(x,y,x+side,y+side);
             x=x+side;
         }
-        x=0;
-        y=y+side;
-        row(5);
-        x=0;
-        y=y+side;
-        row(15);
-        x=0;
-        y=y+side;
-        row(25);
-        x=0;
-        y=y+side;
-        row(30);
-        x=0;
-        y=y+side;
-        row(35);
-        x=0;
-        y=y+side;
-        row(40);
-        x=0;
-        y=y+side;
-        row(45);
-        x=0;
-        y=y+side;
-        row(50);
-        x=0;
-        y=y+side;
-        row(55);
+        float seed = 5;
+        for (int i=0;i<9;i++){
+            x=0;
+            y=y+side+i;
+            row(seed);
+            seed=seed+10;
+        }
     }
 
     public void row(float seed){
         float r;
-        boolean orientation=false;
+        boolean orientation;
         while(x<w){
+            orientation=rd.nextBoolean();
             r = random(seed);
             if (orientation){
                 quad(x, y, x+side, y-r, x+side+r, y+side-r, x+r, y+side);
-                orientation = false;
             }
             else{
                 quad(x, y, x+side, y+r, x+side-r, y+side+r, x-r, y+side);
-                orientation = true;
             }
             x=x+side;
         }
