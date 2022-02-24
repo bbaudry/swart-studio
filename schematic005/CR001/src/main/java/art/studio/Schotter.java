@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class Schotter extends PApplet {
 
     int w = 42*21;
-    int h = 42*21;
+    int h = 42*28;
     int side = w/10; //assume that w can be divided by 10
     int x;
     int y;
@@ -30,22 +30,18 @@ public class Schotter extends PApplet {
         stroke(0x000000);
         strokeWeight(6);
         noFill();
-        while(x<w){
-            rect(x,y,x+side,y+side);
-            x=x+side;
-        }
-        float seed = 5;
-        for (int i=0;i<9;i++){
-            x=0;
-            y=y+side+i;
+        float seed = 0;
+        for (int i=0;i<12;i++){
+            y=side*i;
             row(seed);
-            seed=seed+10;
+            seed=seed+5;
         }
     }
 
     public void row(float seed){
         float r;
         boolean orientation;
+        x=0;
         while(x<w){
             orientation=rd.nextBoolean();
             r = random(seed);
