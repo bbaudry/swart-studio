@@ -19,8 +19,8 @@ public class BioTexture extends PApplet {
     String[] paletteS = {"00000000","00FF007F","000000CC"};
     Integer[] colors = new Integer[]{0xFEF0D5, 0xD81E5B, 0xF35B68, 0x00BEB2, 0x1A5D63};
 
-    int w = 42 * 42;
-    int h = 42 * 42;
+    int w = 42 * 21;
+    int h = 42 * 21;
     float x;
     float y;
     float red;
@@ -49,24 +49,70 @@ public class BioTexture extends PApplet {
 
     @Override
     public void draw() {
-        strokeWeight(2);
         //choose random position for the shape
-        x = 42 * random(42);
-        y = 42 * random(42);
+        x = 42 * random(21);
+        y = 42 * random(21);
         //random radius for the shape
-        radiation_with_rings(x,y,random(21, 84));
+        radiation_with_color_rings(x,y,random(21, 63));
         count++;
         if (count>iterations){
             count=0;
-            background(0);
-//            noLoop();
+//            background(0);
+            noLoop();
             save("bacterie.png");
         }
     }
 
+    public void radiation_with_color_rings(float x, float y, float radius) {
+        strokeWeight(2);
+        float step = (float)(2*Math.PI/300);
+        float noise_level = random(5,20); //random value for noise in the length of the spokes
+        float nextx;
+        float nexty;
+        float nextx2;
+        float nexty2;
+        float nextx3;
+        float nexty3;
+        float radius_noise;
+        float alpha=255;
+        choose_rgb();
+        for (float angle = 0; angle < 2*Math.PI; angle+=step) {
+            radius_noise=random(noise_level); //random number added to the radius
+            // x=h+r*cosθ; y=k+r*sinθ ; r is the radius of the circle; h,k are the coordinates of the center.
+            nextx2 = x + (radius+radius/2+radius_noise) * cos(angle);
+            nexty2 = y + (radius+radius/2+radius_noise) * sin(angle);
+            alpha = random(100, 255);
+//            choose_rgb();
+            stroke(red, green, blue, alpha);
+            line(x, y, nextx2, nexty2);
+        }
+        choose_rgb();
+        for (float angle = 0; angle < 2*Math.PI; angle+=step) {
+            radius_noise=random(noise_level); //random number added to the radius
+            nextx = x + (radius+radius_noise) * cos(angle);
+            nexty = y + (radius+radius_noise) * sin(angle);
+            alpha = random(100, 255);
+//            choose_rgb();
+            stroke(red, green, blue, alpha);
+            line(x, y, nextx, nexty);
+        }
+        choose_rgb();
+        for (float angle = 0; angle < 2*Math.PI; angle+=step) {
+            radius_noise=random(noise_level); //random number added to the radius
+            nextx3 = x + (radius-(8*radius/10)+radius_noise) * cos(angle);
+            nexty3 = y + (radius-(8*radius/10)+radius_noise) * sin(angle);
+//            choose_rgb();
+            alpha = random(100, 255);
+            stroke(red, green, blue, alpha);
+            line(x, y, nextx3, nexty3);
+        }
+//        text((int)red+" "+(int)green+" "+(int)blue+" "+(int)alpha, x-radius/2, y-12);
+//        text((int)x+" "+(int)y+" "+(int)radius, x-radius/2, y);
+    }
 
 
     public void radiation_with_rings(float x, float y, float radius) {
+        strokeWeight(2);
         float step = (float)(2*Math.PI/300);
         float noise_level = random(5,20); //random value for noise in the length of the spokes
         float nextx;
@@ -132,6 +178,7 @@ public class BioTexture extends PApplet {
     }
 
     public void radiation(float x, float y, float radius) {
+        strokeWeight(2);
         float step = (float)(2*Math.PI/200);
         float noise_level = random(5,20); //random value for noise in the length of the spokes
         float nextx;
