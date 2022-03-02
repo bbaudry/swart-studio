@@ -1,3 +1,7 @@
+/*
+This piece from Feb 2022 is inspired by a large wall installation at the Museum of Art in Göteborg
+*/
+
 package art.studio;
 
 import java.util.Random;
@@ -49,24 +53,31 @@ public class BioTexture extends PApplet {
 
     @Override
     public void draw() {
-        //choose random position for the shape
-        x = 42 * random(21);
-        y = 42 * random(21);
-        //random radius for the shape
-        radiation_with_color_rings(x,y,random(21, 63));
-        count++;
-        if (count>iterations){
-            count=0;
-//            background(0);
-            noLoop();
-            save("bacterie.png");
+        helix();
+        //background(0);
+        noLoop();
+        save("bacterie.png");
+    }
+
+    //draw bacteria in an helicoidal shape
+    public void helix(){
+        float stepx;
+        float stepy;
+        int steps = 10;
+        for (int i=0; i<steps;i++){
+            x = 42 * random(21);
+            stepy=h-i*h/steps;
+            System.out.println("drawing");
+            //random radius for the shape
+            radiation_with_color_rings(x,stepy,random(21, 63));    
         }
+
     }
 
     public void radiation_with_color_rings(float x, float y, float radius) {
         strokeWeight(2);
         float step = (float)(2*Math.PI/300);
-        float noise_level = random(5,20); //random value for noise in the length of the spokes
+        float noise_level; //random value for noise in the length of the spokes
         float nextx;
         float nexty;
         float nextx2;
@@ -75,34 +86,40 @@ public class BioTexture extends PApplet {
         float nexty3;
         float radius_noise;
         float alpha=255;
+        //large in the background
+        noise_level = random(5,10);
         choose_rgb();
         for (float angle = 0; angle < 2*Math.PI; angle+=step) {
             radius_noise=random(noise_level); //random number added to the radius
             // x=h+r*cosθ; y=k+r*sinθ ; r is the radius of the circle; h,k are the coordinates of the center.
-            nextx2 = x + (radius+radius/2+radius_noise) * cos(angle);
-            nexty2 = y + (radius+radius/2+radius_noise) * sin(angle);
-            alpha = random(100, 255);
-//            choose_rgb();
-            stroke(red, green, blue, alpha);
-            line(x, y, nextx2, nexty2);
-        }
-        choose_rgb();
-        for (float angle = 0; angle < 2*Math.PI; angle+=step) {
-            radius_noise=random(noise_level); //random number added to the radius
-            nextx = x + (radius+radius_noise) * cos(angle);
-            nexty = y + (radius+radius_noise) * sin(angle);
+            nextx = x + (radius+2*radius/3+radius_noise) * cos(angle);
+            nexty = y + (radius+2*radius/3+radius_noise) * sin(angle);
             alpha = random(100, 255);
 //            choose_rgb();
             stroke(red, green, blue, alpha);
             line(x, y, nextx, nexty);
         }
+        //middle ring
+        noise_level = random(15,25);
+        choose_rgb();
+        for (float angle = 0; angle < 2*Math.PI; angle+=step) {
+            radius_noise=random(noise_level); //random number added to the radius
+            nextx2 = x + (radius+radius_noise) * cos(angle);
+            nexty2 = y + (radius+radius_noise) * sin(angle);
+            alpha = random(100, 255);
+//            choose_rgb();
+            stroke(red, green, blue, alpha);
+            line(x, y, nextx2, nexty2);
+        }
+        //inner ring
+        noise_level = random(5,20);
         choose_rgb();
         for (float angle = 0; angle < 2*Math.PI; angle+=step) {
             radius_noise=random(noise_level); //random number added to the radius
             nextx3 = x + (radius-(8*radius/10)+radius_noise) * cos(angle);
             nexty3 = y + (radius-(8*radius/10)+radius_noise) * sin(angle);
 //            choose_rgb();
-            alpha = random(100, 255);
+            alpha = random(100, 155);
             stroke(red, green, blue, alpha);
             line(x, y, nextx3, nexty3);
         }
