@@ -1,5 +1,7 @@
 /*
 This piece from Feb 2022 is inspired by a large wall installation at the Museum of Art in Göteborg
+matta nr 83 (2010) by Jonathan Josefsson
+https://goteborgskonstmuseum.se/wp-content/uploads/2016/06/skulpturhallen-kalle-sanner-frontalperspektiv-1200x800-960x640.jpg
 */
 
 package art.studio;
@@ -30,7 +32,7 @@ public class BioTexture extends PApplet {
     float red;
     float green;
     float blue;
-    int iterations = 20;
+    int iterations = 18;
     int count = 0;
     
 
@@ -43,19 +45,19 @@ public class BioTexture extends PApplet {
 
     @Override
     public void setup() {
-//        frameRate(1);
+        //frameRate(1);
         textSize(12);
         noStroke();     
         background(0);
 //        fill(255,255,255);
-//        noLoop();
+        noLoop();
     }
 
     @Override
     public void draw() {
         helix();
+        noise();
         //background(0);
-        noLoop();
         save("bacterie.png");
     }
 
@@ -63,17 +65,32 @@ public class BioTexture extends PApplet {
     public void helix(){
         float stepx;
         float stepy;
-        int steps = 10;
-        for (int i=0; i<steps;i++){
+        for (int i=0; i<iterations;i++){
             x = 42 * random(21);
-            stepy=h-i*h/steps;
-            System.out.println("drawing");
+            stepy=h-i*h/iterations;
             //random radius for the shape
             radiation_with_color_rings(x,stepy,random(21, 63));    
         }
 
     }
 
+    public void noise(){
+        double rate = (h*w)*0.05;
+        double count=0;
+        float posx=100;
+        float posy=110;
+        float op=255;
+        noStroke();
+        while (count<rate){
+            posx=random(0,w);
+            posy=random(0,h);
+            op=random(50, 150);
+            System.out.println("noise "+count+" / "+rate+" x: "+posx+" y: "+posy);
+            fill(255,255,255,op);
+            ellipse(posx, posy, 1, 1);
+            count++;
+        }
+    }
     public void radiation_with_color_rings(float x, float y, float radius) {
         strokeWeight(2);
         float step = (float)(2*Math.PI/300);
