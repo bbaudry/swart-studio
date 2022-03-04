@@ -68,8 +68,14 @@ public class BioTexture extends PApplet {
         for (int i=0; i<iterations;i++){
             x = 42 * random(21);
             stepy=h-i*h/iterations;
+            if (stepy>h/2){
+                stepx=i*2*w/iterations;
+                radiation_with_color_rings(stepx,stepy,random(21, 63));    
+            }
+            else{
+                radiation_with_color_rings(x,stepy,random(21, 63));    
+            }
             //random radius for the shape
-            radiation_with_color_rings(x,stepy,random(21, 63));    
         }
 
     }
