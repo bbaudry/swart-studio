@@ -40,9 +40,6 @@ public class BioTexture extends PApplet {
 
     @Override
     public void setup() {
-        frameRate(1);
-        textSize(12);
-        noStroke();     
         background(0);
         //noLoop();
     }
