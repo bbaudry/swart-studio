@@ -136,18 +136,6 @@ public class BioTexture extends PApplet {
 
     //randomly pick rgb in a palette
     public void choose_rgb(){
-        /*
-        float cChange=20;
-        red += random(-cChange, cChange);
-        red = constrain(red, 0, 256);
-      
-        green += random(-cChange, cChange);
-        green = constrain(green, 0, 256);
-      
-        blue += random(-cChange, cChange);
-        blue = constrain(blue, 0, 256);
-        */
-        
         float r = random(5);
         switch ((int)r) {
             //pink (255,0,127) 0xFF007F
@@ -169,29 +157,6 @@ public class BioTexture extends PApplet {
             case 0:  red=154; green=152; blue=100;
                      break;
         }
-    }
-
-    public void radiation(float x, float y, float radius) {
-        strokeWeight(2);
-        float step = (float)(2*Math.PI/200);
-        float noise_level = random(5,20); //random value for noise in the length of the spokes
-        float nextx;
-        float nexty;
-        float radius_noise;
-        float alpha=255;
-        choose_rgb();
-        for (float angle = 0; angle < 2*Math.PI; angle+=step) {
-            radius_noise=random(noise_level); //random number added to the radius
-            // x=h+r*cosθ; y=k+r*sinθ ; r is the radius of the circle; h,k are the coordinates of the center.
-            nextx = x + (radius+radius_noise) * cos(angle);
-            nexty = y + (radius+radius_noise) * sin(angle);
-            alpha = random(100, 255);
-            stroke(red, green, blue, alpha);
-            //stroke(palette[(int)(random(3))],alpha);
-            line(x, y, nextx, nexty);
-        }
-//        text((int)red+" "+(int)green+" "+(int)blue+" "+(int)alpha, x-radius/2, y-12);
-//        text((int)x+" "+(int)y+" "+(int)radius, x-radius/2, y);
     }
 
     public void four_rings(float x, float y) {
