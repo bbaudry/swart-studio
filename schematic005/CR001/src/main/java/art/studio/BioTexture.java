@@ -6,25 +6,9 @@ https://goteborgskonstmuseum.se/wp-content/uploads/2016/06/skulpturhallen-kalle-
 
 package art.studio;
 
-import java.util.Random;
 import processing.core.PApplet;
 
 public class BioTexture extends PApplet {
-    /*
-    pink (255,0,127) 0xFF007F
-    dark blue (0,0,204) 0x0000CC
-    yellow (255,255,0) 0xFFFF00
-    orange (150,131,11) 0xFA830B
-    mauve (104, 102, 200) 0x6866C8
-    beige (154, 152, 100) 0x9A9864
-    white (255,255,255) 0xFFFFFF
-    black (0,0,0) 0x000000
-    */
-
-    int[] palette = {0x000000,0xFF007F,0x0000CC};
-    String[] paletteS = {"00000000","00FF007F","000000CC"};
-    Integer[] colors = new Integer[]{0xFEF0D5, 0xD81E5B, 0xF35B68, 0x00BEB2, 0x1A5D63};
-
     int w = 42 * 21;
     int h = 42 * 21;
     float px;
