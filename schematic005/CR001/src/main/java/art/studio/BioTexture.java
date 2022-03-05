@@ -29,9 +29,9 @@ public class BioTexture extends PApplet {
     int h = 42 * 21;
     float x;
     float y;
-    float red;
-    float green;
-    float blue;
+    float red=random(256);
+    float green=random(256);
+    float blue=random(256);
     int iterations = 18;
     int count = 0;
     
@@ -41,24 +41,67 @@ public class BioTexture extends PApplet {
     @Override
     public void settings() {
         size(w, h);
+        //size(500,500);
     }
-
     @Override
-    public void setup() {
+    public void setup()
+    {
+      frameRate(1);
+      background(0);
+      //noLoop();
+    }
+    @Override
+    public void draw()
+    { 
+        float distance = 150;
+        float r = random(256);
+        float g = random(256);
+        float b = random(256);
+        float cChange = 2;
+        float distanceChange = (float)(20);
+        
+        for (float angle = 0; angle < 360*100; angle += 30) {
+        
+          float x = width/2 + cos(radians(angle))*distance;
+          float y = height/2 + sin(radians(angle))*distance;
+        
+          r += random(-cChange, cChange);
+          r = constrain(r, 0, 256);
+        
+          g += random(-cChange, cChange);
+          g = constrain(g, 0, 256);
+        
+          b += random(-cChange, cChange);
+          b = constrain(b, 0, 256);
+          noStroke();
+          fill(r, g, b);
+        
+          //ellipse(x, y, 50, 50);
+          radiation_with_color_rings(x, y, random(40,60));
+        
+          distance += distanceChange;
+        }    
+    }
+    //@Override
+    public void setupA() {
         //frameRate(1);
         textSize(12);
         noStroke();     
         background(0);
-//        fill(255,255,255);
         noLoop();
     }
 
-    @Override
-    public void draw() {
+    //@Override
+    public void drawA() {
         helix();
         noise();
         //background(0);
         save("bacterie.png");
+    }
+
+    public void pure_helix(){
+
+
     }
 
     //draw bacteria in an helicoidal shape
@@ -194,6 +237,17 @@ public class BioTexture extends PApplet {
 
     //randomly pick rgb in a palette
     public void choose_rgb(){
+        float cChange=20;
+        red += random(-cChange, cChange);
+        red = constrain(red, 0, 256);
+      
+        green += random(-cChange, cChange);
+        green = constrain(green, 0, 256);
+      
+        blue += random(-cChange, cChange);
+        blue = constrain(blue, 0, 256);
+
+        /*
         float r = random(5);
         switch ((int)r) {
             //pink (255,0,127) 0xFF007F
@@ -215,6 +269,7 @@ public class BioTexture extends PApplet {
             case 0:  red=154; green=152; blue=100;
                      break;
         }
+        */
     }
 
     public void radiation(float x, float y, float radius) {
