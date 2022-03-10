@@ -58,7 +58,7 @@ public class SL001  extends PApplet {
         g = constrain(g, 0, 256);
         b += random(-cChange, cChange);
         b = constrain(b, 0, 256);
-        fill(r,g,b,random(50,100));
+        fill(r,g,b,random(90,130));
         strokeWeight(random(7));
         stroke(255,255,255);
         radius=random(10,30*(float)(angle*0.8)); //size of radius is random and also related to the angle

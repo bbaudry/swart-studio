@@ -50,5 +50,5 @@ void draw() {
   }
   //System.out.println("done!");
   //step=0;
-  save("test.png");
+  save("test1.png");
 }

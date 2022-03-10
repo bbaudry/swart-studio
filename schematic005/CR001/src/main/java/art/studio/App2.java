@@ -6,14 +6,14 @@ public class App2 extends PApplet
 {
 
     //yellow, orange, pink, purple, blue, green
-color[] palette = {#FFBE0B,#FB5607,#FF006E,#8338EC,#3A86FF,#38B000};
+float[] palette = {0xFFBE0B,0xFB5607,0xFF006E,0x8338EC,0x3A86FF,0x38B000};
 
-int w = 42*42;
+int w = 42*21;
 int inW = 5*42;
 int maxinW = 35*42;
 int hor=inW;
 
-int h = 42*42;
+int h = 42*21;
 int inH = 5*42;
 int maxinH = 35*42;
 int vert=inH;
@@ -23,22 +23,24 @@ float y;
 int radius=0;
 float choice;
 float orientation;
-float col;
+Float col;
 int count=0;
 
-void settings(){
+@Override
+public void settings(){
   size(w,h);
 }
 
-void setup() {
+@Override
+public void setup() {
   frameRate(1);
-  fill(#000000);
+  fill(0x000000);
   noLoop();
 }
 
 
-void draw() {
-  background(#FFFFFF);
+public void draw() {
+  background(0xFFFFFF);
   while (vert<maxinH){
     while (hor<maxinW){
       x=random(hor,hor+42);
@@ -57,7 +59,8 @@ void draw() {
 
 void shape(float x, float y){
   col = random(3);
-  fill(palette[int(col)]);
+  fill(palette[col.intValue()]);
+  System.out.println(Integer.toHexString(Float.floatToIntBits(palette[col.intValue()])).toUpperCase());//Integer.toHexString(Float.floatToIntBits(palette[col.intValue()])).toUpperCase()
   if (choice<42){//draw rectangle
     rectangle(x,y);
   }
@@ -88,7 +91,8 @@ void rectCircle(float x, float y){
   rect(x,y,xStep,yStep);
   float xCenter = x+xStep/2;
   float yCenter = y+yStep/2;
-  circle(xCenter,yCenter,random(42));
+  float radius = random(42);
+  ellipse(xCenter,yCenter,radius,radius);
   if (random(21)<7){
     line(x,y,x+xStep,y+yStep);
   }
@@ -100,13 +104,14 @@ void lin(float x, float y){
 }
 
 void circ(float x, float y){
-  if (choice>80) {fill(#8338EC);}
-  circle(x,y,random(42*3));
+  if (choice>80) {fill(0x8338EC);}
+  float radius = random(42*3);
+  ellipse(x,y,radius,radius);
 }
-	public static void main(String[] args){
+public static void main(String[] args){
 		String[] processingArgs = {"MySketch"};
-		App mySketch = new App();
+		App2 mySketch = new App2();
 		PApplet.runSketch(processingArgs, mySketch);
-	}
+}
 
 }

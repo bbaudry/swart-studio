@@ -31,6 +31,7 @@ public class Practice003  extends PApplet {
     }
 
     // simple function that draws points along a spiral, 6 circles, clocwise, changing color randomly
+    // the orientation of the spiral is determined by angle
     public void spiral3(float rotate) {
         float step = (float) (2 * Math.PI / 300);
         System.out.println("rotate: "+rotate+"r : "+r+" g :"+g+" b "+b);

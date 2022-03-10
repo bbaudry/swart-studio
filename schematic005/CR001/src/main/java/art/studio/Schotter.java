@@ -19,7 +19,7 @@ public class Schotter extends PApplet {
     @Override
     public void setup() {
         frameRate(1);
-//        noLoop();
+        noLoop();
     }
 
     @Override
@@ -36,6 +36,7 @@ public class Schotter extends PApplet {
             row(seed);
             seed=seed+5;
         }
+        save("Schotter.png");
     }
 
     public void row(float seed){
