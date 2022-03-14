@@ -23,7 +23,7 @@ void setup() {
   //stroke(255,255,255);
   //strokeWeight(2);
   noStroke();
-  //noLoop();
+  noLoop();
 }
 
 

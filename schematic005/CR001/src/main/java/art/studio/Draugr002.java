@@ -20,7 +20,7 @@ public class Draugr002  extends PApplet {
 
     @Override
     public void setup() {
-        frameRate(24);
+        frameRate(42);
         cx=w/2;
         cy=h/2;
         radius = (float)(w*0.9);
@@ -39,7 +39,7 @@ public class Draugr002  extends PApplet {
             radius-=25;
         }
         else{
-            if (count<25){
+            if (count<5){
                 radius = (float)(w*0.9);
                 count++;
             }
@@ -49,9 +49,12 @@ public class Draugr002  extends PApplet {
             }
         }
         strokeWeight(random(2,5));
+        stroke(10,10,10);
         x=random(w/100, w-w/100);
         y=random(h/100, h-h/100);
-        rect(x, y, x+random(w/100), y+random(h/100));
+        fill(233,233,211);
+        rect(x, y, random(0,w/10), random(0,h/10));
+        noFill();
     }
 
     public void rays(int nb_rays){
@@ -69,5 +72,4 @@ public class Draugr002  extends PApplet {
         Draugr002 mySketch = new Draugr002();
         PApplet.runSketch(processingArgs, mySketch);
     }
-
 }

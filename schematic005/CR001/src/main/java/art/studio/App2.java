@@ -2,8 +2,7 @@ package art.studio;
 
 import processing.core.PApplet;
 
-public class App2 extends PApplet
-{
+public class App2 extends PApplet{
 
     //yellow, orange, pink, purple, blue, green
 float[] palette = {0xFFBE0B,0xFB5607,0xFF006E,0x8338EC,0x3A86FF,0x38B000};
