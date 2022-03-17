@@ -30,14 +30,14 @@ public class Practice004  extends PApplet {
             float cx = random(w/10,9*w/10);
             float cy = random(h/10,9*h/10);
             float radius = random(11,42);
-            broken_circle(cx, cy, radius);
+            crater(cx, cy, radius);
         }
         noLoop();
     }
 
     // draws lines around a center
     // x=h+r*cosθ; y=k+r*sinθ ; r is the radius of the circle; h,k are the coordinates of the center.
-    public void broken_circle(float x, float y, float radius) {
+    public void crater(float x, float y, float radius) {
         stroke(0);
         float ori_x = x + radius;
         float ori_y = y;
@@ -50,7 +50,6 @@ public class Practice004  extends PApplet {
             angle = random((float)(2*Math.PI / 51),(float)(2*Math.PI / 5));
             if (rotate + angle>=twopi){
                 angle=twopi-rotate; 
-                System.out.println("end circle");
             }
             dest_x = x + radius*cos(angle+rotate);
             dest_y = y + radius*sin(angle+rotate);

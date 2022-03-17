@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 //Draugr is an exoplanet https://en.wikipedia.org/wiki/PSR_B1257%2B12_A
+//the Draugr series is about circular shapes and random black lines
 public class Draugr001  extends PApplet {
     int vis_w = 3000;
     int txt_w = 3000;
