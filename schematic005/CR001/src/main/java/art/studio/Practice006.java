@@ -31,17 +31,19 @@ public class Practice006  extends PApplet {
         float cy;
         float radius;
         for (int i=0; i<11; i++){
-            radius = 100;//random(42, 111);;
+            radius = 200;//random(42, 111);;
             cx = random(w / 10, 9 * w / 10);
             cy = random(h / 10, 9 * h / 10);
             stroke(0);
             ellipse(cx, cy, radius*2, radius*2);
-            h_ray(cx, cy, radius);
+            for (int j = 0; j<11; j++){
+                h_ray(cx, cy, radius);
+            }
         }
         noLoop();
     }
 
-    // x=h+r*cosθ; y=k+r*sinθ ; r is the radius of the circle; h,k are the coordinates of the center.
+    // draw chords in the circle centered on (x,y) and radius. The chords are not straight
     public void h_ray(float x, float y, float radius) {
         ellipse(x, y, 10, 10); //draw the center of the circle
         noStroke();
@@ -55,19 +57,19 @@ public class Practice006  extends PApplet {
         float right_y = y + radius*sin(angle_sym);//sy2 should be equal to sy1 according to the way we compute angle_sym as the symmetric of angle on an horizontal axis
         fill(242,42,84);
         ellipse(right_x, right_y, 10, 10);
-        strokeWeight(1);
+        strokeWeight(4);
         stroke(111,111,111);
         float chord_length=right_x-left_x;
         float tmpx=left_x;
-        float tmpxdest=left_x;
+        float tmpxdest=tmpx + random(chord_length/5);
         float tmpy = left_y;
-        float tmpydest = left_y;
+        float tmpydest = tmpy + random(-2,2);
         while(tmpxdest<right_x){
+            line(tmpx,tmpy,tmpxdest,tmpydest);
             tmpx=tmpxdest;
             tmpy=tmpydest;
-            tmpydest = tmpy + random(-2,2);
             tmpxdest = tmpx + random(chord_length/5);
-            line(tmpx,tmpy,tmpxdest,tmpydest);
+            tmpydest = tmpy + random(-2,2);
         }
         System.out.println("tmpx = "+tmpx+"; tmpy = "+tmpy+"; sx2 = "+right_x+"; sy2 = "+right_y);
         line(tmpx,tmpy,right_x,right_y);
