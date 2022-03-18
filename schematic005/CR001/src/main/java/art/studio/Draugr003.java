@@ -35,14 +35,14 @@ public class Draugr003  extends PApplet {
         crater=0;
         max_craters=40;
         chord=0;
-        max_chords=142;
+        max_chords=333;
         cx=vis_w/2;
         cy=h/2;
         radius = (float)(vis_w*0.9);
         background(242,242,217);
         fill(233,233,211);
         stroke(0);
-        ellipse(cx,cy,radius,radius);
+        //ellipse(cx,cy,radius,radius);
     }
 
     @Override
@@ -66,13 +66,13 @@ public class Draugr003  extends PApplet {
         float angle_sym = (float)(2*3*Math.PI/2-angle);//angle to get the symmetric on the right half of the circle
         float right_x = x + radius*cos(angle_sym);
         float right_y = y + radius*sin(angle_sym);//sy2 should be equal to sy1 according to the way we compute angle_sym as the symmetric of angle on an horizontal axis
-        strokeWeight(random(1,5));
+        strokeWeight(random((float)(0.5),3));
         stroke(0,0,0,51);
         float chord_length=right_x-left_x;
         float tmpx=left_x;
         float tmpxdest=tmpx + random(chord_length/5);
         float tmpy = left_y;
-        float tmpydest = tmpy + random(-2,2);
+        float tmpydest = tmpy + random(-3,3);
         while(tmpxdest<right_x){
             line(tmpx,tmpy,tmpxdest,tmpydest);
             tmpx=tmpxdest;
