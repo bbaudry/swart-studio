@@ -25,7 +25,7 @@ public class Practice007  extends PApplet {
     public void setup() {
         //frameRate(1);
         count = 0;
-        max = 222;
+        max = 2;
         background(255,255,255);
         //noLoop();
         noFill();
@@ -36,7 +36,7 @@ public class Practice007  extends PApplet {
     public void draw() {
         if (count<max){
             circle_chunk(w/2, h/2, 333);
-            shape(sh,100,100);
+            //shape(sh,100,100);
             count++;
         }
         else{
@@ -57,10 +57,16 @@ public class Practice007  extends PApplet {
         float x4 = cx + radius/2*cos(angle2);
         float y3 = cy + radius/2*sin(angle1);
         float y4 = cy + radius/2*sin(angle2);
-        strokeWeight(4);
+        strokeWeight(142);
+        strokeCap(SQUARE);
         stroke(242,11,88);
         arc(cx,cy,radius,radius,angle1,angle2);
         arc(cx,cy,radius*2,radius*2,angle1,angle2);
+        strokeWeight(4);
+        stroke(0);
+        arc(cx,cy,radius,radius,angle1,angle2);
+        arc(cx,cy,radius*2,radius*2,angle1,angle2);
+
         line(x3,y3,x1,y1);
         line(x4,y4,x2,y2);
         noFill();
@@ -70,7 +76,8 @@ public class Practice007  extends PApplet {
         sh.vertex(x1, y1);
         sh.vertex(x2, y2);
         sh.vertex(x4, y4);
-        sh.endShape();
+        sh.vertex(x3, y3);
+        sh.endShape(CLOSE);
     }
 
     public static void main(String[] args) {

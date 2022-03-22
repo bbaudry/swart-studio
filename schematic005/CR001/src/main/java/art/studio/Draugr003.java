@@ -47,13 +47,22 @@ public class Draugr003  extends PApplet {
 
     @Override
     public void draw() {
-        if (chord<max_chords) {
-            approx_chord(cx, cy, radius/2);
-            chord++;
+        if (crater<max_craters){
+            float cratx=random(w/6,5*w/6);
+            float craty=random(h/6,5*h/6);
+            float rad = random(11,21);
+            crater(cratx, craty, rad);
+            crater++;
         }
         else{
-            noLoop();
-            save("Draugr003#001.png");
+            if (chord<max_chords) {
+                approx_chord(cx, cy, radius/2);
+                chord++;
+            }
+            else{
+                noLoop();
+                save("Draugr003#001.png");
+            }
         }
     }
 
@@ -88,7 +97,8 @@ public class Draugr003  extends PApplet {
         // draws lines around a center
     // x=h+r*cosθ; y=k+r*sinθ ; r is the radius of the circle; h,k are the coordinates of the center.
     public void crater(float x, float y, float radius) {
-        stroke(0);
+        strokeWeight(random((float)(0.5),3));
+        stroke(0,0,0,87);
         float ori_x = x + radius;
         float ori_y = y;
         float dest_x;
@@ -97,7 +107,7 @@ public class Draugr003  extends PApplet {
         float angle=0;
         float twopi = (float)(2*Math.PI);
         while (rotate<twopi){
-            angle = random((float)(2*Math.PI / 51),(float)(2*Math.PI / 21));
+            angle = random((float)(2*Math.PI / 21),(float)(2*Math.PI / 11));
             if (rotate + angle>=twopi){
                 angle=twopi-rotate; 
             }
