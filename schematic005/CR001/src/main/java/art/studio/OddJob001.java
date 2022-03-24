@@ -36,9 +36,9 @@ public class OddJob001  extends PApplet{
         float radius;
         float angle1; 
         float rand_angle;
-    float angle2;
+        float angle2;
         switch (s) {
-            case 0:
+            /*case 0:
                 // if (rd.nextBoolean()){
                 stroke(palette[hu], 80, 90);
                 strokeCap(SQUARE);
@@ -63,23 +63,49 @@ public class OddJob001  extends PApplet{
                 noFill();
                 radius = random(h / 42, 3 * h / 42);
                 ellipse(random(0, w), random(0, h), radius, radius);
-                break;
+                break;*/
             case 3:
-                angle1 = random(0, 2 * PI);
-                rand_angle = random(PI / 50, 40 * PI / 50);
-                angle2 = angle1 + rand_angle;
-                radius = random(h / 42, 3 * h / 42);
                 stroke(palette[hu], 80, 90);
-                strokeWeight(random(11, 42));
                 strokeCap(SQUARE);
-                noFill();
-                cx = random(0, w);
-                cy = random(0, h);
-                arc(cx, cy, radius * 2, radius * 2, angle1, angle2);
+                arc_stripes();
                 break;
             case 4:
+                stroke(palette[hu], 80, 90);
+                strokeCap(SQUARE);
+                line_stripes();
                 break;
         }
+    }
+
+    public void line_stripes(){
+        cx=random(w);
+        cy=random(h);
+        float dx = random(w);
+        float dy = random(h);
+        float sep = random(33,77);
+        float w = random(5,17);
+        strokeWeight(w);
+        int max_i = (int)(random(3,11)); 
+        for(int i=0; i<max_i; i++){
+            float step = sep*i;
+            //line(cx+step,cy+step,dx+step,dy+step);
+        }
+    }
+
+    public void arc_stripes(){
+        cx=random(w);
+        cy=random(h);
+        float angle1 = random(0, 2 * PI);
+        float rand_angle = random(PI / 50, 40 * PI / 50);
+        float angle2 = angle1 + rand_angle;
+        float radius = random(h / 42, 3 * h / 42);
+        float w = random(5,17);
+        strokeWeight(w);
+        noFill();
+        arc(cx, cy, radius, radius, angle1, angle2); System.out.println(radius);
+        arc(cx, cy, radius * 2, radius * 2, angle1, angle2); System.out.println(radius*2);
+        arc(cx, cy, radius * 3, radius * 3, angle1, angle2); System.out.println(radius*3);
+
     }
 
     public static void main(String[] args) {
