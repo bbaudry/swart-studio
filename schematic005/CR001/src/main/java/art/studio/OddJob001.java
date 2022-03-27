@@ -52,17 +52,14 @@ public class OddJob001  extends PApplet{
                 strokeWeight(random(11, 42));
                 cx=random(0, w);
                 cy=random(0, h);
-//                line(cx, cy, cx+random(w/11,w/3), cy+random(h/11,h/3));
+                line(cx, cy, cx+random(w/11,w/3), cy+random(h/11,h/3));
                 noStroke();
-                // }
-                // else{
                 break;
             case 1:
                 noStroke();    
                 fill(palette[hu], 80, 90);
                 radius = random(h / 42, 3 * h / 42);
                 ellipse(random(0, w), random(0, h), radius, radius);
-                // }
                 break;
             case 2:
                 stroke(palette[hu], 80, 90);
