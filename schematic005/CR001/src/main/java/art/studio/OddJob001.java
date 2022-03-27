@@ -16,6 +16,8 @@ public class OddJob001  extends PApplet{
     Random rd = new Random();
     int s;
     int hu;
+    int max_iterations;
+    int iteration;
 
 
     @Override
@@ -27,10 +29,16 @@ public class OddJob001  extends PApplet{
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         background(45,25,80);
+        max_iterations=111;
+        iteration=0;
     }
 
     @Override
     public void draw() {
+        if (iteration==max_iterations){
+            noLoop();
+            save("OddJob001.png");
+        }
         hu = (int) (random(palette.length));
         s = rd.nextInt() % 5;
         float radius;
@@ -38,8 +46,7 @@ public class OddJob001  extends PApplet{
         float rand_angle;
         float angle2;
         switch (s) {
-            /*case 0:
-                // if (rd.nextBoolean()){
+            case 0:
                 stroke(palette[hu], 80, 90);
                 strokeCap(SQUARE);
                 strokeWeight(random(11, 42));
@@ -63,7 +70,7 @@ public class OddJob001  extends PApplet{
                 noFill();
                 radius = random(h / 42, 3 * h / 42);
                 ellipse(random(0, w), random(0, h), radius, radius);
-                break;*/
+                break;
             case 3:
                 stroke(palette[hu], 80, 90);
                 strokeCap(SQUARE);
@@ -75,6 +82,7 @@ public class OddJob001  extends PApplet{
                 line_stripes();
                 break;
         }
+        iteration++;
     }
 
     public void line_stripes(){
@@ -88,7 +96,7 @@ public class OddJob001  extends PApplet{
         int max_i = (int)(random(3,11)); 
         for(int i=0; i<max_i; i++){
             float step = sep*i;
-            //line(cx+step,cy+step,dx+step,dy+step);
+            line(cx+step,cy+step,dx+step,dy+step);
         }
     }
 
@@ -102,10 +110,10 @@ public class OddJob001  extends PApplet{
         float w = random(5,17);
         strokeWeight(w);
         noFill();
-        arc(cx, cy, radius, radius, angle1, angle2); System.out.println(radius);
-        arc(cx, cy, radius * 2, radius * 2, angle1, angle2); System.out.println(radius*2);
-        arc(cx, cy, radius * 3, radius * 3, angle1, angle2); System.out.println(radius*3);
-
+        int max_i = (int)(random(3,11)); 
+        for(int i=0; i<max_i; i++){
+            arc(cx, cy, radius * (i+1), radius * (i+1), angle1, angle2); 
+        }
     }
 
     public static void main(String[] args) {
