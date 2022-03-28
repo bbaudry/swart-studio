@@ -66,17 +66,10 @@ public class Deps extends PApplet{
             x=shift;
             y+=descent;
             fill(10+hue,100,100-bri);
-            stroke(10,0,100);
             rect(x, y, w, descent);
-            //strokeWeight(descent);
-            //line(x, y, w, y);
         }
         else{
             noLoop();
-            stroke(10,0,0);
-            strokeWeight(4);
-            line(0,descent*nb_deps,w,descent*nb_deps);
-            System.out.println(descent*nb_deps+"  "+h+"  "+h/nb_deps+"  "+descent+"  "+nb_deps);
         }
     }
 
