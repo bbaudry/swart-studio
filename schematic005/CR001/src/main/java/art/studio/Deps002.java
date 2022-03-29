@@ -70,8 +70,8 @@ public class Deps002 extends PApplet{
             if (suppliers_color.putIfAbsent(sup, 1)==null){suppliers_color.put(sup, hue_factor);hue_factor=hue_factor+17;}
             float hue = suppliers_color.get(sup);
 //            float bri = bright_factor*depth;
-            fill(10+hue,100,100);
-            rect(x+(4*depth), y+(4*depth), x_inc-(8*depth), y_inc-(8*depth));
+            fill(10+hue,100,100); //knob: 10
+            rect(x+(4*depth), y+(4*depth), x_inc-(8*depth), y_inc-(8*depth)); //knob : 4, 8 
             if (john<baldessari){
                 x=x+x_inc;
                 john++;

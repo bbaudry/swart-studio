@@ -49,24 +49,24 @@ public class OddJob001  extends PApplet{
             case 0:
                 stroke(palette[hu], 80, 90);
                 strokeCap(SQUARE);
-                strokeWeight(random(11, 42));
+                strokeWeight(random(11, 42)); //knob: 11, 42 fixed + random value
                 cx=random(0, w);
                 cy=random(0, h);
-                line(cx, cy, cx+random(w/11,w/3), cy+random(h/11,h/3));
+                line(cx, cy, cx+random(w/11,w/3), cy+random(h/11,h/3));//knob: 11, 3 fixed + random value
                 noStroke();
                 break;
             case 1:
                 noStroke();    
                 fill(palette[hu], 80, 90);
                 radius = random(h / 42, 3 * h / 42);
-                ellipse(random(0, w), random(0, h), radius, radius);
+                ellipse(random(0, w), random(0, h), radius, radius);//knob: random x and y
                 break;
             case 2:
                 stroke(palette[hu], 80, 90);
                 strokeWeight(random(11, 42));
                 noFill();
                 radius = random(h / 42, 3 * h / 42);
-                ellipse(random(0, w), random(0, h), radius, radius);
+                ellipse(random(0, w), random(0, h), radius, radius);//knob: random x and y
                 break;
             case 3:
                 stroke(palette[hu], 80, 90);
@@ -85,12 +85,12 @@ public class OddJob001  extends PApplet{
     public void line_stripes(){
         cx=random(w);
         cy=random(h);
-        float dx = random(w);
-        float dy = random(h);
-        float sep = random(33,77);
-        float w = random(5,17);
+        float dx = random(w);//knob: random dx
+        float dy = random(h);//knob: random  dy
+        float sep = random(33,77);//knob
+        float w = random(5,17);//knob
         strokeWeight(w);
-        int max_i = (int)(random(3,11)); 
+        int max_i = (int)(random(3,11)); //knob
         for(int i=0; i<max_i; i++){
             float step = sep*i;
             line(cx+step,cy+step,dx+step,dy+step);
@@ -100,14 +100,14 @@ public class OddJob001  extends PApplet{
     public void arc_stripes(){
         cx=random(w);
         cy=random(h);
-        float angle1 = random(0, 2 * PI);
-        float rand_angle = random(PI / 50, 40 * PI / 50);
+        float angle1 = random(0, 2 * PI);//knob
+        float rand_angle = random(PI / 50, 40 * PI / 50);//knob
         float angle2 = angle1 + rand_angle;
-        float radius = random(h / 42, 3 * h / 42);
-        float w = random(5,17);
+        float radius = random(h / 42, 3 * h / 42);//knob
+        float w = random(5,17);//knob
         strokeWeight(w);
         noFill();
-        int max_i = (int)(random(3,11)); 
+        int max_i = (int)(random(3,11)); //knob
         for(int i=0; i<max_i; i++){
             arc(cx, cy, radius * (i+1), radius * (i+1), angle1, angle2); 
         }
