@@ -56,7 +56,7 @@ public class Deps002 extends PApplet{
         hue_factor = 0;
         suppliers_count = new LinkedHashMap<String,Integer>();
         suppliers_color = new LinkedHashMap<String,Integer>();
-        background(45,25,80);
+        background(45,0,100);
     }
 
     @Override

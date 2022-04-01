@@ -75,6 +75,4 @@ public class OddJob002 extends PApplet{
         OddJob002 mySketch = new OddJob002();
         PApplet.runSketch(processingArgs, mySketch);
     }
-
-    
 }
