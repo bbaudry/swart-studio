@@ -40,14 +40,17 @@
 <body>
   <script>
     var h = fxrand() * 360
-    var palette = [h, h + 10];
-
+    var palette = [h, h + 5, h+10, h+15];
+    var leftToRight;
+    var skip;
     var w = document.documentElement.clientWidth;//width of window that is available for drawing
     var h = document.documentElement.clientHeight;//width of window that is available for drawing
 
     function setup() {
       createCanvas(w, h);
       step = (fxrand()+1)*11;
+      weight = fxrand()*11;
+      strokeWeight(weight);
       colorMode(HSB, 360, 100, 100);
     }
 
@@ -56,7 +59,6 @@
         r = palette[(int)(palette.length * fxrand())];
         stroke(r, 100, 100);
         for (var y = 0; y < h; y += step) {
-          strokeWeight(4);
           segment(x, y, step, step);
         }
       }
@@ -65,11 +67,16 @@
     }
 
     function segment(x, y, width, height) {
-      var leftToRight = fxrand() >= 0.5;
-
+      leftToRight = fxrand() >= 0.5;
+      skip = fxrand () > 0.99;
+      if (!skip){
       if (leftToRight) {
         line(x, y, x + width, y + height);
       } else {
+        line(x + width, y, x, y + height);
+      }}
+      else{
+        stroke(0,0,100);
         line(x + width, y, x, y + height);
       }
     }
