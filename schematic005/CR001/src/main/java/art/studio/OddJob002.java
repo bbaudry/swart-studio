@@ -2,11 +2,6 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.Random;
-import java.io.*;
-import java.util.*;
-import org.json.simple.*;
-import org.json.simple.parser.*;
-
 
 
 public class OddJob002 extends PApplet{
@@ -17,12 +12,6 @@ public class OddJob002 extends PApplet{
     int nb_deps;
     int hue_factor;
     float bright_factor;
-    JSONParser parser = new JSONParser();
-    JSONArray jsonArray;
-    String dir = "schematic005/CR001/src/main/java/art/studio";
-    Iterator<?> dep_iterator;
-    LinkedHashMap<String,Integer> suppliers_count;
-    LinkedHashMap<String,Integer> suppliers_color;
     int baldessari;
     float x_inc;
     float y_inc;

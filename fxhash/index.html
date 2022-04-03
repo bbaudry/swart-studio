@@ -67,19 +67,24 @@
     }
 
     function segment(x, y, width, height) {
-      leftToRight = fxrand() >= 0.5;
-      skip = fxrand () > 0.99;
-      if (!skip){
-      if (leftToRight) {
-        line(x, y, x + width, y + height);
-      } else {
-        line(x + width, y, x, y + height);
-      }}
-      else{
-        stroke(0,0,100);
-        line(x + width, y, x, y + height);
+        leftToRight = fxrand() >= 0.5;
+        skip = fxrand() > 0.99;
+        if (!skip) {
+          if (leftToRight) {
+            line(x, y, x + width, y + height);
+          } else {
+            line(x + width, y, x, y + height);
+          }
+        }
+        else {
+          stroke(0, 0, 100);
+          if (leftToRight) {
+            line(x, y, x + width, y + height);
+          } else {
+            line(x + width, y, x, y + height);
+          }
+        }
       }
-    }
 
   </script>
 
