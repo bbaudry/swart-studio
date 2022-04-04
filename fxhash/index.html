@@ -86,6 +86,12 @@
         }
       }
 
+      function windowResized() {
+        w = document.documentElement.clientWidth;//width of window that is available for drawing
+        h = document.documentElement.clientHeight;//width of window that is available for drawing
+        resizeCanvas(windowWidth, windowHeight);
+      }
+
   </script>
 
 </body>
