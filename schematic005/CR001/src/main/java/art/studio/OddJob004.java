@@ -6,7 +6,7 @@ import java.util.Random;
 public class OddJob004 extends PApplet {
     int w = 1000;
     int h = 1000;
-    int[] palette = { 20, 140, 260 };
+    int[] palette = { 20, 140, 260, 340, 200};
     float x1;
     float y1;
     float x2;
@@ -22,17 +22,18 @@ public class OddJob004 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB, 360, 100, 100);
-        background(230, 80, 40);
         rand = new Random();
+        frameRate(1);
     }
 
     @Override
     public void draw() {
+        background(230, 80, 40);
+        stroke(230, 80, 40);//stroke(0, 0, 100);
         int step = 10;
         for (float x = 0; x < w; x = x + w / step) {
             for (float y = 0; y < h; y = y + h / step) {
                 int john = (int) random(8);
-                System.out.println(john);
                 switch (john) {
                     case 1:
                         tri1(x,y,x+w/step,y+h/step);
@@ -62,6 +63,7 @@ public class OddJob004 extends PApplet {
             }
         }
         noLoop();
+        save("OddJob04.png");
     }
 
     public void tri1(float x1, float y1, float x2, float y2) {
