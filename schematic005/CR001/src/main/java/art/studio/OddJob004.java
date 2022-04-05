@@ -54,7 +54,7 @@ public class OddJob004 extends PApplet {
                         moon2(x,y,x+w/step,y+h/step);
                         break;
                     case 7:
-                        cell1(x,y,x+w/step,y+h/step);
+                        //cell1(x,y,x+w/step,y+h/step);
                         break;
                     case 0:
                         cell2(x,y,x+w/step,y+h/step);
@@ -94,6 +94,8 @@ public class OddJob004 extends PApplet {
         color = (int) random(palette.length);
         fill(palette[color], 80, 80);
         arc(x1,y1+((y2-y1)/2),x2-x1,y2-y1,PI+HALF_PI,HALF_PI,PIE);
+        fill(0,0,100);
+        ellipse(x1,y1+((y2-y1)/2),10,10);
     }
 
     public void moon2(float x1, float y1, float x2, float y2) {
