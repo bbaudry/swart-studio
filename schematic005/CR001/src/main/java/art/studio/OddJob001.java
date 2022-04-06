@@ -42,9 +42,6 @@ public class OddJob001  extends PApplet{
         hu = (int) (random(palette.length));
         s = rd.nextInt() % 5;
         float radius;
-        float angle1; 
-        float rand_angle;
-        float angle2;
         switch (s) {
             case 0:
                 stroke(palette[hu], 80, 90);

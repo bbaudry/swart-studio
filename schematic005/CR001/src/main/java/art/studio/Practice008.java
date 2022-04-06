@@ -1,9 +1,6 @@
 package art.studio;
 
-import java.util.function.DoubleToIntFunction;
-
 import processing.core.PApplet;
-import processing.core.PShape;
 
 //practice drawing parts of circles circles
 public class Practice008  extends PApplet {

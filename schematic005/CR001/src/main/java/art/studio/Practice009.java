@@ -1,9 +1,6 @@
 package art.studio;
 
-import java.util.function.DoubleToIntFunction;
-
 import processing.core.PApplet;
-import processing.core.PShape;
 import java.io.*;
 import java.util.*;
 import org.json.simple.*;
@@ -56,7 +53,6 @@ public class Practice009  extends PApplet {
     public void draw() {
         if (dep_iterator.hasNext()) {
             JSONObject o = (JSONObject)(dep_iterator.next());
-            float depth = (float)((Long) o.get("depth"));
             String sup = o.get("supplier").toString();
             Integer sup_occ = suppliers_count.putIfAbsent(sup, 1);
             if (sup_occ!=null) {Integer occ = suppliers_count.get(sup); suppliers_count.put(sup, occ+1);}

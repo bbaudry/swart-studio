@@ -54,7 +54,7 @@ public class OddJob004 extends PApplet {
                         moon2(x,y,x+w/step,y+h/step);
                         break;
                     case 7:
-                        //cell1(x,y,x+w/step,y+h/step);
+                        cell1(x,y,x+w/step,y+h/step);
                         break;
                     case 0:
                         cell2(x,y,x+w/step,y+h/step);
@@ -63,7 +63,7 @@ public class OddJob004 extends PApplet {
             }
         }
         noLoop();
-        save("OddJob04.png");
+        save("OddJob004.png");
     }
 
     public void tri1(float x1, float y1, float x2, float y2) {
@@ -93,9 +93,7 @@ public class OddJob004 extends PApplet {
     public void moon1(float x1, float y1, float x2, float y2) {
         color = (int) random(palette.length);
         fill(palette[color], 80, 80);
-        arc(x1,y1+((y2-y1)/2),x2-x1,y2-y1,PI+HALF_PI,HALF_PI,PIE);
-        fill(0,0,100);
-        ellipse(x1,y1+((y2-y1)/2),10,10);
+        arc(x1,y1+((y2-y1)/2),x2-x1,y2-y1,-HALF_PI,HALF_PI,PIE);
     }
 
     public void moon2(float x1, float y1, float x2, float y2) {
@@ -106,7 +104,8 @@ public class OddJob004 extends PApplet {
 
     public void cell1(float x1, float y1, float x2, float y2) {
         color = (int) random(palette.length);
-        fill(palette[color], 80, 80);
+        fill(palette[color], 80, 80);        
+        //rect(x1,y1,x2-x1,y2-y1);
         rect(x1,y1,x2,y1,x2,y2,x1,y2);
     }
 
