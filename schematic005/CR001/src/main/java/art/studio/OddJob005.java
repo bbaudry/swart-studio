@@ -7,7 +7,7 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 
 //practice drawing parts of circles circles
-public class Practice010  extends PApplet {
+public class OddJob005  extends PApplet {
     int w = 1000;
     int h = 1000;
     float cx;
@@ -75,8 +75,8 @@ public void john(int steps){
     ellipse(john,baldessari,not,boring);
 }
     public static void main(String[] args) {
-        String[] processingArgs = { "Practice 009" };
-        Practice010 mySketch = new Practice010();
+        String[] processingArgs = { "OddJob 005" };
+        OddJob005 mySketch = new OddJob005();
         PApplet.runSketch(processingArgs, mySketch);
     }
 
