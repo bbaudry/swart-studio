@@ -45,25 +45,46 @@
     var skip;
     var w = document.documentElement.clientWidth;//width of window that is available for drawing
     var h = document.documentElement.clientHeight;//width of window that is available for drawing
-
+    var x_count;
     function setup() {
       createCanvas(w, h);
       step = (fxrand()+1)*11;
       weight = fxrand()*11;
       strokeWeight(weight);
       colorMode(HSB, 360, 100, 100);
+      x_count=0;
+      //textAlign(CENTER, CENTER);
     }
 
     function draw() {
-      for (var x = 0; x < w; x += step) {
+      weave();
+      frameRate(1);
+      fxpreview();
+    }
+    //print code with live values on the right half of the canvas
+    function code(x,y,s){
+      textSize(12);
+      pad=50;
+      tx=w/2;
+      ty=h/2;
+      noStroke();
+      fill(0, 0, 100);
+      rect(tx, ty-50, 500, 100);
+      fill(0,0,0);
+      stroke(0,0,100);
+      text('segment('+x+', '+y+', '+s+', '+s+')',tx,ty);
+      console.log(x);
+    }
+
+    function weave(){
+      for (var x = 0; x < w/2; x += step) {
         r = palette[(int)(palette.length * fxrand())];
-        stroke(r, 100, 100);
         for (var y = 0; y < h; y += step) {
+          stroke(r, 100, 100);
           segment(x, y, step, step);
+          code(x,y,step);
         }
       }
-      fxpreview();
-
     }
 
     function segment(x, y, width, height) {
