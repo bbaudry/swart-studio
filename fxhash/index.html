@@ -46,6 +46,8 @@
     var w = document.documentElement.clientWidth;//width of window that is available for drawing
     var h = document.documentElement.clientHeight;//width of window that is available for drawing
     var x_count;
+    var hu;
+    var skip;
     function setup() {
       createCanvas(w, h);
       step = (fxrand()+1)*11;
@@ -57,14 +59,51 @@
     }
 
     function draw() {
+      code();
       weave();
       fxpreview();
     }
 
+    function code(){
+      t='function weave(){'+'\n'
+      +'  for (var x = 0; x < w/2; x += step) {'+'\n'
+      +'    r = palette[(int)(palette.length * '+hu+')];'+'\n'
+      +'    stroke(r, 100, 100);'+'\n'
+      +'    for (var y = 0; y < h; y += step) {'+'\n'
+      +'      segment(x, y, step, step);'+'\n'
+      +'    }'+'\n'
+      +'  }'+'\n'
+      +'}'+'\n'
+      +'\n'
+      +'function segment(x, y, width, height) {'+'\n'
+      +'  leftToRight = fxrand() >= 0.5;'+'\n'
+      +'  skip = '+skip+'\n'
+      +'  if (!(skip> 0.99)) {'+'\n'
+      +'    if (leftToRight) {'+'\n'
+      +'      line(x, y, x + width, y + height);'+'\n'
+      +'  } else {'+'\n'
+      +'      line(x + width, y, x, y + height);'+'\n'
+      +'    }'+'\n'
+      +'  }'+'\n'
+      +'  else {'+'\n'
+      +'    stroke(0, 0, 100);'+'\n'
+      +'    if (leftToRight) {'+'\n'
+      +'      line(x, y, x + width, y + height);'+'\n'
+      +'    } else {'+'\n'
+      +'      line(x + width, y, x, y + height);'+'\n'
+      +'    }'+'\n'
+      +'  }'+'\n'
+      +'}'+'\n';
+
+      textSize(22);
+      fill(0, 0, 0);
+      text(t, w/2+150, 50);
+    }
+
     function weave(){
       for (var x = 0; x < w/2; x += step) {
-        r = palette[(int)(palette.length * fxrand())];
-        stroke(r, 100, 100);
+        hu = palette[(int)(palette.length * fxrand())];
+        stroke(hu, 100, 100);
         for (var y = 0; y < h; y += step) {
           segment(x, y, step, step);
         }
@@ -73,8 +112,8 @@
 
     function segment(x, y, width, height) {
         leftToRight = fxrand() >= 0.5;
-        skip = fxrand() > 0.99;
-        if (!skip) {
+        skip = fxrand();
+        if (!(skip> 0.99)) {
           if (leftToRight) {
             line(x, y, x + width, y + height);
           } else {
