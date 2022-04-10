@@ -30,7 +30,6 @@ public class SL001  extends PApplet {
     public void setup() {
         frameRate(12);
         total_iterations = 7;
-        //initial state
         background(255,255,255);
         count=0;
         cx=w/2;
@@ -72,7 +71,6 @@ public class SL001  extends PApplet {
             r = random(256);
             g = random(256);
             b = random(256);    
-            System.out.println("iteration "+(count-1));
         }
         if (count==total_iterations){
             noLoop();
