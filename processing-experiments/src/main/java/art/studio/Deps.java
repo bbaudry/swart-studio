@@ -23,7 +23,7 @@ public class Deps extends PApplet{
     float depth_shift;
     JSONParser parser = new JSONParser();
     JSONArray jsonArray;
-    String dir = "schematic005/CR001/src/main/java/art/studio";
+    String dir = "processing-experiments/src/main/java/art/studio";
     Iterator<?> dep_iterator;
 
     @Override

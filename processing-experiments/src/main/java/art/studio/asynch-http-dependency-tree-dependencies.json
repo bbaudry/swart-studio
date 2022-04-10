@@ -1,0 +1,797 @@
+[
+    {
+        "depth": 0,
+        "supplier": "rg.asynchttpclient",
+        "name": "async-http-client"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.asynchttpclient",
+        "name": "async-http-client-netty-utils"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.slf4j",
+        "name": "slf4j-api"
+    },
+    {
+        "depth": 2,
+        "supplier": "om.sun.activation",
+        "name": "javax.activation"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.netty",
+        "name": "netty-codec-http"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-resolver"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-handler"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.netty",
+        "name": "netty-handler"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.netty",
+        "name": "netty-codec-socks"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.netty",
+        "name": "netty-handler-proxy"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec-socks"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec-http"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.netty",
+        "name": "netty-transport-native-epoll"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport-native-unix-common"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.netty",
+        "name": "netty-transport-native-kqueue"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport-native-unix-common"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.netty",
+        "name": "netty-resolver-dns"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-resolver"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-codec-dns"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-common"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-buffer"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-transport"
+    },
+    {
+        "depth": 3,
+        "supplier": "o.netty",
+        "name": "netty-codec"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.reactivestreams",
+        "name": "reactive-streams"
+    },
+    {
+        "depth": 1,
+        "supplier": "om.typesafe.netty",
+        "name": "netty-reactive-streams"
+    },
+    {
+        "depth": 2,
+        "supplier": "o.netty",
+        "name": "netty-handler"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.reactivestreams",
+        "name": "reactive-streams"
+    },
+    {
+        "depth": 1,
+        "supplier": "o.reactivex.rxjava2",
+        "name": "rxjava"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.reactivestreams",
+        "name": "reactive-streams"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.reactivestreams",
+        "name": "reactive-streams-examples"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.reactivestreams",
+        "name": "reactive-streams"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-simplekdc"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-client"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-config"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.slf4j",
+        "name": "slf4j-api"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-core"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-pkix"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-asn1"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-util"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.slf4j",
+        "name": "slf4j-api"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-common"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-config"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-crypto"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-util"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-core"
+    },
+    {
+        "depth": 4,
+        "supplier": "ommons-io",
+        "name": "commons-io"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-util"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-config"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-core"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-crypto"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "token-provider"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-core"
+    },
+    {
+        "depth": 4,
+        "supplier": "om.nimbusds",
+        "name": "nimbus-jose-jwt"
+    },
+    {
+        "depth": 5,
+        "supplier": "om.github.stephenc.jcip",
+        "name": "jcip-annotations"
+    },
+    {
+        "depth": 5,
+        "supplier": "et.minidev",
+        "name": "json-smart"
+    },
+    {
+        "depth": 6,
+        "supplier": "et.minidev",
+        "name": "accessors-smart"
+    },
+    {
+        "depth": 7,
+        "supplier": "rg.ow2.asm",
+        "name": "asm"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-admin"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-server"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-common"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-identity"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-config"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-common"
+    },
+    {
+        "depth": 5,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-core"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "kerb-util"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.apache.kerby",
+        "name": "kerby-xdr"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.slf4j",
+        "name": "slf4j-api"
+    },
+    {
+        "depth": 1,
+        "supplier": "om.sun.activation",
+        "name": "javax.activation"
+    },
+    {
+        "depth": 1,
+        "supplier": "h.qos.logback",
+        "name": "logback-classic"
+    },
+    {
+        "depth": 2,
+        "supplier": "h.qos.logback",
+        "name": "logback-core"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.slf4j",
+        "name": "slf4j-api"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.testng",
+        "name": "testng"
+    },
+    {
+        "depth": 2,
+        "supplier": "om.beust",
+        "name": "jcommander"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-servlet"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-security"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-servlets"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-continuation"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-http"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-util"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-io"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-util"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-io"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-util"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-security"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-server"
+    },
+    {
+        "depth": 3,
+        "supplier": "avax.servlet",
+        "name": "javax.servlet-api"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-http"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-io"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-proxy"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-util"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-client"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-http"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-io"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-server"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-common"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-api"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-util"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-io"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-client"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-client"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-xml"
+    },
+    {
+        "depth": 4,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-util"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-util"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-io"
+    },
+    {
+        "depth": 3,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-common"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-servlet"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-servlet"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty",
+        "name": "jetty-http"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-servlet"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.eclipse.jetty.websocket",
+        "name": "websocket-api"
+    },
+    {
+        "depth": 2,
+        "supplier": "avax.servlet",
+        "name": "javax.servlet-api"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.apache.tomcat.embed",
+        "name": "tomcat-embed-core"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.apache.tomcat",
+        "name": "tomcat-annotations-api"
+    },
+    {
+        "depth": 1,
+        "supplier": "ommons-io",
+        "name": "commons-io"
+    },
+    {
+        "depth": 1,
+        "supplier": "ommons-fileupload",
+        "name": "commons-fileupload"
+    },
+    {
+        "depth": 2,
+        "supplier": "ommons-io",
+        "name": "commons-io"
+    },
+    {
+        "depth": 1,
+        "supplier": "om.e-movimento.tinytools",
+        "name": "privilegedaccessor"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.mockito",
+        "name": "mockito-core"
+    },
+    {
+        "depth": 2,
+        "supplier": "et.bytebuddy",
+        "name": "byte-buddy"
+    },
+    {
+        "depth": 2,
+        "supplier": "et.bytebuddy",
+        "name": "byte-buddy-agent"
+    },
+    {
+        "depth": 2,
+        "supplier": "rg.objenesis",
+        "name": "objenesis"
+    },
+    {
+        "depth": 1,
+        "supplier": "rg.hamcrest",
+        "name": "hamcrest"
+    }
+]

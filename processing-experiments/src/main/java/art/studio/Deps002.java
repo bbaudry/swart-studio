@@ -19,7 +19,7 @@ public class Deps002 extends PApplet{
     float bright_factor;
     JSONParser parser = new JSONParser();
     JSONArray jsonArray;
-    String dir = "schematic005/CR001/src/main/java/art/studio";
+    String dir = "processing-experiments/src/main/java/art/studio";
     Iterator<?> dep_iterator;
     LinkedHashMap<String,Integer> suppliers_count;
     LinkedHashMap<String,Integer> suppliers_color;
