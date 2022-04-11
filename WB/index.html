@@ -9,63 +9,68 @@
         body {
             background-color: white;
         }
+
         p {
             color: black;
         }
+
         a {
             color: black;
         }
+
         title {
             color: black;
         }
 
-        .container { 
-  height: 200px;
-  position: relative;
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-</style>
-
+        .flex-container {
+            text-align: center;
+        }
     </style>
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title id="top">white on white</title>
-<body>
-    <div class="container">
-        <div class="center">
-            <button id="black-btn" class="w3-button w3-xlarge w3-circle w3-black w3-hover-black" onclick="turnBGToBlack()">+</button>  
-            <button id="white-btn" class="w3-button w3-xlarge w3-circle w3-white w3-hover-white" onclick="turnBGToWhite()">+</button>  
-        </div>
+
+<body onload="turnBGToWhite();">
+    <div class="flex-container">
+        <button id="black-btn" class="w3-button w3-xlarge w3-circle w3-black w3-hover-black">¤</button>
+        <p> This page includes white text on white background, which can be turned into black text on black background
+        </p>
+        <p> White on white and black on black turn non-secret text on invisible text</p>
+        <p> This text is not non-secret</p>
+        <p> It is here as joke, very much in the spirit of software easter eggs</p>
+        <p> <a id="rick" href="https://youtu.be/dJRsWJqDjFE">If you are lucky, you will listen to Rick's hit a
+                capella</a></p>
     </div>
-    <p> This page includes white text on white background, which can be turned into black text on black background </p>
-    <p> White on white and black on black turn non-secret text on invisible text</p>
-    <p> This text is not non-secret</p>
-    <p> It is here as joke, very much in the spirit of software easter eggs</p>
-    <p> <a id="rick" href="https://youtu.be/dJRsWJqDjFE">If you are lucky, you will listen to Rick's hit a capella</a></p>
 
 
-    <script>      //
-        function turnBGToWhite(){
-            document.body.style.backgroundColor = "white"
+
+    <script>      
+        
+        function turnBGToWhite() {
+            console.log("What is white text on white background?");
+            document.body.style.backgroundColor = "white";
             document.querySelectorAll('p').forEach(e => e.style.color = "black");
             document.getElementById("rick").style.color = "black";
             document.getElementById("top").textContent = "white on white";
+            document.getElementById("black-btn").classList.add("w3-black");
+            document.getElementById("black-btn").classList.add("w3-hover-black");
+            document.getElementById("black-btn").classList.remove("w3-white");
+            document.getElementById("black-btn").classList.remove("w3-hover-white");
+            document.getElementById("black-btn").removeEventListener("click", turnBGToWhite);
+            document.getElementById("black-btn").addEventListener("click", turnBGToBlack);
         }
-        function turnBGToBlack(){
-            document.body.style.backgroundColor = "black"
+        function turnBGToBlack() {
+            console.log("What is black text on black background?");
+            document.body.style.backgroundColor = "black";
             document.querySelectorAll('p').forEach(e => e.style.color = "white");
-            document.getElementById("black-btn").style.color = "white";
             document.getElementById("rick").style.color = "white";
             document.getElementById("top").textContent = "black on black";
+            document.getElementById("black-btn").classList.remove("w3-black");
+            document.getElementById("black-btn").classList.remove("w3-hover-black");
+            document.getElementById("black-btn").classList.add("w3-white");
+            document.getElementById("black-btn").classList.add("w3-hover-white");
+            document.getElementById("black-btn").removeEventListener("click", turnBGToBlack);
+            document.getElementById("black-btn").addEventListener("click", turnBGToWhite);
         }
     </script>
 </body>
