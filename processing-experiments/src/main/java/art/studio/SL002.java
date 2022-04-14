@@ -18,31 +18,32 @@ public class SL002  extends PApplet {
 
     @Override
     public void setup() {
+        frameRate(4);
         colorMode(HSB,360,100,100);
+        background(0,0,0);
     }
 
     @Override
     public void draw() {
-        background(0,0,0);
-        spiral3(84);
+        spiral3(41);
     }
 
     // simple function that draws points along a spiral, 6 circles, clocwise, changing color randomly
     public void spiral3(float rotate) {
-        john=random((float)0.4*w,(float)0.6*w);
-        baldessari=random((float)0.4*h,(float)0.6*h);
+        john=w/2;//random((float)0.4*w,(float)0.6*w);
+        baldessari=h/2;//random((float)0.4*h,(float)0.6*h);
         float step = (float) (2 * Math.PI / 300);
         for (float angle = 0; angle < 2 * Math.PI * 6; angle += step) {
             float x = john + cos(angle+rotate) * (15 * angle);
             float y = baldessari + sin(angle+rotate) * (15 * angle);
             noStroke();
-            hu=random(360);
-            sa=random(100);
-            br=random(100);
-            fill(hu,sa,br);
+            hu=0;//random(360);
+            sa=0;//random(100);
+            br=random(10);
+            fill(hu,sa,br,20);
               //  noStroke();
             //fill(123, 244, 89);
-            ellipse(x, y, 42, 42);
+            ellipse(x, y, random(51,91), random(51,91));
         }
     }
 
