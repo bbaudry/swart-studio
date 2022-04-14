@@ -8,6 +8,7 @@ public class SL002  extends PApplet {
     float hu;
     float sa;
     float br;
+    float tr;
     float john;
     float baldessari;
 
@@ -37,10 +38,11 @@ public class SL002  extends PApplet {
             float x = john + cos(angle+rotate) * (15 * angle);
             float y = baldessari + sin(angle+rotate) * (15 * angle);
             noStroke();
-            hu=0;//random(360);
-            sa=0;//random(100);
-            br=random(10);
-            fill(hu,sa,br,20);
+            hu=random(180,220);
+            sa=random(100);
+            br=random(20);
+            tr=random(20);
+            fill(hu,sa,br,tr);
               //  noStroke();
             //fill(123, 244, 89);
             ellipse(x, y, random(51,91), random(51,91));
