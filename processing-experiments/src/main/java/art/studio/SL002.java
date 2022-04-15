@@ -5,10 +5,13 @@ import processing.core.PApplet;
 public class SL002  extends PApplet {
     int w = 1000;
     int h = 1000;
+    float x;
+    float y;
     float hu;
     float sa;
     float br;
     float tr;
+    float we;
     float john;
     float baldessari;
 
@@ -47,6 +50,16 @@ public class SL002  extends PApplet {
             //fill(123, 244, 89);
             ellipse(x, y, random(51,91), random(51,91));
         }
+        for (int i=0; i<71; i++){
+            hu=random(180,220);
+            tr=random(20);
+            we=random(7,17);
+            strokeWeight(we);
+            stroke(hu,100,100,tr);
+            y=random(h);
+            line(0,y,w,y);
+        }
+        
     }
 
     public static void main(String[] args) {
