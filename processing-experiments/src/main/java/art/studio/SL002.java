@@ -14,6 +14,8 @@ public class SL002  extends PApplet {
     float we;
     float john;
     float baldessari;
+    float not;
+    float boring;
 
     @Override
     public void settings() {
@@ -23,6 +25,8 @@ public class SL002  extends PApplet {
     @Override
     public void setup() {
         frameRate(4);
+        not=random(310);
+        boring=not+random(30,50);
         colorMode(HSB,360,100,100);
         background(0,0,0);
     }
@@ -41,7 +45,7 @@ public class SL002  extends PApplet {
             float x = john + cos(angle+rotate) * (15 * angle);
             float y = baldessari + sin(angle+rotate) * (15 * angle);
             noStroke();
-            hu=random(180,220);
+            hu=random(not,boring);
             sa=random(100);
             br=random(20);
             tr=random(20);
@@ -51,7 +55,7 @@ public class SL002  extends PApplet {
             ellipse(x, y, random(51,91), random(51,91));
         }
         for (int i=0; i<71; i++){
-            hu=random(180,220);
+            hu=random(not,boring);
             tr=random(20);
             we=random(7,17);
             strokeWeight(we);
