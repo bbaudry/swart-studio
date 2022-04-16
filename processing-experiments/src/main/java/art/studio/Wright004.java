@@ -1,11 +1,6 @@
 package art.studio;
 
 import processing.core.PApplet;
-import java.util.Random;
-import java.io.*;
-import java.util.*;
-import org.json.simple.*;
-import org.json.simple.parser.*;
 
 public class Wright004 extends PApplet {
   int w = 42*20;
@@ -22,7 +17,6 @@ public class Wright004 extends PApplet {
     colorMode(HSB,360,100,100);
     noStroke();
     frameRate(2);
-    //noLoop();
   }
 
   @Override
