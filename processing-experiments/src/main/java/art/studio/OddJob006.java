@@ -27,7 +27,7 @@ public class OddJob006 extends PApplet {
         //frameRate(1);
         cx=1;
         cy=1;
-        div=10;
+        div=20;
         stepx=w/div;
         stepy=h/div;
         background(230, 80, 40);
@@ -53,10 +53,13 @@ public class OddJob006 extends PApplet {
                 hlines(x,y);
                 break;
             case 3:
+                circles(x,y);
                 break;
             case 4:
+                arcs1(x,y);
                 break;
             case 5:
+                arcs2(x,y);
                 break;
             case 6:
                 break;
@@ -68,11 +71,11 @@ public class OddJob006 extends PApplet {
     }
 
     public void vlines(float x, float y){
-        noStroke();
+        stroke(230, 80, 40);
         fill(230, 80, 40);
-        rect(x,y,stepx,stepy);        
+        rect(x,y,stepx+3,stepy+3);        
         stroke(0,0,100);
-        strokeWeight(4);
+        strokeWeight(2);
         int inc=5;
         float step=stepx/inc;
         for(int i=0; i<inc; i++){
@@ -82,17 +85,56 @@ public class OddJob006 extends PApplet {
     }
 
     public void hlines(float x, float y){
-        noStroke();
+        stroke(230, 80, 40);
         fill(230, 80, 40);
-        rect(x,y,stepx,stepy);        
+        rect(x,y,stepx+3,stepy+3);         
         stroke(0,0,100);
-        strokeWeight(4);
+        strokeWeight(2);
         int inc=5;
         float step=stepx/inc;
         for(int i=0; i<inc; i++){
             line(x,y,x+stepx,y);
             y=y+step;
         }
+    }
+
+    public void circles(float x, float y){
+        stroke(230, 80, 40);
+        fill(230, 80, 40);
+        rect(x,y,stepx+3,stepy+3);         
+        stroke(0,0,100);
+        strokeWeight(2);
+        float centx=x+stepx/2;
+        float centy=y+stepy/2;
+        int inc=5;
+        noFill();
+        for(int i=0; i<inc; i++){
+            System.out.println("ring"+i);
+            ellipse(centx,centy,i*(stepx/inc),i*(stepy/inc));
+        }
+    }
+
+
+    public void arcs1(float x, float y){
+        stroke(230, 80, 40);
+        fill(230, 80, 40);
+        rect(x,y,stepx+3,stepy+3);       
+        stroke(0,0,100);
+        strokeWeight(2);
+        int inc=5;
+        noFill();
+        for(int i=0; i<inc; i++){
+            arc(x, y, i*(2*stepx/inc), i*(2*stepy/inc), 0, PI/2);
+        }
+
+    }
+
+    public void arcs2(float x, float y){
+        stroke(230, 80, 40);
+        fill(230, 80, 40);
+        rect(x,y,stepx+3,stepy+3);       
+        stroke(0,0,100);
+        strokeWeight(2);
     }
 
     public static void main(String[] args) {
