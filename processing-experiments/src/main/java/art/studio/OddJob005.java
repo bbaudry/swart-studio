@@ -1,10 +1,6 @@
 package art.studio;
 
 import processing.core.PApplet;
-import java.io.*;
-import java.util.*;
-import org.json.simple.*;
-import org.json.simple.parser.*;
 
 //practice drawing parts of circles circles
 public class OddJob005 extends PApplet {

@@ -3,14 +3,14 @@ package art.studio;
 import processing.core.PApplet;
 import java.util.Random;
 
-public class OddJob006 extends PApplet {
+public class OddJob007 extends PApplet {
     int w = 1000;
-    int h = 1000;
+    int h = w;
     float cx;
     float cy;
     float stepx;
     float stepy;
-    float div;
+    int div;
     int inc;
     Random rand;
 
@@ -23,11 +23,11 @@ public class OddJob006 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         rand = new Random();
-        //frameRate(1);
+        frameRate(3);
         cx=1;
         cy=1;
-        div=20; //knob
-        inc=5; //knob
+        div=10; //knob
+        inc=7; //knob
         stepx=w/div;
         stepy=h/div;
         background(230, 80, 40);
@@ -35,12 +35,14 @@ public class OddJob006 extends PApplet {
 
     @Override
     public void draw() {
-        shape(cx,cy);
-        if(cx<w){cx=cx+stepx;}
+        int john=rand.nextInt(div);
+        int baldessari=rand.nextInt(div);
+        shape(john*stepx,baldessari*stepy);
+        /*if(cx<w){cx=cx+stepx;}
         else{
             if(cy<h){cx=1;cy=cy+stepy;}
-            else{cx=1;cy=1;noLoop();save("OddJob006.png");}
-        }
+            else{cx=1;cy=1;}
+        }*/
     }
 
     public void shape (float x, float y){
@@ -144,8 +146,8 @@ public class OddJob006 extends PApplet {
 
 
     public static void main(String[] args) {
-        String[] processingArgs = { "OddJob 006" };
-        OddJob006 mySketch = new OddJob006();
+        String[] processingArgs = { "OddJob 007" };
+        OddJob007 mySketch = new OddJob007();
         PApplet.runSketch(processingArgs, mySketch);
     }
 
