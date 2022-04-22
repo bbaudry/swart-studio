@@ -19,7 +19,7 @@ public class SL003 extends PApplet {
 
     @Override
     public void setup() {
-        frameRate(4);
+        //frameRate(4);
         colorMode(HSB,360,100,100);
         rand = new Random();
         fill(0,0,0);
@@ -31,19 +31,29 @@ public class SL003 extends PApplet {
     public void draw() {
         x=rand.nextInt(w);
         y=rand.nextInt(h);
-        len=rand.nextInt((int)w/42);
-        wid=rand.nextInt((int)w/42);
+        len=rand.nextInt((int)w/11);
+        wid=rand.nextInt((int)w/22);
         noisyFill(x,y,len,wid);
     }
 
     public void noisyFill(int x, int y, int len, int wid){
         float hu;
         noStroke();
+        int cx;
+        int cy;
         for(int i=0;i<len;i++){
             for(int j=0;j<wid;j++){
-                hu=random(360);
-                fill(hu,100,100);
-                rect(x+i,y+j,1,1);
+                cx=x+i;
+                cy=y+j;
+                if (cx>=450 & cx<550 & cy>= 450 & cy<550) {
+                    fill(20,100,100);
+                }
+                else{
+                    hu=random(360);
+                    fill(hu,100,100);
+                }
+                rect(cx,cy,1,1);
+                
             }
         }
     }
