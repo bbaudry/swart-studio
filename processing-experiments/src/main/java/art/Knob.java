@@ -25,6 +25,13 @@ public class Knob {
         rand = r_val;
     }
 
+    public Knob (String v, boolean r_val){
+        value = v;
+        x = 0;
+        y = 0;
+        rand = r_val;
+    }
+
     public void setx (float x_val){x = x_val;}
     
     public void sety (float y_val){y = y_val;}
