@@ -10,22 +10,29 @@ public class SL004 extends PApplet {
     int txt_w = 1000;
     int w = vis_w+txt_w;
     int h = 1000;
+    //at each iteration draw at x,y
     int x;
     int y;
+    // variables to set colors hu for hue, not for brightness, boring for saturation
+    float hu;
+    float not;
+    float boring;
+
+    int iter;
+    int max_iter;
+    Random rand;
+
+    //coordinate for shapes  rectA, rectB and triA
+    float rectAx1, rectAx2, rectAy1, rectAy2; //rectAx1 < rectAx2 and rectAy1 < rectAy2
+    float rectBx1, rectBx2, rectBy1, rectBy2; //rectBx1 < rectBx2 and rectBy1 < rectBy2
+    float triAx1, triAx2, triAx3, triAy1, triAy2, triAy3; 
+
+    ArrayList<Knob> knobs;
+    // variables used to display text
     float txt_x;
     float txt_y;
     float txt_x_inc;
     float txt_y_inc;
-
-    int len;
-    int wid;
-    float hu;
-    float not;
-    float boring;
-    Random rand;
-    ArrayList<Knob> knobs;
-    int iter;
-    int max_iter;
 
     @Override
     public void settings() {
@@ -42,27 +49,29 @@ public class SL004 extends PApplet {
         rect(0,0,w,h);
         hu=random(360); knobs.add(new Knob(Float.toString(hu), true));
         iter=0;
-        max_iter=50000; knobs.add(new Knob(Integer.toString(max_iter), false));
-        textSize(8); knobs.add(new Knob(Float.toString(8),false));
+        max_iter=1000; knobs.add(new Knob(Integer.toString(max_iter), false));
+        textSize(4); knobs.add(new Knob(Float.toString(8),false));
         txt_x=vis_w;
-        txt_y=5;
-        txt_x_inc=41; knobs.add(new Knob(Float.toString(txt_x_inc),false)); 
-        txt_y_inc=9; knobs.add(new Knob(Float.toString(txt_y_inc),false)); 
-        knobs.add(new Knob("400", false));
-        knobs.add(new Knob("600", false));
-        knobs.add(new Knob("400", false));
-        knobs.add(new Knob("600", false));
-        knobs.add(new Knob("11", false));
-        knobs.add(new Knob("777", false));
-        knobs.add(new Knob("111", false));
-        knobs.add(new Knob("888", false));
-        knobs.add(new Knob("600", false));
-        knobs.add(new Knob("400", false));
-        knobs.add(new Knob("400", false));
-        knobs.add(new Knob("100", false));
-        knobs.add(new Knob("800", false));
-        knobs.add(new Knob("250", false));
-
+        txt_y=3;
+        txt_x_inc=21; knobs.add(new Knob(Float.toString(txt_x_inc),false)); 
+        txt_y_inc=4; knobs.add(new Knob(Float.toString(txt_y_inc),false)); 
+        rectAx1 = 400; rectAx2 = 600; rectAy1 = 400; rectAy2 = 600;
+        knobs.add(new Knob(Float.toString(rectAx1), false));
+        knobs.add(new Knob(Float.toString(rectAx2), false));
+        knobs.add(new Knob(Float.toString(rectAy1), false));
+        knobs.add(new Knob(Float.toString(rectAy2), false));
+        rectBx1 = 11; rectBx2 = 111; rectBy1 = 777; rectAy2 = 888;
+        knobs.add(new Knob(Float.toString(rectBx1), false));
+        knobs.add(new Knob(Float.toString(rectBx2), false));
+        knobs.add(new Knob(Float.toString(rectBy1), false));
+        knobs.add(new Knob(Float.toString(rectBy2), false));
+        triAx1 = 600; triAx2 = 400; triAx3 = 800; triAy1 = 400; triAy2 = 100; triAy3 = 250;
+        knobs.add(new Knob(Float.toString(triAx1), false));
+        knobs.add(new Knob(Float.toString(triAx2), false));
+        knobs.add(new Knob(Float.toString(triAx3), false));
+        knobs.add(new Knob(Float.toString(triAy1), false));
+        knobs.add(new Knob(Float.toString(triAy2), false));
+        knobs.add(new Knob(Float.toString(triAy3), false));
     }
 
     @Override
@@ -83,19 +92,18 @@ public class SL004 extends PApplet {
 
     public void drawPoint(float x, float y){
         if (!isIN(x,y)){
-            not=random(50); knobs.add(new Knob(Float.toString(not), true));
+            not=random(40); knobs.add(new Knob(Float.toString(not), true));
             boring=random(90,100); knobs.add(new Knob(Float.toString(boring), true));
             fill(hu,not,boring);
-            float len = random(1,5); knobs.add(new Knob(Float.toString(len), true));
-            float hei = random(1,5); knobs.add(new Knob(Float.toString(hei), true));
+            float len = random(1,3); knobs.add(new Knob(Float.toString(len), true));
+            float hei = random(1,3); knobs.add(new Knob(Float.toString(hei), true));
             rect(x,y,len,hei);
         }
-
     }
 
     public boolean isIN(float x, float y){
         //first check if the point is in square between (400,400) and (600,600), or in rectangle between (11,777) and (111,888)
-        if ((x>=400 & x<600 & y>=400 & y<600)||(x>=11 & x<111 & y>=777 & y<888)){
+        if ((x>=rectAx1 & x<rectAx2 & y>=rectAy1 & y<rectAy2)||(x>=rectBx1 & x<rectBx2 & y>=rectBy1 & y<rectBy2)){
             return true;
         }
         //second check if the point is in triangle 
@@ -109,15 +117,16 @@ public class SL004 extends PApplet {
         }
     }
 
-    //check if the point is in triangle (600,400) (400,100) (800,250)
+    //check if the point (x,y) is in triangle (triAx1, triAy1) (triAx2, triAy2) (triAx3, triAy3)
     public boolean inTri(float x, float y){
-        float triangleSurf = surfTri(600, 400, 400, 100, 800, 250);
-        float tri1 = surfTri(x,y,600,400,400,100);
-        float tri2 = surfTri(x,y, 400,100,800,250);
-        float tri3 = surfTri(x,y,600,400,800,250);
+        float triangleSurf = surfTri(triAx1, triAy1, triAx2, triAy2, triAx3, triAy3);
+        float tri1 = surfTri(x,y,triAx1,triAy1,triAx2,triAy2);
+        float tri2 = surfTri(x,y,triAx2,triAy2,triAx3,triAy3);
+        float tri3 = surfTri(x,y,triAx1,triAy1,triAx3,triAy3);
         return(triangleSurf == tri1+tri2+tri3);
     }
 
+    //computes the surface of a triangl (x1,y1) (x2,y2) (x3,y3)
     private float surfTri(float x1, float y1, float x2, float y2,float x3, float y3){
         return (float)Math.abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
     }
