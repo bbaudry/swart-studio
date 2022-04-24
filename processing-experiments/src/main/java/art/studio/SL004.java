@@ -3,7 +3,14 @@ package art.studio;
 import processing.core.PApplet;
 import java.util.Random;
 import art.Knob;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.json.simple.JSONObject;
 
 public class SL004 extends PApplet {
     int vis_w = 1000;
@@ -13,6 +20,7 @@ public class SL004 extends PApplet {
     //at each iteration draw at x,y
     int x;
     int y;
+    JSONObject knobsJSON;
     // variables to set colors hu for hue, not for brightness, boring for saturation
     float hu;
     float not;
@@ -38,18 +46,32 @@ public class SL004 extends PApplet {
     public void settings() {
         size(w, h);
         knobs = new ArrayList<Knob>();
+        knobsJSON = new JSONObject();
     }
-
+    /* {"knob1"=val1,
+        "knob2"=val2,
+        etc. for all knobs defined in the setup
+        {
+            "knob11"=val11,
+            "knob12"=val12,
+        },
+        {
+            "knob21"=val21,
+            "knob22"=val22,
+        },
+        etc., one series of knobs for each iteration of draw()
+       }*/
     @Override
     public void setup() {
         colorMode(HSB,360,100,100);
         rand = new Random();
         fill(0,0,0); knobs.add(new Knob("0", false)); knobs.add(new Knob("0", false)); knobs.add(new Knob("0", false));
+        knobsJSON.put("backHue", "0");knobsJSON.put("backSaturation", "0");knobsJSON.put("backBrightness", "0");
         noStroke();
         rect(0,0,w,h);
         hu=random(360); knobs.add(new Knob(Float.toString(hu), true));
         iter=0;
-        max_iter=1000; knobs.add(new Knob(Integer.toString(max_iter), false));
+        max_iter=100; knobs.add(new Knob(Integer.toString(max_iter), false));
         textSize(4); knobs.add(new Knob(Float.toString(8),false));
         txt_x=vis_w;
         txt_y=3;
@@ -77,15 +99,19 @@ public class SL004 extends PApplet {
     @Override
     public void draw() {
         if (iter<max_iter){
-        x=rand.nextInt(vis_w);
-        y=rand.nextInt(h);
+            Map m1 = new LinkedHashMap(); 
+        x=rand.nextInt(vis_w); knobs.add(new Knob(Integer.toString(x), true)); m1.put("x",Integer.toString(x));
+        y=rand.nextInt(h); knobs.add(new Knob(Integer.toString(y), true)); m1.put("y",Integer.toString(y));
         drawPoint(x, y);
+        String key = "iter"+iter;
+        knobsJSON.put(key, m1);
         writeIter();
         iter++;
         }
         else{
-            print_knobs();
             noLoop();
+            print_knobs();
+            saveKnobs();
             save("SL004.png");
         }
     }
@@ -167,6 +193,18 @@ public class SL004 extends PApplet {
             }
         }
         noFill();
+    }
+
+    private void saveKnobs(){
+        try {
+            FileWriter file = new FileWriter("SL004Knobs.json");
+            file.write(knobsJSON.toJSONString());
+            file.close();
+         } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+         System.out.println("JSON file created: "+knobsJSON);
     }
 
     public static void main(String[] args) {
