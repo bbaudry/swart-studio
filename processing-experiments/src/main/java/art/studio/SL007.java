@@ -21,7 +21,7 @@ public class SL007 extends PApplet {
     public void setup() {
         colorMode(HSB,360,100,100);
         x_inc=142;
-        //frameRate(1);
+        frameRate(1);
     }
 
     @Override
@@ -41,6 +41,7 @@ public class SL007 extends PApplet {
                 rect(john,baldessari,not,boring);
                 john=john+not+random(x_inc);
             }
+            rotate(PI/77);
             baldessari=baldessari+y_inc;
             y_inc=random(142);
         }
