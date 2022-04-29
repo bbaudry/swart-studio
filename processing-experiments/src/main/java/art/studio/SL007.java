@@ -31,7 +31,8 @@ public class SL007 extends PApplet {
         float boring;
         y_inc=random(142);
         background(0,0,0);
-        for(float baldessari=0; baldessari<h; baldessari=baldessari+y_inc){
+        float baldessari=0;
+        while(baldessari<h){
             john=0;
             boring=y_inc;
             fill(0,0,100);
@@ -40,10 +41,12 @@ public class SL007 extends PApplet {
                 rect(john,baldessari,not,boring);
                 john=john+not+random(x_inc);
             }
+            baldessari=baldessari+y_inc;
             y_inc=random(142);
         }
         fill(0,0,0);
-        ellipse(random(w),random(h),random(w/5),random(w/5));
+        float radius=random((float)0.3*w,(float)0.5*w);
+        ellipse(random(w),random(h),radius,radius);
     }
 
 
