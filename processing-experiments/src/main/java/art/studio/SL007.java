@@ -21,7 +21,6 @@ public class SL007 extends PApplet {
     public void setup() {
         colorMode(HSB,360,100,100);
         x_inc=142;
-        frameRate(1);
     }
 
     @Override
