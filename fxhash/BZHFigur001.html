@@ -58,19 +58,20 @@
     }
 
     function triskell() {
-      swarm(palette[0],w/2,h/4, 242)
-      swarm(palette[1],w/3,3*h/4, 760);
-      swarm(palette[2],2*w/3,3*h/4, 80);
+      swarm(palette[0],w/2,h/4,h/4,242)
+      swarm(palette[1],w/3,3*h/4,h/4,760);
+      swarm(palette[2],2*w/3,3*h/4,h/4,80);
     }
 
-    function swarm(hu, cx, cy, number){
-      radius=h/4;
-      noStroke();
+    //draw number small circles within a larger circle centered on (cx,cy) of radius r; all smmall circles are hu
+    function swarm(hu, cx, cy, r, number){
       fill(hu,100,100);
       for (i=0;i<number;i++){
-        x=random(cx-(radius-2),cx+(radius-2));
-        y=random(cy-(radius-2),cy+(radius-2));
-        ellipse(x,y,7,7);
+        angle=random(2 * PI);
+        rad=random(r);
+        x=cx+rad*cos(angle);
+        y=cy+rad*sin(angle);
+        ellipse(x,y,17,17);
       }
     }
 
