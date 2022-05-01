@@ -57,9 +57,9 @@
     //the position of the 3 swarms. Here they don't overlap, but this can be changes when computing the center coordinates of each swarm in th first part of the triskell function
     function draw() {
       background(0,0,0);
-      data1=5000*fxrand();
-      data2=5000*fxrand();
-      data3=5000*fxrand();
+      data1=10000*fxrand();
+      data2=10000*fxrand();
+      data3=10000*fxrand();
       triskell(data1,data2,data3);
       fxpreview();
     }
@@ -83,7 +83,7 @@
         rad=random(radius);
         x=cx+rad*cos(angle);
         y=cy+rad*sin(angle);
-        ellipse(x,y,7,7);
+        ellipse(x,y,3,3);
       }
     }
 
