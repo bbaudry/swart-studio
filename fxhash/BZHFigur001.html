@@ -51,28 +51,47 @@
       colorMode(HSB, 360, 100, 100);
     }
 
+    //takes 3 numbers (here the numbers are randomly generated) and dislays the numbers as 3 swarms of particles
+    //other knobs: the size of the particle, fixed in the ellipse invocation in the swarm function; 
+    //the color palette for the particles. Here randomly generated, but could depend on the data
+    //the position of the 3 swarms. Here they don't overlap, but this can be changes when computing the center coordinates of each swarm in th first part of the triskell function
     function draw() {
       background(0,0,0);
-      triskell();
+      data1=5000*fxrand();
+      data2=5000*fxrand();
+      data3=5000*fxrand();
+      triskell(data1,data2,data3);
       fxpreview();
     }
 
     function triskell() {
-      swarm(palette[0],w/2,h/4,h/4,242)
-      swarm(palette[1],w/3,3*h/4,h/4,760);
-      swarm(palette[2],2*w/3,3*h/4,h/4,80);
+      cx1=w/2; cy1=h/4; radius=h/4;
+      cx2=cx1+radius*2*cos(PI/3); cy2=cy1+radius*2*sin(PI/3);
+      cx3=cx1+radius*2*cos(2*PI/3); cy3=cy1+radius*2*sin(2*PI/3);
+      swarm(palette[0],cx1,cy1,radius,data1);
+      swarm(palette[1],cx2,cy2,radius,data2);
+      swarm(palette[2],cx3,cy3,radius,data3);
     }
 
     //draw number small circles within a larger circle centered on (cx,cy) of radius r; all smmall circles are hu
-    function swarm(hu, cx, cy, r, number){
+    function swarm(hu, cx, cy, radius, number){
+      //drawCircle(cx,cy,radius);
       fill(hu,100,100);
+      noStroke();
       for (i=0;i<number;i++){
         angle=random(2 * PI);
-        rad=random(r);
+        rad=random(radius);
         x=cx+rad*cos(angle);
         y=cy+rad*sin(angle);
-        ellipse(x,y,17,17);
+        ellipse(x,y,7,7);
       }
+    }
+
+    function drawCircle(cx,cy,r){
+      stroke(0,0,100);
+      noFill();
+      ellipse(cx,cy,r*2,r*2);
+      noStroke();
     }
 
       function windowResized() {
