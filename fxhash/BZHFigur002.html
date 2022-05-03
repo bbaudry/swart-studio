@@ -46,9 +46,12 @@
     var checkPoints = {}; 
 
     function preload() {
-            let url = 'airBZH.json';
-            airData = loadJSON(url);
-        }
+      //data collected on 01/05/2022 https://data.airbreizh.asso.fr/geoserver/mes_bretagne_journalier_poll_princ/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mes_bretagne_journalier_poll_princ:mes_bretagne_journalier_o3&outputFormat=application%2Fjson  
+      //more here https://data.airbreizh.asso.fr/contenu/services_didon.html?service=mes
+      //and even more data here https://geobretagne.fr/geonetwork/srv/eng/catalog.search#/home 
+      let url = 'airBZH.json';
+      airData = loadJSON(url);
+    }
 
 
     function setup() {
