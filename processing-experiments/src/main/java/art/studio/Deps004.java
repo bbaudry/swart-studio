@@ -48,15 +48,15 @@ public class Deps004 extends PApplet{
         draw_all_besu();
         draw_all_teku();
         noLoop();
-        draw_besu_contour();
         draw_teku_contour();
+        draw_besu_contour();
         save("supply_chain_diversity.png");
     }
 
     // draw white line around the besu deps (the unique+intersection)
     private void draw_besu_contour(){
-        strokeWeight(7);
-        stroke(10, 0, 0);
+        strokeWeight(9);
+        stroke(0, 100, 100);
         line(0, (row - 13) * mag, 0, row * mag);
         line(0, row * mag, 19 * mag, row * mag);
         line(19 * mag, row * mag, 19 * mag, 0);
@@ -65,6 +65,74 @@ public class Deps004 extends PApplet{
         line(mag, (row - 13) * mag, 0, (row - 13) * mag);
     }
 
+    //on a 25*19 surface, the 165 deps of besu only are displayed as 13+8*19
+    private void draw_all_besu(){
+        noStroke();
+        x=0;
+        y=(row-13)*mag;
+        fill(0,90,100,100);
+        rect(x, y, mag, 13*mag);
+        rect(mag, 0, 18 * mag, row*mag);
+        //draw 13 dependencies at the bottom of the first column
+        //fill(60,10,100,200);
+        fill(60,0,0,200);
+        for(int i=0;i<13;i++){
+            draw_dep(x,y);
+            y=y+mag;
+        }
+        //draw 8*19
+        x=0;
+        y=0;
+        for(int i=0;i<8+10;i++){
+            x=x+mag;
+            y=0;
+            for(int j=0;j<row;j++){
+                draw_dep(x,y);
+                y=y+mag;    
+            }
+        }
+    }
+
+        //on a 25*19 surface, the 103 deps of besu only are displayed as 8+5*19
+        private void draw_all_teku(){
+            noStroke();
+            fill(180,90,100,100);
+            rect(9*mag, 0, 15* mag, row * mag);
+            rect(24*mag, 0, mag, 8 * mag);
+            //fill(140,10,100,200);
+            fill(60,0,0,330);
+            //draw 8*19
+            x=8*mag;
+            y=0;
+            for(int i=0;i<5+10;i++){
+                x=x+mag;
+                y=0;
+                for(int j=0;j<row;j++){
+                    draw_dep(x,y);
+                    y=y+mag;    
+                }
+            }
+            //draw 13 dependencies at the bottom of the first column
+            x=x+mag;
+            y=0;
+            for(int i=0;i<8;i++){
+                draw_dep(x,y);
+                y=y+mag;
+            }
+        }
+    
+        // draw white line around the besu deps (the unique+intersection)
+        private void draw_teku_contour(){
+            strokeWeight(17);
+            stroke(180, 100, 100);
+            line(9*mag, 0, 9* mag, row * mag);
+            line(9* mag, row * mag,24*mag,row*mag);
+            line(24*mag,row*mag,24*mag,8*mag);
+            line(24*mag,8*mag,25*mag,8*mag);
+            line(25*mag,8*mag,25*mag,0);
+            line(25*mag,0,9*mag,0);
+        }
+    
 
     //on a 25*19 surface, the 165 deps of besu only are displayed as 13+8*19
     private void draw_besu_only(){
@@ -90,72 +158,6 @@ public class Deps004 extends PApplet{
         }
     }
 
-    //on a 25*19 surface, the 165 deps of besu only are displayed as 13+8*19
-    private void draw_all_besu(){
-        noStroke();
-        x=0;
-        y=(row-13)*mag;
-        fill(0,90,100,100);
-        rect(x, y, mag, 13*mag);
-        rect(mag, 0, 18 * mag, row*mag);
-        //draw 13 dependencies at the bottom of the first column
-        fill(60,10,100,200);
-        for(int i=0;i<13;i++){
-            draw_dep(x,y);
-            y=y+mag;
-        }
-        //draw 8*19
-        x=0;
-        y=0;
-        for(int i=0;i<8+10;i++){
-            x=x+mag;
-            y=0;
-            for(int j=0;j<row;j++){
-                draw_dep(x,y);
-                y=y+mag;    
-            }
-        }
-    }
-
-        //on a 25*19 surface, the 103 deps of besu only are displayed as 8+5*19
-        private void draw_all_teku(){
-            noStroke();
-            fill(180,90,100,100);
-            rect(9*mag, 0, 15* mag, row * mag);
-            rect(24*mag, 0, mag, 8 * mag);
-            fill(140,10,100,200);
-            //draw 8*19
-            x=8*mag;
-            y=0;
-            for(int i=0;i<5+10;i++){
-                x=x+mag;
-                y=0;
-                for(int j=0;j<row;j++){
-                    draw_dep(x,y);
-                    y=y+mag;    
-                }
-            }
-            //draw 13 dependencies at the bottom of the first column
-            x=x+mag;
-            y=0;
-            for(int i=0;i<8;i++){
-                draw_dep(x,y);
-                y=y+mag;
-            }
-        }
-    
-        // draw white line around the besu deps (the unique+intersection)
-        private void draw_teku_contour(){
-            strokeWeight(7);
-            stroke(0, 0, 20);
-            line(9*mag, 0, 9* mag, row * mag);
-            line(9* mag, row * mag,24*mag,row*mag);
-            line(24*mag,row*mag,24*mag,8*mag);
-            line(24*mag,8*mag,25*mag,8*mag);
-            line(25*mag,8*mag,25*mag,0);
-            line(25*mag,0,9*mag,0);
-        }
-    
     private void draw_intersection(){
         x=8*mag;
         y=0;
