@@ -56,7 +56,7 @@ public class Deps004 extends PApplet{
     // draw white line around the besu deps (the unique+intersection)
     private void draw_besu_contour(){
         strokeWeight(9);
-        stroke(0, 100, 100);
+        stroke(60, 100, 100);
         line(0, (row - 13) * mag, 0, row * mag);
         line(0, row * mag, 19 * mag, row * mag);
         line(19 * mag, row * mag, 19 * mag, 0);
@@ -70,7 +70,7 @@ public class Deps004 extends PApplet{
         noStroke();
         x=0;
         y=(row-13)*mag;
-        fill(0,90,100,100);
+        fill(60,90,100,100);
         rect(x, y, mag, 13*mag);
         rect(mag, 0, 18 * mag, row*mag);
         //draw 13 dependencies at the bottom of the first column
@@ -96,7 +96,7 @@ public class Deps004 extends PApplet{
         //on a 25*19 surface, the 103 deps of besu only are displayed as 8+5*19
         private void draw_all_teku(){
             noStroke();
-            fill(180,90,100,100);
+            fill(0,90,100,100);
             rect(9*mag, 0, 15* mag, row * mag);
             rect(24*mag, 0, mag, 8 * mag);
             //fill(140,10,100,200);
@@ -124,7 +124,7 @@ public class Deps004 extends PApplet{
         // draw white line around the besu deps (the unique+intersection)
         private void draw_teku_contour(){
             strokeWeight(17);
-            stroke(180, 100, 100);
+            stroke(0, 100, 100);
             line(9*mag, 0, 9* mag, row * mag);
             line(9* mag, row * mag,24*mag,row*mag);
             line(24*mag,row*mag,24*mag,8*mag);
