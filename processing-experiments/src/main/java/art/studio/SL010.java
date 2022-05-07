@@ -11,6 +11,11 @@ public class SL010 extends PApplet {
     int h = 1000;
     int x_step;
     int y_step;
+    float hu;
+    float max_hu;
+    float min_hu;
+    boolean grow;
+    int count;
     Float[][] john; // matrix of values for horizontal axis
     Float[] baldessari; // values on the veritcal axis
 
@@ -22,8 +27,13 @@ public class SL010 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB, 360, 100, 100);
-        x_step = 42;
-        y_step = 42;
+        x_step = 19;
+        y_step = 29;
+        min_hu = 50;
+        max_hu = 250;
+        hu = min_hu;
+        grow=true;
+        count=0;
         initMatrix();
         background(0, 0, 0);
 //        drawMatrix();
@@ -31,9 +41,14 @@ public class SL010 extends PApplet {
 
     @Override
     public void draw() {
-        int not = (int)random(baldessari.length);
-        int boring = (int)random(john[not].length);
-        repaint(john[not][boring],baldessari[not]);
+        int not = (int)random(baldessari.length); //select a random index for row
+        int boring = (int)random(john[not].length); //select a random index for a cell in the row
+        repaint(john[not][boring],baldessari[not]); //paint at the selected point
+        count++;
+        if(count==6742){
+            noLoop();
+            save("SL010.png");
+        }
     }
 
     private void initMatrix() {
@@ -68,6 +83,7 @@ public class SL010 extends PApplet {
         baldessari = cols.toArray(baldessari);
     }
 
+    //draw the whole matrix in one shot, with whie particules
     private void drawMatrix() {
         float x;
         float y;
@@ -82,17 +98,21 @@ public class SL010 extends PApplet {
                 x = line[i];
                 float rad = 33;//random(42);
                 ellipse(x, y, rad, rad);
-                System.out.println("draw a particule");
             }
         }
     }
 
     private void repaint(float x, float y){
         fill(90,0,0);
-        float rad = 33;
-        //ellipse(x, y, rad, rad);
-        fill(random(50,190),100,100);
-        rad = random(x_step);
+        float rad = x_step/2;
+        ellipse(x, y, rad, rad);
+        if (grow && hu<max_hu){hu=hu+(float)0.1;}
+        else {grow=false;}
+        if(!grow && hu>min_hu){hu=hu-(float)0.1;}
+        else {grow=true;}
+        //fill(random(50,190),100,100);
+        fill(hu,100,100);    
+        rad = random((float)0.1*x_step,(float)0.4*x_step);
         ellipse(x, y, rad, rad);
     }
     public static void main(String[] args) {
