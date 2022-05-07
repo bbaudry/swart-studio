@@ -28,7 +28,7 @@ public class SL010 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         x_step = 19;
-        y_step = 29;
+        y_step = 19;
         min_hu = 50;
         max_hu = 250;
         hu = min_hu;
