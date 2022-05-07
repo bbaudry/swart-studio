@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SL010 extends PApplet {
-    int vis_w = 1000;
-    int txt_w = 0;
-    int w = vis_w + txt_w;
+    int w = 1800;
     int h = 1000;
     int x_step;
     int y_step;
@@ -16,6 +14,7 @@ public class SL010 extends PApplet {
     float min_hu;
     boolean grow;
     int count;
+    int max_iter;
     Float[][] john; // matrix of values for horizontal axis
     Float[] baldessari; // values on the veritcal axis
 
@@ -28,12 +27,13 @@ public class SL010 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         x_step = 19;
-        y_step = 19;
+        y_step = 49;
         min_hu = 50;
         max_hu = 250;
         hu = min_hu;
         grow=true;
         count=0;
+        max_iter = 8888;
         initMatrix();
         background(0, 0, 0);
 //        drawMatrix();
@@ -45,8 +45,9 @@ public class SL010 extends PApplet {
         int boring = (int)random(john[not].length); //select a random index for a cell in the row
         repaint(john[not][boring],baldessari[not]); //paint at the selected point
         count++;
-        if(count==6742){
+        if(count==max_iter){
             noLoop();
+            System.out.println("completed")
             save("SL010.png");
         }
     }
@@ -112,7 +113,7 @@ public class SL010 extends PApplet {
         else {grow=true;}
         //fill(random(50,190),100,100);
         fill(hu,100,100);    
-        rad = random((float)0.1*x_step,(float)0.4*x_step);
+        rad = random((float)0.2*x_step,(float)0.7*x_step);
         ellipse(x, y, rad, rad);
     }
     public static void main(String[] args) {
