@@ -47,7 +47,7 @@ public class SL010 extends PApplet {
         count++;
         if(count==max_iter){
             noLoop();
-            System.out.println("completed")
+            System.out.println("completed");
             save("SL010.png");
         }
     }
