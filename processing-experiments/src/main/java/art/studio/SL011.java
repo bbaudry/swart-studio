@@ -20,8 +20,10 @@ public class SL011 extends PApplet {
         colorMode(HSB, 360, 100, 100);
         x_step = 19;
         y_step = 49;
-        davis = 7;
+        davis = 1;
         miles = new int[davis][];
+        voodoo();
+        down();
     }
 
     private void voodoo(){
@@ -41,14 +43,18 @@ public class SL011 extends PApplet {
             float rad = random(w/10);
             ellipse(x,y,rad,rad); System.out.println("draw");
         }
+    }
 
+    private void feio(){
+        strokeWeight(7);
+        stroke(0,0,100);
+        for(int i=0; i<miles.length; i++){
+        }
     }
 
     @Override
     public void draw() {
         background(0,0,0);
-        voodoo();
-        down();
     }
 
    
