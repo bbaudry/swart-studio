@@ -9,7 +9,12 @@ public class SL011 extends PApplet {
     int davis;
     float angle;
     float angle_inc;
-    float ray;
+    float sparkle;
+    float spanish;
+    float key;
+    int john;
+    int pharoah;
+    int dance;
 
     @Override
     public void settings() {
@@ -19,21 +24,28 @@ public class SL011 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB, 360, 100, 100);
-        davis = 5;
+        spanish = 9; //knob to control the max number of rays. the actual number is random, using this value as max
+        key = w/92; //max value for radius of circles
+        john = 5; //max value for strokeWeight of radius
+        pharoah = 42; //pharoah should be > dance
+        dance = 17; // pharoah and dance determine the probability to draw rays in draw()
+        davis = 85; //exactly this number of circles
         miles = new int[davis][];
         angle=0;
         angle_inc=PI/42;
-        frameRate(11);
+        frameRate(17);
     }
 
     @Override
     public void draw() {
         background(0,0,0);
-        ray=random(42);
-        voodoo();
-        down();
-        if (ray<7){feio();}
-        angle=angle+angle_inc;
+        sparkle=random(pharoah);
+        voodoo(); //select coordinates for circles
+        down(); //draw circles
+        if (sparkle<dance){// draw rays with a certain probability
+            feio();
+        }
+        angle=angle+angle_inc;//determines the orientation of the rays
     }
 
     private void voodoo(){
@@ -56,15 +68,17 @@ public class SL011 extends PApplet {
     }
 
     private void feio(){
-        strokeWeight(7);
+        strokeWeight(random(john));
         stroke(0,0,100);
-        int ratio = 7;
-        float brew = PI/ratio;
+        int ratio;
+        float brew;
         float tx;
         float ty;
         for(int i=0; i<miles.length; i++){
             int cx = miles[i][0];
             int cy = miles[i][1];
+            ratio = (int)random(spanish); 
+            brew = PI/ratio;
             for(int j=0; j<ratio*2;j++){
                 tx = cx + w/2*cos(angle+j*brew);
                 ty = cy + w/2*sin(angle+j*brew);
