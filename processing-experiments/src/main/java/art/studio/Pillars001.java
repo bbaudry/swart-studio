@@ -26,24 +26,30 @@ public class Pillars001 extends PApplet {
 
     @Override
     public void draw() {
-        x=0;
-        y=0;
+        x=42;
+        y=42;
         column(x,y,7);
         x=x+width*7+84;
-        y=84;
+        y=126;
         column(x,y,5);
         x=x+width*5+84;
-        y=42;
+        y=84;
         column(x,y,6);
+        stroke(0,0,0);
+        strokeWeight(7);
+        line(0,h/3,w,h/3);
+        line(0,2*h/3,w,2*h/3);
     }
 
     private void column(float x, float y, int w){
         float red;
+        stroke(0,0,0);
+        strokeWeight(1);
         for (int i=0;i<layers;i++){
             for (int j=0;j<width;j++){
                 red=random(42);
                 if (red<1){fill(0,100,100);}
-                else{fill(220,random(40,100),100);}
+                else{fill(220, 0, random(70,100));}
                 rect(x+j*w,y+i*w,w,w);
 
             }
