@@ -5,8 +5,12 @@ import processing.core.PApplet;
 public class Pillars001 extends PApplet {
     int w = 1500;
     int h = 1000;
-    int layers;
-    int width;
+    int john;//number of rows on each pillar
+    int baldessari;//number of columns on each pillar
+    int not;//number of pillars
+    float boring;//max size a 'pixel' on a pillar
+    float x_offset;
+    float y_offset;
     float x;
     float y;
 
@@ -17,36 +21,55 @@ public class Pillars001 extends PApplet {
 
     @Override
     public void setup() {
-        layers = 87;
+        john = 87;
         colorMode(HSB,360,100,100);
         background(0,0,0);
-        layers=128;
-        width=64;
+        x_offset=42;
+        y_offset=42;
+        not=7;
+        boring=7;
+        john=128;
+        float a=(w-(not+1)*x_offset)/(not*boring);
+        baldessari=(int)a;
+        
     }
 
     @Override
     public void draw() {
-        x=42;
-        y=42;
-        column(x,y,7);
-        x=x+width*7+84;
-        y=126;
-        column(x,y,5);
-        x=x+width*5+84;
-        y=84;
-        column(x,y,6);
+        background(0,0,0);
+        x=x_offset;
+        y=y_offset;
+        int depth;
+        for (int i=0; i<not; i++){
+            depth=(int)random(4);
+            column(x,y,boring-depth);
+            x=x+baldessari*boring-depth+x_offset;
+            y=y_offset*-depth;    
+        }
+        /*
+        
+        column(x,y,boring-2);
+        
+        x=x+baldessari*boring-2+x_offset;
+        y=y_offset*2;
+        column(x,y,boring-1);
+
+        x=x+baldessari*boring-1+x_offset;
+        y=y_offset*2;
+        column(x,y,boring-1);
+
         stroke(0,0,0);
         strokeWeight(7);
         line(0,h/3,w,h/3);
-        line(0,2*h/3,w,2*h/3);
+        line(0,2*h/3,w,2*h/3);*/
     }
 
-    private void column(float x, float y, int w){
+    private void column(float x, float y, float w){
         float red;
         stroke(0,0,0);
         strokeWeight(1);
-        for (int i=0;i<layers;i++){
-            for (int j=0;j<width;j++){
+        for (int i=0;i<john;i++){
+            for (int j=0;j<baldessari;j++){
                 red=random(42);
                 if (red<1){fill(0,100,100);}
                 else{fill(220, 0, random(70,100));}
