@@ -26,7 +26,7 @@ public class Pillars001 extends PApplet {
         background(0,0,0);
         x_offset=42;
         y_offset=42;
-        not=7;
+        not=5;
         boring=7;
         john=128;
         float a=(w-(not+1)*x_offset)/(not*boring);
@@ -36,15 +36,14 @@ public class Pillars001 extends PApplet {
 
     @Override
     public void draw() {
-        background(0,0,0);
         x=x_offset;
         y=y_offset;
         int depth;
         for (int i=0; i<not; i++){
-            depth=(int)random(4);
+            depth=i;//(int)random(4);
             column(x,y,boring-depth);
             x=x+baldessari*boring-depth+x_offset;
-            y=y_offset*-depth;    
+            y=y_offset*(depth+1);    
         }
         /*
         
