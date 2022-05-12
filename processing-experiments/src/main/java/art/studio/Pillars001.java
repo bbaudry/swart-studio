@@ -28,12 +28,12 @@ public class Pillars001 extends PApplet {
         background(0,0,0);
         x_offset=11;
         y_offset=21;
-        not=8;
-        boring=6;
-        john=178;
+        not=8; //draw 'not' pillars
+        boring=6; //each pixel is 'boring' wide
+        john=178; //the pillars have 'john' layers of pixels
         float a=(w-(not+1)*x_offset)/(not*boring);
-        baldessari=(int)a;
-        depths = new int[not];
+        baldessari=(int)a; //the pillars have 'baldessari' columns of pixels
+        depths = new int[not]; //the pillars are drawn at different 'depths' that are fixed randomly
         max_depth=5;
         for (int i=0; i<not; i++){
             depths[i]=(int)random(max_depth);
