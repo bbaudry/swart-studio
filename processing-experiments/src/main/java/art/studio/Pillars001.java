@@ -13,6 +13,8 @@ public class Pillars001 extends PApplet {
     float y_offset;
     float x;
     float y;
+    int[] depths;
+    int max_depth;
 
     @Override
     public void settings() {
@@ -24,14 +26,18 @@ public class Pillars001 extends PApplet {
         john = 87;
         colorMode(HSB,360,100,100);
         background(0,0,0);
-        x_offset=42;
-        y_offset=42;
-        not=5;
-        boring=7;
-        john=128;
+        x_offset=11;
+        y_offset=21;
+        not=8;
+        boring=6;
+        john=178;
         float a=(w-(not+1)*x_offset)/(not*boring);
         baldessari=(int)a;
-        
+        depths = new int[not];
+        max_depth=5;
+        for (int i=0; i<not; i++){
+            depths[i]=(int)random(max_depth);
+        }
     }
 
     @Override
@@ -40,27 +46,11 @@ public class Pillars001 extends PApplet {
         y=y_offset;
         int depth;
         for (int i=0; i<not; i++){
-            depth=i;//(int)random(4);
+            depth=depths[i];
+            y=y_offset*(depth+1);    
             column(x,y,boring-depth);
             x=x+baldessari*boring-depth+x_offset;
-            y=y_offset*(depth+1);    
         }
-        /*
-        
-        column(x,y,boring-2);
-        
-        x=x+baldessari*boring-2+x_offset;
-        y=y_offset*2;
-        column(x,y,boring-1);
-
-        x=x+baldessari*boring-1+x_offset;
-        y=y_offset*2;
-        column(x,y,boring-1);
-
-        stroke(0,0,0);
-        strokeWeight(7);
-        line(0,h/3,w,h/3);
-        line(0,2*h/3,w,2*h/3);*/
     }
 
     private void column(float x, float y, float w){
@@ -71,7 +61,10 @@ public class Pillars001 extends PApplet {
             for (int j=0;j<baldessari;j++){
                 red=random(42);
                 if (red<1){fill(0,100,100);}
-                else{fill(220, 0, random(70,100));}
+                else{
+                    if(red<20){fill(220, 0, 0);}
+                    else{fill(220,0,100);}
+                }
                 rect(x+j*w,y+i*w,w,w);
 
             }
