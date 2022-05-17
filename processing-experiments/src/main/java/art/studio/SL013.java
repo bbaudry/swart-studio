@@ -33,10 +33,9 @@ public class SL013 extends PApplet {
         ra++;
         fill(40,100,100);
         ellipse(cx,cy,ra,ra);
-        float an1=random(PI);
-        float an2=random(PI);
-        dx=cx+le*cos(an1);
-        dy=cy+le*3*sin(an1);
+        float an=random(PI);
+        dx=cx+le*cos(an);
+        dy=cy+le*3*sin(an);
         if(random(2)<1){
             stroke(40,100,100);
             fill(40,100,100);
@@ -46,7 +45,7 @@ public class SL013 extends PApplet {
             fill(40,100,0);
         }
         line(cx,cy,dx,dy);
-        section(an1,an1+PI/10);
+        section(an,an+PI/10);
     }
 
     //a1 and a2 are angles in the range [0,2*PI]
