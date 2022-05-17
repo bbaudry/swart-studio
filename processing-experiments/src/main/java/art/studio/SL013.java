@@ -25,7 +25,7 @@ public class SL013 extends PApplet {
         colorMode(HSB,360,100,100);
         cx=random(w/4,3*w/4);
         cy=random(h/4,3*h/4);
-        ra=w/42;
+        ra=w/99;
         baldessari=7;
         john=0;
         if(cx<w/2){le=w-cx;}
@@ -52,9 +52,9 @@ public class SL013 extends PApplet {
         line(cx,cy,dx,dy);
         section(an,an+PI/10);
         }
-        ra++;
+        if(john<1111){ra++;}
+        else{ra--;}
         john++;
-        if(john==999){noLoop();save("SL013.png");}
     }
 
     //a1 and a2 are angles in the range [0,2*PI]
