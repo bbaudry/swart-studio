@@ -11,6 +11,9 @@ public class SL013 extends PApplet {
     float ra;
     float dx;
     float dy;
+    float an;
+    int baldessari;
+    int john;
 
     @Override
     public void settings() {
@@ -22,20 +25,18 @@ public class SL013 extends PApplet {
         colorMode(HSB,360,100,100);
         cx=random(w/4,3*w/4);
         cy=random(h/4,3*h/4);
+        ra=w/42;
+        baldessari=7;
+        john=0;
         if(cx<w/2){le=w-cx;}
         else{le=cx;}
-        ra=w/42;
         background(0,0,0);  
     }
 
     @Override
     public void draw() {
-        ra++;
         fill(40,100,100);
         ellipse(cx,cy,ra,ra);
-        float an=random(PI);
-        dx=cx+le*cos(an);
-        dy=cy+le*3*sin(an);
         if(random(2)<1){
             stroke(40,100,100);
             fill(40,100,100);
@@ -44,8 +45,16 @@ public class SL013 extends PApplet {
             stroke(40,0,0);
             fill(40,100,0);
         }
+        for (int i=0; i<baldessari; i++){
+        an=random(2*PI);
+        dx=cx+le*cos(an);
+        dy=cy+le*3*sin(an);
         line(cx,cy,dx,dy);
         section(an,an+PI/10);
+        }
+        ra++;
+        john++;
+        if(john==999){noLoop();save("SL013.png");}
     }
 
     //a1 and a2 are angles in the range [0,2*PI]
