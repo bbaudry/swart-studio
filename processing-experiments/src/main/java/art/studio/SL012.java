@@ -2,6 +2,13 @@ package art.studio;
 
 import processing.core.PApplet;
 
+/* metadata: 
+{
+"move"=true, 
+"BW"=true,
+"glitch"=true 
+}*/
+
 public class SL012 extends PApplet {
     int w = 1800;
     int h = 1000;
