@@ -1,8 +1,8 @@
 package art.studio;
 
 import processing.core.PApplet;
-
-public class SL013 extends PApplet {
+// a glitchy / buggy version of SL013
+public class SL013Glitch extends PApplet {
     int w = 1800;
     int h = 1000;
     float cx;
@@ -56,16 +56,13 @@ public class SL013 extends PApplet {
             line(cx, cy, dx, dy);
             section(an, an + PI / 10);
         }
-        if (boring && ra < w * 0.99) {
-            ra++;
-        } else {
-            boring = false;
-        }
-        if (!boring && ra > w / 99) {
-            ra--;
-        } else {
-            boring = true;
-        }
+        //the glitch is here. in fact it's a bug: at some point ra becomes negative.
+        //this was not my intention, i wanted ra to grow for some, then decrease, then grow again, etc.
+        //correct version is in SL013.java
+        //but here, there is a glitch, probably because the ellipse function tolerate negative values as radius, turning it in a positive value
+        //meanwhile, the section method uses ra in a random selection, and there, it is negative
+        if(john<1111){ra++;}
+        else{ra--;}
         john++;
     }
 
@@ -88,8 +85,8 @@ public class SL013 extends PApplet {
     }
 
     public static void main(String[] args) {
-        String[] processingArgs = { "SL013" };
-        SL013 mySketch = new SL013();
+        String[] processingArgs = { "SL013Glitch" };
+        SL013Glitch mySketch = new SL013Glitch();
         PApplet.runSketch(processingArgs, mySketch);
     }
 
