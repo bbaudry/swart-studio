@@ -12,6 +12,7 @@ public class SL013 extends PApplet {
     float dx;
     float dy;
     float an;
+    float ep;
     int baldessari;
     int john;
     boolean boring;
@@ -40,8 +41,11 @@ public class SL013 extends PApplet {
 
     @Override
     public void draw() {
+        //first draw a circle, which size grows and decreases over time (value of ra changes below)
         fill(40, 100, 100);
-        ellipse(cx, cy, ra, ra);
+        ep=random(-2,2);
+        ellipse(cx+ep, cy+ep, ra, ra);
+        //then draw lines and sections. First choose color (same as background or different), then draw
         if (random(2) < 1) {
             stroke(40, 100, 100);
             fill(40, 100, 100);
