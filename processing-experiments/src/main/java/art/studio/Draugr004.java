@@ -17,6 +17,7 @@ public class Draugr004  extends PApplet {
     float txt_y_inc;
     float cx;
     float cy;
+    int \u1F600;
     float radius;
     int iteration;
     int nb_iterations;
