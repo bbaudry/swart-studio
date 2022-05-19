@@ -21,10 +21,6 @@ public class Draugr004  extends PApplet {
     float radius;
     int iteration;
     int nb_iterations;
-    int crater;
-    int max_craters;
-    int chord;
-    int max_chords;
 
     @Override
     public void settings() {
@@ -33,10 +29,6 @@ public class Draugr004  extends PApplet {
 
     @Override
     public void setup() {
-        crater=0;
-        max_craters=40;
-        chord=0;
-        max_chords=333;
         cx=vis_w/2;
         cy=h/2;
         radius = (float)(vis_w*0.9);
@@ -47,14 +39,15 @@ public class Draugr004  extends PApplet {
 
     @Override
     public void draw() {
+        for (int i=0; i<11; i++){
         if (random(3)<1){
-            stroke(0,0,0,51);
+            stroke(0,0,0,random(51,199));
         }
         else{
             stroke(233,233,211);
         }
             approx_chord(cx, cy, radius/2);
-            chord++;
+    }
     }
 
 
@@ -66,7 +59,7 @@ public class Draugr004  extends PApplet {
         float angle_sym = (float)(2*3*Math.PI/2-angle);//angle to get the symmetric on the right half of the circle
         float right_x = x + radius*cos(angle_sym);
         float right_y = y + radius*sin(angle_sym);//sy2 should be equal to sy1 according to the way we compute angle_sym as the symmetric of angle on an horizontal axis
-        strokeWeight(random((float)(0.5),3));
+        strokeWeight(random(2,8));
         float chord_length=right_x-left_x;
         float tmpx=left_x;
         float tmpxdest=tmpx + random(chord_length/5);
