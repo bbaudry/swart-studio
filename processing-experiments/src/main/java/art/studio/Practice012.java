@@ -9,11 +9,11 @@ public class Practice012  extends PApplet {
     int w = 1000;
     int h = 1000;
     ArrayList<Float> knobs;
+    int knobs_index;
     int fSize;
     int yInc;
-    PFont f;  // Global font variable
-    float y;  // horizontal location of headline
-    int index;
+    PFont f;  
+    float y;  
 
     @Override
     public void settings() {
@@ -23,12 +23,12 @@ public class Practice012  extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB,360,100,100);
+        knobs = new ArrayList<Float>();
+        knobs_index=0;
         fSize = 16;
         yInc = fSize+2;
         f = createFont("Comfortaa",fSize,true);
-        knobs = new ArrayList<Float>();
         y=h-yInc;
-        index=0;
     }
 
     @Override
@@ -38,8 +38,8 @@ public class Practice012  extends PApplet {
         background(0,0,0);
         fill(0,0,100);
 
-        knobs.add(index, random(100));
-        index++;
+        knobs.add(knobs_index, random(100));
+        knobs_index++;
       
         // Display headline at x  location
         textFont(f,fSize);
