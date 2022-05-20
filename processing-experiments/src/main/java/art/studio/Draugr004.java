@@ -19,6 +19,8 @@ public class Draugr004  extends PApplet {
     int yInc;
     PFont f;  
     float y;  
+    boolean grow;
+    int max;
 
 
     @Override
@@ -40,8 +42,11 @@ public class Draugr004  extends PApplet {
         yInc = fSize+2;
         f = createFont("Comfortaa",fSize,true);
         y=h-yInc;
+        grow=true;
+        max=0;
         textFont(f,fSize);
         textAlign(LEFT);
+        frameRate(1);
 
     }
 
@@ -51,19 +56,39 @@ public class Draugr004  extends PApplet {
             if (random(3) < 1) {
                 stroke(0, 0, 0, random(51, 199));
             } else {
-                stroke(233, 233, 211);
+                stroke(242,242,217);
             }
             approx_chord(cx, cy, radius / 2);
         }
+        //erase numbers
         noStroke();
-        fill(233, 233, 211);
+        fill(242,242,217);
         rect(0, 0, (float) (w * 0.1), h);
+        //write numbers
         fill(0,0,0);
-        for (int i = knobs.size() - 1; i > 0; i--) {
-            text(knobs.get(i).toString(), 10, y + (i * yInc));
-            System.out.println("print");
+        if (grow) {
+            int taille = knobs.size();
+            if (taille * yInc < h) {
+                y = y - taille*yInc;
+                max=taille;
+//                for (int i = taille - 1; i > 0; i--) {
+//                    text(knobs.get(i).toString(), 10, y + (i * yInc));
+                  for(int i=0; i<max;i++){
+                      text(knobs.get(taille-i-1).toString(), 10, y + (i * yInc));
+                            System.out.println("still growing "+knobs.get(i).toString());
+                }
+            } else {
+                grow = false;
+            }
+        } 
+        else {
+            y=0;
+            int taille = knobs.size();
+            for(int i=0; i<taille-max;i++){
+                text(knobs.get(taille-i-1).toString(), 10, y + (i * yInc));
+                System.out.println("not growing "+knobs.get(i).toString());
+            }
         }
-        y = y - yInc;
     }
 
 
