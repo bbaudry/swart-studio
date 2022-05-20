@@ -5,22 +5,11 @@ import processing.core.PApplet;
 //Draugr is an exoplanet https://en.wikipedia.org/wiki/PSR_B1257%2B12_A
 //the Draugr series is about circular shapes and random black lines
 public class Draugr004  extends PApplet {
-    int vis_w = 1000;
-    int txt_w = 0;
+    int w = 1000;
     int h = 1000;
-    int w = vis_w+txt_w;
-    float x;
-    float y;
-    float txt_x;
-    float txt_y;
-    float txt_x_inc;
-    float txt_y_inc;
     float cx;
     float cy;
-    int \u1F600;
     float radius;
-    int iteration;
-    int nb_iterations;
 
     @Override
     public void settings() {
@@ -29,9 +18,9 @@ public class Draugr004  extends PApplet {
 
     @Override
     public void setup() {
-        cx=vis_w/2;
+        cx=w/2;
         cy=h/2;
-        radius = (float)(vis_w*0.9);
+        radius = (float)(w*0.9);
         background(242,242,217);
         fill(233,233,211);
         //ellipse(cx,cy,radius,radius);
