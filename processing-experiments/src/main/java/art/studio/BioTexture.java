@@ -1,3 +1,5 @@
+/* Metadata {"endless":true, "BW": false, "knobs": false, "data": false, "interaction": false}*/
+
 /*
 This piece from Feb 2022 is inspired by a large wall installation at the Museum of Art in Göteborg
 matta nr 83 (2010) by Jonathan Josefsson

@@ -1,7 +1,7 @@
+/* Metadata {"endless":false, "BW": false, "knobs": false, "data": true, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;
-import java.util.Random;
 import java.io.*;
 import java.util.*;
 import org.json.simple.*;

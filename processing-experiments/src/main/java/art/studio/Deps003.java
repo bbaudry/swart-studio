@@ -1,3 +1,4 @@
+/* Metadata {"endless":false, "BW": true, "knobs": false, "data": true, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;

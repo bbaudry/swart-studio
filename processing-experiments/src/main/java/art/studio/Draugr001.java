@@ -1,3 +1,4 @@
+/* Metadata {"endless":false, "BW": true, "knobs": true, "data": false, "interaction": false}*/
 package art.studio;
 
 import art.Knob;
