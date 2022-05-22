@@ -1,11 +1,7 @@
+/* Metadata {"endless":false, "BW": false, "knobs": false, "data": false, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;
-import java.util.Random;
-import java.io.*;
-import java.util.*;
-import org.json.simple.*;
-import org.json.simple.parser.*;
 
 public class Wright002 extends PApplet {
   int w = 1000;
@@ -39,7 +35,6 @@ public class Wright002 extends PApplet {
       y = random(42, h - 42 * 3);
       shap(x, y);
     }
-    System.out.println("done!");
     step = 0;
     save("structure.png");
 

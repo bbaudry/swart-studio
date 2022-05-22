@@ -1,9 +1,9 @@
-/* Metadata {"endless":false, "colors": false, "knobs": false, "data": false, "interaction": false}*/
+/* Metadata {"endless":false, "BW": true, "knobs": false, "data": false, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;
 
-public class App2 extends PApplet{
+public class Wright000 extends PApplet{
 
     //yellow, orange, pink, purple, blue, green
 float[] palette = {0xFFBE0B,0xFB5607,0xFF006E,0x8338EC,0x3A86FF,0x38B000};
@@ -108,7 +108,7 @@ void circ(float x, float y){
 }
 public static void main(String[] args){
 		String[] processingArgs = {"MySketch"};
-		App2 mySketch = new App2();
+		Wright000 mySketch = new Wright000();
 		PApplet.runSketch(processingArgs, mySketch);
 }
 

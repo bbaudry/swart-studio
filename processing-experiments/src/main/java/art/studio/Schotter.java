@@ -1,3 +1,4 @@
+/* Metadata {"endless":false, "BW": true, "knobs": false, "data": false, "interaction": false}*/
 package art.studio;
 import java.util.Random;
 import processing.core.PApplet;

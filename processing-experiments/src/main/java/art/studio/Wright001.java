@@ -1,13 +1,7 @@
+/* Metadata {"endless":false, "BW": false, "knobs": false, "data": false, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;
-import java.util.Random;
-import java.io.*;
-import java.util.*;
-import org.json.simple.*;
-import org.json.simple.parser.*;
-
-
 
 public class Wright001 extends PApplet{
     int w = 1000;
