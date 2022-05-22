@@ -1,3 +1,4 @@
+/* Metadata {"endless":false, "colors": false, "knobs": false, "data": false, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;
@@ -52,14 +53,12 @@ public void draw() {
     hor=inW;
     vert=vert+80;
   }
-  System.out.println("done! drew "+count+" shapes");
   save("structure.png");
 }
 
 void shape(float x, float y){
   col = random(3);
   fill(palette[col.intValue()]);
-  System.out.println(Integer.toHexString(Float.floatToIntBits(palette[col.intValue()])).toUpperCase());//Integer.toHexString(Float.floatToIntBits(palette[col.intValue()])).toUpperCase()
   if (choice<42){//draw rectangle
     rectangle(x,y);
   }
