@@ -29,9 +29,8 @@ public class Practice013  extends PApplet {
             stroke(0,0,0);
             strokeWeight(2);
             fill(1,0,5);
-            ra=ra-30;
+            ra=ra-20;
             ellipse(cx,cy,ra,ra);
-            System.out.println("ellipse "+i);
         }
         
     } 
