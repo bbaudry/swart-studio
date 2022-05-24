@@ -25,11 +25,12 @@ public class Practice013  extends PApplet {
     public void draw() {
         ra = (float)0.9*w;
         background(0,0,0);
-        for(int i=0; i<30; i++){
-            stroke(0,0,0);
+        for(int i=0; i<70; i++){
+            //stroke(0,0,0);
+            noStroke();
             strokeWeight(2);
-            fill(1,0,5);
-            ra=ra-20;
+            fill(1,0,100,25);
+            ra=ra-5;
             ellipse(cx,cy,ra,ra);
         }
         
