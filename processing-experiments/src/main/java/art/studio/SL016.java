@@ -32,7 +32,6 @@ public class SL016 extends PApplet {
         if (random(2)<1){
             String code = statements[(int)random(statements.length)];
         text(code, w/2-(code.length()*fSize)/4, h/2);}
-
     }
 
     public static void main(String[] args) {
