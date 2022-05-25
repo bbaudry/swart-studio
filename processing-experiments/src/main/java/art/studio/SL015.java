@@ -24,7 +24,7 @@ public class SL015 extends PApplet {
         ghosts = (int)random(7,17);
         busters = new ArrayList<>();
         bill=(int)random(7,17);
-        murray=(int)random(77,117);
+        murray=(int)random(7,117);
         for (int i=0; i<ghosts; i++){
             Float[] fire = {random(bill,w-bill),random(bill,h-bill)};
             busters.add(i, fire);
@@ -35,13 +35,14 @@ public class SL015 extends PApplet {
     public void draw() {
         background(0, 0, 0);
         fill(0,0,100);
-        particles();
         rays();
+        particles();
     }
 
     private void particles(){
         float john;// x to draw particles
         float baldessari;// y to draw particles
+        noStroke();
         for (int i=0; i<ghosts; i++){
             john = busters.get(i)[0];
             baldessari = busters.get(i)[1];
@@ -50,12 +51,12 @@ public class SL015 extends PApplet {
     }
 
     private void rays(){
-        stroke(0,0,100);
         int stockholm; //origin coordinates of the ray
         int rotterdam; //destination coordinates of the ray
         for (int i=0; i<murray; i++){
             stockholm = (int)random(ghosts);
             rotterdam = (int)random(ghosts);
+            stroke(0,random(40),100);
             if (stockholm!=rotterdam){
                 line(busters.get(stockholm)[0],busters.get(stockholm)[1],busters.get(rotterdam)[0],busters.get(rotterdam)[1]);
             }
