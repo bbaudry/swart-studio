@@ -33,7 +33,6 @@ public class Practice013  extends PApplet {
             ra=ra-5;
             ellipse(cx,cy,ra,ra);
         }
-        
     } 
 
     public static void main(String[] args) {

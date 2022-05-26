@@ -69,7 +69,7 @@ public class SL014 extends PApplet {
     }
 
     public static void main(String[] args) {
-        String[] processingArgs = { "SL013" };
+        String[] processingArgs = { "SL014" };
         SL014 mySketch = new SL014();
         PApplet.runSketch(processingArgs, mySketch);
     }
