@@ -9,7 +9,15 @@ public class SL016 extends PApplet {
     int h = 1000;
     PFont f;
     int fSize;
-    String[] statements = {"public void draw", "public void setup","if (random(2)<1)","package art.studio","while(baldessari not boring)"};
+    String[] statements = {"public void draw", "hello world","if (random(2)<1)",
+    "package art.studio","while(baldessari != boring)",
+    "FXADRS		INDEX	SKEEP3", //from Apollo 11
+    "PUBLIC int HTParseInet(sin, str)", //from WorldWideWeb
+    "socket_addrs.sort_by(|a, b|", //from Gecko
+    "methodName.equals(\"touchEvent\")", //from Processing
+    "vlc_player_input_New(player, player->media);", //from VLC
+    "Objects.requireNonNull(requestParams);"
+    };
 
     @Override
     public void settings() {
