@@ -12,6 +12,7 @@ public class OddJob008 extends PApplet {
     float y1;
     float x2;
     float y2;
+    float epsilon;
     Random rand;
 
     @Override
@@ -23,48 +24,69 @@ public class OddJob008 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         rand = new Random();
-        background(palette[0], 80, 40);
+        background(palette[0]+epsilon, 80, 40);
+        frameRate(1);
     }
 
     @Override
     public void draw() {
-        background(palette[0], 80, 40);
-        x1 = random((float)0.2*w,(float)0.4*w);
+        epsilon=random(360);
+        background(palette[0]+epsilon, 80, 40);
+        //a quadrilateral
+        x1 = random((float)0.1*w,(float)0.4*w);
         y1 = random((float)0.7,(float)0.8)*h;
         x2 = x1 + random((float)0.2*w,(float)0.4*w);
         boolean john = rand.nextBoolean();
+        float baldessari = h-y1;
         if (john) {
-            y2 = y1 - random((float)0.1,(float)0.2)*h;
+            y2 = y1 - random((float)0.1*baldessari,baldessari);
         } else {
-            y2 = y1 + random((float)0.1,(float)0.2)*h;
+            y2 = y1 + random((float)0.1*baldessari,baldessari);
         }
         int c = (int) random(1, palette.length);
-        fill(palette[c], 80, 80);
+        fill(palette[c]+epsilon, 80, 80);
         noStroke();
         if (john) {
             quad(x1, y1, x2, y2, x2, y1, x1, y1 + (y1 - y2));
         } else {
             quad(x1, y1, x2, y2, x2, y1, x1, y1 + (y2 - y1));
         }
+        //a circle
         x1 = x2;
         if (john) {
             y1 = y2;
         } 
         c = (int) random(1,palette.length);
-        fill(palette[c], 80, 80);
+        fill(palette[c]+epsilon, 80, 80);
         noStroke();
-        float rad = random((float)0.3*w,(float)0.4*w);
+        float rad = random((float)0.2*w,(float)0.4*w);
         ellipse(x1, y1 - rad / 2, rad, rad);
-
+        //a triangle
         c = (int) random(1,palette.length);
-        fill(palette[c], 80, 80);
+        fill(palette[c]+epsilon, 80, 80);
         y1 = y1 - rad;
-        x2 = x1 - random((float)0.2,(float)0.4)*w;
-        y2 = y1 - random((float)0.1,(float)0.2)*h;
+        x2 = x1 - random(x1/2,x1);
+        y2 = y1 - random(y1/2,y1);
         triangle(x1, y1, x2, y1, random(x2, x1), y2);
+        //a small white circle
         fill(10, 0, 100);
         ellipse(x1, y1, 10, 10);
-        noLoop();
+        //sometimes another circle
+        if (random(42)<11){
+            x1=random((float)0.7*w,(float)0.8*w);
+            rad = random((float)0.1,(float)0.2)*w;
+            if (john){
+                y1=random((float)0.8,(float)0.9)*h;
+            }
+            else{
+                y1=random((float)0.1,(float)0.2)*h;
+            }
+            c = (int) random(1,palette.length);
+            fill(palette[c]+epsilon, 80, 80);
+            ellipse(x1, y1, rad, rad);
+        }
+
+        //noLoop();
         //save("OddJob08.png");
     }
 
