@@ -7,7 +7,7 @@ import java.util.Random;
 public class OddJob008 extends PApplet {
     int w = 1000;
     int h = 1000;
-    int[] palette = { 250, 322, 34, 106, 178};
+    int[] palette = { 250, 310, 10, 70, 130, 190 };
     float x1;
     float y1;
     float x2;
@@ -23,25 +23,22 @@ public class OddJob008 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         rand = new Random();
-        background(230, 80, 40);
+        background(palette[0], 80, 40);
     }
 
     @Override
     public void draw() {
-        //background(230, 80, 40);
-        x1 = random(w/4,w/2);
-        y1 = random((float)0.5*h,(float)0.8*h);
-        x2 = x1 + random(w / 5);
+        background(palette[0], 80, 40);
+        x1 = random((float)0.2*w,(float)0.4*w);
+        y1 = random((float)0.7,(float)0.8)*h;
+        x2 = x1 + random((float)0.2*w,(float)0.4*w);
         boolean john = rand.nextBoolean();
         if (john) {
-            y2 = y1 - random((float)0.2)*h;
+            y2 = y1 - random((float)0.1,(float)0.2)*h;
         } else {
-            y2 = y1 + random((float)0.2)*h;
+            y2 = y1 + random((float)0.1,(float)0.2)*h;
         }
-        float sw = random(11, 37);
-        strokeWeight(sw);
-        strokeCap(SQUARE);
-        int c = (int) random(palette.length);
+        int c = (int) random(1, palette.length);
         fill(palette[c], 80, 80);
         noStroke();
         if (john) {
@@ -53,20 +50,21 @@ public class OddJob008 extends PApplet {
         if (john) {
             y1 = y2;
         } 
-        c = (int) random(palette.length);
+        c = (int) random(1,palette.length);
         fill(palette[c], 80, 80);
         noStroke();
         float rad = random((float)0.3*w,(float)0.4*w);
         ellipse(x1, y1 - rad / 2, rad, rad);
 
-        c = (int) random(palette.length);
+        c = (int) random(1,palette.length);
         fill(palette[c], 80, 80);
         y1 = y1 - rad;
-        x2 = x1 - w / random(7, 11);
-        triangle(x1, y1, x2, y1, random(x2, x1), y1 - random(h / random(2, 11)));
+        x2 = x1 - random((float)0.2,(float)0.4)*w;
+        y2 = y1 - random((float)0.1,(float)0.2)*h;
+        triangle(x1, y1, x2, y1, random(x2, x1), y2);
         fill(10, 0, 100);
         ellipse(x1, y1, 10, 10);
-        //noLoop();
+        noLoop();
         //save("OddJob08.png");
     }
 
