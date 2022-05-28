@@ -1,4 +1,4 @@
-/* Metadata {"endless":false, "BW": false, "knobs": "false", "data": false, "interaction": false}*/
+/* Metadata {"endless":true, "BW": false, "knobs": "false", "data": false, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;
@@ -24,7 +24,6 @@ public class OddJob008 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         rand = new Random();
-        background(palette[0]+epsilon, 80, 40);
         frameRate(1);
     }
 
