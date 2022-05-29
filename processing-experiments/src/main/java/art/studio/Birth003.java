@@ -33,28 +33,29 @@ public class Birth003 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         rand = new Random();
-        //frameRate(1);
+        frameRate(1);
         force=100;
         ciel=100;
         noStroke();
         x1=0;
         y1=0;
         grow=true;
-        background(palettej[1],force,ciel);
+        background(50,force,ciel);
     }
 
     @Override
     public void draw() {
-        if (grow) {
+        if (grow && x1>w && y1>h) {grow=false;x1=0;y1=0;}
+       
             poem = random(rimbaud);
             x2 = x1 + poem;
             y2 = y1 + poem;
-            //bleu();
-            paves();
+            bleu();
+            //paves();
             x1 = x2;
             y1 = y2;
-        }   
-        if (x1 > 2 * w && y1 > 2 * h) {
+
+        if (!grow  && x1>w && y1>h) {
             x1 = 0;
             y1 = 0;
             noLoop();//background(palettej[1], force, ciel);
@@ -65,7 +66,12 @@ public class Birth003 extends PApplet {
     private void bleu(){
         hu = (int)random(palettej.length);
         fill(palettej[hu],force,ciel);
-        quad(0,y1,x1,0,x2,0,0,y2);
+        if (grow) {
+            quad(0,y1,x1,0,x2,0,0,y2);
+        }
+        else {
+            quad(w,y1,w,y2,x2,h,x1,h);
+        }
     }
 
     private void perles(){
