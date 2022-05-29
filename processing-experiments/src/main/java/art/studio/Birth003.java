@@ -131,21 +131,21 @@ public class Birth003 extends PApplet {
             }
         }}
         else{
-            for(int i=0;i<rimbaud;i++){//draw rimbaud quadrilaterales on the segment (x2,h),(w,y2)
+            for(int i=0;i<rimbaud;i++){//draw rimbaud quadrilaterales on the segment (x1,h),(w,y1)
             t=random(1);
-            float cx1 = (1-t)*x2+(t*w);
-            float cy1 = (1-t)*h+(t*y2);
+            float cx1 = (1-t)*x1+(t*w);
+            float cy1 = (1-t)*h+(t*y1);
             t=random(1);
-            float cx2 = (1-t)*x2+(t*w);
-            float cy2 = (1-t)*h+(t*y2);
+            float cx2 = (1-t)*x1+(t*w);
+            float cy2 = (1-t)*h+(t*y1);
             hu = (int)random(palettej.length);
             fill(palettej[hu],force,ciel);
             float rad = random(poem);
             if(cx1>cx2){
-                quad(cx2,cy2,cx2,cy2-rad,cx1,cy1-rad,cx1,cy1);
+                quad(cx2,cy2,cx2,cy2+rad,cx1,cy1+rad,cx1,cy1);
             }
             else{
-                quad(cx1,cy1,cx1,cy1-rad,cx2,cy2-rad,cx2,cy2);
+                quad(cx1,cy1,cx1,cy1+rad,cx2,cy2+rad,cx2,cy2);
             }
         }
         }
