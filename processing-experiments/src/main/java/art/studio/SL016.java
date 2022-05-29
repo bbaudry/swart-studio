@@ -36,10 +36,11 @@ public class SL016 extends PApplet {
     @Override
     public void draw() {
         background(0, 0, 0);
-        fill(0,0,100);
+        fill(0,random(50),100);
         if (random(2)<1){
             String code = statements[(int)random(statements.length)];
-        text(code, w/2-(code.length()*fSize)/4, h/2);}
+            float epsilon = random(-50,50);
+        text(code, w/2-(code.length()*fSize)/4, h/2+epsilon);}
     }
 
     public static void main(String[] args) {
