@@ -122,7 +122,7 @@ public class Birth003 extends PApplet {
             float cy2 = (1-t)*y2+(t*0);
             hu = (int)random(palettej.length);
             fill(palettej[hu],force,ciel);
-            float rad = random(poem);
+            float rad = random(rimbaud);
             if(cx1>cx2){
                 quad(cx2,cy2,cx2,cy2-rad,cx1,cy1-rad,cx1,cy1);
             }
@@ -140,15 +140,22 @@ public class Birth003 extends PApplet {
             float cy2 = (1-t)*h+(t*y1);
             hu = (int)random(palettej.length);
             fill(palettej[hu],force,ciel);
-            float rad = random(poem);
+            float rad = random(rimbaud);
             if(cx1>cx2){
                 quad(cx2,cy2,cx2,cy2+rad,cx1,cy1+rad,cx1,cy1);
+                if (random(rimbaud)<rimbaud/10){mosaic(cx1,cx2,cy1,cy2);}
             }
             else{
                 quad(cx1,cy1,cx1,cy1+rad,cx2,cy2+rad,cx2,cy2);
             }
         }
         }
+    }
+
+    private void mosaic(float cx1, float cx2, float cy1, float cy2){
+        fill(0,100,100);
+        ellipse(cx1,cy1,rimbaud,rimbaud);
+
     }
 
 
