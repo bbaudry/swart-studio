@@ -143,18 +143,32 @@ public class Birth003 extends PApplet {
             float rad = random(rimbaud);
             if(cx1>cx2){
                 quad(cx2,cy2,cx2,cy2+rad,cx1,cy1+rad,cx1,cy1);
-                if (random(rimbaud)<rimbaud/10){mosaic(cx1,cx2,cy1,cy2);}
             }
             else{
                 quad(cx1,cy1,cx1,cy1+rad,cx2,cy2+rad,cx2,cy2);
+                if (random(rimbaud)<rimbaud/10){mosaic(cx1,cx2,cy1,cy2,rad);}
             }
         }
         }
     }
 
-    private void mosaic(float cx1, float cx2, float cy1, float cy2){
-        fill(0,100,100);
-        ellipse(cx1,cy1,rimbaud,rimbaud);
+    //pre: cx1<cx2, rad>0
+    private void mosaic(float cx1, float cx2, float cy1, float cy2, float len){
+        hu = (int)random(palettej.length);
+        fill(palettej[hu],force,ciel);
+        int steps = rand.nextInt(5);
+        float wid=cx2-cx1;
+        float yorig=cy1;
+        for (int i=0; i<steps; i++){
+            for (int j=0; j<steps; j++){
+                hu = (int)random(palettej.length);
+                fill(palettej[hu],force,ciel);
+                quad(cx1,cy1,cx1,cy1+len/steps,cx1+wid/steps,cy1+len/steps,cx1+wid/steps,cy1);    
+                cy1=cy1+len/steps;    
+            }
+            cy1=yorig;
+            cx1=cx1+len/steps;
+        }
 
     }
 
