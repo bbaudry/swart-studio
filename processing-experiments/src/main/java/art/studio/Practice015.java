@@ -9,7 +9,7 @@ public class Practice015  extends PApplet {
     float cx1 = 0;
     float cy1 = 0;
     float cx2 = 300;
-    float cy2 = 700;
+    float cy2 = h;
     float eliane = 42;
     float len;
     float wid;
@@ -24,15 +24,14 @@ public class Practice015  extends PApplet {
     public void setup() {
         colorMode(HSB,360,100,100);
         background(1,0,0);
-        steps = 11; 
+        steps = 17; 
         frameRate(7);
     }
 
     @Override
     public void draw() {
-        //background(1,0,0);
-        stroke(random(360),100,100);
-        line(cx1,cy1,cx2,cy2);
+        background(1,0,0);
+        stroke(random(360),0,0);
         float cx3;
         float cy3;
         float cx4;
@@ -45,17 +44,18 @@ public class Practice015  extends PApplet {
             cy3=cy1;
             for (int j=0; j<steps; j++){
                 t = (float)((j+1)*inc); 
+                float pad = random(eliane);
                 cx4 = (1 - t) * (cx1+(i*eliane)) + (t * (cx2+(i*eliane)));
                 cy4 = (1 - t) * cy1 + (t * cy2);
-                fill(i*40,100,100);
-                quad(cx3,cy3,cx3+eliane,cy3,cx4+eliane,cy4,cx4,cy4);
+                fill(random(30,60),80,100);
+                quad(cx3-pad,cy3-pad,cx3+eliane,cy3-pad,cx4+eliane,cy4,cx4-pad,cy4);
                 if(random(11)<2){inner(cx3,cx4,cy3,cy4);}
                 
                 cx3=cx4;
-                cy3=cy4;    
+                cy3=cy4+pad;    
             }
         }
-        //noLoop();
+        noLoop();
     } 
 
     private void inner(float cx1, float cx2,float cy1, float cy2){
