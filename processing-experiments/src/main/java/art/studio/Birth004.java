@@ -51,12 +51,13 @@ public class Birth004 extends PApplet {
 
     @Override
     public void draw() {
+        float wi = random(rimbaud/4,rimbaud);
         if (grow && orx > w && dey > h) {
             grow = false;
             noLoop();// background(palettej[1], force, ciel);
         }
         else{
-            float wi = rimbaud;//random(rimbaud/4,rimbaud);
+            
             increments.add(wi);
             orx=orx+wi;
             ory=0;
@@ -86,17 +87,11 @@ public class Birth004 extends PApplet {
             y2 = (1 - t) * ory + (t * dey);
             hu = (int)random(palettej.length);
             fill(palettej[hu],force,ciel);    
-            quad(x1, y1, x1-wi-1, y1, x2-wi-1, y2, x2, y2);
-            fill(0,0,0);
-            ellipse(x2-wi, y2, 10, 10);
-    
+            quad(x1, y1, x1-wi, y1-wi, x2-wi, y2-wi, x2, y2);
             x1=x2;
             y1=y2;
 
         }
-        fill(0,0,0);
-        ellipse(dex, dey, 10, 10);
-        ellipse(orx, ory, 10, 10);
     }
 
 
