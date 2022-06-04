@@ -37,28 +37,26 @@ public class Birth004 extends PApplet {
         colorMode(HSB, 360, 100, 100);
         increments = new ArrayList<>();
         rand = new Random();
-        frameRate(5);
+        //frameRate(5);
         force=100;
         ciel=100;
         noStroke();
-        orx=100;
+        orx=0;
         ory=0;
         dex=0;
-        dey=50;
+        dey=0;
         grow=true;
         background(50,force,ciel);
     }
 
     @Override
     public void draw() {
-        float wi = random(rimbaud/4,rimbaud);
+        float wi = rimbaud/10;//random(rimbaud/2,rimbaud);
         if (grow && orx > w && dey > h) {
             grow = false;
             noLoop();// background(palettej[1], force, ciel);
         }
         else{
-            
-            increments.add(wi);
             orx=orx+wi;
             ory=0;
             dex=0;
@@ -79,7 +77,7 @@ public class Birth004 extends PApplet {
         float x2;
         float y2;
         float t;
-        float steps = rimbaud/5;
+        float steps = orx/(rimbaud/10);
         float inc = (float)1/steps;
         for (int i=0;i<steps;i++){
             t = (float)((i+1)*inc); 
