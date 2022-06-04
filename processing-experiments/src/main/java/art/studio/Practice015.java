@@ -80,7 +80,7 @@ public class Practice015  extends PApplet {
                 cy3=cy4+pad;    
             }
         }
-        //noLoop();
+        noLoop();
     } 
 
     private void inner(float cx1, float cx2,float cy1, float cy2){
