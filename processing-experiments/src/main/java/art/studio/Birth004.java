@@ -54,21 +54,34 @@ public class Birth004 extends PApplet {
         float wi = rimbaud/10;//random(rimbaud/2,rimbaud);
         if (grow && orx > w && dey > h) {
             grow = false;
+            orx=0;
+            ory=0;
+            dex=0;
+            dey=0;
+    
             noLoop();// background(palettej[1], force, ciel);
         }
         else{
+            if (grow){
             orx=orx+wi;
             ory=0;
             dex=0;
             dey=dey+wi;
-            stripe(orx, ory, dex, dey, wi);
+            stripe(orx, ory, dex, dey, wi);}
+            else{
+                orx=orx+wi*4;
+                ory=0;
+                dex=0;
+                dey=dey+wi*4;
+                if(random(11)<1){stripe(orx, ory, dex, dey, wi*2);}}    
+            }
         }/*
         if (!grow && orx > w && ory > h) {
             orx = 0;
             ory = 0;
             noLoop();// background(palettej[1], force, ciel);
         }*/
-    }
+    
 
 
     private void stripe (float orx, float ory, float dex, float dey, float wi){
@@ -85,7 +98,17 @@ public class Birth004 extends PApplet {
             y2 = (1 - t) * ory + (t * dey);
             hu = (int)random(palettej.length);
             fill(palettej[hu],force,ciel);    
-            quad(x1, y1, x1-wi, y1-wi, x2-wi, y2-wi, x2, y2);
+            float choose = random(rimbaud);
+            if(choose<7){
+                float twowi = 5*wi;
+                quad(x1, y1, x1-twowi, y1-twowi, x2-twowi, y2-twowi, x2, y2);
+            }
+            if(choose>=7 && choose<14){
+                float twowi = 10*wi;
+                quad(x1, y1, x1-twowi, y1-twowi, x2-twowi, y2-twowi, x2, y2);
+                            }
+                            if(choose>=14){
+                                quad(x1, y1, x1-wi, y1-wi, x2-wi, y2-wi, x2, y2);}
             x1=x2;
             y1=y2;
 
