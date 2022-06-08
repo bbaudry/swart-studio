@@ -56,7 +56,6 @@ public class Athena207062022 extends PApplet {
             y2=y2+inc;
         }
         while(x2>0 && y1<h){
-            System.out.println("x2 "+x2+" y1 "+y1);
             chercheur();
             x2=x2-inc;
             y1=y1+inc;
