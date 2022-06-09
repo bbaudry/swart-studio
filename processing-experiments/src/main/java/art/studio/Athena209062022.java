@@ -37,8 +37,8 @@ public class Athena209062022 extends PApplet {
         chercheur();
         dor();
         frameRate(2);
-        //noLoop();
-//        save("Athena209062022.png");
+        noLoop();
+        save("Athena209062022.png");
     }
 
     private void chercheur() {
@@ -55,11 +55,12 @@ public class Athena209062022 extends PApplet {
     }
 
     private void dor() {
-        for(int rays=0;rays<168;rays++){
+        int rays=0;
+        while(rays<4*42){
             int i = alea.nextInt(etoiles.size()); // (int)random(etoiles.size());
             int j = alea.nextInt(etoiles.size()); //(int)random(etoiles.size());
+            if (i!=j){
             stroke(50,100,100);
-            strokeWeight(2);
             //line(etoiles.get(i)[0],etoiles.get(i)[1],etoiles.get(j)[0],etoiles.get(j)[1]);
             noFill();
             int danseuse = alea.nextInt(7)*42;
@@ -72,6 +73,8 @@ public class Athena209062022 extends PApplet {
             fill(50,100,100);
             ellipse(etoiles.get(i)[0],etoiles.get(i)[1],3,3);
             ellipse(etoiles.get(j)[0],etoiles.get(j)[1],3,3);
+            rays++;
+        }
         }  
     }
 
