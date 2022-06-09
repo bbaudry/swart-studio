@@ -34,7 +34,7 @@ public class Athena209062022 extends PApplet {
         rad = random((float)0.3,(float)0.4)*w;
         chercheur();
         dor();
-        noLoop();
+        //noLoop();
 //        save("Athena209062022.png");
     }
 
@@ -56,8 +56,10 @@ public class Athena209062022 extends PApplet {
         int i = (int)random(etoiles.size());
         int j = (int)random(etoiles.size());
         stroke(50,100,100);
-        line(etoiles.get(i)[0],etoiles.get(i)[1],etoiles.get(j)[0],etoiles.get(j)[1]);
-    }  
+            //line(etoiles.get(i)[0],etoiles.get(i)[1],etoiles.get(j)[0],etoiles.get(j)[1]);
+            noFill();
+            bezier(etoiles.get(i)[0],etoiles.get(i)[1],etoiles.get(i)[0],etoiles.get(i)[1]-84,etoiles.get(j)[0]+42,etoiles.get(j)[1]+42,etoiles.get(j)[0],etoiles.get(j)[1]);
+        }  
     }
 
     public static void main(String[] args) {
