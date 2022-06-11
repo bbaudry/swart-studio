@@ -10,7 +10,6 @@ import processing.core.PApplet;
 public class Birth004 extends PApplet {
     int w = 3000;
     int h = 3000;
-    // int[] palettej = { 250, 310, 10, 70, 130, 190 };
     int[] palettej = { 180, 200, 220, 240, 260 };
     Random rand;
     int rimbaud = 70;
@@ -52,14 +51,13 @@ public class Birth004 extends PApplet {
 
     @Override
     public void draw() {
-        float wi = rimbaud / 10;// random(rimbaud/2,rimbaud);
+        float wi = rimbaud / 10;
         if (grow && orx > w && dey > h) {
             grow = false;
             orx = w;
             ory = 0;
             dex = w;
             dey = 0;
-            //noLoop();// background(palettej[1], force, ciel);
         } 
         if(grow) {
             orx = orx + wi;
