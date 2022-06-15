@@ -43,7 +43,7 @@ public class Birth006 extends PApplet {
 
     @Override
     public void draw() {
-        if (constellations < stervilin.size() - 1) {
+        if (constellations < stervilin.size()) {
             //point();
             suzanne();
             if(rd.nextInt(lou)<lou/10){
@@ -62,7 +62,7 @@ public class Birth006 extends PApplet {
         strokeCap(SQUARE);
         float cx = stervilin.get(constellations)[0];
         float cy = stervilin.get(constellations)[1];
-        float santorin = lou;
+        float santorin = lou/2;
         float angle1 = random(0,2*PI); 
         float angle2;
         int shares = 20;
@@ -110,8 +110,8 @@ public class Birth006 extends PApplet {
         while (x < w) {
             while (y < h) {
                 Float[] sunshine = new Float[2];
-                sunshine[0] = random(x - step, x);
-                sunshine[1] = random(y - step, y);
+                sunshine[0] = x-step/2;//random(x - step, x);
+                sunshine[1] = y-step/2;//random(y - step, y);
                 stervilin.add(sunshine);
                 y = y + step;
             }
