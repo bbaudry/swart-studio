@@ -60,15 +60,15 @@ public class Practice007  extends PApplet {
         strokeWeight(142);
         strokeCap(SQUARE);
         stroke(242,11,88);
-        arc(cx,cy,radius,radius,angle1,angle2);
+//        arc(cx,cy,radius,radius,angle1,angle2);
         arc(cx,cy,radius*2,radius*2,angle1,angle2);
         strokeWeight(4);
         stroke(0);
         arc(cx,cy,radius,radius,angle1,angle2);
         arc(cx,cy,radius*2,radius*2,angle1,angle2);
 
-        line(x3,y3,x1,y1);
-        line(x4,y4,x2,y2);
+//        line(x3,y3,x1,y1);
+//        line(x4,y4,x2,y2);
         noFill();
         sh.beginShape();
         sh.fill(42,42,250,20);
