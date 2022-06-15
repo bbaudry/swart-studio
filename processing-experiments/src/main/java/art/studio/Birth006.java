@@ -46,11 +46,13 @@ public class Birth006 extends PApplet {
         if (constellations < stervilin.size() - 1) {
             //point();
             suzanne();
+            if(rd.nextInt(lou)<lou/10){
+                marianne();
+            }
             constellations++;
         } else {
-            //background(42, 42, 84);
-            constellations=0;
-            //noLoop();
+            save("gift002.png");
+            noLoop();
         }
     }
 
@@ -84,8 +86,25 @@ public class Birth006 extends PApplet {
         }
     }
 
+    private void marianne(){
+        int i = rd.nextInt(stervilin.size()-1);
+        int j = i;
+        while (j==i){
+            j = rd.nextInt(stervilin.size()-1);
+        }
+        float cx1 = stervilin.get(i)[0];
+        float cy1 = stervilin.get(i)[1];
+        float cx2 = stervilin.get(j)[0];
+        float cy2 = stervilin.get(j)[1];
+        noFill();
+        strokeWeight(lou / 20);
+        hu = palettef[rd.nextInt(palettef.length - 1)];
+        stroke(hu, 100, 100);
+        bezier(cx1, cy1, cx1+lou, cy1, cx2-lou, cy2-lou, cx2, cy2);
+    }
+
     private void init() {
-        int step = lou;
+        int step = lou/2;
         float x = step;
         float y = step;
         while (x < w) {
