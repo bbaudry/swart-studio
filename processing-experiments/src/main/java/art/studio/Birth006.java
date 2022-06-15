@@ -45,8 +45,8 @@ public class Birth006 extends PApplet {
     public void draw() {
         if (constellations < stervilin.size()) {
             //point();
-            suzanne();
-            if(rd.nextInt(lou)<lou/10){
+            if(rd.nextInt(lou)<lou/20){
+                //suzanne(stervilin.get(constellations)[0],stervilin.get(constellations)[1]);
                 marianne();
             }
             constellations++;
@@ -56,12 +56,10 @@ public class Birth006 extends PApplet {
         }
     }
 
-    private void suzanne() {
+    private void suzanne(float cx,float cy) {
         noFill();
         strokeWeight(lou / 10);
         strokeCap(SQUARE);
-        float cx = stervilin.get(constellations)[0];
-        float cy = stervilin.get(constellations)[1];
         float santorin = lou/2;
         float angle1 = random(0,2*PI); 
         float angle2;
@@ -97,14 +95,21 @@ public class Birth006 extends PApplet {
         float cx2 = stervilin.get(j)[0];
         float cy2 = stervilin.get(j)[1];
         noFill();
-        strokeWeight(lou / 20);
+        strokeWeight(1);
         hu = palettef[rd.nextInt(palettef.length - 1)];
         stroke(hu, 100, 100);
-        bezier(cx1, cy1, cx1+lou, cy1, cx2-lou, cy2-lou, cx2, cy2);
+        if(rd.nextBoolean()){
+            bezier(cx1, cy1, cx1+lou*2, cy1, cx2-lou*2, cy2-lou*2, cx2, cy2);
+        }
+        else{
+            bezier(cx1, cy1, cx1-lou*4, cy1, cx2+lou*4, cy2+lou*4, cx2, cy2);
+        }
+        suzanne(cx1, cy1);
+        suzanne(cx2, cy2);
     }
 
     private void init() {
-        int step = lou/2;
+        int step = lou/4;
         float x = step;
         float y = step;
         while (x < w) {
