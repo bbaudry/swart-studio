@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class Birth006 extends PApplet {
     int w = 1000;
     int h = 1000;
-    int[] palettef = { 0, 20, 40, 60, 80 };
+    int[] palettef = {40, 60, 80, 100 };
     int lou = 69;
     float x;
     float y;
@@ -35,7 +35,7 @@ public class Birth006 extends PApplet {
         constellations = 0;
         rays = 0;
 //        background(42, 42, 84);
-        background(0,0,0);
+        background(0,100,100);
         rd = new Random();
         stervilin = new ArrayList<>();
         init();
@@ -60,7 +60,7 @@ public class Birth006 extends PApplet {
         noFill();
         strokeWeight(lou / 10);
         strokeCap(SQUARE);
-        float santorin = lou/2;
+        float santorin = lou;
         float angle1 = random(0,2*PI); 
         float angle2;
         int shares = 20;
@@ -109,7 +109,7 @@ public class Birth006 extends PApplet {
     }
 
     private void init() {
-        int step = lou/4;
+        int step = lou/2;
         float x = step;
         float y = step;
         while (x < w) {
