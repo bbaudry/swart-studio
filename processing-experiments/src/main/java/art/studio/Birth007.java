@@ -9,7 +9,7 @@ public class Birth007 extends PApplet {
     int w = 1000;
     int h = 1000;
 //    int[] palettef = {40, 60, 80, 100, 120 };
-    int[] palettef = {50, 95, 140, 185, 230, 275, 320, 5};
+    int[] palettef = {50, 95, 140, 185, 230, 275, 320};
     int lou = 69;
     float hu;
     float cx;
