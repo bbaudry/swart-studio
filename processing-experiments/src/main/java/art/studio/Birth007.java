@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class Birth007 extends PApplet {
-    int w = 1000;
-    int h = 1000;
-//    int[] palettef = {40, 60, 80, 100, 120 };
-    int[] palettef = {50, 95, 140, 185, 230, 275, 320};
+    int w = 3000;
+    int h = 3000;
+    int[] palettef = {50, 185, 230, 275, 320};// 95,  140,  
     int lou = 69;
     float hu;
     float cx;
@@ -32,14 +31,11 @@ public class Birth007 extends PApplet {
         cy = 0;
         electronic=true;
         electroacoustic=true;
-        step=lou/2;
+        step=lou*2;
         hu = palettef[rd.nextInt(palettef.length)];
         background(230,80,80);
         fill(0,100,100);
-        //back();
         noStroke();
-        strokeWeight(1);
-        //frameRate(7);
     }
 
     @Override
@@ -49,15 +45,38 @@ public class Birth007 extends PApplet {
             fill(hu, 100, 100);
             noStroke();
             if(electronic){
-                if(radians(lou)<0.9*lou){
+                if(random(lou)<0.7*lou){
                     quad(cx, cy, cx+step/2, cy+step/2, cx, cy+step, cx-step/2, cy+step/2);
+                }
+                else{
+                    if(random(lou)>=0.8*lou && radians(lou)<0.9*lou){
+                        System.out.println("almost big");
+                        quad(cx, cy, cx+step, cy+step, cx, cy+2*step, cx-step, cy+step);
+                    }    
+                    else{
+                        if(random(lou)>=0.7*lou && radians(lou)<0.8*lou){
+                            System.out.println("big");
+                            quad(cx, cy, (float)(cx+1.5*step), (float)(cy+1.5*step), cx, cy+3*step, (float)(cx-1.5*step), (float)(cy+1.5*step));
+                        }        
+                    }
                 }
                 electronic=false;
             }
             else{
-                if(radians(lou)<0.9*lou){
+                if(random(lou)<0.7*lou){
                     quad(cx, cy-step/2, cx+step/2, cy, cx, cy+step/2, cx-step/2, cy);
                 }
+                else{
+                    if(random(lou)>=0.8*lou && radians(lou)<0.9*lou){
+                        quad(cx, cy-step, cx+step, cy, cx, cy+step, cx-step, cy);
+                    }     
+                    else{
+                        if(random(lou)>=0.7*lou && radians(lou)<0.8*lou){
+                            quad(cx, (float)(cy-1.5*step), (float)(cx+1.5*step), cy, cx, (float)(cy+1.5*step), (float)(cx-1.5*step), cy);
+                        }        
+                    }
+                }
+                electronic=false;
                 electronic=true;
             }
             cx=cx+step/2;
@@ -77,25 +96,6 @@ public class Birth007 extends PApplet {
         if(cy>h+step){
             noLoop();
             save("gift007.png");
-        }
-    }
-
-    private void back(){
-        float y = h;
-        float x = 0;
-        line(w/2,0,w/2,h);
-        strokeCap(SQUARE);
-        strokeWeight(w/10);
-        while (x<w/2){
-            hu = palettef[rd.nextInt(palettef.length - 1)];
-            stroke(hu, 100, 100);
-            noFill();
-            line(x,h+lou,-lou,y);
-            fill(0,0,100);
-            noStroke();
-            ellipse(0,y,10,10);
-            y=y-h/10;
-            x=x+w/10;
         }
     }
 
