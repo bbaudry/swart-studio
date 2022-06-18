@@ -9,11 +9,14 @@ public class Birth007 extends PApplet {
     int w = 1000;
     int h = 1000;
 //    int[] palettef = {40, 60, 80, 100, 120 };
-    int[] palettef = {50, 140, 230, 320};
+    int[] palettef = {50, 95, 140, 185, 230, 275, 320, 5};
     int lou = 69;
     float hu;
     float cx;
     float cy;
+    float step;
+    boolean electronic;
+    boolean electroacoustic;
     Random rd;
 
     @Override
@@ -27,41 +30,54 @@ public class Birth007 extends PApplet {
         rd = new Random();
         cx = 0;
         cy = 0;
-        background(0,10,80);
+        electronic=true;
+        electroacoustic=true;
+        step=lou/2;
+        hu = palettef[rd.nextInt(palettef.length)];
+        background(230,80,80);
         fill(0,100,100);
-        back();
+        //back();
         noStroke();
         strokeWeight(1);
-        //ellipse(cx,cy,w,w);
+        //frameRate(7);
     }
 
     @Override
     public void draw() {
-        if (cx<w){
+        if (cx<w+step){
             hu = palettef[rd.nextInt(palettef.length)];
             fill(hu, 100, 100);
-            if(rd.nextBoolean()){
-            noStroke();}
-            else{
-                stroke(0,0,100);
+            noStroke();
+            if(electronic){
+                if(radians(lou)<0.9*lou){
+                    quad(cx, cy, cx+step/2, cy+step/2, cx, cy+step, cx-step/2, cy+step/2);
+                }
+                electronic=false;
             }
-            if(rd.nextInt(lou)<0.1*lou){
-            quad(cx, cy, cx+lou/4, cy+lou/4, cx, cy+lou/2, cx-lou/4, cy+lou/4);}
             else{
-                ellipse(cx,cy+lou/4,lou/2,lou/2);
+                if(radians(lou)<0.9*lou){
+                    quad(cx, cy-step/2, cx+step/2, cy, cx, cy+step/2, cx-step/2, cy);
+                }
+                electronic=true;
             }
-            cx=cx+lou/4;
+            cx=cx+step/2;
         }
         else{
-            if (rd.nextBoolean()){
-                cx=0;
+            if(electroacoustic){
+                cx=-step/2;
+                cy=cy+step/2;
+                electroacoustic=false;
             }
             else{
-                cx=-lou/8;
+                cx=0;
+                cy=cy+step/2;
+                electroacoustic=true;
             }
-            cy=cy+lou/4;
         }
-        //marianne();
+        if(cy>h+step){
+            noLoop();
+            save("gift007.png");
+        }
     }
 
     private void back(){
