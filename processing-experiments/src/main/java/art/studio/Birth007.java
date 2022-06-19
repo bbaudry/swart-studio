@@ -31,7 +31,6 @@ public class Birth007 extends PApplet {
         electronic=true;
         electroacoustic=true;
         step=lou*2;
-        hu = palettef[rd.nextInt(palettef.length)];
         background(230,80,80);
         fill(0,100,100);
         noStroke();
