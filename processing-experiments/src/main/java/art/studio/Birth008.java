@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class Birth008 extends PApplet {
     int w = 1000;
     int h = 1000;
-    int[] palettef = { 50, 185, 230, 275, 320 };// 95, 140,
+    int[] palettef = { 50,  230, 320 };// 95, 140, 185, 275
     int lou = 69;
     float hu;
     float cx;
@@ -38,7 +38,7 @@ public class Birth008 extends PApplet {
 
     @Override
     public void draw() {
-        if (tr < milkyWay.size() - 1) {
+        if (tr < milkyWay.size()) {
             star(milkyWay.get(tr)[0], milkyWay.get(tr)[1]);
             tr++;
         } else {
@@ -51,26 +51,28 @@ public class Birth008 extends PApplet {
         stroke(0, 0, 100);
         int steps = rd.nextInt(lou);
         for (int i = 0; i < steps; i++) {
-            float r = random((float) 0.8, (float) 1.4) * rad;
+            float r = random((float)0.5, (float)2) * rad;
             float ang = random(2 * PI);
             hu = palettef[(int) random(palettef.length)];
             stroke(hu, random(80, 100), random(80, 100));
+            strokeWeight(random(1,2));
             fill(hu, random(80, 100), random(80, 100));
             float x = cx + r * cos(ang);
             float y = cy + r * sin(ang);
             ellipse(x, y, 2, 2);
             noFill();
+            int offset=lou;
             if (x < cx && y < cy) {
-                bezier(cx, cy, cx - 10, cy, x, cy - 10, x, y);
+                bezier(cx, cy, cx - offset, cy, x, cy - offset, x, y);
             }
             if (x >= cx && y < cy) {
-                bezier(cx, cy, cx + 10, cy, x, cy - 10, x, y);
+                bezier(cx, cy, cx + offset, cy, x, cy - offset, x, y);
             }
             if (x >= cx && y >= cy) {
-                bezier(cx, cy, cx + 10, cy, x, cy + 10, x, y);
+                bezier(cx, cy, cx + offset, cy, x, cy + offset, x, y);
             }
             if (x < cx && y >= cy) {
-                bezier(cx, cy, cx - 10, cy, x, cy + 10, x, y);
+                bezier(cx, cy, cx - offset, cy, x, cy + offset, x, y);
             }
         }
     }
@@ -78,8 +80,8 @@ public class Birth008 extends PApplet {
     private void init() {
         for (int i = 0; i < lou; i++) {
             Float[] coord = new Float[2];
-            coord[0] = random(w);
-            coord[1] = random(h);
+            coord[0] = random((float)0.05,(float)0.95)*w;
+            coord[1] = random((float)0.05,(float)0.95)*h;
             milkyWay.add(coord);
         }
     }
