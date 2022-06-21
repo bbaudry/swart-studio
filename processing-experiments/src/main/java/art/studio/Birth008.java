@@ -42,7 +42,8 @@ public class Birth008 extends PApplet {
             star(milkyWay.get(tr)[0], milkyWay.get(tr)[1]);
             tr++;
         } else {
-            noLoop();
+            tr=0;
+//            noLoop();
         }
     }
 
@@ -61,7 +62,7 @@ public class Birth008 extends PApplet {
             float y = cy + r * sin(ang);
             ellipse(x, y, 2, 2);
             noFill();
-            int offset=lou;
+            float offset=random(lou);
             if (x < cx && y < cy) {
                 bezier(cx, cy, cx - offset, cy, x, cy - offset, x, y);
             }
@@ -78,7 +79,7 @@ public class Birth008 extends PApplet {
     }
 
     private void init() {
-        for (int i = 0; i < lou; i++) {
+        for (int i = 0; i < lou/2; i++) {
             Float[] coord = new Float[2];
             coord[0] = random((float)0.05,(float)0.95)*w;
             coord[1] = random((float)0.05,(float)0.95)*h;
