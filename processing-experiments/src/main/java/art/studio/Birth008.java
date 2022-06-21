@@ -15,7 +15,8 @@ public class Birth008 extends PApplet {
     float cy;
     Random rd;
     ArrayList<Float[]> milkyWay;
-    int tr;
+    int stellar;
+    int iterations;
 
     @Override
     public void settings() {
@@ -28,7 +29,8 @@ public class Birth008 extends PApplet {
         rd = new Random();
         cx = 0;
         cy = 0;
-        tr = 0;
+        stellar = 0;
+        iterations = 0;
         milkyWay = new ArrayList<>();
         init();
         background(230, 80, 80);
@@ -38,11 +40,17 @@ public class Birth008 extends PApplet {
 
     @Override
     public void draw() {
-        if (tr < milkyWay.size()) {
-            star(milkyWay.get(tr)[0], milkyWay.get(tr)[1]);
-            tr++;
+        if (stellar < milkyWay.size()) {
+            star(milkyWay.get(stellar)[0], milkyWay.get(stellar)[1]);
+            stellar++;
         } else {
-            tr=0;
+            if (iterations < 2){
+                stellar = 0;
+                iterations++;
+            }
+            else {
+                rays();
+            }
 //            noLoop();
         }
     }
@@ -78,6 +86,31 @@ public class Birth008 extends PApplet {
         }
     }
 
+    private void rays(){
+        int birth = rd.nextInt(milkyWay.size()-1);
+        int death = birth;
+        while (death==birth){
+            death = rd.nextInt(milkyWay.size()-1);
+        }
+        float x1=milkyWay.get(birth)[0];
+        float y1=milkyWay.get(birth)[1];
+        float x2=milkyWay.get(death)[0];
+        float y2=milkyWay.get(death)[1];
+        int offset=rd.nextInt(lou*11);
+        if (x1 < x2 && y1 < y2) {
+            bezier(x2, y2, x2 - offset, cy, x1, cy - offset, x1, y1);
+        }
+        if (x1 >= x2 && y1 < y2) {
+            bezier(x2, y2, x2 + offset, cy, x1, cy - offset, x1, y1);
+        }
+        if (x1 >= x2 && y1 >= y2) {
+            bezier(x2, y2, x2 + offset, cy, x1, cy + offset, x1, y1);
+        }
+        if (x1 < x2 && y1 >= y2) {
+            bezier(x2, y2, x2 - offset, cy, x1, cy + offset, x1, y1);
+        }        
+    }
+
     private void init() {
         for (int i = 0; i < lou/2; i++) {
             Float[] coord = new Float[2];
@@ -88,7 +121,7 @@ public class Birth008 extends PApplet {
     }
 
     public static void main(String[] args) {
-        String[] processingArgs = { "Birth008 " };
+        String[] processingArgs = {"Birth008"};
         Birth008 mySketch = new Birth008();
         PApplet.runSketch(processingArgs, mySketch);
     }
