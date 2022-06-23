@@ -33,7 +33,7 @@ public class Birth009 extends PApplet {
         init();
         cx = milkyWay.get(0);
         cy = 0;
-        background(230, 80, 80);
+        background(230, 80, 60);
         fill(0, 100, 100);
         noStroke();
     }
@@ -42,9 +42,11 @@ public class Birth009 extends PApplet {
     public void draw() {
         if (laita){
             hu = palettef[(int) random(palettef.length)];
-            fill(hu, random(80, 100), random(80, 100));
+            //fill(hu, random(80, 100), random(80, 100));
+            fill(hu, 0, 100);
             ellipse(cx, cy, lou/10, lou/10);
-            cy = cy + random(lou/4);
+            ellipse(w-cx, cy, lou/10, lou/10);
+            cy = cy + random(lou/3);
             if (cy > h){
                 laita=false;
                 if (ind<milkyWay.size()-1){
@@ -66,7 +68,7 @@ public class Birth009 extends PApplet {
         float x = 0;
         while(x<w/2){
             milkyWay.add(x);
-            x=x+random(lou/10, 2*lou/10);
+            x=x+random(lou/7, 2*lou/7);
         }
     }
 
