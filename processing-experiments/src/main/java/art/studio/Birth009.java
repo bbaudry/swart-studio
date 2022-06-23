@@ -15,6 +15,7 @@ public class Birth009 extends PApplet {
     float cy;
     Random rd;
     boolean laita;
+    boolean atlantique;
     int ind;
     ArrayList<Float> milkyWay;
 
@@ -28,13 +29,13 @@ public class Birth009 extends PApplet {
         colorMode(HSB, 360, 100, 100);
         rd = new Random();
         laita = true;
+        atlantique = false;
         milkyWay = new ArrayList<>();
         ind = 0;
         init();
         cx = milkyWay.get(0);
         cy = 0;
         background(230, 80, 60);
-        fill(0, 100, 100);
         noStroke();
     }
 
@@ -52,9 +53,16 @@ public class Birth009 extends PApplet {
                 if (ind<milkyWay.size()-1){
                     ind++;
                 }
+                else{
+                    atlantique = true;
+                }
             }
         }
         else{
+            if (atlantique){
+                pool();
+                noLoop();
+            }
             cx = milkyWay.get(ind);
             cy = 0;
             laita = true;
@@ -63,7 +71,11 @@ public class Birth009 extends PApplet {
 
     }
 
-
+    private void pool(){
+        float off = random(lou, lou*2);
+        fill(230, 80, 60);
+        quad(off, h/2-off/2, w-off, h/2-off/2, w-off, h/2+off/2, off, h/2+off/2);
+    }
     private void init() {
         float x = 0;
         while(x<w/2){
