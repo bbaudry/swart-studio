@@ -42,15 +42,17 @@ public class Birth008 extends PApplet {
     public void draw() {
         if (stellar < milkyWay.size()) {
             star(milkyWay.get(stellar)[0], milkyWay.get(stellar)[1]);
+            rays();
             stellar++;
         } else {
             if (iterations < 2){
                 stellar = 0;
                 iterations++;
             }
-            else {
+            /*else {
                 rays();
-            }
+            }*/
+
 //            noLoop();
         }
     }
@@ -87,6 +89,10 @@ public class Birth008 extends PApplet {
     }
 
     private void rays(){
+        noFill();
+        hu = palettef[(int) random(palettef.length)];
+        stroke(hu, random(80, 100), random(80, 100));
+        strokeWeight(random(1,2));
         int birth = rd.nextInt(milkyWay.size()-1);
         int death = birth;
         while (death==birth){
@@ -96,7 +102,8 @@ public class Birth008 extends PApplet {
         float y1=milkyWay.get(birth)[1];
         float x2=milkyWay.get(death)[0];
         float y2=milkyWay.get(death)[1];
-        int offset=rd.nextInt(lou*11);
+//        int offset=rd.nextInt(lou*11);
+        float offset = 4*random(abs(x2-x1));
         if (x1 < x2 && y1 < y2) {
             bezier(x2, y2, x2 - offset, cy, x1, cy - offset, x1, y1);
         }
