@@ -1,6 +1,8 @@
 package art.studio;
 
 import processing.core.PApplet;
+import processing.core.PFont;
+
 
 //practice drawing bezier curves
 public class Practice017  extends PApplet {
@@ -11,6 +13,8 @@ public class Practice017  extends PApplet {
     float cx2;
     float cy2;
     int off;
+    PFont f;
+    int fSize;
     float hu;
 
     @Override
@@ -28,6 +32,11 @@ public class Practice017  extends PApplet {
         cy2 = 10;
         hu=0;
         off = 10;
+        fSize=67;
+        f = createFont("FreeMono", fSize, true);
+        textFont(f);
+
+        //frameRate(1);
     }
 
     @Override
@@ -35,11 +44,17 @@ public class Practice017  extends PApplet {
         noFill();
         stroke(hu,100,100);
         off = off+50;
-        bezier(cx1, cy1, cx1+50, cy1-off, cx2-50, cy2+off, cx2, cy2);
+        bezier(cx1, cy1, cx1+off, cy1-50, cx2-off, cy2+50, cx2, cy2);
         hu = hu + 7;
         fill(0,0,100);
         ellipse(cx1+50,cy1-off,10,10);
         ellipse(cx2-50,cy2+off,10,10);
+        fill(0,0,0);
+        noStroke();
+        rect(0,h/2-50,250,50);
+        fill(0,0,100);
+        text(off, 10, h/2);
+
         //noLoop();
     } 
 
