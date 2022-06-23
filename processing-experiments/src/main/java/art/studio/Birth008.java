@@ -42,10 +42,10 @@ public class Birth008 extends PApplet {
     public void draw() {
         if (stellar < milkyWay.size()) {
             star(milkyWay.get(stellar)[0], milkyWay.get(stellar)[1]);
-            rays();
+            if(random(lou)<lou/11){rays();}
             stellar++;
         } else {
-            if (iterations < 2){
+            if (iterations < 5){
                 stellar = 0;
                 iterations++;
             }
@@ -58,7 +58,7 @@ public class Birth008 extends PApplet {
     }
 
     private void star(float cx, float cy) {
-        float rad = w / lou;
+        float rad = (float)(1.5*w / lou);
         stroke(0, 0, 100);
         int steps = rd.nextInt(lou);
         for (int i = 0; i < steps; i++) {
@@ -103,18 +103,19 @@ public class Birth008 extends PApplet {
         float x2=milkyWay.get(death)[0];
         float y2=milkyWay.get(death)[1];
 //        int offset=rd.nextInt(lou*11);
-        float offset = 4*random(abs(x2-x1));
+        float offx = 2*random(abs(x2-x1));
+        float offy = 2*random(abs(y2-y1));
         if (x1 < x2 && y1 < y2) {
-            bezier(x2, y2, x2 - offset, cy, x1, cy - offset, x1, y1);
+            bezier(x2, y2, x2 - offx, cy, x1, cy - offy, x1, y1);
         }
         if (x1 >= x2 && y1 < y2) {
-            bezier(x2, y2, x2 + offset, cy, x1, cy - offset, x1, y1);
+            bezier(x2, y2, x2 + offx, cy, x1, cy - offy, x1, y1);
         }
         if (x1 >= x2 && y1 >= y2) {
-            bezier(x2, y2, x2 + offset, cy, x1, cy + offset, x1, y1);
+            bezier(x2, y2, x2 + offx, cy, x1, cy + offy, x1, y1);
         }
         if (x1 < x2 && y1 >= y2) {
-            bezier(x2, y2, x2 - offset, cy, x1, cy + offset, x1, y1);
+            bezier(x2, y2, x2 - offx, cy, x1, cy + offy, x1, y1);
         }        
     }
 
