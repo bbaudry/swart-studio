@@ -41,7 +41,7 @@ public class Birth009 extends PApplet {
 
     @Override
     public void draw() {
-        if (laita){
+         if (laita){
             hu = palettef[(int) random(palettef.length)];
             //fill(hu, random(80, 100), random(80, 100));
             fill(hu, 0, 100);
@@ -67,14 +67,30 @@ public class Birth009 extends PApplet {
             cy = 0;
             laita = true;
         }
-        
-
     }
 
+    //draw rectangular shapes in the middle of the image, before ending
     private void pool(){
         float off = random(lou, lou*2);
         fill(230, 80, 60);
         quad(off, h/2-off/2, w-off, h/2-off/2, w-off, h/2+off/2, off, h/2+off/2);
+        fill(230, 0, 100);
+        float epsilon = random((float)0.03,(float)0.07)*off;
+        float x = off+epsilon;
+        float xsym;
+        while(x<w/2){
+            quad(x,h/2-off/2+epsilon,x+lou,h/2-off/2+epsilon,x+lou,h/2-off/4-epsilon,x,h/2-off/4-epsilon);
+            quad(x,h/2-off/4+epsilon,x+lou,h/2-off/4+epsilon,x+lou,h/2-epsilon,x,h/2-epsilon);
+            quad(x,h/2+off/4-epsilon,x+lou,h/2+off/4-epsilon,x+lou,h/2+epsilon,x,h/2+epsilon);
+            quad(x,h/2+off/2-epsilon,x+lou,h/2+off/2-epsilon,x+lou,h/2+off/4+epsilon,x,h/2+off/4+epsilon);
+            //symmetry
+            xsym=w-x-lou;
+            quad(xsym,h/2-off/2+epsilon,xsym+lou,h/2-off/2+epsilon,xsym+lou,h/2-off/4-epsilon,xsym,h/2-off/4-epsilon);
+            quad(xsym,h/2-off/4+epsilon,xsym+lou,h/2-off/4+epsilon,xsym+lou,h/2-epsilon,xsym,h/2-epsilon);
+            quad(xsym,h/2+off/4-epsilon,xsym+lou,h/2+off/4-epsilon,xsym+lou,h/2+epsilon,xsym,h/2+epsilon);
+            quad(xsym,h/2+off/2-epsilon,xsym+lou,h/2+off/2-epsilon,xsym+lou,h/2+off/4+epsilon,xsym,h/2+off/4+epsilon);
+            x=x+lou*2;
+        }
     }
     private void init() {
         float x = 0;
