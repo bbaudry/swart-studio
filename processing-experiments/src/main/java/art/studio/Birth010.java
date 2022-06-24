@@ -46,15 +46,25 @@ public class Birth010 extends PApplet {
     private void branch(){
         float le = random(1/lou,1)*ra/2;
         float an = random(2)*PI;
-        float x1 = cx + le*cos(an);
-        float y1 = cy + le*sin(an);
+        float x1=cx;
+        float y1=cy;
+        float x2;
+        float y2;
         float laita = random(-lou/2,lou/2);
         noStroke();
         hu=random(palettef[0],palettef[1]);
-        fill(hu,100,100);
-        quad(cx+laita,cy+laita,x1+laita,y1+laita,x1+laita*2,y1+laita,cx+laita*2,cy+laita);
-        fill(hu,random(80,100),random(80,100));
-        quad(cx+laita,cy+laita,cx-laita,cy,x1,y1,x1+laita,y1+laita);
+        int steps = lou*2;
+        float inc = le/steps;
+        for (int i = 1; i <= steps; i++){
+            x2 = cx + (i*inc)*cos(an);
+            y2 = cy + (i*inc)*sin(an);
+            fill(hu,random(lou,100),100);
+            quad(x1+laita,y1+laita,x2+laita,y2+laita,x2+laita*2,y2+laita,x1+laita*2,y1+laita);
+            fill(hu,100,random(80,100));
+            quad(x1+laita,y1+laita,x1-laita,y1,x2-laita,y2,x2+laita,y2+laita);
+            x1 = x2;
+            y1 = y2;
+        }
       }
 
     public static void main(String[] args) {

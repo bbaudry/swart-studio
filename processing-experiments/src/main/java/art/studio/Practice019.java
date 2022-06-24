@@ -35,16 +35,28 @@ public class Practice019  extends PApplet {
         //noLoop();
     } 
 
-    private void branch(){
-      float le = random((float)0.7,1)*ra/2;
+    private void branch(){        
+      float le = random((float)0.5,1)*ra/2;
       float an = random(2)*PI;
-      float x1 = cx + le*cos(an);
-      float y1 = cy + le*sin(an);
+      float x1=cx;
+      float y1=cy;
+      float x2;
+      float y2;
+      float laita = random(-70/2,70/2);
       noStroke();
-      fill(50,100,100);
-      quad(cx+10,cy+10,x1+10,y1+10,x1+20,y1+10,cx+20,cy+10);
+      
+      int steps = 69;
+      float inc = le/steps;
+      for (int i = 1; i <= steps; i++){
+          x2 = cx + (i*inc)*cos(an);
+          y2 = cy + (i*inc)*sin(an);
+          fill(50,random(70,100),100);
+          quad(x1+laita,y1+laita,x2+laita,y2+laita,x2+laita*2,y2+laita,x1+laita*2,y1+laita);
+          x1 = x2;
+          y1 = y2;
+      }
       fill(50,random(80,100),random(80,100));
-      quad(cx+10,cy+10,cx-10,cy,x1,y1,x1+10,y1+10);
+      quad(cx+laita,cy+laita,cx-laita,cy,x1,y1,x1+laita,y1+laita);
     }
 
     public static void main(String[] args) {
