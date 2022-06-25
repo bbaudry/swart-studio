@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class Birth010 extends PApplet {
     int w = 1000;
     int h = 1000;
-    int[] palettef = { 50,  90 };
+    int[] palettef = { 50,  230 };
     int lou = 69;
     float hu;
     float cx;
@@ -58,9 +58,9 @@ public class Birth010 extends PApplet {
         for (int i = 1; i <= steps; i++){
             x2 = cx + (i*inc)*cos(an);
             y2 = cy + (i*inc)*sin(an);
-            fill(hu,random(lou,100),100);
-            quad(x1+laita,y1+laita,x2+laita,y2+laita,x2+laita*2,y2+laita,x1+laita*2,y1+laita);
             fill(hu,100,random(80,100));
+            quad(x1+laita,y1+laita,x2+laita,y2+laita,x2+laita*2,y2+laita,x1+laita*2,y1+laita);
+            fill(hu,random(lou,100),100);
             quad(x1+laita,y1+laita,x1-laita,y1,x2-laita,y2,x2+laita,y2+laita);
             x1 = x2;
             y1 = y2;
