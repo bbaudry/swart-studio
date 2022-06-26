@@ -50,10 +50,10 @@ public class Birth010 extends PApplet {
         float y1=cy;
         float x2;
         float y2;
-        float laita = random(-lou/2,lou/2);
+        float laita = random(-lou/4,lou/4);
         noStroke();
         hu=random(palettef[0],palettef[1]);
-        int steps = lou*2;
+        int steps = lou*3;
         float inc = le/steps;
         for (int i = 1; i <= steps; i++){
             x2 = cx + (i*inc)*cos(an);

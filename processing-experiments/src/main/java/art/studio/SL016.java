@@ -9,6 +9,7 @@ public class SL016 extends PApplet {
     int h = 1000;
     PFont f;
     int fSize;
+    int iterations;
     String[] statements = {"public void draw", "hello world","if (random(2)<1)",
     "package art.studio","while(baldessari != boring)",
     "FXADRS		INDEX	SKEEP3", //from Apollo 11
@@ -28,6 +29,7 @@ public class SL016 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         noStroke();
+        iterations=0;
         fSize=67;
         f = createFont("FreeMono", fSize, true);
         textFont(f);
@@ -35,12 +37,18 @@ public class SL016 extends PApplet {
 
     @Override
     public void draw() {
+        if(iterations<111){
         background(0, 0, 0);
         fill(0,random(50),100);
         if (random(2)<1){
             String code = statements[(int)random(statements.length)];
             float epsilon = random(-50,50);
         text(code, w/2-(code.length()*fSize)/4, h/2+epsilon);}
+        iterations++;
+    }
+    else{
+        exit();
+    }
     }
 
     public static void main(String[] args) {
