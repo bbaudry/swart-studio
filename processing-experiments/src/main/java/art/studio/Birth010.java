@@ -55,13 +55,14 @@ public class Birth010 extends PApplet {
         hu=random(palettef[0],palettef[1]);
         int steps = lou*3;
         float inc = le/steps;
+        float off = (float)1.5;//random(1,2);
         for (int i = 1; i <= steps; i++){
             x2 = cx + (i*inc)*cos(an);
             y2 = cy + (i*inc)*sin(an);
             fill(hu,100,random(80,100));
-            quad(x1+laita,y1+laita,x2+laita,y2+laita,x2+laita*2,y2+laita,x1+laita*2,y1+laita);
+            quad(x1+laita,y1+laita,x2+laita,y2+laita,x2+laita*off*2,y2+laita,x1+laita*off*2,y1+laita);
             fill(hu,random(lou,100),100);
-            quad(x1+laita,y1+laita,x1-laita,y1,x2-laita,y2,x2+laita,y2+laita);
+            quad(x1+laita,y1+laita,x1-laita-off,y1,x2-laita-off,y2,x2+laita,y2+laita);
             x1 = x2;
             y1 = y2;
         }
