@@ -1,13 +1,11 @@
 /* Metadata {"endless":false, "BW": false, "knobs": "false", "data": false, "interaction": false}*/
 package art.studio;
 
-import java.util.Random;
-import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class Birth010 extends PApplet {
-    int w = 1000;
-    int h = 1000;
+    int w = 3000;
+    int h = 3000;
     int[] palettef = { 50,  230 };
     int lou = 69;
     float hu;

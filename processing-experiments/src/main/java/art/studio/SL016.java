@@ -37,7 +37,7 @@ public class SL016 extends PApplet {
 
     @Override
     public void draw() {
-        if(iterations<111){
+        
         background(0, 0, 0);
         fill(0,random(50),100);
         if (random(2)<1){
@@ -45,10 +45,7 @@ public class SL016 extends PApplet {
             float epsilon = random(-50,50);
         text(code, w/2-(code.length()*fSize)/4, h/2+epsilon);}
         iterations++;
-    }
-    else{
-        exit();
-    }
+    
     }
 
     public static void main(String[] args) {
