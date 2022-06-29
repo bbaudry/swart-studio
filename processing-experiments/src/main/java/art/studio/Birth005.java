@@ -52,7 +52,7 @@ public class Birth005 extends PApplet {
             }
             else{
                 noLoop();
-                save("gift002.png");    
+                save("gift005.png");    
             }
         }
     }

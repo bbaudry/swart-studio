@@ -72,7 +72,7 @@ public class Birth004 extends PApplet {
             dex = w;
             dey = dey + wi;
             stripe_down(orx, ory, dex, dey, wi);
-            if(ory>h && dey>h){noLoop();save("gift001.png");}
+            if(ory>h && dey>h){noLoop();save("gift004.png");}
         }
     }
 
