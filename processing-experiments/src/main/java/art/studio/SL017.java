@@ -24,28 +24,31 @@ public class SL017 extends PApplet {
 
     @Override
     public void draw() {
-
-        bang();
+        bang(200,200);
+        bang(400,400);
+        bang(600,600);
+        bang(800,800);
+        bang(1000,1000);
         noLoop();
     }
 
-    private void bang(){
+    private void bang(float a, float b){
         float ox;
         float oy;
         float dx;
         float dy;
         ox=0;
-        oy=700;
-        dx=700;
+        oy=a;
+        dx=b;
         dy=0;
-        float step = dx/7;
+        float step = 10;
         float inc = 1/step;
         float x1=ox;
         float y1=oy;
         float x2;
         float y2;
         float t=0;
-        float i=1;
+        float i=inc;
         while(i<step){
             System.out.println(i);
             t = i * inc;
@@ -56,7 +59,7 @@ public class SL017 extends PApplet {
             //ellipse(ox, oy, 5, 5);
             //ellipse(dx, dy, 5, 5);
             ellipse(x1, y1, 5, 5);
-            ellipse(x2, y2, 5, 5);
+            //ellipse(x2, y2, 5, 5);
             stroke(50 + (i * 20), 0, 100);
             strokeWeight(5*i);
             //line(x1, y1, x2, y2);
