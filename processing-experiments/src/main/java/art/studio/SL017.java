@@ -19,17 +19,17 @@ public class SL017 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         noStroke();
-        background(0,0,0);
      }
 
     @Override
     public void draw() {
+        background(0,0,0);
         bang(200,200);
         bang(400,400);
         bang(600,600);
         bang(800,800);
         bang(1000,1000);
-        noLoop();
+//        noLoop();
     }
 
     private void bang(float a, float b){
@@ -38,10 +38,10 @@ public class SL017 extends PApplet {
         float dx;
         float dy;
         ox=0;
-        oy=a;
-        dx=b;
+        oy=b;
+        dx=a;
         dy=0;
-        float step = 10;
+        float step = dx/100;
         float inc = 1/step;
         float x1=ox;
         float y1=oy;
@@ -59,13 +59,13 @@ public class SL017 extends PApplet {
             //ellipse(ox, oy, 5, 5);
             //ellipse(dx, dy, 5, 5);
             ellipse(x1, y1, 5, 5);
-            //ellipse(x2, y2, 5, 5);
+            ellipse(x2, y2, 5, 5);
             stroke(50 + (i * 20), 0, 100);
             strokeWeight(5*i);
             //line(x1, y1, x2, y2);
             x1 = x2;
             y1 = y2;
-            i=i+inc;
+            i=i+random(inc);
         }
     }
 
