@@ -51,7 +51,6 @@ public class SL017 extends PApplet {
         float t=0;
         float i=inc;
         while(y1>dy){
-            System.out.println(i);
             t = i * inc;
             x2 = (1 - t) * ox + (t * dx);
             y2 = (1 - t) * oy + (t * dy);
