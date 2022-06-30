@@ -25,22 +25,24 @@ public class SL017 extends PApplet {
     @Override
     public void draw() {
         background(0,0,0);
-        float moon = random((float)0.04, (float)0.06)*w;
-        while (moon<w){
-            bang(moon,moon);
-            moon = moon + random((float)0.04, (float)0.06)*w;
-        }
+        init();
         //noLoop();
     }
 
-    private void bang(float a, float b){
-        //origin coordinates of the segment
-        float ox=0;
-        float oy=b;
-        //destination coordinates of the segment
-        float dx=a;
-        float dy=0;
-        float step = dx/80;
+    private void init(){
+        float moon = random((float)0.04, (float)0.06)*w;
+        while (moon<w){
+            bang(0,moon,moon,0, true);
+            bang(w-moon,h,w,h-moon,false);
+            moon = moon + random((float)0.04, (float)0.06)*w;
+        }
+
+    }
+
+    private void bang(float ox, float oy, float dx, float dy, boolean grow){
+        float step; 
+        if (grow){step = dx/80;}
+        else{step = (w-ox)/80;}
         float inc = random(1,2)/step;
         float x1=ox;
         float y1=oy;
