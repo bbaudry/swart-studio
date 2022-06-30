@@ -19,50 +19,47 @@ public class SL017 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         noStroke();
+        frameRate(2);
      }
 
     @Override
     public void draw() {
         background(0,0,0);
-        bang(200,200);
-        bang(400,400);
-        bang(600,600);
-        bang(800,800);
-        bang(1000,1000);
-//        noLoop();
+        float moon = random((float)0.04, (float)0.06)*w;
+        while (moon<w){
+            bang(moon,moon);
+            moon = moon + random((float)0.04, (float)0.06)*w;
+        }
+        //noLoop();
     }
 
     private void bang(float a, float b){
-        float ox;
-        float oy;
-        float dx;
-        float dy;
-        ox=0;
-        oy=b;
-        dx=a;
-        dy=0;
-        float step = dx/100;
-        float inc = 1/step;
+        //origin coordinates of the segment
+        float ox=0;
+        float oy=b;
+        //destination coordinates of the segment
+        float dx=a;
+        float dy=0;
+        float step = dx/80;
+        float inc = random(1,2)/step;
         float x1=ox;
         float y1=oy;
         float x2;
         float y2;
         float t=0;
         float i=inc;
-        while(i<step){
+        while(y1>dy){
             System.out.println(i);
             t = i * inc;
             x2 = (1 - t) * ox + (t * dx);
             y2 = (1 - t) * oy + (t * dy);
             noStroke();
             fill(50 + (i * 20), 100, 100);
-            //ellipse(ox, oy, 5, 5);
-            //ellipse(dx, dy, 5, 5);
             ellipse(x1, y1, 5, 5);
             ellipse(x2, y2, 5, 5);
-            stroke(50 + (i * 20), 0, 100);
-            strokeWeight(5*i);
-            //line(x1, y1, x2, y2);
+            stroke(50 + (i * 20), 100, 100);
+            strokeWeight(i);
+//            line(x1, y1, x2, y2);
             x1 = x2;
             y1 = y2;
             i=i+random(inc);
