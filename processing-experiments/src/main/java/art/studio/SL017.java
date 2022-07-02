@@ -3,12 +3,13 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.ArrayList;
-import java.util.prefs.BackingStoreException;
 
 public class SL017 extends PApplet {
     int w = 1000;
     int h = 1000;
-    ArrayList<ArrayList<Float>> coords;
+    int streets;
+    int block;
+    ArrayList<ArrayList<Float[]>> coords;
 
     @Override
     public void settings() {
@@ -19,14 +20,33 @@ public class SL017 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         noStroke();
-        frameRate(2);
+        coords = new ArrayList<>();
+        init();
+        noFill();
+        streets = 0;
+        block = 0;
+        background(0,0,0);
      }
 
     @Override
     public void draw() {
-        background(0,0,0);
-        init();
-        noLoop();
+        if (streets < coords.size()){
+            int s = coords.get(streets).size();
+            if (block<s){
+                Float[] cairo = coords.get(streets).get(block);
+                fill(50 + (block * 3), 100, 100);
+                ellipse(cairo[0], cairo[1], 5, 5);
+                block++;
+            }
+            else{
+                streets++;
+                block=0;
+            }
+        }
+        else{
+            noLoop();
+        }
+        
     }
 
     private void init(){
@@ -42,7 +62,8 @@ public class SL017 extends PApplet {
     }
 
     private void bang(float ox, float oy, float dx, float dy, int knob){
-        float step=100; 
+        ArrayList<Float[]> avenue = new ArrayList<>();
+        float step=100; //default value, changed in the following switch
         switch (knob){
             case 1 : step = dx/80; break;
             case 2 : step = (w-ox)/80; break;
@@ -54,23 +75,21 @@ public class SL017 extends PApplet {
         float x2;
         float y2;
         float y1=oy;
+        Float[] origin = {x1,y1};
+        avenue.add(origin);
         float t=0;
         float i=inc;
         while(y1>dy){
             t = i * inc;
             x2 = (1 - t) * ox + (t * dx);
             y2 = (1 - t) * oy + (t * dy);
-            noStroke();
-            fill(50 + (i * 20), 100, 100);
-            ellipse(x1, y1, 5, 5);
-            ellipse(x2, y2, 5, 5);
-            stroke(50 + (i * 20), 100, 100);
-            strokeWeight(i);
-//            line(x1, y1, x2, y2);
+            Float[] destination = {x2,y2};
+            avenue.add(destination);
             x1 = x2;
             y1 = y2;
             i=i+random(inc);
         }
+        coords.add(avenue);
     }
 
     public static void main(String[] args) {
