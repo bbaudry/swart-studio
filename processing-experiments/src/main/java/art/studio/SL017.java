@@ -26,28 +26,34 @@ public class SL017 extends PApplet {
     public void draw() {
         background(0,0,0);
         init();
-        //noLoop();
+        noLoop();
     }
 
     private void init(){
         float moon = random((float)0.04, (float)0.06)*w;
         while (moon<w){
-            bang(0,moon,moon,0, true);
-            bang(w-moon,h,w,h-moon,false);
+            bang(0,moon,moon,0, 1);
+            bang(w-moon,h,w,h-moon,2);
+            bang(moon,h,0,h-moon,3);
+            bang(w,moon,w-moon,0,4);
             moon = moon + random((float)0.04, (float)0.06)*w;
         }
 
     }
 
-    private void bang(float ox, float oy, float dx, float dy, boolean grow){
-        float step; 
-        if (grow){step = dx/80;}
-        else{step = (w-ox)/80;}
+    private void bang(float ox, float oy, float dx, float dy, int knob){
+        float step=100; 
+        switch (knob){
+            case 1 : step = dx/80; break;
+            case 2 : step = (w-ox)/80; break;
+            case 3 : step = ox/80; break;
+            case 4 : step = (w-dx)/80; break;
+        }
         float inc = random(1,2)/step;
         float x1=ox;
-        float y1=oy;
         float x2;
         float y2;
+        float y1=oy;
         float t=0;
         float i=inc;
         while(y1>dy){
