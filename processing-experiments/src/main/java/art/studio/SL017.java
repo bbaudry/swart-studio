@@ -32,10 +32,13 @@ public class SL017 extends PApplet {
     public void draw() {
         if (streets < coords.size()){
             int s = coords.get(streets).size();
-            if (block<s){
+            if (block<s-1){
                 Float[] cairo = coords.get(streets).get(block);
+                Float[] purple = coords.get(streets).get(block+1);
                 fill(50 + (block * 3), 100, 100);
-                ellipse(cairo[0], cairo[1], 5, 5);
+                //ellipse(cairo[0], cairo[1], 5, 5);
+                float eps = random(5,17);
+                quad(cairo[0],cairo[1],cairo[0]-eps,cairo[1],purple[0]-eps,purple[1],purple[0],purple[1]);
                 block++;
             }
             else{
