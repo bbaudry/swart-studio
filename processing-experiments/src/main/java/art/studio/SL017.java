@@ -10,9 +10,9 @@ public class SL017 extends PApplet {
     int streets;
     int block;
     ArrayList<ArrayList<Float[]>> coords;
-    int[] cyberHue = {180,340};
-    int[] cyberSat = {10,100};
-    int[] cyberBri = {60,100};
+    int[] cyberHue = {182,360};
+    int[] cyberSat = {80,100};
+    int[] cyberBri = {80,100};
     @Override
     public void settings() {
         size(w, h);
@@ -39,7 +39,9 @@ public class SL017 extends PApplet {
                 Float[] purple = coords.get(streets).get(block+1);
                 //fill(50 + (block * 3), 100, 100);
                 fill(random(cyberHue[0],cyberHue[1]),random(50,100),random(cyberBri[0],cyberBri[1]));
-                float eps = random(11,17);
+                /*if (random(5)<2){fill(2,90,97);}
+                else{fill(182,90,97);}*/
+                float eps = random(7,13);
                 /*if (cairo[0]<purple[0]){
                     quad(cairo[0],cairo[1],cairo[0]-eps,cairo[1]-eps,purple[0]-eps,purple[1]-eps,purple[0],purple[1]);
                 }
