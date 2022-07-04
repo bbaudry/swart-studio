@@ -10,7 +10,9 @@ public class SL017 extends PApplet {
     int streets;
     int block;
     ArrayList<ArrayList<Float[]>> coords;
-
+    int[] cyberHue = {180,340};
+    int[] cyberSat = {10,100};
+    int[] cyberBri = {60,100};
     @Override
     public void settings() {
         size(w, h);
@@ -35,14 +37,17 @@ public class SL017 extends PApplet {
             if (block<s-1){
                 Float[] cairo = coords.get(streets).get(block);
                 Float[] purple = coords.get(streets).get(block+1);
-                fill(50 + (block * 3), 100, 100);
-                float eps = random(11,23);
-                if (cairo[0]<purple[0]){
+                //fill(50 + (block * 3), 100, 100);
+                fill(random(cyberHue[0],cyberHue[1]),random(50,100),random(cyberBri[0],cyberBri[1]));
+                float eps = random(11,17);
+                /*if (cairo[0]<purple[0]){
                     quad(cairo[0],cairo[1],cairo[0]-eps,cairo[1]-eps,purple[0]-eps,purple[1]-eps,purple[0],purple[1]);
                 }
                 else{
                     quad(cairo[0],cairo[1],cairo[0]+eps,cairo[1]-eps,purple[0]+eps,purple[1]-eps,purple[0],purple[1]);    
-                }
+                }*/
+                ellipse(cairo[0], cairo[1], eps, eps);
+                ellipse(purple[0], purple[1], eps, eps);
                 block++;
             }
             else{
@@ -51,13 +56,14 @@ public class SL017 extends PApplet {
             }
         }
         else{
+            save("SL017.png");
             noLoop();
         }
         
     }
 
     private void init(){
-        float moon = random((float)0.04, (float)0.06)*w;
+        float moon = random((float)0.03, (float)0.05)*w;
         while (moon<w){
             bang(0,moon,moon,0, 1);
             bang(w-moon,h,w,h-moon,2);
@@ -77,7 +83,7 @@ public class SL017 extends PApplet {
             case 3 : step = ox/80; break;
             case 4 : step = (w-dx)/80; break;
         }
-        float inc = random(1,2)/step;
+        float inc = random(1,3)/step;
         float x1=ox;
         float x2;
         float y2;
