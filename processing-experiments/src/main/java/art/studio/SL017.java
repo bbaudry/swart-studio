@@ -37,7 +37,12 @@ public class SL017 extends PApplet {
                 Float[] purple = coords.get(streets).get(block+1);
                 fill(50 + (block * 3), 100, 100);
                 float eps = random(11,23);
-                quad(cairo[0],cairo[1],cairo[0]-eps,cairo[1]-eps,purple[0]-eps,purple[1]-eps,purple[0],purple[1]);
+                if (cairo[0]<purple[0]){
+                    quad(cairo[0],cairo[1],cairo[0]-eps,cairo[1]-eps,purple[0]-eps,purple[1]-eps,purple[0],purple[1]);
+                }
+                else{
+                    quad(cairo[0],cairo[1],cairo[0]+eps,cairo[1]-eps,purple[0]+eps,purple[1]-eps,purple[0],purple[1]);    
+                }
                 block++;
             }
             else{
