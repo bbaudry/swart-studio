@@ -1,11 +1,14 @@
-/* Metadata {"endless":true, "BW": true, "knobs": false, "data": false, "interaction": false}*/
+/* Metadata {"endless":true, "BW": false, "knobs": false, "data": false, "interaction": false}*/
+/* This one is glitchy: it draws triangles instead of rectangles
+ * I still keep it because glitches are cool and the triangles create a kind of depth that is beautiful
+ */
 package art.studio;
 
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SL017 extends PApplet {
+public class SL017Glitch extends PApplet {
     int w = 1000;
     int h = 1000;
     int street;
@@ -69,35 +72,6 @@ public class SL017 extends PApplet {
 
     }
 
-
-/*         if (street < coords.size()){
-            int s = coords.get(street).size();
-            if (block<s-1){
-                Float[] cairo = coords.get(street).get(block);
-                Float[] purple = coords.get(street).get(block+1);
-                fill(random(cyberHue[0],cyberHue[1]),random(50,100),random(cyberBri[0],cyberBri[1]));
-                float eps = random(7,13);
-                if (cairo[0]<purple[0]){
-                    quad(cairo[0],cairo[1],cairo[0]-eps,cairo[1]-eps,purple[0]-eps,purple[1]-eps,purple[0],purple[1]);
-                }
-                else{
-                    quad(cairo[0],cairo[1],cairo[0]+eps,cairo[1]-eps,purple[0]+eps,purple[1]-eps,purple[0],purple[1]);    
-                }
-                ellipse(cairo[0], cairo[1], eps, eps);
-                ellipse(purple[0], purple[1], eps, eps);
-                block++;
-            }
-            else{
-                street++;
-                block=0;
-            }
-        }
-        else{
-            save("SL017.png");
-            noLoop();
-        }
-*/
-
     private void init(){
         float moon = random((float)0.01, (float)0.03)*w;
         while (moon<w){
@@ -142,8 +116,8 @@ public class SL017 extends PApplet {
     }
 
     public static void main(String[] args) {
-        String[] processingArgs = { "SL017" };
-        SL017 mySketch = new SL017();
+        String[] processingArgs = { "SL017Glitch" };
+        SL017Glitch mySketch = new SL017Glitch();
         PApplet.runSketch(processingArgs, mySketch);
     }
 
