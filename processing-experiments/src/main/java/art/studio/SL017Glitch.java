@@ -11,6 +11,7 @@ import java.util.Random;
 public class SL017Glitch extends PApplet {
     int w = 1000;
     int h = 1000;
+    int gen;
     int street;
     int block;
     ArrayList<ArrayList<Float[]>> coords;
@@ -34,6 +35,7 @@ public class SL017Glitch extends PApplet {
         init();
         noFill();
         alea = new Random();
+        gen = 0;
         street = 0;
         block = 0;
         hu = cyberHue[0];
@@ -43,6 +45,7 @@ public class SL017Glitch extends PApplet {
 
     @Override
     public void draw() {
+        if (gen<2048){
         street = alea.nextInt(coords.size());
         block = alea.nextInt(coords.get(street).size()-1);
         Float[] rick = coords.get(street).get(block);
@@ -59,7 +62,13 @@ public class SL017Glitch extends PApplet {
             fill(hu,random(50,100),random(50,100));
             hu = hu-(float)0.1;
         }
-        build(rick[0],rick[1],roll[0],roll[1],eps);       
+        build(rick[0],rick[1],roll[0],roll[1],eps);   
+        gen++;
+    }    
+    else{
+        noLoop();
+        save("SL017Glitch.png");
+    }
     }
 
     private void build(float x1,float y1,float x2,float y2,float eps){
