@@ -11,6 +11,8 @@ import java.util.Random;
 public class SL017Glitch extends PApplet {
     int w = 1000;
     int h = 1000;
+    float john = w/442;
+    float baldessari = w/97;
     int gen;
     int street;
     int block;
@@ -51,8 +53,8 @@ public class SL017Glitch extends PApplet {
         Float[] rick = coords.get(street).get(block);
         Float[] roll = coords.get(street).get(block+1);
         fill(0,0,0);
-        build(rick[0],rick[1],roll[0],roll[1],17);    
-        float eps = random(2,17);
+        build(rick[0],rick[1],roll[0],roll[1],baldessari);    
+        float eps = random(john,baldessari);
         if (hu<cyberHue[1] && huInc){
             fill(hu,random(50,100),random(50,100));
             hu = hu+(float)0.1;
@@ -96,12 +98,13 @@ public class SL017Glitch extends PApplet {
     private void bang(float ox, float oy, float dx, float dy, int knob){
         ArrayList<Float[]> avenue = new ArrayList<>();
         float step=100; //default value, changed in the following switch
+        int den=w/50;
         switch (knob){
-            case 1 : step = dx/20; break;
-            case 2 : step = (w-ox)/20; break;
-            case 3 : step = ox/20; break;
-            case 4 : step = (w-dx)/20; break;
-        }
+            case 1 : step = dx/den; break;
+            case 2 : step = (w-ox)/den; break;
+            case 3 : step = ox/den; break;
+            case 4 : step = (w-dx)/den; break;
+        }        
         float inc = 4/step;//random(1,3)/step;
         float x1=ox;
         float x2;
