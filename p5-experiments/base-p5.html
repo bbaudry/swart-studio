@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let blue = "#1f1fff"; //rgb(31,31,255)
+        let white = "#FFFFFF";
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+
+
+        //draws white arcs of random length and width on a blue background
+
+        function setup() {
+            canvas = createCanvas(w, h);
+        }
+
+        function draw() {
+            background(blue);
+            var circleX = random(w);
+            var circleY = random(h);
+            var circleSize = random(10,h/3);
+            fill(white);
+            noStroke();
+            ellipse(circleX, circleY, circleSize);
+        }
+
+        function windowResized() {
+        w = document.documentElement.clientWidth;//width of window that is available for drawing
+        h = document.documentElement.clientHeight;//width of window that is available for drawing
+        resizeCanvas(w, h);
+      }
+
+    </script>
+</body>
+
+</html>

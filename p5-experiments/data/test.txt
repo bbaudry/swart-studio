@@ -1,0 +1,13 @@
+<[4][1]com.graphhopper.jackson.GraphHopperModule:<init>=496725356880729
+<[3][1]com.graphhopper.jackson.Jackson:initObjectMapper=496725364128328
+<[2][1]com.graphhopper.http.GraphHopperBundle:initialize=496725364198434
+>[2][1]com.graphhopper.application.cli.ImportCommand:<init>=496725365833966
+<[2][1]com.graphhopper.application.cli.ImportCommand:<init>=496725365858153
+>[2][1]com.graphhopper.application.cli.MatchCommand:<init>=496725366271129
+<[2][1]com.graphhopper.application.cli.MatchCommand:<init>=496725366288323
+<[3][1]com.graphhopper.util.PMap:<init>=496725761605703
+>[3][1]com.graphhopper.GraphHopperConfig:<init>=496725761613136
+<[3][1]com.graphhopper.GraphHopperConfig:<init>=496725761624327
+<[2][1]com.graphhopper.GraphHopperConfig:<init>=496725761628944
+>[2][1]com.graphhopper.http.RealtimeConfiguration:<init>=496725761641458
+<[2][1]com.graphhopper.http.RealtimeConfiguration:<init>=496725761669496

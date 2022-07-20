@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //let canvas;
+        let blue = "#1f1fff"; //rgb(31,31,255)
+        let white = "#FFFFFF";
+        let iOrigin;
+        let iDest;
+        //const fs = require('fs');
+        //const re = new RegExp('[');
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+
+
+        //draws white arcs of random length and width on a blue background
+
+        function preload() {
+            result = loadStrings('data/pdfbox-calltrace.txt');
+        }
+
+        function setup() {
+            //createCanvas(windowWidth, windowHeight);
+            createCanvas(w, h);
+            textSize(26);
+            var iter = h/30;
+            iOrigin=0;
+            iDest=iter-1;
+        }
+
+        function draw() {
+            if (iDest<result.length){
+            background(blue);
+            fill(white);
+            text(iDest, 100, 30);
+            var y = 60;
+            var iter = iOrigin + h/30;
+            for(i=iOrigin;i<iter;i++){
+                const depth = result[i].split('[')[1].split(']');
+                textSize(27-parseInt(depth));
+                text(result[i], 100, y);
+                y=y+30;
+            }
+            iOrigin++;
+            iDest++;
+        }
+        }
+
+        function windowResized() {
+        w = document.documentElement.clientWidth;//width of window that is available for drawing
+        h = document.documentElement.clientHeight;//width of window that is available for drawing
+        resizeCanvas(w, h);
+      }
+
+    </script>
+</body>
+
+</html>

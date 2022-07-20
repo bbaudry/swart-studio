@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var sceneCounter;
+        var sceneLength=16384; //2^14
+        /* 7 movements of 1024 ot 4096 frames
+        0000 : 1024    //1024 2^10
+        1024 : 5120    //4096 2^12
+        5120 : 6144    //1024 2^10
+        6144 : 10240   :/4096 2^12
+        10240 : 11264  //1024 2^10
+        11264 : 15360  //4096 2^12
+        15360 : 16384  //1024 2^10
+        */
+        var start001 = 0;//1;
+        var end001 = 0;//1024;
+        var start002 = 0;//1024;
+        var end002 = 0;//5120;
+        var start003 = 0;//5120;
+        var end003 = 0;//6144;
+        var start004 = 33;//6144
+        var end004 = 4096;//10240
+        var start005 = 0;
+        var end005 = 0;
+        var start006 = 0;
+        var end006 = 0;
+        var start007 = 0;
+        var end007 = 0;
+
+        //global vars for bw001
+        var bw001_ratio;
+
+        //global vars for colorPulse
+        var colorPulse_cx;
+        var colorPulse_cy;
+        var colorPulse_hu;
+        var colorPulse_grow;
+        var colorPulse_bright;
+        var colorPulse_rad;
+
+        //global vars for bw002
+        var bw002_x_inc = w/42;
+        var bw002_y_inc;
+        var bw002_john = 0;
+        var bw002_baldessari = 0;
+        var bw002_ver = 0;
+        var bw002_hor = 0;
+
+        function setup() {
+            createCanvas(w, h);
+            colorMode(HSB, 360,100,100);
+            frameRate(16);
+        }
+
+        function draw() {
+            sceneCounter = frameCount % sceneLength;
+            console.log(sceneCounter);
+            if(sceneCounter==start001){
+                initbw001()
+            }
+            if(sceneCounter>=start001 && sceneCounter<end001){
+                bw001();
+            }
+            if(sceneCounter==start002){
+                initColorPulse()
+            }
+            if(sceneCounter>=start002 && sceneCounter < end002){
+                colorPulse();
+            }
+            if(sceneCounter==start003){
+                initbw002()
+            }
+            if(sceneCounter>=start003 && sceneCounter<end003){
+                bw002();
+            }
+            if(sceneCounter==start004){
+                initColorStreets()
+            }
+            if(sceneCounter>=start004 && sceneCounter<end004){
+                colorStreets();
+            }
+            //numbers_are_nice();
+        }
+
+
+//**[:] movement#1 [:]**//
+
+        function initbw001(){
+            console.log("init movement 001");
+            bw001_ratio=32;
+        }
+
+        function bw001(){
+            background(0,0,0);
+            var john;
+            var baldessari;
+            var pulse = Math.floor((sceneCounter-start001)/bw001_ratio)//the more time passes the more squares
+            console.log("pulse "+bw001_ratio)
+            var dot = random(1024);
+            if (dot<111){
+                for (i=0;i<pulse;i++){
+                    fill(0,0,100);
+                    john = random(w-100);
+                    baldessari = random(h-100); 
+                    rect(john, baldessari, w/11,w/11);
+                }
+            }
+        }
+
+//**[:] movement#2 [:]**//
+
+        function initColorPulse(){
+            colorPulse_cx=random(0.1*w,0.8*w);
+            colorPulse_cy=random(0.1*h,0.8*h);
+            colorPulse_hu=20;
+            colorPulse_grow=true;
+            colorPulse_bright=100;
+            colorPulse_rad=random(0.1*w,0.2*w);
+        }
+
+        function colorPulse(){
+            background(colorPulse_hu%360,colorPulse_bright,100);
+            if (colorPulse_bright>20 && colorPulse_grow){
+                colorPulse_bright--;
+            }
+            else{
+                if (colorPulse_bright<100 && !colorPulse_grow){
+                    colorPulse_bright++;
+                }
+                else{
+                    colorPulse_grow=!colorPulse_grow;
+                    colorPulse_hu=colorPulse_hu+5;
+            }
+            }
+            if (sceneCounter-start002 > 1024){
+                moon();
+            }
+            if (sceneCounter-start002 > 2048){
+                if (random(1024)<111){
+                   centerMoon();
+                }
+            }
+            if (sceneCounter-start002 > 3072){
+                if (random(1024)<111){
+                   triB();
+                }
+            }
+        }
+
+        function moon(){
+            fill((colorPulse_hu+180)%360,100,100);
+            noStroke();
+            ellipse(colorPulse_cx,colorPulse_cy,colorPulse_rad,colorPulse_rad);
+            if (colorPulse_grow){colorPulse_rad=colorPulse_rad+random(15);}
+            else{colorPulse_rad=colorPulse_rad-random(15);}
+        }
+
+        function centerMoon(){
+            fill(0,0,100);
+            ellipse(colorPulse_cx,colorPulse_cy,11,11);
+        }
+
+        function triB(){
+            var cx1 = random(w/2);
+            var cy1 = random(h/4);
+            var cx2 = random(cx1,w);
+            var cy2 = (cy1,h/2);
+            var cx3 = random(cx1,cx2);
+            var cy3 = random(cy2,h);
+            fill(0,0,0);
+            triangle(cx1,cy1,cx2,cy2,cx3,cy3);
+        }
+
+        function numbers_are_nice(){
+            fill(0,0,0);
+            var s = 16;
+            textSize(s);
+            text(sceneCounter,w-(s*15),h-(s+2))
+        }
+
+//**[:] movement#3, inspired by SL008 [:]**//
+
+        function initbw002(){
+            bw002_x_inc = w/42;
+            bw002_john = 0;
+            bw002_baldessari = 0;
+            bw002_ver = 0;
+            bw002_hor = 0;
+        }
+
+        function bw002(){
+            background(0,0,0);
+            bw002_john = 0;
+            if (sceneCounter-start003<1024-256){
+            var not;
+                var boring = bw002_y_inc;
+                fill(0, 0, 100);
+                bw002_y_inc = random(42);
+                while (bw002_john < w) {
+                    not = random(bw002_x_inc);
+                    rect(bw002_john, bw002_baldessari, not, boring);
+                    bw002_john = bw002_john + not + random(bw002_x_inc);
+                }
+                if (bw002_baldessari < h) {
+                    bw002_baldessari = bw002_baldessari + bw002_y_inc;
+                }
+                else {
+                    bw002_baldessari = 0;
+                }
+            }
+            if (sceneCounter-start003>512-128){
+                var tom=3;//width of each line
+                strokeWeight(tom);
+                stroke(0,0,50);
+                line(bw002_ver,0,bw002_ver,h);
+                line(0,bw002_hor,w,bw002_hor);
+                stroke(0,0,70);
+                line(bw002_ver+tom,0,bw002_ver+tom,h);
+                line(0,bw002_hor+tom,w,bw002_hor+tom);
+                stroke(0,0,90);
+                line(bw002_ver+tom*2,0,bw002_ver+tom*2,h);
+                line(0,bw002_hor+tom*2,w,bw002_hor+tom*2);
+                stroke(0,0,100);
+                line(bw002_ver+tom*3,0,bw002_ver+tom*3,h);
+                line(0,bw002_hor+tom*3,w,bw002_hor+tom*3);
+                if(bw002_ver+tom*3<w || bw002_hor+tom*3<h){
+                    bw002_ver=bw002_ver+w/126;
+                    bw002_hor=bw002_hor+h/126;
+                }
+                else{
+                    bw002_hor=0;
+                    bw002_ver=0;
+                }
+            }
+
+        }
+
+//**[:] movement#4 [:]**//
+
+        //global vars for movement#4
+        var colorStreetsCoords = [];
+        var colorStreetsDotSize = w/100;
+        var colorStreetsStepMax = 64;
+        var paletteStreet = [60,240];
+        var snarky; //to keep track of the hue index
+        var puppy; //boolean to inc or dec the hue value
+
+        function initColorStreets(){
+            var xstep;
+            var ystep;
+            var xcount=0;
+            var ycount=0;
+            while (ycount<h){
+                ycount=ycount+random(colorStreetsStepMax);
+                var xline = [];
+                xline.push(ycount);
+                while(xcount<w){
+                    xcount=xcount+random(colorStreetsStepMax);
+                    xline.push(xcount);
+                }
+                colorStreetsCoords.push(xline);
+                xcount=0;
+            }
+            snarky = 0;
+            puppy = true;
+            background(paletteStreet[0],100,100);
+        }
+
+        function colorStreets(){
+            var j = parseInt(random(colorStreetsCoords.length));
+            var y = colorStreetsCoords[j][0];
+            var i = parseInt(random(1,colorStreetsCoords[j].length));
+            var x = colorStreetsCoords[j][i];
+            var hu;
+            if (snarky<180 && puppy){
+                snarky++;
+            }
+            else{
+                if (snarky>0 && !puppy){
+                    snarky--;
+                }
+                else{
+                    puppy=!puppy;
+                }
+            }
+            hu = paletteStreet[0]+snarky;
+            console.log(snarky+" "+puppy);
+            var sa = random(80,100);
+            var br = random(80,100);
+            noStroke();
+            fill(paletteStreet[0],100,100);
+            ellipse(x,y,colorStreetsDotSize,colorStreetsDotSize)
+            fill(hu,sa,br);
+            var r = random(colorStreetsDotSize/4,colorStreetsDotSize);
+            ellipse(x,y,r,r);
+        }
+//**[:] movement#5, inspired by SL007 [:]**//
+        function bw003(){
+
+        }
+
+        function windowResized() {
+        w = document.documentElement.clientWidth;//width of window that is available for drawing
+        h = document.documentElement.clientHeight;//width of window that is available for drawing
+        resizeCanvas(w, h);
+      }
+
+    </script>
+</body>
+
+</html>
