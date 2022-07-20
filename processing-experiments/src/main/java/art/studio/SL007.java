@@ -9,9 +9,7 @@ public class SL007 extends PApplet {
     int w = vis_w+txt_w;
     int h = 1000;
     float y_inc;
-    float y_step;
     float x_inc;
-    float x_step;
 
     @Override
     public void settings() {

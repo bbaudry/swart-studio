@@ -35,10 +35,10 @@
         var end002 = 0;//5120;
         var start003 = 0;//5120;
         var end003 = 0;//6144;
-        var start004 = 33;//6144
-        var end004 = 4096;//10240
-        var start005 = 0;
-        var end005 = 0;
+        var start004 = 0;//6144
+        var end004 = 0;//10240
+        var start005 = 1;//10240
+        var end005 = 1024;//11264
         var start006 = 0;
         var end006 = 0;
         var start007 = 0;
@@ -71,7 +71,6 @@
 
         function draw() {
             sceneCounter = frameCount % sceneLength;
-            console.log(sceneCounter);
             if (sceneCounter == start001) {
                 initbw001()
             }
@@ -109,7 +108,6 @@
         //**[:] movement#1 [:]**//
 
         function initbw001() {
-            console.log("init movement 001");
             bw001_ratio = 32;
         }
 
@@ -295,7 +293,7 @@
             var i = parseInt(random(1, colorStreetsCoords[j].length));
             var x = colorStreetsCoords[j][i];
             var hu;//color changes between palette0 and palette0
-            if (snarky < paletteStreet[1]-paletteStreet[0] && puppy) {
+            if (snarky < paletteStreet[1] - paletteStreet[0] && puppy) {
                 snarky++;
             }
             else {
@@ -307,7 +305,6 @@
                 }
             }
             hu = paletteStreet[0] + snarky;
-            console.log(snarky + " " + puppy);
             var sa = random(80, 100);
             var br = random(80, 100);
             noStroke();
@@ -322,11 +319,11 @@
                 fill(paletteStreet[0], 100, 100);
                 ellipse(x, y, colorStreetsDotSize, colorStreetsDotSize)
                 fill(hu, sa, br);
-                ellipse(x, y, r, r);console.log("john baldessari")
+                ellipse(x, y, r, r);
             }
-            else{
+            else {
                 fill(paletteStreet[0], 100, 100);
-                r = random(colorStreetsDotSize,colorStreetsDotSize*4);
+                r = random(colorStreetsDotSize, colorStreetsDotSize * 4);
                 ellipse(x, y, r, r);
             }
             if (sceneCounter > start004 + 2048) {//after 2048 start lines
@@ -339,28 +336,101 @@
                     var y2 = random(h - y); x2 = x;
                 }
                 stroke(hu, sa, br);
-                if (sceneCounter < start004 + 3072){//line same color as ellipse
+                if (sceneCounter < start004 + 3072) {//line same color as ellipse
                     strokeWeight(r / 4);
                     stroke(hu, sa, br);
                 }
-                else{
+                else {
                     strokeWeight(r / 2);
                     stroke(paletteStreet[1], 100, 100);
                 }
                 line(x, y, x2, y2);
-                if (sceneCounter > start004 + 3584){
-                    x = random(w); y=random(h);
-                    x2 = random(w); y2=random(h);
+                if (sceneCounter > start004 + 3584) {
+                    x = random(w); y = random(h);
+                    x2 = random(w); y2 = random(h);
                     stroke(paletteStreet[1], 0, 0);
                 }
             }
         }
         //**[:] movement#5, inspired by SL007 [:]**//
-        function initbw003() {
-            
-        }
-        function bw003() {
+        var bw003y_inc;
+        var bw003x_inc;
 
+        function initbw003() {
+            bw003x_inc = w / 100;
+            bw003y_inc = h / 200;
+            noFill();
+            strokeCap(SQUARE);
+            stroke(0, 0, 100);
+            strokeWeight(w / 100);
+        }
+
+        function bw003() {
+            background(0, 0, 0);
+            if (sceneCounter < start005 + 64 && random(17) < 1) {
+                bw003Ray();
+                console.log("ray " + sceneCounter);
+            }
+            if (sceneCounter >= start005 + 64 && sceneCounter < start005 + 128 && random(7) < 1) {
+                bw003Ray();
+            }
+            if (sceneCounter >= start005 + 128 && sceneCounter < start005 + 256) {
+                    bw003Ray();
+            }
+            if (sceneCounter >= start005 + 256 && sceneCounter < start005 + 512) {
+                for (i = 0; i < 3; i++) {
+                    bw003Ray();
+                }
+            }
+            if (sceneCounter >= start005 + 512 && sceneCounter < start005 + 768) {
+                bw003RayS(12);
+            }
+            if (sceneCounter >= start005 + 768) {
+                bw003RayS(15); console.log("more "+sceneCounter);
+                if (random(4) < 1) {
+                    var x = random(w);
+                    var y = random(h);
+                    stroke(0,100,100);
+                    strokeWeight(32);
+                    fill(0, 0, 0);
+                    ellipse(x, y, w/2, w/2);
+                }
+            }
+        }
+
+        function bw003Ray() {
+            noFill();
+            var aint = random(PI / 2);
+            var boring = aint * random(1, 2);
+            var john = w / 100;
+            var baldessari;
+            while (john < 2 * w) {
+                baldessari = john;
+                arc(0, 0, john, baldessari, aint, boring);
+                strokeWeight(random(w / 30, w / 20));
+                john = john + random(w / 6, w / 5);
+            }
+        }
+
+        function bw003RayS(miles) {
+            noFill();
+            strokeCap(SQUARE);
+            stroke(0, 0, 100);
+            var aint = 0;
+            var step = PI/2/(miles*2);
+            var boring;
+            while(aint<PI/2){
+                boring = aint + step;
+                var john = w / 100;
+                var baldessari;
+                while (john < 2 * w) {
+                    baldessari = john;
+                    arc(0, 0, john, baldessari, aint, boring);
+                    strokeWeight(random(w / 30, w / 20));
+                    john = john + random(w / 6, w / 5);
+                }
+                aint = aint + step + random (step);
+            }
         }
 
         function windowResized() {
