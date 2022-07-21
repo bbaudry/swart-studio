@@ -19,7 +19,7 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var sceneCounter;
-        var sceneLength = 16384; //2^14
+        var sceneLength = 11264; //2^14
         /* 7 movements of 1024 ot 4096 frames
         0000 : 1024    //1024 2^10
         1024 : 5120    //4096 2^12
@@ -29,16 +29,16 @@
         11264 : 15360  //4096 2^12
         15360 : 16384  //1024 2^10
         */
-        var start001 = 0;//1;
-        var end001 = 0;//1024;
-        var start002 = 0;//1024;
-        var end002 = 0;//5120;
-        var start003 = 0;//5120;
-        var end003 = 0;//6144;
-        var start004 = 0;//6144
-        var end004 = 0;//10240
-        var start005 = 1;//10240
-        var end005 = 1024;//11264
+        var start001 = 1;//1;
+        var end001 = 1024;//1024;
+        var start002 = 1024;//1024;
+        var end002 = 5120;//5120;
+        var start003 = 5120;//5120;
+        var end003 = 6144;//6144;
+        var start004 = 6144;//6144
+        var end004 = 10240;//10240
+        var start005 = 10240;//10240
+        var end005 = 11264;//11264
         var start006 = 0;
         var end006 = 0;
         var start007 = 0;
