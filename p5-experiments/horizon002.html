@@ -35,12 +35,12 @@
         var end002 = 0;//3072;
         var start003 = 0;//3072;
         var end003 = 0;//4096;
-        var start004 = 30;//4096
-        var end004 = 2078;//6144
-        var start005 = 2078;//6144
-        var end005 = 3102;//7168
-        var start006 = 7168;
-        var end006 = 9216;
+        var start004 = 0;//4096
+        var end004 = 0;//6144
+        var start005 = 0;//6144
+        var end005 = 0;//7168
+        var start006 = 30;//7168
+        var end006 = 2078;//9216
         var start007 = 9216;
         var end007 = 10240;
 
@@ -94,6 +94,19 @@
             if (sceneCounter >= start005 && sceneCounter < end005) {
                 bw003();
             }
+            if (sceneCounter == start006) {
+                initCarve();
+            }
+            if (sceneCounter >= start006 && sceneCounter < end006) {
+                carve();
+            }
+            if (sceneCounter == start007) {
+                initbw004();
+            }
+            if (sceneCounter >= start007 && sceneCounter < end007) {
+                bw004();
+            }
+
             //numbers_are_nice();
         }
 
@@ -113,11 +126,11 @@
             if (dot < 111) {
                 for (i = 0; i < pulse; i++) {
                     fill(0, 0, 100);
-                    if(random(2)<1){
-                        stroke(0,0,0);
-                        strokeWeight(random(2,16));
+                    if (random(2) < 1) {
+                        stroke(0, 0, 0);
+                        strokeWeight(random(2, 16));
                     }
-                    else{
+                    else {
                         noStroke;
                     }
                     john = random(w - 100);
@@ -320,7 +333,7 @@
                     puppy = !puppy;
                 }
             }
-            hu = (paletteStreet[0] + snarky) % 360;console.log(snarky)
+            hu = (paletteStreet[0] + snarky) % 360; console.log(snarky)
             var sa = 100//random(80, 100);
             var br = 100//random(80, 100);
             noStroke();
@@ -329,7 +342,7 @@
                 r = random(colorStreetsDotSize / 2, colorStreetsDotSize);
             }
             else {
-                r = random(colorStreetsDotSize, colorStreetsDotSize*2);
+                r = random(colorStreetsDotSize, colorStreetsDotSize * 2);
             }
             if (sceneCounter < start004 + 1280) {
                 fill(paletteStreet[0], 100, 100);
@@ -393,7 +406,7 @@
                 bw003Ray();
             }
             if (sceneCounter >= start005 + 128 && sceneCounter < start005 + 256) {
-                    bw003Ray();
+                bw003Ray();
             }
             if (sceneCounter >= start005 + 256 && sceneCounter < start005 + 512) {
                 for (i = 0; i < 3; i++) {
@@ -404,14 +417,14 @@
                 bw003RayS(12);
             }
             if (sceneCounter >= start005 + 768) {
-                bw003RayS(15); console.log("more "+sceneCounter);
+                bw003RayS(15); console.log("more " + sceneCounter);
                 if (random(4) < 1) {
                     var x = random(w);
                     var y = random(h);
-                    stroke(0,100,100);
+                    stroke(0, 100, 100);
                     strokeWeight(32);
                     fill(0, 0, 0);
-                    ellipse(x, y, w/2, w/2);
+                    ellipse(x, y, w / 2, w / 2);
                 }
             }
         }
@@ -435,9 +448,9 @@
             strokeCap(SQUARE);
             stroke(0, 0, 100);
             var aint = 0;
-            var step = PI/2/(miles*2);
+            var step = PI / 2 / (miles * 2);
             var boring;
-            while(aint<PI/2){
+            while (aint < PI / 2) {
                 boring = aint + step;
                 var john = w / 100;
                 var baldessari;
@@ -447,8 +460,100 @@
                     strokeWeight(random(w / 30, w / 20));
                     john = john + random(w / 6, w / 5);
                 }
-                aint = aint + step + random (step);
+                aint = aint + step + random(step);
             }
+        }
+
+        //**[:] movement#6, inspired by SL004 [:]**//
+
+        //global vars for movement#6
+        var rectAx1, rectAx2, rectAy1, rectAy2; //rectAx1 < rectAx2 and rectAy1 < rectAy2
+        var triAx1, triAx2, triAx3, triAy1, triAy2, triAy3; 
+        var carve_ratio;
+        var particleHue;
+        var particleSat;particleBri;
+        var backHue;
+        var particleRad;
+        function initCarve() {
+            rectAx1 = w / 10; rectAx2 = 4 * rectAx1; rectAy1 = h / 2; rectAy2 = rectAy1 + h / 4;
+            triAx1 = w / 2; triAx2 = triAx1 + w / 4; triAx3=w/4; triAy1 = h / 10; triAy2 = 4 * triAy1; triAy3=h/2;
+            particleHue=120;
+            backHue=280;
+            particleSat=100;
+            particleBri=100;
+            background(backHue,100,64);
+            carve_ratio = 64;
+            /*stroke(50,100,100);strokeWeight(7);
+            noFill();
+            rect(rectAx1,rectAy1,rectAx2-rectAx1,rectAy2-rectAy1);
+            triangle(triAx1,triAy1,triAx2,triAy2,triAx3,triAy3);*/
+        }
+
+        function carve(){
+            var pulse = Math.floor((sceneCounter - start001) / carve_ratio)//the more time passes the more squares
+            particleRad=pulse/2*w/256;
+            particleHue=120-5*pulse;
+            if (particleHue<0){particleHue=360+particleHue}
+            //particleSat=1/pulse*100;
+            //particleBri=1/pulse*100;
+            for (i=0;i<pulse;i++){
+                particle();
+            }
+        }
+
+        function particle(){
+            var cx = random(w);
+            var cy = random(h);
+            if (!isIn(cx,cy)){
+                noStroke();
+                fill(particleHue,particleBri,particleSat);
+                ellipse(cx,cy,particleRad,particleRad);
+            }
+        }
+
+        function isIn(x, y) {
+            //first check if the point is in square between (400,400) and (600,600), or in rectangle between (11,777) and (111,888)
+            if ((x >= rectAx1 & x < rectAx2 & y >= rectAy1 & y < rectAy2)) {
+                return true;
+            }
+            //second check if the point is in triangle 
+            else {
+                if (inTri(x, y)) {
+                    return true;
+                }
+                else {
+                    console.log("out");
+                    return false;
+                }
+            }
+        }
+
+        function inTri(x,y){
+            var triangleSurf = surfTri(triAx1, triAy1, triAx2, triAy2, triAx3, triAy3);
+            var tri1 = surfTri(x,y,triAx1,triAy1,triAx2,triAy2);
+            var tri2 = surfTri(x,y,triAx2,triAy2,triAx3,triAy3);
+            var tri3 = surfTri(x,y,triAx1,triAy1,triAx3,triAy3);
+            console.log("surface "+triangleSurf+" tri1 "+tri1+" tri2 "+tri2+" tri3 "+tri3);
+            var baldessari = tri1+tri2+tri3;
+            return(triangleSurf > baldessari-1 && triangleSurf < baldessari+1);
+        }
+
+        //computes the surface of a triangl (x1,y1) (x2,y2) (x3,y3)
+        function surfTri(x1, y1, x2, y2,x3, y3){
+            return Math.abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
+        }
+
+
+        //**[:] movement#7, inspired by Pillars001 [:]**//
+
+        //global vars for movement#7
+
+        function initbw004() {
+
+        }
+
+        function bw004() {
+
         }
 
         function windowResized() {
@@ -456,6 +561,11 @@
             h = document.documentElement.clientHeight;//width of window that is available for drawing
             resizeCanvas(w, h);
         }
+
+
+
+
+
 
     </script>
 </body>

@@ -72,7 +72,7 @@ public class SL004 extends PApplet {
         rect(0,0,w,h);
         hu=random(360); knobs.add(new Knob(Float.toString(hu), true));
         iter=0;
-        max_iter=100; knobs.add(new Knob(Integer.toString(max_iter), false));
+        max_iter=10000; knobs.add(new Knob(Integer.toString(max_iter), false));
         textSize(4); knobs.add(new Knob(Float.toString(8),false));
         txt_x=vis_w;
         txt_y=3;
