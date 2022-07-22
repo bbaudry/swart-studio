@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var sceneCounter;
+        var sceneLength = 11264; //2^14
+        /* 7 movements of 1024 ot 4096 frames
+        0001 : 1024   //1024 2^10
+        1024 : 3072   //2048 2^11
+        3072 : 4096   //1024 2^10
+        4096 : 6144   //2048 2^11
+        6144 : 7168   //1024 2^10
+        7168 : 9216   //2048 2^11
+        9216 : 10240  //1024 2^10
+        */
+        var start001 = 0;//1;
+        var end001 = 0;//1024;
+        var start002 = 0;//1024;
+        var end002 = 0;//3072;
+        var start003 = 0;//3072;
+        var end003 = 0;//4096;
+        var start004 = 30;//4096
+        var end004 = 2078;//6144
+        var start005 = 2078;//6144
+        var end005 = 3102;//7168
+        var start006 = 7168;
+        var end006 = 9216;
+        var start007 = 9216;
+        var end007 = 10240;
+
+        //global vars for bw001
+        var bw001_ratio;
+
+
+        //global vars for bw002
+        var bw002_x_inc = w / 42;
+        var bw002_y_inc;
+        var bw002_john = 0;
+        var bw002_baldessari = 0;
+        var bw002_ver = 0;
+        var bw002_hor = 0;
+
+        function setup() {
+            createCanvas(w, h);
+            colorMode(HSB, 360, 100, 100);
+            frameRate(16);
+        }
+
+        function draw() {
+            sceneCounter = frameCount % sceneLength;
+            if (sceneCounter == start001) {
+                initbw001()
+            }
+            if (sceneCounter >= start001 && sceneCounter < end001) {
+                bw001();
+            }
+            if (sceneCounter == start002) {
+                initColorPulse()
+            }
+            if (sceneCounter >= start002 && sceneCounter < end002) {
+                colorPulse();
+            }
+            if (sceneCounter == start003) {
+                initbw002()
+            }
+            if (sceneCounter >= start003 && sceneCounter < end003) {
+                bw002();
+            }
+            if (sceneCounter == start004) {
+                initColorStreets()
+            }
+            if (sceneCounter >= start004 && sceneCounter < end004) {
+                colorStreets();
+            }
+            if (sceneCounter == start005) {
+                initbw003();
+            }
+            if (sceneCounter >= start005 && sceneCounter < end005) {
+                bw003();
+            }
+            //numbers_are_nice();
+        }
+
+
+        //**[:] movement#1 [:]**//
+
+        function initbw001() {
+            bw001_ratio = 32;
+        }
+
+        function bw001() {
+            background(0, 0, 0);
+            var john;
+            var baldessari;
+            var pulse = Math.floor((sceneCounter - start001) / bw001_ratio)//the more time passes the more squares
+            var dot = random(1024);
+            if (dot < 111) {
+                for (i = 0; i < pulse; i++) {
+                    fill(0, 0, 100);
+                    if(random(2)<1){
+                        stroke(0,0,0);
+                        strokeWeight(random(2,16));
+                    }
+                    else{
+                        noStroke;
+                    }
+                    john = random(w - 100);
+                    baldessari = random(h - 100);
+                    rect(john, baldessari, w / 11, w / 11);
+                }
+            }
+        }
+
+        //**[:] movement#2 [:]**//
+        //global vars for colorPulse
+        var colorPulse_hue;
+        var colorPulse_bri;
+        var colorPulse_minhue;
+        var colorPulse_maxhue;
+        var colorPulse_maxbri;
+        var colorPulse_minbri;
+        var colorPulse_cx;
+        var colorPulse_cy;
+        var colorPulse_rad;
+        var colorPulse_grow_hue;
+        var colorPulse_grow_bri;
+
+        function initColorPulse() {
+            colorPulse_minhue = 200;
+            colorPulse_maxhue = 290;
+            colorPulse_maxbri = 100;
+            colorPulse_minbri = 52;
+            colorPulse_hue = colorPulse_minhue;
+            colorPulse_bri = 100;
+            colorPulse_grow_hue = true;
+            colorPulse_cx = random(0.1 * w, 0.8 * w);
+            colorPulse_cy = random(0.1 * h, 0.8 * h);
+            colorPulse_rad = random(0.2 * w, 0.3 * w);
+        }
+
+        function colorPulse() {
+            background(colorPulse_hue, colorPulse_bri, 100);
+            if (colorPulse_hue < colorPulse_maxhue && colorPulse_grow_hue) {
+                colorPulse_hue++;
+            }
+            else {
+                if (colorPulse_hue > colorPulse_minhue && !colorPulse_grow_hue) {
+                    colorPulse_hue--;
+                }
+                else {
+                    colorPulse_grow_hue = !colorPulse_grow_hue;
+                    colorPulse_hue = colorPulse_hue + 1;
+                }
+            }
+            if (sceneCounter - start002 > 512) {
+                moon();
+            }
+            if (sceneCounter - start002 > 1024) {
+                if (random(1024) < 111) {
+                    centerMoon();
+                }
+            }
+            if (sceneCounter - start002 > 1536) {
+                if (random(1024) < 111) {
+                    triB();
+                }
+            }
+        }
+
+        function moon() {
+            fill((colorPulse_hue + 180) % 360, 100, 100);
+            noStroke();
+            ellipse(colorPulse_cx, colorPulse_cy, colorPulse_rad, colorPulse_rad);
+            if (colorPulse_grow_hue) { colorPulse_rad = colorPulse_rad + random(15); }
+            else { colorPulse_rad = colorPulse_rad - random(15); }
+        }
+
+        function centerMoon() {
+            fill(0, 0, 100);
+            ellipse(colorPulse_cx, colorPulse_cy, 11, 11);
+        }
+
+        function triB() {
+            var cx1 = random(w / 2);
+            var cy1 = random(h / 4);
+            var cx2 = random(cx1, w);
+            var cy2 = (cy1, h / 2);
+            var cx3 = random(cx1, cx2);
+            var cy3 = random(cy2, h);
+            fill(0, 0, 0);
+            triangle(cx1, cy1, cx2, cy2, cx3, cy3);
+        }
+
+        function numbers_are_nice() {
+            fill(0, 0, 0);
+            var s = 16;
+            textSize(s);
+            text(sceneCounter, w - (s * 15), h - (s + 2))
+        }
+
+        //**[:] movement#3, inspired by SL008 [:]**//
+
+        function initbw002() {
+            bw002_x_inc = w / 42;
+            bw002_john = 0;
+            bw002_baldessari = 0;
+            bw002_ver = 0;
+            bw002_hor = 0;
+        }
+
+        function bw002() {
+            background(0, 0, 0);
+            bw002_john = 0;
+            if (sceneCounter - start003 < 1024 - 256) {
+                var not;
+                var boring = bw002_y_inc;
+                fill(0, 0, 100);
+                bw002_y_inc = random(42);
+                while (bw002_john < w) {
+                    not = random(bw002_x_inc);
+                    rect(bw002_john, bw002_baldessari, not, boring);
+                    bw002_john = bw002_john + not + random(bw002_x_inc);
+                }
+                if (bw002_baldessari < h) {
+                    bw002_baldessari = bw002_baldessari + bw002_y_inc;
+                }
+                else {
+                    bw002_baldessari = 0;
+                }
+            }
+            if (sceneCounter - start003 > 512 - 128) {
+                var tom = 3;//width of each line
+                strokeWeight(tom);
+                stroke(0, 0, 50);
+                line(bw002_ver, 0, bw002_ver, h);
+                line(0, bw002_hor, w, bw002_hor);
+                stroke(0, 0, 70);
+                line(bw002_ver + tom, 0, bw002_ver + tom, h);
+                line(0, bw002_hor + tom, w, bw002_hor + tom);
+                stroke(0, 0, 90);
+                line(bw002_ver + tom * 2, 0, bw002_ver + tom * 2, h);
+                line(0, bw002_hor + tom * 2, w, bw002_hor + tom * 2);
+                stroke(0, 0, 100);
+                line(bw002_ver + tom * 3, 0, bw002_ver + tom * 3, h);
+                line(0, bw002_hor + tom * 3, w, bw002_hor + tom * 3);
+                if (bw002_ver + tom * 3 < w || bw002_hor + tom * 3 < h) {
+                    bw002_ver = bw002_ver + w / 126;
+                    bw002_hor = bw002_hor + h / 126;
+                }
+                else {
+                    bw002_hor = 0;
+                    bw002_ver = 0;
+                }
+            }
+
+        }
+
+        //**[:] movement#4 [:]**//
+
+        //global vars for movement#4
+        var colorStreetsCoords = [];
+        var colorStreetsDotSize = w / 80;
+        var colorStreetsStepMax = 80;
+        var paletteStreet = [240, 60];
+        var huerange = 180;
+        var snarky; //to keep track of the hue index
+        var puppy; //boolean to inc or dec the hue value
+
+        function initColorStreets() {
+            var xstep;
+            var ystep;
+            var xcount = 0;
+            var ycount = 0;
+            while (ycount < h) {
+                ycount = ycount + random(colorStreetsStepMax);
+                var xline = [];
+                xline.push(ycount);
+                while (xcount < w) {
+                    xcount = xcount + random(colorStreetsStepMax);
+                    xline.push(xcount);
+                }
+                colorStreetsCoords.push(xline);
+                xcount = 0;
+            }
+            snarky = 0;
+            puppy = true;
+            background(paletteStreet[0], 100, 100);
+        }
+
+        function colorStreets() {
+            var j = parseInt(random(colorStreetsCoords.length));
+            var y = colorStreetsCoords[j][0];
+            var i = parseInt(random(1, colorStreetsCoords[j].length));
+            var x = colorStreetsCoords[j][i];
+            var hu;//color changes between palette0 and palette0
+            if (snarky < huerange && puppy) {
+                snarky++;
+            }
+            else {
+                if (snarky > 0 && !puppy) {
+                    snarky--;
+                }
+                else {
+                    puppy = !puppy;
+                }
+            }
+            hu = (paletteStreet[0] + snarky) % 360;console.log(snarky)
+            var sa = 100//random(80, 100);
+            var br = 100//random(80, 100);
+            noStroke();
+            var r;
+            if (sceneCounter < start004 + 512) {
+                r = random(colorStreetsDotSize / 2, colorStreetsDotSize);
+            }
+            else {
+                r = random(colorStreetsDotSize, colorStreetsDotSize*2);
+            }
+            if (sceneCounter < start004 + 1280) {
+                fill(paletteStreet[0], 100, 100);
+                ellipse(x, y, colorStreetsDotSize, colorStreetsDotSize)
+                fill(hu, sa, br);
+                ellipse(x, y, r, r);
+            }
+            else {
+                fill(paletteStreet[0], 100, 100);
+                r = random(colorStreetsDotSize, colorStreetsDotSize * 4);
+                ellipse(x, y, r, r);
+            }
+
+            if (sceneCounter > start004 + 768) {//after 768 start lines
+                var x2;
+                var y2;
+                if (random(2) < 1) {
+                    var x2 = random(w - x); y2 = y;
+                }
+                else {
+                    var y2 = random(h - y); x2 = x;
+                }
+                stroke(hu, sa, br);
+                if (sceneCounter < start004 + 1280) {//line same color as ellipse
+                    strokeWeight(r / 4);
+                    stroke(hu, sa, br);
+                }
+                else {
+                    strokeWeight(r / 2);
+                    stroke(paletteStreet[1], 100, 100);
+                }
+                line(x, y, x2, y2);
+                if (sceneCounter > start004 + 1792) {
+                    x = random(w); y = random(h);
+                    x2 = random(w); y2 = random(h);
+                    stroke(0, 0, 0);
+                    line(x, y, x2, y2);
+                }
+            }
+        }
+        //**[:] movement#5, inspired by SL007 [:]**//
+        var bw003y_inc;
+        var bw003x_inc;
+
+        function initbw003() {
+            bw003x_inc = w / 100;
+            bw003y_inc = h / 200;
+            noFill();
+            strokeCap(SQUARE);
+            stroke(0, 0, 100);
+            strokeWeight(w / 100);
+        }
+
+        function bw003() {
+            background(0, 0, 0);
+            if (sceneCounter < start005 + 64 && random(17) < 1) {
+                bw003Ray();
+                console.log("ray " + sceneCounter);
+            }
+            if (sceneCounter >= start005 + 64 && sceneCounter < start005 + 128 && random(7) < 1) {
+                bw003Ray();
+            }
+            if (sceneCounter >= start005 + 128 && sceneCounter < start005 + 256) {
+                    bw003Ray();
+            }
+            if (sceneCounter >= start005 + 256 && sceneCounter < start005 + 512) {
+                for (i = 0; i < 3; i++) {
+                    bw003Ray();
+                }
+            }
+            if (sceneCounter >= start005 + 512 && sceneCounter < start005 + 768) {
+                bw003RayS(12);
+            }
+            if (sceneCounter >= start005 + 768) {
+                bw003RayS(15); console.log("more "+sceneCounter);
+                if (random(4) < 1) {
+                    var x = random(w);
+                    var y = random(h);
+                    stroke(0,100,100);
+                    strokeWeight(32);
+                    fill(0, 0, 0);
+                    ellipse(x, y, w/2, w/2);
+                }
+            }
+        }
+
+        function bw003Ray() {
+            noFill();
+            var aint = random(PI / 2);
+            var boring = aint * random(1, 2);
+            var john = w / 100;
+            var baldessari;
+            while (john < 2 * w) {
+                baldessari = john;
+                arc(0, 0, john, baldessari, aint, boring);
+                strokeWeight(random(w / 30, w / 20));
+                john = john + random(w / 6, w / 5);
+            }
+        }
+
+        function bw003RayS(miles) {
+            noFill();
+            strokeCap(SQUARE);
+            stroke(0, 0, 100);
+            var aint = 0;
+            var step = PI/2/(miles*2);
+            var boring;
+            while(aint<PI/2){
+                boring = aint + step;
+                var john = w / 100;
+                var baldessari;
+                while (john < 2 * w) {
+                    baldessari = john;
+                    arc(0, 0, john, baldessari, aint, boring);
+                    strokeWeight(random(w / 30, w / 20));
+                    john = john + random(w / 6, w / 5);
+                }
+                aint = aint + step + random (step);
+            }
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
