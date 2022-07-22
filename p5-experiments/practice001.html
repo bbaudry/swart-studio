@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let blue = "#1f1fff"; //rgb(31,31,255)
+        let white = "#FFFFFF";
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var huback;
+        var hucircle;
+        var br;
+        var minhu = 200;
+        var maxhu = 290;
+        var maxbr = 100;
+        var minbr = 52;
+        var circleX = w/2;
+        var circleY = h/2;
+        var circleSize = w/2;
+        
+
+        //draws white arcs of random length and width on a blue background
+
+        function setup() {
+            canvas = createCanvas(w, h);
+            colorMode(HSB,360,100,100);
+            frameRate(1);
+            huback = minhu;
+            hucircle = (huback + 180) % 360;
+            br = 100;
+        }
+
+        function draw() {
+            //console.log(frameCount % 32);
+            //if (frameCount == 0 % 32){
+                huback = minhu;
+                hucircle = (huback + 180) % 360;
+                console.log("hu "+huback+" hu circle "+hucircle+" br "+br);
+                background(huback,br,100);
+                fill(hucircle,100,100);
+                noStroke();
+                ellipse(circleX, circleY, circleSize);
+                br=br-1;
+            //}
+        }
+
+        function windowResized() {
+        w = document.documentElement.clientWidth;//width of window that is available for drawing
+        h = document.documentElement.clientHeight;//width of window that is available for drawing
+        resizeCanvas(w, h);
+      }
+
+    </script>
+</body>
+
+</html>
