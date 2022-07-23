@@ -39,10 +39,10 @@
         var end004 = 0;//6144
         var start005 = 0;//6144
         var end005 = 0;//7168
-        var start006 = 1;//7168
-        var end006 = 2048;//9216
-        var start007 = 0;//9216
-        var end007 = 0;//10240
+        var start006 = 0;//7168
+        var end006 = 0;//9216
+        var start007 = 1;//9216
+        var end007 = 1024;//10240
 
         //global vars for bw001
         var bw001_ratio;
@@ -482,9 +482,9 @@
             backHue=280;
             particleSat=100;
             particleBri=100;
-            background(backHue,100,64);
+            background(backHue,100,100);
+            console.log("hu "+backHue);
             carve_ratio = 64;
-            background(0,0,0);
         }
 
         function carve(){
@@ -560,7 +560,7 @@
             one=16; //each pixel is 'one' wide
             tom=256; //the pillars have 'tom' layers of pixels
             waits=(w-(forNo+1)*x_offset)/(forNo*one); //the pillars have 'baldessari' columns of pixels
-            bw004_ratio=32;
+            bw004_ratio=8;
             var max_depth=5;
             frameRate(32);
             arr.push(4);
