@@ -39,10 +39,10 @@
         var end004 = 0;//6144
         var start005 = 0;//6144
         var end005 = 0;//7168
-        var start006 = 0;//7168
-        var end006 = 0;//9216
-        var start007 = 1;
-        var end007 = 1024;//10240
+        var start006 = 1;//7168
+        var end006 = 2048;//9216
+        var start007 = 0;//9216
+        var end007 = 0;//10240
 
         //global vars for bw001
         var bw001_ratio;
@@ -575,10 +575,8 @@
             var y=y_offset*(depth+1);
             var depth=arr[0];
             var pulse = Math.floor((sceneCounter - start007) / bw004_ratio)+1;//the more time passes the more squares
-            console.log("pulse "+pulse)
             for (cell=0;cell<pulse;cell++){
                 panel(x,y,one-depth);
-                console.log("cell in panel")
             }
 /*            for (pilC=0; pilC<forNo; pilC++){
                 depth=arr[pilC];
