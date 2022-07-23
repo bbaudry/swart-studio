@@ -29,20 +29,20 @@
         7168 : 9216   //2048 2^11
         9216 : 10240  //1024 2^10
         */
-        var start001 = 0;//1;
-        var end001 = 0;//1024;
-        var start002 = 0;//1024;
-        var end002 = 0;//3072;
-        var start003 = 0;//3072;
-        var end003 = 0;//4096;
-        var start004 = 0;//4096
-        var end004 = 0;//6144
-        var start005 = 0;//6144
-        var end005 = 0;//7168
-        var start006 = 0;//7168
-        var end006 = 0;//9216
-        var start007 = 1;//9216
-        var end007 = 1024;//10240
+        var start001 = 1;//1;
+        var end001 = 1024;//1024;
+        var start002 = 1024;//1024;
+        var end002 = 3072;//3072;
+        var start003 = 3072;//3072;
+        var end003 = 4096;//4096;
+        var start004 = 4096;//4096
+        var end004 = 6144;//6144
+        var start005 = 6144;//6144
+        var end005 = 7168;//7168
+        var start006 = 7168;//7168
+        var end006 = 9216;//9216
+        var start007 = 9216;//9216
+        var end007 = 10240;//10240
 
         //global vars for bw001
         var bw001_ratio;
@@ -55,6 +55,10 @@
         var bw002_baldessari = 0;
         var bw002_ver = 0;
         var bw002_hor = 0;
+
+        function preload() {
+            invites = loadStrings('data/guests.txt');
+        }
 
         function setup() {
             createCanvas(w, h);
@@ -551,9 +555,12 @@
         var y_offset;
         var arr = [];
         var bw004_ratio;
+        var guestCount;
 
         function initbw004() {
             background(0,0,0);
+            textSize(32);
+            textFont('FreeMono');
             x_offset=w/10;
             y_offset=21;
             forNo=1; //draw 'forNo' pillars
@@ -561,13 +568,8 @@
             tom=256; //the pillars have 'tom' layers of pixels
             waits=(w-(forNo+1)*x_offset)/(forNo*one); //the pillars have 'baldessari' columns of pixels
             bw004_ratio=8;
-            var max_depth=5;
-            frameRate(32);
+            guestCount=0;
             arr.push(4);
-/*            for (i=0; i<forNo; i++){
-                var d = parseInt(random(max_depth))+1;
-                arr.push(d);
-            }      */
         }
 
         function bw004() {
@@ -578,20 +580,26 @@
             for (cell=0;cell<pulse;cell++){
                 panel(x,y,one-depth);
             }
-/*            for (pilC=0; pilC<forNo; pilC++){
-                depth=arr[pilC];
-                y=y_offset*(depth+1);    
-                panel(x,y,one-depth);
-                x=x+tom*one-depth+x_offset;
-            }*/
+            if (sceneCounter-start007>640)
+            credits();
+        }
+
+        function credits(){
+            if (sceneCounter%4==0 ){
+                fill(0,0,0);
+                rect(w/2-32*5,h/2-32,12*32,2*32);
+                fill(1,0,100);
+                var friend = parseInt(random(1,invites.length))-1;
+                text(invites[friend], w/2-32*4, h/2);
+            }
         }
 
         function panel(x, y, w){
             var red;
             stroke(0,0,0);
             strokeWeight(1);
-            var row = parseInt(random(tom))+1;console.log("row "+row);
-            var column = parseInt(random(waits))+1;console.log("col "+column);
+            var row = parseInt(random(tom))+1;
+            var column = parseInt(random(waits))+1;
             red=random(42);
             if (red<1){fill(0,100,100);}
             else{
@@ -599,18 +607,6 @@
                 else{fill(220,0,100);}
             }
             rect(row*one,column*one,w,w);
-/*
-            for (i=0;i<tom;i++){
-                for (j=0;j<waits;j++){
-                    red=random(42);
-                    if (red<1){fill(0,100,100);}
-                    else{
-                        if(red<20){fill(220, 0, 0);}
-                        else{fill(220,0,100);}
-                    }
-                    rect(x+j*w,y+i*w,w,w);
-                }
-            }*/
         }
 
 
