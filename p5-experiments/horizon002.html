@@ -39,10 +39,10 @@
         var end004 = 0;//6144
         var start005 = 0;//6144
         var end005 = 0;//7168
-        var start006 = 30;//7168
-        var end006 = 2078;//9216
-        var start007 = 9216;
-        var end007 = 10240;
+        var start006 = 0;//7168
+        var end006 = 0;//9216
+        var start007 = 1;
+        var end007 = 1024;//10240
 
         //global vars for bw001
         var bw001_ratio;
@@ -471,9 +471,10 @@
         var triAx1, triAx2, triAx3, triAy1, triAy2, triAy3; 
         var carve_ratio;
         var particleHue;
-        var particleSat;particleBri;
+        var particleSat; var particleBri;
         var backHue;
         var particleRad;
+
         function initCarve() {
             rectAx1 = w / 10; rectAx2 = 4 * rectAx1; rectAy1 = h / 2; rectAy2 = rectAy1 + h / 4;
             triAx1 = w / 2; triAx2 = triAx1 + w / 4; triAx3=w/4; triAy1 = h / 10; triAy2 = 4 * triAy1; triAy3=h/2;
@@ -483,19 +484,14 @@
             particleBri=100;
             background(backHue,100,64);
             carve_ratio = 64;
-            /*stroke(50,100,100);strokeWeight(7);
-            noFill();
-            rect(rectAx1,rectAy1,rectAx2-rectAx1,rectAy2-rectAy1);
-            triangle(triAx1,triAy1,triAx2,triAy2,triAx3,triAy3);*/
+            background(0,0,0);
         }
 
         function carve(){
             var pulse = Math.floor((sceneCounter - start001) / carve_ratio)//the more time passes the more squares
-            particleRad=pulse/2*w/256;
+            particleRad=pulse/3*w/256;
             particleHue=120-5*pulse;
             if (particleHue<0){particleHue=360+particleHue}
-            //particleSat=1/pulse*100;
-            //particleBri=1/pulse*100;
             for (i=0;i<pulse;i++){
                 particle();
             }
@@ -547,14 +543,71 @@
         //**[:] movement#7, inspired by Pillars001 [:]**//
 
         //global vars for movement#7
+        var tom;//number of rows on each pillar
+        var waits;//number of columns on each pillar
+        var forNo;//number of pillars
+        var one;//max size a 'pixel' on a pillar
+        var x_offset;
+        var y_offset;
+        var arr = [];
 
         function initbw004() {
-
+            background(0,0,0);
+            x_offset=w/10;
+            y_offset=21;
+            forNo=1; //draw 'forNo' pillars
+            one=16; //each pixel is 'one' wide
+            tom=256; //the pillars have 'tom' layers of pixels
+            waits=(w-(forNo+1)*x_offset)/(forNo*one); //the pillars have 'baldessari' columns of pixels
+            var max_depth=5;
+            frameRate(32);
+            arr.push(4);
+/*            for (i=0; i<forNo; i++){
+                var d = parseInt(random(max_depth))+1;
+                arr.push(d);
+            }      */
         }
 
         function bw004() {
-
+            var x=x_offset;
+            var y=y_offset*(depth+1);
+            var depth=arr[0];
+            panel(x,y,one-depth);
+/*            for (pilC=0; pilC<forNo; pilC++){
+                depth=arr[pilC];
+                y=y_offset*(depth+1);    
+                panel(x,y,one-depth);
+                x=x+tom*one-depth+x_offset;
+            }*/
         }
+
+        function panel(x, y, w){
+            var red;
+            stroke(0,0,0);
+            strokeWeight(1);
+            var row = parseInt(random(tom))+1;console.log("row "+row);
+            var column = parseInt(random(waits))+1;console.log("col "+column);
+            red=random(42);
+            if (red<1){fill(0,100,100);}
+            else{
+                if(red<20){fill(220, 0, 0);}
+                else{fill(220,0,100);}
+            }
+            rect(row*one,column*one,w,w);
+/*
+            for (i=0;i<tom;i++){
+                for (j=0;j<waits;j++){
+                    red=random(42);
+                    if (red<1){fill(0,100,100);}
+                    else{
+                        if(red<20){fill(220, 0, 0);}
+                        else{fill(220,0,100);}
+                    }
+                    rect(x+j*w,y+i*w,w,w);
+                }
+            }*/
+        }
+
 
         function windowResized() {
             w = document.documentElement.clientWidth;//width of window that is available for drawing
