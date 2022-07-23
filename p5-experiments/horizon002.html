@@ -488,7 +488,7 @@
         }
 
         function carve(){
-            var pulse = Math.floor((sceneCounter - start001) / carve_ratio)//the more time passes the more squares
+            var pulse = Math.floor((sceneCounter - start006) / carve_ratio)//the more time passes the more squares
             particleRad=pulse/3*w/256;
             particleHue=120-5*pulse;
             if (particleHue<0){particleHue=360+particleHue}
@@ -550,6 +550,7 @@
         var x_offset;
         var y_offset;
         var arr = [];
+        var bw004_ratio;
 
         function initbw004() {
             background(0,0,0);
@@ -559,6 +560,7 @@
             one=16; //each pixel is 'one' wide
             tom=256; //the pillars have 'tom' layers of pixels
             waits=(w-(forNo+1)*x_offset)/(forNo*one); //the pillars have 'baldessari' columns of pixels
+            bw004_ratio=32;
             var max_depth=5;
             frameRate(32);
             arr.push(4);
@@ -572,7 +574,12 @@
             var x=x_offset;
             var y=y_offset*(depth+1);
             var depth=arr[0];
-            panel(x,y,one-depth);
+            var pulse = Math.floor((sceneCounter - start007) / bw004_ratio)+1;//the more time passes the more squares
+            console.log("pulse "+pulse)
+            for (cell=0;cell<pulse;cell++){
+                panel(x,y,one-depth);
+                console.log("cell in panel")
+            }
 /*            for (pilC=0; pilC<forNo; pilC++){
                 depth=arr[pilC];
                 y=y_offset*(depth+1);    
