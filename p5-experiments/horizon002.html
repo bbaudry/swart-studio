@@ -19,7 +19,6 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var sceneCounter;
-        var sceneLength = 11264; //2^14
         /* 7 movements of 1024 ot 4096 frames
         0001 : 1024   //1024 2^10
         1024 : 3072   //2048 2^11
@@ -43,6 +42,8 @@
         var end006 = 9216;//9216
         var start007 = 9216;//9216
         var end007 = 10240;//10240
+        var sceneLength = end007 + 64; //black screen for 64 frames before starting again
+
 
         //global vars for bw001
         var bw001_ratio;
