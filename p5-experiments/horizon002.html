@@ -19,7 +19,7 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var sceneCounter;
-        /* 7 movements of 1024 ot 4096 frames
+        /* 7 movements of 1024 or 2048 frames; at 16 frames per second, this piece is 10m36s.
         0001 : 1024   //1024 2^10
         1024 : 3072   //2048 2^11
         3072 : 4096   //1024 2^10
@@ -28,34 +28,23 @@
         7168 : 9216   //2048 2^11
         9216 : 10240  //1024 2^10
         */
-        var start001 = 1;//1;
-        var end001 = 1024;//1024;
-        var start002 = 1024;//1024;
-        var end002 = 3072;//3072;
-        var start003 = 3072;//3072;
-        var end003 = 4096;//4096;
-        var start004 = 4096;//4096
-        var end004 = 6144;//6144
-        var start005 = 6144;//6144
-        var end005 = 7168;//7168
-        var start006 = 7168;//7168
-        var end006 = 9216;//9216
-        var start007 = 9216;//9216
-        var end007 = 10240;//10240
+        var start001 = 1;
+        var end001 = 1024;
+        var start002 = 1024;
+        var end002 = 3072;
+        var start003 = 3072;
+        var end003 = 4096;
+        var start004 = 4096;
+        var end004 = 6144;
+        var start005 = 6144;
+        var end005 = 7168;
+        var start006 = 7168;
+        var end006 = 9216;
+        var start007 = 9216;
+        var end007 = 10240;
         var sceneLength = end007 + 64; //black screen for 64 frames before starting again
 
 
-        //global vars for bw001
-        var bw001_ratio;
-
-
-        //global vars for bw002
-        var bw002_x_inc = w / 42;
-        var bw002_y_inc;
-        var bw002_john = 0;
-        var bw002_baldessari = 0;
-        var bw002_ver = 0;
-        var bw002_hor = 0;
 
         function preload() {
             invites = loadStrings('data/guests.txt');
@@ -117,6 +106,10 @@
 
 
         //**[:] movement#1 [:]**//
+        //**[:] black back and white squares flash randomly; more and more squares as time passes [:]**//
+
+        //global vars for bw001
+        var bw001_ratio;
 
         function initbw001() {
             bw001_ratio = 32;
@@ -146,6 +139,9 @@
         }
 
         //**[:] movement#2 [:]**//
+        //**[:] the whole piece follows a slow pulse; first back color changes, then a circle grows and shrinks [:]**//
+        //**[:] in the last part, a black triangle randomly flashes [:]**//
+
         //global vars for colorPulse
         var colorPulse_hue;
         var colorPulse_bri;
@@ -233,6 +229,15 @@
         }
 
         //**[:] movement#3, inspired by SL008 [:]**//
+        //**[:] black back, lines of random white rectangles fall, then a radar pulse appears (inspired by ikeda) [:]**//
+
+        //global vars for bw002
+        var bw002_x_inc = w / 42;
+        var bw002_y_inc;
+        var bw002_john = 0;
+        var bw002_baldessari = 0;
+        var bw002_ver = 0;
+        var bw002_hor = 0;
 
         function initbw002() {
             bw002_x_inc = w / 42;
@@ -290,7 +295,9 @@
         }
 
         //**[:] movement#4 [:]**//
-
+        //**[:] dots randomly appear in a fixed matrix, larger as time passes [:]**//
+        //**[:] then lines, larger as time passes, then random black lines [:]**//
+        //**[:] colors change, growing and decreasing within a fixed range [:]**//
         //global vars for movement#4
         var colorStreetsCoords = [];
         var colorStreetsDotSize = w / 80;
@@ -389,6 +396,7 @@
             }
         }
         //**[:] movement#5, inspired by SL007 [:]**//
+        //**[:] black back, random white arcs on a random ray centered at (O,O), more rays at time passes [:]**//
         var bw003y_inc;
         var bw003x_inc;
 
@@ -470,6 +478,8 @@
         }
 
         //**[:] movement#6, inspired by SL004 [:]**//
+        //**[:] particles randomly appear, except in a fixed rectangle and triangle area [:]**//
+        //**[:] color and size of particles evolve as time pases [:]**//
 
         //global vars for movement#6
         var rectAx1, rectAx2, rectAy1, rectAy2; //rectAx1 < rectAx2 and rectAy1 < rectAy2
@@ -546,7 +556,7 @@
 
 
         //**[:] movement#7, inspired by Pillars001 [:]**//
-
+        //**[:] black back; white, black and few red squares appear randomly; then the list of guests randomly appears in the middle [:]**//
         //global vars for movement#7
         var tom;//number of rows on each pillar
         var waits;//number of columns on each pillar
@@ -554,7 +564,7 @@
         var one;//max size a 'pixel' on a pillar
         var x_offset;
         var y_offset;
-        var arr = [];
+        var depth;
         var bw004_ratio;
         var guestCount;
 
@@ -570,13 +580,12 @@
             waits=(w-(forNo+1)*x_offset)/(forNo*one); //the pillars have 'baldessari' columns of pixels
             bw004_ratio=8;
             guestCount=0;
-            arr.push(4);
+            depth=4;
         }
 
         function bw004() {
             var x=x_offset;
             var y=y_offset*(depth+1);
-            var depth=arr[0];
             var pulse = Math.floor((sceneCounter - start007) / bw004_ratio)+1;//the more time passes the more squares
             for (cell=0;cell<pulse;cell++){
                 panel(x,y,one-depth);
