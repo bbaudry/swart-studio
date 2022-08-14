@@ -17,14 +17,14 @@ public class Stervilin003 extends PApplet {
   @Override
   public void setup() {
     colorMode(HSB,360,100,100);
+    background(230,10,100);
     frameRate(5);
   }
 
   @Override
   public void draw() {
-    background(230,10,100);
-    float x1=0;// = random(w/200);
-    float y1=0;// = random(h/200);
+    float x1=0;
+    float y1=0;
     for (int i=0;i<steps;i++){
       for (int j=0;j<steps;j++){
         leaf(x1+random(w/20),y1+random(h/20));
@@ -42,7 +42,7 @@ public class Stervilin003 extends PApplet {
     float x3 = x1+random(w/20);
     float y3 = y2+random(2*h/steps);
     noStroke();
-    fill(0,0,random(60,90));
+    fill(0,0,random(60,90),random(250));
     triangle(x1, y1, x2, y2, x3, y3);
   }
 
