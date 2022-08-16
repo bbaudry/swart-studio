@@ -19,7 +19,7 @@ public class HamburgHbF extends PApplet {
   @Override
   public void setup() {
     colorMode(HSB,360,100,100);
-    frameRate(1);
+    frameRate(17);
     background(220,100,35);
   }
 
