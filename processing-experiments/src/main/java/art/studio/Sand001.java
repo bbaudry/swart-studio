@@ -22,7 +22,6 @@ public class Sand001 extends PApplet {
     colorMode(HSB,360,100,100);
     x=0;
     y=0;
-    frameRate(17);
     background(220,100,35);
   }
 
@@ -31,13 +30,13 @@ public class Sand001 extends PApplet {
     if (x<w){
       float wi = random(11);
       float he = random(11);
-      rect(x,y,wi,he);
+      rect(x+random(-2,2),y+random(-2,2),wi,he);
       x=x+wi;
     }
     else{
       if (y<h){
         x=0;
-        y=y+random(11);
+        y=y+random(7,19);
       }
       else{
         exit();
