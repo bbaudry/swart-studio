@@ -32,7 +32,7 @@ public class SL018 extends PApplet {
   
 
    public static void main(String[] args) {
-    String[] processingArgs = { "Wright005" };
+    String[] processingArgs = { "SL018" };
     SL018 mySketch = new SL018();
     PApplet.runSketch(processingArgs, mySketch);
   }
