@@ -62,13 +62,13 @@ public class BasicOps extends PApplet {
     float x1,x2,y1,y2,px,py;
     x1=10;x2=w-10;y1=y;y2=y-90;
     stroke(30,100,100);
-    strokeWeight(5);
+    strokeWeight(4);
     line(x1,y1,x2,y2);
     float t=random(1);
     px = (1 - t) * x1 + (t * x2);
     py = (1 - t) * y1 + (t * y2);
     fill(110,100,100);noStroke();
-    ellipse(px,py,11,11);
+    ellipse(px,py,13,13);
 
     y=y+asciioffset;
     comment = rAA(21);
@@ -84,19 +84,26 @@ public class BasicOps extends PApplet {
     y=y+testoffset;
     x1=500;y1=y-testoffset/2;
     stroke(30,100,100);
-    strokeWeight(5);
+    strokeWeight(4);
     noFill();
     float rad=90;
     ellipse(x1,y1,rad,rad);
     px=x1 + rad/2 * cos(PI/17);
     py=y1 + rad/2 * sin(PI/17);
     fill(110,100,100);noStroke();
-    ellipse(px,py,11,11);
+    ellipse(px,py,13,13);
 
-
+    y=y+asciioffset;
+    comment = rAA(21);
+    fill(50,100,100);
+    text(comment+"><"+revert(comment), 10, y);
     
     //save and serialize the random numbers that have been generated
-    
+    y=y+asciioffset;
+    fill(110,0,100);
+    comment = "save and serialize the random numbers that have been generated";
+    text(comment, 10, y);
+
   }
 
   char[] symb = {'*',':','.','°'};
