@@ -4,7 +4,10 @@ package art.studio;
 import processing.core.PApplet;
 import java.util.Random;
 import processing.core.PFont;
+import java.util.ArrayList;
+import java.util.Iterator;
 
+import art.Knob;
 
 public class BasicOps extends PApplet {
   int w = 1000;//1920;
@@ -16,6 +19,7 @@ public class BasicOps extends PApplet {
   int asciioffset = 30;
   int testoffset = 140;
   String comment;
+  int fSize=17;
 
   @Override
   public void settings() {
@@ -35,12 +39,12 @@ public class BasicOps extends PApplet {
   public void draw() {
     
     //write text
-    int fSize=17;
+    
     PFont f = createFont("FreeMono", fSize, true);
     textFont(f);
     comment = rAA(21);
     fill(50,100,100);
-    text(comment+"><"+revert(comment), 10, y);
+    text(comment+"><"+revert(comment), 252, y);
 
     y=y+asciioffset;
     fill(50,0,100);
@@ -50,7 +54,7 @@ public class BasicOps extends PApplet {
     y=y+testoffset;
     comment = rAA(21);
     fill(50,100,100);
-    text(comment+"><"+revert(comment), 10, y);
+    text(comment+"><"+revert(comment), 252, y);
 
     //determine the coordinates of a point along a segment between (x1,y1) and (x2,y2)
     y=y+asciioffset;
@@ -73,7 +77,7 @@ public class BasicOps extends PApplet {
     y=y+asciioffset;
     comment = rAA(21);
     fill(50,100,100);
-    text(comment+"><"+revert(comment), 10,y);
+    text(comment+"><"+revert(comment), 252,y);
 
     //determine the coordinates of a point on a circle centered on (cx,cy) and of radius rad
     y=y+asciioffset;
@@ -82,21 +86,22 @@ public class BasicOps extends PApplet {
     text(comment, 10, y);
 
     y=y+testoffset;
-    x1=500;y1=y-testoffset/2;
+    float cx=500;float cy=y-testoffset/2;
     stroke(30,100,100);
     strokeWeight(4);
     noFill();
     float rad=90;
-    ellipse(x1,y1,rad,rad);
-    px=x1 + rad/2 * cos(PI/17);
-    py=y1 + rad/2 * sin(PI/17);
+    ellipse(cx,cy,rad,rad);
+    float angle = PI*random(2);
+    float pcx=cx + rad/2 * cos(angle);
+    float pcy=cy + rad/2 * sin(angle);
     fill(110,100,100);noStroke();
-    ellipse(px,py,13,13);
+    ellipse(pcx,pcy,13,13);
 
     y=y+asciioffset;
     comment = rAA(21);
     fill(50,100,100);
-    text(comment+"><"+revert(comment), 10, y);
+    text(comment+"><"+revert(comment), 252, y);
     
     //save and serialize the random numbers that have been generated
     y=y+asciioffset;
@@ -104,6 +109,20 @@ public class BasicOps extends PApplet {
     comment = "save and serialize the random numbers that have been generated";
     text(comment, 10, y);
 
+    //x1,y1,x2,y2,px,py,pcx,pcy,cx,cy,angle
+    ArrayList<Knob> knobs = new ArrayList<>();
+    knobs.add(new Knob(x1,true));
+    knobs.add(new Knob(y1,true));
+    knobs.add(new Knob(x2,true));
+    knobs.add(new Knob(y2,true));
+    knobs.add(new Knob(px,true));
+    knobs.add(new Knob(py,true));
+    knobs.add(new Knob(pcx,true));
+    knobs.add(new Knob(pcy,true));
+    knobs.add(new Knob(cx,true));
+    knobs.add(new Knob(cy,true));
+    knobs.add(new Knob(angle,true));
+    displayKnobs(knobs,10,y+asciioffset);
   }
 
   char[] symb = {'*',':','.','°'};
@@ -117,6 +136,7 @@ public class BasicOps extends PApplet {
     }
     return r;
   }
+
   private String revert(String str){
     String r="";
     char[] ch = str.toCharArray();
@@ -125,6 +145,16 @@ public class BasicOps extends PApplet {
     }
     return r;
   }
+
+  private void displayKnobs(ArrayList<Knob> knobs, float x, float y){
+    int l = knobs.size();
+    Iterator i = knobs.iterator();
+    while(i.hasNext()){
+      Knob k = (Knob) i.next();
+      
+    }
+  }
+
    public static void main(String[] args) {
     String[] processingArgs = { "BasicOps" };
     BasicOps mySketch = new BasicOps();
