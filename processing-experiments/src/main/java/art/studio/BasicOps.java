@@ -3,10 +3,13 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.Random;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import processing.core.PFont;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import art.Knob;
 
 public class BasicOps extends PApplet {
@@ -109,7 +112,10 @@ public class BasicOps extends PApplet {
     comment = "save and serialize the random numbers that have been generated";
     text(comment, 10, y);
 
-    //x1,y1,x2,y2,px,py,pcx,pcy,cx,cy,angle
+    /* x1,y1,x2,y2,px,py,pcx,pcy,cx,cy,angle
+    /* import org.json.simple.*;
+    /* import art.Knob;
+    */
     ArrayList<Knob> knobs = new ArrayList<>();
     knobs.add(new Knob(x1,true));
     knobs.add(new Knob(y1,true));
@@ -123,6 +129,9 @@ public class BasicOps extends PApplet {
     knobs.add(new Knob(cy,true));
     knobs.add(new Knob(angle,true));
     displayKnobs(knobs,10,y+asciioffset);
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    String jsonOutput = gson.toJson(knobs);
+    System.out.println(jsonOutput);
   }
 
   char[] symb = {'*',':','.','°'};
