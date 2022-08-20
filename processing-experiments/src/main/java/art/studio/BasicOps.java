@@ -147,11 +147,15 @@ public class BasicOps extends PApplet {
   }
 
   private void displayKnobs(ArrayList<Knob> knobs, float x, float y){
-    int l = knobs.size();
-    Iterator i = knobs.iterator();
+    fill(30,100,100);
+    float lx=x;
+    float ly=y;
+    Iterator<Knob> i = knobs.iterator();
     while(i.hasNext()){
-      Knob k = (Knob) i.next();
-      
+      Knob k = i.next();
+      text(k.getValueN(), lx, ly);
+      if (lx<w-10+5*fSize){lx=lx+5*fSize;}
+      else {lx=10;ly=ly+fSize;}
     }
   }
 
