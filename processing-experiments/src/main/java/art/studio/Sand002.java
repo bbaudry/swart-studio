@@ -65,7 +65,7 @@ public class Sand002 extends PApplet {
       //split the square into four
       //add the four coordinates into the experience array
       float s=john[2]/2;
-      if(s>w/1500){
+      if(s>1){
         Float[] no = { john[0], john[1], s };
         Float[] more = { john[0] + s, john[1], s };
         Float[] boring = { john[0], john[1] + s, s };
