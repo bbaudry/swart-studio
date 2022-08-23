@@ -4,13 +4,13 @@ package art.studio;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Sand002 extends PApplet {
-  int w = 1000;//1920;
-  int h = 1000;//1080;
+  int w = 3000;//1920;
+  int h = 3000;//1080;
   int steps = 10;
+  int hu = 30;
   Random alea = new Random();
   float x;
   float y;
@@ -34,41 +34,47 @@ public class Sand002 extends PApplet {
 
   @Override
   public void draw() {
-    int tic = baldessari.size();System.out.println("draw "+tic+" elements");
-    for (int i=0; i<=tic; i++){
+    hu=hu+5;
+    ArrayList<Float[]> whatTHEN = new ArrayList<>(); //array to store intermdiate values for coordinates of smaller squares
+    int tall = baldessari.size(); 
+    for (int i=0; i<tall; i++){
       Float[] glow = baldessari.get(i);
-      dig(glow);
-      baldessari.remove(i);
+      dig(glow,whatTHEN);
     }
+    baldessari.clear(); // remove all coordinates that have been managed
+    baldessari.addAll(whatTHEN); // add all the coordinates that have been generated in the dig method
     if (baldessari.size()==0){
-      Float[] c = {(float)0,(float)0,(float)w};
-      baldessari.add(c);
+      save("Sand002.png");
+      exit();
     }
   }
   
-  private void dig(Float[] john){
-    System.out.println("dig");
-    stroke(0,0,100);
-    strokeWeight(5);
+  /* Method receives an array that consists of coordinates (john[0],john[1]), and a width john[2]
+   * Flip a coin:
+   * - if true, draw a square at coordinates, which sides are of size 'width'
+   * - if false, split width into 2, save the coordinates of the four squares and store them into the array experience
+  */
+  private void dig(Float[] john, ArrayList<Float[]> experience){
+    noStroke();
     if (alea.nextBoolean()){
-      fill(30,100,100);
+      fill(hu,100,100);
       float s=john[2];
       rect(john[0],john[1],s,s);
     }
     else{
-      //remove john from baldessari
       //split the square into four
-      //add the four coordinates into baldessari
-      noFill();
+      //add the four coordinates into the experience array
       float s=john[2]/2;
-      Float[] no = {john[0],john[1],s};rect(john[0],john[1],s,s);
-      Float[] more = {john[0]+s,john[1],s};rect(john[0]+s,john[1],s,s);
-      Float[] boring = {john[0],john[1]+s,s};rect(john[0],john[1]+s,s,s);
-      Float[] code = {john[0]+s,john[1]+s,s};rect(john[0]+s,john[1]+s,s,s);
-      baldessari.add(no);
-      baldessari.add(more);
-      baldessari.add(boring);
-      baldessari.add(code);
+      if(s>w/1500){
+        Float[] no = { john[0], john[1], s };
+        Float[] more = { john[0] + s, john[1], s };
+        Float[] boring = { john[0], john[1] + s, s };
+        Float[] code = { john[0] + s, john[1] + s, s };
+        experience.add(no);
+        experience.add(more);
+        experience.add(boring);
+        experience.add(code);
+      }
     }
   }
 
