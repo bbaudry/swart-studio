@@ -11,6 +11,7 @@ public class Sand003 extends PApplet {
   int h = 3000;//1080;
   int steps = 10;
   int hu;
+  int sa=100;
   int[] rain = {10,30,50,70,90,110};
   Random alea = new Random();
   float x;
@@ -53,7 +54,8 @@ public class Sand003 extends PApplet {
       save("Sand003.png");
       exit();
     }
-    hu=hu+5;
+    //hu=hu+2;
+    sa=sa-10;
   }
   
   /* Method receives an array that consists of coordinates (john[0],john[1]), and a width john[2]
@@ -64,7 +66,7 @@ public class Sand003 extends PApplet {
   private void dig(Float[] john, ArrayList<Float[]> experience){
     noStroke();
     if (alea.nextBoolean()){
-      fill(hu,100,100);
+      fill(hu,sa,100);
       float s=john[2];
       rect(john[0],john[1],s,s);
     }
