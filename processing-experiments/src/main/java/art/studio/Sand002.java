@@ -1,4 +1,4 @@
-/* Metadata {"endless":true, "BW": true, "knobs": false, "data": false, "interaction": false}*/
+/* Metadata {"endless":false, "BW": false, "knobs": false, "data": false, "interaction": false}*/
 package art.studio;
 
 import processing.core.PApplet;
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Sand002 extends PApplet {
+/* This piece assumes a square canvas */
   int w = 3000;//1920;
   int h = 3000;//1080;
   int steps = 10;

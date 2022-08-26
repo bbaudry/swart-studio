@@ -1,4 +1,5 @@
-/* Metadata {"endless":true, "BW": true, "knobs": false, "data": false, "interaction": false}*/
+/* Metadata {"endless":false, "BW": false, "knobs": false, "data": false, "interaction": false}*/
+
 package art.studio;
 
 import processing.core.PApplet;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Sand003 extends PApplet {
+/* This piece assumes a square canvas */
   int w = 3000;//1920;
   int h = 3000;//1080;
   int steps = 10;
@@ -66,11 +68,13 @@ public class Sand003 extends PApplet {
   private void dig(Float[] john, ArrayList<Float[]> experience){
     noStroke();
     if (alea.nextBoolean()){
+        sa=alea.nextInt(100);
       fill(hu,sa,100);
       float s=john[2];
       rect(john[0],john[1],s,s);
     }
     else{
+        if(alea.nextBoolean()){
       //split the square into four
       //add the four coordinates into the experience array
       float s=john[2]/2;
@@ -84,6 +88,31 @@ public class Sand003 extends PApplet {
         experience.add(boring);
         experience.add(code);
       }
+    }
+    else{
+        float s=john[2]/3;
+        if(s>1){
+          Float[] no = { john[0], john[1], s };
+          Float[] more = { john[0] + s, john[1], s };
+          Float[] more_more = { john[0] + 2*s, john[1], s };
+          Float[] boring = { john[0], john[1] + s, s };
+          Float[] boring_more = { john[0]+s, john[1] + s, s };
+          Float[] boring_more_more = { john[0]+2*s, john[1] + s, s };
+          Float[] code = { john[0] , john[1] + 2*s, s };
+          Float[] code_more = { john[0] + s, john[1] + 2*s, s };
+          Float[] code_more_more = { john[0] + 2*s, john[1] + 2*s, s };
+          experience.add(no);
+          experience.add(more);
+          experience.add(more_more);
+          experience.add(boring);
+          experience.add(boring_more);
+          experience.add(boring_more_more);
+          experience.add(code);
+          experience.add(code_more);
+          experience.add(code_more_more);
+        }
+  
+    }
     }
   }
 
