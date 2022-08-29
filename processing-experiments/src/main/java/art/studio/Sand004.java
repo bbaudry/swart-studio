@@ -30,10 +30,10 @@ public class Sand004 extends PApplet {
     colorMode(HSB,360,100,100);
     hu = rain[alea.nextInt(rain.length-1)];    
     float s=w/2;
-    Float[] no = { (float)0, (float)h/2, s };
-    Float[] more = {  s, (float)0, s };
-    Float[] boring = { (float)0, s, s };
-    Float[] code = { s, s, s };
+    Float[] no = { (float)0, s };
+    Float[] more = {  s, (float)0 };
+    Float[] boring = {2*s, s };
+    Float[] code = { s, 2*s };
     baldessari.add(no);
     baldessari.add(more);
     baldessari.add(boring);
@@ -45,19 +45,31 @@ public class Sand004 extends PApplet {
   @Override
   public void draw() {
     fill(30,100,100);   
-    float s = w/2;
-    float t = (float)0.5;
-    float x1 = 0;
-    float y1 = s;
-    float x2 = s;
-    float y2 = 0; 
-    quad(x1,y1,x2,y2,2*s,s,s,2*s);
-    float px = (1-t) * x1 + (t * x2);
-    float py = (1-t) * y1 + (t * y2);
-    fill(0,0,100);
-    ellipse(px,py,10,10);
-  //  save("Sand004.png");
+    float x1 = baldessari.get(0)[0];
+    float y1 = baldessari.get(0)[1];
+    float x2 = baldessari.get(1)[0];
+    float y2 = baldessari.get(1)[1]; 
+    quad(x1,y1,x2,y2,baldessari.get(2)[0],baldessari.get(2)[1],baldessari.get(3)[0],baldessari.get(3)[1]);
+    prep();
+    noLoop();
+    //  save("Sand004.png");
   //  exit();
+  }
+
+  private void prep(){
+    float t = (float)0.5;
+    float x1,y1,x2,y2;
+    for (int i=0;i<baldessari.size()-1;i++){
+      int ind = i%4;
+      x1=baldessari.get(ind)[0];
+      y1=baldessari.get(ind)[1];
+      x2=baldessari.get(ind+1)[0];
+      y2=baldessari.get(ind+1)[1];
+      float px = (1-t) * x1 + (t * x2);
+      float py = (1-t) * y1 + (t * y2);
+      fill(0,0,100);
+      ellipse(px,py,10,10);
+    }
   }
   
   /* Method receives an array that consists of coordinates (john[0],john[1]), and a width john[2]
