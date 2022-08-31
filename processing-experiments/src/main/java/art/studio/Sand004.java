@@ -58,15 +58,23 @@ public class Sand004 extends PApplet {
 
   private void prep(){
     float t = (float)0.5;
-    float x1,y1,x2,y2;
-    for (int i=0;i<baldessari.size()-1;i++){
-      int ind = i%4;
-      x1=baldessari.get(ind)[0];
-      y1=baldessari.get(ind)[1];
-      x2=baldessari.get(ind+1)[0];
-      y2=baldessari.get(ind+1)[1];
+    float x1,y1,x2,y2,x3,y3,x4,y4;
+    for (int i=0;i<baldessari.size();i++){
+      int ind1 = i%4; 
+      int ind2 = (i+1)%4;
+      x1=baldessari.get(ind1)[0];
+      y1=baldessari.get(ind1)[1];
+      x2=baldessari.get(ind2)[0];
+      y2=baldessari.get(ind2)[1];
       float px = (1-t) * x1 + (t * x2);
       float py = (1-t) * y1 + (t * y2);
+      if(x2>x1){x3=x2+(x2-x1);x4=x2;}
+      else{x3=x1+(x1-x2);x4=x1;}
+      if(y2>y1){y3=y2+(y2-y1);y4=y2;}
+      else{y3=y1+(y1-y2);y4=y1;}
+      stroke(0,0,100);
+      fill(50,100,100);
+      quad(x1, y1, x2, y2, x3, y3, x4, y4);
       fill(0,0,100);
       ellipse(px,py,10,10);
     }
