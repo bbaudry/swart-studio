@@ -68,15 +68,25 @@ public class Sand004 extends PApplet {
       y2=baldessari.get(ind2)[1];
       float px = (1-t) * x1 + (t * x2);
       float py = (1-t) * y1 + (t * y2);
-      if(x2>x1){x3=x2+(x2-x1);x4=x2;}
-      else{x3=x1+(x1-x2);x4=x1;}
-      if(y2>y1){y3=y2+(y2-y1);y4=y2;}
-      else{y3=y1+(y1-y2);y4=y1;}
-      stroke(0,0,100);
-      fill(50,100,100);
-      quad(x1, y1, x2, y2, x3, y3, x4, y4);
-      fill(0,0,100);
-      ellipse(px,py,10,10);
+      if(px>x1){
+        if(py<y1){x3=px+(px-x1);x4=px;y4=y1+(y1-py);y3=y1;}
+        else {x4=x1-(px-x1);x3=x1;y3=py+(py-y1);y4=py;}
+      }
+      else{
+        if(py>y1){x3=px-(x1-px);x4=px;y4=y1-(py-y1);y3=y1;}
+        else{x4=x1+(x1-px);x3=x1;y3=py-(y1-py);y4=py;}
+      }
+      //stroke(0,0,100);
+      //fill(50,100,100);
+      //quad(x1, y1, x2, y2, x3, y3, x4, y4);
+      fill(50,0,100);
+      //ellipse(px,py,30,30);
+      fill(i*80,100,100);
+      quad(x1, y1, px, py, x3, y3, x4, y4);
+      ellipse(x1,y1,20,20);
+      ellipse(px,py,20,20);
+      ellipse(x3,y3,20,20);
+      ellipse(x4,y4,20,20);
     }
   }
   
