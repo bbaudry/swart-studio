@@ -21,7 +21,6 @@ public class Sand004 extends PApplet {
   float x;
   float y;
   ArrayList<Float[]> baldessari = new ArrayList<>();
-  Iterator<Float[]> tomwaits;
 
   @Override
   public void settings() {
@@ -48,9 +47,8 @@ public class Sand004 extends PApplet {
     float y4 = baldessari.get(0)[7]; 
     quad(x1, y1, x2, y2, x3, y3, x4, y4);
     kid=1;
-    tomwaits = baldessari.iterator();
     hu=0;
-    prep();
+    prep(baldessari.get(0));
   }
 
   @Override
@@ -76,14 +74,13 @@ public class Sand004 extends PApplet {
   //  exit();
   }
 
-  private void prep(){
+  private void prep(Float[] tomwaits){
     float t = (float)0.5;
     float x1,y1,x2,y2,x3,y3,x4,y4,px,py;
-    
-      x1=baldessari.get(0)[0];
-      y1=baldessari.get(0)[1];
-      x2=baldessari.get(0)[2];
-      y2=baldessari.get(0)[3];
+      x1=tomwaits[0];
+      y1=tomwaits[1];
+      x2=tomwaits[2];
+      y2=tomwaits[3];
       px = (1-t) * x1 + (t * x2);
       py = (1-t) * y1 + (t * y2);
       if(px>x1){
@@ -95,12 +92,17 @@ public class Sand004 extends PApplet {
         else{x4=x1+(x1-px);x3=x1;y3=py-(y1-py);y4=py;}
       }
       Float[] silver = {x1, y1, px, py, x3, y3, x4, y4};
-
+      if(alea.nextBoolean()){
       baldessari.add(silver);
-      x1=baldessari.get(0)[2];
-      y1=baldessari.get(0)[3];
-      x2=baldessari.get(0)[4];
-      y2=baldessari.get(0)[5];
+    }
+    else{
+      prep(silver);
+    }
+
+      x1=tomwaits[2];
+      y1=tomwaits[3];
+      x2=tomwaits[4];
+      y2=tomwaits[5];
       px = (1-t) * x1 + (t * x2);
       py = (1-t) * y1 + (t * y2);
       if(px>x1){
@@ -114,7 +116,41 @@ public class Sand004 extends PApplet {
       Float[] gilded = {x1, y1, px, py, x3, y3, x4, y4};
       baldessari.add(gilded);
  
-  }
+      x1=tomwaits[4];
+      y1=tomwaits[5];
+      x2=tomwaits[6];
+      y2=tomwaits[7];
+      px = (1-t) * x1 + (t * x2);
+      py = (1-t) * y1 + (t * y2);
+      if(px>x1){
+        if(py<y1){x3=px+(px-x1);x4=px;y4=y1+(y1-py);y3=y1;}
+        else {x4=x1-(px-x1);x3=x1;y3=py+(py-y1);y4=py;}
+      }
+      else{
+        if(py>y1){x3=px-(x1-px);x4=px;y4=y1-(py-y1);y3=y1;}
+        else{x4=x1+(x1-px);x3=x1;y3=py-(y1-py);y4=py;}
+      }
+      Float[] ruby = {x1, y1, px, py, x3, y3, x4, y4};
+      baldessari.add(ruby);
+
+      x1=tomwaits[6];
+      y1=tomwaits[7];
+      x2=tomwaits[0];
+      y2=tomwaits[1];
+      px = (1-t) * x1 + (t * x2);
+      py = (1-t) * y1 + (t * y2);
+      if(px>x1){
+        if(py<y1){x3=px+(px-x1);x4=px;y4=y1+(y1-py);y3=y1;}
+        else {x4=x1-(px-x1);x3=x1;y3=py+(py-y1);y4=py;}
+      }
+      else{
+        if(py>y1){x3=px-(x1-px);x4=px;y4=y1-(py-y1);y3=y1;}
+        else{x4=x1+(x1-px);x3=x1;y3=py-(y1-py);y4=py;}
+      }
+      Float[] oak = {x1, y1, px, py, x3, y3, x4, y4};
+      baldessari.add(oak);
+    
+    }
   
   /* Method receives an array that consists of coordinates (john[0],john[1]), and a width john[2]
    * Flip a coin:
