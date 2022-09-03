@@ -45,7 +45,7 @@ public class Sand004 extends PApplet {
     float y3 = baldessari.get(0)[5];
     float x4 = baldessari.get(0)[6];
     float y4 = baldessari.get(0)[7];
-    quad(x1, y1, x2, y2, x3, y3, x4, y4);
+    //quad(x1, y1, x2, y2, x3, y3, x4, y4);
     kid = 1;
     hu = 0;
     prep(baldessari.get(0),0);
@@ -152,7 +152,7 @@ public class Sand004 extends PApplet {
     Float[] gilded = { x1, y1, px, py, x3, y3, x4, y4 };
     if (side > 1) {
       if (alea.nextBoolean()) {
-        baldessari.add(silver);System.out.println("add tomwaits coordinates at "+depth);
+        baldessari.add(gilded);System.out.println("add tomwaits coordinates at "+depth);
       } else {
         prep(gilded,depth+1);
       }
@@ -192,7 +192,7 @@ public class Sand004 extends PApplet {
     Float[] ruby = { x1, y1, px, py, x3, y3, x4, y4 };
     if (side > 1) {
       if (alea.nextBoolean()) {
-        baldessari.add(silver);System.out.println("add tomwaits coordinates at "+depth);
+        baldessari.add(ruby);System.out.println("add tomwaits coordinates at "+depth);
       } else {
         prep(ruby,depth+1);
       }
@@ -232,7 +232,7 @@ public class Sand004 extends PApplet {
     Float[] oak = { x1, y1, px, py, x3, y3, x4, y4 };
     if (side > 1) {
       if (alea.nextBoolean()) {
-        baldessari.add(silver);System.out.println("add tomwaits coordinates at "+depth);
+        baldessari.add(oak);System.out.println("add tomwaits coordinates at "+depth);
       } else {
         prep(oak,depth+1);
       }
