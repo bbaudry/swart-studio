@@ -45,27 +45,17 @@ public class Sand004 extends PApplet {
     float y3 = baldessari.get(0)[5];
     float x4 = baldessari.get(0)[6];
     float y4 = baldessari.get(0)[7];
-    //quad(x1, y1, x2, y2, x3, y3, x4, y4);
-    kid = 1;
+    // quad(x1, y1, x2, y2, x3, y3, x4, y4);
+    kid = 0;
     hu = 0;
-    prep(baldessari.get(0),0);
   }
 
   @Override
   public void draw() {
     if (kid < baldessari.size()) {
-      System.out.println("one square"+frameCount);
+      System.out.println("one square " + frameCount);
       Float[] eyeball = baldessari.get(kid);
-      float x1 = eyeball[0];
-      float y1 = eyeball[1];
-      float x2 = eyeball[2];
-      float y2 = eyeball[3];
-      float x3 = eyeball[4];
-      float y3 = eyeball[5];
-      float x4 = eyeball[6];
-      float y4 = eyeball[7];
-      fill(hu, 100, 100);
-      quad(x1, y1, x2, y2, x3, y3, x4, y4);
+      prep(eyeball,0);
       hu = (hu + 90) % 360;
       kid++;
     }
@@ -81,161 +71,156 @@ public class Sand004 extends PApplet {
     y1 = tomwaits[1];
     x2 = tomwaits[2];
     y2 = tomwaits[3];
-    px = (1 - t) * x1 + (t * x2);
-    py = (1 - t) * y1 + (t * y2);
-    float side = x2-x1;
-    if (px > x1) {
-      if (py < y1) {
-        x3 = px + (px - x1);
-        x4 = px;
-        y4 = y1 + (y1 - py);
-        y3 = y1;
-      } else {
-        x4 = x1 - (px - x1);
-        x3 = x1;
-        y3 = py + (py - y1);
-        y4 = py;
-      }
-    } else {
-      if (py > y1) {
-        x3 = px - (x1 - px);
-        x4 = px;
-        y4 = y1 - (py - y1);
-        y3 = y1;
-      } else {
-        x4 = x1 + (x1 - px);
-        x3 = x1;
-        y3 = py - (y1 - py);
-        y4 = py;
-      }
-    }
-    Float[] silver = { x1, y1, px, py, x3, y3, x4, y4 };
+    x3 = tomwaits[4];
+    y3 = tomwaits[5];
+    x4 = tomwaits[6];
+    y4 = tomwaits[7];
+    float side = x2 - x1;
     if (side > 1) {
       if (alea.nextBoolean()) {
-        baldessari.add(silver); System.out.println("add tomwaits coordinates at "+depth);
+        System.out.println("one square true");
+        fill(hu, 100, 100);
+        quad(x1, y1, x2, y2, x3, y3, x4, y4);
       } else {
-        prep(silver,depth+1);
-      }
-    }
+        px = (1 - t) * x1 + (t * x2);
+        py = (1 - t) * y1 + (t * y2);
+        if (px > x1) {
+          if (py < y1) {
+            x3 = px + (px - x1);
+            x4 = px;
+            y4 = y1 + (y1 - py);
+            y3 = y1;
+          } else {
+            x4 = x1 - (px - x1);
+            x3 = x1;
+            y3 = py + (py - y1);
+            y4 = py;
+          }
+        } else {
+          if (py > y1) {
+            x3 = px - (x1 - px);
+            x4 = px;
+            y4 = y1 - (py - y1);
+            y3 = y1;
+          } else {
+            x4 = x1 + (x1 - px);
+            x3 = x1;
+            y3 = py - (y1 - py);
+            y4 = py;
+          }
+        }
+        Float[] silver = { x1, y1, px, py, x3, y3, x4, y4 };
+        baldessari.add(silver);
+        System.out.println("add tomwaits coordinates at " + depth);
 
-    x1 = tomwaits[2];
-    y1 = tomwaits[3];
-    x2 = tomwaits[4];
-    y2 = tomwaits[5];
-    px = (1 - t) * x1 + (t * x2);
-    py = (1 - t) * y1 + (t * y2);
-    if (px > x1) {
-      if (py < y1) {
-        x3 = px + (px - x1);
-        x4 = px;
-        y4 = y1 + (y1 - py);
-        y3 = y1;
-      } else {
-        x4 = x1 - (px - x1);
-        x3 = x1;
-        y3 = py + (py - y1);
-        y4 = py;
-      }
-    } else {
-      if (py > y1) {
-        x3 = px - (x1 - px);
-        x4 = px;
-        y4 = y1 - (py - y1);
-        y3 = y1;
-      } else {
-        x4 = x1 + (x1 - px);
-        x3 = x1;
-        y3 = py - (y1 - py);
-        y4 = py;
-      }
-    }
-    Float[] gilded = { x1, y1, px, py, x3, y3, x4, y4 };
-    if (side > 1) {
-      if (alea.nextBoolean()) {
-        baldessari.add(gilded);System.out.println("add tomwaits coordinates at "+depth);
-      } else {
-        prep(gilded,depth+1);
-      }
-    }
+        x1 = tomwaits[2];
+        y1 = tomwaits[3];
+        x2 = tomwaits[4];
+        y2 = tomwaits[5];
+        px = (1 - t) * x1 + (t * x2);
+        py = (1 - t) * y1 + (t * y2);
+        if (px > x1) {
+          if (py < y1) {
+            x3 = px + (px - x1);
+            x4 = px;
+            y4 = y1 + (y1 - py);
+            y3 = y1;
+          } else {
+            x4 = x1 - (px - x1);
+            x3 = x1;
+            y3 = py + (py - y1);
+            y4 = py;
+          }
+        } else {
+          if (py > y1) {
+            x3 = px - (x1 - px);
+            x4 = px;
+            y4 = y1 - (py - y1);
+            y3 = y1;
+          } else {
+            x4 = x1 + (x1 - px);
+            x3 = x1;
+            y3 = py - (y1 - py);
+            y4 = py;
+          }
+        }
+        Float[] gilded = { x1, y1, px, py, x3, y3, x4, y4 };
+        baldessari.add(gilded);
+        System.out.println("add tomwaits coordinates at " + depth);
 
-    x1 = tomwaits[4];
-    y1 = tomwaits[5];
-    x2 = tomwaits[6];
-    y2 = tomwaits[7];
-    px = (1 - t) * x1 + (t * x2);
-    py = (1 - t) * y1 + (t * y2);
-    if (px > x1) {
-      if (py < y1) {
-        x3 = px + (px - x1);
-        x4 = px;
-        y4 = y1 + (y1 - py);
-        y3 = y1;
-      } else {
-        x4 = x1 - (px - x1);
-        x3 = x1;
-        y3 = py + (py - y1);
-        y4 = py;
-      }
-    } else {
-      if (py > y1) {
-        x3 = px - (x1 - px);
-        x4 = px;
-        y4 = y1 - (py - y1);
-        y3 = y1;
-      } else {
-        x4 = x1 + (x1 - px);
-        x3 = x1;
-        y3 = py - (y1 - py);
-        y4 = py;
-      }
-    }
-    Float[] ruby = { x1, y1, px, py, x3, y3, x4, y4 };
-    if (side > 1) {
-      if (alea.nextBoolean()) {
-        baldessari.add(ruby);System.out.println("add tomwaits coordinates at "+depth);
-      } else {
-        prep(ruby,depth+1);
-      }
-    }
+        x1 = tomwaits[4];
+        y1 = tomwaits[5];
+        x2 = tomwaits[6];
+        y2 = tomwaits[7];
+        px = (1 - t) * x1 + (t * x2);
+        py = (1 - t) * y1 + (t * y2);
+        if (px > x1) {
+          if (py < y1) {
+            x3 = px + (px - x1);
+            x4 = px;
+            y4 = y1 + (y1 - py);
+            y3 = y1;
+          } else {
+            x4 = x1 - (px - x1);
+            x3 = x1;
+            y3 = py + (py - y1);
+            y4 = py;
+          }
+        } else {
+          if (py > y1) {
+            x3 = px - (x1 - px);
+            x4 = px;
+            y4 = y1 - (py - y1);
+            y3 = y1;
+          } else {
+            x4 = x1 + (x1 - px);
+            x3 = x1;
+            y3 = py - (y1 - py);
+            y4 = py;
+          }
+        }
+        Float[] ruby = { x1, y1, px, py, x3, y3, x4, y4 };
+        baldessari.add(ruby);
+        System.out.println("add tomwaits coordinates at " + depth);
 
-    x1 = tomwaits[6];
-    y1 = tomwaits[7];
-    x2 = tomwaits[0];
-    y2 = tomwaits[1];
-    px = (1 - t) * x1 + (t * x2);
-    py = (1 - t) * y1 + (t * y2);
-    if (px > x1) {
-      if (py < y1) {
-        x3 = px + (px - x1);
-        x4 = px;
-        y4 = y1 + (y1 - py);
-        y3 = y1;
-      } else {
-        x4 = x1 - (px - x1);
-        x3 = x1;
-        y3 = py + (py - y1);
-        y4 = py;
-      }
-    } else {
-      if (py > y1) {
-        x3 = px - (x1 - px);
-        x4 = px;
-        y4 = y1 - (py - y1);
-        y3 = y1;
-      } else {
-        x4 = x1 + (x1 - px);
-        x3 = x1;
-        y3 = py - (y1 - py);
-        y4 = py;
+        x1 = tomwaits[6];
+        y1 = tomwaits[7];
+        x2 = tomwaits[0];
+        y2 = tomwaits[1];
+        px = (1 - t) * x1 + (t * x2);
+        py = (1 - t) * y1 + (t * y2);
+        if (px > x1) {
+          if (py < y1) {
+            x3 = px + (px - x1);
+            x4 = px;
+            y4 = y1 + (y1 - py);
+            y3 = y1;
+          } else {
+            x4 = x1 - (px - x1);
+            x3 = x1;
+            y3 = py + (py - y1);
+            y4 = py;
+          }
+        } else {
+          if (py > y1) {
+            x3 = px - (x1 - px);
+            x4 = px;
+            y4 = y1 - (py - y1);
+            y3 = y1;
+          } else {
+            x4 = x1 + (x1 - px);
+            x3 = x1;
+            y3 = py - (y1 - py);
+            y4 = py;
+          }
+        }
+        Float[] oak = { x1, y1, px, py, x3, y3, x4, y4 };
+        baldessari.add(oak);
+        System.out.println("add tomwaits coordinates at " + depth);
       }
     }
-    Float[] oak = { x1, y1, px, py, x3, y3, x4, y4 };
-    if (side > 1) {
-      if (alea.nextBoolean()) {
-        baldessari.add(oak);System.out.println("add tomwaits coordinates at "+depth);
-      } else {
-        prep(oak,depth+1);
-      }
+    else{
+      quad(x1, y1, x2, y2, x3, y3, x4, y4);
     }
   }
 
