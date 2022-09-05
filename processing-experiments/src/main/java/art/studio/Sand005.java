@@ -41,7 +41,7 @@ public class Sand005 extends PApplet {
 
   @Override
   public void draw() {
-    if (kid < baldessari.size()&&frameCount<4422) {
+    if (kid < baldessari.size()&&frameCount<5555) {
       Float[] eyeball = baldessari.get(kid);
       prep(eyeball);
       kid++;
@@ -64,7 +64,7 @@ public class Sand005 extends PApplet {
     y4 = tomwaits[7];
     float side;
     if (x2>x1){
-    side = x2 - x1;}
+      side = x2 - x1;}
     else{
       side=x1-x2;
     }
@@ -77,7 +77,8 @@ public class Sand005 extends PApplet {
         fill(hu, sat, bri);
         float off = random(side/11);
         quad(x1, y1, x2, y2, x3+off, y3+off, x4+off, y4+off);
-      } else {
+      } 
+      else {
         px = (1 - t) * x1 + (t * x2);
         py = (1 - t) * y1 + (t * y2);
         if (px > x1) {
