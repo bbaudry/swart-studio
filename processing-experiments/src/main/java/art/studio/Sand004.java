@@ -18,7 +18,6 @@ public class Sand004 extends PApplet {
   float bri;
   int kid;
   int sa = 100;
-  int[] rain = { 190, 210, 230, 250, 270, 290 };
   Random alea = new Random();
   float x;
   float y;
@@ -32,12 +31,13 @@ public class Sand004 extends PApplet {
   @Override
   public void setup() {
     colorMode(HSB, 360, 100, 100);
-    hu = rain[alea.nextInt(rain.length - 1)];
+    hu = 190;
     background(hu-180, 100, 100);
     float s = w / 2;
     Float[] no = { (float) 0, s, s, (float) 0, 2 * s, s, s, 2 * s };
     baldessari.add(no);
     kid = 0;
+    noStroke();
   }
 
   @Override
