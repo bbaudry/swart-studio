@@ -14,6 +14,8 @@ public class Sand004 extends PApplet {
   int h = 1000;// 1080;
   int steps = 10;
   int hu;
+  float sat;
+  float bri;
   int kid;
   int sa = 100;
   int[] rain = { 190, 210, 230, 250, 270, 290 };
@@ -31,40 +33,26 @@ public class Sand004 extends PApplet {
   public void setup() {
     colorMode(HSB, 360, 100, 100);
     hu = rain[alea.nextInt(rain.length - 1)];
-    background(hu, 100, 35);
+    background(hu-180, 100, 100);
     float s = w / 2;
     Float[] no = { (float) 0, s, s, (float) 0, 2 * s, s, s, 2 * s };
     baldessari.add(no);
-    frameRate(2);
-    fill(30, 100, 100);
-    float x1 = baldessari.get(0)[0];
-    float y1 = baldessari.get(0)[1];
-    float x2 = baldessari.get(0)[2];
-    float y2 = baldessari.get(0)[3];
-    float x3 = baldessari.get(0)[4];
-    float y3 = baldessari.get(0)[5];
-    float x4 = baldessari.get(0)[6];
-    float y4 = baldessari.get(0)[7];
-    // quad(x1, y1, x2, y2, x3, y3, x4, y4);
     kid = 0;
-    hu = 0;
   }
 
   @Override
   public void draw() {
-    if (kid < baldessari.size()) {
-      System.out.println("one square " + frameCount);
+    if (kid < baldessari.size()&&frameCount<4242) {
       Float[] eyeball = baldessari.get(kid);
-      prep(eyeball,0);
-      hu = (hu + 90) % 360;
+      prep(eyeball);
       kid++;
     }
-
-    // save("Sand004.png");
-    // exit();
+    else{
+      save("Sand004.png");
+    }
   }
 
-  private void prep(Float[] tomwaits, int depth) {
+  private void prep(Float[] tomwaits) {
     float t = (float) 0.5;
     float x1, y1, x2, y2, x3, y3, x4, y4, px, py;
     x1 = tomwaits[0];
@@ -75,11 +63,17 @@ public class Sand004 extends PApplet {
     y3 = tomwaits[5];
     x4 = tomwaits[6];
     y4 = tomwaits[7];
-    float side = x2 - x1;
+    float side;
+    if (x2>x1){
+    side = x2 - x1;}
+    else{
+      side=x1-x2;
+    }
     if (side > 1) {
-      if (alea.nextBoolean()) {
-        System.out.println("one square true");
-        fill(hu, 100, 100);
+      if (alea.nextInt(42)<7) {
+        sat = random(25,99);
+        bri = random(39,96);
+        fill(hu, sat, bri);
         quad(x1, y1, x2, y2, x3, y3, x4, y4);
       } else {
         px = (1 - t) * x1 + (t * x2);
@@ -111,8 +105,6 @@ public class Sand004 extends PApplet {
         }
         Float[] silver = { x1, y1, px, py, x3, y3, x4, y4 };
         baldessari.add(silver);
-        System.out.println("add tomwaits coordinates at " + depth);
-
         x1 = tomwaits[2];
         y1 = tomwaits[3];
         x2 = tomwaits[4];
@@ -146,8 +138,6 @@ public class Sand004 extends PApplet {
         }
         Float[] gilded = { x1, y1, px, py, x3, y3, x4, y4 };
         baldessari.add(gilded);
-        System.out.println("add tomwaits coordinates at " + depth);
-
         x1 = tomwaits[4];
         y1 = tomwaits[5];
         x2 = tomwaits[6];
@@ -181,8 +171,6 @@ public class Sand004 extends PApplet {
         }
         Float[] ruby = { x1, y1, px, py, x3, y3, x4, y4 };
         baldessari.add(ruby);
-        System.out.println("add tomwaits coordinates at " + depth);
-
         x1 = tomwaits[6];
         y1 = tomwaits[7];
         x2 = tomwaits[0];
@@ -216,7 +204,6 @@ public class Sand004 extends PApplet {
         }
         Float[] oak = { x1, y1, px, py, x3, y3, x4, y4 };
         baldessari.add(oak);
-        System.out.println("add tomwaits coordinates at " + depth);
       }
     }
     else{
