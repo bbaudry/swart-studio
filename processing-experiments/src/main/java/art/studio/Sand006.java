@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class Sand006 extends PApplet {
   /* This piece assumes a square canvas */
-  int w = 1000;// 1920;
-  int h = 1000;// 1080;
+  int w = 3000;// 1920;
+  int h = 3000;// 1080;
   int steps = 10;
   int hu;
   float sat;
@@ -30,8 +30,8 @@ public class Sand006 extends PApplet {
   @Override
   public void setup() {
     colorMode(HSB, 360, 100, 100);
-    hu = 230;
-    background(300, 100, 75);
+    hu = 40;
+    background(220, 100, 75);
     float s = random((float)0.2, (float)0.5)*w;
     Float[] no = { (float) 0, s, s, (float) 0, (float)w, 2*s, 2*s, (float)h };
     baldessari.add(no);
@@ -41,13 +41,16 @@ public class Sand006 extends PApplet {
 
   @Override
   public void draw() {
-    if (kid < baldessari.size()&&frameCount<5555) {
+    if (kid < baldessari.size() && frameCount < 77777){
+      System.out.println("one more kid "+frameCount);
       Float[] eyeball = baldessari.get(kid);
       prep(eyeball);
       kid++;
     }
     else{
+      System.out.println("Sand006 is generated");
       save("Sand006.png");
+      exit();
     }
   }
 
