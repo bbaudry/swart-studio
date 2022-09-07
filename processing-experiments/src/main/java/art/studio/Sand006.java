@@ -7,7 +7,7 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Sand005 extends PApplet {
+public class Sand006 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 1000;// 1920;
   int h = 1000;// 1080;
@@ -30,10 +30,10 @@ public class Sand005 extends PApplet {
   @Override
   public void setup() {
     colorMode(HSB, 360, 100, 100);
-    hu = 280;
-    background(320, 100, 100);
-    float s = w / 2;
-    Float[] no = { (float) 0, s, s, (float) 0, 2 * s, s, s, 2 * s };
+    hu = 230;
+    background(300, 100, 75);
+    float s = random((float)0.2, (float)0.5)*w;
+    Float[] no = { (float) 0, s, s, (float) 0, (float)w, 2*s, 2*s, (float)h };
     baldessari.add(no);
     kid = 0;
     noStroke();
@@ -47,7 +47,7 @@ public class Sand005 extends PApplet {
       kid++;
     }
     else{
-      save("Sand005.png");
+      save("Sand006.png");
     }
   }
 
@@ -215,8 +215,8 @@ public class Sand005 extends PApplet {
   }
 
   public static void main(String[] args) {
-    String[] processingArgs = { "Sand005" };
-    Sand005 mySketch = new Sand005();
+    String[] processingArgs = { "Sand006" };
+    Sand006 mySketch = new Sand006();
     PApplet.runSketch(processingArgs, mySketch);
   }
 
