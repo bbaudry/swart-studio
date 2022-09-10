@@ -7,12 +7,13 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class Sand007 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 1000;// 1920;
   int h = 1000;// 1080;
   int steps = 10;
-  int hu;
+  float hu;
   float sat;
   float bri;
   int kid;
@@ -75,11 +76,13 @@ public class Sand007 extends PApplet {
       if (alea.nextInt(42)<7) {
         sat = random(77,99);
         bri = random(39,76);
-        stroke(random(220,260),100,100);
+        hu = random((float)220,(float)260);
+        stroke(hu,100,100);
         strokeWeight(random(5));
         fill(hu, sat, bri);
         float off = random(side/11);
-        line(x1, y1, x2, y2);
+        float rad = Math.abs(x2-x1);
+        ellipse(x2, y2, rad, rad);
         line(x3+off, y3+off, x4+off, y4+off);
       } 
       else {
