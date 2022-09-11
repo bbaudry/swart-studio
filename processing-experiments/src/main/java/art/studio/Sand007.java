@@ -27,8 +27,8 @@ public class Sand007 extends PApplet {
   public void setup() {
     colorMode(HSB, 360, 100, 100);
     background(220, 0, 0);
-    stroke(0,0,100);
-    noFill();
+    //stroke(0,0,100);
+    //noFill();
     Float[] no = { (float)w/2, (float)h/2, (float)w, (float)0};
     baldessari.add(no);
     kid = 0;
@@ -42,6 +42,7 @@ public class Sand007 extends PApplet {
     }
     else{
       System.out.println("done");
+      save("Sand007.png");
       noLoop();
     }
   }
@@ -51,10 +52,9 @@ public class Sand007 extends PApplet {
     float cy = tomwaits[1];
     float rad = tomwaits[2];
     float depth = tomwaits[3];
-    ellipse(cx,cy,rad,rad);
-    System.out.println("draw a ring at ("+cx+","+cy+"), depth "+depth);
-    if (depth < 7) {
-      float newrad = rad / 2;
+    if (alea.nextInt(42) < 31 && depth < 7) {
+      float off = random((float)0.53,(float)0.57);
+      float newrad = off*rad+random(-rad/10,rad/10);
       float newdepth = depth +1;
       Float[] slussen = { cx - newrad / 2, cy - newrad / 2, newrad, newdepth };
       Float[] lilljeholmen = { cx + newrad / 2, cy - newrad / 2, newrad, newdepth };
@@ -64,6 +64,12 @@ public class Sand007 extends PApplet {
       baldessari.add(lilljeholmen);
       baldessari.add(kth);
       baldessari.add(ekensberg);
+    }
+    else {
+      noStroke();
+      fill(0,0,100,random(80,150));
+      ellipse(cx,cy,rad,rad);
+      System.out.println("draw a ring at ("+cx+","+cy+"), depth "+depth);  
     }
   }
 
