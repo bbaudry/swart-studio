@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Sand007 extends PApplet {
+public class Sand008 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 1000;// 1920;
   int h = 1000;// 1080;
@@ -42,7 +42,7 @@ public class Sand007 extends PApplet {
     }
     else{
       System.out.println("done");
-      save("Sand007.png");
+      save("Sand008.png");
       noLoop();
     }
   }
@@ -54,11 +54,11 @@ public class Sand007 extends PApplet {
     float depth = tomwaits[3];
     if (alea.nextInt(42) < 35 && depth < 8) {
       float off = random((float)0.53,(float)0.57);
-      float newrad = off*rad+random(-rad/10,rad/10);
+      float newrad = rad/2;
       float newdepth = depth +1;
-      Float[] slussen = { cx - newrad / 2, cy - newrad/2, newrad, newdepth };
+      Float[] slussen = { cx - newrad / 2, cy - off*newrad, newrad, newdepth };
       Float[] lilljeholmen = { cx + newrad / 2, cy - newrad / 2, newrad, newdepth };
-      Float[] kth = { cx - newrad / 2, cy + newrad/2, newrad, newdepth };
+      Float[] kth = { cx - newrad / 2, cy + off*newrad, newrad, newdepth };
       Float[] ekensberg = { cx + newrad / 2, cy +newrad / 2, newrad, newdepth };
       baldessari.add(slussen);
       baldessari.add(lilljeholmen);
@@ -66,15 +66,28 @@ public class Sand007 extends PApplet {
       baldessari.add(ekensberg);
     }
     else {
-      noStroke();
-      fill(0,0,100,random(80,150));
+      stroke(0,0,100);
+      strokeWeight(random(2,5));
+      noFill();
+      if (alea.nextInt(42) < 37){
+      oneshape(cx,cy,rad);
+      }
+    }
+  }
+
+  private void oneshape(float cx, float cy, float rad){
+    if (alea.nextBoolean()){
       ellipse(cx,cy,rad,rad);
+    }
+    else{
+      float off=rad/2;
+      quad(cx-off,cy-off,cx+off,cy-off,cx+off,cy+off,cx-off,cy+off);
     }
   }
 
   public static void main(String[] args) {
-    String[] processingArgs = { "Sand007" };
-    Sand007 mySketch = new Sand007();
+    String[] processingArgs = { "Sand008" };
+    Sand008 mySketch = new Sand008();
     PApplet.runSketch(processingArgs, mySketch);
   }
 
