@@ -57,18 +57,21 @@ public class Sand008 extends PApplet {
       float newrad = rad/2;
       float newdepth = depth +1;
       Float[] slussen = { cx - newrad / 2, cy - off*newrad, newrad, newdepth };
-      Float[] lilljeholmen = { cx + newrad / 2, cy - newrad / 2, newrad, newdepth };
+      Float[] lilljeholmen = { cx + newrad*off, cy - newrad / 2, newrad, newdepth };
       Float[] kth = { cx - newrad / 2, cy + off*newrad, newrad, newdepth };
-      Float[] ekensberg = { cx + newrad / 2, cy +newrad / 2, newrad, newdepth };
+      Float[] ekensberg = { cx + newrad*off, cy +newrad / 2, newrad, newdepth };
       baldessari.add(slussen);
       baldessari.add(lilljeholmen);
       baldessari.add(kth);
       baldessari.add(ekensberg);
     }
     else {
-      stroke(0,0,100);
+/*       stroke(0,0,100);
       strokeWeight(random(2,5));
-      noFill();
+      noFill();*/
+
+      noStroke();
+      fill(0,0,100,random(80,150));
       if (alea.nextInt(42) < 37){
       oneshape(cx,cy,rad);
       }
