@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Sand008 extends PApplet {
+public class Sand009 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 1000;// 1920;
   int h = 1000;// 1080;
@@ -42,7 +42,7 @@ public class Sand008 extends PApplet {
     }
     else{
       System.out.println("done");
-      save("Sand008.png");
+      save("Sand009.png");
       noLoop();
     }
   }
@@ -57,18 +57,17 @@ public class Sand008 extends PApplet {
       float newrad = rad/2;
       float newdepth = depth +1;
       Float[] slussen = { cx - newrad / 2, cy - off*newrad, newrad, newdepth };
-      Float[] lilljeholmen = { cx + newrad/2, cy - newrad / 2, newrad, newdepth };
+      Float[] lilljeholmen = { cx + newrad*off, cy - newrad / 2, newrad, newdepth };
       Float[] kth = { cx - newrad / 2, cy + off*newrad, newrad, newdepth };
-      Float[] ekensberg = { cx + newrad/2, cy +newrad / 2, newrad, newdepth };
+      Float[] ekensberg = { cx + newrad*off, cy +newrad / 2, newrad, newdepth };
       baldessari.add(slussen);
       baldessari.add(lilljeholmen);
       baldessari.add(kth);
       baldessari.add(ekensberg);
     }
     else {
-      stroke(0,0,100);
-      strokeWeight(random(2,5));
-      noFill();
+      noStroke();
+      fill(0,0,100,random(80,150));
       if (alea.nextInt(42) < 37){
       oneshape(cx,cy,rad);
       }
@@ -86,8 +85,8 @@ public class Sand008 extends PApplet {
   }
 
   public static void main(String[] args) {
-    String[] processingArgs = { "Sand008" };
-    Sand008 mySketch = new Sand008();
+    String[] processingArgs = { "Sand009" };
+    Sand009 mySketch = new Sand009();
     PApplet.runSketch(processingArgs, mySketch);
   }
 
