@@ -132,6 +132,13 @@ public class BasicOps extends PApplet {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String jsonOutput = gson.toJson(knobs);
     System.out.println(jsonOutput);
+
+    //automatic text scrolling
+    y=y+asciioffset;
+    fill(110,0,100);
+    comment = "automatic text scrolling";
+    text(comment, 10, y);
+
   }
 
   char[] symb = {'*',':','.','°'};
