@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var sceneCounter;
+        var sceneLength = 11264; 
+
+        let data;
+        function preload(){
+            let url = './data/folk0001.json';
+            data = loadJSON(url);
+        }
+
+        function setup() {
+            createCanvas(w, h);
+            colorMode(HSB, 360, 100, 100);
+            noStroke();
+            //noLoop()
+            //frameRate(16);
+        }
+
+        function draw(){
+            background(0,0,0);
+            wTemp(w/5,w/5,w/5);
+            aTemp(2*w/5,w/5,w/5);
+            pm25(3*w/5,w/5,w/5);
+            radio(4*w/5,w/5,w/5);
+            eat(w/5,2*w/5,w/5);
+            surprise(2*w/5,2*w/5,w/5);
+            train(3*w/5,2*w/5,w/5);
+            elec(4*w/5,2*w/5,w/5);
+        }
+
+        /*draws nb particles of size s inside a cercle of radius rad centerd on (cx,cy)*/
+        function particles(cx,cy,rad,nb,s){
+            for (i=0;i<nb;i++){
+                particle(cx,cy,rad,s)                
+            }
+        }
+
+        /*draws a particle at a random location inside a circle centered on (cx,cy) and of radius rad*/
+        function particle(cx,cy,rad,size){
+            t=2*PI*random();
+            u=random(rad/4)+random(rad/4);
+            if (u>rad/4){r=2-u;}
+            else {r=u;}
+            x=cx+r*cos(t);
+            y=cy+r*sin(t);
+            ellipse(x,y,size)
+        }
+
+        function wTemp(cx,cy,rad){
+            fill(0,100,100);
+            noStroke()
+            particles(cx,cy,rad,211,11)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function aTemp(cx,cy,rad){
+            fill(45,100,100);
+            noStroke()
+            particles(cx,cy,rad,211,11)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function pm25(cx,cy,rad){
+            fill(90,100,100);
+            noStroke()
+            particles(cx,cy,rad,211,11)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function radio(cx,cy,rad){
+            fill(135,100,100);
+            noStroke();
+            songInt=data["folkfigur_listens_to"]["short_int"];
+            particles(cx,cy,rad,songInt,11)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function eat(cx,cy,rad){
+            fill(180,100,100);
+            noStroke();
+            foodInt=data["folkfigur_eats"]["short_int"];
+            particles(cx,cy,rad,foodInt,11)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function surprise(cx,cy,rad){
+            fill(225,100,100);
+            noStroke();
+            msgInt=data["folkfigur_surprise"]["short_int"];
+            particles(cx,cy,rad,msgInt,11)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function train(cx,cy,rad){
+            fill(270,100,100);
+            noStroke();
+            trainInt=data["folkfigur_train_with"]["short_int"];
+            particles(cx,cy,rad,trainInt,11)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function elec(cx,cy,rad){
+            fill(315,100,100);
+            noStroke();
+            prod=data["last_electricity_data_in_megawatt"];
+            particles(cx,cy,rad,prod/10,2)
+            stroke(0,0,100);
+            noFill();
+            ellipse(cx,cy,rad);
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
