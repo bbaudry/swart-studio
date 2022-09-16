@@ -68,28 +68,31 @@
         function wTemp(cx,cy,rad){
             fill(0,100,100);
             noStroke()
-            particles(cx,cy,rad,211,11)
+            wt=data["folkfigur_water_temperature"]
+            particles(cx,cy,rad,wt,11)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function aTemp(cx,cy,rad){
             fill(45,100,100);
             noStroke()
-            particles(cx,cy,rad,211,11)
+            a=data["folkfigur_air_temperature"]
+            particles(cx,cy,rad,a,11)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function pm25(cx,cy,rad){
             fill(90,100,100);
             noStroke()
-            particles(cx,cy,rad,211,11)
+            pm=data["folkfigur_pm25_particles"]
+            particles(cx,cy,rad,pm*10,11)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function radio(cx,cy,rad){
@@ -99,7 +102,7 @@
             particles(cx,cy,rad,songInt,11)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function eat(cx,cy,rad){
@@ -109,7 +112,7 @@
             particles(cx,cy,rad,foodInt,11)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function surprise(cx,cy,rad){
@@ -119,7 +122,7 @@
             particles(cx,cy,rad,msgInt,11)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function train(cx,cy,rad){
@@ -129,7 +132,7 @@
             particles(cx,cy,rad,trainInt,11)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function elec(cx,cy,rad){
@@ -139,7 +142,7 @@
             particles(cx,cy,rad,prod/10,2)
             stroke(0,0,100);
             noFill();
-            ellipse(cx,cy,rad);
+            //ellipse(cx,cy,rad);
         }
 
         function windowResized() {
