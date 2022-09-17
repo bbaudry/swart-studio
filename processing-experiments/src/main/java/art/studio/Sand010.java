@@ -47,13 +47,17 @@ public class Sand010 extends PApplet {
       particle(cx, cy, rad, size);
     }
     if (size>w/800 && !grow){
-      nbparticles+=2;
+      if (frameCount%7==0){
+        nbparticles+=2;
+      }
     }
     else{
       if (size==w/800){
         grow=true;
       }
-      nbparticles-=2;
+      if (frameCount%7==0){
+        nbparticles-=2;
+      }
       if (nbparticles==2){
         grow=false;
       }
