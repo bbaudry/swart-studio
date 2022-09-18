@@ -1,12 +1,8 @@
-/* Metadata {"endless":false, "BW": true, "knobs": false, "data": false, "interaction": false}*/
+/* Metadata {"endless":true, "BW": true, "knobs": false, "data": false, "interaction": false}*/
 
 package art.studio;
 
 import processing.core.PApplet;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 
 public class Sand010 extends PApplet {
   /* This piece assumes a square canvas */
@@ -43,16 +39,16 @@ public class Sand010 extends PApplet {
   public void draw() {
     background(0,0,0);
     size=w/nbparticles;
-    for(int i=0;i<nbparticles*7;i++){
+    for(int i=0;i<nbparticles*11;i++){
       particle(cx, cy, rad, size);
     }
-    if (size>w/800 && !grow){
+    if (size>w/880 && !grow){
       if (frameCount%7==0){
         nbparticles+=2;
       }
     }
     else{
-      if (size==w/800){
+      if (size==w/880){
         grow=true;
       }
       if (frameCount%7==0){
