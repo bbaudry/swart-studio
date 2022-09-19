@@ -3,6 +3,7 @@
 package art.studio;
 
 import processing.core.PApplet;
+import java.util.Random;
 
 public class Sand011 extends PApplet {
   /* This piece assumes a square canvas */
@@ -13,7 +14,11 @@ public class Sand011 extends PApplet {
   float rad;
   float size;
   int nbparticles;
+  int grain; // size of sand grain
   boolean grow;
+  float backHu;
+  float frontHu;
+  Random alea;
   
   @Override
   public void settings() {
@@ -22,33 +27,46 @@ public class Sand011 extends PApplet {
 
   @Override
   public void setup() {
+    alea=new Random();
     colorMode(HSB, 360, 100, 100);
-    background(220, 100, 100);
+    frontHu = 20;
+    backHu = frontHu+180;
+    background(backHu, 100, 100);
     cx=w/2-20;
     cy=h/2-20;
+    grain = 50;
     rad=w;
+    frameRate(1);
   }
 
   @Override
   public void draw() {
+    if(frameCount<7){
      ring();
-     noLoop();
+     cx=random(w);
+     cy=random(h);
+    }
+    else{
+      noLoop();
+    }
   }
 
   private void ring(){
-    float r = rad/2-50;
-    int al = 80;
-    int step = 9;
+    float r = rad/2-grain;
+    int al = 10;
+    int step = 10;
     while (r>0){
-      for (int i = 0; i < 360; i+=step){
+      int start = alea.nextInt(77);
+      int end = start + 360;
+      for (int i = start; i < end; i+=step){
         float x = cx+r*cos(radians(i));
         float y = cy+r*sin(radians(i));
-        fill(220,50,100,al);
+        fill(frontHu,100,100,al);
         noStroke();
-        rect(x,y,47,47);
+        rect(x,y,grain,grain);
       }
-      r-=50;
-      al+=60;
+      r-=grain;
+      al+=10;
       step+=1;
     }
   }
