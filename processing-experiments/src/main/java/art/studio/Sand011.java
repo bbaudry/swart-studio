@@ -32,41 +32,49 @@ public class Sand011 extends PApplet {
     frontHu = 20;
     backHu = frontHu+180;
     background(backHu, 100, 100);
-    cx=w/2-20;
-    cy=h/2-20;
-    grain = 50;
-    rad=w;
+    cx=(float)0.2*w;
+    cy=(float)0.2*h;
+    grain = 22;
+    rad=w/2;
     frameRate(1);
   }
 
   @Override
   public void draw() {
-    if(frameCount<7){
-     ring();
-     cx=random(w);
-     cy=random(h);
+    ring();
+
+    if (cx<w-(float)0.2*w){
+      cx+=(float)0.2*w;
     }
     else{
-      noLoop();
+      cx=(float)0.2*w;
+      if (cy<h-(float)0.2*w){
+        cy+=(float)0.2*h;
+      }
+      else{
+        save("Sand011.png");
+        noLoop();
+      }
     }
   }
 
   private void ring(){
     float r = rad/2-grain;
     int al = 10;
-    int step = 10;
+    int step = 9;
+    int start = alea.nextInt(360);
+    int scope = 180+alea.nextInt(180);
+    int end = start + scope;
     while (r>0){
-      int start = alea.nextInt(77);
-      int end = start + 360;
       for (int i = start; i < end; i+=step){
+        fill(frontHu,100,100,al);
         float x = cx+r*cos(radians(i));
         float y = cy+r*sin(radians(i));
-        fill(frontHu,100,100,al);
         noStroke();
         rect(x,y,grain,grain);
       }
       r-=grain;
-      al+=10;
+      al+=20;
       step+=1;
     }
   }
