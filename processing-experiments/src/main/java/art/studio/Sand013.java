@@ -22,20 +22,20 @@ public class Sand013 extends PApplet {
   @Override
   public void setup() {
     alea=new Random();
-    colorMode(HSB, 360, 100, 100);
-    backHu = 160;
-    fill(340,100,100);
+    colorMode(HSB, 360, 100, 100, 250);
+    backHu = 130;
+    fill(310,100,100,10);
     noStroke();
+    background(backHu, 100, 100);
   }
 
   @Override
   public void draw() {
-    background(backHu, 100, 100);
     float x1 = alea.nextFloat()*w/2;
     float y1 = alea.nextFloat()*h/2;
     float x2 = w/2+alea.nextFloat()*w/2;
     float y2 = alea.nextFloat()*h/2;
-    float x3 = alea.nextFloat()*w/2;
+    float x3 = alea.nextFloat()*w;
     float y3 = h/2+alea.nextFloat()*h/2;
     triangle(x1, y1, x2, y2, x3, y3);
   }
