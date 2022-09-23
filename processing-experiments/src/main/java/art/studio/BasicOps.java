@@ -42,7 +42,6 @@ public class BasicOps extends PApplet {
   public void draw() {
     
     //write text
-    
     PFont f = createFont("FreeMono", fSize, true);
     textFont(f);
     comment = rAA(21);
