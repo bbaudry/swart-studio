@@ -61,6 +61,13 @@ public class Sand013 extends PApplet {
     float x3 = x+alea.nextFloat()*interval;
     float y3 = y+interval/2+alea.nextFloat()*interval/2;
     triangle(x1, y1, x2, y2, x3, y3);
+    x1 = x1+alea.nextFloat()*interval/2;
+    y1 = y1+alea.nextFloat()*interval/2;
+    x2 = x2+interval/2;
+    y2 = y+alea.nextFloat()*interval/2;
+    x3 = x1+alea.nextFloat()*interval;
+    y3 = y2+interval/2+alea.nextFloat()*interval/2;
+    triangle(x1, y1, x2, y2, x3, y3);
   }
 
   public static void main(String[] args) {
