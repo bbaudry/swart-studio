@@ -30,7 +30,7 @@ public class Sand012 extends PApplet {
     alea=new Random();
     colorMode(HSB, 360, 100, 100);
     background(0,0,0);
-    grain = 70;
+    grain = 50;
     cx=w/2-grain/2;
     cy=h/2-grain/2;
     rad=w;
@@ -60,7 +60,7 @@ public class Sand012 extends PApplet {
         rect(x,y,grain,grain);
       }
       r-=grain;
-      al+=20;
+      al+=30;
       step+=1;
     }
   }
