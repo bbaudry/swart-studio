@@ -29,9 +29,8 @@ public class Sand012 extends PApplet {
   public void setup() {
     alea=new Random();
     colorMode(HSB, 360, 100, 100);
-    backHu = 230;
-    background(backHu, 100, 100);
-    grain = 50;
+    background(0,0,0);
+    grain = 70;
     cx=w/2-grain/2;
     cy=h/2-grain/2;
     rad=w;
@@ -54,7 +53,7 @@ public class Sand012 extends PApplet {
     int end = start + scope;
     while (r>0){
       for (int i = start; i < end; i+=step){
-        fill(0,0,100,al);
+        fill(50,100,100,al);
         float x = cx+r*cos(radians(i));
         float y = cy+r*sin(radians(i));
         noStroke();
