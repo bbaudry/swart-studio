@@ -57,7 +57,7 @@ public class Banner005 extends PApplet {
             link();
             john("CHAINS",127,false);
             rad+=80;
-            john("chains.proj.kth.se",42,true);
+            john("https://chains.proj.kth.se",42,true);
             save("chains.png");
             noLoop();
         }
