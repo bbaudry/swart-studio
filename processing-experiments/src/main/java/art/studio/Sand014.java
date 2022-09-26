@@ -4,7 +4,8 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.Random;
-
+import art.Knob;
+import java.util.ArrayList;
 public class Sand014 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 3000;// 1920;
@@ -20,6 +21,7 @@ public class Sand014 extends PApplet {
   float frontHu;
   Random alea;
   int s;
+  ArrayList<Knob> knobs;
   
   @Override
   public void settings() {
@@ -29,6 +31,7 @@ public class Sand014 extends PApplet {
   @Override
   public void setup() {
     alea=new Random();
+    knobs = new ArrayList<>();
     colorMode(HSB, 360, 100, 100);
     background(0,0,0);
     grain = 10;
@@ -49,27 +52,27 @@ public class Sand014 extends PApplet {
   }
 
   private void ring(){
-    float r = rad/2-grain;
-    int al = 10;
+    float r = rad/2-grain; knobs.add(new Knob(r, false));
+    int al = 10; knobs.add(new Knob((float)al, false));
     int step = 1;
     int start = 0;
     int scope = 360;
     int end = start + scope;
     while (r>30){
       for (int i = start; i < end; i+=step){
-        fill(50,100,100,al);
-        float x = cx+r*cos(radians(i));
-        float y = cy+r*sin(radians(i));
+        fill(50,100,100,al); knobs.add(new Knob((float)al, false));
+        float x = cx+r*cos(radians(i)); knobs.add(new Knob(x, false));
+        float y = cy+r*sin(radians(i)); knobs.add(new Knob(y, false));
         shape(x,y);
       }
-      r-=grain;
+      r-=grain; knobs.add(new Knob(r, false));
       al+=5;
       //step+=1;
     }
   }
 
   private void shape(float x, float y){
-    int chance = alea.nextInt(42);
+    int chance = alea.nextInt(42); knobs.add(new Knob((float)chance, true));
     if (chance<9){
       rect(x,y,grain,grain); s++;
     }
