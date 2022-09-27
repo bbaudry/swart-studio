@@ -6,10 +6,13 @@ import processing.core.PApplet;
 import java.util.Random;
 import art.Knob;
 import java.util.ArrayList;
+import processing.core.PFont;
+
 public class Sand014 extends PApplet {
   /* This piece assumes a square canvas */
-  int w = 3000;// 1920;
-  int h = 3000;// 1080;
+  int w = 1000;// 1920;
+  int h = 1000;// 1080;
+  int txtw = 100;
   float cx;
   float cy;
   float rad;
@@ -22,10 +25,16 @@ public class Sand014 extends PApplet {
   Random alea;
   int s;
   ArrayList<Knob> knobs;
+  PFont f;
+  int fontSize;
+  int knob_index;
+  int knob_index_max;
+  int knob_print_offset;
+  int knob_y;
   
   @Override
   public void settings() {
-    size(w, h);
+    size(w+txtw, h);
   }
 
   @Override
@@ -39,20 +48,35 @@ public class Sand014 extends PApplet {
     cy=h/2-grain/2;
     rad=w;
     s=0;
+    fontSize=17;
+    f = createFont("FreeMono", fontSize, true);
+    knob_index=0;
+    knob_print_offset=3;
+    knob_index_max=(int)(h/(fontSize+knob_print_offset));
+    knob_y=h;
+    textFont(f);
     noStroke();
-    frameRate(1);
+    ring();
+    //frameRate(7);
   }
 
   @Override
   public void draw() {
-    ring();
-    save("Sand014.png");
-    System.out.println("drew "+s+" shapes");
-    noLoop();
+    fill(0,0,0);
+    noStroke();
+    rect(w, 0, txtw, h);
+    if(knob_index<knobs.size()){
+      print_knobs();
+    }
+    else{
+      save("Sand014.png");
+      System.out.println("drew "+s+" shapes");
+      noLoop();
+    }
   }
 
   private void ring(){
-    float r = rad/2-grain; knobs.add(new Knob(r, false));
+    float r = rad/2-grain; knobs.add(new Knob(r, false)); 
     int al = 10; knobs.add(new Knob((float)al, false));
     int step = 1;
     int start = 0;
@@ -68,6 +92,27 @@ public class Sand014 extends PApplet {
       r-=grain; knobs.add(new Knob(r, false));
       al+=5;
       //step+=1;
+    }
+  }
+
+  private void print_knobs(){
+    
+    if (knob_index<knob_index_max){
+      for (int i=1;i<knob_index;i++){
+        if(knobs.get(i).getrand()){fill(100,100,100);}
+        else{fill(280,100,100);}
+        text(knobs.get(i).getValueN(), w+knob_print_offset, i*(fontSize+knob_print_offset));
+      }
+      knob_index++;
+    }
+    else{
+      System.out.println(knob_index);
+      for (int i=knob_index-knob_index_max;i<=knob_index;i++){
+        if(knobs.get(i).getrand()){fill(100,100,100);}
+        else{fill(280,100,100);}
+        text(knobs.get(i).getValueN(), w+knob_print_offset, h-((knob_index-i)*(fontSize+knob_print_offset)));
+      }
+      knob_index++;
     }
   }
 
