@@ -8,7 +8,7 @@ import art.Knob;
 import java.util.ArrayList;
 import processing.core.PFont;
 
-public class Sand014 extends PApplet {
+public class Sand015 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 3000;// 1920;
   int h = 3000;// 1080;
@@ -158,8 +158,8 @@ public class Sand014 extends PApplet {
   }
 
   public static void main(String[] args) {
-    String[] processingArgs = { "Sand014" };
-    Sand014 mySketch = new Sand014();
+    String[] processingArgs = { "Sand015" };
+    Sand015 mySketch = new Sand015();
     PApplet.runSketch(processingArgs, mySketch);
   }
 
