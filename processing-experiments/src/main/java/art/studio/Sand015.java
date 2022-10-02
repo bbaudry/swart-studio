@@ -17,6 +17,7 @@ public class Sand015 extends PApplet {
   float x2;float y2;
   float x3=770;float y3=770; 
   float x4=970; float y4=490;
+  float off;
 
 
 
@@ -37,19 +38,28 @@ public class Sand015 extends PApplet {
     y2=y1-random(188,255);
     x3=x4-random(333,377);//x4-random(7,17);
     y3=y4+random(444,777);
-
+    off=23;
+    stroke(0,0,0);
     noFill();
   }
 
   @Override
   public void draw() {
-    if (frameCount < 1111){
-    stroke(0,0,0);
-    if (x2>x1){x2-=1;}
-    if (x3<x4){x3+=1;}
-    y2-=1;
-    y3+=1;
+    if (frameCount < 888){
+    if (alea.nextInt(42)<40){
+    if (x2>x1 && alea.nextBoolean()){x2-=off;}else{x2+=off;}
+    if (x3<x4 && alea.nextBoolean()){x3+=off;}else{x3-=off;}
+    if (alea.nextBoolean()){y2-=off;}else{y2+=off;}
+    if (alea.nextBoolean()){y3+=off;}else{y3-=off;}
     wave(x2,y2,x3,y3);
+    }
+    else{
+      x2=random(x1,w/2);
+      y2=random(y1,h);
+      x3=random(w/2,x4);
+      y3=random(y4,0);
+      wave(x2,y2,x3,y3);
+    }
     }
   }
 
