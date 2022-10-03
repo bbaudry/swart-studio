@@ -8,7 +8,7 @@ import art.Knob;
 import java.util.ArrayList;
 import processing.core.PFont;
 
-public class Sand015 extends PApplet {
+public class Ribbons001 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 1000;// 1920;
   int h = 1000;// 1080;
@@ -63,7 +63,7 @@ public class Sand015 extends PApplet {
       }
     }
     else{
-      save("Sand015.png");
+      save("Ribbons001.png");
       exit();
     }
   }
@@ -94,7 +94,7 @@ public class Sand015 extends PApplet {
   }
 
   private void specialWave() {
-    int yoff = 13;
+    int yoff = 2+alea.nextInt(9);
     x2 = random(x1, w / 2);
     int c = alea.nextInt(4);
     switch (c) {
@@ -123,8 +123,8 @@ public class Sand015 extends PApplet {
   }
 
   public static void main(String[] args) {
-    String[] processingArgs = { "Sand015" };
-    Sand015 mySketch = new Sand015();
+    String[] processingArgs = { "Ribbons001" };
+    Ribbons001 mySketch = new Ribbons001();
     PApplet.runSketch(processingArgs, mySketch);
   }
 
