@@ -46,18 +46,18 @@ public class Ribbons002 extends PApplet {
     float baldessari = h/2 + random(-h/20,h/20);
     ellipse(john,baldessari,art, art);
     float open = random(2*PI);
-    float x = john + art/2 * cos(open);
-    float y = baldessari + art/2 * sin(open);
-    noStroke();
-    fill(320,100,100);
-    ellipse(x,y,10,10);
     Float[] one = {john, baldessari, art, open};
     circles.add(one);
+    float x = john + art/2 * cos(open);
+    float y = baldessari + art/2 * sin(open);
+    wave(x,y);    
   }
 
   private void wave(float x1, float y1){
     float x4,y4;
-    
+    if (x1<w/2){x4=x1+random(w/2);} else {x4=x1-random(w/2);} 
+    if (y1<h/2){y4=y1+random(h/2);} else {y4=y1-random(h/2);} 
+    line(x1,y1,x4,y4);
   }
 
   public static void main(String[] args) {
