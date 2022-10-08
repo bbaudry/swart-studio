@@ -57,7 +57,33 @@ public class Ribbons002 extends PApplet {
     float x4,y4;
     if (x1<w/2){x4=x1+random(w/2);} else {x4=x1-random(w/2);} 
     if (y1<h/2){y4=y1+random(h/2);} else {y4=y1-random(h/2);} 
-    line(x1,y1,x4,y4);
+    float x2,x3,y2,y3;
+    if (x1<x4){
+      x2=x1+random(x4-x1);
+      x3=x2+random(x4-x2);
+      if (y1<y4){//x1<x4 and y1<y4
+        y2=-100;
+        y3=h;
+      }
+      else{//x1<x4 and yh;1>y4
+        y2=h;
+        y3=-100;
+      }
+    }
+    else{
+      x2=x1-random(x1-x4);
+      x3=x2-random(x2-x4);
+      if (y1<y4){//x1>x4 and y1<y4
+        y2=-100;
+        y3=h;
+      }
+      else{//x1>x4 and y1>y4
+        y2=h;
+        y3=-100;
+      }
+    }
+    bezier(x1,y1,x2,y2,x3,y3,x4,y4);
+
   }
 
   public static void main(String[] args) {
