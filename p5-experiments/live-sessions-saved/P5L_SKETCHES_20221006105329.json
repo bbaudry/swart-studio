@@ -1,0 +1,16 @@
+{
+  "version": "1.4.1",
+  "revision": 44,
+  "structure": [
+    {
+      "type": "sketch",
+      "name": "new_001",
+      "mod": 1665052812275,
+      "code": "function setup() {\n\tcreateCanvas(windowWidth, windowHeight)\n\tcolorMode(HSB,360,100,100)\n}\n\nlet xpulse = 0;\nlet ypulse = 0;\nlet br = 100;\nlet hu = 320;\n//let h = windowHeight;\n\nfunction draw() {\n\tbackground(0,0,0)\n\tnoStroke()\n\tfill(hu,100,br) \n\tif(br>0){br-=0.5} else {br=100;if(hu>220){hu-=9} else {hu=320;}} \n\t\n\tellipse(windowWidth/10,windowHeight/2,600,600)\n\tpulse()\n\tstar()\n}\n\nfunction pulse(){\n\tif (xpulse > windowWidth){xpulse=0;}\n\tif (ypulse > windowHeight){ypulse=0;}\n\tif (frameCount%3==0){\n\tstroke(0,0,100)\n\tstrokeWeight(4)\n\tline(xpulse,0,xpulse,windowHeight);\n\tline(0,ypulse,windowWidth,ypulse);\n\txpulse+=7\n\t\typulse+=7\n\t}\n}\n\nfunction star(){\n\tif (random(42)<1){\n\t\tfor (i=0;i<7;i++){\n\t\t\tlet x = random(windowWidth);\n\t\t\tlet y = random(windowHeight);\n\t\t\tlet baldessari = random(100,300)\n\t\t\tfill(0,0,100)\n\t\t\tellipse(x,y, baldessari,baldessari)\n\t\t}\n\t}\n}"
+    }
+  ],
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  }
+}
