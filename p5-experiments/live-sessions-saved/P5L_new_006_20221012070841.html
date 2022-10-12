@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>new_006</title>
+	<meta charset="utf-8">
+	<!-- Compiled w/ P5LIVE, http://github.com/ffd8/p5live -->
+	<style type="text/css">
+		body{
+			margin:0;
+			overflow:hidden;
+		}
+		canvas{
+			position:fixed;
+			top:0;
+			left:0;
+			z-index:-1;
+			width:100vw;
+			height:100vh;
+			margin:0;
+		}
+	</style>
+	<script type="text/javascript">
+		// eco-mode = only render if window focused
+		window.onblur = function () {
+			noLoop();
+		};
+		window.onfocus = function () {
+			loop();
+		};
+	</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+//new_006
+
+/* CUSTOM FUNCTIONS FOR P5LIVE */
+// keep fullscreen if window resized
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+}
+
+// custom ease function
+function ease(iVal, oVal, eVal){
+	return oVal += (iVal - oVal) * eVal;
+}
+
+// processing compatibility
+function println(msg){
+	print(msg);
+}
+
+
+let w;
+let h;
+let x;
+let y;
+function setup() {
+	createCanvas(windowWidth, windowHeight)
+	w=windowWidth
+	h=windowHeight
+	x=0
+	y=0
+	colorMode(HSB,360,100,100)
+	frameRate(7)
+}
+
+function draw() {
+	background(280,100,10)
+	if(y<h){row();}
+	else{y=0; row();}
+	if (random(42)>37){rays()}
+noLoop()
+}
+
+function moon(){
+	let john = random(w)
+	let baldessari = random(h)
+	fill(340,100,100)
+	noStroke()
+	ellipse(john,baldessari,w/2,w/2)
+	}
+
+function rays(){
+	let cecil
+	let taylor
+	let cx = 0.6*w//random(0.4,0.6)*w
+	let cy = h/2//random(0.4,0.6)*h
+	let john = random(w/20)
+	fill(180,100,100)
+	noStroke()
+	noFill()
+		stroke(50,100,100)
+	for (coltrane = 0; coltrane < 17; coltrane++){
+		cecil=random(0.2,0.3)*w+john
+		taylor=random(2*PI)
+		x2=cx+john/2*cos(taylor)
+		y2=cy+john/2*sin(taylor)
+		
+		x1=cx+cecil*cos(taylor)
+		y1=cy+cecil*sin(taylor)
+		strokeWeight(random(7))
+		line(x2,y2,x1,y1)
+	}
+		ellipse(cx,cy,john,john)
+
+}
+
+function row(){
+	let tom=random(42)
+	let d=true
+	let waits
+	while (x<w){
+		waits=random(42)
+		fill(50,100,100)
+		if (d){
+			rect(x,y,waits,tom)
+			d=false
+		}
+		else{d=true}
+		x+=waits
+	}
+	x=0
+	y+=tom
+}
+</script>
+
+</body>
+</html>
