@@ -1,0 +1,16 @@
+{
+  "version": "1.4.1",
+  "revision": 44,
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  },
+  "structure": [
+    {
+      "type": "sketch",
+      "name": "new_003",
+      "mod": 1665509080549,
+      "code": "let w ;\nlet h ;\nlet x ;\nlet y ;\n\nfunction setup() {\n\tcreateCanvas(windowWidth, windowHeight)\n\tw = windowWidth\n\th = windowHeight\n\tx = 0;\n\ty = 0;\n\tcolorMode(HSB,360,100,100);\n\tframeRate(17)\n}\n\nfunction draw() {\nbackground(0,0,30)\n\tfill(320,100,100)\n\tnoStroke();\n\tif(y<h){row();}\n\telse{y=0; row();}\n}\n\nfunction row(){\n\tlet baldessari=random(50);\n\tlet john;\n\tlet art = true\n\twhile(x<w){\n\t\tif (art){\n\t\t\tjohn=random(100)\n\t\t\trect(x,y,john,baldessari)\n\t\t\tx+=john;\n\t\t\tart=false;\n\t\t}\n\t\telse{\n\t\t\tjohn=random(100)\n\t\t\tx+=john\n\t\t\tart=true\n\t\t}\n\t}\n\tx=0\n\ty+=baldessari\n}"
+    }
+  ]
+}

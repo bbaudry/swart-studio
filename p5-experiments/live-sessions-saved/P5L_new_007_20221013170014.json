@@ -1,0 +1,16 @@
+{
+  "version": "1.4.1",
+  "revision": 44,
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  },
+  "structure": [
+    {
+      "type": "sketch",
+      "name": "new_007",
+      "mod": 1665680312148,
+      "code": "let w\nlet h\nlet x\nlet y\nlet cgrow\nlet hu\nlet maxHu\nlet minHu\n// no p5sound\nlet libs = [\"https://unpkg.com/tone\", \"includes/libs/Tone.js\"]\nlet synth // tone.js instance\n\nfunction setup() {\n\tcreateCanvas(windowWidth, windowHeight)\n\tw=windowWidth\n\th=windowHeight\n\tcolorMode(HSB,360,100,100)\n\tx=0\n\ty=0\n\tcgrow=true\n\thu=30\n\tframeRate(17)\n\t// tone.js sampler\n\tsynth = new Tone.Sampler({\n\t\turls: {\n\t\t\t\"C4\": \"Dirt-Samples/glitch/001_CB.wav\", // p5.js assets\n\t\t\t\"D4\": \"Dirt-Samples/glitch/005_P1.wav\",\n\t\t\t\"E4\": \"Dirt-Samples/glitch/006_P2.wav\"\n\t\t},\n\t\trelease: 1,\n\t}).toDestination();\n\n}\n\nfunction draw() {\n\tbackground(320,100,20)\n\tno()\n\tmore()\n\tsynth.triggerAttackRelease(\"C4\",1)\n\t//noLoop()\n}\n\nfunction no(){\n\tlet cx = 0.8*w\n\tlet cy = 0.5*h\n\tif (cgrow && hu<90){fill(hu,100,100);hu++}\n\telse {if(hu>=90){cgrow=false}\n\t\tif(hu<30){cgrow=true;synth.triggerAttackRelease(\"E4\",1)}\n\t\thu--\n\t}\n\tellipse(cx,cy,0.42*w,0.42*w)\n}\n\nfunction more(){\n\tnoStroke()\n\tif(y>h){y=0; synth.triggerAttackRelease(\"D4\",1)}\n\tlet baldessari = random (12)\n\tlet john\n\tlet art=true\n\twhile(x<w){\n\t\tjohn=random(19)\n\t\tif (art) {rect(x,y,john,baldessari);art=false}\n\t\telse{art=true}\n\t\tx+=john\n\t}\n\tx=0\n\ty+=baldessari\n}\n\nfunction boring(){\n\tsynth.triggerRelease(0)\n}"
+    }
+  ]
+}
