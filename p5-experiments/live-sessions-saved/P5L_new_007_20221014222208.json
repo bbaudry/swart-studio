@@ -1,0 +1,16 @@
+{
+  "version": "1.4.1",
+  "revision": 44,
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  },
+  "structure": [
+    {
+      "type": "sketch",
+      "name": "new_007",
+      "mod": 1665773867901,
+      "code": "let w\nlet h\nlet x\nlet y\nlet cgrow\nlet hu\nlet maxHu\nlet minHu\n\tlet cx\n\tlet cy \n\tlet diam\n\n// no p5sound\nlet libs = [\"https://unpkg.com/tone\", \"includes/libs/Tone.js\"]\nlet synth,miles // tone.js instance\n\n\nfunction setup() {\n\tcreateCanvas(windowWidth, windowHeight)\n\tw=windowWidth\n\th=windowHeight\n\tcolorMode(HSB,360,100,100)\n\tx=0\n\ty=0\n\tcgrow=true\n\thu=30\n\tframeRate(17)\n\t\t cx = 0.8*w\n\t cy = 0.5*h\n\t diam=0.07*w\n\n\t// tone.js sampler\n\tsynth = new Tone.Sampler({\n\t\turls: {\n\t\t\t\"C4\": \"./Dirt-Samples/bleep/simpletone.wav\",\n\t\t\t\"D4\": \"Dirt-Samples/glitch/005_P1.wav\",\n\t\t\t\"E4\": \"Dirt-Samples/glitch/006_P2.wav\"\n\t\t},\n\t\trelease: 1,\n\t}).toDestination();\n\tmiles = new Tone.Sampler({\n\t\turls: {\n\t\t\t\"C4\": \"./Dirt-Samples/glitch/001_CB.wav\", \n\t\t\t\"D4\": \"./Dirt-Samples/jungbass/016_sustained_deep_low.wav\",\n\t\t},\n\t\trelease: 1}\n\t).toDestination();\n    miles.volume.value=8\n}\n\nfunction draw() {\n\tbackground(0,0,0)\n\tno()\n\tmore()\n\tboring()\n\tnoLoop()\n}\n\nfunction no(){\n\tmiles.triggerAttackRelease(\"C4\",1)\n\tif (cgrow && hu<0.52*w){fill(0,0,100);diam++}\n\telse {if(diam>=0.52*w){cgrow=false;synth.triggerAttackRelease(\"C4\",1)}\n\t\tif(diam<0.07*w){cgrow=true;synth.triggerAttackRelease(\"E4\",1)}\n\t\tdiam--\n\t}\n\tellipse(cx,cy,diam,diam)\n\tconsole.log(cx)\n}\n\nfunction more(){\n\tnoStroke()\n\tif(y>h){y=0; synth.triggerAttackRelease(\"D4\",1)}\n\tlet baldessari = random (21)\n\tlet john\n\tlet art=true\n\twhile(x<w){\n\t\tjohn=random(19)\n\t\tif (art) {rect(x,y,john,baldessari);art=false}\n\t\telse{art=true}\n\t\tx+=john\n\t}\n\tx=0\n\ty+=baldessari\n}\n\nfunction boring(){\n\tlet rad\n\tlet bob\n\tlet dylan\n\tlet freewheel=random(7,17)\n\tstroke(220,100,100)\n\tstrokeWeight(2)\n\tfor(i=0;i<freewheel;i++){\n\t\trad=random(0.2,1)*(diam)\n\t bob=random(2)*PI\n\t dylan=random(2)*PI+bob\n\tarc(cx,cy,rad,rad,bob,dylan)}\n\tif(random(42)<1){miles.triggerAttackRelease(\"D4\",1)\n}\n}"
+    }
+  ]
+}
