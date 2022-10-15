@@ -1,0 +1,16 @@
+{
+  "version": "1.4.1",
+  "revision": 44,
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  },
+  "structure": [
+    {
+      "type": "sketch",
+      "name": "new_009",
+      "mod": 1665860573258,
+      "code": "let w,h\nlet diam\nlet grow\nlet tom,waits\n// no p5sound\nlet libs = [\"https://unpkg.com/tone\", \"includes/libs/Tone.js\"]\nlet synth,klik // tone.js instance\nlet tomwaits\n\nfunction setup() {\n\tcreateCanvas(windowWidth, windowHeight)\n\tcolorMode(HSB,360,100,100)\n\tw=windowWidth\n\th=windowHeight\n\tgrow=true\n\tdiam=0.1*w\n\ttom=0\n\twaits=0\n\tsynth=new Tone.Player(\"/Dirt-Samples/glitch/001_CB.wav\").toDestination();\n\tklik=new Tone.Player(\"/Dirt-Samples/bleep/simpletone.wav\").toDestination();\n\tklik.volume.value=-10\n}\n\nfunction draw() {\n\tbackground(0,0,0)\n\tno()\n\tmore()\n}\n\nfunction no(){\n\tif(synth.loaded){synth.start();}\n\tfill(50,100,100)\n\tif(diam>=0.3*w){grow=false;}\n\tif(diam<=0.1*w){grow=true;}\n\tif(grow){\n\t\tdiam++\n\t}\n\telse{\n\t\tdiam--\n\t}\n\tellipse(0.7*w,0.5*h,diam,diam)\n}\n\nfunction more(){\n\tif(waits>h){waits=0;if(klik.loaded){klik.start();}}\n\tlet noone=random(22)\n\tlet art=true\n\tlet four\n\twhile(tom<w){\n\t\tfour = random(42)\n\t\tif(art){\n\t\t\trect(tom,waits,four,noone)\n\t\t\tart=false\n\t\t}\n\t\telse{art=true}\n\t\ttom+=four\n\t}\n\ttom=0\n\twaits+=noone\n}"
+    }
+  ]
+}
