@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        let centers = [[0.2,0.2],[0.4,0.2],[0.6,0.2],[0.8,0.2],[0.2,0.4],[0.4,0.4],[0.6,0.4],[0.8,0.4],[0.2,0.6],[0.4,0.6],[0.6,0.6],[0.8,0.6],[0.2,0.8],[0.4,0.8],[0.6,0.8],[0.8,0.8]]
+        let rad = 0.1*w
+        function setup(){
+            colorMode(HSB,360,100,100);
+            createCanvas(w, h);
+            background(0,0,0)
+            for(i=0;i<centers.length;i++){
+                fill(0,100,100)
+                ellipse(centers[i][0]*w,centers[i][1]*h,5,5)
+            }
+            noFill()            
+        }
+
+        function draw(){
+            pulse()
+        }
+
+        function pulse(){
+            stroke(0,0,100)
+            let i = Math.round(Math.random()*(centers.length-1))
+            let j = Math.round(Math.random()*4)
+            let k = (Math.random()*16)
+            let cx = centers[i][0]*w
+            let cy = centers[i][1]*h
+            let x = cx + rad/2*0.2*j*cos(2*PI/(k+1))
+            let y = cy + rad/2*0.2*j*sin(2*PI/(k+1))
+            ellipse(x,y,5,5)
+            console.log(2*PI/(k+1))
+
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
