@@ -32,12 +32,10 @@ function preload() {
             noFill()           
             for(i=0.1;i<1;i+=0.2){
                 for (j=0.1;j<1;j+=0.2){
-                    centers.push([i,j])
+                    centers.push([i*w,j*h])
+                    stroke(0,100,100)
+                    ellipse(i*w,j*h,5,5)
                 }
-            }
-            for(i=0;i<centers.length;i++){
-                stroke(0,100,100)
-                ellipse(centers[i][0]*w,centers[i][1]*h,5,5)
             }
             fill(0,100,100);
             noStroke()
@@ -59,8 +57,8 @@ function preload() {
             let j = Math.round(Math.random()*5) //divide the radius by 5 and randomly pick one portion
             if (j!=0){
             let k = Math.random()
-            let cx = centers[i][0]*w
-            let cy = centers[i][1]*h
+            let cx = centers[i][0]
+            let cy = centers[i][1]
             let x = cx + rad/2*0.2*j*cos(2*PI*k)
             let y = cy + rad/2*0.2*j*sin(2*PI*k)
             ellipse(x,y,2,2)
@@ -73,17 +71,17 @@ function preload() {
                 for(i=0;i<centers.length;i++){
                 stroke(230,100,100)
                 strokeWeight(5)
-                ellipse(centers[i][0]*w,centers[i][1]*h,rad,rad)
+                ellipse(centers[i][0],centers[i][1],rad,rad)
                 stroke(50,100,50)
                 strokeWeight(3)
-                ellipse(centers[i][0]*w,centers[i][1]*h,rad,rad)
+                ellipse(centers[i][0],centers[i][1],rad,rad)
             }
             }
             else{
                 for(i=0;i<centers.length;i++){
                 stroke(0,0,0)
                 strokeWeight(5)
-                ellipse(centers[i][0]*w,centers[i][1]*h,rad,rad)
+                ellipse(centers[i][0],centers[i][1],rad,rad)
             }
             }
 
