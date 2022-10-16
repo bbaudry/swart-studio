@@ -18,7 +18,7 @@
         //global vars for the whole piece
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
-        let centers = [[0.2,0.2],[0.4,0.2],[0.6,0.2],[0.8,0.2],[0.2,0.4],[0.4,0.4],[0.6,0.4],[0.8,0.4],[0.2,0.6],[0.4,0.6],[0.6,0.6],[0.8,0.6],[0.2,0.8],[0.4,0.8],[0.6,0.8],[0.8,0.8]]
+        let centers = [];
         let rad = 0.2*h
         let myFont;
 function preload() {
@@ -30,6 +30,11 @@ function preload() {
             createCanvas(w, h);
             background(0,0,0)
             noFill()           
+            for(i=0.1;i<1;i+=0.2){
+                for (j=0.1;j<1;j+=0.2){
+                    centers.push([i,j])
+                }
+            }
             for(i=0;i<centers.length;i++){
                 stroke(0,100,100)
                 ellipse(centers[i][0]*w,centers[i][1]*h,5,5)
@@ -38,7 +43,7 @@ function preload() {
             noStroke()
             textFont(myFont);
                 textSize(42);
-            text('p5*js', 0.48*w, 0.5*h);
+            text('inspire', 0.48*w, 0.5*h);
              noFill()
         }
 
@@ -58,7 +63,7 @@ function preload() {
             let cy = centers[i][1]*h
             let x = cx + rad/2*0.2*j*cos(2*PI*k)
             let y = cy + rad/2*0.2*j*sin(2*PI*k)
-            ellipse(x,y,5,5)
+            ellipse(x,y,2,2)
         }
         }
 
