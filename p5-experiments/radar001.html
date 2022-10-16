@@ -33,31 +33,54 @@ function preload() {
             for(i=0;i<centers.length;i++){
                 stroke(0,100,100)
                 ellipse(centers[i][0]*w,centers[i][1]*h,5,5)
-                stroke(0,0,100)
-                ellipse(centers[i][0]*w,centers[i][1]*h,rad,rad)
             }
             fill(0,100,100);
+            noStroke()
             textFont(myFont);
                 textSize(42);
-            text('p5*js', 0.5*w, 0.5*h);
-             
+            text('p5*js', 0.48*w, 0.5*h);
+             noFill()
         }
 
         function draw(){
+            flower()
             pulse()
         }
 
-        function pulse(){
+        function flower(){
+            strokeWeight(1)
             stroke(0,0,100)
-            let i = Math.round(Math.random()*(centers.length-1))
-            let j = Math.round(Math.random()*4)
-            let k = (Math.random()*16)
+            let i = Math.round(Math.random()*(centers.length-1)) //pick one random point as circle center
+            let j = Math.round(Math.random()*5) //divide the radius by 5 and randomly pick one portion
+            if (j!=0){
+            let k = Math.random()
             let cx = centers[i][0]*w
             let cy = centers[i][1]*h
-            let x = cx + rad/2*0.2*j*cos(2*PI/(k+1))
-            let y = cy + rad/2*0.2*j*sin(2*PI/(k+1))
+            let x = cx + rad/2*0.2*j*cos(2*PI*k)
+            let y = cy + rad/2*0.2*j*sin(2*PI*k)
             ellipse(x,y,5,5)
-            console.log(2*PI/(k+1))
+        }
+        }
+
+        function pulse(){
+            let f = frameCount%84
+            if (f>=0&&f<24){
+                for(i=0;i<centers.length;i++){
+                stroke(230,100,100)
+                strokeWeight(5)
+                ellipse(centers[i][0]*w,centers[i][1]*h,rad,rad)
+                stroke(50,100,50)
+                strokeWeight(3)
+                ellipse(centers[i][0]*w,centers[i][1]*h,rad,rad)
+            }
+            }
+            else{
+                for(i=0;i<centers.length;i++){
+                stroke(0,0,0)
+                strokeWeight(5)
+                ellipse(centers[i][0]*w,centers[i][1]*h,rad,rad)
+            }
+            }
 
         }
 
