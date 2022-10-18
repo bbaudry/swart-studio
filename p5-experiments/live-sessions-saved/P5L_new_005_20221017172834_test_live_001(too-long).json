@@ -1,0 +1,16 @@
+{
+  "version": "1.4.1",
+  "revision": 44,
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  },
+  "structure": [
+    {
+      "type": "sketch",
+      "name": "new_005",
+      "mod": 1666027645013,
+      "code": "let w,h\nlet centers=[]\nlet rad \nlet myfont\n\n// no p5sound\nlet libs = [\"https://unpkg.com/tone\", \"includes/libs/Tone.js\"]\nlet synth,klik // tone.js instance\n\n        function preload() {\n            //myFont = loadFont('fonts/FreeMono.ttf');\n            \tsynth=new Tone.Player(\"/Dirt-Samples/glitch/001_CB.wav\").toDestination();\n\tklik=new Tone.Player(\"/Dirt-Samples/bleep/simpletone.wav\").toDestination();\nsynth.volume.value=0\n\nklik.volume.value=-15\nmyfont=loadFont(\"./fonts/FreeMono.ttf\");\n        }\n\n\nfunction setup() {\n\tcreateCanvas(windowWidth, windowHeight)\n\tcolorMode(HSB,360,100,100)\n\th=windowHeight\n\tw=windowWidth\n\trad=0.2*h\n\tfor(i=0.1;i<1;i+=0.2){\n\t\tfor(j=0.1;j<1;j+=0.2){\n\t\t\tcenters.push([i*w,j*h])\n\t\t\tstroke(0,100,100)\n\t\t\tnoFill()\n\t\t\tellipse(i*w,j*h,5,5)\n\t\t}\n\t}\n}\n\nfunction draw() {\n\tno()\n\tmore()\n\tboring()\n\tcode()\n}\n\nfunction no(){\n\tstroke(0,0,100)\n\tstrokeWeight(1)\n\tlet tom = Math.round(Math.random()*(centers.length-1))\n\tlet waits = Math.round(Math.random()*5)\n\tif(waits!=0){\n\t\tlet baldessari=Math.random()\n\t\tlet cx=centers[tom][0]+rad/2*0.2*waits*cos(2*PI*baldessari)\n\t\tlet cy=centers[tom][1]+rad/2*0.2*waits*sin(2*PI*baldessari)\n\t\tellipse(cx,cy,5,5)\n\t}\n}\n\nfunction more(){\n\tsynth.start()\n}\n\nfunction boring(){\n\tlet right=frameCount%124\n\tif(right==0){klik.start()}\n\tif(right>=0&&right<24){\n\t\tfor(i=0;i<centers.length;i++){\n\t\t\tstrokeWeight(3)\n\t\t\tstroke(220,100,100)\n\t\t\tellipse(centers[i][0],centers[i][1],rad,rad)\n\t\t}\n\t}\n\telse{\n\t\tfor(i=0;i<centers.length;i++){\n\t\t\tstrokeWeight(3)\n\t\t\tstroke(0,0,0)\n\t\t\tellipse(centers[i][0],centers[i][1],rad,rad)\n\t\t}\n\t}\n}\n\nfunction code(){\n\ttextFont(myfont)\n\ttextSize(42)\n\tnoFill()\n\tstroke(0,100,100)\n\ttext(\"émerveiller\",0.5*w,0.4*h)\n\t\n}\n"
+    }
+  ]
+}
