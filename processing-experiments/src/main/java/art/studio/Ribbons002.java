@@ -33,30 +33,22 @@ public class Ribbons002 extends PApplet {
       star();
     }
     else{
+      save("Ribbons.png");
       noLoop();
     }
   }
 
   private void star(){
-    stroke(0, 0, 100);
-    noFill();
     float art=(float)0.7*w-random(w/2); //diameter
     float john = w/2 + random(-w/20,w/20); //center x
     float baldessari = h/2 + random(-h/20,h/20); //center y
-    ellipse(john,baldessari,art, art);
-    wave(john, baldessari, art/2);    
-  }
-
-  private void wave(float cx, float cy, float rad){
-    float ryoji = random(2*PI);
-    float john = cx + rad * cos(ryoji);
-    float baldessari = cy + rad * sin(ryoji);
-    stroke(330,100,100);
-    float ikeda = ryoji + random(PI);
-    float more = rad + random(122);
-    float vera = cx + more * cos(ikeda);
-    float molnar = cy + more * sin(ikeda);
-    arc(cx,cy,more*2, more*2, ryoji,ikeda);
+    noFill();
+    float b=100;
+    for (float beauty=art; beauty>1 && b>0; beauty--){
+    stroke(0, 0, b);
+    ellipse(john,baldessari,beauty, beauty);
+    b--;
+    }
   }
 
   public static void main(String[] args) {
