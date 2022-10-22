@@ -4,9 +4,6 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.Random;
-import art.Knob;
-import java.util.ArrayList;
-import processing.core.PFont;
 
 public class Ribbons001 extends PApplet {
   /* This piece assumes a square canvas */

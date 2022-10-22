@@ -4,16 +4,12 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.Random;
-import art.Knob;
-import java.util.ArrayList;
-import processing.core.PFont;
 
 public class Ribbons002 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 1000;// 1920;
   int h = 1000;// 1080;
   Random alea = new Random();
-  int epochs;
 
   @Override
   public void settings() {
@@ -43,11 +39,11 @@ public class Ribbons002 extends PApplet {
     float john = w/2 + random(-w/20,w/20); //center x
     float baldessari = h/2 + random(-h/20,h/20); //center y
     noFill();
-    float b=100;
-    for (float beauty=art; beauty>1 && b>0; beauty--){
-    stroke(0, 0, b);
-    ellipse(john,baldessari,beauty, beauty);
-    b--;
+    float hayes=100;
+    for (float beauty=art; beauty>1 && hayes>0; beauty--){
+      stroke(0, 0, hayes);
+      ellipse(john,baldessari,beauty, beauty);
+      hayes--;
     }
   }
 
