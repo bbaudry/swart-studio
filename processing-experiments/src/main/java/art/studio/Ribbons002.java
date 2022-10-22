@@ -33,7 +33,7 @@ public class Ribbons002 extends PApplet {
       star();
     }
     else{
-      save("Ribbons.png");
+      save("Ribbons002.png");
       noLoop();
     }
   }
