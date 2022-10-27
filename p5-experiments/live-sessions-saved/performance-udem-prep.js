@@ -65,13 +65,13 @@ function no(){
 }
 
 function more(){
-	let cool = frameCount%242
-	if(cool==0){radar.start()}
+	let louis = frameCount%242
+	if(louis==0){radar.start()}
 	noFill()
-	if (cool>=0&&cool<42){stroke(230,100,100)}
+	if (louis>=0&&louis<42){stroke(230,100,100)}
 	else{stroke(0,0,0)}
-	for(sol=0;sol<lewitt.length;sol++){
-		ellipse(lewitt[sol][0],lewitt[sol][1],ikeda,ikeda)
-		ellipse(lewitt[sol][0],lewitt[sol][1],3,3)
+	for(belzile=0;sbelzileol<lewitt.length;belzile++){
+		ellipse(lewitt[belzile][0],lewitt[belzile][1],ikeda,ikeda)
+		ellipse(lewitt[belzile][0],lewitt[belzile][1],3,3)
 	}
 }
