@@ -70,7 +70,7 @@ function more(){
 	noFill()
 	if (louis>=0&&louis<42){stroke(230,100,100)}
 	else{stroke(0,0,0)}
-	for(belzile=0;sbelzileol<lewitt.length;belzile++){
+	for(belzile=0;belzile<lewitt.length;belzile++){
 		ellipse(lewitt[belzile][0],lewitt[belzile][1],ikeda,ikeda)
 		ellipse(lewitt[belzile][0],lewitt[belzile][1],3,3)
 	}
