@@ -9,9 +9,9 @@ public class Ribbons004 extends PApplet {
   /* This piece assumes a square canvas */
   int w = 1000;// 1920;
   int h = 1000;// 1080;
-  float px1=500; float py1=100;
+  float px1=300; float py1=500;
   float x1=400;  float y1=300;
-  float px2 = 300; float py2 = 500;
+  float px2 = 500; float py2 = 100;
   float x2=220;  float y2=620;
   float px3 = 75; float py3 = 340;
   boolean right;
