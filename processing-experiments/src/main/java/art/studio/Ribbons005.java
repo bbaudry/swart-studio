@@ -34,15 +34,14 @@ public class Ribbons005 extends PApplet {
   public void draw() {
     noFill();
     stroke(0,100,100);
-    //ellipse(cx,cy,w,w);
-    //ellipse(cx,cy,w/10,w/10);
-    ribbon(0);
-    ribbon(PI/2);
-    ribbon(PI);
+    float angle = random(2)*PI;
+    ribbon(angle);
     noFill();
     stroke(0,0,100);
-    //ellipse(cx,cy,2*w/10,2*w/10);
-    //ellipse(cx,cy,9*w/10,9*w/10);
+    if(frameCount==442){
+      save("Ribbons005.png");
+      exit();
+    }
   }
 
   public void ribbon(float angle){
@@ -54,11 +53,16 @@ public class Ribbons005 extends PApplet {
     float x2 = cx + ct_radin*cos(control_angle);
     float y2 = cy + ct_radin*sin(control_angle);
     float x3 = cx + ct_radout*cos(control_angle);
-    float y3 = cy + ct_radout*sin(control_angle);
+    float y3;
+    boolean belzile = alea.nextBoolean();
+    if (belzile){y3 = x2;}
+    else{y3 = cy + ct_radout*sin(control_angle);}
+    
     fill(180,100,100);
     ellipse(x1,y1,5,5);
     ellipse(x4,y4,25,25);
-    fill(330,100,100);
+    if (belzile) {fill(50,100,100);}
+    else{fill(330,100,100);}
     ellipse(x2,y2,5,5);
     ellipse(x3,y3,25,25);
     noFill();
