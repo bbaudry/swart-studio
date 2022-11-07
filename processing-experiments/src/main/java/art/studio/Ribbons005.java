@@ -45,7 +45,8 @@ public class Ribbons005 extends PApplet {
   }
 
   public void ribbon(float angle){
-    float control_angle=angle-PI/7;
+    strokeWeight(alea.nextFloat()+(float)0.2);
+    float control_angle=angle-PI*alea.nextFloat();
     float x1 = cx + radin*cos(angle);
     float y1 = cy + radin*sin(angle);
     float x4 = cx + radout*cos(angle);
@@ -59,14 +60,14 @@ public class Ribbons005 extends PApplet {
     else{y3 = cy + ct_radout*sin(control_angle);}
     
     fill(180,100,100);
-    ellipse(x1,y1,5,5);
-    ellipse(x4,y4,25,25);
+    //ellipse(x1,y1,5,5);
+    //ellipse(x4,y4,25,25);
     if (belzile) {fill(50,100,100);}
     else{fill(330,100,100);}
-    ellipse(x2,y2,5,5);
-    ellipse(x3,y3,25,25);
+    //ellipse(x2,y2,5,5);
+    //ellipse(x3,y3,25,25);
     noFill();
-    stroke(230,100,100);
+    stroke(230,100*alea.nextFloat(),100*alea.nextFloat());
     bezier(x1, y1, x2, y2, x3, y3, x4, y4);
   }
 
