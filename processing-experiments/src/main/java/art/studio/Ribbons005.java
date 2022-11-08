@@ -1,4 +1,4 @@
-/* Metadata {"endless":true, "BW": false, "knobs": false, "data": false, "interaction": false}*/
+/* Metadata {"endless":false, "BW": false, "knobs": false, "data": false, "interaction": false}*/
 
 package art.studio;
 
@@ -11,6 +11,9 @@ public class Ribbons005 extends PApplet {
   int h = 1000;// 1080;
   float cx = w/2;
   float cy = h/2;
+  /* four circles: 
+  - inner and outer circle on which we put the end of each ribbon; their radius are radin and radout
+  - 2 other circles, between the inner and outer: we use them to position the control points to draw the ribbon with a bezier curve; their radius are ct_radin and ct_radout*/
   float radin = w/20;
   float radout = w/2;
   float ct_radin = w/10;
@@ -38,10 +41,10 @@ public class Ribbons005 extends PApplet {
     ribbon(angle);
     noFill();
     stroke(0,0,100);
-    if(frameCount==442){
+/*     if(frameCount==662){
       save("Ribbons005.png");
       exit();
-    }
+    }*/
   }
 
   public void ribbon(float angle){
