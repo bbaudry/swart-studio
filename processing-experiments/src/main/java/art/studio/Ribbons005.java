@@ -14,10 +14,10 @@ public class Ribbons005 extends PApplet {
   /* four circles: 
   - inner and outer circle on which we put the end of each ribbon; their radius are radin and radout
   - 2 other circles, between the inner and outer: we use them to position the control points to draw the ribbon with a bezier curve; their radius are ct_radin and ct_radout*/
-  float radin = w/20;
-  float radout = w/2;
-  float ct_radin = w/10;
-  float ct_radout = 9*w/20;
+  float radin = w/40;
+  float radout = w/4;
+  float ct_radin = w/20;
+  float ct_radout = 9*w/40;
   float angle;
   Random alea = new Random();
 
@@ -38,7 +38,10 @@ public class Ribbons005 extends PApplet {
     noFill();
     stroke(0,100,100);
     float angle = random(2)*PI;
-    ribbon(angle);
+    ribbon(w/4,h/4,angle);
+    ribbon(3*w/4,h/4,angle);
+    ribbon(w/4,3*h/4,angle);
+    ribbon(3*w/4,3*h/4,angle);
     noFill();
     stroke(0,0,100);
 /*     if(frameCount==662){
@@ -47,8 +50,8 @@ public class Ribbons005 extends PApplet {
     }*/
   }
 
-  public void ribbon(float angle){
-    strokeWeight(alea.nextFloat()+(float)0.2);
+  public void ribbon(float cx, float cy, float angle){
+    strokeWeight(alea.nextFloat()*3+(float)0.2);
     float control_angle=angle-PI*alea.nextFloat();
     float x1 = cx + radin*cos(angle);
     float y1 = cy + radin*sin(angle);
@@ -59,18 +62,10 @@ public class Ribbons005 extends PApplet {
     float x3 = cx + ct_radout*cos(control_angle);
     float y3;
     boolean belzile = alea.nextBoolean();
-    if (belzile){y3 = x2;}
+    if (belzile){y3 = y2;}
     else{y3 = cy + ct_radout*sin(control_angle);}
-    
-    fill(180,100,100);
-    //ellipse(x1,y1,5,5);
-    //ellipse(x4,y4,25,25);
-    if (belzile) {fill(50,100,100);}
-    else{fill(330,100,100);}
-    //ellipse(x2,y2,5,5);
-    //ellipse(x3,y3,25,25);
     noFill();
-    stroke(230,100*alea.nextFloat(),100*alea.nextFloat());
+    stroke(230,100,100*alea.nextFloat());
     bezier(x1, y1, x2, y2, x3, y3, x4, y4);
   }
 
