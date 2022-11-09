@@ -14,10 +14,10 @@ public class Ribbons005 extends PApplet {
   /* four circles: 
   - inner and outer circle on which we put the end of each ribbon; their radius are radin and radout
   - 2 other circles, between the inner and outer: we use them to position the control points to draw the ribbon with a bezier curve; their radius are ct_radin and ct_radout*/
-  float radin = w/40;
-  float radout = w/4;
-  float ct_radin = w/20;
-  float ct_radout = 9*w/40;
+  //float radin = w/40;
+  //float radout = w/4;
+  //float ct_radin = w/20;
+  //float ct_radout = 9*w/40;
   float angle;
   Random alea = new Random();
 
@@ -38,10 +38,10 @@ public class Ribbons005 extends PApplet {
     noFill();
     stroke(0,100,100);
     float angle = random(2)*PI;
-    ribbon(w/4,h/4,angle);
-    ribbon(3*w/4,h/4,angle);
-    ribbon(w/4,3*h/4,angle);
-    ribbon(3*w/4,3*h/4,angle);
+    ribbon(w/4,h/4,angle,true,w/40,w/4,w/20,9*w/40);//,w/20,9*w/40
+    ribbon(3*w/4,h/4,angle,false,w/50,w/4,w/10,8*w/40);
+    ribbon(w/4,3*h/4,angle,true,w/10,w/4,w/5,9*w/40);
+    ribbon(3*w/4,3*h/4,angle,false,w/40,w/4,w/20,9*w/40);
     noFill();
     stroke(0,0,100);
 /*     if(frameCount==662){
@@ -50,9 +50,12 @@ public class Ribbons005 extends PApplet {
     }*/
   }
 
-  public void ribbon(float cx, float cy, float angle){
-    strokeWeight(alea.nextFloat()*3+(float)0.2);
-    float control_angle=angle-PI*alea.nextFloat();
+  public void ribbon(float cx, float cy, float angle, boolean back, float radin, float radout, float ct_radin, float ct_radout){
+    noFill();
+    strokeWeight(alea.nextFloat());
+    float control_angle;   
+    if (back){control_angle=angle-PI*alea.nextFloat();stroke(230,100,100*alea.nextFloat());}
+    else{control_angle=angle+PI*alea.nextFloat();stroke(230,0,100,250*alea.nextFloat());}
     float x1 = cx + radin*cos(angle);
     float y1 = cy + radin*sin(angle);
     float x4 = cx + radout*cos(angle);
@@ -64,9 +67,7 @@ public class Ribbons005 extends PApplet {
     boolean belzile = alea.nextBoolean();
     if (belzile){y3 = y2;}
     else{y3 = cy + ct_radout*sin(control_angle);}
-    noFill();
-    stroke(230,100,100*alea.nextFloat());
-    bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+    bezier(x1, y1, x2, y2, x3, y3, x4, y4); 
   }
 
   public static void main(String[] args) {
