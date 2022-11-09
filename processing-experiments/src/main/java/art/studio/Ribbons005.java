@@ -39,15 +39,15 @@ public class Ribbons005 extends PApplet {
     stroke(0,100,100);
     float angle = random(2)*PI;
     ribbon(w/4,h/4,angle,true,w/40,w/4,w/20,9*w/40);//,w/20,9*w/40
-    ribbon(3*w/4,h/4,angle,false,w/50,w/4,w/10,8*w/40);
+    ribbon(3*w/4,h/4,angle,false,w/60,w/4,w/10,8*w/40);
     ribbon(w/4,3*h/4,angle,true,w/10,w/4,w/5,9*w/40);
     ribbon(3*w/4,3*h/4,angle,false,w/40,w/4,w/20,9*w/40);
     noFill();
     stroke(0,0,100);
-/*     if(frameCount==662){
+     if(frameCount==1111){
       save("Ribbons005.png");
       exit();
-    }*/
+    }
   }
 
   public void ribbon(float cx, float cy, float angle, boolean back, float radin, float radout, float ct_radin, float ct_radout){
