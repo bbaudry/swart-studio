@@ -13,7 +13,9 @@ public class Ribbons005 extends PApplet {
   float cy = h/2;
   /* four circles: 
   - inner and outer circle on which we put the end of each ribbon; their radius are radin and radout
-  - 2 other circles, between the inner and outer: we use them to position the control points to draw the ribbon with a bezier curve; their radius are ct_radin and ct_radout*/
+  - 2 other circles, between the inner and outer: we use them to position the control points to draw the ribbon with a bezier curve; their radius are ct_radin and ct_radout
+  the values of the 4 radii are defined later and passed as parameter to the ribbon
+  */
   //float radin = w/40;
   //float radout = w/4;
   //float ct_radin = w/20;
@@ -35,8 +37,6 @@ public class Ribbons005 extends PApplet {
 
   @Override
   public void draw() {
-    noFill();
-    stroke(0,100,100);
     float angle = random(2)*PI;
     ribbon(w/4,h/4,angle,true,w/40,w/4,w/20,9*w/40);//,w/20,9*w/40
     ribbon(3*w/4,h/4,angle,false,w/60,w/4,w/10,8*w/40);
