@@ -30,15 +30,36 @@ public class Ribbons007 extends PApplet {
   @Override
   public void draw() {
     ribbon();
-    if(alea.nextBoolean()){xorig+=alea.nextFloat();}
-    else{yorig+=alea.nextFloat();}
+    int dice = alea.nextInt(8);
+    switch(dice){
+      case 0:xorig+=alea.nextFloat();
+      break;
+      case 1:xorig-=alea.nextFloat();
+      break;
+      case 2:yorig+=alea.nextFloat();
+      break;
+      case 3:yorig-=alea.nextFloat();
+      break;
+      case 4:xorig+=alea.nextFloat();
+      break;
+      case 5:yorig+=alea.nextFloat();
+      break;
+      case 6:xorig+=alea.nextFloat()*2; 
+      break;
+      case 7:yorig+=alea.nextFloat()*2;
+      break;
+    }
   }
 
   private void ribbon(){
     float cx1,cy1;
     float cx2,cy2;
+    //randomly select two points that are centers of circles
     cx1 = xorig + alea.nextInt(100); cy1 = yorig + alea.nextInt(100);
     cx2 = xorig + alea.nextInt(100); cy2 = yorig + alea.nextInt(100);
+    /* https://www.geeksforgeeks.org/check-two-given-circles-touch-intersect/
+     * determine if the circles intersect; if they do, draw a line between the centers
+    */
     double d = Math.sqrt((cx1 - cx2) * (cx1 - cx2) + (cy1 - cy2) * (cy1 - cy2));
     if(d<rad+rad){stroke(0,0,100, 100); line(cx1,cy1,cx2,cy2);}
   }
