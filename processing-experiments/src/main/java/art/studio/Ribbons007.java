@@ -10,8 +10,11 @@ public class Ribbons007 extends PApplet {
   int w = 1000;// 1920;
   int h = 1000;// 1080;
   float rad = 21;
-  float xorig = 100;
-  float yorig = 100;
+  float xorig1 = w/2;
+  float yorig1 = h/2;
+  float xorig2 = w/2;
+  float yorig2 = h/2;
+
 
   Random alea = new Random();
 
@@ -29,34 +32,37 @@ public class Ribbons007 extends PApplet {
 
   @Override
   public void draw() {
-    ribbon();
-    int dice = alea.nextInt(8);
+    ribbon(xorig1,yorig1,true);
+    ribbon(xorig2,yorig2,false);
+    int dice = alea.nextInt(6);
     switch(dice){
-      case 0:xorig+=alea.nextFloat();
+      case 0:xorig1+=alea.nextFloat();
       break;
-      case 1:xorig-=alea.nextFloat();
+      case 1:xorig2-=alea.nextFloat();
       break;
-      case 2:yorig+=alea.nextFloat();
+      case 2:yorig1+=alea.nextFloat();
       break;
-      case 3:yorig-=alea.nextFloat();
+      case 3:yorig2-=alea.nextFloat();
       break;
-      case 4:xorig+=alea.nextFloat();
+      case 4://if(alea.nextInt(42)<1){xorig1=alea.nextFloat()*w;xorig2=xorig1;}
       break;
-      case 5:yorig+=alea.nextFloat();
-      break;
-      case 6:xorig+=alea.nextFloat()*2; 
-      break;
-      case 7:yorig+=alea.nextFloat()*2;
+      case 5://if(alea.nextInt(42)<1){yorig1=alea.nextFloat()*h;yorig2=yorig1;}
       break;
     }
   }
 
-  private void ribbon(){
+  private void ribbon(float x, float y, boolean up){
     float cx1,cy1;
     float cx2,cy2;
     //randomly select two points that are centers of circles
-    cx1 = xorig + alea.nextInt(100); cy1 = yorig + alea.nextInt(100);
-    cx2 = xorig + alea.nextInt(100); cy2 = yorig + alea.nextInt(100);
+    if (up){
+      cx1 = x + alea.nextInt(100); cy1 = y + alea.nextInt(100);
+      cx2 = x + alea.nextInt(100); cy2 = y + alea.nextInt(100);
+    }
+    else{
+      cx1 = x - alea.nextInt(100); cy1 = y - alea.nextInt(100);
+      cx2 = x - alea.nextInt(100); cy2 = y - alea.nextInt(100);
+    }
     /* https://www.geeksforgeeks.org/check-two-given-circles-touch-intersect/
      * determine if the circles intersect; if they do, draw a line between the centers
     */
