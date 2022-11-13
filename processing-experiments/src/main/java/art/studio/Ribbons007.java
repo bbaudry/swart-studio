@@ -35,6 +35,7 @@ public class Ribbons007 extends PApplet {
     ribbon(xorig1,yorig1,true);
     ribbon(xorig2,yorig2,false);
     int dice = alea.nextInt(6);
+    float t;
     switch(dice){
       case 0:xorig1+=alea.nextFloat();
       break;
@@ -44,9 +45,22 @@ public class Ribbons007 extends PApplet {
       break;
       case 3:yorig2-=alea.nextFloat();
       break;
-      case 4://if(alea.nextInt(42)<1){xorig1=alea.nextFloat()*w;xorig2=xorig1;}
+      case 4:
+      if(alea.nextInt(42)<1){
+        t=random(1);
+        xorig1 = (1 - t) * w/2 + (t * w);
+        yorig1 = (1 - t) * h/2 + (t * 0);
+        xorig2=xorig1;
+        yorig2=yorig1;}
       break;
-      case 5://if(alea.nextInt(42)<1){yorig1=alea.nextFloat()*h;yorig2=yorig1;}
+      case 5:
+      if(alea.nextInt(242)<1){
+        t=random(1);
+        xorig1 = (1 - t) * 0 + (t * w/2);
+        yorig1 = (1 - t) * h + (t * h/2);
+        xorig2=xorig1;
+        yorig2=yorig1;}
+
       break;
     }
   }
@@ -67,7 +81,14 @@ public class Ribbons007 extends PApplet {
      * determine if the circles intersect; if they do, draw a line between the centers
     */
     double d = Math.sqrt((cx1 - cx2) * (cx1 - cx2) + (cy1 - cy2) * (cy1 - cy2));
-    if(d<rad+rad){stroke(0,0,100, 100); line(cx1,cy1,cx2,cy2);}
+    if(d<rad+rad){
+      if(alea.nextInt(242)<1){stroke(0,100,100);}
+      line(cx1,cy1,cx2,cy2);
+      float cx =  (float)(0.5 * cx1 + 0.5 * cx2);
+      float cy =  (float)(0.5 * cy1 + 0.5 * cy2);
+      stroke(0,0,100, 100); 
+      ellipse(cx,cy,rad,rad);
+    }
   }
 
   public static void main(String[] args) {
