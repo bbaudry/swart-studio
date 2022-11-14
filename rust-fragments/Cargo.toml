@@ -1,0 +1,5 @@
+[workspace]
+members = [
+"white-squares",
+"white-circles",
+]

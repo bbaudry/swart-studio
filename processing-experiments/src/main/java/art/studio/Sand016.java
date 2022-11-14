@@ -15,21 +15,8 @@ public class Sand016 extends PApplet {
   float cx;
   float cy;
   float rad;
-  float size;
-  int nbparticles;
   int grain; // size of sand grain
-  boolean grow;
-  float backHu;
-  float frontHu;
   Random alea;
-  int s;
-  ArrayList<Knob> knobs;
-  PFont f;
-  int fontSize;
-  int knob_index;
-  int knob_index_max;
-  int knob_print_offset;
-  int knob_y;
   
   @Override
   public void settings() {
@@ -41,9 +28,9 @@ public class Sand016 extends PApplet {
     alea=new Random();
     colorMode(HSB, 360, 100, 100);
     background(0,0,0);
-    grain = 42;
-    noStroke();
-    fill(50,100,100);
+    grain = 100;
+    stroke(0,0,100,50);
+    noFill();
     frameRate(11);
   }
 
@@ -65,34 +52,37 @@ public class Sand016 extends PApplet {
   
   private void shape(float x, float y){
     int chance = alea.nextInt(42);
+    x=x-(float)(0.05*grain);
+    y=y-(float)(0.05*grain);
+    float localGrain = (float)(0.95*grain); 
     if (chance<9){
-      rect(x,y,grain,grain); s++;
+      rect(x,y,localGrain,localGrain); 
     }
     else{
       if (chance<15){
-        ellipse(x+grain/2,y+grain/2,grain,grain); s++;
+        ellipse(x+localGrain/2,y+localGrain/2,localGrain,localGrain); 
       }
       else{
         if (chance<22){
-          triangle(x, y, x+grain, y, x+grain/3, y+grain); s++;
+          triangle(x, y, x+localGrain, y, x+localGrain/3, y+localGrain); 
         }
         else{
           if (chance<28){
-            triangle(x+grain, y, x+grain, y+grain, x, y+grain); s++;
+            triangle(x+grain, y, x+localGrain, y+localGrain, x, y+localGrain); 
           }
           else{
             if (chance<34){
-              ellipse(x+grain/4,y+grain/4,grain/2,grain/2);
-              ellipse(x+3*grain/4,y+3*grain/4,grain/2,grain/2);
-              rect(x+grain/2, y, grain/2, grain/2);
-              rect(x, y+grain/2, grain/2, grain/2); s++;
+              ellipse(x+localGrain/4,y+localGrain/4,localGrain/2,localGrain/2);
+              ellipse(x+3*localGrain/4,y+3*localGrain/4,localGrain/2,localGrain/2);
+              rect(x+localGrain/2, y, localGrain/2, localGrain/2);
+              rect(x, y+localGrain/2, localGrain/2, localGrain/2); 
             }
             else{
               if(chance<41){
-                ellipse(x+3*grain/4,y+grain/4,grain/2,grain/2);
-                ellipse(x+grain/4,y+3*grain/4,grain/2,grain/2);
-                rect(x, y, grain/2, grain/2);
-                rect(x+grain/2, y+grain/2, grain/2, grain/2); s++;
+                ellipse(x+3*localGrain/4,y+localGrain/4,localGrain/2,localGrain/2);
+                ellipse(x+localGrain/4,y+3*grain/4,localGrain/2,localGrain/2);
+                rect(x, y, localGrain/2, localGrain/2);
+                rect(x+localGrain/2, y+localGrain/2, localGrain/2, localGrain/2); 
               }
             }
           }
