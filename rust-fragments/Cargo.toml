@@ -3,3 +3,4 @@ members = [
 "white-squares",
 "white-circles",
 ]
+resolver="2"
