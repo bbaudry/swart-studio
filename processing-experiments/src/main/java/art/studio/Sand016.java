@@ -27,7 +27,7 @@ public class Sand016 extends PApplet {
     background(0,0,0);
     grain = 100;
     noFill();
-    frameRate(5);
+    frameRate(11);
   }
 
   @Override
@@ -48,8 +48,8 @@ public class Sand016 extends PApplet {
   
   private void shape(float x, float y){
     int chance = alea.nextInt(42);
-    x=x-(float)(0.05*grain);
-    y=y-(float)(0.05*grain);
+    x=x+(float)(0.05*grain);
+    y=y+(float)(0.05*grain);
     float localGrain = (float)(0.95*grain); 
     if (alea.nextInt(168)<1){    stroke(230,100,100,150);
     }
@@ -82,6 +82,7 @@ public class Sand016 extends PApplet {
                 if(chance<38){
                   circle_dots(x,y);
                 }
+                else{broken_ray(x, y);}
               }
             }
           }
@@ -91,24 +92,18 @@ public class Sand016 extends PApplet {
   }
 
   private void circle_vert (float x, float y){
-    x=x-(float)(0.05*grain);
-    y=y-(float)(0.05*grain);
     float localGrain = (float)(0.95*grain); 
     ellipse(x+localGrain/2,y+localGrain/2,localGrain,localGrain);
     line(x+localGrain/2,y,x+localGrain/2,y+localGrain);
   }
 
   private void circle_hor (float x, float y){
-    x=x-(float)(0.05*grain);
-    y=y-(float)(0.05*grain);
     float localGrain = (float)(0.95*grain); 
     ellipse(x+localGrain/2,y+localGrain/2,localGrain,localGrain);
     line(x,y+localGrain/2,x+localGrain,y+localGrain/2);
   }
 
   private void circle_dots (float x, float y){
-    x=x-(float)(0.05*grain);
-    y=y-(float)(0.05*grain);
     float localGrain = (float)(0.95*grain); 
     ellipse(x+localGrain/2,y+localGrain/2,localGrain,localGrain);
     for (int i = 0; i<10; i++){particle(x+localGrain/2, y+localGrain/2, localGrain, 5);}
@@ -124,6 +119,23 @@ public class Sand016 extends PApplet {
     float x=cx+r*cos(t);
     float y=cy+r*sin(t);
     ellipse(x,y,size,size);
+  }
+
+  private void broken_ray(float x, float y){
+    float localGrain = (float)(0.95*grain); 
+    rect(x,y,localGrain,localGrain);
+    x = x + alea.nextFloat()*(localGrain/2) ;
+    float off = alea.nextFloat()*(localGrain/2) ;
+    float height = y + localGrain;
+    fill(0,0,100,50);
+    int ystep = alea.nextInt(4)+1;
+    while (y<height){
+      rect(x,y,off,localGrain/ystep);
+      x-=off/2;
+      off=alea.nextFloat()*(localGrain/2) ;
+      y+=localGrain/ystep;
+    }
+    noFill();
   }
 
 
