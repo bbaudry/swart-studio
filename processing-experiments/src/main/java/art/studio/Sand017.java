@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Sand017 extends PApplet {
   /* This piece assumes a square canvas */
-  int w = 1000;// 1920;
-  int h = 1000;// 1080;
+  int w =  1920;
+  int h =  1080;
   float cx;
   float cy;
   float john, baldessari;
