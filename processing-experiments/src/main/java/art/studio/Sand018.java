@@ -21,7 +21,7 @@ public class Sand018 extends PApplet {
   PFont f;
   //John Baldessari, Casey Raes, Ryoji Ikeda, Vera Molnar, Sol LeWitt, Visakh Menon, Jean-Michel Basquiat, rethread, Bob Holmes, Pope/Green/Fuller, Bradford Paley, 
   String[] art_pieces = {"pure beauty","ultraconcentrated","data.anatomy","interruptions", "modular cubes", "signal 12A", "dustheads","cyber|glow","uncuttable","web stalker","code profiles"};
-
+  int refresh = 25;
 
   @Override
   public void settings() {
@@ -45,10 +45,10 @@ public class Sand018 extends PApplet {
 
   @Override
   public void draw() {
-    if (frameCount % 42 == 0) {
+    if (frameCount % refresh == 0) {
       background(0, 0, 0);
     }
-    if (frameCount % 42 > 1) {
+    if (frameCount % refresh > 1) {
       organ();
       float x = 0;
       float y = 0;
@@ -61,9 +61,9 @@ public class Sand018 extends PApplet {
         x += grain;
       }
     }
-    if (frameCount % 42 == 17) {
+    if (frameCount % refresh == 17) {
       String xavi = "Sand018" + frameCount + ".png";
-      save(xavi);
+      //save(xavi);
     }
   }
 
