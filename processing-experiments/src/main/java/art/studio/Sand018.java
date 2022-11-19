@@ -21,7 +21,7 @@ public class Sand018 extends PApplet {
   PFont f;
   //John Baldessari, Casey Raes, Ryoji Ikeda, Vera Molnar, Sol LeWitt, Visakh Menon, Jean-Michel Basquiat, rethread, Bob Holmes, Pope/Green/Fuller, Bradford Paley, Marcel Schwittlick
   String[] art_pieces = {"pure beauty","ultraconcentrated","data.anatomy","interruptions", "modular cubes", "signal 12A", "dustheads","cyber|glow","uncuttable","web stalker","code profiles","buffer overflow"};
-  int refresh = 33;
+  int refresh;
 
   @Override
   public void settings() {
@@ -38,7 +38,8 @@ public class Sand018 extends PApplet {
     baldessari = alea.nextFloat() * 42;
     pure = 91;
     noFill();
-    frameRate(11);
+    frameRate(17);
+    refresh  = 34;
     f = createFont("FreeMono", fSize, true);
     textFont(f);
   }
@@ -48,7 +49,7 @@ public class Sand018 extends PApplet {
     if (frameCount % refresh == 0) {
       background(0, 0, 0);
     }
-    if (frameCount % refresh > 0) {
+    //if (frameCount % refresh > 0) {
       organ();
       float x = 0;
       float y = 0;
@@ -60,10 +61,10 @@ public class Sand018 extends PApplet {
         y = 0;
         x += grain;
       }
-    }
-    if (frameCount % refresh == 17) {
+    //}
+    if (frameCount % refresh == 19) {
       String xavi = "Sand018" + frameCount + ".png";
-      //save(xavi);
+      save(xavi);
     }
   }
 
@@ -98,7 +99,7 @@ public class Sand018 extends PApplet {
     y = y + (float) (0.05 * grain);
     float localGrain = (float) (0.95 * grain);
     if (alea.nextInt(168) < 1) {
-      stroke(230, 100, 100, 150);
+      stroke(0, 100, 100, 150);
     } else {
       stroke(0, 0, 100, 50);
     }
@@ -108,19 +109,19 @@ public class Sand018 extends PApplet {
       if (chance < 3) {
         ellipse(x + localGrain / 2, y + localGrain / 2, localGrain, localGrain);
       } else {
-        if (chance < 13) {
+        if (chance < 9) {
           triangle(x, y, x + localGrain, y, x + localGrain / 3, y + localGrain);
         } else {
-          if (chance < 20) {
+          if (chance < 15) {
             triangle(x + grain, y, x + localGrain, y + localGrain, x, y + localGrain);
           } else {
-            if (chance < 24) {
+            if (chance < 20) {
               circle_hor(x, y);
             } else {
-              if (chance < 28) {
+              if (chance < 21) {
                 circle_vert(x, y);
               } else {
-                if (chance < 36) {
+                if (chance < 34) {
                   circle_dots(x, y);
                 } else {
                   broken_ray(x, y);
