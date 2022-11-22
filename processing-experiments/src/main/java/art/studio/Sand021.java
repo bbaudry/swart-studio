@@ -12,6 +12,7 @@ public class Sand021 extends PApplet {
   int w =  1920;
   int h =  1080;
   float vera, molnar; // x and y coordinates for shapes
+  float tx;
   Random alea;
   ArrayList<Float> pads;
   @Override
@@ -23,8 +24,9 @@ public class Sand021 extends PApplet {
   public void setup() {
     alea = new Random();
     colorMode(HSB, 360, 100, 100);
-    background(0, 0, 0);
+    //frameRate(5);
     initPads();
+    tx=0;
   }
   
   private void initPads(){
@@ -39,7 +41,12 @@ public class Sand021 extends PApplet {
 
   @Override
   public void draw() {
+    background(0, 0, 0);
+    pushMatrix();
+    translate(tx, 0);
     row();
+    popMatrix();
+    tx++;
   }
 
   private void row(){

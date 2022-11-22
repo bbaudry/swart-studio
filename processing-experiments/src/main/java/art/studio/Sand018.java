@@ -64,7 +64,7 @@ public class Sand018 extends PApplet {
     //}
     if (frameCount % refresh == 19) {
       String xavi = "Sand018" + frameCount + ".png";
-      save(xavi);
+      //save(xavi);
     }
   }
 
