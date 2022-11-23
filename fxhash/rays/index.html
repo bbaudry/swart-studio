@@ -47,8 +47,8 @@
     let bowie;
     let john = w / 2;
     let baldessari = fxrand() * 42;
-    let text = fxrand();
-    let red = fxrand();
+    let text_decision = fxrand();
+    let red_decision = fxrand();
 
     function preload(){
       bowie=loadFont("./fonts/FreeMono.ttf");
@@ -62,15 +62,16 @@
         "art_text" : hasText(),
         "red" : loadRed()
       }
+      if (loadRed()) {console.log("red");}
     }
 
     function hasText(){
-      if (text<0.1){return true;}
+      if (text_decision<0.1){return true;}
       else{return false;}
     }
 
     function loadRed(){
-      if (red<0.1){return true;}
+      if (red_decision<0.1){return true;}
       else{return false;}
     }
 
@@ -123,11 +124,15 @@
     x = x + 0.05 * grain;
     y = y + 0.05 * grain;
     localGrain = 0.95 * grain;
+    if (loadRed() && frameCount%17==0){
+      stroke(0, 100, 100, 150);
+    }
+    else{
     if ((fxrand()*168) < 1) {
       stroke(0, 100, 100, 150);
     } else {
       stroke(0, 0, 100, 50);
-    }
+    }}
     if (chance < 1) {
       rect(x, y, localGrain, localGrain);
     } else {
