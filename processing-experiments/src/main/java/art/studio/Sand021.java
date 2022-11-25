@@ -27,26 +27,20 @@ public class Sand021 extends PApplet {
     colorMode(HSB, 360, 100, 100);
     tx=0;
     grain = w/111;
+    background(0, 0, 0);
   }
   
-  private void initPads(){
-    pads=new ArrayList<>();
-    float p = 0;
-    while (p<w) {
-      float bowie = alea.nextFloat()*w/5;
-      pads.add(bowie); 
-      p+=bowie;
-    }
-  }
-
   @Override
   public void draw() {
-//    background(0, 0, 0);
     int bowie;
-    for(int molnar=0;molnar<11; molnar++){
-    bowie = alea.nextInt()+1;
-    System.out.println("draw "+bowie+" sculptures");
-    david(bowie);}
+    for(int molnar=0;molnar<7; molnar++){
+      bowie = alea.nextInt(41)+1;
+      System.out.println("draw "+bowie+" sculptures");
+      david(bowie);
+    }
+    if(frameCount%57==0){
+      background(0, 0, 0);
+    }
   }
 
   private void david (int bowie){
