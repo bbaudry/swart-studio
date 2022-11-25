@@ -4,7 +4,6 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.Random;
-import processing.core.PFont;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -15,6 +14,8 @@ public class Sand021 extends PApplet {
   float tx;
   Random alea;
   ArrayList<Float> pads;
+  float grain;
+
   @Override
   public void settings() {
     size(w, h);
@@ -24,9 +25,8 @@ public class Sand021 extends PApplet {
   public void setup() {
     alea = new Random();
     colorMode(HSB, 360, 100, 100);
-    //frameRate(5);
-    initPads();
     tx=0;
+    grain = w/111;
   }
   
   private void initPads(){
@@ -41,12 +41,25 @@ public class Sand021 extends PApplet {
 
   @Override
   public void draw() {
-    background(0, 0, 0);
-    pushMatrix();
-    translate(tx, 0);
-    row();
-    popMatrix();
-    tx++;
+//    background(0, 0, 0);
+    int bowie;
+    for(int molnar=0;molnar<11; molnar++){
+    bowie = alea.nextInt()+1;
+    System.out.println("draw "+bowie+" sculptures");
+    david(bowie);}
+  }
+
+  private void david (int bowie){
+    fill(0,0,100); stroke(0,0,100);
+    float x = alea.nextFloat()*w;
+    float y = alea.nextFloat()*h;
+    for(int i = 0; i<bowie; i++){
+      float john = alea.nextFloat()*10;
+      float baldessari = alea.nextFloat()*10;
+      rect(x,y,john,baldessari);
+      if(alea.nextBoolean()){x+=john;}
+      else{y+=baldessari;}
+    }
   }
 
   private void row(){
