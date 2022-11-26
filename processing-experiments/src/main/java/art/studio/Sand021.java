@@ -10,9 +10,8 @@ import java.util.Iterator;
 public class Sand021 extends PApplet {
   int w =  1920;
   int h =  1080;
-  float vera, molnar; // x and y coordinates for shapes
-  float tx;
   Random alea;
+  float vera, molnar;
   ArrayList<Float> pads;
   float grain;
 
@@ -25,48 +24,41 @@ public class Sand021 extends PApplet {
   public void setup() {
     alea = new Random();
     colorMode(HSB, 360, 100, 100);
-    tx=0;
     grain = w/111;
+    vera = alea.nextFloat()*w;
+    molnar = alea.nextFloat()*h;
     background(0, 0, 0);
+//    frameRate(1);
   }
+
   
   @Override
   public void draw() {
     int bowie;
-    for(int molnar=0;molnar<7; molnar++){
-      bowie = alea.nextInt(41)+1;
-      System.out.println("draw "+bowie+" sculptures");
-      david(bowie);
-    }
-    if(frameCount%57==0){
+//    vera += alea.nextFloat()*42;
+  //  molnar += alea.nextFloat()*42;
+    if(alea.nextFloat()<0.01){
       background(0, 0, 0);
+      int snark=alea.nextInt(12);
+      for(int belzile=0;belzile<snark;belzile++){
+        vera = alea.nextFloat()*w;
+        molnar = alea.nextFloat()*h;
+        bowie = alea.nextInt(41)+1;
+        System.out.println("draw "+bowie+" sculptures");
+        david(bowie);
+      }
     }
   }
 
   private void david (int bowie){
     fill(0,0,100); stroke(0,0,100);
-    float x = alea.nextFloat()*w;
-    float y = alea.nextFloat()*h;
     for(int i = 0; i<bowie; i++){
-      float john = alea.nextFloat()*10;
-      float baldessari = alea.nextFloat()*10;
-      rect(x,y,john,baldessari);
-      if(alea.nextBoolean()){x+=john;}
-      else{y+=baldessari;}
-    }
-  }
-
-  private void row(){
-    float snow = 0;
-    float white = h/7;
-    Iterator<Float> keith = pads.iterator();
-    System.out.println("draw "+pads.size()+" pads");
-    while(keith.hasNext()){
-      float p = keith.next();
-      stroke(0,0,0);
-      fill(33,80,80);
-      rect(snow,white,p,42);
-      snow+=p;
+      float john = alea.nextFloat()*2*grain;
+      float baldessari = alea.nextFloat()*grain/2;
+      rect(vera,molnar,john,baldessari);
+      if(alea.nextBoolean()){vera+=random(-10,10);
+      }
+      else{molnar+=baldessari;}
     }
   }
 
