@@ -44,6 +44,7 @@ public class Sand021 extends PApplet {
         bowie = alea.nextInt(41)+1;
         david(bowie);
       }
+      particles();
     }
   }
 
@@ -58,6 +59,17 @@ public class Sand021 extends PApplet {
       if(alea.nextBoolean()){vera+=random(-10,10);
       }
       else{molnar+=baldessari;}
+    }
+  }
+
+  private void particles(){
+    float cx,cy;
+    float rad;
+    for(int i=0;i<333;i++){
+      cx=random(w);
+      cy=random(h);
+      rad=random(1);
+      ellipse(cx,cy,rad,rad);
     }
   }
 
