@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Sand021 extends PApplet {
-  int w =  1920;
-  int h =  1080;
+  int w =  1000;
+  int h =  1000;
   Random alea;
   float vera, molnar;
   ArrayList<Float> pads;
@@ -35,16 +35,13 @@ public class Sand021 extends PApplet {
   @Override
   public void draw() {
     int bowie;
-//    vera += alea.nextFloat()*42;
-  //  molnar += alea.nextFloat()*42;
-    if(alea.nextFloat()<0.01){
+    if(alea.nextFloat()<0.06){
       background(0, 0, 0);
-      int snark=alea.nextInt(12);
+      int snark=alea.nextInt(frameCount%42+1);
       for(int belzile=0;belzile<snark;belzile++){
         vera = alea.nextFloat()*w;
         molnar = alea.nextFloat()*h;
         bowie = alea.nextInt(41)+1;
-        System.out.println("draw "+bowie+" sculptures");
         david(bowie);
       }
     }
@@ -53,6 +50,8 @@ public class Sand021 extends PApplet {
   private void david (int bowie){
     fill(0,0,100); stroke(0,0,100);
     for(int i = 0; i<bowie; i++){
+      if(alea.nextFloat()<0.1){fill(230,100,100); stroke(230,100,100);}
+      else{fill(0,0,100); stroke(0,0,100);}
       float john = alea.nextFloat()*2*grain;
       float baldessari = alea.nextFloat()*grain/2;
       rect(vera,molnar,john,baldessari);
