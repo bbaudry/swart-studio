@@ -1,4 +1,5 @@
 use nannou::prelude::*;
+use nannou::rand::*;
 
 fn main() {
     nannou::app(model)
@@ -19,13 +20,18 @@ fn update(_app: &App, _model: &mut Model, _update: Update) {
     
 }
 
-fn view(_app: &App, _model: &Model, _frame: Frame){
+fn view(app: &App, _model: &Model, frame: Frame){
+    let draw = app.draw();
+    draw.background().color(BLACK);
+    let john = rand::random_range::<i32>(-300.0,300.0);
+    let baldessari = rand::random_range::<i32>(-200.0,200.0);
+
     let mut n = 42;
     while n!=0 {
         draw.rect()
-    .color(WHITE)
-    .w(300.0)
-    .h(200.0);
+        .color(WHITE)
+        .w(john)
+        .h(baldessari);
         n-=1;
     }
     
