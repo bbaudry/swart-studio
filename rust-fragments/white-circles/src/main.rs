@@ -28,13 +28,13 @@ fn view(app: &App, _model: &Model, frame: Frame){
     let vera = random_range(3.0,11.0);
     let molnar = random_range(2.0,7.0);
 
-    let mut n = 42;
-    while n!=0 {
+    //let mut n = 42;
+    for n in 1..42 {
         draw.rect()
         .color(hsl(0.0,0.0,1.0))
         .x_y(john,baldessari)
         .w_h(vera,molnar);
-        n-=1;
+        //n-=1;
     }
     draw.to_frame(app,&frame).unwrap();
 
