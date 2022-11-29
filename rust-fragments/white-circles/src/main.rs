@@ -18,11 +18,12 @@ fn model(app: &App) -> Model {
     Model {baldessari:[[50.0,50.0],[50.0,50.0],[50.0,50.0],[50.0,50.0],[200.0,200.0],[200.0,200.0],[200.0,200.0],[200.0,200.0],[50.0,-50.0],[50.0,-50.0],[50.0,-50.0],[50.0,-50.0],[200.0,-200.0],[200.0,-200.0],[200.0,-200.0],[200.0,-200.0]]}
 }
 
-fn update(_app: &App, model: &mut Model, _update: Update) {
+fn update(app: &App, model: &mut Model, _update: Update) {
     let mut snarky:f32;
-    //let mut puppy;
+    let win = app.window_rect();
+    let w = win.w();
     for i in 0..(model.baldessari.len()) {
-        snarky = random_range(-300.0,300.0);
+        snarky = random_range(-w/2.0,w/2.0);
         //puppy = random_range(-200.0,200.0);
         //hei=i*100.0;
         model.baldessari[i][0]=snarky;
@@ -35,11 +36,11 @@ fn view(app: &App, model: &Model, frame: Frame){
     draw.background().color(BLACK);
     //let john = random_range(-300.0,300.0);
     //let baldessari = random_range(-200.0,200.0);
-    let vera = random_range(11.0,17.0);
-    let molnar = random_range(2.0,5.0);
+    let vera = random_range(17.0,37.0);
+    let molnar = random_range(2.0,25.0);
     for x in model.baldessari{
     draw.rect()
-        .color(hsl(0.0,0.0,1.0))
+        .color(hsl(1.0,1.0,1.0))
         .x_y(x[0],x[1])
         .w_h(vera,molnar);
     }
