@@ -33,15 +33,16 @@ fn view(app: &App, model: &Model, frame: Frame){
     //let baldessari = random_range(-200.0,200.0);
     let vera = random_range(3.0,11.0);
     let molnar = random_range(2.0,7.0);
-
+    for x in model.baldessari{
     draw.rect()
         .color(hsl(0.0,0.0,1.0))
-        .x_y(model.baldessari[0][0],model.baldessari[0][1])
+        .x_y(model.baldessari[x][0],model.baldessari[x][1])
         .w_h(vera,molnar);
-    draw.rect()
+    }
+    /*draw.rect()
         .color(hsl(0.5,1.0,1.0))
         .x_y(model.baldessari[1][0],model.baldessari[1][1])
-        .w_h(vera,molnar);
+        .w_h(vera,molnar);*/
 
     draw.to_frame(app,&frame).unwrap();
 }
