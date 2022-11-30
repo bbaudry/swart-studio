@@ -29,8 +29,6 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     let w = win.w();
     for i in 0..(model.baldessari.len()) {
         snarky = random_range(-w/2.0,w/2.0);
-        //puppy = random_range(-200.0,200.0);
-        //hei=i*100.0;
         model.baldessari[i][0]=snarky;
         println!(" {snarky} ");
     }
