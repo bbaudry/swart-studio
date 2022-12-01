@@ -44,8 +44,19 @@ public class Sand021 extends PApplet {
         bowie = alea.nextInt(41)+1;
         david(bowie);
       }
+      if(alea.nextInt(42)<2){flash();}
       particles();
     }
+  }
+
+  private void flash(){
+    float gen = random(w);
+    float art = random(h);
+    float is = random(w-gen);
+    float cool = random(h-art);
+    noStroke();
+    fill(300,100,100);
+    rect(gen,art,is,cool);
   }
 
   private void david (int bowie){
@@ -65,7 +76,8 @@ public class Sand021 extends PApplet {
   private void particles(){
     float cx,cy;
     float rad;
-    for(int i=0;i<333;i++){
+    float konst = random(2000,5000);
+    for(int i=0;i<konst;i++){
       cx=random(w);
       cy=random(h);
       rad=random(1);
