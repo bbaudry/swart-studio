@@ -11,8 +11,8 @@ public class Sand022 extends PApplet {
   int h =  1000;
   int saturday;//number of columns
   int night;//number of rows
+  int vera, molnar; // paddings on the x and y axes
   Random alea;
-  float vera, molnar;
   ArrayList<Float> pads;
   float grain;
 
@@ -27,29 +27,25 @@ public class Sand022 extends PApplet {
     colorMode(HSB, 360, 100, 100);
     saturday=3;
     night=30;
+    vera=Math.round(w/saturday); 
+    molnar=Math.round(h/night); 
     background(0, 0, 0);
-    //frameRate(17);
-   // noLoop();
   }
 
   
   @Override
   public void draw() {
     background(0, 0, 0);
-    float memphis=w/saturday;
-    int fun=Math.round(h/night); 
-    int off=frameCount%(2*fun);System.out.println(off);
+    int off=frameCount%(2*molnar);
     for (int i=0;i<saturday;i++){
-      column(i*memphis,off);
+      column(i*vera,off);
     }
   }
 
-  private void column(float x,int off){
+  private void column(int x,int off){
     fill(0,0,100);
-    float is=w/saturday;
-    int fun=Math.round(h/night); 
-      for (int j=-fun;j<night;j+=2){
-        rect(x,(j*fun)+off,is,fun);
+      for (int j=-molnar;j<night;j+=2){
+        rect(x,(j*molnar)+off,vera,molnar);
       }
   }
 

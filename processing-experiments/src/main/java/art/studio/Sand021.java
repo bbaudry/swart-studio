@@ -1,5 +1,5 @@
 /* Metadata {"endless":true, "BW": false, "knobs": false, "data": false, "interaction": false}*/
-
+/* Inspired by https://twitter.com/Ferdoropeza/status/1595453825598586880?s=20&t=mJIjWFI-UZCO4ifsYNF3iQ */
 package art.studio;
 
 import processing.core.PApplet;
