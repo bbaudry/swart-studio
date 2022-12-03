@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class Sand022 extends PApplet {
-  int w =  1000;
+  int w =  1800;
   int h =  1000;
   int saturday;//number of columns
   int night;//number of rows
@@ -25,28 +25,41 @@ public class Sand022 extends PApplet {
   public void setup() {
     alea = new Random();
     colorMode(HSB, 360, 100, 100);
-    saturday=3;
-    night=30;
+    saturday=11;
+    night=77;
     vera=Math.round(w/saturday); 
     molnar=Math.round(h/night); 
     background(0, 0, 0);
+    //frameRate(1);
   }
 
   
   @Override
   public void draw() {
     background(0, 0, 0);
-    int off=frameCount%(2*molnar);
+    int off=frameCount%molnar;//the 6 factor controls the speed
+    boolean up=true;
     for (int i=0;i<saturday;i++){
-      column(i*vera,off);
+      column(i*vera,off,up);
+      up=!up;
     }
   }
 
-  private void column(int x,int off){
-    fill(0,0,100);
-      for (int j=-molnar;j<night;j+=2){
-        rect(x,(j*molnar)+off,vera,molnar);
+  private void column(int x,int off,boolean down){
+    if(alea.nextInt(42)<1){fill(330,100,100);}
+    else{fill(0,0,100,150);}
+    if(down){
+      for (int j=-molnar;j<h;j+=2){
+        float gold = alea.nextFloat();
+        rect(x,(j*molnar*gold)+off,vera,molnar*gold);
       }
+    }
+    else{
+      for (int j=h+molnar;j>0;j-=2){
+        float gold = alea.nextFloat();
+        rect(x,(j*molnar*gold)-off,vera,molnar*gold);
+      }
+    }
   }
 
   
