@@ -15,7 +15,7 @@ public class Sand022 extends PApplet {
   Random alea;
   ArrayList<Float> pads;
   float grain;
-
+  float wave; //duration of a cycle
   @Override
   public void settings() {
     size(w, h);
@@ -30,6 +30,7 @@ public class Sand022 extends PApplet {
     vera=Math.round(w/saturday); 
     molnar=Math.round(h/night); 
     background(0, 0, 0);
+    wave=200;
     //frameRate(1);
   }
 
@@ -37,11 +38,22 @@ public class Sand022 extends PApplet {
   @Override
   public void draw() {
     background(0, 0, 0);
-    int off=frameCount%molnar;//the 6 factor controls the speed
+    if(frameCount%wave<0.7*wave){
+    int off=frameCount%molnar;
     boolean up=true;
     for (int i=0;i<saturday;i++){
       column(i*vera,off,up);
       up=!up;
+    }}
+    else{
+      if(alea.nextBoolean()){
+        fill(0,0,100);
+        ellipse(w/2,h/2,300,300);
+      }
+      else{
+        fill(0,0,100);
+        rect(w/2-200,h/2-100,400,200);
+      }
     }
   }
 
