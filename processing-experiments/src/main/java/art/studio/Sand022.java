@@ -30,19 +30,15 @@ public class Sand022 extends PApplet {
     vera=Math.round(w/saturday); 
     molnar=Math.round(h/night); 
     background(0, 0, 0);
-    wave=400;
+    wave=200;
   }
 
   
   @Override
   public void draw() {
     background(0, 0, 0);
-    if(frameCount%wave<0.7*wave){
-      if(frameCount%wave<0.2*wave){saturday=1;}
-      else {
-        if(frameCount%wave<0.4*wave){saturday=7;}
-        else{saturday=11;}
-      }
+    if(frameCount%wave<0.5*wave){
+      saturday = alea.nextInt(7)+1;
       vera=Math.round(w/saturday); 
       int off=frameCount%molnar;
       boolean up=true;
@@ -52,7 +48,12 @@ public class Sand022 extends PApplet {
       }
     }
     else{
-      if(alea.nextInt(42)<1){
+      CR();
+    }
+  }
+
+  private void CR(){
+    if(alea.nextInt(42)<2){
       if(alea.nextBoolean()){
         fill(0,0,100);
         ellipse(w/2,h/2,300,300);
@@ -62,7 +63,6 @@ public class Sand022 extends PApplet {
         rect(w/2-200,h/2-100,400,200);
       }
       }
-    }
   }
 
   private void column(int x,int off,boolean down){
