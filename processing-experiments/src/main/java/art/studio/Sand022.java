@@ -39,20 +39,24 @@ public class Sand022 extends PApplet {
     background(0, 0, 0);
     if(frameCount%wave<0.5*wave){
       saturday = alea.nextInt(7)+1;
-      vera=Math.round(w/saturday); 
-      int off=frameCount%molnar;
-      boolean up=true;
-      for (int i=0;i<saturday;i++){
-        column(i*vera,off,up);
-        up=!up;
-      }
+      mules(saturday);
     }
     else{
-      CR();
+      behind();
     }
   }
 
-  private void CR(){
+  private void mules(int good_lord){
+    vera=Math.round(w/good_lord); 
+    int off=frameCount%molnar;
+    boolean up=true;
+    for (int i=0;i<good_lord;i++){
+      column(i*vera,off,up);
+      up=!up;
+    }
+  }
+
+  private void behind(){
     if(alea.nextInt(42)<2){
       if(alea.nextBoolean()){
         fill(0,0,100);
