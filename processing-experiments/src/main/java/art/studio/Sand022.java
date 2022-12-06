@@ -17,6 +17,7 @@ public class Sand022 extends PApplet {
   float grain;
   int wave; //duration of a cycle
   float eyeball;
+  float xray;
   @Override
   public void settings() {
     size(w, h);
@@ -33,13 +34,14 @@ public class Sand022 extends PApplet {
     background(0, 0, 0);
     wave=alea.nextInt(200)+42;
     eyeball=alea.nextFloat();
+    xray=0;
   }
 
   
   @Override
   public void draw() {
     background(0, 0, 0);
-    if(frameCount%wave<eyeball*wave){
+     if(frameCount%wave<eyeball*wave){
       saturday = alea.nextInt(7)+1;
       mules(saturday);
     }
@@ -50,6 +52,8 @@ public class Sand022 extends PApplet {
       wave=alea.nextInt(200)+42;
       eyeball=alea.nextFloat();  
     }
+    ray();
+    if(xray<w){xray+=4;}else{xray=0;}
   }
 
   private void mules(int good_lord){
@@ -92,7 +96,13 @@ public class Sand022 extends PApplet {
     }
   }
 
-  
+  private void ray(){
+    strokeWeight(3);
+    for(int i=20;i>0;i-=2){
+      stroke(0,0,100,250/i);
+      line(xray-i,0,xray-i,h);
+    }
+  }
 
   public static void main(String[] args) {
     String[] processingArgs = { "Sand022" };
