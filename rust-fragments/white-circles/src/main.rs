@@ -5,6 +5,7 @@ use nannou::rand::random_range;
 
 fn main() {
     nannou::app(model)
+        .loop_mode(LoopMode::loop_once())
         .update(update)
         .simple_window(view)
         .run();
@@ -39,22 +40,27 @@ fn view(app: &App, model: &Model, frame: Frame){
     draw.background().color(BLACK);
     //let john = random_range(-300.0,300.0);
     //let baldessari = random_range(-200.0,200.0);
+    let mut wichita;
     let mut vera;
     let mut molnar;
     let mut rect = true;
     for x in model.baldessari{
+        wichita = random_range(42.0,99.0);
         vera = random_range(17.0,77.0);
         molnar = random_range(200.0,300.0);
         if rect{
          draw.rect()
         .color(hsl(230.0/360.0,1.0,0.5))
         .x_y(x[0],x[1])
-        .w_h(vera,molnar); rect=false}
+        .w_h(vera,molnar); 
+        rect=false;}
         else{
     draw.ellipse()
         .color(hsl(molnar/360.0,1.0,0.5))
         .x_y(x[0],x[1])
-        .radius(vera);rect=true}
+        .radius(wichita);
+        rect=true;
+    }
     }
     /*draw.rect()
         .color(hsl(0.5,1.0,1.0))
