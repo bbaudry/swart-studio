@@ -1,11 +1,13 @@
 use std::array;
 
+use nannou::color::Alpha;
+use nannou::draw::mesh::vertex::Color;
 use nannou::prelude::*;
 use nannou::rand::random_range;
 
 fn main() {
     nannou::app(model)
-        .loop_mode(LoopMode::loop_ntimes(42))
+        .loop_mode(LoopMode::loop_ntimes(242))
         .update(update)
         .simple_window(view)
         .run();
@@ -17,19 +19,22 @@ struct Model {
 }
 
 fn model(app: &App) -> Model {
-    Model {baldessari:[[50.0,50.0],[50.0,50.0],[50.0,50.0],[50.0,50.0],
+    Model {
+        
+        baldessari:[[50.0,50.0],[50.0,50.0],[50.0,50.0],[50.0,50.0],
         [200.0,200.0],[200.0,200.0],[200.0,200.0],[200.0,200.0],
         [50.0,-50.0],[50.0,-50.0],[50.0,-50.0],[50.0,-50.0],
         [200.0,-200.0],[200.0,-200.0],[200.0,-200.0],[200.0,-200.0],
         [50.0,450.0],[50.0,450.0],[50.0,450.0],[50.0,450.0],
         [200.0,-450.0],[200.0,-450.0],[200.0,-450.0],[200.0,-450.0]],
+
         hall:[[-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0],
         [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0],
         [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0],
         [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0],
         [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0],
-        [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0]]
-    
+        [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0]],
+
     }
 }
 
@@ -43,7 +48,8 @@ fn update(app: &App, model: &mut Model, _update: Update) {
         snarky = random_range(-w/2.0,w/2.0);
         model.baldessari[i][0]=snarky;
         puppy = random_range(-h/2.0,h/2.0);
-        model.baldessari[i][1]=puppy; //this works if hall has the exact same size as baldessari
+        model.hall[i][1]=puppy; //this works if hall has the exact same size as baldessari
+        println!("puppy[{i}]: {puppy} ");
         //println!(" {snarky} ");
     }
 }
@@ -68,25 +74,36 @@ fn view(app: &App, model: &Model, frame: Frame){
         .w_h(vera,molnar); 
         rect=false;}
         else{
+            //let a = Alpha{color:(molnar/360.0,1.0,0.5),alpha:0.6};
     draw.ellipse()
-        .color(hsl(molnar/360.0,1.0,0.5))
+        .color(hsla(molnar/360.0,1.0,0.5,0.5))//hsl(molnar/360.0,1.0,0.5)
         .x_y(x[0],x[1])
         .radius(wichita);
         rect=true;
     }
     }
-    for x in model.hall{
+    for sl in model.hall{
         vera = random_range(17.0,27.0);
 
         draw.rect()
-        .color(hsl(230.0/360.0,1.0,1.0))
-        .x_y(x[0],x[1])
+        .color(hsla(230.0/360.0,1.0,1.0,0.7))
+        .x_y(sl[0],sl[1])
         .w_h(100.0,vera);
+        let song = sl[1];
+        println!("x: {song}");
     }
-    /*draw.rect()
-        .color(hsl(0.5,1.0,1.0))
-        .x_y(model.baldessari[1][0],model.baldessari[1][1])
-        .w_h(vera,molnar);*/
+    draw.ellipse()
+        .no_fill()
+        .stroke_color(hsl(350.0/360.0,1.0,0.5))
+        .stroke_weight(7.0)
+        .x_y(-100.0,100.0)
+        .radius(100.0);
+    draw.ellipse()
+        .no_fill()
+        .stroke_color(hsl(350.0/360.0,1.0,0.5))
+        .stroke_weight(1.0)
+        .x_y(-50.0,100.0)
+        .radius(1.0);
 
     draw.to_frame(app,&frame).unwrap();
 }
