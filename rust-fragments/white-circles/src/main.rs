@@ -2,6 +2,7 @@ use std::array;
 
 use nannou::color::Alpha;
 use nannou::draw::mesh::vertex::Color;
+use nannou::image::Frames;
 use nannou::prelude::*;
 use nannou::rand::random_range;
 
@@ -92,6 +93,7 @@ fn view(app: &App, model: &Model, frame: Frame){
         let song = sl[1];
         println!("x: {song}");
     }
+    if Frames::count==42.0 {}
     draw.ellipse()
         .no_fill()
         .stroke_color(hsl(350.0/360.0,1.0,0.5))
