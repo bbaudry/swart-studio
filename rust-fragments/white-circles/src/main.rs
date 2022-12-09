@@ -17,6 +17,7 @@ fn main() {
 struct Model {
     baldessari : [[f32;2];24],
     hall : [[f32;2];24],
+    hu : f32
 }
 
 fn model(app: &App) -> Model {
@@ -36,6 +37,7 @@ fn model(app: &App) -> Model {
         [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0],
         [-40.0,0.0],[-40.0,0.0],[-40.0,0.0],[-40.0,0.0]],
 
+        hu:330.0
     }
 }
 
@@ -53,6 +55,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
         println!("puppy[{i}]: {puppy} ");
         //println!(" {snarky} ");
     }
+    model.hu+=1.0;
 }
 
 fn view(app: &App, model: &Model, frame: Frame){
@@ -93,11 +96,11 @@ fn view(app: &App, model: &Model, frame: Frame){
         let song = sl[1];
         println!("x: {song}");
     }
-    if Frames::count==42.0 {}
+    
     draw.ellipse()
         .no_fill()
-        .stroke_color(hsl(350.0/360.0,1.0,0.5))
-        .stroke_weight(7.0)
+        .stroke_color(hsl(model.hu/360.0,1.0,0.5))
+        .stroke_weight(14.0)
         .x_y(-100.0,100.0)
         .radius(100.0);
     draw.ellipse()
