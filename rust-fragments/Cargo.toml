@@ -2,5 +2,6 @@
 members = [
 "white-squares",
 "white-circles",
+"blue-lines",
 ]
 resolver="2"
