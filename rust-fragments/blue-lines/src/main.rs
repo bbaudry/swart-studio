@@ -29,13 +29,13 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     wichita = random_range(42,99);
     let win = app.window_rect();
     let h = win.h();
-    let mut v=h/66.0;
+    let star : f32 = wichita as f32;
+    let mut v=-h/2.0+h/star;//h/66.0;
     for x in 0..wichita{
         model.occam.push(v);
-        v=v+h/66.0;
+        v=v+h/star;
+        //v=v+h/66.0;
     }
-
-    
 }
 
 fn view(app: &App, model: &Model, frame: Frame){
