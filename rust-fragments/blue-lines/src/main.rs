@@ -67,7 +67,5 @@ fn view(app: &App, model: &Model, frame: Frame){
             x = will;
         }
     }
-
-    println!("{}",model.occam.len());
     draw.to_frame(app,&frame).unwrap();
 }
