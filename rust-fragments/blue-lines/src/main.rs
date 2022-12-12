@@ -5,10 +5,11 @@ use nannou::draw::mesh::vertex::Color;
 use nannou::image::Frames;
 use nannou::prelude::*;
 use nannou::rand::random_range;
+use std::num;
 
 fn main() {
     nannou::app(model)
-        .loop_mode(LoopMode::loop_ntimes(424))
+        .loop_mode(LoopMode::loop_ntimes(999))
         .update(update)
         .simple_window(view)
         .run();
@@ -56,10 +57,10 @@ fn view(app: &App, model: &Model, frame: Frame){
     for hornstull in &model.occam{
         //let x = model.wasa+random_range(-77.0,77.0);
         let mut x = -w/2.0 +random_range(-77.0,77.0);
-        let y = random_range(-22.0,2.0);
+        let y:f32 = random_range(-22.0,2.0);
         while x<w/2.0{
             draw.rect()
-            .color(hsl((230.0+(2.0*x))/360.0,1.0,1.0))
+            .color(hsla(0.0,1.0,1.0,360.0/x.abs()))
             .x_y(x,*hornstull)
             .w_h(111.0,off-33.0);
             let will = x + 111.0 +random_range(-77.0,7.0);
