@@ -29,8 +29,10 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     wichita = random_range(42,99);
     let win = app.window_rect();
     let h = win.h();
+    let mut v=h/66.0;
     for x in 0..wichita{
-        model.occam.push(h/99.0);
+        model.occam.push(v);
+        v=v+h/66.0;
     }
 
     
@@ -39,9 +41,18 @@ fn update(app: &App, model: &mut Model, _update: Update) {
 fn view(app: &App, model: &Model, frame: Frame){
     let draw = app.draw();
     draw.background().color(BLACK);
+    let h = app.window_rect().h();
+    let nb = model.occam.len();
+    let off = 99.0/h;
+    for hornstull in &model.occam{
+        let x = random_range(-77.0,77.0);
+        draw.rect()
+        .color(hsl((230.0+x)/360.0,1.0,0.5))
+        .x_y(x,*hornstull)
+        .w_h(111.0+x,off);
+        println!("{}",*hornstull);
+    }
 
-    println!("Length of occam : {}", model.occam.len());
-
-
+    println!("{}",model.occam.len());
     draw.to_frame(app,&frame).unwrap();
 }
