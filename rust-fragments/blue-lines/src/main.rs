@@ -36,6 +36,8 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     let star : f32 = wichita as f32;
     let mut v=-h/2.0+h/star;//h/66.0;
     for x in 0..wichita{
+        let y:f32 = v+random_range(-22.0,2.0);
+        v=y;
         model.occam.push(v);
         v=v+h/star;
     }
@@ -53,7 +55,7 @@ fn view(app: &App, model: &Model, frame: Frame){
     let h = app.window_rect().h();
     let w = app.window_rect().w();
     let nb = model.occam.len() as f32;
-    let off = h/nb-random_range(-7.0,7.0);
+    let off = h/nb-7.0;
     for hornstull in &model.occam{
         //let x = model.wasa+random_range(-77.0,77.0);
         let mut x = -w/2.0 +random_range(-77.0,77.0);
