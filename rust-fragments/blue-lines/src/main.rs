@@ -5,11 +5,10 @@ use nannou::draw::mesh::vertex::Color;
 use nannou::image::Frames;
 use nannou::prelude::*;
 use nannou::rand::random_range;
-use std::num;
 
 fn main() {
     nannou::app(model)
-        .loop_mode(LoopMode::loop_ntimes(999))
+        .loop_mode(LoopMode::loop_ntimes(199))
         .update(update)
         .simple_window(view)
         .run();
@@ -21,32 +20,34 @@ struct Model {
 }
 
 fn model(app: &App) -> Model {
-    Model{occam:Vec::new(),
-    wasa:0.0}
+    Model{
+        occam:playground(app)
+    }
+}
 
+fn playground(app: &App) -> Vec<f32> {
+    let mut v: Vec<f32>;
+    v = Vec::new();
+    let wichita:i32 = random_range(42,66);
+    let mut i:i32=0;
+    let win = app.window_rect();
+    let h = win.h();
+    let lulllaby:f32 = h/(wichita as f32);
+    let mut y1:f32=h/2.0;
+    let mut y2:f32;
+    while i < wichita { // push wichita pairs of values in v
+        y2 = y1+lulllaby-random_range(-5.0,-1.0);
+        v.push(y1);
+        v.push(y2);
+        let bass = y1+lulllaby;
+        y1 = bass;
+        i+=1;
+    }
+    return v
 }
 
 fn update(app: &App, model: &mut Model, _update: Update) {
-    model.occam=Vec::new();
-    let wichita:i32;
-    wichita = 42;//random_range(42,45);
-    let win = app.window_rect();
-    let h = win.h();
-    let w = win.w();
-    let star : f32 = wichita as f32;
-    let mut v=-h/2.0+h/star;//h/66.0;
-    for x in 0..wichita{
-        let y:f32 = v+random_range(-22.0,2.0);
-        v=y;
-        model.occam.push(v);
-        v=v+h/star;
-    }
-    if (model.wasa < w/2.0){
-        model.wasa = model.wasa+random_range(42.42,99.9);
-    }
-    else{
-        model.wasa = -w/2.0;
-    }
+
 }
 
 fn view(app: &App, model: &Model, frame: Frame){
@@ -55,16 +56,14 @@ fn view(app: &App, model: &Model, frame: Frame){
     let h = app.window_rect().h();
     let w = app.window_rect().w();
     let nb = model.occam.len() as f32;
-    let off = h/nb-7.0;
+    let off = h/(nb+7.0);
     for hornstull in &model.occam{
-        //let x = model.wasa+random_range(-77.0,77.0);
         let mut x = -w/2.0 +random_range(-77.0,77.0);
-        let y:f32 = random_range(-22.0,2.0);
         while x<w/2.0{
             draw.rect()
-            .color(hsla(0.0,1.0,1.0,360.0/x.abs()))
+            .color(hsla(0.0,1.0,1.0,random_range(0.3,0.9)))//360.0/x.abs()
             .x_y(x,*hornstull)
-            .w_h(111.0,off-33.0);
+            .w_h(111.0,off);
             let will = x + 111.0 +random_range(-77.0,7.0);
             x = will;
         }
