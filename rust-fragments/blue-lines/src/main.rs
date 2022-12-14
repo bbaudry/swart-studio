@@ -56,7 +56,7 @@ fn view(app: &App, model: &Model, frame: Frame){
     let w = app.window_rect().w();
     let nb = model.occam.len();
     let off = h/(nb+7.0);
-    let mut rex:i32 = 0; //index to iterate on occam
+    let mut rex = 0; //index to iterate on occam
     while rex < nb{
         let mut x = -w/2.0 +random_range(-77.0,77.0);
         let y1 = model.occam.get(rex);
