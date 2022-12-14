@@ -55,17 +55,17 @@ fn view(app: &App, model: &Model, frame: Frame){
     let h = app.window_rect().h();
     let w = app.window_rect().w();
     let nb = model.occam.len();
-    let off = h/(nb+7.0);
     let mut rex = 0; //index to iterate on occam
     while rex < nb{
         let mut x = -w/2.0 +random_range(-77.0,77.0);
         let y1 = model.occam.get(rex);
         let y2 = model.occam.get(rex+1);
+        let off = y2-y1;
         while x<w/2.0{
             draw.rect()
             .color(hsla(0.0,1.0,1.0,random_range(0.3,0.9)))//360.0/x.abs()
             .x_y(x,y1)
-            .w_h(111.0,y2-y1);
+            .w_h(111.0,off);
             let will = x + 111.0 +random_range(-77.0,7.0);
             x = will;
         }

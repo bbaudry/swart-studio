@@ -15,9 +15,12 @@ public class Sand022 extends PApplet {
   Random alea;
   ArrayList<Float> pads;
   float grain;
-  int wave; //duration of a cycle
+  int wave; //wave + peace is the duration of a cycle
+  int peace;
+
   float eyeball;
   float xray;
+
   @Override
   public void settings() {
     size(w, h);
@@ -33,6 +36,7 @@ public class Sand022 extends PApplet {
     molnar=Math.round(h/night); 
     background(0, 0, 0);
     wave=alea.nextInt(200)+42;
+    peace=333;
     eyeball=alea.nextFloat();
     xray=0;
   }
@@ -41,15 +45,22 @@ public class Sand022 extends PApplet {
   @Override
   public void draw() {
     background(0, 0, 0);
-     if(frameCount%wave<eyeball*wave){
+     if(frameCount%(wave+peace)<eyeball*wave){
       saturday = alea.nextInt(7)+1;
       mules(saturday);
     }
     else{
-      behind();
+      if (frameCount%(wave+peace)<eyeball){
+        behind();
+      }
+      else{
+        noStroke();
+        fill(40,100,100);
+        ellipse(w/2,h/2,h/2,h/2);
+      }
     }
-    if(frameCount%wave==0){
-      wave=alea.nextInt(200)+42;
+    if(frameCount%(wave+peace)==0){
+      wave=alea.nextInt(300)+84;
       eyeball=alea.nextFloat();  
     }
     ray();
