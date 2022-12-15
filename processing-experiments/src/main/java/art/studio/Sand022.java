@@ -17,6 +17,7 @@ public class Sand022 extends PApplet {
   float grain;
   int wave; //wave + peace is the duration of a cycle
   int peace;
+  int c;
 
   float eyeball;
   float xray;
@@ -39,6 +40,9 @@ public class Sand022 extends PApplet {
     peace=333;
     eyeball=alea.nextFloat();
     xray=0;
+    c=0;
+    println("wave :"+wave+" eyeball "+eyeball+" peace "+peace);
+
   }
 
   
@@ -48,23 +52,26 @@ public class Sand022 extends PApplet {
      if(frameCount%(wave+peace)<eyeball*wave){
       saturday = alea.nextInt(7)+1;
       mules(saturday);
+      println("c "+c);c++;
     }
     else{
-      if (frameCount%(wave+peace)<eyeball){
+      if (frameCount%(wave+peace)<wave){
         behind();
       }
       else{
         noStroke();
         fill(40,100,100);
         ellipse(w/2,h/2,h/2,h/2);
+        ray();
+        if(xray<w){xray+=4;}else{xray=0;}
       }
     }
     if(frameCount%(wave+peace)==0){
       wave=alea.nextInt(300)+84;
       eyeball=alea.nextFloat();  
+      c=0;
+      println("wave :"+wave+" eyeball "+eyeball+" peace "+peace);
     }
-    ray();
-    if(xray<w){xray+=4;}else{xray=0;}
   }
 
   private void mules(int good_lord){
