@@ -19,7 +19,7 @@ public class Sand022 extends PApplet {
   int peace;
   int c;
 
-  float eyeball;
+  int eyeball;
   float xray;
 
   @Override
@@ -38,7 +38,7 @@ public class Sand022 extends PApplet {
     background(0, 0, 0);
     wave=alea.nextInt(200)+42;
     peace=333;
-    eyeball=alea.nextFloat();
+    eyeball=alea.nextInt(7);  
     xray=0;
     c=0;
     println("wave :"+wave+" eyeball "+eyeball+" peace "+peace);
@@ -49,7 +49,7 @@ public class Sand022 extends PApplet {
   @Override
   public void draw() {
     background(0, 0, 0);
-     if(frameCount%(wave+peace)<eyeball*wave){
+     if(frameCount%(wave+peace)<wave/eyeball){
       saturday = alea.nextInt(7)+1;
       mules(saturday);
       println("c "+c+", WAVE+PEACE "+wave+peace);c++;
@@ -68,7 +68,7 @@ public class Sand022 extends PApplet {
     }
     if(frameCount%(wave+peace)==0){
       wave=alea.nextInt(300)+84;
-      eyeball=alea.nextFloat();  
+      eyeball=alea.nextInt(7);  
       c=0;
       println("wave :"+wave+" eyeball "+eyeball+" peace "+peace);
     }
