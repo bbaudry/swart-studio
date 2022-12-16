@@ -52,7 +52,7 @@ public class Sand022 extends PApplet {
      if(frameCount%(wave+peace)<eyeball*wave){
       saturday = alea.nextInt(7)+1;
       mules(saturday);
-      println("c "+c);c++;
+      println("c "+c+", WAVE+PEACE "+wave+peace);c++;
     }
     else{
       if (frameCount%(wave+peace)<wave){
