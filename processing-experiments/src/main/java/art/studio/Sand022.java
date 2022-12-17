@@ -7,19 +7,19 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class Sand022 extends PApplet {
-  int w =  1800;
-  int h =  1000;
-  int saturday;//number of columns
-  int night;//number of rows
+  int w = 1800;
+  int h = 1000;
+  int saturday;// number of columns
+  int night;// number of rows
   int vera, molnar; // paddings on the x and y axes
   Random alea;
   ArrayList<Float> pads;
   float grain;
-  int wave; //wave + peace + eyeball is the duration of a cycle
+  int wave; 
   int peace;
   int eyeball;
-  int tide;
-  int c;
+  int tide;// tide = wave + peace + eyeball is the duration of a cycle
+  int lake;//count the iterations in one tide
   float xray;
 
   @Override
@@ -31,100 +31,99 @@ public class Sand022 extends PApplet {
   public void setup() {
     alea = new Random();
     colorMode(HSB, 360, 100, 100);
-    saturday=11;
-    night=77;
-    vera=Math.round(w/saturday); 
-    molnar=Math.round(h/night); 
+    saturday = 11;
+    night = 77;
+    vera = Math.round(w / saturday);
+    molnar = Math.round(h / night);
     background(0, 0, 0);
-    wave=alea.nextInt(200)+42;
-    peace=333;
-    eyeball=alea.nextInt(180)+84;  
-    tide=eyeball+wave+peace;
-    xray=0;
-    c=0;
-    println("wave :"+wave+" eyeball "+eyeball+" peace "+peace);
-
+    wave = alea.nextInt(200) + 42;
+    peace = 333;
+    eyeball = alea.nextInt(180) + 84;
+    tide = eyeball + wave + peace;
+    xray = 0;
+    lake = 0;
   }
 
-  
   @Override
   public void draw() {
     background(0, 0, 0);
-     if(c<wave){
-      saturday = alea.nextInt(7)+1;
+    if (lake < wave) {
+      saturday = alea.nextInt(7) + 1;
       mules(saturday);
-      c++;
-    }
-    else{
-      if (c<wave+eyeball){
+      lake++;
+    } else {
+      if (lake < wave + eyeball) {
         behind();
-        c++;
-      }
-      else{
-        if (c<tide){
-        noStroke();
-        fill(40,100,100);
-        ellipse(w/2,h/2,h/2,h/2);
-        ray();
-        if(xray<w){xray+=4;}else{xray=0;}
-        c++;
+        lake++;
+      } else {
+        if (lake < tide) {
+          noStroke();
+          fill(40, 100, 100);
+          ellipse(w / 2, h / 2, h / 2, h / 2);
+          ray();
+          if (xray < w) {
+            xray += 4;
+          } else {
+            xray = 0;
+          }
+          lake++;
+        } else {
+          wave = alea.nextInt(200) + 42;
+          eyeball = alea.nextInt(180) + 84;
+          tide = eyeball + wave + peace;
+          lake = 0;
+
         }
-        else{
-          wave=alea.nextInt(200)+42;
-          eyeball=alea.nextInt(180)+84;  
-          tide=eyeball+wave+peace;
-            c=0;
-    
-        }
       }
     }
   }
 
-  private void mules(int good_lord){
-    vera=Math.round(w/good_lord); 
-    int off=frameCount%molnar;
-    boolean up=true;
-    for (int i=0;i<good_lord;i++){
-      column(i*vera,off,up);
-      up=!up;
+  private void mules(int good_lord) {
+    vera = Math.round(w / good_lord);
+    int off = frameCount % molnar;
+    boolean up = true;
+    for (int i = 0; i < good_lord; i++) {
+      column(i * vera, off, up);
+      up = !up;
     }
   }
 
-  private void behind(){
-    if(alea.nextInt(42)<2){
-      if(alea.nextBoolean()){
-        fill(0,0,100);
-        ellipse(w/2,h/2,300,300);
+  private void behind() {
+    if (alea.nextInt(42) < 2) {
+      if (alea.nextBoolean()) {
+        fill(0, 0, 100);
+        ellipse(w / 2, h / 2, 300, 300);
+      } else {
+        fill(0, 0, 100);
+        rect(w / 2 - 200, h / 2 - 100, 400, 200);
       }
-      else{
-        fill(0,0,100);
-        rect(w/2-200,h/2-100,400,200);
-      }
-      }
+    }
   }
 
-  private void column(int x,int off,boolean down){
-    if(alea.nextInt(42)<1){fill(330,100,100);}
-    else{fill(0,0,100,150);}
-    if(down){
-      for (int j=-molnar;j<h;j+=2){
+  private void column(int x, int off, boolean down) {
+    if (alea.nextInt(42) < 1) {
+      fill(330, 100, 100);
+    } else {
+      fill(0, 0, 100, 150);
+    }
+    if (down) {
+      for (int j = -molnar; j < h; j += 2) {
         float gold = alea.nextFloat();
-        rect(x,(j*molnar*gold)+off,vera,molnar*gold);
+        rect(x, (j * molnar * gold) + off, vera, molnar * gold);
       }
-    }
-    else{
-      for (int j=h+molnar;j>0;j-=2){
+    } else {
+      for (int j = h + molnar; j > 0; j -= 2) {
         float gold = alea.nextFloat();
-        rect(x,(j*molnar*gold)-off,vera,molnar*gold);
+        rect(x, (j * molnar * gold) - off, vera, molnar * gold);
       }
     }
   }
 
-  private void ray(){
+  private void ray() {
     strokeWeight(3);
-    for(int i=20;i>0;i-=2){
-      stroke(0,0,100,250/i);
-      line(xray-i,0,xray-i,h);
+    for (int i = 20; i > 0; i -= 2) {
+      stroke(0, 0, 100, 250 / i);
+      line(xray - i, 0, xray - i, h);
     }
   }
 
