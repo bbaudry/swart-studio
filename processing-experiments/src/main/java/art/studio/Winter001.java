@@ -29,15 +29,19 @@ public class Winter001 extends PApplet {
 
   @Override
   public void draw() {
-    noLoop();
+    //flake();
+    if (frameCount==111){
+      noLoop();
+      save("Snow001.png");
+    }
   }
 
   private void track(){
     float that, is, a, ray, alp;
-    that = w/2-40+alea.nextInt(80);
-    is = h/3;
-    a = alea.nextInt(w);
-    ray = h-alea.nextInt(h/10);
+    that = w/2-80+alea.nextInt(160);
+    is = h/4;
+    a = 2*w-alea.nextInt(3*w);
+    ray = h;//-alea.nextInt(h/10);
     alp=50;
     boolean right = alea.nextBoolean();
     for (int i=0; i<25; i++){
@@ -48,6 +52,27 @@ public class Winter001 extends PApplet {
       else{that--; a--;}
     } 
   }
+
+  private void flake(){
+    noFill();
+    float moonchild, starfruit;
+    moonchild = alea.nextFloat()*w;
+    starfruit = alea.nextFloat()*h/2;
+    int alp=50;
+    float folks;
+    boolean grow = alea.nextBoolean();
+    if (grow) {folks=alea.nextFloat();}
+    else {folks=alp/2*alea.nextFloat();}
+    float hu = 250-alea.nextInt(40);
+    for (int i=0; i<alp/2; i++){
+      stroke(hu,70,70,alp);
+      alp-=2;
+      ellipse(moonchild, starfruit, folks, folks);
+      if(grow){folks++;}
+      else{folks--;}
+    } 
+  }
+
 
   public static void main(String[] args) {
     String[] processingArgs = { "Winter001" };
