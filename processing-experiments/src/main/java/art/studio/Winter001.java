@@ -21,27 +21,32 @@ public class Winter001 extends PApplet {
     colorMode(HSB,360,100,100);
     background(0,0,100);
     tracks = alea.nextInt(17)+7;
+    for (int i = 0; i<tracks; i++){
+      track();
+    }
+
   }
 
   @Override
   public void draw() {
-    noStroke();
-    fill(230,20,70,50);
-    rect(0,0,w,h/3);
-    for (int i = 0; i<tracks; i++){
-      track();
-    }
     noLoop();
   }
 
   private void track(){
-    float that, is, a, ray;
+    float that, is, a, ray, alp;
     that = w/2-40+alea.nextInt(80);
     is = h/3;
     a = alea.nextInt(w);
     ray = h-alea.nextInt(h/10);
-    stroke(230,70,70,50);
-    line(that, is, a, ray);
+    alp=50;
+    boolean right = alea.nextBoolean();
+    for (int i=0; i<25; i++){
+      stroke(230,70,70,alp);
+      line(that, is, a, ray);
+      alp-=2;
+      if(right){that++; a++;}
+      else{that--; a--;}
+    } 
   }
 
   public static void main(String[] args) {
