@@ -15,11 +15,11 @@ public class Sand022 extends PApplet {
   Random alea;
   ArrayList<Float> pads;
   float grain;
-  int wave; //wave + peace is the duration of a cycle
+  int wave; //wave + peace + eyeball is the duration of a cycle
   int peace;
-  int c;
-
   int eyeball;
+  int tide;
+  int c;
   float xray;
 
   @Override
@@ -38,7 +38,8 @@ public class Sand022 extends PApplet {
     background(0, 0, 0);
     wave=alea.nextInt(200)+42;
     peace=333;
-    eyeball=alea.nextInt(7);  
+    eyeball=alea.nextInt(180)+84;  
+    tide=eyeball+wave+peace;
     xray=0;
     c=0;
     println("wave :"+wave+" eyeball "+eyeball+" peace "+peace);
@@ -49,28 +50,33 @@ public class Sand022 extends PApplet {
   @Override
   public void draw() {
     background(0, 0, 0);
-     if(frameCount%(wave+peace)<wave/eyeball){
+     if(c<wave){
       saturday = alea.nextInt(7)+1;
       mules(saturday);
-      println("c "+c+", WAVE+PEACE "+wave+peace);c++;
+      c++;
     }
     else{
-      if (frameCount%(wave+peace)<wave){
+      if (c<wave+eyeball){
         behind();
+        c++;
       }
       else{
+        if (c<tide){
         noStroke();
         fill(40,100,100);
         ellipse(w/2,h/2,h/2,h/2);
         ray();
         if(xray<w){xray+=4;}else{xray=0;}
+        c++;
+        }
+        else{
+          wave=alea.nextInt(200)+42;
+          eyeball=alea.nextInt(180)+84;  
+          tide=eyeball+wave+peace;
+            c=0;
+    
+        }
       }
-    }
-    if(frameCount%(wave+peace)==0){
-      wave=alea.nextInt(300)+84;
-      eyeball=alea.nextInt(7);  
-      c=0;
-      println("wave :"+wave+" eyeball "+eyeball+" peace "+peace);
     }
   }
 
