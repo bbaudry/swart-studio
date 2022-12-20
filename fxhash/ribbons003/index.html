@@ -47,21 +47,46 @@
       createCanvas(w, h);
       colorMode(HSB, 360, 100, 100, 250);
       background(0, 0, 0);
-      //window.$fxhashFeatures = {
+      window.$fxhashFeatures = {
         //"art_text": hasText(),
-        //"red": loadRed()
-      //}
+        "bgc": bgc(fxrand()),
+        "bH": bH(fxrand())
+      }
+    }
+
+    let baseHu;
+
+    function bgc(r){
+      if (r<0.1) {background(100,100,100);return "green"}
+      else {background(0,0,0); return "black"}
+    }
+
+    function bH(r){
+      if (r<0.9) {baseHu=230; return "blue"}
+      else {baseHu=0; return "red"}
     }
 
     let x1 = 0;
     let x2 = w;
     let y1 = h / 2;
     let y2 = h / 3;
+    let hu = initHu();
+    let xoff = initXoff;
+    let yoff = initYoff;
     let light = 100;
-    let hu = 230 + fxrand() * 100;
-    let xoff = 200 + fxrand() * 200;
-    let yoff = 500 + fxrand() * 200;
     let up = fxrand();
+
+    function initHu(){
+      return baseHu + fxrand() * 100;
+    }
+
+    function initXoff(){
+      return 200 + fxrand() * 200;
+    }
+
+    function initYoff(){
+      return 500 + fxrand() * 200;
+    }
 
     function draw() {
       if (frameCount % 100 < 99) {
@@ -72,12 +97,12 @@
         y1 = h*fxrand();
         if (fxrand()<0.5) { y2 = y1 + random(h - y1); }
         else { y2 = y1 - fxrand()*y1; }
-        let hu = 230 + (fxrand() * 100);
-        let xoff = 200 + fxrand() * 200;
-        let yoff = 500 + fxrand() * 200;
+        hu = initHu();
+        xoff = 200 + fxrand() * 200;
+        yoff = 500 + fxrand() * 200;
         up = fxrand();
       }
-      if (frameCount == 599) {
+      if (frameCount == 1399) {
         noLoop();
       }
 
@@ -88,6 +113,7 @@
       noFill();
       strokeWeight(2);
       stroke(hu,light,100);
+      console.log(hu);
       if(up<0.5){
         bezier(x1, y1, x1+xoff, y1-yoff,x2-xoff, y2+yoff, x2, y2);}
       else{
