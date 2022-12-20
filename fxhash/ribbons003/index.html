@@ -42,38 +42,67 @@
     var w = 1000;//document.documentElement.clientWidth;//width of window that is available for drawing
     var h = 1000;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
-    
+
     function setup() {
       createCanvas(w, h);
-      colorMode(HSB,360,100,100,250);
-      background(0,0,0);
-      window.$fxhashFeatures = {
-        "art_text" : hasText(),
-        "red" : loadRed()
-      }
+      colorMode(HSB, 360, 100, 100, 250);
+      background(0, 0, 0);
+      //window.$fxhashFeatures = {
+        //"art_text": hasText(),
+        //"red": loadRed()
+      //}
     }
 
     let x1 = 0;
     let x2 = w;
-    let y1 = h/2;
-    let y2 = h/3;
+    let y1 = h / 2;
+    let y2 = h / 3;
     let light = 100;
-    let hu = 230+fxrand()*100;
-    let xoff = 200+fxrand()*200;
-    let yoff = 500+fxrand()*200;
+    let hu = 230 + fxrand() * 100;
+    let xoff = 200 + fxrand() * 200;
+    let yoff = 500 + fxrand() * 200;
     let up = fxrand();
 
     function draw() {
+      if (frameCount % 100 < 99) {
+        ray(hu, xoff, yoff, up);
+      }
+      else {
+        light = 100;
+        y1 = h*fxrand();
+        if (fxrand()<0.5) { y2 = y1 + random(h - y1); }
+        else { y2 = y1 - fxrand()*y1; }
+        let hu = 230 + (fxrand() * 100);
+        let xoff = 200 + fxrand() * 200;
+        let yoff = 500 + fxrand() * 200;
+        up = fxrand();
+      }
+      if (frameCount == 599) {
+        noLoop();
+      }
 
       fxpreview();
     }
 
-   
-      function windowResized() {
-        w = document.documentElement.clientWidth;//width of window that is available for drawing
-        h = document.documentElement.clientHeight;//width of window that is available for drawing
-        resizeCanvas(windowWidth, windowHeight);
-      }
+    function ray( hu, xoff, yoff,  up){
+      noFill();
+      strokeWeight(2);
+      stroke(hu,light,100);
+      if(up<0.5){
+        bezier(x1, y1, x1+xoff, y1-yoff,x2-xoff, y2+yoff, x2, y2);}
+      else{
+        bezier(x1, y1, x1+xoff, y1+yoff,x2-xoff, y2-yoff, x2, y2);}
+      y1-=2;
+      y2-=2;
+      light--;
+  }
+
+
+    function windowResized() {
+      w = document.documentElement.clientWidth;//width of window that is available for drawing
+      h = document.documentElement.clientHeight;//width of window that is available for drawing
+      resizeCanvas(windowWidth, windowHeight);
+    }
 
   </script>
 
