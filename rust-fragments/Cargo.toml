@@ -3,5 +3,6 @@ members = [
 "white-squares",
 "white-circles",
 "blue-lines",
+"torg001",
 ]
 resolver="2"
