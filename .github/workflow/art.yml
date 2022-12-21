@@ -1,1 +1,10 @@
-
+name: gen art on push
+run-name: ${{ github.actor }} waits for art
+on: [push]
+jobs:
+  Gen art:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 Art generation was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 Art is now generated on a ${{ runner.os }} server hosted by GitHub!"     	  
+      - run: echo "🍏 This job's status is ${{ job.status }}."
