@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     shell: bash
     steps:
-      - run: echo "🎉 Art generation was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🎉 Art generation was automatically triggered by an art ${{ github.event_name }} event."
       - run: ./gen-ascii.sh
       - run: echo "🐧 Art is now generated on a ${{ runner.os }} server hosted by GitHub!"     	  
       - run: echo "🍏 This job's status is ${{ job.status }}."
