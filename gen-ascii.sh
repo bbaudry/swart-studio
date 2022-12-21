@@ -23,7 +23,4 @@ done
 
 #compose the final ascii art string
 ascii_art="$rand_str><$rev_str"
-echo $ascii_art
-#pass the string as commit message
-commit_output=`git commit -am "$ascii_art"`
-echo $commit_output
+echo $ascii_arts
