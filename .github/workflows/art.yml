@@ -2,7 +2,7 @@ name: gen art on push
 run-name: ${{ github.actor }} waits for art
 on: [push]
 jobs:
-  Gen art:
+  Gen_art:
     runs-on: ubuntu-latest
     shell: bash
     steps:
