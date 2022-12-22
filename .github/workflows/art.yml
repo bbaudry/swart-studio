@@ -4,7 +4,6 @@ on: [push]
 jobs:
   Gen_art:
     runs-on: ubuntu-latest
-    shell: bash
     steps:
       - run: echo "🎉 Art generation was automatically triggered by an art ${{ github.event_name }} event."
       - run: ./gen-ascii.sh
