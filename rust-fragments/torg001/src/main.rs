@@ -41,20 +41,20 @@ fn playground(app: &App) -> Vec<Cell> {
     let mut play = Vec::new();
     let mut dsb = h / 2.0;
     while dsb > -h / 2.0 {
-        let off_y = random_range(11.0, 27.0);
+        let off_y = random_range(42.0, 67.0);
         let slow = random_range(0,2);
-        let velo; 
-        if slow == 0 {velo = random_range(311, 391);}
-        else {velo = random_range(111, 191);}
-        let mut sj = 100.0 * w;
+        let velo; let mut sj;
+        if slow == 0 {velo = random_range(311, 391);sj = 100.0 * w;}
+        else {velo = random_range(11, 91);sj = 50.0 * w;}
+        
         while sj > 0.0 {
             let off_x; 
             if slow==0 {off_x = random_range(77.0, 111.0);}
-            else {off_x = random_range(121.0, 771.0);}
+            else {off_x = random_range(121.0, 271.0);}
             let cuba = random_range(0,111);
             let zombie; let lazybone;
             if cuba<3 {zombie=0.5;lazybone=1.0;}
-            else {zombie=1.0;lazybone=random_range(0.2, 0.5);}
+            else {zombie=1.0;lazybone=random_range(0.0, 0.5);}
             play.push(Cell {
                 beam: Rect {
                     x: Range {
@@ -69,7 +69,7 @@ fn playground(app: &App) -> Vec<Cell> {
                 speed: velo,
                 c: Hsla::new(
                     230.0 / 360.0,
-                    0.5,
+                    1.0,
                     zombie,
                     lazybone,
                 ),
