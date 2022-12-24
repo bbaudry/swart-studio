@@ -46,9 +46,9 @@ fn playground(app: &App) -> Vec<Cell> {
         let mut sj = 100.0 * w;
         while sj > 0.0 {
             let off_x = random_range(77.0, 111.0);
-            let cuba = random_range(0.0,1.0);
+            let cuba = random_range(0,111);
             let zombie;
-            if cuba==0.0 {zombie=0.5;}
+            if cuba==0 {zombie=0.5;println!("blue zombie")}
             else {zombie=1.0;}
             play.push(Cell {
                 beam: Rect {
@@ -66,12 +66,12 @@ fn playground(app: &App) -> Vec<Cell> {
                     230.0 / 360.0,
                     0.5,
                     zombie,
-                    1.0,//random_range(0.2, 0.5),
+                    random_range(0.2, 0.5),
                 ),
             });
             sj = sj - off_x - random_range(1.0, 11.0);
         }
-    dsb = dsb - off_y - random_range(7.0, 11.0)
+    dsb = dsb - off_y - random_range(17.0, 23.0)
     }
     return play;
 }
