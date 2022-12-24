@@ -85,7 +85,7 @@ fn view(app: &App, model: &Model, frame: Frame){
         draw.rect()
         .x_y(r.x(), r.y())
         .w_h(r.w(), r.h())
-        .color(baldessari.c);
+        .color(hsl(0.0,0.5,1.0));
     }
 
 
