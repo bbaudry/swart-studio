@@ -53,8 +53,8 @@ fn playground(app: &App) -> Vec<Cell> {
             else {off_x = random_range(121.0, 771.0);}
             let cuba = random_range(0,111);
             let zombie; let lazybone;
-            if cuba<3 {zombie=0.5;lazybone=random_range(0.2, 0.5)}
-            else {zombie=1.0;lazybone=1.0}
+            if cuba<3 {zombie=0.5;lazybone=1.0;}
+            else {zombie=1.0;lazybone=random_range(0.2, 0.5);}
             play.push(Cell {
                 beam: Rect {
                     x: Range {
