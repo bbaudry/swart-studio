@@ -24,18 +24,30 @@ struct Cell {
     c: Hsla,
 }
 
+struct Radar{
+    cx:f32,
+    cy:f32,
+    stars:i32,
+}
+
 struct Model {
-    occam: Vec<Cell>,
+    occam: Vec<Cell>, //data for rectangles moving from right to left
+    camel: Vec<Radar>,
+    count:i32,
 }
 
 fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
     Model {
-        occam: playground(app),
+        occam: playground_occam(app),
+        camel: playground_camel(app),
+        count:0,
     }
 }
+fn playground_occam(app: &App) -> Vec<Cell> {
+}
 
-fn playground(app: &App) -> Vec<Cell> {
+fn playground_occam(app: &App) -> Vec<Cell> {
     let h = app.window_rect().h();
     let w = app.window_rect().w();
     let mut play = Vec::new();
@@ -81,7 +93,14 @@ fn playground(app: &App) -> Vec<Cell> {
     return play;
 }
 
-fn update(app: &App, model: &mut Model, _update: Update) {
+fn update(_app: &App, model: &mut Model, _update: Update) {
+    if model.count<200{
+        update_occam(model);
+    }
+    model.count+=1;
+}
+
+fn update_occam(model: &mut Model){
     for baldessari in &mut model.occam {
         baldessari.beam.x.start -= baldessari.speed as f32;
         baldessari.beam.x.end -= baldessari.speed as f32;
