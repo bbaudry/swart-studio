@@ -33,7 +33,7 @@ fn model(app: &App) -> Model {
     .build()
     .unwrap();
     Model{
-        occam:playground(app)
+            occam:playground(app)
     }
 }
 
@@ -46,7 +46,7 @@ fn playground(app: &App) -> Vec<Cell> {
         y:Range{start:h/2.0,end:h/2.0-50.0}
     };
     let mut col: Hsl = Hsl::new(0.0,1.0,1.0);
-    play.push(Cell{beam:b,speed:5,c:col});
+    play.push(Cell{beam:b,speed:15,c:col});
     
     b= Rect{
         x:Range{start:w/2.0-200.0,end:w/2.0-120.0},
@@ -59,7 +59,7 @@ fn playground(app: &App) -> Vec<Cell> {
             x:Range{start:w/2.0-200.0,end:w/2.0-120.0},
             y:Range{start:h/2.0-55.0,end:h/2.0-80.0}
         },
-        speed:2,
+        speed:12,
         c:Hsl::new(50.0,1.0,1.0)
         }
     );
@@ -67,11 +67,11 @@ fn playground(app: &App) -> Vec<Cell> {
 }
 
 fn update(app: &App, model: &mut Model, _update: Update) {
-    for baldessari in &model.occam{
+    for baldessari in &mut model.occam{
         baldessari.beam.x.start-=baldessari.speed as f32;
         baldessari.beam.x.end-=baldessari.speed as f32;
-        baldessari.beam.y.start-=baldessari.speed as f32;
-        baldessari.beam.y.end-=baldessari.speed as f32;
+        //baldessari.beam.y.start-=baldessari.speed as f32;
+        //baldessari.beam.y.end-=baldessari.speed as f32;
     }
 }
 
@@ -83,7 +83,9 @@ fn view(app: &App, model: &Model, frame: Frame){
     for baldessari in &model.occam{
         let r=baldessari.beam;
         draw.rect()
-
+        .x_y(r.x(), r.y())
+        .w_h(r.w(), r.h())
+        .color(baldessari.c);
     }
 
 
