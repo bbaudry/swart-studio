@@ -190,7 +190,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
                 .y(wonder.1)
                 .radius(3.71)
                 .stroke_color(hsl(0.0,1.0,1.0))
-                .stroke_weight(0.5)
+                .stroke_weight(0.2)
                 .no_fill();
             }
         }
