@@ -140,15 +140,15 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 
 fn update_camel(model: &mut Model) {
     for baldessari in &mut model.camel {
-        let mut particles = Vec::new();
-        let m:i32 = random_range(5, 11);
+        //let mut particles = Vec::new();
+        let m:i32 = random_range(1, 5);
         for i in 0..m {
             let x = baldessari.cx + random_range(0.0,baldessari.rayon)*(random_range(0.0,2.0*PI).cos());
             let y = baldessari.cy + random_range(0.0,baldessari.rayon)*(random_range(0.0,2.0*PI).sin());
-            particles.push((x,y));
+            baldessari.stars.push((x,y));
         }
     
-        baldessari.stars = particles;
+       // baldessari.stars = particles;
     }
 }
 
@@ -189,7 +189,9 @@ fn view(app: &App, model: &Model, frame: Frame) {
                 .x(wonder.0)
                 .y(wonder.1)
                 .radius(3.71)
-                .color(hsl(0.0,1.0,1.0));
+                .stroke_color(hsl(0.0,1.0,1.0))
+                .stroke_weight(0.5)
+                .no_fill();
             }
         }
     }
