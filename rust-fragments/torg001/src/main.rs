@@ -24,6 +24,17 @@ struct Cell {
     c: Hsla,
 }
 
+struct Wheel{
+    cx:f32,
+    cy:f32,
+    rad_in:f32,
+    rad_out:f32,
+    sectors:Vec<(f32,Hsla,f32)>, // this should be a series of angles between 0 and 2*PI
+    clock:bool,
+    speed:i32,
+
+}
+
 struct Radar {
     cx: f32,
     cy: f32,
@@ -35,9 +46,11 @@ struct Model {
     occam: Vec<Cell>, //data for rectangles moving from right to left
     camel: Vec<Radar>,
     crispr: Vec<Radar>,
+    spin: Vec<Wheel>,
     startoccam: i32, endoccam: i32,
     startcamel: i32, endcamel: i32,
     startcrispr: i32, endcrispr: i32,
+    startspin: i32, endspin: i32,
     count: i32,
 }
 
@@ -47,11 +60,37 @@ fn model(app: &App) -> Model {
         occam: playground_occam(app),
         camel: playground_camel(app),
         crispr: playground_crispr(app),
+        spin: playground_spin(app),
         startoccam: 1, endoccam: 768,
         startcamel: 540, endcamel: 768,
         startcrispr: 768, endcrispr: 2048,
+        startspin:2048,endspin:3072,
         count: 0,
     }
+}
+
+fn playground_spin(app: &App) -> Vec<Wheel> {
+    let corex=0.0;
+    let corey=0.0;
+    let h = app.window_rect().h();
+    let w = app.window_rect().w();
+    let mut play = Vec::new();
+    let mut drone = Vec::new();
+    drone.push((0.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),PI));
+    drone.push((PI,Hsla::new(30.0 / 360.0, 1.0, 0.5, 0.5),PI+PI/2.0));
+    drone.push((PI+PI/2.0,Hsla::new(130.0 / 360.0, 1.0, 0.5, 0.5),0));
+    play.push(
+        Wheel{
+            cx:corex,
+            cy:corey,
+            rad_in:242.0,
+            rad_out:287.0,
+            sectors:drone,
+            clock:true,
+            speed:PI/42.0,
+        }
+    );
+    return play;
 }
 
 fn playground_crispr(app: &App) -> Vec<Radar> {
@@ -175,7 +214,19 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count >= model.startcrispr && model.count < model.endcrispr {
         update_crispr(model);
     }
+    if model.count >= model.startspin && model.count < model.endspin{
+        update_spin(model);
+    }
     model.count += 1;
+}
+
+fn update_spin(model: &mut Model) {
+    for baldessari in &mut model.spin {
+        for vera in &mut baldessari.sectors{
+            vera.0+=baldessari.speed;
+            vera.2+=baldessari.speed;
+        }
+    }
 }
 
 fn update_crispr(model: &mut Model) {
@@ -270,6 +321,26 @@ fn view(app: &App, model: &Model, frame: Frame) {
                 .no_fill();
             }
         }
+    }
+    if model.count >= model.startspin && model.count<model.endspin{
+        for baldessari in  &model.spin {
+            for vera in &baldessari.sectors{
+                let anglestart = vera.0;
+                let angleend = vera.2;
+                let x1 = baldessari.cx+baldessari.rad_in*anglestart.cos();
+                let y1 = baldessari.cy+baldessari.rad_in*anglestart.sin();
+                let x2 = baldessari.cx+baldessari.rad_in*angleend.cos();
+                let y2 = baldessari.cy+baldessari.rad_in*angleend.sin();
+                let start_point = pt2(x1,y1);
+                let end_point   = pt2(x2,y2);
+                draw.line()
+                .start(start_point)
+                .end(end_point)
+                .weight(3.72)
+                .color(hsl(vera.1.hue,vera.1.saturation,vera.1.lightness));
+
+            }
+        }    
     }
     draw.to_frame(app, &frame).unwrap();
 }
