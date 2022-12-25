@@ -34,8 +34,10 @@ struct Radar {
 struct Model {
     occam: Vec<Cell>, //data for rectangles moving from right to left
     camel: Vec<Radar>,
-    countoccam: i32,
-    countcamel: i32,
+    crispr: Vec<Radar>,
+    startoccam: i32, endoccam: i32,
+    startcamel: i32, endcamel: i32,
+    startcrispr: i32, endcrispr: i32,
     count: i32,
 }
 
@@ -44,22 +46,59 @@ fn model(app: &App) -> Model {
     Model {
         occam: playground_occam(app),
         camel: playground_camel(app),
-        countoccam: 200, // contract: countoccam < countcamel
-        countcamel: 400,
+        crispr: playground_crispr(app),
+        startoccam: 1, endoccam: 521,
+        startcamel: 521, endcamel: 1042,
+        startcrispr: 1042, endcrispr: 2084,
         count: 0,
     }
 }
+
+fn playground_crispr(app: &App) -> Vec<Radar> {
+    let h = app.window_rect().h();
+    let w = app.window_rect().w();
+    let mut play = Vec::new();
+    let mut particles = Vec::new();
+    let mut r = w/4.0;
+    let mut vera = w/4.0;
+    let mut molnar = h/4.0;
+    for _j in 0..2{
+        for _k in 0..2{
+            for _i in 0..5 {
+                let voodoo = random_range(0.0,r);
+                let down = random_range(0.0,2.0*PI);
+                let x = vera + voodoo *down.cos();
+                let y = molnar + voodoo *down.sin();
+                particles.push((x,y));
+            }
+            molnar -= h/2.0;
+        }
+        vera -= w/2.0;
+        molnar = h/4.0;
+    }
+    
+    play.push(Radar {
+        cx: vera,
+        cy: molnar,
+        rayon: r,
+        stars: particles,
+    });
+    return play;
+}
+
 fn playground_camel(app: &App) -> Vec<Radar> {
     let h = app.window_rect().h();
     let w = app.window_rect().w();
     let mut play = Vec::new();
     let mut particles = Vec::new();
-    let mut r = 111.0;
-    let mut vera = 0.0;
-    let mut molnar = 0.0;
-    for i in 0..5 {
-        let x = vera + random_range(0.0,r)*(random_range(0.0,2.0*PI).cos());
-        let y = molnar + random_range(0.0,r)*(random_range(0.0,2.0*PI).sin());
+    let r = w/2.0;
+    let vera = 0.0;
+    let molnar = 0.0;
+    for _i in 0..5 {
+        let voodoo = random_range(0.0,r);
+        let down = random_range(0.0,2.0*PI);
+        let x = vera + voodoo *down.cos();
+        let y = molnar + voodoo *down.sin();
         particles.push((x,y));
     }
     
@@ -129,10 +168,10 @@ fn playground_occam(app: &App) -> Vec<Cell> {
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    if model.count > 0 && model.count < model.countoccam {
+    if model.count >= model.startoccam && model.count < model.endoccam {
         update_occam(model);
     }
-    if model.count > model.countoccam && model.count < model.countcamel {
+    if model.count >= model.startcamel && model.count < model.endcamel {
         update_camel(model);
     }
     model.count += 1;
@@ -143,8 +182,12 @@ fn update_camel(model: &mut Model) {
         //let mut particles = Vec::new();
         let m:i32 = random_range(1, 5);
         for i in 0..m {
-            let x = baldessari.cx + random_range(0.0,baldessari.rayon)*(random_range(0.0,2.0*PI).cos());
-            let y = baldessari.cy + random_range(0.0,baldessari.rayon)*(random_range(0.0,2.0*PI).sin());
+            let teardrop; 
+            if random_range(1, 10) == 1 {teardrop=baldessari.rayon;} 
+            else {teardrop = random_range(0.0,baldessari.rayon);}
+            let teen_spirit = random_range(0.0,2.0*PI);
+            let x = baldessari.cx + teardrop*teen_spirit.cos();
+            let y = baldessari.cy + teardrop*teen_spirit.sin();
             baldessari.stars.push((x,y));
         }
     
@@ -164,7 +207,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     draw.background().color(BLACK);
     let h = app.window_rect().h();
     let w = app.window_rect().w();
-    if model.count > 0 && model.count < model.countoccam {
+    if model.count >= model.startoccam && model.count < model.endoccam {
         for baldessari in &model.occam {
             let r = baldessari.beam;
             draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(hsla(
@@ -175,7 +218,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
             ));
         }
     }
-    if model.count > model.countoccam && model.count < model.countcamel {
+    if model.count >= model.startcamel && model.count < model.endcamel {
         for stevie in &model.camel {
             draw.ellipse()
                 .x(stevie.cx)
