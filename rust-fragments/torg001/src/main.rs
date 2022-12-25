@@ -47,9 +47,9 @@ fn model(app: &App) -> Model {
         occam: playground_occam(app),
         camel: playground_camel(app),
         crispr: playground_crispr(app),
-        startoccam: 1, endoccam: 521,
-        startcamel: 521, endcamel: 1042,
-        startcrispr: 1042, endcrispr: 2084,
+        startoccam: 1, endoccam: 768,
+        startcamel: 540, endcamel: 768,
+        startcrispr: 768, endcrispr: 2048,
         count: 0,
     }
 }
@@ -58,12 +58,12 @@ fn playground_crispr(app: &App) -> Vec<Radar> {
     let h = app.window_rect().h();
     let w = app.window_rect().w();
     let mut play = Vec::new();
-    let mut particles = Vec::new();
-    let mut r = w/4.0;
-    let mut vera = w/4.0;
+    let r = w/4.0;
+    let mut vera = w/2.0;
     let mut molnar = h/4.0;
-    for _j in 0..2{
+    for _j in 0..3{
         for _k in 0..2{
+            let mut particles = Vec::new();
             for _i in 0..5 {
                 let voodoo = random_range(0.0,r);
                 let down = random_range(0.0,2.0*PI);
@@ -71,18 +71,17 @@ fn playground_crispr(app: &App) -> Vec<Radar> {
                 let y = molnar + voodoo *down.sin();
                 particles.push((x,y));
             }
+            play.push(Radar {
+                cx: vera,
+                cy: molnar,
+                rayon: r,
+                stars: particles,
+            });        
             molnar -= h/2.0;
         }
         vera -= w/2.0;
         molnar = h/4.0;
     }
-    
-    play.push(Radar {
-        cx: vera,
-        cy: molnar,
-        rayon: r,
-        stars: particles,
-    });
     return play;
 }
 
@@ -174,14 +173,33 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count >= model.startcamel && model.count < model.endcamel {
         update_camel(model);
     }
+    if model.count >= model.startcrispr && model.count < model.endcrispr {
+        update_crispr(model);
+    }
     model.count += 1;
+}
+
+fn update_crispr(model: &mut Model) {
+    for baldessari in &mut model.crispr {
+        if random_range(1, 5) == 1 {
+            let m:i32 = random_range(1, 5);
+            for _i in 0..m {
+                let teardrop; 
+                if random_range(1, 10) == 1 {teardrop=baldessari.rayon;} 
+                else {teardrop = random_range(0.0,baldessari.rayon);}
+                let teen_spirit = random_range(0.0,2.0*PI);
+                let x = baldessari.cx + teardrop*teen_spirit.cos();
+                let y = baldessari.cy + teardrop*teen_spirit.sin();
+                baldessari.stars.push((x,y));
+            }
+        }
+    }
 }
 
 fn update_camel(model: &mut Model) {
     for baldessari in &mut model.camel {
-        //let mut particles = Vec::new();
         let m:i32 = random_range(1, 5);
-        for i in 0..m {
+        for _i in 0..m {
             let teardrop; 
             if random_range(1, 10) == 1 {teardrop=baldessari.rayon;} 
             else {teardrop = random_range(0.0,baldessari.rayon);}
@@ -190,8 +208,6 @@ fn update_camel(model: &mut Model) {
             let y = baldessari.cy + teardrop*teen_spirit.sin();
             baldessari.stars.push((x,y));
         }
-    
-       // baldessari.stars = particles;
     }
 }
 
@@ -234,6 +250,26 @@ fn view(app: &App, model: &Model, frame: Frame) {
                 .radius(3.71)
                 .stroke_color(hsl(0.0,1.0,1.0))
                 .stroke_weight(0.2)
+                .no_fill();
+            }
+        }
+    }
+    if model.count >= model.startcrispr && model.count < model.endcrispr {
+        for stevie in &model.crispr {
+            draw.ellipse()
+                .x(stevie.cx)
+                .y(stevie.cy)
+                .radius(stevie.rayon)
+                .stroke_color(hsl(230.0 / 360.0, 1.0, 0.5))
+                .stroke_weight(1.73)
+                .no_fill();//.color(hsl(0.0,1.0,1.0));
+            for wonder in &stevie.stars{
+                draw.ellipse()
+                .x(wonder.0)
+                .y(wonder.1)
+                .radius(1.42)
+                .stroke_color(hsl(0.0,1.0,1.0))
+                .stroke_weight(0.1)
                 .no_fill();
             }
         }
