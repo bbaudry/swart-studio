@@ -25,14 +25,18 @@ struct Cell {
 }
 
 struct Wheel{
-    cx:f32,
-    cy:f32,
     rad_in:f32,
     rad_out:f32,
     sectors:Vec<(f32,Hsla,f32)>, // this should be a series of angles between 0 and 2*PI
     clock:bool,
-    speed:i32,
+    speed:f32,
+}
 
+struct Spin{
+    cx:f32,
+    cy:f32,
+    rad_max:f32,
+    petals:Vec<Wheel>
 }
 
 struct Radar {
@@ -46,7 +50,7 @@ struct Model {
     occam: Vec<Cell>, //data for rectangles moving from right to left
     camel: Vec<Radar>,
     crispr: Vec<Radar>,
-    spin: Vec<Wheel>,
+    spin: Vec<Spin>,
     startoccam: i32, endoccam: i32,
     startcamel: i32, endcamel: i32,
     startcrispr: i32, endcrispr: i32,
@@ -61,33 +65,40 @@ fn model(app: &App) -> Model {
         camel: playground_camel(app),
         crispr: playground_crispr(app),
         spin: playground_spin(app),
-        startoccam: 1, endoccam: 768,
-        startcamel: 540, endcamel: 768,
-        startcrispr: 768, endcrispr: 2048,
-        startspin:2048,endspin:3072,
+        startoccam: 1, endoccam: 10,
+        startcamel: 10, endcamel: 20,
+        startcrispr: 20, endcrispr: 30,
+        startspin:30,endspin:1048,
         count: 0,
     }
 }
 
-fn playground_spin(app: &App) -> Vec<Wheel> {
+fn playground_spin(app: &App) -> Vec<Spin> {
     let corex=0.0;
     let corey=0.0;
     let h = app.window_rect().h();
     let w = app.window_rect().w();
-    let mut play = Vec::new();
-    let mut drone = Vec::new();
+    let mut play = Vec::new(); //for the general list of Spins, for now 1
+    let mut fire = Vec::new();//for the list of wheels
+    let mut drone = Vec::new();// for the list of sectors in the wheels
     drone.push((0.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),PI));
     drone.push((PI,Hsla::new(30.0 / 360.0, 1.0, 0.5, 0.5),PI+PI/2.0));
-    drone.push((PI+PI/2.0,Hsla::new(130.0 / 360.0, 1.0, 0.5, 0.5),0));
-    play.push(
+    drone.push((PI+PI/2.0,Hsla::new(130.0 / 360.0, 1.0, 0.5, 0.5),0.0));
+    fire.push(
         Wheel{
-            cx:corex,
-            cy:corey,
             rad_in:242.0,
             rad_out:287.0,
             sectors:drone,
-            clock:true,
-            speed:PI/42.0,
+            clock:false,
+            speed:PI/142.0,
+        }
+    );
+    play.push(
+        Spin{
+            cx:0.0,
+            cy:0.0,
+            rad_max:w/2.0,
+            petals:fire,
         }
     );
     return play;
@@ -222,12 +233,23 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 
 fn update_spin(model: &mut Model) {
     for baldessari in &mut model.spin {
-        for vera in &mut baldessari.sectors{
-            vera.0+=baldessari.speed;
-            vera.2+=baldessari.speed;
+        for vera in &mut baldessari.petals{
+            for ryoji in &mut vera.sectors{
+                if vera.clock {
+                    ryoji.0-=vera.speed;
+                    ryoji.2-=vera.speed;
+                }
+                else{
+                    ryoji.0+=vera.speed;
+                    ryoji.2+=vera.speed;    
+                }
+            }
         }
+        //add_sector(model,baldessari);
     }
 }
+
+
 
 fn update_crispr(model: &mut Model) {
     for baldessari in &mut model.crispr {
@@ -324,21 +346,22 @@ fn view(app: &App, model: &Model, frame: Frame) {
     }
     if model.count >= model.startspin && model.count<model.endspin{
         for baldessari in  &model.spin {
-            for vera in &baldessari.sectors{
-                let anglestart = vera.0;
-                let angleend = vera.2;
-                let x1 = baldessari.cx+baldessari.rad_in*anglestart.cos();
-                let y1 = baldessari.cy+baldessari.rad_in*anglestart.sin();
-                let x2 = baldessari.cx+baldessari.rad_in*angleend.cos();
-                let y2 = baldessari.cy+baldessari.rad_in*angleend.sin();
-                let start_point = pt2(x1,y1);
-                let end_point   = pt2(x2,y2);
-                draw.line()
-                .start(start_point)
-                .end(end_point)
-                .weight(3.72)
-                .color(hsl(vera.1.hue,vera.1.saturation,vera.1.lightness));
-
+            for vera in &baldessari.petals{
+                for ryoji in &vera.sectors{
+                    let anglestart = ryoji.0;
+                    let angleend = ryoji.2;
+                    let x1 = baldessari.cx+vera.rad_in*anglestart.cos();
+                    let y1 = baldessari.cy+vera.rad_in*anglestart.sin();
+                    let x2 = baldessari.cx+vera.rad_in*angleend.cos();
+                    let y2 = baldessari.cy+vera.rad_in*angleend.sin();
+                    let start_point = pt2(x1,y1);
+                    let end_point   = pt2(x2,y2);
+                    draw.line()
+                    .start(start_point)
+                    .end(end_point)
+                    .weight(3.72)
+                    .color(hsl(ryoji.1.hue.to_degrees(),ryoji.1.saturation,ryoji.1.lightness));
+                }
             }
         }    
     }
