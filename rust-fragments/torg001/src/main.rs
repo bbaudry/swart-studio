@@ -86,7 +86,6 @@ fn playground_crispr(app: &App) -> Vec<Radar> {
 }
 
 fn playground_camel(app: &App) -> Vec<Radar> {
-    let h = app.window_rect().h();
     let w = app.window_rect().w();
     let mut play = Vec::new();
     let mut particles = Vec::new();
@@ -221,8 +220,6 @@ fn update_occam(model: &mut Model) {
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
     draw.background().color(BLACK);
-    let h = app.window_rect().h();
-    let w = app.window_rect().w();
     if model.count >= model.startoccam && model.count < model.endoccam {
         for baldessari in &model.occam {
             let r = baldessari.beam;
