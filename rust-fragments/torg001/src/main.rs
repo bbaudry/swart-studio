@@ -68,7 +68,7 @@ fn model(app: &App) -> Model {
         startoccam: 1, endoccam: 10,
         startcamel: 10, endcamel: 20,
         startcrispr: 20, endcrispr: 30,
-        startspin:30,endspin:1048,
+        startspin:30,endspin:2084,
         count: 0,
     }
 }
@@ -245,12 +245,34 @@ fn update_spin(model: &mut Model) {
                 }
             }
         }
-        add_sector(model,baldessari);
+        if random_range(0,21)==1 {add_sector(baldessari);}
     }
 }
 
-fn add_sector(model: &mut Model, roulette: &mut Spin){
-    
+fn add_sector(roulette: &mut Spin){
+    let mr = roulette.rad_max;
+    let apollo=random_range(mr/10.0,mr); //for the rad_in of the new sectors added in the roulette
+    let start = random_range(0.0, PI);
+    let mut eno=Vec::new();
+    let c;
+    if random_range(0,40)<35 {
+    c= Hsla::new(230.0 / 360.0, 1.0, 1.0, 0.5);}
+    else {c= Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5);}
+    eno.push((start,c,start+(2.0*PI/3.0)));
+    eno.push((start+(2.0*PI/3.0),c,start+(4.0*PI/3.0)));
+    eno.push((start+(4.0*PI/3.0),c,start));
+    let c;
+    if random_range(0,2)==1 {c=true;}
+    else {c=false;}
+    roulette.petals.push(
+        Wheel{
+            rad_in:apollo,
+            rad_out:apollo+42.0,
+            sectors:eno,
+            clock:c,
+            speed:PI/random_range(42.0,142.0),
+        }
+    );
 }
 
 fn update_crispr(model: &mut Model) {
@@ -361,7 +383,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
                     draw.line()
                     .start(start_point)
                     .end(end_point)
-                    .weight(3.72)
+                    .weight(0.72)
                     .color(hsl(ryoji.1.hue.to_degrees(),ryoji.1.saturation,ryoji.1.lightness));
                 }
             }
