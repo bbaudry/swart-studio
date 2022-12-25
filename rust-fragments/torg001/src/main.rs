@@ -245,11 +245,13 @@ fn update_spin(model: &mut Model) {
                 }
             }
         }
-        //add_sector(model,baldessari);
+        add_sector(model,baldessari);
     }
 }
 
-
+fn add_sector(model: &mut Model, roulette: &mut Spin){
+    
+}
 
 fn update_crispr(model: &mut Model) {
     for baldessari in &mut model.crispr {
