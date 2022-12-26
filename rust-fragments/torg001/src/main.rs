@@ -70,7 +70,7 @@ fn model(app: &App) -> Model {
         crispr: playground_crispr(app),
         spin: playground_spin(app),
         startoccam: 1, endoccam: 640,
-        startcamel: 512, endcamel: 640,
+        startcamel: 412, endcamel: 640,
         startcrispr: 2084, endcrispr: 3000,
         startspin:640,endspin:2084,
         count: 0,
@@ -171,7 +171,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
     let mut dsb = h / 2.0;
     while dsb > -h / 2.0 {
         let mut play = Vec::new();
-        let off_y = random_range(35.0, 42.0);
+        let off_y = random_range(21.0, 49.0);
         let slow = random_range(0, 2);
         let velo;
         let mut sj;
@@ -329,6 +329,8 @@ fn update_occam(model: &mut Model) {
 }
 
 fn view(app: &App, model: &Model, frame: Frame) {
+    let h = app.window_rect().h();
+    let w = app.window_rect().w();
     let draw = app.draw();
     draw.background().color(BLACK);
     if model.count >= model.startoccam && model.count < model.endoccam {
@@ -345,6 +347,16 @@ fn view(app: &App, model: &Model, frame: Frame) {
         }
     }
     if model.count >= model.startcamel && model.count < model.endcamel {
+        if random_range(0, 11)==1{
+            draw.rect()
+            .color(hsl(0.0,1.0,0.5))
+            .x_y(0.0, 0.0)
+            .w_h(w/2.0, w/2.0);
+            draw.ellipse()
+            .radius(w/4.0)
+            .x_y(0.0, 0.0)
+            .color(hsl(0.0,1.0,0.0));
+        }
         for stevie in &model.camel {
             draw.ellipse()
                 .x(stevie.cx)
