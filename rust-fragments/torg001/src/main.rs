@@ -1,5 +1,3 @@
-use std::array;
-
 use nannou::color::Alpha;
 use nannou::color::GetHue;
 use nannou::draw::mesh::vertex::Color;
@@ -18,11 +16,17 @@ fn main() {
         .run();
 }
 
-struct Cell {
+struct DNA {
     beam: Rect,
     speed: i32,
     c: Hsla,
 }
+
+struct Cell{ //one string of 'DNA', all situated on the same y axis
+    horizon: f32,
+    chromosomes: Vec<DNA>,
+}
+
 
 struct Wheel{
     rad_in:f32,
@@ -47,7 +51,7 @@ struct Radar {
 }
 
 struct Model {
-    occam: Vec<Cell>, //data for rectangles moving from right to left
+    occam: Vec<DNA>, //data for rectangles moving from right to left
     camel: Vec<Radar>,
     crispr: Vec<Radar>,
     spin: Vec<Spin>,
@@ -65,10 +69,10 @@ fn model(app: &App) -> Model {
         camel: playground_camel(app),
         crispr: playground_crispr(app),
         spin: playground_spin(app),
-        startoccam: 1, endoccam: 10,
-        startcamel: 10, endcamel: 20,
-        startcrispr: 20, endcrispr: 30,
-        startspin:30,endspin:2084,
+        startoccam: 1, endoccam: 640,
+        startcamel: 512, endcamel: 640,
+        startcrispr: 2084, endcrispr: 3000,
+        startspin:640,endspin:2084,
         count: 0,
     }
 }
@@ -159,12 +163,14 @@ fn playground_camel(app: &App) -> Vec<Radar> {
     return play;
 }
 
+//intialize DNA and cells
 fn playground_occam(app: &App) -> Vec<Cell> {
     let h = app.window_rect().h();
     let w = app.window_rect().w();
-    let mut play = Vec::new();
+    let mut life =Vec::new();
     let mut dsb = h / 2.0;
     while dsb > -h / 2.0 {
+        let mut play = Vec::new();
         let off_y = random_range(42.0, 67.0);
         let slow = random_range(0, 2);
         let velo;
@@ -194,7 +200,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
                 zombie = 1.0;
                 lazybone = random_range(0.0, 0.5);
             }
-            play.push(Cell {
+            play.push(DNA {
                 beam: Rect {
                     x: Range {
                         start: sj - off_x,
@@ -210,9 +216,15 @@ fn playground_occam(app: &App) -> Vec<Cell> {
             });
             sj = sj - off_x - random_range(11.0, 17.0);
         }
+        life.push(Cell{
+            horizon: dsb,
+            chromosomes: play,
+        }
+
+        );
         dsb = dsb - off_y - random_range(17.0, 23.0)
     }
-    return play;
+    return life;
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
@@ -245,7 +257,7 @@ fn update_spin(model: &mut Model) {
                 }
             }
         }
-        if random_range(0,21)==1 {add_sector(baldessari);}
+        if random_range(0,17)==1 {add_sector(baldessari);}
     }
 }
 
@@ -383,7 +395,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
                     draw.line()
                     .start(start_point)
                     .end(end_point)
-                    .weight(0.72)
+                    .weight(1.23)
                     .color(hsl(ryoji.1.hue.to_degrees(),ryoji.1.saturation,ryoji.1.lightness));
                 }
             }
