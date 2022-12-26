@@ -51,7 +51,7 @@ struct Radar {
 }
 
 struct Model {
-    occam: Vec<DNA>, //data for rectangles moving from right to left
+    occam: Vec<Cell>, //data for rectangles moving from right to left
     camel: Vec<Radar>,
     crispr: Vec<Radar>,
     spin: Vec<Spin>,
@@ -321,8 +321,10 @@ fn update_camel(model: &mut Model) {
 
 fn update_occam(model: &mut Model) {
     for baldessari in &mut model.occam {
-        baldessari.beam.x.start -= baldessari.speed as f32;
-        baldessari.beam.x.end -= baldessari.speed as f32;
+        for john in &mut baldessari.chromosomes{
+            john.beam.x.start -= john.speed as f32;
+            john.beam.x.end -= john.speed as f32;
+        }
     }
 }
 
@@ -331,13 +333,15 @@ fn view(app: &App, model: &Model, frame: Frame) {
     draw.background().color(BLACK);
     if model.count >= model.startoccam && model.count < model.endoccam {
         for baldessari in &model.occam {
-            let r = baldessari.beam;
-            draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(hsla(
-                baldessari.c.hue.to_degrees(),
-                baldessari.c.saturation,
-                baldessari.c.lightness,
-                baldessari.c.alpha,
-            ));
+            for john in &baldessari.chromosomes{
+                let r = john.beam;
+                draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(hsla(
+                    john.c.hue.to_degrees(),
+                    john.c.saturation,
+                    john.c.lightness,
+                    john.c.alpha,
+                ));
+            }
         }
     }
     if model.count >= model.startcamel && model.count < model.endcamel {
