@@ -171,16 +171,16 @@ fn playground_occam(app: &App) -> Vec<Cell> {
     let mut dsb = h / 2.0;
     while dsb > -h / 2.0 {
         let mut play = Vec::new();
-        let off_y = random_range(42.0, 67.0);
+        let off_y = random_range(35.0, 42.0);
         let slow = random_range(0, 2);
         let velo;
         let mut sj;
         if slow == 0 {
             velo = random_range(311, 391);
-            sj = 100.0 * w;
+            sj = 300.0 * w;
         } else {
             velo = random_range(11, 91);
-            sj = 50.0 * w;
+            sj = 200.0 * w;
         }
 
         while sj > 0.0 {
