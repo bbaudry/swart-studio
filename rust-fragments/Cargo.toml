@@ -4,5 +4,6 @@ members = [
 "white-circles",
 "blue-lines",
 "torg001",
+"torg002",
 ]
 resolver="2"
