@@ -78,9 +78,6 @@ fn model(app: &App) -> Model {
 }
 
 fn playground_spin(app: &App) -> Vec<Spin> {
-    let corex=0.0;
-    let corey=0.0;
-    let h = app.window_rect().h();
     let w = app.window_rect().w();
     let mut play = Vec::new(); //for the general list of Spins, for now 1
     let mut fire = Vec::new();//for the list of wheels
