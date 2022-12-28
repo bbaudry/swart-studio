@@ -141,6 +141,9 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count >= model.startoccamcolfast && model.count < model.endoccamcolfast {
         update_occam_col_fast(model);
     }
+    if model.count >= model.endoccamcolfast{
+        update_occam_col(model);
+    }
     if model.count == model.endoccamspeed {println!("stop increase speed");}
     if model.count == model.startoccamspeed {println!("start increase speed");}
     if model.count == model.endoccamcolfast {println!("stop fast color changes");}
