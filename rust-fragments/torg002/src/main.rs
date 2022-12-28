@@ -62,7 +62,7 @@ fn model(app: &App) -> Model {
         endoccamcolfast:456,
         startoccamslow:456,
         endoccamslow:756,
-        startendoccam:56,
+        startendoccam:756,
     }
 }
 
