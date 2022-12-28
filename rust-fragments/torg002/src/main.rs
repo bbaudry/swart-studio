@@ -4,6 +4,7 @@ use nannou::draw::mesh::vertex::Color;
 use nannou::geom::Range;
 use nannou::geom::Rect;
 use nannou::image::Frames;
+use nannou::lyon::geom::arrayvec::Array;
 use nannou::prelude::*;
 use nannou::rand::random_range;
 
@@ -30,6 +31,7 @@ struct Cell{ //one string of 'DNA', all situated on the same y axis
 
 struct Model {
     occam: Vec<Cell>, //data for rectangles moving from right to left
+    end: [(f32,f32);4],
     count: i32,
     startoccam: i32,
     endoccam: i32,
@@ -41,24 +43,39 @@ struct Model {
     endoccamcol:i32,
     startoccamcolfast:i32,
     endoccamcolfast:i32,
+    startendoccam:i32,
 }
 
 fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
     Model {
         occam: playground_occam(app),
+        end: init_end(app),
         count: 0,
         startoccamspeed:0,
         endoccamspeed:200,    
-        startoccamslow:364,
-        endoccamslow:464,
         startoccam:0,
         endoccam:1048,
-        startoccamcol:128,
-        endoccamcol:256,
-        startoccamcolfast:256,
-        endoccamcolfast:364,
+        startoccamcol:200,
+        endoccamcol:328,
+        startoccamcolfast:328,
+        endoccamcolfast:456,
+        startoccamslow:456,
+        endoccamslow:756,
+        startendoccam:56,
     }
+}
+
+fn init_end(app: &App) -> [(f32,f32);4] {
+    let h = app.window_rect().h();
+    let w = app.window_rect().w();
+    let mut endcoord = [(0.0,0.0);4];
+    endcoord[0]=(0.0,h/2.0);
+    endcoord[1]=(0.0,h/2.0);
+    endcoord[2]=(0.0,-h/2.0);
+    endcoord[3]=(0.0,-h/2.0);
+    return endcoord;
+
 }
 
 //intialize DNA and cells
@@ -69,15 +86,15 @@ fn playground_occam(app: &App) -> Vec<Cell> {
     let mut dsb = h / 2.0; // for the y-axis
     while dsb > -h / 2.0 {
         let mut play = Vec::new();
-        let off_y = random_range(7.0, 29.0);
+        let off_y = random_range(13.0, 39.0);
         let slow = random_range(0, 2);
         let velo;
         let mut sj; //for the x-axis
         if slow == 0 {
-            velo = random_range(141, 271);//random_range(291, 321);
+            velo = random_range(141, 271);
             sj = 300.0 * w;
         } else {
-            velo = random_range(1, 41);//random_range(151, 191);
+            velo = random_range(1, 41);
             sj = 200.0 * w;
         }
 
@@ -95,9 +112,10 @@ fn playground_occam(app: &App) -> Vec<Cell> {
                 zombie = 0.5;
                 lazybone = 1.0;
             } else {
-                zombie = 1.0;
-                lazybone = random_range(0.4, 1.0);
+                zombie = 1.0;//random_range(0.4, 1.0);
+                lazybone = random_range(0.2, 0.6);
             }
+            let actual_off_y = (off_y-random_range(0.0,off_y))/2.0;
             play.push(DNA {
                 beam: Rect {
                     x: Range {
@@ -105,14 +123,14 @@ fn playground_occam(app: &App) -> Vec<Cell> {
                         end: sj,
                     },
                     y: Range {
-                        start: dsb,
-                        end: dsb - off_y,
+                        start: dsb- actual_off_y,
+                        end: dsb - off_y + actual_off_y,
                     },
                 },
                 speed: velo,
                 c: Hsla::new(230.0 / 360.0, 1.0, zombie, lazybone),
             });
-            sj = sj - off_x - random_range(9.0, 13.0);
+            sj = sj - off_x - random_range(0.0, 23.0);
         }
         life.push(Cell{
             horizon: dsb,
@@ -120,7 +138,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
         }
 
         );
-        dsb = dsb - off_y - random_range(7.0, 13.0)
+        dsb = dsb - off_y - random_range(9.0, 13.0)
     }
     return life;
 }
@@ -157,8 +175,20 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count >= model.endoccamcolfast{
         update_occam_col(model);
     }
+
+    if model.count > model.startendoccam{
+        close(model);
+    }
     
     model.count += 1;
+}
+
+fn close(model: &mut Model) {
+    let closing_speed=5.0;
+    model.end[0].0-=closing_speed;
+    model.end[1].0+=closing_speed;
+    model.end[2].0-=closing_speed;
+    model.end[3].0+=closing_speed;
 }
 
 fn update_occam_col_fast(model: &mut Model) {
@@ -223,10 +253,25 @@ fn view(app: &App, model: &Model, frame: Frame) {
     if model.count >= model.startoccam && model.count < model.endoccam {
         view_occam(model,&draw);
     }
+    if model.count >=model.startendoccam{
+        close_occam(model,&draw);
+    }
     draw.to_frame(app, &frame).unwrap();
 }
 
+fn close_occam(model : &Model, draw : &Draw){
+    let point1 = pt2(model.end[0].0,model.end[0].1);
+    let point2 = pt2(model.end[1].0,model.end[1].1);
+    let point3 = pt2(model.end[2].0,model.end[2].1);
+    let point4 = pt2(model.end[3].0,model.end[3].1);
+    draw.tri()
+    .points(point1,point2,pt2(0.0,0.0))
+    .color(hsl(0.0,0.0,0.0));
+    draw.tri()
+    .points(point3,point4,pt2(0.0,0.0))
+    .color(hsl(0.0,0.0,0.0));
 
+}
 fn view_occam(model : &Model, draw : &Draw){
     for baldessari in &model.occam {
         for john in &baldessari.chromosomes{
