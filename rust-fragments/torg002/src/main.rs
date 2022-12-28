@@ -35,6 +35,8 @@ struct Model {
     endoccam: i32,
     startoccamspeed:i32,
     endoccamspeed:i32,
+    startoccamslow:i32,
+    endoccamslow:i32,
     startoccamcol:i32,
     endoccamcol:i32,
     startoccamcolfast:i32,
@@ -48,12 +50,14 @@ fn model(app: &App) -> Model {
         count: 0,
         startoccamspeed:0,
         endoccamspeed:200,    
+        startoccamslow:364,
+        endoccamslow:464,
         startoccam:0,
         endoccam:1048,
-        startoccamcol:111,
-        endoccamcol:142,
-        startoccamcolfast:142,
-        endoccamcolfast:777,
+        startoccamcol:128,
+        endoccamcol:256,
+        startoccamcolfast:256,
+        endoccamcolfast:364,
     }
 }
 
@@ -125,6 +129,9 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count >= model.startoccamspeed && model.count < model.endoccamspeed {
         update_occam_speed(model);
     }
+    if model.count >= model.startoccamslow && model.count < model.endoccamslow {
+        update_occam_speed(model);
+    }
     if model.count >= model.startoccam && model.count < model.endoccam {
         update_occam_reg(model);
     }
@@ -134,6 +141,11 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count >= model.startoccamcolfast && model.count < model.endoccamcolfast {
         update_occam_col_fast(model);
     }
+    if model.count == model.endoccamspeed {println!("stop increase speed");}
+    if model.count == model.startoccamspeed {println!("start increase speed");}
+    if model.count == model.endoccamcolfast {println!("stop fast color changes");}
+    if model.count == model.startoccamcolfast {println!("start fast color changes");}
+    
     model.count += 1;
 }
 
@@ -164,6 +176,15 @@ fn update_occam_col(model: &mut Model) {
         }
     }
 }
+
+fn update_occam_slow(model: &mut Model) {
+    for baldessari in &mut model.occam {
+        for john in &mut baldessari.chromosomes{
+            john.speed-=1;
+        }
+    }
+}
+
 
 fn update_occam_speed(model: &mut Model) {
     for baldessari in &mut model.occam {
