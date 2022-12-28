@@ -66,13 +66,13 @@ fn playground_occam(app: &App) -> Vec<Cell> {
     let h = app.window_rect().h();
     let w = app.window_rect().w();
     let mut life =Vec::new();
-    let mut dsb = h / 2.0;
+    let mut dsb = h / 2.0; // for the y-axis
     while dsb > -h / 2.0 {
         let mut play = Vec::new();
         let off_y = random_range(7.0, 29.0);
         let slow = random_range(0, 2);
         let velo;
-        let mut sj;
+        let mut sj; //for the x-axis
         if slow == 0 {
             velo = random_range(141, 271);//random_range(291, 321);
             sj = 300.0 * w;
@@ -81,7 +81,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
             sj = 200.0 * w;
         }
 
-        while sj > 0.0 {
+        while sj > -w/2.0 {
             let off_x;
             if slow == 0 {
                 off_x = random_range(47.0, 83.0);
@@ -96,7 +96,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
                 lazybone = 1.0;
             } else {
                 zombie = 1.0;
-                lazybone = random_range(0.0, 0.5);
+                lazybone = random_range(0.4, 1.0);
             }
             play.push(DNA {
                 beam: Rect {
@@ -120,34 +120,43 @@ fn playground_occam(app: &App) -> Vec<Cell> {
         }
 
         );
-        dsb = dsb - off_y - random_range(17.0, 23.0)
+        dsb = dsb - off_y - random_range(7.0, 13.0)
     }
     return life;
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    if model.count >= model.startoccamspeed && model.count < model.endoccamspeed {
-        update_occam_speed(model);
-    }
-    if model.count >= model.startoccamslow && model.count < model.endoccamslow {
-        update_occam_speed(model);
-    }
     if model.count >= model.startoccam && model.count < model.endoccam {
         update_occam_reg(model);
     }
-    if model.count >= model.startoccamcol && model.count < model.endoccamcol {
-        update_occam_col(model);
-    }
-    if model.count >= model.startoccamcolfast && model.count < model.endoccamcolfast {
-        update_occam_col_fast(model);
-    }
-    if model.count >= model.endoccamcolfast{
-        update_occam_col(model);
+
+    if model.count >= model.startoccamspeed && model.count < model.endoccamspeed {
+        update_occam_speed(model);
     }
     if model.count == model.endoccamspeed {println!("stop increase speed");}
     if model.count == model.startoccamspeed {println!("start increase speed");}
+
+    if model.count >= model.startoccamslow && model.count < model.endoccamslow {
+        update_occam_slow(model);
+    }
+    if model.count == model.endoccamslow {println!("stop decrease speed");}
+    if model.count == model.startoccamslow {println!("start decrease speed");}
+
+    if model.count >= model.startoccamcol && model.count < model.endoccamcol {
+        update_occam_col(model);
+    }
+    if model.count == model.endoccamcol {println!("stop  color changes");}
+    if model.count == model.startoccamcol {println!("start  color changes");}
+
+    if model.count >= model.startoccamcolfast && model.count < model.endoccamcolfast {
+        update_occam_col_fast(model);
+    }
     if model.count == model.endoccamcolfast {println!("stop fast color changes");}
     if model.count == model.startoccamcolfast {println!("start fast color changes");}
+
+    if model.count >= model.endoccamcolfast{
+        update_occam_col(model);
+    }
     
     model.count += 1;
 }
