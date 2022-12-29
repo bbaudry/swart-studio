@@ -100,7 +100,7 @@ fn playground_pre_occam(app: &App) -> Vec<Cell> {
                 }
             },
             speed: 0,
-            c: Hsla::new(0.0,1.0,1.0,1.0),
+            c: Hsla::new(0.0,1.0,0.5,1.0),
         }
     );
     let mut life =Vec::new();
@@ -232,19 +232,33 @@ fn close(model: &mut Model) {
 
 fn update_pre_occam(model: &mut Model) {
     //before 42, no update
-    if model.count >=42 && model.count<142{
-    for baldessari in &mut model.pre_occam {
-        for john in &mut baldessari.chromosomes{
-            let bw=random_range(0,2);
-            if bw==1{
-                john.c = hsla(0.0,1.0,1.0,1.0);
+    if model.count >=84 && model.count<142{
+        for baldessari in &mut model.pre_occam {
+            for john in &mut baldessari.chromosomes{
+                if model.count == 141 {
+                    john.speed = 7;
+                    john.c = hsla(0.0,1.0,1.0,1.0);
+                }
+                else{
+                let bw=random_range(0,2);
+                if bw==1{
+                    john.c = hsla(0.0,1.0,1.0,1.0);
+                }
+                else{
+                    john.c = hsla(0.0,0.0,0.0,1.0);
+                }
             }
-            else{
-                john.c = hsla(0.0,0.0,0.0,1.0);
             }
         }
     }
-}}
+    if model.count >=142 && model.count<model.endpreoccam{
+        for baldessari in &mut model.pre_occam {
+            for john in &mut baldessari.chromosomes{
+                john.beam.x.start -= john.speed as f32;
+                john.beam.x.end -= john.speed as f32;
+            }}}
+
+}
 
 fn update_occam_col_fast(model: &mut Model) {
     for baldessari in &mut model.occam {
@@ -305,7 +319,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let w = app.window_rect().w();
     let draw = app.draw();
     draw.background().color(BLACK);
-    if model.count >=42 && model.count<142{
+    if model.count >= model.startpreoccam && model.count<model.endpreoccam{
         view_pre_occam(model,&draw);
     }
     if model.count >= model.startoccam && model.count < model.endoccam {
