@@ -30,9 +30,12 @@ struct Cell{ //one string of 'DNA', all situated on the same y axis
 
 
 struct Model {
-    occam: Vec<Cell>, //data for rectangles moving from right to left
+    pre_occam: Vec<Cell>, 
+    occam: Vec<Cell>, //data for rectangles moving from horizontally
     end: [(f32,f32);4],
     count: i32,
+    startpreoccam: i32,
+    endpreoccam: i32,
     startoccam: i32,
     endoccam: i32,
     startoccamspeed:i32,
@@ -49,20 +52,23 @@ struct Model {
 fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
     Model {
+        pre_occam: playground_pre_occam(app),
         occam: playground_occam(app),
         end: init_end(app),
         count: 0,
         startoccamspeed:0,
-        endoccamspeed:200,    
-        startoccam:0,
-        endoccam:1048,
-        startoccamcol:200,
-        endoccamcol:328,
-        startoccamcolfast:328,
-        endoccamcolfast:456,
-        startoccamslow:456,
-        endoccamslow:756,
-        startendoccam:756,
+        endoccamspeed:200,  
+        startpreoccam: 0,
+        endpreoccam: 512,      
+        startoccam:512,
+        endoccam:1300,
+        startoccamcol:512,
+        endoccamcol:762,
+        startoccamcolfast:712,
+        endoccamcolfast:840,
+        startoccamslow:840,
+        endoccamslow:1100,
+        startendoccam:1100,
     }
 }
 
@@ -76,6 +82,35 @@ fn init_end(app: &App) -> [(f32,f32);4] {
     endcoord[3]=(0.0,-h/2.0);
     return endcoord;
 
+}
+
+//intialize DNA and cells
+fn playground_pre_occam(app: &App) -> Vec<Cell> {
+    let mut brin = Vec::new();
+    brin.push(
+        DNA {
+            beam: Rect{
+                x: Range {
+                    start: -100.0,
+                    end: 100.0,
+                },
+                y: Range {
+                    start: 100.0,
+                    end: -100.0,
+                }
+            },
+            speed: 0,
+            c: Hsla::new(0.0,1.0,1.0,1.0),
+        }
+    );
+    let mut life =Vec::new();
+    life.push(
+        Cell { 
+            horizon: 100.0, 
+            chromosomes: brin,
+        }
+    );
+    return life;
 }
 
 //intialize DNA and cells
@@ -144,6 +179,10 @@ fn playground_occam(app: &App) -> Vec<Cell> {
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
+    if model.count >= model.startpreoccam && model.count < model.endpreoccam {
+        update_pre_occam(model);
+    }
+
     if model.count >= model.startoccam && model.count < model.endoccam {
         update_occam_reg(model);
     }
@@ -190,6 +229,22 @@ fn close(model: &mut Model) {
     model.end[2].0-=closing_speed;
     model.end[3].0+=closing_speed;
 }
+
+fn update_pre_occam(model: &mut Model) {
+    //before 42, no update
+    if model.count >=42 && model.count<142{
+    for baldessari in &mut model.pre_occam {
+        for john in &mut baldessari.chromosomes{
+            let bw=random_range(0,2);
+            if bw==1{
+                john.c = hsla(0.0,1.0,1.0,1.0);
+            }
+            else{
+                john.c = hsla(0.0,0.0,0.0,1.0);
+            }
+        }
+    }
+}}
 
 fn update_occam_col_fast(model: &mut Model) {
     for baldessari in &mut model.occam {
@@ -250,6 +305,9 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let w = app.window_rect().w();
     let draw = app.draw();
     draw.background().color(BLACK);
+    if model.count >=42 && model.count<142{
+        view_pre_occam(model,&draw);
+    }
     if model.count >= model.startoccam && model.count < model.endoccam {
         view_occam(model,&draw);
     }
@@ -272,6 +330,22 @@ fn close_occam(model : &Model, draw : &Draw){
     .color(hsl(0.0,0.0,0.0));
 
 }
+
+fn view_pre_occam(model : &Model, draw : &Draw){
+    for baldessari in &model.pre_occam {
+        for john in &baldessari.chromosomes{
+            let r = john.beam;
+            draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(hsla(
+                john.c.hue.to_degrees(),
+                john.c.saturation,
+                john.c.lightness,
+                john.c.alpha,
+            ));
+        }
+    }
+}
+
+
 fn view_occam(model : &Model, draw : &Draw){
     for baldessari in &model.occam {
         for john in &baldessari.chromosomes{
