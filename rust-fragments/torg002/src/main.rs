@@ -56,18 +56,18 @@ fn model(app: &App) -> Model {
         occam: playground_occam(app),
         end: init_end(app),
         count: 0,
-        startoccamspeed: 0,
-        endoccamspeed: 200,
         startpreoccam: 0,
         endpreoccam: 552,
         startoccam: 552,
         endoccam: 1300,
-        startoccamcol: 652,
-        endoccamcol: 762,
-        startoccamcolfast: 712,
-        endoccamcolfast: 840,
-        startoccamslow: 840,
-        endoccamslow: 1100,
+        startoccamspeed: 752,
+        endoccamspeed: 952,
+        startoccamcol: 852,
+        endoccamcol: 999,
+        startoccamcolfast: 999,
+        endoccamcolfast: 1111,
+        startoccamslow: 1111,
+        endoccamslow: 1300,
         startendoccam: 1100,
     }
 }
@@ -118,7 +118,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
         let mut play = Vec::new();
         let off_y = random_range(13.0, 39.0);
         let slow = random_range(0, 2);
-        let velo;
+        let mut velo;
         let mut sj; //for the x-axis
         if slow == 0 {
             velo = random_range(141, 271);
@@ -127,7 +127,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
             velo = random_range(1, 41);
             sj = 200.0 * w;
         }
-
+        velo=1;
         while sj > -w / 2.0 {
             let off_x;
             if slow == 0 {
@@ -304,6 +304,7 @@ fn update_occam_col(model: &mut Model) {
                     0.5,
                     random_range(0.92, 1.0),
                 );
+                john.speed+=random_range(3, 33)
             }
         }
     }
@@ -330,6 +331,8 @@ fn update_occam_reg(model: &mut Model) {
         for john in &mut baldessari.chromosomes {
             john.beam.x.start -= john.speed as f32;
             john.beam.x.end -= john.speed as f32;
+            let s = john.speed;
+            println!("speed:{s}");
         }
     }
 }
