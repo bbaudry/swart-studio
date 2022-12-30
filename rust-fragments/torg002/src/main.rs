@@ -63,7 +63,7 @@ fn model(app: &App) -> Model {
         startoccam: 552,
         endoccam: 1300,
         startoccamspeed: 752,
-        endoccamspeed: 952,
+        endoccamspeed: 852,
         startoccamcol: 852,
         endoccamcol: 999,
         startoccamcolfast: 999,
@@ -120,10 +120,10 @@ fn playground_occam(app: &App) -> Vec<Cell> {
         let mut play = Vec::new();
         let off_y = random_range(13.0, 39.0);
         let slow = random_range(0, 2);
-        let mut velo;
+        let velo;
         let mut sj; //for the x-axis
         if slow == 0 {
-            velo = random_range(41, 71);
+            velo = random_range(21, 51);
             sj = 300.0 * w;
         } else {
             velo = random_range(1, 11);
@@ -173,13 +173,14 @@ fn playground_occam(app: &App) -> Vec<Cell> {
     return life;
 }
 
-fn update(_app: &App, model: &mut Model, _update: Update) {
+fn update(app: &App, model: &mut Model, _update: Update) {
+    let w = app.window_rect().w();
     if model.count >= model.startpreoccam && model.count < model.endpreoccam {
         update_pre_occam(model);
     }
 
     if model.count >= model.startoccam && model.count < model.endoccam {
-        update_occam_reg(model);
+        update_occam_reg(model,-0.2*w);
     }
 
     if model.count >= model.startoccamspeed && model.count < model.endoccamspeed {
@@ -317,17 +318,19 @@ fn update_occam_slow(model: &mut Model) {
 fn update_occam_speed(model: &mut Model) {
     for baldessari in &mut model.occam {
         for john in &mut baldessari.chromosomes {
-            john.speed += 1;
+            john.speed+=random_range(3, 7);
         }
     }
 }
 
-fn update_occam_reg(model: &mut Model) {
+fn update_occam_reg(model: &mut Model, thresh:f32) {
     for baldessari in &mut model.occam {
         for john in &mut baldessari.chromosomes {
             john.beam.x.start -= john.speed as f32;
             john.beam.x.end -= john.speed as f32;
-            john.speed+=random_range(3, 7)
+            if john.beam.x.end < thresh{
+                john.c = hsla(230.0/360.0,1.0,0.5,1.0);
+            }
         }
     }
 }
