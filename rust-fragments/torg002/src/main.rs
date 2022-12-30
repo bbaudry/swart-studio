@@ -129,7 +129,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
             velo = random_range(1, 41);
             sj = 200.0 * w;
         }
-        velo=1;
+        velo=7;
         while sj > w / 2.0 {
             let off_x;
             if slow == 0 {
