@@ -31,6 +31,7 @@ struct Cell {
 
 struct Model {
     pre_occam: Vec<Cell>,
+    pre_particles: Vec<f32>,
     occam: Vec<Cell>, //data for rectangles moving from horizontally
     end: [(f32, f32); 4],
     count: i32,
@@ -53,6 +54,7 @@ fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
     Model {
         pre_occam: playground_pre_occam(app),
+        pre_particles:Vec::new(),
         occam: playground_occam(app),
         end: init_end(app),
         count: 0,
@@ -128,7 +130,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
             sj = 200.0 * w;
         }
         velo=1;
-        while sj > -w / 2.0 {
+        while sj > w / 2.0 {
             let off_x;
             if slow == 0 {
                 off_x = random_range(47.0, 83.0);
@@ -245,7 +247,6 @@ fn update_pre_occam(model: &mut Model) {
         for baldessari in &mut model.pre_occam {
             for john in &mut baldessari.chromosomes {
                 if model.count == 295 {
-                    john.speed = 3;
                     john.c = hsla(0.0, 1.0, 1.0, 1.0);
                 } else {
                     if model.count < 184 {
@@ -262,13 +263,9 @@ fn update_pre_occam(model: &mut Model) {
             }
         }
     }
-    if model.count >= 296 && model.count < model.endpreoccam {
-        for baldessari in &mut model.pre_occam {
-            for john in &mut baldessari.chromosomes {
-                john.beam.x.start -= john.speed as f32;
-                john.beam.x.end -= john.speed as f32;
-            }
-        }
+    if model.count>=296{
+        let p = random_range(0,model.occam.len());
+        model.pre_particles.push(model.occam[p].horizon);
     }
 }
 
@@ -343,7 +340,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
     draw.background().color(BLACK);
     if model.count >= model.startpreoccam && model.count < model.endpreoccam {
-        view_pre_occam(model, &draw);
+        view_pre_occam(model, &draw, w);
     }
     if model.count >= model.startoccam && model.count < model.endoccam {
         view_occam(model, &draw);
@@ -367,7 +364,8 @@ fn close_occam(model: &Model, draw: &Draw) {
         .color(hsl(0.0, 0.0, 0.0));
 }
 
-fn view_pre_occam(model: &Model, draw: &Draw) {
+fn view_pre_occam(model: &Model, draw: &Draw, w:f32) {
+    
     for baldessari in &model.pre_occam {
         for john in &baldessari.chromosomes {
             let r = john.beam;
@@ -378,6 +376,12 @@ fn view_pre_occam(model: &Model, draw: &Draw) {
                 john.c.alpha,
             ));
         }
+    }
+    for p in &model.pre_particles{
+        draw.ellipse()
+        .x_y(0.47*w, *p)
+        .radius(7.0)
+        .color(hsl(30.0/360.0,1.0,0.5));
     }
 }
 
