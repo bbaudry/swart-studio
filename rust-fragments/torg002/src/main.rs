@@ -123,13 +123,13 @@ fn playground_occam(app: &App) -> Vec<Cell> {
         let mut velo;
         let mut sj; //for the x-axis
         if slow == 0 {
-            velo = random_range(141, 271);
+            velo = random_range(41, 71);
             sj = 300.0 * w;
         } else {
-            velo = random_range(1, 41);
+            velo = random_range(1, 11);
             sj = 200.0 * w;
         }
-        velo=7;
+        
         while sj > w / 2.0 {
             let off_x;
             if slow == 0 {
@@ -301,7 +301,6 @@ fn update_occam_col(model: &mut Model) {
                     0.5,
                     random_range(0.92, 1.0),
                 );
-                john.speed+=random_range(3, 33)
             }
         }
     }
@@ -328,8 +327,7 @@ fn update_occam_reg(model: &mut Model) {
         for john in &mut baldessari.chromosomes {
             john.beam.x.start -= john.speed as f32;
             john.beam.x.end -= john.speed as f32;
-            let s = john.speed;
-            println!("speed:{s}");
+            john.speed+=random_range(3, 7)
         }
     }
 }
@@ -380,8 +378,8 @@ fn view_pre_occam(model: &Model, draw: &Draw, w:f32) {
     for p in &model.pre_particles{
         draw.ellipse()
         .x_y(0.47*w, *p)
-        .radius(7.0)
-        .color(hsl(30.0/360.0,1.0,0.5));
+        .radius(random_range(1.0,7.0))
+        .color(hsl(0.0/360.0,1.0,0.5));
     }
 }
 
