@@ -62,9 +62,9 @@ fn model(app: &App) -> Model {
         endpreoccam: 552,
         startoccam: 552,
         endoccam: 1300,
-        startoccamspeed: 752,
-        endoccamspeed: 852,
-        startoccamcol: 852,
+        startoccamspeed: 702,
+        endoccamspeed: 802,
+        startoccamcol: 752,
         endoccamcol: 999,
         startoccamcolfast: 999,
         endoccamcolfast: 1111,
@@ -120,7 +120,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
         let mut play = Vec::new();
         let off_y = 7.0;// random_range(13.0, 39.0);
         let slow = random_range(0, 2);
-        let velo;
+        let mut velo;
         let mut sj; //for the x-axis
         if slow == 0 {
             velo = random_range(21, 51);
@@ -129,7 +129,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
             velo = random_range(1, 11);
             sj = 200.0 * w;
         }
-        
+        velo = 111;
         while sj > w / 2.0 {
             let off_x;
             if slow == 0 {
@@ -162,7 +162,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
                 speed: velo,
                 c: Hsla::new(230.0 / 360.0, 1.0, zombie, lazybone),
             });
-            sj = sj - off_x - random_range(0.0, 23.0);
+            sj = sj - off_x - 5.0;//random_range(0.0, 23.0);
         }
         life.push(Cell {
             horizon: dsb,
@@ -286,7 +286,7 @@ fn update_occam_slow(model: &mut Model) {
 fn update_occam_speed(model: &mut Model) {
     for baldessari in &mut model.occam {
         for john in &mut baldessari.chromosomes {
-            john.speed+=random_range(3, 7);
+            john.speed+=random_range(3, 5);
         }
     }
 }
@@ -298,7 +298,11 @@ fn update_occam_reg(model: &mut Model, thresh:f32) {
             john.beam.x.end -= john.speed as f32;
             if john.beam.x.end < thresh{
                 john.speed = john.speed*2;
-                john.c = hsla(230.0 / 360.0,1.0,0.5,1.0);
+                john.c = hsla(
+                    0.9,
+                    1.0,
+                    0.5,1.0,
+                )
             }
         }
     }
@@ -318,6 +322,8 @@ fn view(app: &App, model: &Model, frame: Frame) {
     if model.count >= model.startendoccam {
         close_occam(model, &draw);
     }
+    let riley=model.count;
+    println!("{riley}");
     draw.to_frame(app, &frame).unwrap();
 }
 
