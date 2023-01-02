@@ -178,59 +178,27 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     if model.count >= model.startpreoccam && model.count < model.endpreoccam {
         update_pre_occam(model);
     }
-
     if model.count >= model.startoccam && model.count < model.endoccam {
         update_occam_reg(model,-0.2*w);
     }
-
     if model.count >= model.startoccamspeed && model.count < model.endoccamspeed {
         update_occam_speed(model);
     }
-    if model.count == model.endoccamspeed {
-        println!("stop increase speed");
-    }
-    if model.count == model.startoccamspeed {
-        println!("start increase speed");
-    }
-
     if model.count >= model.startoccamslow && model.count < model.endoccamslow {
         update_occam_slow(model);
     }
-    if model.count == model.endoccamslow {
-        println!("stop decrease speed");
-    }
-    if model.count == model.startoccamslow {
-        println!("start decrease speed");
-    }
-
     if model.count >= model.startoccamcol && model.count < model.endoccamcol {
         update_occam_col(model);
     }
-    if model.count == model.endoccamcol {
-        println!("stop  color changes");
-    }
-    if model.count == model.startoccamcol {
-        println!("start  color changes");
-    }
-
     if model.count >= model.startoccamcolfast && model.count < model.endoccamcolfast {
         update_occam_col_fast(model);
     }
-    if model.count == model.endoccamcolfast {
-        println!("stop fast color changes");
-    }
-    if model.count == model.startoccamcolfast {
-        println!("start fast color changes");
-    }
-
     if model.count >= model.endoccamcolfast {
         update_occam_col(model);
     }
-
     if model.count > model.startendoccam {
         close(model);
     }
-
     model.count += 1;
 }
 
@@ -329,7 +297,8 @@ fn update_occam_reg(model: &mut Model, thresh:f32) {
             john.beam.x.start -= john.speed as f32;
             john.beam.x.end -= john.speed as f32;
             if john.beam.x.end < thresh{
-                john.c = hsla(150.0/360.0,1.0,0.5,1.0);
+                john.speed = john.speed*2;
+                john.c = hsla(230.0 / 360.0,1.0,0.5,1.0);
             }
         }
     }
