@@ -118,7 +118,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
     let mut dsb = h / 2.0; // for the y-axis
     while dsb > -h / 2.0 {
         let mut play = Vec::new();
-        let off_y = random_range(13.0, 39.0);
+        let off_y = 7.0;// random_range(13.0, 39.0);
         let slow = random_range(0, 2);
         let velo;
         let mut sj; //for the x-axis
@@ -168,7 +168,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
             horizon: dsb,
             chromosomes: play,
         });
-        dsb = dsb - off_y - random_range(9.0, 13.0)
+        dsb = dsb - off_y - 17.0//random_range(9.0, 13.0)
     }
     return life;
 }
@@ -329,7 +329,7 @@ fn update_occam_reg(model: &mut Model, thresh:f32) {
             john.beam.x.start -= john.speed as f32;
             john.beam.x.end -= john.speed as f32;
             if john.beam.x.end < thresh{
-                john.c = hsla(230.0/360.0,1.0,0.5,1.0);
+                john.c = hsla(150.0/360.0,1.0,0.5,1.0);
             }
         }
     }
