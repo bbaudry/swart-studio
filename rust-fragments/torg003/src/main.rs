@@ -27,9 +27,9 @@ struct Wheel{
 }
 
 struct Spin{
-    cx:f32,
-    cy:f32,
+    cx:f32, cy:f32, // center of the spin
     rad_max:f32,
+    rad_largest:f32, //the largest rad_in among the petals
     petals:Vec<Wheel>
 }
 
@@ -50,39 +50,72 @@ fn model(app: &App) -> Model {
 
 fn playground_spin(app: &App) -> Vec<Spin> {
     let w = app.window_rect().w();
+    let RMax = w/2.0;
     let mut play = Vec::new(); //for the general list of Spins, for now 1
     let mut fire = Vec::new();//for the list of wheels
-    let mut drone = Vec::new();// for the list of sectors in the wheels
-    drone.push((0.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),PI));
-    drone.push((PI,Hsla::new(30.0 / 360.0, 1.0, 0.5, 0.5),PI+PI/2.0));
-    drone.push((PI+PI/2.0,Hsla::new(130.0 / 360.0, 1.0, 0.5, 0.5),0.0));
+    /*let mut drone = Vec::new();// for the list of sectors in the wheels
+    drone.push((0.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),2.0*PI/3.0));
+    drone.push((2.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),4.0*PI/3.0));
+    drone.push((4.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),0.0));
     fire.push(
         Wheel{
-            rad_in:242.0,
-            rad_out:287.0,
+            rad_in:0.01*RMax,
+            rad_out:0.01*RMax+1.0,
             sectors:drone,
             clock:false,
-            speed:PI/142.0,
+            speed:PI/5000.0,
         }
-    );
+    );*/
+    fire.push(init_wheel(0.01*RMax,0.01*RMax+1.0));
     play.push(
         Spin{
             cx:0.0,
             cy:0.0,
-            rad_max:w/2.0,
+            rad_max:RMax,
+            rad_largest:0.01*RMax,
             petals:fire,
         }
     );
     return play;
 }
 
+fn init_wheel(rin:f32,rout:f32) -> Wheel{
+    let mut drone = Vec::new();// for the list of sectors in the wheels
+    drone.push((0.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),2.0*PI/3.0));
+    drone.push((2.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),4.0*PI/3.0));
+    drone.push((4.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),0.0));
+
+    return Wheel{
+        rad_in:rin,
+        rad_out:rout,
+        sectors:drone,
+        clock:false,
+        speed:PI/4000.0,
+    }
+}
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    if model.count >= model.startspin && model.count < model.endspin{
+    if !grow_spin(model) {
         update_spin(model);
     }
+    
     model.count += 1;
 }
+
+fn grow_spin(model: &mut Model) -> bool{
+    let mut grow = false;
+    for baldessari in &mut model.spin {
+        if baldessari.rad_largest<baldessari.rad_max{
+            //add a petal
+            let r_in = baldessari.rad_largest + 1.0;
+            baldessari.petals.push(init_wheel(r_in, r_in+1.0));
+            baldessari.rad_largest=r_in;
+            grow = true;
+        }
+    }
+    return grow;
+}
+
 
 fn update_spin(model: &mut Model) {
     for baldessari in &mut model.spin {
@@ -106,9 +139,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let w = app.window_rect().w();
     let draw = app.draw();
     draw.background().color(BLACK);
-    if model.count >= model.startspin && model.count<model.endspin{
-        view_spin(model,&draw);
-    }
+    view_spin(model,&draw);
     draw.to_frame(app, &frame).unwrap();
 }
 
