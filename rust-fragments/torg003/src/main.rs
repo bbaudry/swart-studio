@@ -39,6 +39,8 @@ struct Model {
     startspin:i32,endspin:i32,
     startblack:i32,endblack:i32,
     startasynch:i32,endasynch:i32,
+    startrevert:i32,endrevert:i32,
+    startmoreblack:i32,endmoreblack:i32,
     count: i32,
 }
 
@@ -49,6 +51,8 @@ fn model(app: &App) -> Model {
         startspin:0,endspin:4224,
         startblack:0,endblack:0,
         startasynch:0,endasynch:0,
+        startrevert:0,endrevert:0,
+        startmoreblack:0,endmoreblack:0,
         growspin:true,
         count: 0,
     }
@@ -95,19 +99,39 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
         model.startblack=model.endspin/10+model.count;
         model.endblack=2*model.endspin/10+model.count;
         model.startasynch=2*model.endspin/10+model.count;
-        model.endasynch=4*model.endspin/10+model.count;
+        model.endasynch=5*model.endspin/10+model.count;
+        model.startrevert=5*model.endspin/10+model.count;
+        model.endrevert=6*model.endspin/10+model.count;
+        model.startmoreblack=6*model.endspin/10+model.count;
+        model.endmoreblack=9*model.endspin/10+model.count;
+
     }
     if model.count<model.endspin && !model.growspin {
         update_spin(model);
     }
-    if model.count>=model.startblack && model.count<model.endblack &&  random_range(1,41) == 1 {
+    if model.count>=model.startblack && model.count<model.endblack &&  random_range(1,41) < 5 {
         one_black_wheel(model)
     }
-    if model.count>=model.startasynch && model.count<model.endasynch &&  random_range(1,41) < 7 {
+    if model.count>=model.startasynch && model.count<model.endasynch &&  random_range(1,41) < 17 {
         one_asynch_wheel(model)
+    }
+    if model.count>=model.startrevert && model.count<model.endrevert &&  random_range(1,41) < 7 {
+        one_revert_wheel(model)
+    }
+    if model.count>=model.startmoreblack && model.count<model.endmoreblack &&  random_range(1,41) < 15 {
+        one_black_wheel(model)
     }
 
     model.count += 1;
+}
+
+fn one_revert_wheel(model: &mut Model){
+    for baldessari in &mut model.spin {
+        let lingus = baldessari.petals.len();
+        let cory = random_range(0, lingus);
+        baldessari.petals[cory].clock=!baldessari.petals[cory].clock;
+    }
+    
 }
 
 fn one_asynch_wheel(model: &mut Model){
