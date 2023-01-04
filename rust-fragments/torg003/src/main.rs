@@ -38,6 +38,7 @@ struct Model {
     growspin:bool,
     startspin:i32,endspin:i32,
     startblack:i32,endblack:i32,
+    startasynch:i32,endasynch:i32,
     count: i32,
 }
 
@@ -47,6 +48,7 @@ fn model(app: &App) -> Model {
         spin: playground_spin(app),
         startspin:0,endspin:4224,
         startblack:0,endblack:0,
+        startasynch:0,endasynch:0,
         growspin:true,
         count: 0,
     }
@@ -92,6 +94,8 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
         model.growspin=false;
         model.startblack=model.endspin/10+model.count;
         model.endblack=2*model.endspin/10+model.count;
+        model.startasynch=2*model.endspin/10+model.count;
+        model.endasynch=4*model.endspin/10+model.count;
     }
     if model.count<model.endspin && !model.growspin {
         update_spin(model);
@@ -99,10 +103,21 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count>=model.startblack && model.count<model.endblack &&  random_range(1,41) == 1 {
         one_black_wheel(model)
     }
+    if model.count>=model.startasynch && model.count<model.endasynch &&  random_range(1,41) < 7 {
+        one_asynch_wheel(model)
+    }
 
     model.count += 1;
 }
 
+fn one_asynch_wheel(model: &mut Model){
+    for baldessari in &mut model.spin {
+        let lingus = baldessari.petals.len();
+        let cory = random_range(0, lingus);
+        baldessari.petals[cory].speed+=random_range(PI/999.0,PI/500.0);
+    }
+    
+}
 fn one_black_wheel(model: &mut Model){
     for baldessari in &mut model.spin {
         let lingus = baldessari.petals.len();
