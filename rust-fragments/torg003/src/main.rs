@@ -35,7 +35,9 @@ struct Spin{
 
 struct Model {
     spin: Vec<Spin>,
+    growspin:bool,
     startspin:i32,endspin:i32,
+    startblack:i32,endblack:i32,
     count: i32,
 }
 
@@ -43,7 +45,9 @@ fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
     Model {
         spin: playground_spin(app),
-        startspin:0,endspin:42,
+        startspin:0,endspin:4224,
+        startblack:0,endblack:0,
+        growspin:true,
         count: 0,
     }
 }
@@ -53,19 +57,6 @@ fn playground_spin(app: &App) -> Vec<Spin> {
     let RMax = w/2.0;
     let mut play = Vec::new(); //for the general list of Spins, for now 1
     let mut fire = Vec::new();//for the list of wheels
-    /*let mut drone = Vec::new();// for the list of sectors in the wheels
-    drone.push((0.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),2.0*PI/3.0));
-    drone.push((2.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),4.0*PI/3.0));
-    drone.push((4.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),0.0));
-    fire.push(
-        Wheel{
-            rad_in:0.01*RMax,
-            rad_out:0.01*RMax+1.0,
-            sectors:drone,
-            clock:false,
-            speed:PI/5000.0,
-        }
-    );*/
     fire.push(init_wheel(0.01*RMax,0.01*RMax+1.0));
     play.push(
         Spin{
@@ -90,16 +81,38 @@ fn init_wheel(rin:f32,rout:f32) -> Wheel{
         rad_out:rout,
         sectors:drone,
         clock:false,
-        speed:PI/4000.0,
+        speed:PI/1000.0,
     }
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    if !grow_spin(model) {
+    if !grow_spin(model) && model.growspin { 
+        model.startspin=model.count; 
+        model.growspin=false;
+        model.startblack=model.endspin/10;
+        model.endblack=2*model.endspin/10;
+    }
+    if model.count<model.startspin+model.endspin && !model.growspin {
         update_spin(model);
     }
-    
+    if model.count>=model.startspin+model.startblack && model.count<model.startspin+model.endblack &&  random_range(1,41) == 1 {
+        one_black_wheel(model)
+    }
+
     model.count += 1;
+}
+
+fn one_black_wheel(model: &mut Model){
+    for baldessari in &mut model.spin {
+        let lingus = baldessari.petals.len();
+        let cory = random_range(0, lingus);
+        //let bob = &baldessari.petals[cory];
+        for vera in  &mut baldessari.petals[cory].sectors{
+            vera.1.lightness=0.0;
+            vera.1.saturation=0.0;
+        }
+    }
+    
 }
 
 fn grow_spin(model: &mut Model) -> bool{
@@ -107,7 +120,7 @@ fn grow_spin(model: &mut Model) -> bool{
     for baldessari in &mut model.spin {
         if baldessari.rad_largest<baldessari.rad_max{
             //add a petal
-            let r_in = baldessari.rad_largest + 1.0;
+            let r_in = baldessari.rad_largest + 3.0; //the constant controls how much space between each wheel
             baldessari.petals.push(init_wheel(r_in, r_in+1.0));
             baldessari.rad_largest=r_in;
             grow = true;
