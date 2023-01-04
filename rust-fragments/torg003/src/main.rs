@@ -88,14 +88,15 @@ fn init_wheel(rin:f32,rout:f32) -> Wheel{
 fn update(_app: &App, model: &mut Model, _update: Update) {
     if !grow_spin(model) && model.growspin { 
         model.startspin=model.count; 
+        model.endspin+=model.count;
         model.growspin=false;
-        model.startblack=model.endspin/10;
-        model.endblack=2*model.endspin/10;
+        model.startblack=model.endspin/10+model.count;
+        model.endblack=2*model.endspin/10+model.count;
     }
-    if model.count<model.startspin+model.endspin && !model.growspin {
+    if model.count<model.endspin && !model.growspin {
         update_spin(model);
     }
-    if model.count>=model.startspin+model.startblack && model.count<model.startspin+model.endblack &&  random_range(1,41) == 1 {
+    if model.count>=model.startblack && model.count<model.endblack &&  random_range(1,41) == 1 {
         one_black_wheel(model)
     }
 
