@@ -298,7 +298,8 @@ fn update_occam_reg(model: &mut Model, thresh:f32) {
             john.beam.x.end -= john.speed as f32;
             if john.beam.x.end < thresh{
                 john.speed = john.speed*2;
-                john.c = hsla(0.5, 1.0, 0.5,1.0);
+                john.c.lightness=0.5;
+                john.c.alpha=1.0;
             }
         }
     }
