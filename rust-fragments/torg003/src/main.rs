@@ -104,34 +104,42 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
         model.endrevert=6*model.endspin/10+model.count;
         model.startmoreblack=6*model.endspin/10+model.count;
         model.endmoreblack=9*model.endspin/10+model.count;
-
     }
     if model.count<model.endspin && !model.growspin {
         update_spin(model);
     }
-    if model.count>=model.startblack && model.count<model.endblack &&  random_range(1,41) < 5 {
+    if model.count>=model.startblack && model.count<model.endblack &&  random_range(1,41) < 3 {
         one_black_wheel(model)
     }
-    if model.count>=model.startasynch && model.count<model.endasynch &&  random_range(1,41) < 17 {
+    if model.count>=model.startasynch && model.count<model.endasynch &&  random_range(1,41) < 13 {
         one_asynch_wheel(model)
     }
     if model.count>=model.startrevert && model.count<model.endrevert &&  random_range(1,41) < 7 {
         one_revert_wheel(model)
     }
-    if model.count>=model.startmoreblack && model.count<model.endmoreblack &&  random_range(1,41) < 15 {
-        one_black_wheel(model)
+    if model.count>=model.startmoreblack && model.count<model.endmoreblack &&  random_range(1,41) < 5 {
+        one_less_wheel(model)
     }
 
     model.count += 1;
 }
+//        baldessari.petals.remove(cory);
+
+fn one_less_wheel(model: &mut Model){
+    for baldessari in &mut model.spin {
+        let lingus = baldessari.petals.len();
+        let cory = random_range(2, lingus-1);
+        baldessari.petals.remove(cory);
+    } 
+}
+
 
 fn one_revert_wheel(model: &mut Model){
     for baldessari in &mut model.spin {
         let lingus = baldessari.petals.len();
         let cory = random_range(0, lingus);
         baldessari.petals[cory].clock=!baldessari.petals[cory].clock;
-    }
-    
+    } 
 }
 
 fn one_asynch_wheel(model: &mut Model){
@@ -139,8 +147,7 @@ fn one_asynch_wheel(model: &mut Model){
         let lingus = baldessari.petals.len();
         let cory = random_range(0, lingus);
         baldessari.petals[cory].speed+=random_range(PI/999.0,PI/500.0);
-    }
-    
+    }  
 }
 fn one_black_wheel(model: &mut Model){
     for baldessari in &mut model.spin {
@@ -151,8 +158,7 @@ fn one_black_wheel(model: &mut Model){
             vera.1.lightness=0.0;
             vera.1.saturation=0.0;
         }
-    }
-    
+    } 
 }
 
 fn grow_spin(model: &mut Model) -> bool{
@@ -198,14 +204,15 @@ fn view(app: &App, model: &Model, frame: Frame) {
     }
     draw.to_frame(app, &frame).unwrap();
 }
+
 fn view_flash_spin(model: &Model,draw: &Draw){
     for baldessari in &model.spin {
         let lingus = baldessari.petals.len();
         let cory = random_range(0, lingus);
         let vera = &baldessari.petals[cory];
-        let jarrett = pt2(vera.sectors[0].0,vera.sectors[0].2);
-        let peacock = pt2(vera.sectors[1].0,vera.sectors[1].2);
-        let johnette = pt2(vera.sectors[2].0,vera.sectors[2].2);
+        let jarrett = pt2(baldessari.cx+vera.rad_in*vera.sectors[0].0.cos(), baldessari.cy+vera.rad_in*vera.sectors[0].0.sin());
+        let peacock = pt2(baldessari.cx+vera.rad_in*vera.sectors[1].0.cos(), baldessari.cy+vera.rad_in*vera.sectors[1].0.sin());
+        let johnette = pt2(baldessari.cx+vera.rad_in*vera.sectors[2].0.cos(), baldessari.cy+vera.rad_in*vera.sectors[2].0.sin());
         draw.tri()
             .points(jarrett, peacock, johnette)
             .color(hsl(0.0,1.0,1.0));
