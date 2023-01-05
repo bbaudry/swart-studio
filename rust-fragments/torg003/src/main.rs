@@ -60,10 +60,11 @@ fn model(app: &App) -> Model {
 
 fn playground_spin(app: &App) -> Vec<Spin> {
     let w = app.window_rect().w();
+    app.main_window().set_fullscreen(true);
     let RMax = w/2.0;
     let mut play = Vec::new(); //for the general list of Spins, for now 1
     let mut fire = Vec::new();//for the list of wheels
-    fire.push(init_wheel(0.01*RMax,0.01*RMax+1.0));
+    fire.push(init_blue_wheel(0.01*RMax,0.01*RMax+1.0));
     play.push(
         Spin{
             cx:0.0,
@@ -76,11 +77,26 @@ fn playground_spin(app: &App) -> Vec<Spin> {
     return play;
 }
 
-fn init_wheel(rin:f32,rout:f32) -> Wheel{
+fn init_blue_wheel(rin:f32,rout:f32) -> Wheel{
     let mut drone = Vec::new();// for the list of sectors in the wheels
     drone.push((0.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),2.0*PI/3.0));
     drone.push((2.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),4.0*PI/3.0));
     drone.push((4.0*PI/3.0,Hsla::new(230.0 / 360.0, 1.0, 0.5, 0.5),0.0));
+
+    return Wheel{
+        rad_in:rin,
+        rad_out:rout,
+        sectors:drone,
+        clock:false,
+        speed:PI/1000.0,
+    }
+}
+
+fn init_red_wheel(rin:f32,rout:f32) -> Wheel{
+    let mut drone = Vec::new();// for the list of sectors in the wheels
+    drone.push((0.0,Hsla::new(320.0 / 360.0, 1.0, 0.5, 0.5),2.0*PI/3.0));
+    drone.push((2.0*PI/3.0,Hsla::new(320.0 / 360.0, 1.0, 0.5, 0.5),4.0*PI/3.0));
+    drone.push((4.0*PI/3.0,Hsla::new(320.0 / 360.0, 1.0, 0.5, 0.5),0.0));
 
     return Wheel{
         rad_in:rin,
@@ -117,7 +133,7 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     if model.count>=model.startrevert && model.count<model.endrevert &&  random_range(1,41) < 7 {
         one_revert_wheel(model)
     }
-    if model.count>=model.startmoreblack && model.count<model.endmoreblack &&  random_range(1,41) < 5 {
+    if model.count>=model.startmoreblack && model.count<model.endmoreblack &&  random_range(1,41) < 11 {
         one_less_wheel(model)
     }
 
@@ -167,7 +183,8 @@ fn grow_spin(model: &mut Model) -> bool{
         if baldessari.rad_largest<baldessari.rad_max{
             //add a petal
             let r_in = baldessari.rad_largest + 3.0; //the constant controls how much space between each wheel
-            baldessari.petals.push(init_wheel(r_in, r_in+1.0));
+            baldessari.petals.push(init_red_wheel(r_in, r_in+1.0));
+            baldessari.petals.push(init_blue_wheel(r_in, r_in+1.0));
             baldessari.rad_largest=r_in;
             grow = true;
         }
@@ -215,7 +232,7 @@ fn view_flash_spin(model: &Model,draw: &Draw){
         let johnette = pt2(baldessari.cx+vera.rad_in*vera.sectors[2].0.cos(), baldessari.cy+vera.rad_in*vera.sectors[2].0.sin());
         draw.tri()
             .points(jarrett, peacock, johnette)
-            .color(hsl(0.0,1.0,1.0));
+            .color(hsl(310.0/360.0,1.0,0.5));
     }
 }
 fn view_spin(model: &Model,draw: &Draw){
