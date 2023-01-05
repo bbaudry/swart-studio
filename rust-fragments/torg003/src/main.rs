@@ -193,9 +193,24 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
     draw.background().color(BLACK);
     view_spin(model,&draw);
+    if model.count > model.endspin{
+        view_flash_spin(model,&draw);
+    }
     draw.to_frame(app, &frame).unwrap();
 }
-
+fn view_flash_spin(model: &Model,draw: &Draw){
+    for baldessari in &model.spin {
+        let lingus = baldessari.petals.len();
+        let cory = random_range(0, lingus);
+        let vera = &baldessari.petals[cory];
+        let jarrett = pt2(vera.sectors[0].0,vera.sectors[0].2);
+        let peacock = pt2(vera.sectors[1].0,vera.sectors[1].2);
+        let johnette = pt2(vera.sectors[2].0,vera.sectors[2].2);
+        draw.tri()
+            .points(jarrett, peacock, johnette)
+            .color(hsl(0.0,1.0,1.0));
+    }
+}
 fn view_spin(model: &Model,draw: &Draw){
     for baldessari in  &model.spin {
         for vera in &baldessari.petals{
@@ -213,6 +228,7 @@ fn view_spin(model: &Model,draw: &Draw){
                 .end(end_point)
                 .weight(1.23)
                 .color(hsl(ryoji.1.hue.to_degrees(),ryoji.1.saturation,ryoji.1.lightness));
+                
             }
         }
     }    
