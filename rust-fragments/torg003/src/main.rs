@@ -3,7 +3,9 @@ use nannou::color::GetHue;
 use nannou::draw::mesh::vertex::Color;
 use nannou::geom::Range;
 use nannou::geom::Rect;
+use nannou::geom::Tri;
 use nannou::image::Frames;
+use nannou::lyon::geom::Triangle;
 use nannou::prelude::*;
 use nannou::rand::random_range;
 
@@ -35,12 +37,14 @@ struct Spin{
 
 struct Model {
     spin: Vec<Spin>,
+    postspin: Vec<Tri>,
     growspin:bool,
     startspin:i32,endspin:i32,
     startblack:i32,endblack:i32,
     startasynch:i32,endasynch:i32,
     startrevert:i32,endrevert:i32,
-    startmoreblack:i32,endmoreblack:i32,
+    startvanish:i32,endvanish:i32,
+    startpostspin:i32,endpostspin:i32,
     count: i32,
 }
 
@@ -48,19 +52,21 @@ fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
     Model {
         spin: playground_spin(app),
-        startspin:0,endspin:4224,
+        startspin:0,endspin:0,
         startblack:0,endblack:0,
         startasynch:0,endasynch:0,
         startrevert:0,endrevert:0,
-        startmoreblack:0,endmoreblack:0,
+        startvanish:0,endvanish:0,
+        startpostspin:0,endpostspin:0,
         growspin:true,
-        count: 0,
+        postspin:Vec::new(),
+        count: 1,
     }
 }
 
 fn playground_spin(app: &App) -> Vec<Spin> {
     let w = app.window_rect().w();
-    app.main_window().set_fullscreen(true);
+    //app.main_window().set_fullscreen(true);
     let RMax = w/2.0;
     let mut play = Vec::new(); //for the general list of Spins, for now 1
     let mut fire = Vec::new();//for the list of wheels
@@ -108,33 +114,45 @@ fn init_red_wheel(rin:f32,rout:f32) -> Wheel{
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    if !grow_spin(model) && model.growspin { 
-        model.startspin=model.count; 
-        model.endspin+=model.count;
-        model.growspin=false;
-        model.startblack=model.endspin/10+model.count;
-        model.endblack=2*model.endspin/10+model.count;
-        model.startasynch=2*model.endspin/10+model.count;
-        model.endasynch=5*model.endspin/10+model.count;
-        model.startrevert=5*model.endspin/10+model.count;
-        model.endrevert=6*model.endspin/10+model.count;
-        model.startmoreblack=6*model.endspin/10+model.count;
-        model.endmoreblack=9*model.endspin/10+model.count;
+    if model.growspin { 
+        grow_spin(model); 
     }
-    if model.count<model.endspin && !model.growspin {
+    if !model.growspin && model.startspin==0{
+        let spinslice = 4224;
+        model.startspin=model.count; 
+        model.endspin=model.count+spinslice;
+        model.growspin=false;
+        model.startblack=spinslice/10+model.count;let tr=model.startblack; println!("start black triangles: {tr}");
+        model.endblack=2*spinslice/10+model.count;
+        model.startasynch=2*spinslice/10+model.count;
+        model.endasynch=5*spinslice/10+model.count;
+        model.startrevert=5*spinslice/10+model.count;
+        model.endrevert=6*spinslice/10+model.count;
+        model.startvanish=6*spinslice/10+model.count;
+        model.endvanish=9*spinslice/10+model.count;
+    }
+    if model.count<model.endspin  {
         update_spin(model);
     }
     if model.count>=model.startblack && model.count<model.endblack &&  random_range(1,41) < 3 {
-        one_black_wheel(model)
+        one_black_wheel(model);
     }
     if model.count>=model.startasynch && model.count<model.endasynch &&  random_range(1,41) < 13 {
-        one_asynch_wheel(model)
+        one_asynch_wheel(model);
     }
     if model.count>=model.startrevert && model.count<model.endrevert &&  random_range(1,41) < 7 {
-        one_revert_wheel(model)
+        one_revert_wheel(model);
     }
-    if model.count>=model.startmoreblack && model.count<model.endmoreblack &&  random_range(1,41) < 11 {
-        one_less_wheel(model)
+    if model.count>=model.startvanish && model.count<model.endvanish &&  random_range(1,41) < 10 {
+        one_less_wheel(model);
+    }
+    if model.count==model.endspin{
+        let spinslice = 4224;
+        model.startpostspin=model.count;
+        model.endpostspin=model.count+  spinslice;
+    }
+    if model.count>= model.startpostspin && model.count < model.endpostspin{
+
     }
 
     model.count += 1;
@@ -162,7 +180,7 @@ fn one_asynch_wheel(model: &mut Model){
     for baldessari in &mut model.spin {
         let lingus = baldessari.petals.len();
         let cory = random_range(0, lingus);
-        baldessari.petals[cory].speed+=random_range(PI/999.0,PI/500.0);
+        baldessari.petals[cory].speed+=random_range(PI/1999.0,PI/1111.0);
     }  
 }
 fn one_black_wheel(model: &mut Model){
@@ -177,8 +195,9 @@ fn one_black_wheel(model: &mut Model){
     } 
 }
 
-fn grow_spin(model: &mut Model) -> bool{
+fn grow_spin(model: &mut Model) {
     let mut grow = false;
+    model.growspin=false;
     for baldessari in &mut model.spin {
         if baldessari.rad_largest<baldessari.rad_max{
             //add a petal
@@ -186,12 +205,10 @@ fn grow_spin(model: &mut Model) -> bool{
             baldessari.petals.push(init_red_wheel(r_in, r_in+1.0));
             baldessari.petals.push(init_blue_wheel(r_in, r_in+1.0));
             baldessari.rad_largest=r_in;
-            grow = true;
+            model.growspin=true;;
         }
-    }
-    return grow;
+    }    
 }
-
 
 fn update_spin(model: &mut Model) {
     for baldessari in &mut model.spin {
@@ -216,7 +233,8 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
     draw.background().color(BLACK);
     view_spin(model,&draw);
-    if model.count > model.endspin{
+    if model.startpostspin!=0 && model.count > model.startpostspin{
+        draw.background().color(WHITE);
         view_flash_spin(model,&draw);
     }
     draw.to_frame(app, &frame).unwrap();

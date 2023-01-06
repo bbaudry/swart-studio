@@ -6,5 +6,6 @@ members = [
 "torg001",
 "torg002",
 "torg003",
+"torg004",
 ]
 resolver="2"
