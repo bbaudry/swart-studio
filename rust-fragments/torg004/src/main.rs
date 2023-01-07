@@ -75,17 +75,31 @@ fn make_tri(c:Vec2,rad:f32,initangle:f32)->Tri{
 ///////[[[[[[[{{{{{{{:::::UPDATE:::::}}}}}}}]]]]]]]\\\\\\\
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    update_petal_rad(model);
+    //update_petal_rad(model);
+    update_petal_float(model);
     model.count += 1;
 }
 
-fn update_occam_speed(model: &mut Model) {
+fn update_petal_rad(model: &mut Model) {
+    for mut petal in &mut model.field{
+        petal.rad+=random_range(-0.5,0.5);
+        petal.vera=make_tri(petal.center, petal.rad, petal.init_angle);
+    }
 }
+
+fn update_petal_float(model: &mut Model) {
+    for mut petal in &mut model.field{
+        petal.center+=random_range(0.5,1.0);
+        petal.vera=make_tri(petal.center, petal.rad, petal.init_angle);
+    }
+}
+
 
 ///////[[[[[[[{{{{{{{:::::VIEW:::::}}}}}}}]]]]]]]\\\\\\\
 
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
+    draw.background().color(BLACK);
     view_petals(&draw, model);
     draw.to_frame(app, &frame).unwrap();
 }
