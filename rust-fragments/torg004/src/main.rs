@@ -93,10 +93,14 @@ fn update_petal_rad(model: &mut Model) {
 fn update_petal_wander(app: &App,model: &mut Model) {
     let boundary = app.window_rect();
     for mut petal in &mut model.field{
-        let sinex = app.time.sin()*petal.speed[0];
-        let siney = app.time.sin()*petal.speed[1];
-        petal.center[0] += map_range(sinex, -1.0, 1.0, boundary.left(), boundary.right());
-        petal.center[1] += map_range(siney, -1.0, 1.0, boundary.top(), boundary.bottom());
+        petal.center[0]+= petal.speed[0];
+        if petal.center[0]<boundary.left() || petal.center[0]>boundary.right() {
+            petal.speed[0] = petal.speed[0] * -1.0;
+        }
+        petal.center[1] += petal.speed[1];
+        if petal.center[1] < boundary.bottom() || petal.center[1]>boundary.top() {
+            petal.speed[1] = petal.speed[1] * -1.0;
+        }
         petal.vera=make_tri(petal.center, petal.rad, petal.init_angle);
     }
     let sx = model.field[0].center[0];
