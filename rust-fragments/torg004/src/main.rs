@@ -22,9 +22,10 @@ fn main() {
 
 struct Petal{
     vera:Tri,
-    center:Vec2,
-    rad:f32,
-    init_angle:f32,
+    center:Vec2, //coordinates for center of triangle
+    speed:Vec2, //speed to move the coordinates
+    rad:f32, //rad of the circle in which is drawn the triangle
+    init_angle:f32, //initial angle to start drawinf the triangle
     fill_color:Hsla,
     stroke_color:Hsl,
 }
@@ -55,6 +56,7 @@ fn init_field(app: &App) -> Vec<Petal> {
             Petal { 
                 vera: make_tri(c, rad, initangle), 
                 center: c,
+                speed: pt2(random_range(-1.0,1.0),random_range(-1.0,1.0)),
                 rad: rad, 
                 init_angle: initangle,
                 fill_color: Hsla::new(0.0,1.0,1.0,1.0),
@@ -74,9 +76,10 @@ fn make_tri(c:Vec2,rad:f32,initangle:f32)->Tri{
 
 ///////[[[[[[[{{{{{{{:::::UPDATE:::::}}}}}}}]]]]]]]\\\\\\\
 
-fn update(_app: &App, model: &mut Model, _update: Update) {
+fn update(app: &App, model: &mut Model, _update: Update) {
     //update_petal_rad(model);
-    update_petal_float(model);
+    
+    update_petal_wander(app,model);
     model.count += 1;
 }
 
@@ -87,11 +90,18 @@ fn update_petal_rad(model: &mut Model) {
     }
 }
 
-fn update_petal_float(model: &mut Model) {
+fn update_petal_wander(app: &App,model: &mut Model) {
+    let boundary = app.window_rect();
     for mut petal in &mut model.field{
-        petal.center+=random_range(0.5,1.0);
+        let sinex = app.time.sin()*petal.speed[0];
+        let siney = app.time.sin()*petal.speed[1];
+        petal.center[0] += map_range(sinex, -1.0, 1.0, boundary.left(), boundary.right());
+        petal.center[1] += map_range(siney, -1.0, 1.0, boundary.top(), boundary.bottom());
         petal.vera=make_tri(petal.center, petal.rad, petal.init_angle);
     }
+    let sx = model.field[0].center[0];
+    let sy = model.field[0].center[1];
+    println!("x: {sx}; y: {sy}")
 }
 
 
