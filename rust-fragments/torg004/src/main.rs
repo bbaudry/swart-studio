@@ -103,9 +103,6 @@ fn update_petal_wander(app: &App,model: &mut Model) {
         }
         petal.vera=make_tri(petal.center, petal.rad, petal.init_angle);
     }
-    let sx = model.field[0].center[0];
-    let sy = model.field[0].center[1];
-    println!("x: {sx}; y: {sy}")
 }
 
 
