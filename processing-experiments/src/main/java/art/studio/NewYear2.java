@@ -18,7 +18,7 @@ public class NewYear2 extends PApplet {
 
     @Override
     public void setup() {
-        colorMode(HSB, 360, 100, 100);
+        colorMode(HSB, 360, 70, 100);
         background(230, 100, 80);
         alea = new Random();
     }
@@ -32,22 +32,23 @@ public class NewYear2 extends PApplet {
     }
 
     private void western(){
-        float hu = 110;
+        float hu;
         float al;
         float sat;
-        float cx = diam/2;
-        float cy = alea.nextFloat()*diam/2;
+        float cx = diam;
+        float cy = diam+alea.nextFloat()*diam/2;
         noStroke();
-        while (cx < w) {
-            while (cy<h) {
+        while (cx < w-diam/2) {
+            while (cy<h-diam) {
                 //stroke(320,100,100);
+                hu=70+alea.nextInt(80);
                 al=alea.nextFloat()*250;
                 sat=alea.nextFloat()*100;
                 fill(hu, sat, 100,al);
                 ellipse(cx,cy,diam,diam);
                 cy += alea.nextFloat()*diam/2;
             }
-            cy = alea.nextFloat()*diam/2;
+            cy = diam+alea.nextFloat()*diam/2;
             cx+=diam;
         }
     }

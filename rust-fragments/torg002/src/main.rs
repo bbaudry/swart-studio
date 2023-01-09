@@ -17,6 +17,8 @@ fn main() {
         .run();
 }
 
+static A:i32 = 1000;
+
 struct DNA {
     beam: Rect,
     speed: i32,
@@ -100,7 +102,7 @@ fn playground_pre_occam(app: &App) -> Vec<Cell> {
             },
         },
         speed: 0,
-        c: Hsla::new(0.0, 1.0, 0.5, 1.0),
+        c: hsla(0.0, 1.0, 0.5, 1.0),
     });
     let mut life = Vec::new();
     life.push(Cell {
@@ -160,7 +162,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
                     },
                 },
                 speed: velo,
-                c: Hsla::new(230.0 / 360.0, 1.0, zombie, lazybone),
+                c: hsla(230.0 / 360.0, 1.0, zombie, lazybone),
             });
             sj = sj - off_x - 5.0;//random_range(0.0, 23.0);
         }
@@ -175,6 +177,7 @@ fn playground_occam(app: &App) -> Vec<Cell> {
 
 fn update(app: &App, model: &mut Model, _update: Update) {
     let w = app.window_rect().w();
+    
     if model.count >= model.startpreoccam && model.count < model.endpreoccam {
         update_pre_occam(model);
     }
@@ -342,12 +345,8 @@ fn view_pre_occam(model: &Model, draw: &Draw, w:f32) {
     for baldessari in &model.pre_occam {
         for john in &baldessari.chromosomes {
             let r = john.beam;
-            draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(hsla(
-                john.c.hue.to_degrees(),
-                john.c.saturation,
-                john.c.lightness,
-                john.c.alpha,
-            ));
+            draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(john.c);
+            //hsla(john.c.hue.to_degrees(),john.c.saturation,john.c.lightness,john.c.alpha,));
         }
     }
     for p in &model.pre_particles{
@@ -362,12 +361,7 @@ fn view_occam(model: &Model, draw: &Draw) {
     for baldessari in &model.occam {
         for john in &baldessari.chromosomes {
             let r = john.beam;
-            draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(hsla(
-                john.c.hue.to_degrees(),
-                john.c.saturation,
-                john.c.lightness,
-                john.c.alpha,
-            ));
+            draw.rect().x_y(r.x(), r.y()).w_h(r.w(), r.h()).color(john.c);
         }
     }
 }

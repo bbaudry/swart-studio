@@ -59,8 +59,8 @@ fn init_field(app: &App) -> Vec<Petal> {
                 speed: pt2(random_range(-1.0,1.0),random_range(-1.0,1.0)),
                 rad: rad, 
                 init_angle: initangle,
-                fill_color: Hsla::new(0.0,1.0,1.0,1.0),
-                stroke_color: Hsl::new(230.0/360.0,1.0,0.5),
+                fill_color: hsla(0.0,1.0,1.0,1.0),
+                stroke_color: hsl(230.0/360.0,1.0,0.5),
             }
         )
     }
@@ -126,8 +126,7 @@ fn view_petals(draw: &Draw, model: &Model){
          draw.tri()
         .points((x1,y1),(x2,y2),(x3,y3))
         .no_fill()
-        .stroke(hsl(p.stroke_color.hue.to_degrees(),p.stroke_color.saturation,p.stroke_color.lightness))
-        //.stroke(hsl(230.0/360.0,1.0,0.5))
+        .stroke(p.stroke_color)
         .stroke_weight(1.0);
     }
 }
