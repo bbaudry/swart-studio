@@ -110,20 +110,17 @@ fn update_petal_wander(app: &App,model: &mut Model) {
 }
 
 fn one_less_wheel(model: &mut Model){
-    for baldessari in &mut model.spin {
-        let lingus = baldessari.petals.len();
-        let cory = random_range(2, lingus-1);
-        baldessari.petals.remove(cory);
-    } 
+    let lingus = model.flower.len();
+    let cory = random_range(2, lingus-1);
+    model.flower.remove(cory);    
 }
 
 
 fn one_revert_petal(model: &mut Model){
-    for baldessari in &mut model.flower {
-        let lingus = baldessari.petals.len();
-        let cory = random_range(0, lingus);
-        baldessari.petals[cory].clock=!baldessari.petals[cory].clock;
-    } 
+    let lingus = model.flower.len();
+    let cory = random_range(0, lingus);
+    model.flower[cory].clock=!model.flower[cory].clock;
+    
 }
 
 fn one_asynch_spin_petal(model: &mut Model){
@@ -131,6 +128,7 @@ fn one_asynch_spin_petal(model: &mut Model){
     let cory = random_range(0, lingus);
     model.flower[cory].rotation_speed+=random_range(PI/1999.0,PI/1111.0);   
 }
+
 fn one_black_petal(model: &mut Model){
 
 }
