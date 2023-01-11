@@ -20,127 +20,144 @@ fn main() {
 
 ///////[[[[[[[{{{{{{{:::::MODEL:::::}}}}}}}]]]]]]]\\\\\\\
 
-struct Petal{
-    vera:Tri,
-    center:Vec2, //coordinates for center of triangle
-    translation_speed:Vec2, //speed to move the coordinates
-    rotation_speed:f32, // speed to turn the petal
-    rad:f32, //rad of the circle in which is drawn the triangle
-    init_angle:f32, //initial angle to start drawinf the triangle
-    clock:bool,//petal rotates clockwise or not
-    fill_color:Hsla,
-    stroke_color:Hsl,
+struct Petal {
+    vera: Tri,
+    center: Vec2,            //coordinates for center of triangle
+    translation_speed: Vec2, //speed to move the coordinates
+    rotation_speed: f32,     // speed to turn the petal
+    rad: f32,                //rad of the circle in which is drawn the triangle
+    init_angle: f32,         //initial angle to start drawinf the triangle
+    clock: bool,             //petal rotates clockwise or not
+    fill_color: Hsla,
+    stroke_color: Hsl,
 }
 
 struct Model {
-    flower:Vec<Petal>,
-    count:i32,
+    flower: Vec<Petal>,
+    count: i32,
+    density: f32,
 }
 
 fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
+    let petal_density = 200.0;
     Model {
-        flower:init_flower(app),
+        flower: init_flower(app,petal_density),
         count: 1,
+        density: petal_density,
     }
 }
 
-fn init_flower(app: &App) -> Vec<Petal> {
+fn init_flower(app: &App,pd: f32) -> Vec<Petal> {
     let w = app.window_rect().w();
-    let h = app.window_rect().h();
     let mut field = Vec::new();
-    let c = pt2(0.0,0.0);
-    let maxrad = w/2.0;
-    for _i in 1..8{
-        let rad = random_range(maxrad/50.0,maxrad);
-        let initangle = random_range(0.0,PI);
-        field.push(
-            Petal { 
-                vera: make_tri(c, rad, initangle), 
-                center: c,
-                translation_speed: pt2(random_range(-1.0,1.0),random_range(-1.0,1.0)),
-                rotation_speed: 0.0,
-                rad: rad, 
-                init_angle: initangle,
-                clock:true,
-                fill_color: hsla(0.0,1.0,1.0,1.0),
-                stroke_color: hsl(230.0/360.0,1.0,0.5),
-            }
-        )
-    }
+    let c = pt2(0.0, 0.0);
+    let r = w / pd;
+    let initangle = random_range(0.0, PI);
+    field.push(Petal {
+        vera: make_tri(c, r, initangle),
+        center: pt2(0.0, 0.0),
+        translation_speed: rand_tspeed(),
+        rotation_speed: 0.0,
+        rad: r,
+        init_angle: initangle,
+        clock: true,
+        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        stroke_color: hsl(230.0 / 360.0, 1.0, 0.5),
+    });
     return field;
 }
 
-fn make_tri(c:Vec2,rad:f32,initangle:f32)->Tri{
-    let point1 = pt3(c.x+rad*initangle.cos(),c.y+rad*initangle.sin(),0.0);
-    let point2 = pt3(c.x+rad*(initangle+2.0*PI/3.0).cos(),c.y+rad*(initangle+2.0*PI/3.0).sin(),0.0);
-    let point3 = pt3(c.x+rad*(initangle+4.0*PI/3.0).cos(),c.y+rad*(initangle+4.0*PI/3.0).sin(),0.0);
-    return Tri{0:[point1,point2,point3]};
+///////[[[[[[[{{{{{{{:::::utils:::::}}}}}}}]]]]]]]\\\\\\\
+
+fn rand_tspeed() -> Vec2 {
+    return pt2(random_range(-1.0, 1.0), random_range(-1.0, 1.0));
+}
+
+fn make_tri(c: Vec2, rad: f32, initangle: f32) -> Tri {
+    let point1 = pt3(
+        c.x + rad * initangle.cos(),
+        c.y + rad * initangle.sin(),
+        0.0,
+    );
+    let point2 = pt3(
+        c.x + rad * (initangle + 2.0 * PI / 3.0).cos(),
+        c.y + rad * (initangle + 2.0 * PI / 3.0).sin(),
+        0.0,
+    );
+    let point3 = pt3(
+        c.x + rad * (initangle + 4.0 * PI / 3.0).cos(),
+        c.y + rad * (initangle + 4.0 * PI / 3.0).sin(),
+        0.0,
+    );
+    return Tri {
+        0: [point1, point2, point3],
+    };
 }
 
 ///////[[[[[[[{{{{{{{:::::UPDATE:::::}}}}}}}]]]]]]]\\\\\\\
 
 fn update(app: &App, model: &mut Model, _update: Update) {
-    //update_petal_rad(model);
-    
-    update_petal_wander(app,model);
+    //update_petals_rad(model);
+    //petals_wander(app, model);
+    if app.time%1.0==0 && model.flower.len()<model.density {grow_flower(model);}
     model.count += 1;
 }
 
-fn update_petal_rad(model: &mut Model) {
-    for mut petal in &mut model.flower{
-        petal.rad+=random_range(-0.5,0.5);
-        petal.vera=make_tri(petal.center, petal.rad, petal.init_angle);
+fn update_petals_rad(model: &mut Model) {
+    for mut petal in &mut model.flower {
+        petal.rad += random_range(-0.5, 0.5);
+        petal.vera = make_tri(petal.center, petal.rad, petal.init_angle);
     }
 }
 
-fn update_petal_wander(app: &App,model: &mut Model) {
+fn petals_wander(app: &App, model: &mut Model) {
     let boundary = app.window_rect();
-    for mut petal in &mut model.flower{
-        petal.center[0]+= petal.translation_speed[0];
-        if petal.center[0]<boundary.left() || petal.center[0]>boundary.right() {
+    for mut petal in &mut model.flower {
+        petal.center[0] += petal.translation_speed[0];
+        if petal.center[0] < boundary.left() || petal.center[0] > boundary.right() {
             petal.translation_speed[0] = petal.translation_speed[0] * -1.0;
         }
         petal.center[1] += petal.translation_speed[1];
-        if petal.center[1] < boundary.bottom() || petal.center[1]>boundary.top() {
+        if petal.center[1] < boundary.bottom() || petal.center[1] > boundary.top() {
             petal.translation_speed[1] = petal.translation_speed[1] * -1.0;
         }
-        petal.vera=make_tri(petal.center, petal.rad, petal.init_angle);
+        petal.vera = make_tri(petal.center, petal.rad, petal.init_angle);
     }
 }
 
-fn one_less_wheel(model: &mut Model){
+fn one_less_wheel(model: &mut Model) {
     let lingus = model.flower.len();
-    let cory = random_range(2, lingus-1);
-    model.flower.remove(cory);    
+    let cory = random_range(2, lingus - 1);
+    model.flower.remove(cory);
 }
 
-
-fn one_revert_petal(model: &mut Model){
+fn one_revert_petal(model: &mut Model) {
     let lingus = model.flower.len();
     let cory = random_range(0, lingus);
-    model.flower[cory].clock=!model.flower[cory].clock;
+    model.flower[cory].clock = !model.flower[cory].clock;
+}
+
+fn one_asynch_spin_petal(model: &mut Model) {
+    let lingus = model.flower.len();
+    let cory = random_range(0, lingus);
+    model.flower[cory].rotation_speed += random_range(PI / 1999.0, PI / 1111.0);
+}
+
+fn one_black_petal(model: &mut Model) {
+    let lingus = model.flower.len();
+    let cory = random_range(0, lingus);
+    model.flower[cory].stroke_color.saturation = 0.0;
+    model.flower[cory].stroke_color.lightness = 0.0;
+}
+
+fn grow_flower(model: &mut Model) {
+    let lingus = model.flower.len();
     
-}
-
-fn one_asynch_spin_petal(model: &mut Model){
-    let lingus = model.flower.len();
-    let cory = random_range(0, lingus);
-    model.flower[cory].rotation_speed+=random_range(PI/1999.0,PI/1111.0);   
-}
-
-fn one_black_petal(model: &mut Model){
 
 }
 
-fn grow_spin(model: &mut Model) {
-
-}
-
-fn update_spin(model: &mut Model) {
-
-}
-
+fn update_spin(model: &mut Model) {}
 
 ///////[[[[[[[{{{{{{{:::::VIEW:::::}}}}}}}]]]]]]]\\\\\\\
 
@@ -151,18 +168,18 @@ fn view(app: &App, model: &Model, frame: Frame) {
     draw.to_frame(app, &frame).unwrap();
 }
 
-fn view_petals(draw: &Draw, model: &Model){
-    for p in &model.flower{
+fn view_petals(draw: &Draw, model: &Model) {
+    for p in &model.flower {
         let x1 = p.vera.0[0][0];
         let y1 = p.vera.0[0][1];
         let x2 = p.vera.0[1][0];
         let y2 = p.vera.0[1][1];
         let x3 = p.vera.0[2][0];
         let y3 = p.vera.0[2][1];
-         draw.tri()
-        .points((x1,y1),(x2,y2),(x3,y3))
-        .no_fill()
-        .stroke(p.stroke_color)
-        .stroke_weight(1.0);
+        draw.tri()
+            .points((x1, y1), (x2, y2), (x3, y3))
+            .no_fill()
+            .stroke(p.stroke_color)
+            .stroke_weight(1.0);
     }
 }

@@ -205,7 +205,7 @@ fn grow_spin(model: &mut Model) {
             baldessari.petals.push(init_red_wheel(r_in, r_in+1.0));
             baldessari.petals.push(init_blue_wheel(r_in, r_in+1.0));
             baldessari.rad_largest=r_in;
-            model.growspin=true;;
+            model.growspin=true;
         }
     }    
 }
