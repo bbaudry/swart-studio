@@ -48,7 +48,6 @@
       colorMode(HSB, 360, 100, 100, 250);
       background(0, 0, 0);
       window.$fxhashFeatures = {
-        //"art_text": hasText(),
         "bgc": bgc(fxrand()),
         "bH": bH(fxrand())
       }
@@ -56,14 +55,14 @@
 
     let baseHu;
 
-    function bgc(r){
-      if (r<0.1) {background(100,100,100);return "green"}
-      else {background(0,0,0); return "black"}
+    function bgc(r) {
+      if (r > 0.1) { background(100, 100, 100); return "green" }
+      else { background(0, 0, 0); return "black" }
     }
 
-    function bH(r){
-      if (r<0.9) {baseHu=230; return "blue"}
-      else {baseHu=0; return "red"}
+    function bH(r) {
+      if (r < 0.8) { baseHu = 230; return "blue" }
+      else { baseHu = 0; return "red" }
     }
 
     let x1 = 0;
@@ -76,15 +75,15 @@
     let light = 100;
     let up = fxrand();
 
-    function initHu(){
+    function initHu() {
       return baseHu + fxrand() * 100;
     }
 
-    function initXoff(){
+    function initXoff() {
       return 200 + fxrand() * 200;
     }
 
-    function initYoff(){
+    function initYoff() {
       return 500 + fxrand() * 200;
     }
 
@@ -94,34 +93,35 @@
       }
       else {
         light = 100;
-        y1 = h*fxrand();
-        if (fxrand()<0.5) { y2 = y1 + random(h - y1); }
-        else { y2 = y1 - fxrand()*y1; }
+        y1 = h * fxrand();
+        if (fxrand() < 0.5) { y2 = y1 + random(h - y1); }
+        else { y2 = y1 - fxrand() * y1; }
         hu = initHu();
         xoff = 200 + fxrand() * 200;
         yoff = 500 + fxrand() * 200;
         up = fxrand();
       }
-      if (frameCount == 1399) {
+      if (frameCount == 1699) {
         noLoop();
       }
-
       fxpreview();
     }
 
-    function ray( hu, xoff, yoff,  up){
+    function ray(hu, xoff, yoff, up) {
       noFill();
       strokeWeight(2);
-      stroke(hu,light,100);
+      stroke(hu, light, 100);
       console.log(hu);
-      if(up<0.5){
-        bezier(x1, y1, x1+xoff, y1-yoff,x2-xoff, y2+yoff, x2, y2);}
-      else{
-        bezier(x1, y1, x1+xoff, y1+yoff,x2-xoff, y2-yoff, x2, y2);}
-      y1-=2;
-      y2-=2;
+      if (up < 0.5) {
+        bezier(x1, y1, x1 + xoff, y1 - yoff, x2 - xoff, y2 + yoff, x2, y2);
+      }
+      else {
+        bezier(x1, y1, x1 + xoff, y1 + yoff, x2 - xoff, y2 - yoff, x2, y2);
+      }
+      y1 -= 2;
+      y2 -= 2;
       light--;
-  }
+    }
 
 
     function windowResized() {
