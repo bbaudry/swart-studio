@@ -39,8 +39,8 @@
 
 <body>
   <script>
-    var w = 1000;//document.documentElement.clientWidth;//width of window that is available for drawing
-    var h = 1000;//document.documentElement.clientHeight;//width of window that is available for drawing
+    var w = 800;//document.documentElement.clientWidth;//width of window that is available for drawing
+    var h = 800;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
 
     function setup() {
@@ -102,9 +102,9 @@
         up = fxrand();
       }
       if (frameCount == 1699) {
+        fxpreview();
         noLoop();
       }
-      fxpreview();
     }
 
     function ray(hu, xoff, yoff, up) {

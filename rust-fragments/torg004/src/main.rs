@@ -24,7 +24,7 @@ struct Petal {
     vera: Tri,
     center: Vec2,            //coordinates for center of triangle
     translation_speed: Vec2, //speed to move the coordinates
-    rotation_speed: f32,     // speed to turn the petal
+    rotation_speed: f32,     //speed to turn the petal
     rad: f32,                //rad of the circle in which is drawn the triangle
     init_angle: f32,         //initial angle to start drawinf the triangle
     clock: bool,             //petal rotates clockwise or not
@@ -40,7 +40,7 @@ struct Model {
 
 fn model(app: &App) -> Model {
     app.new_window().size(1000, 1000).build().unwrap();
-    let petal_density = 200.0;
+    let petal_density = 500.0;
     Model {
         flower: init_flower(app,petal_density),
         count: 1,
@@ -99,8 +99,9 @@ fn make_tri(c: Vec2, rad: f32, initangle: f32) -> Tri {
 
 fn update(app: &App, model: &mut Model, _update: Update) {
     //update_petals_rad(model);
-    //petals_wander(app, model);
-    if app.time%1.0==0 && model.flower.len()<model.density {grow_flower(model);}
+    //petals_wander(app, model);//&& (model.flower.len() as f32)<model.density 
+    let t = app.time%0.2;
+    if model.count%4==0 && (model.flower.len() as f32)<model.density*2.0 {grow_flower(model);}
     model.count += 1;
 }
 
@@ -153,7 +154,45 @@ fn one_black_petal(model: &mut Model) {
 
 fn grow_flower(model: &mut Model) {
     let lingus = model.flower.len();
-    
+    let r = model.flower[lingus-1].rad+1.0;
+    println!("{r}");
+    let initangle = model.flower[lingus-1].init_angle;
+    model.flower.push(Petal {
+        vera: make_tri(model.flower[lingus-1].center, r, initangle),
+        center: model.flower[lingus-1].center,
+        translation_speed: rand_tspeed(),
+        rotation_speed: 0.0,
+        rad: r,
+        init_angle: initangle,
+        clock: true,
+        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        stroke_color: hsl(310.0 / 360.0, 1.0, 0.5),
+    });
+    if random_range(1, 84) == 42 {
+    model.flower.push(Petal {
+        vera: make_tri(model.flower[lingus-1].center, r, initangle),
+        center: model.flower[lingus-1].center,
+        translation_speed: rand_tspeed(),
+        rotation_speed: 0.0,
+        rad: r,
+        init_angle: initangle,
+        clock: true,
+        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        stroke_color: hsl(50.0 / 360.0, 1.0, 0.5),
+    });}
+        model.flower.push(Petal {
+        vera: make_tri(model.flower[lingus-1].center, r, initangle),
+        center: model.flower[lingus-1].center,
+        translation_speed: rand_tspeed(),
+        rotation_speed: 0.0,
+        rad: r,
+        init_angle: initangle,
+        clock: true,
+        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        stroke_color: hsl(230.0 / 360.0, 1.0, 0.5),
+    });
+
+
 
 }
 
