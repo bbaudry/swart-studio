@@ -94,7 +94,7 @@
       else {
         light = 100;
         y1 = h * fxrand();
-        if (fxrand() < 0.5) { y2 = y1 + random(h - y1); }
+        if (fxrand() < 0.5) { y2 = y1 + fxrand()*(h - y1); }
         else { y2 = y1 - fxrand() * y1; }
         hu = initHu();
         xoff = 200 + fxrand() * 200;
