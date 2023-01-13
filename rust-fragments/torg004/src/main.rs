@@ -36,6 +36,7 @@ struct Model {
     flower: Vec<Petal>,
     count: i32,
     density: f32,
+    grow:bool,
 }
 
 fn model(app: &App) -> Model {
@@ -45,6 +46,7 @@ fn model(app: &App) -> Model {
         flower: init_flower(app,petal_density),
         count: 1,
         density: petal_density,
+        grow:true,
     }
 }
 
@@ -102,6 +104,8 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     //petals_wander(app, model);//&& (model.flower.len() as f32)<model.density 
     let t = app.time%0.2;
     if model.count%4==0 && (model.flower.len() as f32)<model.density*2.0 {grow_flower(model);}
+    if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
+    if !model.grow {rotate_flower(model); println!("rotate");}
     model.count += 1;
 }
 
@@ -155,7 +159,6 @@ fn one_black_petal(model: &mut Model) {
 fn grow_flower(model: &mut Model) {
     let lingus = model.flower.len();
     let r = model.flower[lingus-1].rad+1.0;
-    println!("{r}");
     let initangle = model.flower[lingus-1].init_angle;
     model.flower.push(Petal {
         vera: make_tri(model.flower[lingus-1].center, r, initangle),
@@ -196,7 +199,12 @@ fn grow_flower(model: &mut Model) {
 
 }
 
-fn update_spin(model: &mut Model) {}
+fn rotate_flower(model: &mut Model) {
+    for mut baldessari in &mut model.flower{
+        baldessari.init_angle+=baldessari.rotation_speed;
+        baldessari.vera=make_tri(baldessari.center, baldessari.rad, baldessari.init_angle);
+    }
+}
 
 ///////[[[[[[[{{{{{{{:::::VIEW:::::}}}}}}}]]]]]]]\\\\\\\
 
