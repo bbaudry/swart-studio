@@ -37,7 +37,7 @@ struct Model {
     flower: Vec<Petal>,
     count: i32,
     density: f32,
-    grow:bool,
+    back_color: Hsl,
 }
 
 fn model(app: &App) -> Model {
@@ -47,7 +47,7 @@ fn model(app: &App) -> Model {
         flower: init_flower(app,petal_density),
         count: 1,
         density: petal_density,
-        grow:true,
+        back_color: hsl(0.0,0.0,0.0),
     }
 }
 
@@ -104,15 +104,21 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     //update_petals_rad(model);
     //petals_wander(app, model);//&& (model.flower.len() as f32)<model.density 
     let t = app.time%0.2;
-    if model.count%2==0 && (model.count as f32)  < model.density * 2.1{grow_flower(model);}//(model.flower.len() as f32)<model.density*2.0 
+    if model.count%3==0 && (model.count as f32)  < model.density * 2.9{grow_flower(model);}//(model.flower.len() as f32)<model.density*2.0 
     //if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
     if model.count > model.density as i32 * 2 && model.count < model.density as i32 * 8 {rotate_flower(model);}
     //if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
-    if model.count > model.density as i32 * 3 && (model.count as f32) < model.density as i32 * 3.5 {one_less_wheel(model);}
-    if model.count > model.density as i32 * 4 && model.count < model.density as i32 * 5 {one_asynch_spin_petal(model);}
-    if model.count > model.density as i32 * 5 && model.count < model.density as i32 * 7 {one_revert_petal(model);}
-    if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_less_wheel(model);}
+    if model.count > model.density as i32 * 3 && (model.count as f32) < model.density  * 3.9 {one_less_wheel(model);}
+    if model.count > model.density as i32 * 4 && (model.count as f32) < model.density  * 4.5 {one_less_wheel(model);}
+    if model.count > model.density as i32 * 5 && model.count < model.density as i32 * 7 {if random_range(0, 2) == 1 {one_asynch_spin_petal(model);}}
+    if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_revert_petal(model);}
+    if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {if random_range(0, 2) == 1 {one_less_wheel(model);}}
+    if model.count > model.density as i32 * 9 && model.count < model.density as i32 * 10 {white_flower(model);}
     model.count += 1;
+}
+
+fn white_flower(model: &mut Model) {
+    model.back_color=hsl(0.0,0.0,1.0);
 }
 
 fn update_petals_rad(model: &mut Model) {
@@ -152,7 +158,7 @@ fn one_revert_petal(model: &mut Model) {
 fn one_asynch_spin_petal(model: &mut Model) {
     let lingus = model.flower.len();
     let cory = random_range(0, lingus);
-    model.flower[cory].rotation_speed += random_range(PI / 4999.0, PI / 4111.0);
+    model.flower[cory].rotation_speed += random_range(PI / 5999.0, PI / 5111.0);
 }
 
 fn one_black_petal(model: &mut Model) {
@@ -233,7 +239,7 @@ fn rotate_flower(model: &mut Model) {
 
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
-    draw.background().color(BLACK);
+    draw.background().color(model.back_color);
     view_petals(&draw, model);
     draw.to_frame(app, &frame).unwrap();
 }
