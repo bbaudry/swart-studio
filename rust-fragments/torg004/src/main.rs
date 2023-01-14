@@ -106,9 +106,11 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     let t = app.time%0.2;
     if model.count%4==0 && (model.flower.len() as f32)<model.density*2.0 {grow_flower(model);}
     if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
-    if !model.grow && model.count < model.density as i32 * 9 {rotate_flower(model);}
+    if !model.grow && model.count < model.density as i32 * 14 {rotate_flower(model);}
     if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
-    if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {one_asynch_spin_petal(model);}
+    if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 10 {one_asynch_spin_petal(model);}
+    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 12 {one_revert_petal(model);}
+    if model.count > model.density as i32 * 12 && model.count < model.density as i32 * 13 {one_less_wheel(model);}
     model.count += 1;
 }
 
@@ -204,7 +206,8 @@ fn grow_flower(model: &mut Model) {
 
 fn rotate_flower(model: &mut Model) {
     for mut baldessari in &mut model.flower{
-        baldessari.init_angle+=baldessari.rotation_speed;
+        if baldessari.clock {baldessari.init_angle+=baldessari.rotation_speed;}
+        else {baldessari.init_angle-=baldessari.rotation_speed;}
         baldessari.vera=make_tri(baldessari.center, baldessari.rad, baldessari.init_angle);
     }
 }
