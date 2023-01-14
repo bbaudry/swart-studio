@@ -65,7 +65,7 @@ fn init_flower(app: &App,pd: f32) -> Vec<Petal> {
         rad: r,
         init_angle: initangle,
         clock: true,
-        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        fill_color: hsla(0.0, 1.0, 1.0, 0.0),
         stroke_color: hsl(230.0 / 360.0, 1.0, 0.5),
     });
     return field;
@@ -113,7 +113,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {one_revert_petal(model);}
     if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 11 {if random_range(0, 2) == 1 {one_less_wheel(model);}}
     if model.count > model.density as i32 * 11 && (model.count as f32) < model.density  * 11.1 {white_flower(model);}*/
-    if (model.count as f32) > model.density * 3.9 && (model.count as f32) < model.density * 11.6 {white_flower(model);}
+    if (model.count as f32) > model.density * 3.9 && (model.count as f32) < model.density * 11.6 {flash_petal(model);}
     model.count += 1;
 }
 
@@ -126,7 +126,7 @@ fn flash_petal(model: &mut Model) {
     
     let lingus = model.flower.len();
     let cory = random_range(2, lingus - 1);
-    model.flower[cory].fill_color = hsla(330.0/360.0, 1.0, 0.5, 0.0)
+    model.flower[cory].fill_color = hsla(330.0/360.0, 1.0, 0.5, 1.0)
 }
 
 
@@ -189,7 +189,7 @@ fn grow_flower(model: &mut Model) {
         rad: r,
         init_angle: initangle,
         clock: true,
-        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        fill_color: hsla(0.0, 1.0, 1.0, 0.0),
         stroke_color: hsl(310.0 / 360.0, 1.0, 0.5),
     });
     if random_range(1, 84) == 42 {
@@ -201,7 +201,7 @@ fn grow_flower(model: &mut Model) {
         rad: r,
         init_angle: initangle,
         clock: true,
-        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        fill_color: hsla(0.0, 1.0, 1.0, 0.0),
         stroke_color: hsl(50.0 / 360.0, 1.0, 0.5),
     });}
     if random_range(1, 84) == 42 {
@@ -213,7 +213,7 @@ fn grow_flower(model: &mut Model) {
             rad: r,
             init_angle: initangle,
             clock: true,
-            fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+            fill_color: hsla(0.0, 1.0, 1.0, 0.0),
             stroke_color: hsl(130.0 / 360.0, 1.0, 0.5),
         });}
         model.flower.push(Petal {
@@ -224,7 +224,7 @@ fn grow_flower(model: &mut Model) {
         rad: r,
         init_angle: initangle,
         clock: true,
-        fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+        fill_color: hsla(0.0, 1.0, 1.0, 0.0),
         stroke_color: hsl(230.0 / 360.0, 1.0, 0.5),
     });
 
@@ -259,7 +259,7 @@ fn view_petals(draw: &Draw, model: &Model) {
         let y2 = p.vera.0[1][1];
         let x3 = p.vera.0[2][0];
         let y3 = p.vera.0[2][1];
-        if p.fill_color.alpha == 1.0 {
+        if p.fill_color.alpha == 0.0 {
         draw.tri()
             .points((x1, y1), (x2, y2), (x3, y3))
             .no_fill()
