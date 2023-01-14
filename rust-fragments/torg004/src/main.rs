@@ -104,13 +104,13 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     //update_petals_rad(model);
     //petals_wander(app, model);//&& (model.flower.len() as f32)<model.density 
     let t = app.time%0.2;
-    if model.count%4==0 && (model.flower.len() as f32)<model.density*2.0 {grow_flower(model);}
+    if model.count%2==0 && (model.flower.len() as f32)<model.density*2.0 {grow_flower(model);}
     if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
     if !model.grow && model.count < model.density as i32 * 14 {rotate_flower(model);}
-    if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
+    /*if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
     if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 10 {one_asynch_spin_petal(model);}
-    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 12 {one_revert_petal(model);}
-    if model.count > model.density as i32 * 12 && model.count < model.density as i32 * 13 {one_less_wheel(model);}
+    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 12 {one_revert_petal(model);}*/
+    if model.count > model.density as i32 * 3 && model.count < model.density as i32 * 13 {one_less_wheel(model);}
     model.count += 1;
 }
 
@@ -162,6 +162,7 @@ fn one_black_petal(model: &mut Model) {
 }
 
 fn grow_flower(model: &mut Model) {
+    println!("grow");
     let lingus = model.flower.len();
     let r = model.flower[lingus-1].rad+1.0;
     let initangle = model.flower[lingus-1].init_angle;
@@ -205,6 +206,7 @@ fn grow_flower(model: &mut Model) {
 }
 
 fn rotate_flower(model: &mut Model) {
+    println!("rotate");
     for mut baldessari in &mut model.flower{
         if baldessari.clock {baldessari.init_angle+=baldessari.rotation_speed;}
         else {baldessari.init_angle-=baldessari.rotation_speed;}
