@@ -107,14 +107,13 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     if model.count%3==0 && (model.count as f32)  < model.density * 2.9{grow_flower(model);}//(model.flower.len() as f32)<model.density*2.0 
     //if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
     if model.count > model.density as i32 * 2 && model.count < model.density as i32 * 10 {rotate_flower(model);}
-    //if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
     if model.count > model.density as i32 * 3 && (model.count as f32) < model.density  * 3.9 {one_less_wheel(model);}
-    if model.count > model.density as i32 * 4 && (model.count as f32) < model.density  * 4.5 {one_less_wheel(model);}
+/*     if model.count > model.density as i32 * 4 && (model.count as f32) < model.density  * 4.5 {one_black_petal(model);}
     if model.count > model.density as i32 * 5 && model.count < model.density as i32 * 7 {if random_range(0, 2) == 1 {one_asynch_spin_petal(model);}}
     if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {one_revert_petal(model);}
     if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 11 {if random_range(0, 2) == 1 {one_less_wheel(model);}}
-    if model.count > model.density as i32 * 11 && (model.count as f32) < model.density  * 11.1 {white_flower(model);}
-    if (model.count as f32) > model.density * 11.1 && (model.count as f32) < model.density * 11.6 {white_flower(model);}
+    if model.count > model.density as i32 * 11 && (model.count as f32) < model.density  * 11.1 {white_flower(model);}*/
+    if (model.count as f32) > model.density * 3.9 && (model.count as f32) < model.density * 11.6 {white_flower(model);}
     model.count += 1;
 }
 
