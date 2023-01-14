@@ -104,12 +104,12 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     //update_petals_rad(model);
     //petals_wander(app, model);//&& (model.flower.len() as f32)<model.density 
     let t = app.time%0.2;
-    if model.count%2==0 && (model.flower.len() as f32)<model.density*2.0 {grow_flower(model);}
-    if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
-    if !model.grow && model.count < model.density as i32 * 14 {rotate_flower(model);}
-    /*if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
-    if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 10 {one_asynch_spin_petal(model);}
-    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 12 {one_revert_petal(model);}*/
+    if model.count%2==0 && model.count < model.density as i32 * 2{grow_flower(model);}//(model.flower.len() as f32)<model.density*2.0 
+    //if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
+    if model.count > model.density as i32 * 2 && model.count < model.density as i32 * 14 {rotate_flower(model);}
+    //if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
+    if model.count > model.density as i32 * 4 && model.count < model.density as i32 * 10 {one_asynch_spin_petal(model);}
+    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 12 {one_revert_petal(model);}
     if model.count > model.density as i32 * 3 && model.count < model.density as i32 * 13 {one_less_wheel(model);}
     model.count += 1;
 }
