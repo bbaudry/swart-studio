@@ -104,13 +104,14 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     //update_petals_rad(model);
     //petals_wander(app, model);//&& (model.flower.len() as f32)<model.density 
     let t = app.time%0.2;
-    if model.count%2==0 && model.count < model.density as i32 * 2{grow_flower(model);}//(model.flower.len() as f32)<model.density*2.0 
+    if model.count%2==0 && (model.count as f32)  < model.density * 2.1{grow_flower(model);}//(model.flower.len() as f32)<model.density*2.0 
     //if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
-    if model.count > model.density as i32 * 2 && model.count < model.density as i32 * 14 {rotate_flower(model);}
+    if model.count > model.density as i32 * 2 && model.count < model.density as i32 * 8 {rotate_flower(model);}
     //if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
-    if model.count > model.density as i32 * 4 && model.count < model.density as i32 * 10 {one_asynch_spin_petal(model);}
-    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 12 {one_revert_petal(model);}
-    if model.count > model.density as i32 * 3 && model.count < model.density as i32 * 13 {one_less_wheel(model);}
+    if model.count > model.density as i32 * 3 && (model.count as f32) < model.density as i32 * 3.5 {one_less_wheel(model);}
+    if model.count > model.density as i32 * 4 && model.count < model.density as i32 * 5 {one_asynch_spin_petal(model);}
+    if model.count > model.density as i32 * 5 && model.count < model.density as i32 * 7 {one_revert_petal(model);}
+    if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_less_wheel(model);}
     model.count += 1;
 }
 
@@ -189,6 +190,18 @@ fn grow_flower(model: &mut Model) {
         fill_color: hsla(0.0, 1.0, 1.0, 1.0),
         stroke_color: hsl(50.0 / 360.0, 1.0, 0.5),
     });}
+    if random_range(1, 84) == 42 {
+        model.flower.push(Petal {
+            vera: make_tri(model.flower[lingus-1].center, r, initangle),
+            center: model.flower[lingus-1].center,
+            translation_speed: rand_tspeed(),
+            rotation_speed: init_rot_speed,
+            rad: r,
+            init_angle: initangle,
+            clock: true,
+            fill_color: hsla(0.0, 1.0, 1.0, 1.0),
+            stroke_color: hsl(130.0 / 360.0, 1.0, 0.5),
+        });}
         model.flower.push(Petal {
         vera: make_tri(model.flower[lingus-1].center, r, initangle),
         center: model.flower[lingus-1].center,
