@@ -19,6 +19,7 @@ fn main() {
 }
 
 ///////[[[[[[[{{{{{{{:::::MODEL:::::}}}}}}}]]]]]]]\\\\\\\
+const init_rot_speed: f32 = PI/999.0;
 
 struct Petal {
     vera: Tri,
@@ -60,7 +61,7 @@ fn init_flower(app: &App,pd: f32) -> Vec<Petal> {
         vera: make_tri(c, r, initangle),
         center: pt2(0.0, 0.0),
         translation_speed: rand_tspeed(),
-        rotation_speed: 0.0,
+        rotation_speed: init_rot_speed,
         rad: r,
         init_angle: initangle,
         clock: true,
@@ -105,7 +106,9 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     let t = app.time%0.2;
     if model.count%4==0 && (model.flower.len() as f32)<model.density*2.0 {grow_flower(model);}
     if (model.flower.len() as f32) >= model.density*2.0 {model.grow=false;}
-    if !model.grow {rotate_flower(model); println!("rotate");}
+    if !model.grow && model.count < model.density as i32 * 9 {rotate_flower(model);}
+    if model.count > model.density as i32 * 7 && model.count < model.density as i32 * 8 {one_black_petal(model);}
+    if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {one_asynch_spin_petal(model);}
     model.count += 1;
 }
 
@@ -146,7 +149,7 @@ fn one_revert_petal(model: &mut Model) {
 fn one_asynch_spin_petal(model: &mut Model) {
     let lingus = model.flower.len();
     let cory = random_range(0, lingus);
-    model.flower[cory].rotation_speed += random_range(PI / 1999.0, PI / 1111.0);
+    model.flower[cory].rotation_speed += random_range(PI / 4999.0, PI / 4111.0);
 }
 
 fn one_black_petal(model: &mut Model) {
@@ -164,7 +167,7 @@ fn grow_flower(model: &mut Model) {
         vera: make_tri(model.flower[lingus-1].center, r, initangle),
         center: model.flower[lingus-1].center,
         translation_speed: rand_tspeed(),
-        rotation_speed: 0.0,
+        rotation_speed: init_rot_speed,
         rad: r,
         init_angle: initangle,
         clock: true,
@@ -176,7 +179,7 @@ fn grow_flower(model: &mut Model) {
         vera: make_tri(model.flower[lingus-1].center, r, initangle),
         center: model.flower[lingus-1].center,
         translation_speed: rand_tspeed(),
-        rotation_speed: 0.0,
+        rotation_speed: init_rot_speed,
         rad: r,
         init_angle: initangle,
         clock: true,
@@ -187,7 +190,7 @@ fn grow_flower(model: &mut Model) {
         vera: make_tri(model.flower[lingus-1].center, r, initangle),
         center: model.flower[lingus-1].center,
         translation_speed: rand_tspeed(),
-        rotation_speed: 0.0,
+        rotation_speed: init_rot_speed,
         rad: r,
         init_angle: initangle,
         clock: true,
@@ -205,6 +208,8 @@ fn rotate_flower(model: &mut Model) {
         baldessari.vera=make_tri(baldessari.center, baldessari.rad, baldessari.init_angle);
     }
 }
+
+
 
 ///////[[[[[[[{{{{{{{:::::VIEW:::::}}}}}}}]]]]]]]\\\\\\\
 
