@@ -20,6 +20,7 @@ fn main() {
 
 ///////[[[[[[[{{{{{{{:::::MODEL:::::}}}}}}}]]]]]]]\\\\\\\
 const init_rot_speed: f32 = PI/999.0;
+const flash_hue: f32 = 180.0/360.0;
 
 struct Petal {
     vera: Tri,
@@ -38,6 +39,7 @@ struct Model {
     count: i32,
     density: f32,
     back_color: Hsl,
+    flash:bool,
 }
 
 fn model(app: &App) -> Model {
@@ -48,6 +50,7 @@ fn model(app: &App) -> Model {
         count: 1,
         density: petal_density,
         back_color: hsl(0.0,0.0,0.0),
+        flash:false,
     }
 }
 
@@ -65,7 +68,7 @@ fn init_flower(app: &App,pd: f32) -> Vec<Petal> {
         rad: r,
         init_angle: initangle,
         clock: true,
-        fill_color: hsla(0.0, 1.0, 1.0, 0.0),
+        fill_color: hsla(flash_hue, 1.0, 0.5, 1.0),
         stroke_color: hsl(230.0 / 360.0, 1.0, 0.5),
     });
     return field;
@@ -113,22 +116,14 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {one_revert_petal(model);}
     if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 11 {if random_range(0, 2) == 1 {one_less_wheel(model);}}
     if model.count > model.density as i32 * 11 && (model.count as f32) < model.density  * 11.1 {white_flower(model);}*/
-    if (model.count as f32) > model.density * 3.9 && (model.count as f32) < model.density * 11.6 {flash_petal(model);}
+    if (model.count as f32) == model.density * 3.9  {white_flower(model);model.flash=true;}
+    if (model.count as f32) == model.density * 11.6 {model.flash=false;}
     model.count += 1;
 }
 
 fn white_flower(model: &mut Model) {
     model.back_color=hsl(0.0,0.0,1.0);
 }
-
-fn flash_petal(model: &mut Model) {
-    model.back_color=hsl(0.0,0.0,1.0);
-    
-    let lingus = model.flower.len();
-    let cory = random_range(2, lingus - 1);
-    model.flower[cory].fill_color = hsla(330.0/360.0, 1.0, 0.5, 1.0)
-}
-
 
 fn update_petals_rad(model: &mut Model) {
     for mut petal in &mut model.flower {
@@ -189,7 +184,7 @@ fn grow_flower(model: &mut Model) {
         rad: r,
         init_angle: initangle,
         clock: true,
-        fill_color: hsla(0.0, 1.0, 1.0, 0.0),
+        fill_color: hsla(0.0, 1.0, 0.5, 1.0),
         stroke_color: hsl(310.0 / 360.0, 1.0, 0.5),
     });
     if random_range(1, 84) == 42 {
@@ -201,7 +196,7 @@ fn grow_flower(model: &mut Model) {
         rad: r,
         init_angle: initangle,
         clock: true,
-        fill_color: hsla(0.0, 1.0, 1.0, 0.0),
+        fill_color: hsla(0.0, 1.0, 0.5, 1.0),
         stroke_color: hsl(50.0 / 360.0, 1.0, 0.5),
     });}
     if random_range(1, 84) == 42 {
@@ -213,7 +208,7 @@ fn grow_flower(model: &mut Model) {
             rad: r,
             init_angle: initangle,
             clock: true,
-            fill_color: hsla(0.0, 1.0, 1.0, 0.0),
+            fill_color: hsla(0.0, 1.0, 0.5, 1.0),
             stroke_color: hsl(130.0 / 360.0, 1.0, 0.5),
         });}
         model.flower.push(Petal {
@@ -227,9 +222,6 @@ fn grow_flower(model: &mut Model) {
         fill_color: hsla(0.0, 1.0, 1.0, 0.0),
         stroke_color: hsl(230.0 / 360.0, 1.0, 0.5),
     });
-
-
-
 }
 
 fn rotate_flower(model: &mut Model) {
@@ -240,14 +232,13 @@ fn rotate_flower(model: &mut Model) {
     }
 }
 
-
-
 ///////[[[[[[[{{{{{{{:::::VIEW:::::}}}}}}}]]]]]]]\\\\\\\
 
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
     draw.background().color(model.back_color);
     view_petals(&draw, model);
+    if model.flash {flash_one(&draw, model);}
     draw.to_frame(app, &frame).unwrap();
 }
 
@@ -259,20 +250,30 @@ fn view_petals(draw: &Draw, model: &Model) {
         let y2 = p.vera.0[1][1];
         let x3 = p.vera.0[2][0];
         let y3 = p.vera.0[2][1];
-        if p.fill_color.alpha == 0.0 {
         draw.tri()
             .points((x1, y1), (x2, y2), (x3, y3))
             .no_fill()
             .stroke(p.stroke_color)
             .stroke_weight(1.0);
-        }
-        else{
-            println!("fill tri");
-        draw.tri()
-                .points((x1, y1), (x2, y2), (x3, y3))
-                .color(p.fill_color)
-                .stroke(p.stroke_color)
-                .stroke_weight(1.0);
-        }
     }
 }
+
+fn flash_one(draw: &Draw, model: &Model) {
+    
+        let lingus = model.flower.len();
+        let index = random_range(0, lingus);
+        let molnar = &model.flower[index];
+        
+        let x1 = molnar.vera.0[0][0];
+        let y1 = molnar.vera.0[0][1];
+        let x2 = molnar.vera.0[1][0];
+        let y2 = molnar.vera.0[1][1];
+        let x3 = molnar.vera.0[2][0];
+        let y3 = molnar.vera.0[2][1];
+        draw.tri()
+                .points((x1, y1), (x2, y2), (x3, y3))
+                .color(molnar.fill_color)
+                .stroke(molnar.stroke_color)
+                .stroke_weight(1.0);
+}
+
