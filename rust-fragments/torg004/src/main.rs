@@ -104,9 +104,6 @@ fn make_tri(c: Vec2, rad: f32, initangle: f32) -> Tri {
 ///////[[[[[[[{{{{{{{:::::UPDATE:::::}}}}}}}]]]]]]]\\\\\\\
 
 fn update(app: &App, model: &mut Model, _update: Update) {
-    //update_petals_rad(model);
-    //petals_wander(app, model);//&& (model.flower.len() as f32)<model.density
-    let t = app.time % 0.2;
     if model.count % 3 == 0 && (model.count as f32) < model.density * 2.9 {
         grow_flower(model);
     } //(model.flower.len() as f32)<model.density*2.0
@@ -117,17 +114,31 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     if model.count > model.density as i32 * 3 && (model.count as f32) < model.density * 3.9 {
         one_less_wheel(model);
     }
-    /*     if model.count > model.density as i32 * 4 && (model.count as f32) < model.density  * 4.5 {one_black_petal(model);}
-    if model.count > model.density as i32 * 5 && model.count < model.density as i32 * 7 {if random_range(0, 2) == 1 {one_asynch_spin_petal(model);}}
-    if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {one_revert_petal(model);}
-    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 11 {if random_range(0, 2) == 1 {one_less_wheel(model);}}
-    if model.count > model.density as i32 * 11 && (model.count as f32) < model.density  * 11.1 {white_flower(model);}*/
-    if (model.count as f32) == model.density * 3.9 {
+    if model.count > model.density as i32 * 4 && (model.count as f32) < model.density * 4.5 {
+        one_black_petal(model);
+    }
+    if model.count > model.density as i32 * 5 && model.count < model.density as i32 * 7 {
+        if random_range(0, 3) == 1 {
+            one_asynch_spin_petal(model);
+        }
+    }
+    if model.count > model.density as i32 * 8 && model.count < model.density as i32 * 9 {
+        one_revert_petal(model);
+    }
+    if model.count > model.density as i32 * 10 && model.count < model.density as i32 * 11 {
+        if random_range(0, 2) == 1 {
+            one_less_wheel(model);
+        }
+    }
+    if (model.count as f32) == model.density * 11.1 {
         white_flower(model);
         model.flash = true;
     }
     if (model.count as f32) == model.density * 11.6 {
         model.flash = false;
+    }
+    if (model.count as f32) > model.density * 11.6 {
+        petals_wander(app, model);
     }
     model.count += 1;
 }
