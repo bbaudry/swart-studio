@@ -54,44 +54,47 @@
       }
     }
 
-    let baseHu, baseSat;
-    var baseLight;
+    let baseHu, baseSat, baseLight;
+    let southwest = Math.floor(fxrand()*2)+2;
 
-    function no(r) {
-      if (r > 0.1) { background(0, 0, 100); return "white" }
-      else { background(0, 0, 0); return "black" }
+    function no(r) { // controls the color of background
+      if (r > 0.17) { background(0, 0, 100); return "black" }
+      else { background(0, 0, 0); return "white" }
     }
 
-    function boring(r) {
-      if (r < 0.8) { baseLight = "light"; return "light" }
-      else { baseLight = "dark"; return "dark" }
+    function boring(r) { // controls gradient from white to black or vice-versa
+      if (r < 0.73) { baseLight = "twilight"; return "twilight" }
+      else { baseLight = "dawn"; return "dawn" }
     }
 
     function code(r) {
-      if (r > 0.17) { baseHu=0; baseSat=0; return "black and white" }
-      else { baseHu=230; baseSat=60;; return "blue" }
+      if (r > 0.17) { baseHu=0; baseSat=0; return "night" }
+      else { baseHu=230; baseSat=50;; return "day" }
     }
 
     function draw() {
-    if(frameCount<142){
-      star(baseHu,baseSat);
-    }
-    else{
-      fxpreview();
-      noLoop();
-    }
+      strokeWeight(southwest);
+      if(frameCount<111 + Math.floor(fxrand()*42)){
+        star(baseHu,baseSat);
+      }
+      else{
+        fxpreview();
+        save("ribbonsfx.png")
+        noLoop();
+      }
     }
 
 
   function star(hue, sat){
-    let art=0.7*w-fxrand()*w/2; //diameter
+    let scope=w * (0.5 + 0.5*fxrand()); //scope is in the range [w/2; w]
+    let art=scope-fxrand()*0.5*scope; //diameter
     let john = w/2 + fxrand()*(-w/10) + w/20; //center x
     baldessari = h/2 + fxrand()*(-h/10) + h/20; //center y
     noFill();
     let hayes;
-    if (baseLight=="light"){//lightness decreases from 100 to 0
+    if (baseLight=="twilight"){//lightness decreases from 100 to 0
       hayes=100;
-      for (beauty=art; beauty>1 && hayes>0; beauty--){
+      for (beauty=art; beauty>1 && hayes>0; beauty-=southwest){
         stroke(hue, sat, hayes);
         ellipse(john,baldessari,beauty, beauty);
         hayes--;
@@ -99,7 +102,7 @@
     }
     else{//lightness increases from 0 to 100
       hayes=0;
-      for (beauty=art; beauty>1 && hayes<100; beauty--){
+      for (beauty=art; beauty>1 && hayes<100; beauty-=southwest){
         stroke(hue, sat, hayes);
         ellipse(john,baldessari,beauty, beauty);
         hayes++;
