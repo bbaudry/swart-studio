@@ -46,6 +46,7 @@
     var triangleset=[];
     var explodeSpeed=w/50;
     var wanderSpeed=w/500;
+    var coolHues=[50,140,230,310,0,90,180,270]
 
 
     function setup() {
@@ -76,6 +77,11 @@
         background(50,100,100);
         wanderTriangles();
       }
+      if (frameCount==336){
+        background(50,100,100);
+        fixFill();
+        fxpreview();
+      }
     }
 
     function triad(angle1,rad1){
@@ -87,7 +93,8 @@
       let y2 = cy+rad1*sin(angle1+2*PI/3);
       let x3 = cx+rad1*cos(angle1+4*PI/3);
       let y3 = cy+rad1*sin(angle1+4*PI/3);
-      let hu = 110 + Math.floor(fxrand()*100);
+      let huID = Math.floor(fxrand()*coolHues.length);
+      let hu = coolHues[huID];
       let xexplode=fxrand()*(-2*explodeSpeed)+explodeSpeed;
       let yexplode=fxrand()*(-2*explodeSpeed)+explodeSpeed;
       let xwander=fxrand()*(-2*wanderSpeed)+wanderSpeed;
@@ -121,6 +128,15 @@
         triangle(tri[0],tri[1],tri[2],tri[3],tri[4],tri[5]);
       }
     }
+
+    function fixFill(){
+      for (let tri of triangleset){
+        noStroke();
+        fill(tri[6],100,100,250);
+        triangle(tri[0],tri[1],tri[2],tri[3],tri[4],tri[5]);
+      }
+    }
+
 
     function drawTriangles(){
       for (let x of triangleset){
