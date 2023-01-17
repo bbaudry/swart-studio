@@ -44,6 +44,8 @@
     var angle;
     var rad = w/100;
     var triangleset=[];
+    var explodeSpeed=w/10;
+    var wanderSpeed=w/500;
 
 
     function setup() {
@@ -58,18 +60,17 @@
     }
 
     function draw() {
-
-      if (frameCount>0 && frameCount<111){
+      if (frameCount>0 && frameCount<42){background(0,0,0);}
+      if (frameCount>=42 && frameCount<84){background(50,100,100);}
+      if (frameCount>=84 && frameCount<98){
         noFill();
         strokeWeight(3);
         triad(angle,rad);
-        rad+=3;
+        rad+=13;
       }
-      if (frameCount==111){
-        background(0,0,0);
-      }
-      if (frameCount==121){
-        drawTriangles();
+      if (frameCount>=168 && frameCount<260){
+        background(50,100,100);
+        explodeTriangles();
       }
     }
 
@@ -88,7 +89,19 @@
       console.log(x1+" "+y1+" "+x2+" "+y2+" "+x3+" "+y3+" "+rad1)
       triangle(x1,y1,x2,y2,x3,y3);
     }
-
+    function explodeTriangles(){
+      for (let x of triangleset){
+        let xoff=fxrand()*explodeSpeed;
+        let yoff=fxrand()*explodeSpeed;
+        stroke(x[6],100,100);
+        fill(x[6],100,100,50);
+        if (x[0]>w) {xoff=-xoff;}
+        if (x[1]>h) {yoff=-yoff;}
+        x[0]+=xoff;x[2]+=xoff;x[4]+=xoff;
+        x[1]+=yoff;x[3]+=yoff;x[5]+=yoff;
+        triangle(x[0],x[1],x[2],x[3],x[4],x[5]);
+      }
+    }
     function drawTriangles(){
       for (let x of triangleset){
         stroke(x[6],100,100);
