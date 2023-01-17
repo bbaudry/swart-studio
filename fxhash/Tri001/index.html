@@ -62,25 +62,26 @@
 
     function draw() {
       if (frameCount>0 && frameCount<42){background(0,0,0);}
-      if (frameCount>=42 && frameCount<43){background(50,100,100);}
-      if (frameCount>=42 && frameCount<168 ){//&& frameCount%2==0
+      if (frameCount==42){background(50,100,100);}
+      if (frameCount>=42 && frameCount<210 ){//&& frameCount%2==0
         noFill();
         strokeWeight(3);
         triad(angle,rad);
-        if (frameCount%2==0){rad+=3;}
+        if (frameCount%3==0){rad+=3;}
       }
-      if (frameCount>=168 && frameCount<210){
+      if (frameCount>=210 && frameCount<252){
         background(50,100,100);
         explodeTriangles();
       }
-      if (frameCount>=210 && frameCount<336){
+      if (frameCount>=252 && frameCount<378){
         background(50,100,100);
         wanderTriangles();
       }
-      if (frameCount==336){
+      if (frameCount==378){
         background(50,100,100);
         fixFill();
         fxpreview();
+        save("Tri001.png");
       }
     }
 
