@@ -42,7 +42,7 @@
     var w = 800;//document.documentElement.clientWidth;//width of window that is available for drawing
     var h = 800;//document.documentElement.clientHeight;//width of window that is available for drawing
     var angle;
-    var rad = w/200;
+    var rad = w/84;
     var triangleset=[];
     var explodeSpeed=w/50;
     var wanderSpeed=w/500;
@@ -52,7 +52,7 @@
       createCanvas(w, h);
       colorMode(HSB, 360, 100, 100, 250);
       background(0, 0, 0);
-      angle = fxrand()*PI;
+      angle = (1.6+fxrand()*1.3)*PI;
       /*window.$fxhashFeatures = {
         "bgc": bgc(fxrand()),
         "bH": bH(fxrand())
@@ -61,12 +61,12 @@
 
     function draw() {
       if (frameCount>0 && frameCount<42){background(0,0,0);}
-      if (frameCount>=42 && frameCount<84){background(50,100,100);}
-      if (frameCount>=84 && frameCount<168 ){//&& frameCount%2==0
+      if (frameCount>=42 && frameCount<43){background(50,100,100);}
+      if (frameCount>=42 && frameCount<168 ){//&& frameCount%2==0
         noFill();
         strokeWeight(3);
         triad(angle,rad);
-        rad+=3;
+        if (frameCount%2==0){rad+=3;}
       }
       if (frameCount>=168 && frameCount<210){
         background(50,100,100);
