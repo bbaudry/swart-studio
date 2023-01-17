@@ -42,9 +42,9 @@
     var w = 800;//document.documentElement.clientWidth;//width of window that is available for drawing
     var h = 800;//document.documentElement.clientHeight;//width of window that is available for drawing
     var angle;
-    var rad = w/100;
+    var rad = w/200;
     var triangleset=[];
-    var explodeSpeed=w/10;
+    var explodeSpeed=w/50;
     var wanderSpeed=w/500;
 
 
@@ -62,15 +62,19 @@
     function draw() {
       if (frameCount>0 && frameCount<42){background(0,0,0);}
       if (frameCount>=42 && frameCount<84){background(50,100,100);}
-      if (frameCount>=84 && frameCount<98){
+      if (frameCount>=84 && frameCount<168 ){//&& frameCount%2==0
         noFill();
         strokeWeight(3);
         triad(angle,rad);
-        rad+=13;
+        rad+=3;
       }
-      if (frameCount>=168 && frameCount<260){
+      if (frameCount>=168 && frameCount<210){
         background(50,100,100);
         explodeTriangles();
+      }
+      if (frameCount>=210 && frameCount<336){
+        background(50,100,100);
+        wanderTriangles();
       }
     }
 
@@ -84,24 +88,40 @@
       let x3 = cx+rad1*cos(angle1+4*PI/3);
       let y3 = cy+rad1*sin(angle1+4*PI/3);
       let hu = 110 + Math.floor(fxrand()*100);
-      triangleset.push([x1,y1,x2,y2,x3,y3,hu]);
+      let xexplode=fxrand()*(-2*explodeSpeed)+explodeSpeed;
+      let yexplode=fxrand()*(-2*explodeSpeed)+explodeSpeed;
+      let xwander=fxrand()*(-2*wanderSpeed)+wanderSpeed;
+      let ywander=fxrand()*(-2*wanderSpeed)+wanderSpeed;
+      triangleset.push([x1,y1,x2,y2,x3,y3,hu,xexplode,yexplode,xwander,ywander]);
       stroke(hu,100,100);
       console.log(x1+" "+y1+" "+x2+" "+y2+" "+x3+" "+y3+" "+rad1)
       triangle(x1,y1,x2,y2,x3,y3);
     }
+
     function explodeTriangles(){
-      for (let x of triangleset){
-        let xoff=fxrand()*explodeSpeed;
-        let yoff=fxrand()*explodeSpeed;
-        stroke(x[6],100,100);
-        fill(x[6],100,100,50);
-        if (x[0]>w) {xoff=-xoff;}
-        if (x[1]>h) {yoff=-yoff;}
-        x[0]+=xoff;x[2]+=xoff;x[4]+=xoff;
-        x[1]+=yoff;x[3]+=yoff;x[5]+=yoff;
-        triangle(x[0],x[1],x[2],x[3],x[4],x[5]);
+      for (let tri of triangleset){
+        stroke(tri[6],100,100);
+        //fill(tri[6],100,100,50);
+        if (tri[0]>w||tri[4]<0) {tri[7]=-1*tri[7];}
+        if (tri[1]>h||tri[5]<0) {tri[8]=-1*tri[8];}
+        tri[0]+=tri[7];tri[2]+=tri[7];tri[4]+=tri[7];
+        tri[1]+=tri[8];tri[3]+=tri[8];tri[5]+=tri[8];
+        triangle(tri[0],tri[1],tri[2],tri[3],tri[4],tri[5]);
       }
     }
+
+    function wanderTriangles(){
+      for (let tri of triangleset){
+        stroke(tri[6],100,100);
+        fill(tri[6],100,100,fxrand()*50+50);
+        if (tri[0]>w||tri[4]<0) {tri[9]=-1*tri[9];}
+        if (tri[1]>h||tri[5]<0) {tri[10]=-1*tri[10];}
+        tri[0]+=tri[9];tri[2]+=tri[9];tri[4]+=tri[9];
+        tri[1]+=tri[10];tri[3]+=tri[10];tri[5]+=tri[10];
+        triangle(tri[0],tri[1],tri[2],tri[3],tri[4],tri[5]);
+      }
+    }
+
     function drawTriangles(){
       for (let x of triangleset){
         stroke(x[6],100,100);
