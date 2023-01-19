@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="./p5.js"></script>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <script id="fxhash-snippet">
+    //---- do not edit the following code (you can indent as you wish)
+    let alphabet = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
+    var fxhash = "oo" + Array(49).fill(0).map(_ => alphabet[(Math.random() * alphabet.length) | 0]).join('')
+    let b58dec = str => [...str].reduce((p, c) => p * alphabet.length + alphabet.indexOf(c) | 0, 0)
+    let fxhashTrunc = fxhash.slice(2)
+    let regex = new RegExp(".{" + ((fxhashTrunc.length / 4) | 0) + "}", 'g')
+    let hashes = fxhashTrunc.match(regex).map(h => b58dec(h))
+    let sfc32 = (a, b, c, d) => {
+      return () => {
+        a |= 0; b |= 0; c |= 0; d |= 0
+        var t = (a + b | 0) + d | 0
+        d = d + 1 | 0
+        a = b ^ b >>> 9
+        b = c + (c << 3) | 0
+        c = c << 21 | c >>> 11
+        c = c + t | 0
+        return (t >>> 0) / 4294967296
+      }
+    }
+    var fxrand = sfc32(...hashes)
+    // true if preview mode active, false otherwise
+    // you can append preview=1 to the URL to simulate preview active
+    var isFxpreview = new URLSearchParams(window.location.search).get('preview') === "1"
+    // call this method to trigger the preview
+    function fxpreview() {
+      console.log("fxhash: TRIGGER PREVIEW")
+    }
+        //---- /do not edit the following code
+  </script>
+</head>
+
+<body>
+  <script>
+    var w = 800;//document.documentElement.clientWidth;//width of window that is available for drawing
+    var h = 800;//document.documentElement.clientHeight;//width of window that is available for drawing
+    var bowie;
+    var pts;
+    var msg;
+    
+
+    function preload() {
+  	  bowie=loadFont("./fonts/FreeMono.ttf");
+    }
+
+    function setup() {
+      createCanvas(w, h);
+      colorMode(HSB, 360, 100, 100, 250);
+      background(0, 0, 0);
+      textFont(bowie);
+      textSize(199);
+      msg = 'point'
+      pts = bowie.textToPoints(msg, 100, 0, 199)
+      console.log(pts) // { x, y, path angle }
+
+      stroke(255)
+      strokeWeight(2)
+      noFill();
+      window.$fxhashFeatures = {
+//        "glass": fixGlass(fxrand()),
+//        "set": fixSet(fxrand()),
+//        "spin": fixSpin(fxrand()),
+      }
+    }
+
+    function draw() {
+      background(0, 0, 0);
+      const d = 10 + sin(frameCount/50.) * 50
+      const angle = frameCount/100.
+
+      push()
+      translate(60, height*5/8)
+      for (let i = 0; i < pts.length; i++) {
+        const p = pts[i]
+        push()
+        translate(p.x, p.y)
+        rotate(angle)
+        line(-d, -d, +d, +d)
+        pop()
+      }
+      if (frameCount==378){
+        fxpreview();
+      }
+    }
+
+
+    function windowResized() {
+      w = document.documentElement.clientWidth;//width of window that is available for drawing
+      h = document.documentElement.clientHeight;//width of window that is available for drawing
+      resizeCanvas(windowWidth, windowHeight);
+    }
+
+  </script>
+
+</body>
