@@ -49,7 +49,9 @@
     var rad;
 
     function preload() {
-  	  bowie=loadFont("./fonts/FreeMono.ttf");
+  	  //bowie=loadFont("./fonts/FreeMono.ttf");
+      bowie=loadFont("./fonts/Dyuthi-Regular.ttf");
+
     }
 
     function setup() {
@@ -72,14 +74,15 @@
 
     function draw() {
       background(0, 0, 0);
-      pts = bowie.textToPoints("n", xtxt, h/2, 799,{
+      pts = bowie.textToPoints("N", xtxt, 0.7*h, 599,{
     sampleFactor: 0.42,
     simplifyThreshold: 0
   })
       for (let i = 0; i < pts.length-1; i++) {
         let p1 = pts[i];
         let p2 = pts[i+1];
-        var angle = atan2(p2.y - p1.y, p2.x - p1.x)+offangle;
+        let vera = (-2*fxrand()+1)*PI/4
+        var angle = atan2(p2.y - p1.y, p2.x - p1.x)+offangle+vera;
         let x3 = p1.x+(p2.x - p1.x) + rad*cos(angle)
         let y3 = p1.y+(p2.y - p1.y) + rad*sin(angle)
 
@@ -89,7 +92,7 @@
         triangle(p1.x,p1.y,p2.x,p2.y,x3,y3)
 
       }
-      pts = bowie.textToPoints("o", xtxt+300, h/2, 799)
+      pts = bowie.textToPoints("O", xtxt+300, 0.7*h, 599)
       for (let i = 0; i < pts.length-1; i++) {
         let p1 = pts[i];
         let p2 = pts[i+1];
@@ -103,7 +106,7 @@
         triangle(p1.x,p1.y,p2.x,p2.y,x3,y3)
 
       }
-      //noLoop();
+      noLoop();
       //offangle+=PI/10; rad=fxrand()*14+1
       //xtxt++;
       if (frameCount==378){
