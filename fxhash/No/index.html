@@ -43,10 +43,15 @@
     var h = 800;//document.documentElement.clientHeight;//width of window that is available for drawing
     var bowie;
     var pts;
-    var msg;
     var xtxt;
     var offangle;
     var rad;
+    var x3
+    var x4
+    var y3
+    var y4
+    var angle
+
 
     function preload() {
       //bowie=loadFont("./fonts/FreeMono.ttf");
@@ -59,8 +64,6 @@
       colorMode(HSB, 360, 100, 100, 250);
       background(0, 0, 0);
       textFont(bowie);
-      //      textSize(599);
-      msg = 'no'
       xtxt = 10;
       offangle = PI / 2;
       rad = 49;
@@ -82,11 +85,7 @@
         sampleFactor: 0.42,
         simplifyThreshold: 0
       })
-      let x3
-      let x4
-      let y3
-      let y4
-      let angle
+      
       if (pts.length>1) {
         angle = atan2(pts[1].y - pts[0].y, pts[1].x - pts[0].x) + offangle;
         x3 = pts[0].x + (pts[1].x - pts[0].x) + rad * cos(angle)
@@ -118,6 +117,16 @@
       if (frameCount == 378) {
         fxpreview();
       }
+    }
+
+    function triangle_in(letter,p1,p2){
+      let vera = (-2 * fxrand() + 1) * PI / 4;
+      angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle + vera;
+      x4 = p1.x + (p2.x - p1.x) + rad * cos(angle);
+      y4 = p1.y + (p2.y - p1.y) + rad * sin(angle);
+      triangle(p2.x, p2.y, x3, y3, x4, y4);
+      x3=x4;
+      y3=y4;
     }
 
 
