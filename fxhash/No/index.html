@@ -51,7 +51,7 @@
     var y3
     var y4
     var angle
-
+    var letter
 
     function preload() {
       //bowie=loadFont("./fonts/FreeMono.ttf");
@@ -71,7 +71,6 @@
       strokeWeight(2)
       noFill();
       window.$fxhashFeatures = {
-
       }
     }
 
@@ -80,42 +79,33 @@
       strokeWeight(1);
       noFill();
       stroke(30, 100, 100);
-
-      pts = bowie.textToPoints("N", xtxt, 0.7 * h, 555, {
-        sampleFactor: 0.42,
-        simplifyThreshold: 0
-      })
-      
-      if (pts.length>1) {
-        angle = atan2(pts[1].y - pts[0].y, pts[1].x - pts[0].x) + offangle;
-        x3 = pts[0].x + (pts[1].x - pts[0].x) + rad * cos(angle)
-        y3 = pts[0].y + (pts[2].y - pts[0].y) + rad * sin(angle)
-      }
-      for (let i = 1; i < pts.length - 1; i++) {
-        let p1 = pts[i];
-        let p2 = pts[i + 1];
-        let vera = (-2 * fxrand() + 1) * PI / 4;
-        angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle + vera;
-        x4 = p1.x + (p2.x - p1.x) + rad * cos(angle);
-        y4 = p1.y + (p2.y - p1.y) + rad * sin(angle);
-        triangle(p2.x, p2.y, x3, y3, x4, y4);
-        x3=x4;
-        y3=y4;
-      }
-      pts = bowie.textToPoints("O", xtxt + 300, 0.7 * h, 555)
-      /*for (let i = 0; i < pts.length - 1; i++) {
-        let p1 = pts[i];
-        let p2 = pts[i + 1];
-        var angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle;
-        let x3 = p1.x + (p2.x - p1.x) + rad * cos(angle)
-        let y3 = p1.y + (p2.y - p1.y) + rad * sin(angle)
-        triangle(p1.x, p1.y, p2.x, p2.y, x3, y3)
-      }*/
-      noLoop();
+      xtxt = 10;
+      draw_letter("N")
+      xtxt+=300
+      draw_letter("O")
+      //noLoop();
       //offangle+=PI/10; rad=fxrand()*14+1
       //xtxt++;
       if (frameCount == 378) {
         fxpreview();
+      }
+    }
+
+    function draw_letter(letter){
+      let density = fxrand()/2
+      pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
+        sampleFactor: density,
+        simplifyThreshold: 0
+      })
+      if (pts.length>1) {
+        angle = atan2(pts[1].y - pts[0].y, pts[1].x - pts[0].x) + offangle;
+        x3 = pts[0].x + (pts[1].x - pts[0].x) + rad * cos(angle)
+        y3 = pts[0].y + (pts[1].y - pts[0].y) + rad * sin(angle)
+      }
+      for (let i = 1; i < pts.length - 1; i++) {
+        let p1 = pts[i];
+        let p2 = pts[i + 1]
+        triangle_in(letter,p1,p2)
       }
     }
 
