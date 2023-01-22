@@ -70,13 +70,14 @@
       stroke(255)
       strokeWeight(2)
       noFill();
+      frameRate(1)
       window.$fxhashFeatures = {
       }
     }
 
     function draw() {
       background(0, 0, 0);
-      strokeWeight(fxrand()*7);
+      strokeWeight(fxrand()*2);
       noFill();
       stroke(30, 0, 100);
       xtxt = 10;
@@ -92,7 +93,8 @@
     }
 
     function draw_letter(letter){
-      let density = fxrand()/2
+      let density = fxrand()*0.09+0.03;
+      console.log("d: "+density+" w: "+strokeWeight)
       pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
         sampleFactor: density,
         simplifyThreshold: 0
@@ -102,7 +104,7 @@
         x3 = pts[0].x + (pts[1].x - pts[0].x) + rad * cos(angle)
         y3 = pts[0].y + (pts[1].y - pts[0].y) + rad * sin(angle)
       }
-      for (let i = 1; i < pts.length - 1; i++) {
+      for (let i = 1; i < pts.length - 2; i++) {
         let p1 = pts[i];
         let p2 = pts[i + 1]
         triangle_in(letter,p1,p2)
