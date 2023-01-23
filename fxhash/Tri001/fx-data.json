@@ -1,8 +1,8 @@
 {
-    "date-published":"2023-01-13",
-    "title":"accelerator",
-    "description":"smooth ribbons by almyre 2023::01::13 made in Stockholm with p5 and sys calls",
-    "price":1,
+    "date-published":"2023-01-19",
+    "title":"stained glass",
+    "description":"colorful shapes wandering in the canvas -+.><.+- made with p5.js and sys calls",
+    "price":1.21,
     "royalties":11,
-    "max_pieces":11
+    "max_pieces":21
 }

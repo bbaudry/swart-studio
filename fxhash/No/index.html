@@ -83,6 +83,7 @@
       draw_letter("N")
       xtxt+=300
       draw_letter("O")
+      back()
       noLoop();
       //offangle+=PI/10; rad=fxrand()*14+1
       //xtxt++;
@@ -93,7 +94,6 @@
 
     function draw_letter(letter){
       let density = fxrand()*0.03+0.08;
-      console.log("d: "+density+" w: "+strokeWeight)
       pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
         sampleFactor: density,
         simplifyThreshold: 0
@@ -125,9 +125,34 @@
       y3=y4;
     }
 
+    let bx1,bx2,bx3,by1,by2,by3;
+    let row1 = [];
+    let row2 = [];
     function back(){
-      let pad_min=2;
-      let pad_max=7;
+      let pad_min=7;
+      let pad_max=11;
+      let i=0;
+      bx1=0; by1=0; by2=0;
+      while (by3<h){
+        
+      while (bx1<w) {
+        let x = (pad_min + fxrand()*pad_max);
+        bx2 = bx1+x;
+        bx3 = bx2-fxrand()*x;
+        by3 = by1+(pad_min + fxrand()*pad_max);
+        console.log("HI! bx1 "+bx1+" by1 "+by1+" bx2 "+bx2+" by2 "+by2+" bx3 "+bx3+" by3 "+by3);
+        noFill();
+        stroke(0,0,100);
+        strokeWeight(0.84);
+        triangle(bx1,by1,bx2,by2,bx3,by3);
+        stroke(180,100,100); ellipse(bx3,by3,5,5);//ellipse(bx1,by1,5,5); ellipse(bx2,by2,5,5); 
+        bx1=bx2;
+        row1.push([bx3,by3]);
+        i++;
+      }
+      bx1=0; 
+      by1=by3; by2=by3;
+    }
     }
 
     function windowResized() {
