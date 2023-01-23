@@ -77,7 +77,7 @@
 
     function draw() {
       background(0, 0, 0);
-      strokeWeight(fxrand()*0.42+0.1);
+      strokeWeight(fxrand()*0.42+0.42);
       xtxt = 10;
       draw_letter("N")
       xtxt+=300
@@ -113,8 +113,8 @@
     }
 
     function triangle_in(letter,p1,p2){
-      noFill();
-      stroke(30, 0, 100);
+      fill(0,0,0);
+      stroke(0, 0, 100);
       let vera = (-2 * fxrand() + 1) * PI / 4;
       angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle + vera;
       x4 = p1.x + (p2.x - p1.x) + rad * cos(angle);
