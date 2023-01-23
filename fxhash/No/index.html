@@ -126,47 +126,47 @@
     }
 
     let bx1, bx2, bx3, by1, by2, by3;
-    let row1 = [];
-    let row2 = [];
+    let prev_row = [];
+    let tmp_row = [];
     function back() {
-      let pad_min = 7;
-      let pad_max = 11;
+      let pad_min = 17;
+      let pad_max = 21;
       let i = 0;
+      fill(0,0,100);
+      stroke(0, 0, 0);
+      strokeWeight(0.84);
       bx1 = 0; by1 = 0; by2 = 0;
       while (bx1 < w) {
-        let x = (pad_min + fxrand() * pad_max);
+        let x = pad_max;// (pad_min + fxrand() * pad_max);
         bx2 = bx1 + x;
-        bx3 = bx2 - fxrand() * x;
-        by3 = by1 + (pad_min + fxrand() * pad_max);
+        bx3 = bx2 - 0.5 * x;
+        by3 = by1 + (pad_min + 0.5 * pad_max);
         console.log("HI! bx1 " + bx1 + " by1 " + by1 + " bx2 " + bx2 + " by2 " + by2 + " bx3 " + bx3 + " by3 " + by3);
-        noFill();
-        stroke(0, 0, 100);
-        strokeWeight(0.84);
         triangle(bx1, by1, bx2, by2, bx3, by3);
-        stroke(180, 100, 100); ellipse(bx3, by3, 5, 5);//ellipse(bx1,by1,5,5); ellipse(bx2,by2,5,5); 
         bx1 = bx2;
-        row1.push([bx3, by3]);
+        prev_row.push([bx3, by3]);
         i++;
       }
-      while (by3 < h) {
+      while (by3 < 200) {
         i=0;
-        while (bx1 < w) {
-          let x = (pad_min + fxrand() * pad_max);
-          bx2 = bx1 + x;
-          bx3 = bx2 - fxrand() * x;
-          by3 = by1 + (pad_min + fxrand() * pad_max);
+        bx1 = 0;
+        by1 = prev_row[0][1]; 
+        while (i < prev_row.length) {
+          bx2 = prev_row[i][0];
+          by2 = prev_row[i][1]; 
+          let x = (pad_min + 0.5 * pad_max);
+          bx3 = bx2 - 0.5 * x;
+          by3 = by1 + (pad_min + 0.5 * pad_max);
           console.log("HI! bx1 " + bx1 + " by1 " + by1 + " bx2 " + bx2 + " by2 " + by2 + " bx3 " + bx3 + " by3 " + by3);
-          noFill();
-          stroke(0, 0, 100);
-          strokeWeight(0.84);
           triangle(bx1, by1, bx2, by2, bx3, by3);
-          stroke(180, 100, 100); ellipse(bx3, by3, 5, 5);//ellipse(bx1,by1,5,5); ellipse(bx2,by2,5,5); 
           bx1 = bx2;
-          row2.push([bx3, by3]);
+          by1 = by2;
+          tmp_row.push([bx3, by3]);
           i++;
         }
-        bx1 = 0;
-        by1 = by3; by2 = by3;
+
+        prev_row=tmp_row;
+        tmp_row=[];
       }
     }
 
