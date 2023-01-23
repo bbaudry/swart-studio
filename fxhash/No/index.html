@@ -70,7 +70,8 @@
       stroke(255)
       strokeWeight(2)
       noFill();
-      frameRate(1)
+      frameRate(1);
+
       window.$fxhashFeatures = {
       }
     }
@@ -82,7 +83,7 @@
       draw_letter("N")
       xtxt+=300
       draw_letter("O")
-      //noLoop();
+      noLoop();
       //offangle+=PI/10; rad=fxrand()*14+1
       //xtxt++;
       if (frameCount == 378) {
@@ -124,6 +125,10 @@
       y3=y4;
     }
 
+    function back(){
+      let pad_min=2;
+      let pad_max=7;
+    }
 
     function windowResized() {
       w = document.documentElement.clientWidth;//width of window that is available for drawing
