@@ -125,7 +125,7 @@
       y3 = y4;
     }
 
-    let bx1, bx2, bx3, by1, by2, by3;
+    let top_left_x, top_right_x, bottom_x, top_left_y, top_right_y, bottom_y;
     let prev_row = [];
     let tmp_row = [];
     function back() {
@@ -135,36 +135,38 @@
       fill(0,0,100);
       stroke(0, 0, 0);
       strokeWeight(0.84);
-      bx1 = 0; by1 = 0; by2 = 0;
-      while (bx1 < w) {
+      top_left_x = 0; top_left_y = 0; top_right_y = 0;
+      while (top_left_x < w) {
         let x = pad_max;// (pad_min + fxrand() * pad_max);
-        bx2 = bx1 + x;
-        bx3 = bx2 - 0.5 * x;
-        by3 = by1 + (pad_min + 0.5 * pad_max);
-        console.log("HI! bx1 " + bx1 + " by1 " + by1 + " bx2 " + bx2 + " by2 " + by2 + " bx3 " + bx3 + " by3 " + by3);
-        triangle(bx1, by1, bx2, by2, bx3, by3);
-        bx1 = bx2;
-        prev_row.push([bx3, by3]);
+        top_right_x = top_left_x + x;
+        bottom_x = top_right_x - 0.5 * x;
+        bottom_y = top_left_y + (pad_min + 0.5 * pad_max);
+        console.log("HI! bx1 " + top_left_x + " by1 " + top_left_y + " bx2 " + top_right_x + " by2 " + top_right_y + " bx3 " + bottom_x + " by3 " + bottom_y);
+        triangle(top_left_x, top_left_y, top_right_x, top_right_y, bottom_x, bottom_y);
+        top_left_x = top_right_x;
+        prev_row.push([bottom_x, bottom_y]);
         i++;
       }
-      while (by3 < 200) {
+      while (bottom_y < 200) {
         i=0;
-        bx1 = 0;
-        by1 = prev_row[0][1]; 
+        top_left_x = 0;
+        top_left_y = prev_row[0][1]; 
         while (i < prev_row.length) {
-          bx2 = prev_row[i][0];
-          by2 = prev_row[i][1]; 
+          top_right_x = prev_row[i][0];
+          top_right_y = prev_row[i][1]; 
           let x = (pad_min + 0.5 * pad_max);
-          bx3 = bx2 - 0.5 * x;
-          by3 = by1 + (pad_min + 0.5 * pad_max);
-          console.log("HI! bx1 " + bx1 + " by1 " + by1 + " bx2 " + bx2 + " by2 " + by2 + " bx3 " + bx3 + " by3 " + by3);
-          triangle(bx1, by1, bx2, by2, bx3, by3);
-          bx1 = bx2;
-          by1 = by2;
-          tmp_row.push([bx3, by3]);
+          bottom_x = top_right_x - 0.5 * x;
+          bottom_y = top_left_y + (pad_min + 0.5 * pad_max);
+          console.log("HI! bx1 " + top_left_x + " by1 " + top_left_y + " bx2 " + top_right_x + " by2 " + top_right_y + " bx3 " + bottom_x + " by3 " + bottom_y);
+          triangle(top_left_x, top_left_y, top_right_x, top_right_y, bottom_x, bottom_y);
+          top_left_x = top_right_x;
+          top_left_y = top_right_y;
+          tmp_row.push([bottom_x, bottom_y]);
           i++;
         }
-
+        let x = pad_max;
+        triangle(top_left_x, top_left_y, top_left_x+x, top_right_y, (top_left_x+x - 0.5 * x), bottom_y);
+        tmp_row.push([(top_left_x+x - 0.5 * x), bottom_y])
         prev_row=tmp_row;
         tmp_row=[];
       }
