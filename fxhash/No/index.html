@@ -70,7 +70,7 @@
       stroke(255)
       strokeWeight(2)
       noFill();
-      frameRate(1);
+     // frameRate(1);
 
       window.$fxhashFeatures = {
       }
@@ -85,8 +85,8 @@
       xtxt += 350
       draw_letter("O")
 
-      noLoop();
-      save("no_wave.png")
+      //noLoop();
+      //save("no_wave.png")
       //offangle+=PI/10; rad=fxrand()*14+1
       //xtxt++;
       if (frameCount == 378) {
@@ -131,9 +131,10 @@
     let prev_row = [];
     let tmp_row = [];
     function back() {
-      let pad_min = 17;
-      let pad_max = 21;
+      let pad_min = 11;
+      let pad_max = 17;
       let i = 0;
+      prev_row = [];
       fill(0,0,100);
       stroke(0, 0, 0);
       strokeWeight(0.84);
