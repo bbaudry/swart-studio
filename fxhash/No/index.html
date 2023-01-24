@@ -86,7 +86,7 @@
       draw_letter("O")
 
       noLoop();
-      save("no.png")
+      save("no_wave.png")
       //offangle+=PI/10; rad=fxrand()*14+1
       //xtxt++;
       if (frameCount == 378) {
@@ -141,8 +141,8 @@
       while (top_left_x < w) {
         let x = pad_max;// (pad_min + fxrand() * pad_max);
         top_right_x = top_left_x + x;
-        bottom_x = top_right_x - 0.5 * x;
-        bottom_y = top_left_y + (pad_min + 0.5 * pad_max);
+        bottom_x = top_left_x+fxrand()*(top_right_x - top_left_x);//top_right_x - 0.5 * x;
+        bottom_y = top_left_y + (pad_min + fxrand() * pad_max);//top_left_y + (pad_min + 0.5 * pad_max);
         console.log("HI! bx1 " + top_left_x + " by1 " + top_left_y + " bx2 " + top_right_x + " by2 " + top_right_y + " bx3 " + bottom_x + " by3 " + bottom_y);
         triangle(top_left_x, top_left_y, top_right_x, top_right_y, bottom_x, bottom_y);
         top_left_x = top_right_x;
