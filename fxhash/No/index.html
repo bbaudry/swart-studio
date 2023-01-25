@@ -43,7 +43,6 @@
     var h = 800;//document.documentElement.clientHeight;//width of window that is available for drawing
     var bowie;
     var pts;
-    var xtxt;
     var offangle;
     var rad;
     var x3
@@ -64,7 +63,6 @@
       colorMode(HSB, 360, 100, 100, 250);
       background(0, 0, 0);
       textFont(bowie);
-      xtxt = 10;
       offangle = PI / 2;
       rad = 49;
       stroke(255)
@@ -79,22 +77,15 @@
     function draw() {
       background(0, 0, 0);
       strokeWeight(fxrand() * 0.42 + 0.42);
-      back()
-      xtxt = 10;
-      draw_letter("N")
-      xtxt += 350
-      draw_letter("O")
-
-      //noLoop();
-      //save("no_wave.png")
-      //offangle+=PI/10; rad=fxrand()*14+1
-      //xtxt++;
+      back_with_triangles()
+      draw_letter_triangle("N",10)
+      draw_letter_triangle("O",360)
       if (frameCount == 378) {
         fxpreview();
       }
     }
 
-    function draw_letter(letter) {
+    function draw_letter_triangle(letter,xtxt) {
       let density = fxrand() * 0.03 + 0.08;
       pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
         sampleFactor: density,
@@ -108,14 +99,14 @@
       for (let i = 1; i < pts.length - 1; i++) {
         let p1 = pts[i];
         let p2 = pts[i + 1]
-        triangle_in(letter, p1, p2)
+        triangle_inwards_letter(letter, p1, p2)
         if (i == pts.length - 2) { fill(0, 100, 100); noStroke();}
         if (i == 1) { fill(180, 100, 100); noStroke();}
         if (i == 2) { fill(90, 100, 100); noStroke();}
       }
     }
 
-    function triangle_in(letter, p1, p2) {
+    function triangle_inwards_letter(letter, p1, p2) {
       fill(0, 0, 0);
       stroke(0, 0, 100);
       let vera = (-2 * fxrand() + 1) * PI / 4;
@@ -127,18 +118,18 @@
       y3 = y4;
     }
 
-    let top_left_x, top_right_x, bottom_x, top_left_y, top_right_y, bottom_y;
-    let prev_row = [];
-    let tmp_row = [];
-    function back() {
+    function back_with_triangles() {
       let pad_min = 11;
       let pad_max = 17;
       let i = 0;
-      prev_row = [];
+      let top_left_x, top_right_x, bottom_x, top_left_y, top_right_y, bottom_y;
+      let prev_row = [];
+      let tmp_row = [];
       fill(0,0,100);
       stroke(0, 0, 0);
       strokeWeight(0.84);
       top_left_x = 0; top_left_y = 0; top_right_y = 0;
+      //start with one rwo of triangles, top edge on y=0, points down, coord of bottom vertex random and saved in prev_row
       while (top_left_x < w) {
         let x = pad_max;// (pad_min + fxrand() * pad_max);
         top_right_x = top_left_x + x;
@@ -149,6 +140,9 @@
         prev_row.push([bottom_x, bottom_y]);
         i++;
       }
+      //double loop to fill all rows until bottom of frame
+      //for each row, reuse the vertices stored in previous row and generate coord of bottom vertices randomly, save in tmp_row
+      //once a row is finished, pass tmp_row as prev_row and empty tmp_row
       while (bottom_y < h) {
         i=0;
         top_left_x = 0;
