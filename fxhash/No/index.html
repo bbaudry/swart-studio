@@ -73,7 +73,8 @@
     function draw() {
       background(0, 0, 0);
       strokeWeight(fxrand() * 0.42 + 0.42);
-      back_with_triangles()
+      //back_with_triangles()
+      back_with_quads()
       draw_letter_triangle("N",10)
       draw_letter_triangle("O",360)
 
@@ -107,7 +108,7 @@
     function triangle_inwards_letter(letter, p1, p2) {
       fill(0, 0, 0);
       stroke(0, 0, 100);
-      let vera = (-2 * fxrand() + 1) * PI / 4;
+      let vera = (-2 * fxrand() + 1) * PI ;
       angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle + vera;
       x4 = p1.x + (p2.x - p1.x) + rad * cos(angle);
       y4 = p1.y + (p2.y - p1.y) + rad * sin(angle);
@@ -117,14 +118,21 @@
     }
 
     function back_with_quads() {
-      let padding = w/25;
-      let x1=0
+      let padding = w/10;
+      let x1=0;
       let y1=0;
+      let f=17;
       while (y1<h){
         while (x1<w){
-          rect(x1+fxrand(),y1=fxrand(),padding+fxrand(),padding+fxrand())
+          if (fxrand()<0.05){stroke(0,100,100);}
+          else{noStroke();}
+          if (fxrand()<0.5){      fill(0,0,100);}
+          else{      fill(0,0,0);}
+          rect(x1+fxrand()*f,y1+fxrand()*f,padding+fxrand()*f,padding+fxrand()*f)
           x1+=padding;
         }
+        x1=0;
+        y1+=padding;
       }
     }
 
