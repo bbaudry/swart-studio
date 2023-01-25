@@ -65,10 +65,6 @@
       textFont(bowie);
       offangle = PI / 2;
       rad = 49;
-      stroke(255)
-      strokeWeight(2)
-      noFill();
-     // frameRate(1);
 
       window.$fxhashFeatures = {
       }
@@ -80,6 +76,8 @@
       back_with_triangles()
       draw_letter_triangle("N",10)
       draw_letter_triangle("O",360)
+
+     // if (frameCount==11){save("no_with_back.png")}
       if (frameCount == 378) {
         fxpreview();
       }
@@ -116,6 +114,18 @@
       triangle(p2.x, p2.y, x3, y3, x4, y4);
       x3 = x4;
       y3 = y4;
+    }
+
+    function back_with_quads() {
+      let padding = w/25;
+      let x1=0
+      let y1=0;
+      while (y1<h){
+        while (x1<w){
+          rect(x1+fxrand(),y1=fxrand(),padding+fxrand(),padding+fxrand())
+          x1+=padding;
+        }
+      }
     }
 
     function back_with_triangles() {
