@@ -71,6 +71,7 @@
       strokeWeight(fxrand() * 0.42 + 0.42);
       //back_with_triangles()
       //back_with_quads()
+      back_with_circles(w/2,h/2,w,w)
       //draw_letter_triangle("N",10)
       //draw_letter_triangle("O",360)
       draw_letter_circles("N",10)
@@ -91,8 +92,8 @@
       for (let i = 1; i < pts.length - 1; i++) {
         let p1 = pts[i];
         //let p2 = pts[i + 1]
-        if (i%2==0){fill(50,100,100);}
-        else {fill(320,100,100);}
+        if (fxrand()<0.5){fill(0,0,100);}
+        else {fill(0,0,0);}
         noStroke();
 //        noFill();stroke(50,100,100);
         ellipse(p1.x,p1.y,84,84);
@@ -130,6 +131,20 @@
       triangle(p2.x, p2.y, x3, y3, x4, y4);
       x3 = x4;
       y3 = y4;
+    }
+
+    function back_with_circles(cx,cy,rad) {
+      if (cx>w/10 || cx<w-w/10){
+        if (fxrand()<0.5) {
+          if (fxrand()<0.5) {fill(0,0,100)}
+          else {fill(0,0,0)}
+          ellipse(cx,cy,rad,rad);
+        }
+        else {
+          back_with_circles(cx/2,cy,rad/2,rad/2);
+          back_with_circles(cx+cx/2,cy,rad/2,rad/2)
+        }
+      }
     }
 
     function back_with_quads() {
