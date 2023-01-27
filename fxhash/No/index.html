@@ -73,15 +73,15 @@
       //back_with_quads()
       fill(0,0,100);
       arc(w/2,h/2,w,w,PI,2*PI);
-      back_with_circles(w/4,h/2,w/2,w/2);
-      back_with_circles(3*w/4,h/2,w/2,w/2);
+      back_with_circles(w/2,h/2,w,w);
+//      back_with_circles(3*w/4,h/2,w/2,w/2);
       draw_arcs()
 
       //draw_letter_triangle("N",10)
       //draw_letter_triangle("O",360)
-      //draw_letter_circles("N",10)
-      //draw_letter_circles("O",360)
-noLoop();
+      draw_letter_circles("N",10)
+      draw_letter_circles("O",360)
+
      // if (frameCount==11){save("no_with_back.png")}
       if (frameCount == 378) {
         fxpreview();
@@ -140,22 +140,23 @@ noLoop();
 
     let cc = []
     let i = 0
-    function back_with_circles(cx,cy,rad,i) {
-      if (i<2){
+    function back_with_circles(cx,cy,rad) {
+      console.log(i)
+      if (rad>w/10){
           if (fxrand()<0.5) {cc.push([cx,cy,rad,100])}
-          else {cc.push([cx,cy,rad,100])}
+          else {cc.push([cx,cy,rad,0])}
           //arc(cx,cy,rad,rad,0,PI);
-          
-          back_with_circles(cx/2,cy,rad/2,i); i++;
           console.log(i+". cx = "+cx+"; now calling with cx/2:"+cx/2)
-          back_with_circles(cx+cx/2,cy,rad/2,i); i++;
+          i++;
+          back_with_circles(cx/2,cy,rad/2); 
+          back_with_circles(cx+cx/2,cy,rad/2); i++;
           console.log(i+". cx = "+cx+"; now calling with cx+cx/2:"+cx+cx/2)
         
       }
     }
 
     function draw_arcs(){
-      console.log("draw")
+      console.log("draw "+cc.length)
       let i=0;
       while(i<cc.length){
           if (fxrand()<0.5) {fill(0,0,100); stroke(0,0,cc[i][3])}
