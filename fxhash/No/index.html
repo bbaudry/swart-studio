@@ -139,15 +139,17 @@ noLoop();
     }
 
     let cc = []
-    function back_with_circles(cx,cy,rad) {
-      if (cx>w/8 && cx<w-w/10){
-        console.log("cx: "+cx)
+    let i = 0
+    function back_with_circles(cx,cy,rad,i) {
+      if (i<2){
           if (fxrand()<0.5) {cc.push([cx,cy,rad,100])}
           else {cc.push([cx,cy,rad,100])}
           //arc(cx,cy,rad,rad,0,PI);
           
-          back_with_circles(cx/2,cy,rad/2,rad/2);
-          back_with_circles(cx+cx/2,cy,rad/2,rad/2)
+          back_with_circles(cx/2,cy,rad/2,i); i++;
+          console.log(i+". cx = "+cx+"; now calling with cx/2:"+cx/2)
+          back_with_circles(cx+cx/2,cy,rad/2,i); i++;
+          console.log(i+". cx = "+cx+"; now calling with cx+cx/2:"+cx+cx/2)
         
       }
     }
