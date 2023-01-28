@@ -71,24 +71,24 @@
       strokeWeight(fxrand() * 0.42 + 0.42);
       //back_with_triangles()
       //back_with_quads()
-      fill(0,0,100);
-      arc(w/2,h/2,w,w,PI,2*PI);
-      back_with_circles(w/2,h/2,w,w);
-//      back_with_circles(3*w/4,h/2,w/2,w/2);
-      draw_arcs()
+      /*fill(0, 0, 100);
+      arc(w / 2, h / 2, w, w, PI, 2 * PI);
+      back_with_circles(w / 2, h / 2, w, w);
+      draw_arcs()*/
+      back_grid_circle()
 
       //draw_letter_triangle("N",10)
       //draw_letter_triangle("O",360)
-      draw_letter_circles("N",10)
-      draw_letter_circles("O",360)
+      //draw_letter_circles("N", 10)
+      //draw_letter_circles("O", 360)
 
-     // if (frameCount==11){save("no_with_back.png")}
+      // if (frameCount==11){save("no_with_back.png")}
       if (frameCount == 378) {
         fxpreview();
       }
     }
 
-    function draw_letter_circles(letter,xtxt) {
+    function draw_letter_circles(letter, xtxt) {
       let density = 0.02;//fxrand() * 0.03 + 0.08;
       pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
         sampleFactor: density,
@@ -97,15 +97,15 @@
       for (let i = 1; i < pts.length - 1; i++) {
         let p1 = pts[i];
         //let p2 = pts[i + 1]
-        if (fxrand()<0.5){fill(0,0,100);}
-        else {fill(0,0,0);}
+        if (fxrand() < 0.5) { fill(0, 0, 100); }
+        else { fill(0, 0, 0); }
         noStroke();
-//        noFill();stroke(50,100,100);
-        ellipse(p1.x,p1.y,84,84);
+        //        noFill();stroke(50,100,100);
+        ellipse(p1.x, p1.y, 84, 84);
       }
     }
 
-    function draw_letter_triangle(letter,xtxt) {
+    function draw_letter_triangle(letter, xtxt) {
       let density = fxrand() * 0.03 + 0.08;
       pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
         sampleFactor: density,
@@ -129,7 +129,7 @@
       fill(0, 0, 0);
       stroke(0, 0, 100);
 
-      let vera = (-2 * fxrand() + 1) * PI / 4 ; //[-PI/4,PI/4]
+      let vera = (-2 * fxrand() + 1) * PI / 4; //[-PI/4,PI/4]
       angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle + vera;
       x4 = p1.x + (p2.x - p1.x) + rad * cos(angle);
       y4 = p1.y + (p2.y - p1.y) + rad * sin(angle);
@@ -138,50 +138,61 @@
       y3 = y4;
     }
 
-    let cc = []
-    let i = 0
-    function back_with_circles(cx,cy,rad) {
-      console.log(i)
-      if (rad>w/10){
-          if (fxrand()<0.5) {cc.push([cx,cy,rad,100])}
-          else {cc.push([cx,cy,rad,0])}
-          //arc(cx,cy,rad,rad,0,PI);
-          console.log(i+". cx = "+cx+"; now calling with cx/2:"+cx/2)
-          i++;
-          back_with_circles(cx/2,cy,rad/2); 
-          back_with_circles(cx+cx/2,cy,rad/2); i++;
-          console.log(i+". cx = "+cx+"; now calling with cx+cx/2:"+cx+cx/2)
-        
+    function back_grid_circle() {
+      let step = w/10;
+      let cx=step/2;
+      let cy=step/2;
+      for (i=0;i<10;i++){
+        for (j=0;j<10;j++){
+          if (fxrand()<0.5){fill(0,0,100);}
+          else {fill(0,0,0);}
+          ellipse(cx,cy,step,step)
+          cx+=step;
+        }
+        cy+=step;
+        cx=step/2;
       }
     }
 
-    function draw_arcs(){
-      console.log("draw "+cc.length)
-      let i=0;
-      while(i<cc.length){
-          if (fxrand()<0.5) {fill(0,0,100); stroke(0,0,cc[i][3])}
-          else {fill(0,0,0);stroke(0,0,cc[i][3])}
-          arc(cc[i][0],cc[i][1],cc[i][2],cc[i][2],0,PI);   
-          i++
-    }             
+    let cc = [] // series of (center-x, center-y, radius, lightness)
+    function back_with_circles(cx, cy, rad) {
+      if (rad > w / 10) {
+        if (fxrand() < 0.5) { cc.push([cx, cy, rad, 100]) }
+        else { cc.push([cx, cy, rad, 0]) }
+        //arc(cx,cy,rad,rad,0,PI);
+        back_with_circles(cx / 2, cy, rad / 2);
+        back_with_circles(cx + cx / 2, cy, rad / 2);
+      }
+    }
+
+    function draw_arcs() {
+      console.log(frameCount + " draw " + cc.length)
+      let i = 0;
+      while (i < cc.length) {
+        if (fxrand() < 0.5) { fill(0, 0, 100); stroke(0, 0, cc[i][3]) }
+        else { fill(0, 0, 0); stroke(0, 0, cc[i][3]) }
+        arc(cc[i][0], cc[i][1], cc[i][2], cc[i][2], 0, PI);
+        i++
+      }
+      cc = []
     }
 
     function back_with_quads() {
-      let padding = w/10;
-      let x1=0;
-      let y1=0;
-      let f=17;
-      while (y1<h){
-        while (x1<w){
-          if (fxrand()<0.05){stroke(0,100,100);}
-          else{noStroke();}
-          if (fxrand()<0.5){      fill(0,0,100);}
-          else{      fill(0,0,0);}
-          rect(x1+fxrand()*f,y1+fxrand()*f,padding+fxrand()*f,padding+fxrand()*f)
-          x1+=padding;
+      let padding = w / 10;
+      let x1 = 0;
+      let y1 = 0;
+      let f = 17;
+      while (y1 < h) {
+        while (x1 < w) {
+          if (fxrand() < 0.05) { stroke(0, 100, 100); }
+          else { noStroke(); }
+          if (fxrand() < 0.5) { fill(0, 0, 100); }
+          else { fill(0, 0, 0); }
+          rect(x1 + fxrand() * f, y1 + fxrand() * f, padding + fxrand() * f, padding + fxrand() * f)
+          x1 += padding;
         }
-        x1=0;
-        y1+=padding;
+        x1 = 0;
+        y1 += padding;
       }
     }
 
@@ -192,7 +203,7 @@
       let top_left_x, top_right_x, bottom_x, top_left_y, top_right_y, bottom_y;
       let prev_row = [];
       let tmp_row = [];
-      fill(0,0,100);
+      fill(0, 0, 100);
       stroke(0, 0, 0);
       strokeWeight(0.84);
       top_left_x = 0; top_left_y = 0; top_right_y = 0;
@@ -200,7 +211,7 @@
       while (top_left_x < w) {
         let x = pad_max;// (pad_min + fxrand() * pad_max);
         top_right_x = top_left_x + x;
-        bottom_x = top_left_x+fxrand()*(top_right_x - top_left_x);
+        bottom_x = top_left_x + fxrand() * (top_right_x - top_left_x);
         bottom_y = top_left_y + (pad_min + fxrand() * pad_max);
         triangle(top_left_x, top_left_y, top_right_x, top_right_y, bottom_x, bottom_y);
         top_left_x = top_right_x;
@@ -211,17 +222,17 @@
       //for each row, reuse the vertices stored in previous row and generate coord of bottom vertices randomly, save in tmp_row
       //once a row is finished, pass tmp_row as prev_row and empty tmp_row
       while (bottom_y < h) {
-        i=0;
+        i = 0;
         top_left_x = 0;
-        top_left_y = prev_row[0][1]; 
+        top_left_y = prev_row[0][1];
         while (i < prev_row.length) {
           top_right_x = prev_row[i][0];
-          top_right_y = prev_row[i][1]; 
+          top_right_y = prev_row[i][1];
           let x = (pad_min + 0.5 * pad_max);
-          bottom_x = top_left_x+fxrand()*(top_right_x - top_left_x);
+          bottom_x = top_left_x + fxrand() * (top_right_x - top_left_x);
           bottom_y = top_left_y + (pad_min + fxrand() * pad_max);
-          if (fxrand()<0.05){      fill(0,100,100);}
-          else {      fill(0,0,100);}
+          if (fxrand() < 0.05) { fill(0, 100, 100); }
+          else { fill(0, 0, 100); }
           triangle(top_left_x, top_left_y, top_right_x, top_right_y, bottom_x, bottom_y);
           top_left_x = top_right_x;
           top_left_y = top_right_y;
@@ -229,10 +240,10 @@
           i++;
         }
         let x = pad_max;
-        triangle(top_left_x, top_left_y, top_left_x+x, top_right_y, (top_left_x+x - 0.5 * x), bottom_y);
-        tmp_row.push([(top_left_x+x - 0.5 * x), bottom_y])
-        prev_row=tmp_row;
-        tmp_row=[];
+        triangle(top_left_x, top_left_y, top_left_x + x, top_right_y, (top_left_x + x - 0.5 * x), bottom_y);
+        tmp_row.push([(top_left_x + x - 0.5 * x), bottom_y])
+        prev_row = tmp_row;
+        tmp_row = [];
       }
     }
 
