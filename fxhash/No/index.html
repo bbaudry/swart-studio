@@ -175,9 +175,9 @@
       let weight = diam/density
       strokeWeight(weight);
       noFill()
-      for(i=0;i<density;i++){
-        let d=diam-(i*weight);
-        if (i%2==0){
+      for(john=0;john<density;john++){
+        let d=diam-(john*weight);
+        if (john%2==0){
           stroke(0,0,0);
           arc(cx,cy,d,d,0,PI);
           stroke(0,0,100);
