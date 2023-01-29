@@ -160,7 +160,7 @@
               circle_stripes_top(cx,cy,step)
               break;
             case 3:
-              //circle_stripes_side(cx,cy,step)
+              circle_stripes_side(cx,cy,step)
               break;
           }
           cx+=step;
@@ -171,11 +171,12 @@
     }
 
     function circle_stripes_top(cx,cy,diam){
-      let density = 5
+      let density = 7
       let weight = diam/density
       strokeWeight(weight);
+      strokeCap(SQUARE);
       noFill()
-      for(john=0;john<density;john++){
+      for(john=1;john<density;john++){
         let d=diam-(john*weight);
         if (john%2==0){
           stroke(0,0,0);
@@ -192,22 +193,24 @@
       }
     }
     function circle_stripes_side(cx,cy,diam){
-      let density = 5
+      let density = 7
       let weight = diam/density
       strokeWeight(weight);
+      strokeCap(SQUARE);
       noFill()
-      for(i=0;i<density;i++){
-        if (i%2==0){
+      for(john=1;john<density;john++){
+        let d=diam-(john*weight);
+        if (john%2==0){
           stroke(0,0,0);
-          arc(cx,cy,diam-(i*weight),diam-(i*weight),1.5*PI,0.5*PI);
+          arc(cx,cy,d,d,1.5*PI,0.5*PI);
           stroke(0,0,100);
-          arc(cx,cy,diam-(i*weight),diam-(i*weight),0.5*PI,1.5*PI);
+          arc(cx,cy,d,d,0.5*PI,1.5*PI);
         }
         else{
           stroke(0,0,100);
-          arc(cx,cy,diam-(i*weight),diam-(i*weight),1.5*PI,0.5*PI);
+          arc(cx,cy,d,d,1.5*PI,0.5*PI);
           stroke(0,0,0);
-          arc(cx,cy,diam-(i*weight),diam-(i*weight),0.5*PI,1.5*PI);
+          arc(cx,cy,d,d,0.5*PI,1.5*PI);
         }
       }
     }
