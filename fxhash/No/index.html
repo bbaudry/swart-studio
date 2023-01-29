@@ -144,13 +144,71 @@
       let cy=step/2;
       for (i=0;i<10;i++){
         for (j=0;j<10;j++){
-          if (fxrand()<0.5){fill(0,0,100);}
-          else {fill(0,0,0);}
-          ellipse(cx,cy,step,step)
+          let c = Math.floor(fxrand()*4);
+          switch (c) {
+            case 0:
+              noStroke();
+              fill(0,0,100);
+              ellipse(cx,cy,step,step)
+              break;
+            case 1:
+              noStroke();
+              fill(0,0,0);
+              ellipse(cx,cy,step,step)
+              break;
+            case 2:
+              circle_stripes_top(cx,cy,step)
+              break;
+            case 3:
+              //circle_stripes_side(cx,cy,step)
+              break;
+          }
           cx+=step;
         }
         cy+=step;
         cx=step/2;
+      }
+    }
+
+    function circle_stripes_top(cx,cy,diam){
+      let density = 5
+      let weight = diam/density
+      strokeWeight(weight);
+      noFill()
+      for(i=0;i<density;i++){
+        let d=diam-(i*weight);
+        if (i%2==0){
+          stroke(0,0,0);
+          arc(cx,cy,d,d,0,PI);
+          stroke(0,0,100);
+          arc(cx,cy,d,d,PI,2*PI);
+        }
+        else{
+          stroke(0,0,100);
+          arc(cx,cy,d,d,0,PI);
+          stroke(0,0,0);
+          arc(cx,cy,d,d,PI,2*PI);
+        }
+      }
+    }
+    function circle_stripes_side(cx,cy,diam){
+      let density = 5
+      let weight = diam/density
+      strokeWeight(weight);
+      noFill()
+      for(i=0;i<density;i++){
+        if (i%2==0){
+          stroke(0,0,0);
+          arc(cx,cy,diam-(i*weight),diam-(i*weight),1.5*PI,0.5*PI);
+          stroke(0,0,100);
+          arc(cx,cy,diam-(i*weight),diam-(i*weight),0.5*PI,1.5*PI);
+        }
+        else{
+          stroke(0,0,100);
+          arc(cx,cy,diam-(i*weight),diam-(i*weight),1.5*PI,0.5*PI);
+          stroke(0,0,0);
+          arc(cx,cy,diam-(i*weight),diam-(i*weight),0.5*PI,1.5*PI);
+        }
       }
     }
 
