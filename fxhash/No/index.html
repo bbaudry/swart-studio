@@ -89,19 +89,18 @@
     }
 
     function draw_letter_circles(letter, xtxt) {
-      let density = 0.02;//fxrand() * 0.03 + 0.08;
+      let pix_density = 0.02;//fxrand() * 0.03 + 0.08;
+      let pix_diam = 84;
       pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
-        sampleFactor: density,
+        sampleFactor: pix_density,
         simplifyThreshold: 0
       })
       for (let i = 1; i < pts.length - 1; i++) {
         let p1 = pts[i];
-        //let p2 = pts[i + 1]
         if (fxrand() < 0.5) { fill(0, 0, 100); }
         else { fill(0, 0, 0); }
         noStroke();
-        //        noFill();stroke(50,100,100);
-        ellipse(p1.x, p1.y, 84, 84);
+        ellipse(p1.x, p1.y, pix_diam, pix_diam);
       }
     }
 
@@ -144,7 +143,7 @@
       let cy=step/2;
       for (i=0;i<10;i++){
         for (j=0;j<10;j++){
-          let c = Math.floor(fxrand()*4);
+          let c = Math.floor(fxrand()*3);
           switch (c) {
             case 0:
               noStroke();
@@ -160,7 +159,7 @@
               circle_stripes_top(cx,cy,step)
               break;
             case 3:
-              circle_stripes_side(cx,cy,step)
+              //circle_stripes_side(cx,cy,step)
               break;
           }
           cx+=step;
@@ -171,7 +170,11 @@
     }
 
     function circle_stripes_top(cx,cy,diam){
-      let density = 7
+      let density = 4+Math.floor(fxrand()*4); // nb of rings inside the circle
+      let coef = [0,0.5,1,1.5];
+      let lilla = coef[Math.floor(fxrand()*coef.length)];
+      let start_angle = lilla*PI; //O*PI or O.5*PI, or 1*PI or 1.5*PI
+      let end_angle = start_angle + PI;
       let weight = diam/density
       strokeWeight(weight);
       strokeCap(SQUARE);
@@ -180,15 +183,15 @@
         let d=diam-(john*weight);
         if (john%2==0){
           stroke(0,0,0);
-          arc(cx,cy,d,d,0,PI);
+          arc(cx,cy,d,d,start_angle,end_angle);
           stroke(0,0,100);
-          arc(cx,cy,d,d,PI,2*PI);
+          arc(cx,cy,d,d,start_angle+PI,end_angle+PI);
         }
         else{
           stroke(0,0,100);
-          arc(cx,cy,d,d,0,PI);
+          arc(cx,cy,d,d,start_angle,end_angle);
           stroke(0,0,0);
-          arc(cx,cy,d,d,PI,2*PI);
+          arc(cx,cy,d,d,start_angle+PI,end_angle+PI);
         }
       }
     }
