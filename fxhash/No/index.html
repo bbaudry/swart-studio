@@ -139,17 +139,17 @@
     }
 
     function back_grid_circle(x,y,step) {
-      let cx=x;
-      let cy=y;
       let sub=step/2;
+      let cx=x+sub;
+      let cy=y+sub;
       for (ryoji = 0; ryoji<2; ryoji++){
-        cx += ryoji*step+sub;
+        cx += ryoji*step;
         for (ikeda = 0; ikeda<2; ikeda++){
-          cy += ikeda*step+sub;
+          cy += ikeda*step;
           circle_sections(cx,cy,step);
           console.log("cx: "+cx+" cy: "+cy+" ryoji: "+ryoji+" ikeda: "+ikeda+" step: "+step+" sub: "+sub+" ikedastep: "+ikeda*step);
         }
-        cy=y;
+        cy=y+sub;
       }
     }
 
