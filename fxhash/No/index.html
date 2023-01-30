@@ -75,12 +75,13 @@
       arc(w / 2, h / 2, w, w, PI, 2 * PI);
       back_with_circles(w / 2, h / 2, w, w);
       draw_arcs()*/
-      back_grid_circle()
+      back_grid_circle(0,0,w/2)
 
       //draw_letter_triangle("N",10)
       //draw_letter_triangle("O",360)
       //draw_letter_circles("N", 10)
       //draw_letter_circles("O", 360)
+      noLoop()
 
       // if (frameCount==11){save("no_with_back.png")}
       if (frameCount == 378) {
@@ -137,36 +138,24 @@
       y3 = y4;
     }
 
-    function back_grid_circle() {
-      let step = w/10;
-      let cx=step/2;
-      let cy=step/2;
-      for (i=0;i<10;i++){
-        for (j=0;j<10;j++){
-          let c = Math.floor(fxrand()*3);
-          switch (c) {
-            case 0:
-              noStroke();
-              fill(0,0,100);
-              ellipse(cx,cy,step,step)
-              break;
-            case 1:
-              circle_sections(cx,cy,step)
-              break;
-            case 2:
-              circle_stripes_side(cx,cy,step)
-              break;
-          }
-          cx+=step;
+    function back_grid_circle(x,y,step) {
+      let cx=x;
+      let cy=y;
+      let sub=step/2;
+      for (ryoji = 0; ryoji<2; ryoji++){
+        cx += ryoji*step+sub;
+        for (ikeda = 0; ikeda<2; ikeda++){
+          cy += ikeda*step+sub;
+          circle_sections(cx,cy,step);
+          console.log("cx: "+cx+" cy: "+cy+" ryoji: "+ryoji+" ikeda: "+ikeda+" step: "+step+" sub: "+sub+" ikedastep: "+ikeda*step);
         }
-        cy+=step;
-        cx=step/2;
+        cy=y;
       }
     }
 
     function circle_sections(cx,cy,diam){
-      let density = 2 + Math.floor(fxrand()*9); // nb of rings inside the circle
-      let sections = 2 + Math.floor(fxrand()*9);;
+      let density = 2 + Math.floor(fxrand()*11); // nb of rings inside the circle
+      let sections = 2 + Math.floor(fxrand()*11);;
       let start_angle = 0;
       let end_angle = start_angle + 2*PI/sections;
       let weight = diam/density
@@ -174,7 +163,6 @@
       strokeCap(SQUARE);
       noFill()
       for(john=1;john<density;john++){
-        console.log("go john")
         let d=diam-(john*weight);
         for (baldessari = 0; baldessari<sections;baldessari++){
           if ((john+baldessari)%2==0){stroke(0,0,0)}
