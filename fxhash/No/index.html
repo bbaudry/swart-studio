@@ -139,10 +139,10 @@
     }
 
     function back_grid_circle(x,y,step_c_grid) {
-      if (step_c_grid>w/10){
       let sub=step_c_grid/2;
       let cx=x+sub;
       let cy=y+sub;
+      if (step_c_grid>w/10){
       for (ryoji = 0; ryoji<2; ryoji++){
         cx += ryoji*step_c_grid;
         for (ikeda = 0; ikeda<2; ikeda++){
@@ -157,6 +157,19 @@
         }
         cy=y+sub;
       }
+      }
+      else{
+        for (ryoji = 0; ryoji<2; ryoji++){
+        cx += ryoji*step_c_grid;
+        for (ikeda = 0; ikeda<2; ikeda++){
+          cy += ikeda*step_c_grid;
+            circle_sections(cx,cy,step_c_grid);
+          console.log("cx: "+cx+" cy: "+cy+" ryoji: "+ryoji+" ikeda: "+ikeda+" step: "+step_c_grid+" sub: "+sub+" ikedastep: "+ikeda*step_c_grid);
+        }
+        cy=y+sub;
+      }
+
+
       }
     }
 
