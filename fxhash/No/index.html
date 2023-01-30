@@ -151,15 +151,10 @@
               ellipse(cx,cy,step,step)
               break;
             case 1:
-              noStroke();
-              fill(0,0,0);
-              ellipse(cx,cy,step,step)
-              break;
-            case 2:
               circle_sections(cx,cy,step)
               break;
-            case 3:
-              //circle_stripes_side(cx,cy,step)
+            case 2:
+              circle_stripes_side(cx,cy,step)
               break;
           }
           cx+=step;
@@ -170,8 +165,8 @@
     }
 
     function circle_sections(cx,cy,diam){
-      let density = 7; // nb of rings inside the circle
-      let sections = 7;
+      let density = 2 + Math.floor(fxrand()*9); // nb of rings inside the circle
+      let sections = 2 + Math.floor(fxrand()*9);;
       let start_angle = 0;
       let end_angle = start_angle + 2*PI/sections;
       let weight = diam/density
@@ -192,7 +187,7 @@
     }
 
     function circle_stripes(cx,cy,diam){
-      let density = 4 + Math.floor(fxrand()*4); // nb of rings inside the circle
+      let density = 2 + Math.floor(fxrand()*6); // nb of rings inside the circle
       let coef = [0,0.5,1,1.5];
       let lilla = coef[Math.floor(fxrand()*coef.length)];
       let start_angle = lilla*PI; //O*PI or O.5*PI, or 1*PI or 1.5*PI
