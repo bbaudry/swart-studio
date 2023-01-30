@@ -142,13 +142,15 @@
       let sub=step_c_grid/2;
       let cx=x+sub;
       let cy=y+sub;
+      let ryoji, ikeda;
       if (step_c_grid>w/10){
       for (ryoji = 0; ryoji<2; ryoji++){
         cx += ryoji*step_c_grid;
         for (ikeda = 0; ikeda<2; ikeda++){
           cy += ikeda*step_c_grid;
-          if (fxrand()<0.1) {
+          if (fxrand()<0.62) {
             back_grid_circle(x+ryoji*step_c_grid,y+ikeda*step_c_grid,step_c_grid/2)
+            console.log("new x: "+x+ryoji*step_c_grid+" new y: "+y+ikeda*step_c_grid+" ryoji: "+ryoji+" ikeda: "+ikeda+" new step: "+step_c_grid/2);
           }
           else{
             circle_sections(cx,cy,step_c_grid);
