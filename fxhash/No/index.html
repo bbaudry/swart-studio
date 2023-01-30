@@ -79,8 +79,8 @@
 
       //draw_letter_triangle("N",10)
       //draw_letter_triangle("O",360)
-      //draw_letter_circles("N", 10)
-      //draw_letter_circles("O", 360)
+      draw_letter_circles("N", 10)
+      draw_letter_circles("O", 360)
       
 
       //if (frameCount==11){save("circle_stripes.png")}
@@ -91,7 +91,7 @@
 
     function draw_letter_circles(letter, xtxt) {
       let pix_density = 0.02;//fxrand() * 0.03 + 0.08;
-      let pix_diam = 84;
+      let pix_diam = w/15;
       pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
         sampleFactor: pix_density,
         simplifyThreshold: 0
