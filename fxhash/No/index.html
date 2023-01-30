@@ -179,21 +179,14 @@
       strokeCap(SQUARE);
       noFill()
       for(john=1;john<density;john++){
+        console.log("go john")
         let d=diam-(john*weight);
-        if (john%sections==0){
-          stroke(0,0,0);
+        for (baldessari = 0; baldessari<sections;baldessari++){
+          if ((john+baldessari)%2==0){stroke(0,0,0)}
+          else{stroke(0,0,100)}
           arc(cx,cy,d,d,start_angle,end_angle);
           start_angle = end_angle;
-          end_angle = end_angle + 2*PI/sections;
-          stroke(0,0,100);
-          arc(cx,cy,d,d,start_angle,end_angle);
-        }
-        else{
-          stroke(0,0,100);
-          arc(cx,cy,d,d,start_angle,end_angle);
-          end_angle = end_angle + 2*PI/sections;
-          stroke(0,0,0);
-          arc(cx,cy,d,d,start_angle+PI,end_angle+PI);
+          end_angle = start_angle + 2*PI/sections;
         }
       }
     }
