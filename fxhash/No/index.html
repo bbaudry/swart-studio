@@ -77,10 +77,12 @@
       draw_arcs()*/
       back_grid_circle(0,0,w/2);       console.log("top step before invoke: "+w/2);
 
-      //draw_letter_triangle("N",10)
-      //draw_letter_triangle("O",360)
-      draw_letter_circles("N", 10)
-      draw_letter_circles("O", 360)
+      //draw_letter_triangle("N",10, 0.7*h)
+      //draw_letter_triangle("O",360, 0.7*h)
+      draw_letter_circles("C", 10, 0.47 * h)
+      draw_letter_circles("O", 360, 0.47 * h)
+      draw_letter_circles("D", 10, 0.95 * h)
+      draw_letter_circles("E", 460, 0.95 * h)
       
 
       //if (frameCount==11){save("circle_stripes.png")}
@@ -89,18 +91,18 @@
       }
     }
 
-    function draw_letter_circles(letter, xtxt) {
+    function draw_letter_circles(letter, xtxt, ytxt) {
       let pix_density = 0.02;//fxrand() * 0.03 + 0.08;
-      let pix_diam = w/15;
-      pts = bowie.textToPoints(letter, xtxt, 0.7 * h, 555, {
+      let pix_diam = w/11;
+      pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
         sampleFactor: pix_density,
         simplifyThreshold: 0
       })
       for (let i = 1; i < pts.length - 1; i++) {
         let p1 = pts[i];
-        if (fxrand() < 0.5) { fill(0, 0, 100); }
-        else { fill(0, 0, 0); }
-        noStroke();
+        strokeWeight(1+fxrand()*6);
+        if (fxrand() < 0.5) { stroke(0,0,0); fill(0, 0, 100); }
+        else { stroke(0,0,100); fill(0, 0, 0); }
         ellipse(p1.x, p1.y, pix_diam, pix_diam);
       }
     }
