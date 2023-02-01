@@ -18,8 +18,17 @@ public class Birth043 extends PApplet {
     //20 cells for 02
     //80 cells for 08
     int step = 29;
+    float xoff = 13;
+    float yoff = 10;
+
     Random alea = new Random();
     String[] guests = { "Severine", "Peter", "Olga", "Alyona", "Sebastien", "Benoit" };
+    int[][] palette ={{253, 100, 17},{215, 100, 24},{198, 72, 69},{160, 97, 60}};
+    /*253, 100, 17
+     *215, 100, 24
+     *198, 72, 39
+     *160, 97, 40 
+    */
 
     @Override
     public void settings() {
@@ -29,7 +38,7 @@ public class Birth043 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB,360,100,100);
-        background(0,10,100);
+        background(palette[0][0],palette[0][1],palette[0][2]);
         noStroke();
         PFont f = createFont("FreeMono", 43*6, true);
         textFont(f);
@@ -38,21 +47,22 @@ public class Birth043 extends PApplet {
 
     @Override
     public void draw() {
-        background(0,0,0);
+        background(palette[0][0],palette[0][1],palette[0][2]);
            
         int i = alea.nextInt(guests.length);
         String name = guests[i];
         back();
-        stroke(120,10,100);
-        fill(30,100,0);
+        feb();
+        //stroke(120,10,100);
+        fill(palette[2][0],palette[2][1],palette[2][2]);
         text(name, 0, h/2);
         save("Birth043"+name+".png");
         noLoop();        
     }
 
     public void back(){
-        float x = 13;
-        float y = 10;
+        float x = xoff;
+        float y = yoff;
         for (int i = 0; i<52; i++){
             for (int j= 0; j<40; j++){
                 float cx = x+step/2;
@@ -64,9 +74,32 @@ public class Birth043 extends PApplet {
                 draw_ring(cx,cy,diam,hu);
                 y+=step;
             }
-            y=10;
+            y=yoff;
             x+=step;
         }
+    }
+
+    private void feb(){
+        float x = xoff + 7*step;
+        float y = yoff + 5*step;
+        for (int i=0;i<2;i++){
+
+        noStroke();
+        fill(palette[0][0],palette[0][1],palette[0][2]);
+        rect(x,y,step*5,step*2);
+        stroke(300,90,60);
+        line(x,y,x+step*5,y+step*2);
+        line(x,y+step*2,x+step*5,y);
+
+        y+=4*step;
+    }
+/* 
+        noStroke();
+        fill(palette[0][0],palette[0][1],palette[0][2]);
+        rect(x,y,step*5,step*2);
+        stroke(300,90,60);
+        line(x,y,x+step*5,y+step*2);
+        line(x,y+step*2,x+step*5,y);*/
     }
 
     public void draw_ring(float cx, float cy, float diam, float hu){
@@ -74,7 +107,7 @@ public class Birth043 extends PApplet {
         float vera = diam/2/nb;
         strokeWeight(vera);
         noFill();
-        stroke(hu,100,100);
+        stroke(palette[3][0],palette[3][1],palette[3][2]);
         float knob = diam/2;
         while (knob>0){
             ellipse(cx,cy,knob*2,knob*2);
