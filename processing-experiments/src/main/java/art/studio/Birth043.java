@@ -44,7 +44,7 @@ public class Birth043 extends PApplet {
         String name = guests[i];
         back();
         text(name, 0, h/2);
-        //save("Birth043"+name+".png");
+        save("Birth043"+name+".png");
         noLoop();        
     }
 
@@ -56,15 +56,29 @@ public class Birth043 extends PApplet {
                 float cx = x+step/2;
                 float cy = y+step/2;
                 float diam = 7+alea.nextFloat()*(step-7);
-                float hu = alea.nextFloat()*30;
+                float hu = 230+alea.nextFloat()*60;
                 noStroke();
                 fill(hu,100,100);
-                ellipse(cx,cy,diam,diam);
+                draw_ring(cx,cy,diam,hu);
                 y+=step;
             }
             y=10;
             x+=step;
         }
+    }
+
+    public void draw_ring(float cx, float cy, float diam, float hu){
+        int nb = alea.nextInt(4)+1;
+        float vera = diam/2/nb;
+        strokeWeight(vera);
+        noFill();
+        stroke(hu,100,100);
+        float knob = diam/2;
+        while (knob>0){
+            ellipse(cx,cy,knob*2,knob*2);
+            knob-=vera*2;
+        }
+
     }
 
     public static void main(String[] args) {
