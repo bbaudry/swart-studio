@@ -11,8 +11,13 @@ public class Birth043 extends PApplet {
     //pixel = dpi * mm / 25.4 mm
     //w=300*130/25.4=1535
     //h=300*100/25.4=1181
-    int w = 1535;
-    int h = 1181;
+    int w = 1535;//17+50*30+18 / 13+52*29+14
+    int h = 1181;//5+39*30+6 / 10+40*29+11
+    //52*40=2080=1980+100
+    //1980 cells of 29*29
+    //20 cells for 02
+    //80 cells for 08
+    int step = 29;
     Random alea = new Random();
     String[] guests = { "Severine", "Peter", "Olga", "Alyona", "Sebastien", "Benoit" };
 
@@ -37,9 +42,29 @@ public class Birth043 extends PApplet {
         fill(0,100,100);   
         int i = alea.nextInt(guests.length);
         String name = guests[i];
+        back();
         text(name, 0, h/2);
         //save("Birth043"+name+".png");
-        //noLoop();        
+        noLoop();        
+    }
+
+    public void back(){
+        float x = 13;
+        float y = 10;
+        for (int i = 0; i<52; i++){
+            for (int j= 0; j<40; j++){
+                float cx = x+step/2;
+                float cy = y+step/2;
+                float diam = 7+alea.nextFloat()*(step-7);
+                float hu = alea.nextFloat()*30;
+                noStroke();
+                fill(hu,100,100);
+                ellipse(cx,cy,diam,diam);
+                y+=step;
+            }
+            y=10;
+            x+=step;
+        }
     }
 
     public static void main(String[] args) {
