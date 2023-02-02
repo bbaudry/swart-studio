@@ -73,12 +73,9 @@ public class Birth043 extends PApplet {
                 float cx = x + step / 2;
                 float cy = y + step / 2;
                 float diam = 7 + alea.nextFloat() * (step - 7);
-                float hu = 300;// 230+alea.nextFloat()*60;
                 noStroke();
-                fill(hu, 100, 100);
                 stroke(palette[3][0], palette[3][1], palette[3][2]);
-                //grid(cx, cy, 1, step);
-                draw_ring(cx, cy, diam, hu);
+                draw_ring(cx, cy, diam);
                 y += step;
             }
             y = yoff;
@@ -134,7 +131,7 @@ public class Birth043 extends PApplet {
         }
     }
 
-    public void draw_ring(float cx, float cy, float diam, float hu) {
+    public void draw_ring(float cx, float cy, float diam) {
         int density = alea.nextInt(4) + 1;
         float vera = diam / 2 / density;
         strokeWeight(vera);
