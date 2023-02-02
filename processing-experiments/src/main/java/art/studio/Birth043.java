@@ -57,7 +57,7 @@ public class Birth043 extends PApplet {
             background(palette[0][0], palette[0][1], palette[0][2]);
             String name = guests[i];
             back();
-            feb();
+            month02();
             day08();
             //fill(palette[2][0], palette[2][1], palette[2][2]);
             stroke(palette[3][0], palette[3][1], palette[3][2]); strokeWeight(7);
@@ -122,23 +122,40 @@ public class Birth043 extends PApplet {
         y = yoff;
     }
 
-    private void feb() {
+    private void month02() {
         float x = xoff + 10 * step + (alea.nextInt(4) * 8 * step);
         float y = yoff + 15 * step;//5
         for (int i = 0; i < 2; i++) {
-            noStroke();
-            fill(palette[0][0], palette[0][1], palette[0][2]);
-            rect(x, y, step * 5, step * 2);
-            rect(x, y+2*step, step * 3, step);
-            stroke(palette[1][0], palette[1][1], palette[1][2]);
-            grid(x, y, 5, step);
-            grid(x, y + step, 5, step);
-            grid(x, y + 2*step, 3, step);
+            block(x,y,step);
             y += 5 * step;
         }
     }
 
-    private void grid(float x, float y, int iter, float offset) {
+    private void day08() {
+        float x = xoff + 10 * step;
+        float y = yoff + 5 * step;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                block(x,y,step);
+                x += 8 * step;
+            }
+            x = xoff + 10 * step;
+            y += 5 * step;
+        }
+    }
+
+    private void block(float x, float y, float offset) {
+        noStroke();
+        fill(palette[0][0], palette[0][1], palette[0][2]);
+        rect(x, y, offset * 5, offset * 2);
+        rect(x, y+2*offset, offset * 3, offset);
+        stroke(palette[1][0], palette[1][1], palette[1][2]);
+        row(x, y, 5, offset);
+        row(x, y + offset, 5, offset);
+        row(x, y + 2*offset, 3, offset);
+    }    
+
+    private void row(float x, float y, int iter, float offset) {
         for (int i = 0; i < iter; i++) {
             int density = alea.nextInt(4) + 1;
             float vera = offset / density / 2;
@@ -153,26 +170,7 @@ public class Birth043 extends PApplet {
         }
     }
 
-    private void day08() {
-        float x = xoff + 10 * step;
-        float y = yoff + 5 * step;
-        // fill(0,100,100);ellipse(x,y,5,5);
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 4; j++) {
-                noStroke();
-                fill(palette[0][0], palette[0][1], palette[0][2]);
-                rect(x, y, step * 5, step * 2);
-                rect(x, y+2*step, step * 3, step);
-                stroke(palette[1][0], palette[1][1], palette[1][2]);
-                grid(x, y, 5, step);
-                grid(x, y + step, 5, step);
-                grid(x, y + 2*step, 3, step);
-                x += 8 * step;
-            }
-            x = xoff + 10 * step;
-            y += 5 * step;
-        }
-    }
+
 
     public void draw_ring(float cx, float cy, float diam) {
         int density = alea.nextInt(4) + 1;
