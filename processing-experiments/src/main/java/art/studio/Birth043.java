@@ -23,7 +23,8 @@ public class Birth043 extends PApplet {
 
     Random alea = new Random();
     String[] guests = { "Severine", "Peter", "Olga", "Alyona", "Sebastien", "Benoit" };
-    int[][] palette = { { 253, 100, 17 }, { 215, 100, 24 }, { 190, 92, 89 }, { 160, 97, 60 } };
+    //0:background,1:feb and day,2:name, 3:rings
+    int[][] palette = { { 253, 100, 17 }, { 330, 100, 84 }, { 253, 92, 17 }, { 60, 97, 80 } };
     /*
      * 253, 100, 17
      * 215, 100, 24
@@ -90,7 +91,7 @@ public class Birth043 extends PApplet {
             noStroke();
             fill(palette[0][0], palette[0][1], palette[0][2]);
             rect(x, y, step * 5, step * 2);
-            stroke(330, 90, 90);
+            stroke(palette[1][0], palette[1][1], palette[1][2]);
             grid(x, y, 5, step);
             grid(x, y + step, 5, step);
             y += 4 * step;
@@ -121,7 +122,7 @@ public class Birth043 extends PApplet {
                 noStroke();
                 fill(palette[0][0], palette[0][1], palette[0][2]);
                 rect(x, y, step * 5, step * 2);
-                stroke(330, 90, 90);
+                stroke(palette[1][0], palette[1][1], palette[1][2]);
                 grid(x, y, 5, step);
                 grid(x, y + step, 5, step);
                 x += 8 * step;
