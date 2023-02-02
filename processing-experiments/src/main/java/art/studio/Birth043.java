@@ -1,30 +1,32 @@
 /* Metadata {"endless":false, "BW": false, "knobs": "false", "data": false, "interaction": false}*/
 package art.studio;
 
+import java.util.Random;
+
 import processing.core.PApplet;
 import processing.core.PFont;
-import java.util.Random;
 
 public class Birth043 extends PApplet {
     // A2:420 × 594
     // photo:100*130
     // pixel = dpi * mm / 25.4 mm
-    // w=300*130/25.4=1535
+    // w=300*150/25.4=1771
     // h=300*100/25.4=1181
-    int w = 1535;// 13+52*29+14 :: 5*5 27
-    int h = 1181;// 10+40*29+11
-    // 52*40=2080=1980+100
-    // 1980 cells of 29*29
-    // 20 cells for 02
-    // 80 cells for 08
-    int step = 29;
-    float xoff = 13;
-    float yoff = 10;
+    int w = 1771;// 12+38*46*29+11
+    int h = 1771;// 
+    // 46*46=2080=1980+136
+    // 1980 cells of 38*38
+    // 26 cells for 02
+    // 104 cells for 08
+    // 6 empty cells
+    int step = 38;
+    float xoff = 12;
+    float yoff = 12;
 
     Random alea = new Random();
-    String[] guests = { "Severine", "Peter", "Olga", "Alyona", "Sebastien", "Benoit" };
+    String[] guests = { "Séverine", "Peter", "Olga", "Alyona", "Sébastien", "Benoit" };
     //0:background,1:feb and day,2:name, 3:rings
-    int[][] palette = { { 253, 100, 17 }, { 330, 100, 84 }, { 253, 92, 17 }, { 60, 97, 80 } };
+    int[][] palette = { { 253, 100, 17 }, { 330, 100, 84 }, { 15, 92, 89 }, { 60, 97, 100 } };
     /*
      * 253, 100, 17
      * 215, 100, 24
@@ -40,9 +42,9 @@ public class Birth043 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB, 360, 100, 100);
-        background(palette[0][0], palette[0][1], palette[0][2]);
+        background(palette[0][0], palette[0][1], palette[0][2]);//DejaVuSansCondensed-Bold, FreeMonoBold
         noStroke();
-        PFont f = createFont("FreeMono", 43 * 6, true);
+        PFont f = createFont("FreeMonoBold", 43 * 6, true);
         textFont(f);
         fill(50, 100, 100);
     }
@@ -51,14 +53,18 @@ public class Birth043 extends PApplet {
 
     @Override
     public void draw() {
-        if (i < guests.length) {
+        if (i < guests.length) {//guests.length
             background(palette[0][0], palette[0][1], palette[0][2]);
             String name = guests[i];
             back();
             feb();
             day08();
-            fill(palette[2][0], palette[2][1], palette[2][2]);
-            text(name, 0, (float) 0.6 * h);
+            //fill(palette[2][0], palette[2][1], palette[2][2]);
+            stroke(palette[3][0], palette[3][1], palette[3][2]); strokeWeight(7);
+            fill(0,0,100);
+            text(name, xoff+step, 33*step);
+            fill(palette[0][0], palette[0][1], palette[0][2]);
+            text(name, xoff+step+3, 33*step-3);
             save("Birth043" + name + ".png");
             i++;
         } else {
@@ -69,8 +75,8 @@ public class Birth043 extends PApplet {
     public void back() {
         float x = xoff;
         float y = yoff;
-        for (int i = 0; i < 52; i++) {
-            for (int j = 0; j < 40; j++) {
+        for (int i = 0; i < 43; i++) {
+            for (int j = 0; j < 46; j++) {
                 float cx = x + step / 2;
                 float cy = y + step / 2;
                 float diam = 7 + alea.nextFloat() * (step - 7);
@@ -82,19 +88,53 @@ public class Birth043 extends PApplet {
             y = yoff;
             x += step;
         }
+        for (int j = 0; j < 45; j++) {
+            float cx = x + step / 2;
+            float cy = y + step / 2;
+            float diam = 7 + alea.nextFloat() * (step - 7);
+            noStroke();
+            stroke(palette[3][0], palette[3][1], palette[3][2]);
+            draw_ring(cx, cy, diam);
+            y += step;
+        }
+        y = yoff;
+        x += step;
+        for (int j = 0; j < 44; j++) {
+            float cx = x + step / 2;
+            float cy = y + step / 2;
+            float diam = 7 + alea.nextFloat() * (step - 7);
+            noStroke();
+            stroke(palette[3][0], palette[3][1], palette[3][2]);
+            draw_ring(cx, cy, diam);
+            y += step;
+        }
+        y = yoff;
+        x += step;
+        for (int j = 0; j < 43; j++) {
+            float cx = x + step / 2;
+            float cy = y + step / 2;
+            float diam = 7 + alea.nextFloat() * (step - 7);
+            noStroke();
+            stroke(palette[3][0], palette[3][1], palette[3][2]);
+            draw_ring(cx, cy, diam);
+            y += step;
+        }
+        y = yoff;
     }
 
     private void feb() {
-        float x = xoff + 4 * step;
-        float y = yoff + 5 * step;
+        float x = xoff + 10 * step + (alea.nextInt(4) * 8 * step);
+        float y = yoff + 15 * step;//5
         for (int i = 0; i < 2; i++) {
             noStroke();
             fill(palette[0][0], palette[0][1], palette[0][2]);
             rect(x, y, step * 5, step * 2);
+            rect(x, y+2*step, step * 3, step);
             stroke(palette[1][0], palette[1][1], palette[1][2]);
             grid(x, y, 5, step);
             grid(x, y + step, 5, step);
-            y += 4 * step;
+            grid(x, y + 2*step, 3, step);
+            y += 5 * step;
         }
     }
 
@@ -114,7 +154,7 @@ public class Birth043 extends PApplet {
     }
 
     private void day08() {
-        float x = xoff + 19 * step;
+        float x = xoff + 10 * step;
         float y = yoff + 5 * step;
         // fill(0,100,100);ellipse(x,y,5,5);
         for (int i = 0; i < 2; i++) {
@@ -122,13 +162,15 @@ public class Birth043 extends PApplet {
                 noStroke();
                 fill(palette[0][0], palette[0][1], palette[0][2]);
                 rect(x, y, step * 5, step * 2);
+                rect(x, y+2*step, step * 3, step);
                 stroke(palette[1][0], palette[1][1], palette[1][2]);
                 grid(x, y, 5, step);
                 grid(x, y + step, 5, step);
+                grid(x, y + 2*step, 3, step);
                 x += 8 * step;
             }
-            x = xoff + 19 * step;
-            y += 4 * step;
+            x = xoff + 10 * step;
+            y += 5 * step;
         }
     }
 
