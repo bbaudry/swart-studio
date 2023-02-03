@@ -42,13 +42,9 @@
     var w = 800;//document.documentElement.clientWidth;//width of window that is available for drawing
     var h = 800;//document.documentElement.clientHeight;//width of window that is available for drawing
     var bowie;
-    var pts;
-    var x3
-    var x4
-    var y3
-    var y4
-    var angle
-    var letter
+    
+    
+    
 
     function preload() {
       //bowie=loadFont("./fonts/FreeMono.ttf");
@@ -94,7 +90,7 @@
     function draw_letter_circles(letter, xtxt, ytxt) {
       let pix_density = 0.02;//fxrand() * 0.03 + 0.08;
       let pix_diam = w/11;
-      pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
+      let pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
         sampleFactor: pix_density,
         simplifyThreshold: 0
       })
@@ -109,21 +105,31 @@
 
     function draw_letter_triangle(letter, xtxt, ytxt) {
       let density = fxrand() * 0.03 + 0.08;
-      pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
+      let pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
         sampleFactor: density,
         simplifyThreshold: 0
       })
-      let offangle = PI / 2;;
+      let offangle = PI / 2;
+      let vera = (-2 * fxrand() + 1) * PI / 4; //[-PI/4,PI/4]
       let rad = 49;
-      /*if (pts.length > 1) {
-        angle = atan2(pts[1].y - pts[0].y, pts[1].x - pts[0].x) + offangle;
-        x3 = pts[0].x + (pts[1].x - pts[0].x) + rad * cos(angle)
-        y3 = pts[0].y + (pts[1].y - pts[0].y) + rad * sin(angle)
-      }*/
+      fill(0, 0, 0);
+      stroke(0, 0, 100); strokeWeight(1);
+      let x3,y3,x4,y4;
+      let p1 = pts[0];
+      let p2 = pts[0]
+      let angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle + vera;
+      x3 = p1.x + (p2.x - p1.x) + rad * cos(angle);
+      y3 = p1.y + (p2.y - p1.y) + rad * sin(angle);
       for (let i = 1; i < pts.length - 1; i++) {
-        let p1 = pts[i];
-        let p2 = pts[i + 1]
-        triangle_inwards_letter(letter, p1, p2, offangle, rad)
+        p1 = pts[i];
+        p2 = pts[i + 1]
+        vera = (-2 * fxrand() + 1) * PI / 4;
+        angle = atan2(p2.y - p1.y, p2.x - p1.x) + offangle + vera;
+        x4 = p1.x + (p2.x - p1.x) + rad * cos(angle);
+        y4 = p1.y + (p2.y - p1.y) + rad * sin(angle);
+        triangle(p2.x, p2.y, x3, y3, x4, y4);
+        x3 = x4;
+        y3 = y4;
       }
     }
 
