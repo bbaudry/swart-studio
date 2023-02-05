@@ -53,7 +53,7 @@ public class Birth043 extends PApplet {
 
     @Override
     public void draw() {
-        if (i < guests.length) {//guests.length
+        if (i < 1) {//guests.length
             background(palette[0][0], palette[0][1], palette[0][2]);
             String name = guests[i];
             back();
@@ -62,10 +62,10 @@ public class Birth043 extends PApplet {
             //fill(palette[2][0], palette[2][1], palette[2][2]);
             stroke(palette[3][0], palette[3][1], palette[3][2]); strokeWeight(7);
             fill(0,0,100);
-            text(name, xoff+step, 33*step);
+            //text(name, xoff+step, 33*step);
             fill(palette[0][0], palette[0][1], palette[0][2]);
-            text(name, xoff+step+3, 33*step-3);
-            save("Birth043" + name + ".png");
+            //text(name, xoff+step+3, 33*step-3);
+            save("Birth043.png");
             i++;
         } else {
             noLoop();
