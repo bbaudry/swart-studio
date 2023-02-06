@@ -62,6 +62,7 @@
         "john": john(fxrand()),
         "bright": sparkle(fxrand())
       }
+      console.log("brigth: "+bright);
     }
 
     let back, bright;
@@ -103,8 +104,8 @@
     }
 
     function draw_letter_circles(letter, xtxt, ytxt) {
-      let pix_density = 0.02;//fxrand() * 0.03 + 0.08;
-      let pix_diam = w / 11;
+      let pix_density = fxrand() * 0.03 + 0.08;//0.02;
+      let pix_diam = 63+fxrand()*21;
       let pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
         sampleFactor: pix_density,
         simplifyThreshold: 0
@@ -112,8 +113,14 @@
       for (let i = 1; i < pts.length - 1; i++) {
         let p1 = pts[i];
         strokeWeight(1 + fxrand() * 6);
-        if (fxrand() < 0.5) { stroke(0, 0, 0); fill(0, 0, 100); }
+        if (bright){
+        if (fxrand() < 0.84) { stroke(0, 0, 0); fill(0, 0, 100); }
         else { stroke(0, 0, 100); fill(0, 0, 0); }
+        }
+        else{
+        if (fxrand() < 0.84) { stroke(0, 0, 100); fill(0, 0, 0); }
+        else { stroke(0, 0, 0); fill(0, 0, 100); }
+        }
         ellipse(p1.x, p1.y, pix_diam, pix_diam);
       }
     }
@@ -329,7 +336,10 @@
           bottom_x = top_left_x + fxrand() * (top_right_x - top_left_x);
           bottom_y = top_left_y + (pad_min + fxrand() * pad_max);
           if (fxrand() < 0.05) { fill(0, 100, 100); }
-          else { fill(0, 0, 100); }
+          else {       if(bright){fill(0, 0, 0);stroke(0, 0, 100);}
+      else {fill(0, 0, 100); stroke(0, 0, 0);}
+//fill(0, 0, 100); 
+}
           triangle(top_left_x, top_left_y, top_right_x, top_right_y, bottom_x, bottom_y);
           top_left_x = top_right_x;
           top_left_y = top_right_y;
@@ -343,13 +353,6 @@
         tmp_row = [];
       }
     }
-
-    /* function windowResized() {
-       w = document.documentElement.clientWidth;//width of window that is available for drawing
-       h = document.documentElement.clientHeight;//width of window that is available for drawing
-       resizeCanvas(windowWidth, windowHeight);
-     }*/
-
   </script>
 
 </body>
