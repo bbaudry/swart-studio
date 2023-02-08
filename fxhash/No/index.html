@@ -68,21 +68,22 @@
     let back, bright;
 
     function john(r) { // controls the color of background
-      if (r > 0.17) { back = "triangles"; return "baldessari" }
+      if (r > 0.27) { back = "triangles"; return "baldessari" }
       else { back = "circles"; return "coltrane" }
     }
 
     function sparkle(r) { // controls the color of background
-      if (r > 0.17) { bright = true; return "solar" }
+      if (r > 0.47) { bright = true; return "solar" }
       else { bright = false; return "spatial" }
     }
 
     function draw() {
       if (bright) { background(0, 0, 100); }
-      { background(0, 0, 0); }
+      else { background(0, 0, 0); }
+      
       strokeWeight(fxrand() * 0.42 + 0.42);
       if (back=="triangles"){back_with_triangles();}
-      if (back=="circles") {back_grid_circle(0,0,w/2);}
+      if (back=="circles") {back_grid_circle(0,0,w/2);console.log("bright "+bright)}
       //back_with_quads()
       /*fill(0, 0, 100);
       arc(w / 2, h / 2, w, w, PI, 2 * PI);
@@ -97,11 +98,13 @@
       draw_letter_circles("D", 10, 0.95 * h)
       draw_letter_circles("E", 460, 0.95 * h)
 
+      noLoop();
+      fxpreview();
 
-      if (frameCount==7){save("circle_triangles"+frameCount+".png")}
+      /*if (frameCount==7){save("circle_triangles"+frameCount+".png")}
       if (frameCount == 378) {
         fxpreview();
-      }
+      }*/
     }
 
     function draw_letter_circles(letter, xtxt, ytxt) {
