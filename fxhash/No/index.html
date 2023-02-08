@@ -60,16 +60,17 @@
       frameRate(1)
       window.$fxhashFeatures = {
         "john": john(fxrand()),
-        "sparkle": sparkle(fxrand())
+        "sparkle": sparkle(fxrand()),
+        "typo": typo(fxrand())
       }
       console.log("brigth: "+bright);
     }
 
-    let back, bright;
+    let backShape, typoShape, bright;
 
     function john(r) { // controls the color of background
-      if (r > 0.27) { back = "triangles"; return "baldessari" }
-      else { back = "circles"; return "coltrane" }
+      if (r > 0.27) { backShape = "triangles"; return "baldessari" }
+      else { backShape = "circles"; return "coltrane" }
     }
 
     function sparkle(r) { // controls the color of background
@@ -77,13 +78,18 @@
       else { bright = false; return "spatial" }
     }
 
+    function typo(r) { // controls the color of background
+      if (r > 0.27) { typoShape = "triangles"; return "triangles" }
+      else { typoShape = "circles"; return "circles" }
+    }
+
     function draw() {
       if (bright) { background(0, 0, 100); }
       else { background(0, 0, 0); }
       
       strokeWeight(fxrand() * 0.42 + 0.42);
-      if (back=="triangles"){back_with_triangles();}
-      if (back=="circles") {back_grid_circle(0,0,w/2);console.log("bright "+bright)}
+      if (backShape=="triangles"){back_with_triangles();}
+      if (backShape=="circles") {back_grid_circle(0,0,w/2);console.log("bright "+bright)}
       //back_with_quads()
       /*fill(0, 0, 100);
       arc(w / 2, h / 2, w, w, PI, 2 * PI);
@@ -93,10 +99,18 @@
 
       //draw_letter_triangle("N",10, 0.7*h)
       //draw_letter_triangle("O",360, 0.7*h)
+      if (backShape=="triangles"){
+        draw_letter_triangle("C", 10, 0.47 * h)
+      draw_letter_triangle("O", 360, 0.47 * h)
+      draw_letter_triangle("D", 10, 0.95 * h)
+      draw_letter_triangle("E", 460, 0.95 * h)
+      }
+      if (backShape=="circles"){
       draw_letter_circles("C", 10, 0.47 * h)
       draw_letter_circles("O", 360, 0.47 * h)
       draw_letter_circles("D", 10, 0.95 * h)
       draw_letter_circles("E", 460, 0.95 * h)
+      }
 
       noLoop();
       fxpreview();
