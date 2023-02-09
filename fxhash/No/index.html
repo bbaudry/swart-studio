@@ -47,7 +47,6 @@
 
 
     function preload() {
-      //bowie=loadFont("./fonts/FreeMono.ttf");
       bowie = loadFont("./fonts/Dyuthi-Regular.ttf");
 
     }
@@ -63,7 +62,7 @@
         "sparkle": sparkle(fxrand()),
         "typo": typo(fxrand())
       }
-      console.log("brigth: "+bright);
+      console.log("brigth: " + bright);
     }
 
     let backShape, typoShape, bright;
@@ -78,7 +77,7 @@
       else { bright = false; return "spatial" }
     }
 
-    function typo(r) { // controls the color of background
+    function typo(r) { // controls the shapes to draw the letters
       if (r > 0.27) { typoShape = "triangles"; return "triangles" }
       else { typoShape = "circles"; return "circles" }
     }
@@ -86,44 +85,33 @@
     function draw() {
       if (bright) { background(0, 0, 100); }
       else { background(0, 0, 0); }
-      
+
       strokeWeight(fxrand() * 0.42 + 0.42);
-      if (backShape=="triangles"){back_with_triangles();}
-      if (backShape=="circles") {back_grid_circle(0,0,w/2);console.log("bright "+bright)}
-      //back_with_quads()
-      /*fill(0, 0, 100);
-      arc(w / 2, h / 2, w, w, PI, 2 * PI);
-      back_with_circles(w / 2, h / 2, w, w);
-      draw_arcs()*/
-      //back_grid_circle(0,0,w/2);       console.log("top step before invoke: "+w/2);
+      if (backShape == "triangles") { back_with_triangles(); }
+      if (backShape == "circles") { back_grid_circle(0, 0, w / 2); console.log("bright " + bright) }
 
       //draw_letter_triangle("N",10, 0.7*h)
       //draw_letter_triangle("O",360, 0.7*h)
-      if (backShape=="triangles"){
+      if (typoShape == "triangles") {
         draw_letter_triangle("C", 10, 0.47 * h)
-      draw_letter_triangle("O", 360, 0.47 * h)
-      draw_letter_triangle("D", 10, 0.95 * h)
-      draw_letter_triangle("E", 460, 0.95 * h)
+        draw_letter_triangle("O", 360, 0.47 * h)
+        draw_letter_triangle("D", 10, 0.95 * h)
+        draw_letter_triangle("E", 460, 0.95 * h)
       }
-      if (backShape=="circles"){
-      draw_letter_circles("C", 10, 0.47 * h)
-      draw_letter_circles("O", 360, 0.47 * h)
-      draw_letter_circles("D", 10, 0.95 * h)
-      draw_letter_circles("E", 460, 0.95 * h)
+      if (typoShape == "circles") {
+        draw_letter_circles("C", 10, 0.47 * h)
+        draw_letter_circles("O", 360, 0.47 * h)
+        draw_letter_circles("D", 10, 0.95 * h)
+        draw_letter_circles("E", 460, 0.95 * h)
       }
 
       noLoop();
       fxpreview();
-
-      /*if (frameCount==7){save("circle_triangles"+frameCount+".png")}
-      if (frameCount == 378) {
-        fxpreview();
-      }*/
     }
 
     function draw_letter_circles(letter, xtxt, ytxt) {
       let pix_density = fxrand() * 0.03 + 0.08;//0.02;
-      let pix_diam = 63+fxrand()*42;
+      let pix_diam = 63 + fxrand() * 42;
       let pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
         sampleFactor: pix_density,
         simplifyThreshold: 0
@@ -131,16 +119,16 @@
       for (let i = 1; i < pts.length - 1; i++) {
         let p1 = pts[i];
         strokeWeight(1 + fxrand() * 6);
-        if (bright){
-        if (fxrand() < 0.84) { stroke(0, 0, 0); fill(0, 0, 100); }
-        else { stroke(0, 0, 100); fill(0, 0, 0); }
+        if (bright) {
+          if (fxrand() < 0.84) { stroke(0, 0, 0); fill(0, 0, 100); }
+          else { stroke(0, 0, 100); fill(0, 0, 0); }
         }
-        else{
-        if (fxrand() < 0.84) { stroke(0, 0, 100); fill(0, 0, 0); }
-        else { stroke(0, 0, 0); fill(0, 0, 100); }
+        else {
+          if (fxrand() < 0.84) { stroke(0, 0, 100); fill(0, 0, 0); }
+          else { stroke(0, 0, 0); fill(0, 0, 100); }
         }
         ellipse(p1.x, p1.y, pix_diam, pix_diam);
-        pix_diam = 63+fxrand()*42;
+        pix_diam = 63 + fxrand() * 42;
       }
     }
 
@@ -228,96 +216,6 @@
       }
     }
 
-    function circle_stripes(cx, cy, diam) {
-      let density = 2 + Math.floor(fxrand() * 6); // nb of rings inside the circle
-      let coef = [0, 0.5, 1, 1.5];
-      let lilla = coef[Math.floor(fxrand() * coef.length)];
-      let start_angle = lilla * PI; //O*PI or O.5*PI, or 1*PI or 1.5*PI
-      let end_angle = start_angle + PI;
-      let weight = diam / density
-      strokeWeight(weight);
-      strokeCap(SQUARE);
-      noFill()
-      for (john = 1; john < density; john++) {
-        let d = diam - (john * weight);
-        if (john % 2 == 0) {
-          stroke(0, 0, 0);
-          arc(cx, cy, d, d, start_angle, end_angle);
-          stroke(0, 0, 100);
-          arc(cx, cy, d, d, start_angle + PI, end_angle + PI);
-        }
-        else {
-          stroke(0, 0, 100);
-          arc(cx, cy, d, d, start_angle, end_angle);
-          stroke(0, 0, 0);
-          arc(cx, cy, d, d, start_angle + PI, end_angle + PI);
-        }
-      }
-    }
-    function circle_stripes_side(cx, cy, diam) {
-      let density = 7
-      let weight = diam / density
-      strokeWeight(weight);
-      strokeCap(SQUARE);
-      noFill()
-      for (john = 1; john < density; john++) {
-        let d = diam - (john * weight);
-        if (john % 2 == 0) {
-          stroke(0, 0, 0);
-          arc(cx, cy, d, d, 1.5 * PI, 0.5 * PI);
-          stroke(0, 0, 100);
-          arc(cx, cy, d, d, 0.5 * PI, 1.5 * PI);
-        }
-        else {
-          stroke(0, 0, 100);
-          arc(cx, cy, d, d, 1.5 * PI, 0.5 * PI);
-          stroke(0, 0, 0);
-          arc(cx, cy, d, d, 0.5 * PI, 1.5 * PI);
-        }
-      }
-    }
-
-    let cc = [] // series of (center-x, center-y, radius, lightness)
-    function back_with_circles(cx, cy, rad) {
-      if (rad > w / 10) {
-        if (fxrand() < 0.5) { cc.push([cx, cy, rad, 100]) }
-        else { cc.push([cx, cy, rad, 0]) }
-        //arc(cx,cy,rad,rad,0,PI);
-        back_with_circles(cx / 2, cy, rad / 2);
-        back_with_circles(cx + cx / 2, cy, rad / 2);
-      }
-    }
-
-    function draw_arcs() {
-      console.log(frameCount + " draw " + cc.length)
-      let i = 0;
-      while (i < cc.length) {
-        if (fxrand() < 0.5) { fill(0, 0, 100); stroke(0, 0, cc[i][3]) }
-        else { fill(0, 0, 0); stroke(0, 0, cc[i][3]) }
-        arc(cc[i][0], cc[i][1], cc[i][2], cc[i][2], 0, PI);
-        i++
-      }
-      cc = []
-    }
-
-    function back_with_quads() {
-      let padding = w / 10;
-      let x1 = 0;
-      let y1 = 0;
-      let f = 17;
-      while (y1 < h) {
-        while (x1 < w) {
-          if (fxrand() < 0.05) { stroke(0, 100, 100); }
-          else { noStroke(); }
-          if (fxrand() < 0.5) { fill(0, 0, 100); }
-          else { fill(0, 0, 0); }
-          rect(x1 + fxrand() * f, y1 + fxrand() * f, padding + fxrand() * f, padding + fxrand() * f)
-          x1 += padding;
-        }
-        x1 = 0;
-        y1 += padding;
-      }
-    }
 
     function back_with_triangles() {
       let pad_min = 11;
@@ -326,8 +224,8 @@
       let top_left_x, top_right_x, bottom_x, top_left_y, top_right_y, bottom_y;
       let prev_row = [];
       let tmp_row = [];
-      if(bright){fill(0, 0, 0);stroke(0, 0, 100);}
-      else {fill(0, 0, 100); stroke(0, 0, 0);}
+      if (bright) { fill(0, 0, 0); stroke(0, 0, 100); }
+      else { fill(0, 0, 100); stroke(0, 0, 0); }
       strokeWeight(0.84);
       top_left_x = 0; top_left_y = 0; top_right_y = 0;
       //start with one rwo of triangles, top edge on y=0, points down, coord of bottom vertex random and saved in prev_row
@@ -355,10 +253,11 @@
           bottom_x = top_left_x + fxrand() * (top_right_x - top_left_x);
           bottom_y = top_left_y + (pad_min + fxrand() * pad_max);
           if (fxrand() < 0.05) { fill(0, 100, 100); }
-          else {       if(bright){fill(0, 0, 0);stroke(0, 0, 100);}
-      else {fill(0, 0, 100); stroke(0, 0, 0);}
-//fill(0, 0, 100); 
-}
+          else {
+            if (bright) { fill(0, 0, 0); stroke(0, 0, 100); }
+            else { fill(0, 0, 100); stroke(0, 0, 0); }
+
+          }
           triangle(top_left_x, top_left_y, top_right_x, top_right_y, bottom_x, bottom_y);
           top_left_x = top_right_x;
           top_left_y = top_right_y;
