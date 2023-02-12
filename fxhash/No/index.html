@@ -89,30 +89,49 @@
       strokeWeight(fxrand() * 0.42 + 0.42);
       if (backShape == "triangles") { back_with_triangles(); }
       if (backShape == "circles") { back_grid_circle(0, 0, w / 2); console.log("bright " + bright) }
-
-      //draw_letter_triangle("N",10, 0.7*h)
-      //draw_letter_triangle("O",360, 0.7*h)
-      if (typoShape == "triangles") {
-        draw_letter_triangle("C", 10, 0.47 * h)
-        draw_letter_triangle("O", 360, 0.47 * h)
-        draw_letter_triangle("D", 10, 0.95 * h)
-        draw_letter_triangle("E", 460, 0.95 * h)
-      }
-      if (typoShape == "circles") {
-        draw_letter_circles("C", 10, 0.47 * h)
-        draw_letter_circles("O", 360, 0.47 * h)
-        draw_letter_circles("D", 10, 0.95 * h)
-        draw_letter_circles("E", 460, 0.95 * h)
-      }
+      
+      draw_no();
+      //draw_boring();
+      //draw_code();
 
       noLoop();
       fxpreview();
     }
 
-    function draw_letter_circles(letter, xtxt, ytxt) {
+    function draw_no(){
+      if (typoShape == "triangles") {
+        draw_letter_triangle("N",10, 0.7*h, 555)
+        draw_letter_triangle("O",360, 0.7*h, 555)
+      }
+      if (typoShape == "circles") {
+        draw_letter_circles("N",10, 0.7*h, 555)
+        draw_letter_circles("O",360, 0.7*h, 555)
+      }
+    }
+
+    function draw_boring(){
+      
+    }
+
+    function draw_code(){
+      if (typoShape == "triangles") {
+        draw_letter_triangle("C", 10, 0.47 * h, 555)
+        draw_letter_triangle("O", 360, 0.47 * h, 555)
+        draw_letter_triangle("D", 10, 0.95 * h, 555)
+        draw_letter_triangle("E", 460, 0.95 * h, 555)
+      }
+      if (typoShape == "circles") {
+        draw_letter_circles("C", 10, 0.47 * h, 555)
+        draw_letter_circles("O", 360, 0.47 * h, 555)
+        draw_letter_circles("D", 10, 0.95 * h, 555)
+        draw_letter_circles("E", 460, 0.95 * h, 555)
+      }
+    }
+
+    function draw_letter_circles(letter, xtxt, ytxt, f_size) {
       let pix_density = fxrand() * 0.03 + 0.08;//0.02;
       let pix_diam = 63 + fxrand() * 42;
-      let pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
+      let pts = bowie.textToPoints(letter, xtxt, ytxt, f_size, {
         sampleFactor: pix_density,
         simplifyThreshold: 0
       })
@@ -132,9 +151,9 @@
       }
     }
 
-    function draw_letter_triangle(letter, xtxt, ytxt) {
+    function draw_letter_triangle(letter, xtxt, ytxt,f_size) {
       let density = fxrand() * 0.03 + 0.08;
-      let pts = bowie.textToPoints(letter, xtxt, ytxt, 555, {
+      let pts = bowie.textToPoints(letter, xtxt, ytxt, f_size, {
         sampleFactor: density,
         simplifyThreshold: 0
       })
