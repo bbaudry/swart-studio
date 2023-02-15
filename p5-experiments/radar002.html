@@ -29,27 +29,30 @@
         }
 
         function draw(){
-            background(0,0,0)
-            grid(start())
-            noLoop()
+            background(0,0,0);
+            grid(start());
+//            noLoop()
         }
 
         function start(){
-            let x=0
-            let horizon=[]
+            let x=0;
+            let horizon=[];
+            let wi;
             while(x<w){
-                let wi = 84+Math.random()*42
-                horizon.push([x,wi])
-                x+=wi
+                wi = 84+Math.random()*84;
+                horizon.push([x,x+wi])
+                let toto=x+wi
+                console.log("x: "+x+" wi: "+toto)
+                x+=wi;
             }
             return horizon
         }
 
         function grid(horizon){
-            for (vera in horizon){
-                pillar(vera[0],vera[1])
-                console.log("1: "+vera[0])
-            }
+            for (var i =0; i<horizon.length; i++){
+                pillar(horizon[i][0],horizon[i][1]);
+//            console.log("0: "+horizon[i][0]+" 1: "+horizon[i][1])
+                }
         }
 
         function pillar(x1,x2){
