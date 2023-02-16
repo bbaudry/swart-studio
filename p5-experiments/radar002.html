@@ -50,21 +50,22 @@
         function grid(horizon){
             for (var i =0; i<horizon.length; i++){
                 pillar(horizon[i][0],horizon[i][1]);
-                }
+            }
         }
 
+        let fix_y_pad =7;
+        let rand_y_pad=11;
         function pillar(x1,x2){
             let y=0;
             let wi=x2-x1
             let white = true;
             let hi;
             while(y<h){
-                hi = 3+Math.random()*7;
-                if (Math.random()<0.01){            fill(0,100,100);}
-                else{            fill(0,0,100);}
+                hi = fix_y_pad+random()*rand_y_pad;
+                if (random()<0.01){fill(0,100,100);}
+                else{fill(0,0,100);}
                 rect(x1,y,wi,hi)
-                console.log("y:"+y)
-                y+=hi+3+Math.random()*7;
+                y+=hi+fix_y_pad+random()*rand_y_pad;
             }
         }
 
