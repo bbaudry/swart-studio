@@ -32,8 +32,9 @@
 
         function draw(){
             
-            grid(horizon);
+            //grid(horizon);
             //shape();
+            sig_x=0;sig_y=h/2;john_cage()
             //noLoop()
         }
 
@@ -88,6 +89,29 @@
             }
         }
 
+        let sig_x, sig_y;
+        function john_cage(){
+            stroke(0,100,100)
+            let grow=true
+            if (sig_x<w){
+                if(sig_x>0.4*w || sig_x<0.6*w){
+                    if (random()<0.1){grow=!grow}
+                    if(grow){
+                        sig_y-=3-random()*3
+                    }
+                    else{
+                        sig_y+=3-random()*3
+                    }
+                    rect(sig_x,sig_y,1,1)
+                }
+                else{sig_y=w/2;rect(sig_x,sig_y,1,1)}
+                sig_x++;
+            }
+            else{
+                sig_x=0
+            }
+
+        }
 
         function windowResized() {
             w = document.documentElement.clientWidth;//width of window that is available for drawing
