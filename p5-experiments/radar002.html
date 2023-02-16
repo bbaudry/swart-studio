@@ -31,8 +31,9 @@
         }
 
         function draw(){
-            background(0,0,0);
+            
             grid(horizon);
+            //shape();
             //noLoop()
         }
 
@@ -48,6 +49,7 @@
         }
 
         function grid(horizon){
+            background(0,0,0);
             for (var i =0; i<horizon.length; i++){
                 pillar(horizon[i][0],horizon[i][1]);
             }
@@ -69,6 +71,22 @@
             }
         }
 
+        let lewitt = 0.4*w
+        function shape(){
+            if (random()<0.01){fill(0,100,100);}
+            else{fill(0,0,100);}
+            if (random()<0.5 && frameCount%21==0){
+                background(0,0,0);
+                let pad = lewitt/2;
+                rect(0.5*w-pad,0.5*h-pad,lewitt,lewitt)
+            }
+            else{
+                if(frameCount%21==0){
+                    background(0,0,0);
+                    ellipse(0.5*w,0.5*h,lewitt,lewitt)
+                }
+            }
+        }
 
 
         function windowResized() {
