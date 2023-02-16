@@ -19,7 +19,10 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         let myFont;
-        let horizon = []
+        let horizon = [];
+        var sig_x=0;
+        var sig_y=h/2;
+
         function preload() {
             myFont = loadFont('fonts/InconsolataSemiExpanded-Light.ttf');
         }
@@ -34,7 +37,7 @@
             
             //grid(horizon);
             //shape();
-            sig_x=0;sig_y=h/2;john_cage()
+            background(0,0,0); john_cage();
             //noLoop()
         }
 
@@ -88,29 +91,34 @@
                 }
             }
         }
-
-        let sig_x, sig_y;
+        let grow=true
         function john_cage(){
             stroke(0,100,100)
-            let grow=true
+            
+            let tmp_y
             if (sig_x<w){
-                if(sig_x>0.4*w || sig_x<0.6*w){
-                    if (random()<0.1){grow=!grow}
+                if(sig_x>0.4*w && sig_x<0.6*w){
+                    if (random()<0.5){grow=!grow}
+                    tmp_y=sig_y
                     if(grow){
-                        sig_y-=3-random()*3
+                        sig_y-=13-random()*13
                     }
                     else{
-                        sig_y+=3-random()*3
+                        sig_y+=13-random()*13
                     }
-                    rect(sig_x,sig_y,1,1)
+                    line(sig_x,tmp_y,sig_x+1,sig_y)
                 }
-                else{sig_y=w/2;rect(sig_x,sig_y,1,1)}
-                sig_x++;
+                else{
+                    console.log("x "+sig_x+" y "+sig_y)
+                    sig_y=w/2;rect(sig_x,sig_y,1,1)
+                }
+                rect(sig_x,sig_y,1,1)
+                sig_x+=1;
+                
             }
             else{
                 sig_x=0
             }
-
         }
 
         function windowResized() {
