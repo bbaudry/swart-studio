@@ -20,124 +20,121 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         let myFont;
         let horizon = [];
-        var sig_x=0;
-        var sig_y=h/2;
+        var sig_x = 0;
+        var sig_y = h / 2;
 
         function preload() {
             myFont = loadFont('fonts/InconsolataSemiExpanded-Light.ttf');
         }
 
-        function setup(){
-            colorMode(HSB,360,100,100);
+        function setup() {
+            colorMode(HSB, 360, 100, 100);
             createCanvas(w, h);
-            init_horizon()   
-            background(0,0,0); 
+            init_horizon()
+            background(0, 0, 0);
         }
 
-        function draw(){
-            
+        function draw() {
+
             //grid(horizon);
             //shape();
             john_cage();
             //noLoop()
         }
 
-        function init_horizon(){
-            let x=0;
+        function init_horizon() {
+            let x = 0;
             let wi;
-            while(x<w){
-                wi = 84+Math.random()*84;
-                horizon.push([x,x+wi])
-                let toto=x+wi
-                x+=wi;
+            while (x < w) {
+                wi = 84 + Math.random() * 84;
+                horizon.push([x, x + wi])
+                let toto = x + wi
+                x += wi;
             }
         }
 
-        function grid(horizon){
-            background(0,0,0);
-            for (var i =0; i<horizon.length; i++){
-                pillar(horizon[i][0],horizon[i][1]);
+        function grid(horizon) {
+            background(0, 0, 0);
+            for (var i = 0; i < horizon.length; i++) {
+                pillar(horizon[i][0], horizon[i][1]);
             }
         }
 
-        let fix_y_pad =7;
-        let rand_y_pad=11;
-        function pillar(x1,x2){
-            let y=0;
-            let wi=x2-x1
+        let fix_y_pad = 7;
+        let rand_y_pad = 11;
+        function pillar(x1, x2) {
+            let y = 0;
+            let wi = x2 - x1
             let white = true;
             let hi;
-            while(y<h){
-                hi = fix_y_pad+random()*rand_y_pad;
-                if (random()<0.01){fill(0,100,100);}
-                else{fill(0,0,100);}
-                rect(x1,y,wi,hi)
-                y+=hi+fix_y_pad+random()*rand_y_pad;
+            while (y < h) {
+                hi = fix_y_pad + random() * rand_y_pad;
+                if (random() < 0.01) { fill(0, 100, 100); }
+                else { fill(0, 0, 100); }
+                rect(x1, y, wi, hi)
+                y += hi + fix_y_pad + random() * rand_y_pad;
             }
         }
 
-        let lewitt = 0.4*w
-        function shape(){
-            if (random()<0.01){fill(0,100,100);}
-            else{fill(0,0,100);}
-            if (random()<0.5 && frameCount%21==0){
-                background(0,0,0);
-                let pad = lewitt/2;
-                rect(0.5*w-pad,0.5*h-pad,lewitt,lewitt)
+        let lewitt = 0.4 * w
+        function shape() {
+            if (random() < 0.01) { fill(0, 100, 100); }
+            else { fill(0, 0, 100); }
+            if (random() < 0.5 && frameCount % 21 == 0) {
+                background(0, 0, 0);
+                let pad = lewitt / 2;
+                rect(0.5 * w - pad, 0.5 * h - pad, lewitt, lewitt)
             }
-            else{
-                if(frameCount%21==0){
-                    background(0,0,0);
-                    ellipse(0.5*w,0.5*h,lewitt,lewitt)
+            else {
+                if (frameCount % 21 == 0) {
+                    background(0, 0, 0);
+                    ellipse(0.5 * w, 0.5 * h, lewitt, lewitt)
                 }
             }
         }
-        let grow=true
-        let x_bounds=[0.33*w,0.66*w];
+        let grow = true
+        let x_bounds = [0.33 * w, 0.77 * w];
+        let x_step = 2;
         //let y_vary=13-Math.random()*17;
-        function john_cage(){
-            fill(0,100,100)
-            stroke(0,100,100)
+        function john_cage() {
+            fill(0, 100, 100)
+            stroke(0, 100, 100)
             let tmp_y
             let bron = 3;
-            let y_vary=13-random()*17;
-            if (sig_x<w){
-                if(sig_x>x_bounds[0] && sig_x<=x_bounds[1]){
-                    if (sig_x==x_bounds[0]+1){
-                        fill(0,100,100)
-                    stroke(0,100,100)
-                    rect(sig_x,sig_y,bron,bron)
+            let y_vary = 13 - random() * 17;
+            if (sig_x < w) {
+                if (sig_x > x_bounds[0] && sig_x <= x_bounds[1]) {
+                    if (sig_x == x_bounds[0] + 1) {
+                        fill(0, 100, 100)
+                        stroke(0, 100, 100)
+                        rect(sig_x, sig_y, bron, bron)
                     }
-                    if (random()<0.5){grow=!grow}
-                    tmp_y=sig_y
-                    if(grow){
-                        sig_y-=y_vary;
+                    if (random() < 0.5) { grow = !grow }
+                    tmp_y = sig_y
+                    if (grow) {
+                        sig_y -= y_vary;
                     }
-                    else{
-                        sig_y+=y_vary;
+                    else {
+                        sig_y += y_vary;
                     }
-                    line(sig_x,tmp_y,sig_x+2,sig_y)
+                    line(sig_x, tmp_y, sig_x + x_step, sig_y)
                 }
-                else{
-                    
-                    if (sig_x<x_bounds[0]-1 || sig_x>x_bounds[1]){
-                        fill(0,0,0)
-                    stroke(0,0,0)
-                    rect(sig_x+bron,sig_y,bron,bron)}
-                    //fill(0,0,100)
-                    //stroke(0,0,100)
-                    //rect(sig_x+bron,sig_y,bron,bron)
-                    fill(0,100,100)
-                    stroke(0,100,100)
-                    rect(sig_x,sig_y,bron,bron)
+                else {
+                    if (sig_x < x_bounds[0] - 1 || sig_x > x_bounds[1]) {
+                        fill(0, 0, 0)
+                        stroke(0, 0, 0)
+                        rect(sig_x + bron, sig_y, bron, bron)
+                    }
+                    fill(0, 100, 100)
+                    stroke(0, 100, 100)
+                    rect(sig_x, sig_y, bron, bron)
 
                 }
-                sig_x+=2;
-                
+                sig_x += x_step;
             }
-            else{
-                sig_x=0
-                sig_y=h/2+random()
+            else {
+                sig_x = 0
+                sig_y = h / 2 + random()
             }
         }
 
