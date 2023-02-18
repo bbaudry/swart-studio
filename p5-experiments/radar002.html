@@ -93,29 +93,44 @@
             }
         }
         let grow=true
+        let x_bounds=[0.33*w,0.66*w];
+        //let y_vary=13-Math.random()*17;
         function john_cage(){
             fill(0,100,100)
             stroke(0,100,100)
             let tmp_y
             let bron = 3;
+            let y_vary=13-random()*17;
             if (sig_x<w){
-                if(sig_x>0.4*w && sig_x<=0.6*w){
+                if(sig_x>x_bounds[0] && sig_x<=x_bounds[1]){
+                    if (sig_x==x_bounds[0]+1){
+                        fill(0,100,100)
+                    stroke(0,100,100)
+                    rect(sig_x,sig_y,bron,bron)
+                    }
                     if (random()<0.5){grow=!grow}
                     tmp_y=sig_y
                     if(grow){
-                        sig_y-=13-random()*17
+                        sig_y-=y_vary;
                     }
                     else{
-                        sig_y+=13-random()*17
-                    }
-                    if (sig_x==0.6*w){
-                        sig_y=h/2;
+                        sig_y+=y_vary;
                     }
                     line(sig_x,tmp_y,sig_x+2,sig_y)
                 }
                 else{
-                    //sig_y=h/2;
+                    
+                    if (sig_x<x_bounds[0]-1 || sig_x>x_bounds[1]){
+                        fill(0,0,0)
+                    stroke(0,0,0)
+                    rect(sig_x+bron,sig_y,bron,bron)}
+                    //fill(0,0,100)
+                    //stroke(0,0,100)
+                    //rect(sig_x+bron,sig_y,bron,bron)
+                    fill(0,100,100)
+                    stroke(0,100,100)
                     rect(sig_x,sig_y,bron,bron)
+
                 }
                 sig_x+=2;
                 
