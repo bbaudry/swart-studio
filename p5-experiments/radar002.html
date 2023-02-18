@@ -95,11 +95,11 @@
         let grow=true
         function john_cage(){
             fill(0,100,100)
-            noStroke()
+            stroke(0,100,100)
             let tmp_y
-            let bron = 5;
+            let bron = 3;
             if (sig_x<w){
-                if(sig_x>0.4*w && sig_x<0.6*w){
+                if(sig_x>0.4*w && sig_x<=0.6*w){
                     if (random()<0.5){grow=!grow}
                     tmp_y=sig_y
                     if(grow){
@@ -108,12 +108,14 @@
                     else{
                         sig_y+=13-random()*17
                     }
-                    rect(sig_x,sig_y,bron,bron)
-//                    line(sig_x,tmp_y,sig_x+1,sig_y)
+                    if (sig_x==0.6*w){
+                        sig_y=h/2;
+                    }
+                    line(sig_x,tmp_y,sig_x+2,sig_y)
                 }
                 else{
-                    console.log("x "+sig_x+" y "+sig_y)
-                    sig_y=h/2;rect(sig_x,sig_y,bron,bron)
+                    //sig_y=h/2;
+                    rect(sig_x,sig_y,bron,bron)
                 }
                 sig_x+=2;
                 
