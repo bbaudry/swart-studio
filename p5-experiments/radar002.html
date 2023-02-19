@@ -93,22 +93,18 @@
             }
         }
         let grow = true
-        let x_bounds = [0.33 * w, 0.77 * w];
-        let x_step = 2;
+        let x_bounds = [0.33 * w, 0.77 * w];//in this interval, x varies as usual and y varies randomly
+        let x_step = 2;//how fast x moves towards the right of the screen, at each step
+        let bron = 3;//size of the rect drawn at each step
         let y_vary;
         function john_cage() {
             fill(0, 100, 100)
             stroke(0, 100, 100)
+            strokeWeight(2)
             let tmp_y
-            let bron = 3;
             y_vary = 13 - random() * 17;
             if (sig_x < w) {
                 if (sig_x > x_bounds[0] && sig_x <= x_bounds[1]) {
-                    if (sig_x == x_bounds[0] + 1) {
-                        fill(0, 100, 100)
-                        stroke(0, 100, 100)
-                        rect(sig_x, sig_y, bron, bron)
-                    }
                     if (random() < 0.5) { grow = !grow }
                     tmp_y = sig_y
                     if (grow) {
@@ -118,9 +114,14 @@
                         sig_y += y_vary;
                     }
                     line(sig_x, tmp_y, sig_x + x_step, sig_y)
+                    fill(180, 100, 100)
+                    stroke(180, 100, 100)
+                    rect(sig_x + x_step, sig_y, 1, 1)
+                    fill(0, 100, 100)
+                    stroke(0, 100, 100)
                 }
                 else {
-                    if (sig_x < x_bounds[0] - bron || sig_x > x_bounds[1]) {
+                    if (sig_x < x_bounds[0] - bron || sig_x > x_bounds[1]) {//while x is not in the area where Y varies draw one rect ahed in blue to mark the position of drawing
                         fill(180, 100, 100)
                         stroke(180, 100, 100)
                         rect(sig_x + bron, sig_y, bron, bron)
@@ -128,7 +129,6 @@
                     fill(0, 100, 100)
                     stroke(0, 100, 100)
                     rect(sig_x, sig_y, bron, bron)
-
                 }
                 sig_x += x_step;
             }
