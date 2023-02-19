@@ -95,13 +95,13 @@
         let grow = true
         let x_bounds = [0.33 * w, 0.77 * w];
         let x_step = 2;
-        //let y_vary=13-Math.random()*17;
+        let y_vary;
         function john_cage() {
             fill(0, 100, 100)
             stroke(0, 100, 100)
             let tmp_y
             let bron = 3;
-            let y_vary = 13 - random() * 17;
+            y_vary = 13 - random() * 17;
             if (sig_x < w) {
                 if (sig_x > x_bounds[0] && sig_x <= x_bounds[1]) {
                     if (sig_x == x_bounds[0] + 1) {
@@ -120,9 +120,9 @@
                     line(sig_x, tmp_y, sig_x + x_step, sig_y)
                 }
                 else {
-                    if (sig_x < x_bounds[0] - 1 || sig_x > x_bounds[1]) {
-                        fill(0, 0, 0)
-                        stroke(0, 0, 0)
+                    if (sig_x < x_bounds[0] - bron || sig_x > x_bounds[1]) {
+                        fill(180, 100, 100)
+                        stroke(180, 100, 100)
                         rect(sig_x + bron, sig_y, bron, bron)
                     }
                     fill(0, 100, 100)
