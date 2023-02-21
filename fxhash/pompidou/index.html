@@ -68,7 +68,10 @@
 
       fill(back)
       noStroke()
-      quad(step,10*story,2*step,8*story,2*step+mechanic*story,8*story,step+mechanic*story,10*story)
+      var x1,x2,x3,x4,y1,y2,y3,y4;
+      x1=step; y1=10*story; x2=2*step; y2=8*story; x3 = x2+mechanic*story; y3=y2; x4=x1+mechanic*story; y4=y1;
+      quad(x1,y1,x2,y2,x3,y3,x4,y4);
+//      quad(step,10*story,2*step,8*story,2*step+mechanic*story,8*story,step+mechanic*story,10*story)
       quad(3*step,8*story,4*step,6*story,4*step+mechanic*story,6*story,3*step+mechanic*story,8*story)
       quad(5*step,6*story,6*step,4*story,6*step+mechanic*story,4*story,5*step+mechanic*story,6*story)
       quad(7*step,4*story,8*step,2*story,8*step+mechanic*story,2*story,7*step+mechanic*story,4*story)
