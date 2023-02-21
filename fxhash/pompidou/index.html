@@ -42,22 +42,24 @@
     var w = 600;//document.documentElement.clientWidth;//width of window that is available for drawing
     var h = 264;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
-    var palette = [['#000000','#ffffff'],['#00ffff','#ff00a1'],['#008080','#f28f93']]
+    var palette = [['#000000','#ffffff'],['#00ffff','#ff00a1'],['#008080','#f28f93'],['#02a6e8','#ff901e']]
     var story = 24;
     var step = 66;
     var mechanic = 1.6;
 
     function setup() {
-      createCanvas(w, h);
-      window.$fxhashFeatures = {
+        createCanvas(w, h);
+        window.$fxhashFeatures = {
 
-      }
+        }
+        frameRate(1);
     }
 
     function draw() {
-      var back = color(palette[2][0]);
+      var c_index=Math.floor(fxrand()*4);
+      var back = color(palette[c_index][0]);
       background(back);
-      var front = color(palette[2][1])
+      var front = color(palette[c_index][1])
       fill(front)
       noStroke()
       rect(0,story,w,story)
