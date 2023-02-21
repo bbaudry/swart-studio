@@ -44,6 +44,8 @@
     var grain = 100;
     var palette = [['#000000','#ffffff']]
     var story = 24;
+    var step = 66;
+    var mechanic = 1.7;
 
     function setup() {
       createCanvas(w, h);
@@ -57,12 +59,19 @@
       background(back);
       var front = color(palette[0][1])
       fill(front)
-      noStroke
+      noStroke()
       rect(0,story,w,story)
       rect(0,3*story,w,story)
       rect(0,5*story,w,story)
       rect(0,7*story,w,story)
       rect(0,9*story,w,story)
+
+      fill(back)
+      noStroke()
+      quad(step,10*story,2*step,8*story,2*step+mechanic*story,8*story,step+mechanic*story,10*story)
+      quad(3*step,8*story,4*step,6*story,4*step+mechanic*story,6*story,3*step+mechanic*story,8*story)
+      quad(5*step,6*story,6*step,4*story,6*step+mechanic*story,4*story,5*step+mechanic*story,6*story)
+      quad(7*step,4*story,8*step,2*story,8*step+mechanic*story,2*story,7*step+mechanic*story,4*story)
 
     }
 
