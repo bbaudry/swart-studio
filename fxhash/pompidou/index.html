@@ -56,8 +56,10 @@
     */
     var one_pompidou_width = 600;
     var one_pompidou_height = 264;
-    var w = one_pompidou_width+20;//document.documentElement.clientWidth;//width of window that is available for drawing
-    var h = one_pompidou_height+20;//document.documentElement.clientHeight;//width of window that is available for drawing
+    var pad = 10;
+    var nb_pompidou = 3;
+    var w = one_pompidou_width+2*pad;//document.documentElement.clientWidth;//width of window that is available for drawing
+    var h = one_pompidou_height*nb_pompidou+(nb_pompidou+1)*pad;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
     var palette_black = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57']]
     var palette_white = [['#000000', '#ffffff'], ['#713F1D', '#ffffff'], ['#E25B26', '#ffffff'], ['#452AA8', '#ffffff'], ['#925B9B', '#ffffff'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff']]
@@ -74,22 +76,25 @@
 
       }
       palette = palette_white
-      var c_index = Math.floor(fxrand() * palette.length);
-      back = color(palette[c_index][0]);
-      front = color(palette[c_index][1])
       noStroke()
       frameRate(1);
     }
 
     function draw() {
       background('#000000')
-      one_pompidou(10,10)
+      for(beaubourg=0;beaubourg<nb_pompidou;beaubourg++){
+        one_pompidou(pad,beaubourg*one_pompidou_height+(beaubourg+1)*pad)
+      }
       noLoop();
-      save("pompidou.png")
+      //save("pompidou.png")
       fxpreview();
     }
 
     function one_pompidou(x_pom,y_pom){
+      var c_index = Math.floor(fxrand() * palette.length);
+      back = color(palette[c_index][0]);
+      front = color(palette[c_index][1])
+
       //fill background with the back color
       fill(back);
       rect(x_pom,y_pom,one_pompidou_width,one_pompidou_height);
@@ -127,7 +132,7 @@
       }
 
       //extra_stairs_up(Math.floor(fxrand()*7))
-      extra_stairs_down(Math.floor(fxrand()*6))
+      extra_stairs_down(Math.floor(fxrand()*6,x_pom,y_pom))
 
     }
 
