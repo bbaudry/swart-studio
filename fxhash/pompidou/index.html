@@ -84,7 +84,7 @@
       for(i=1;i<10;i+=2){
         fill(front)
         rect(0,i*stripe_width,w,stripe_width)
-        pois(0,i*stripe_width,w,stripe_width,back)
+        //pois(0,i*stripe_width,w,stripe_width,back)
       }
       //variables to select the coordinates of the four corners of the quadrilateres used to draw the escalator
       var x1,x2,x3,x4,y1,y2,y3,y4;
@@ -112,6 +112,38 @@
         quad(x1,y1,x2,y2,x3,y3,x4,y4);
         x1+=2*step; y1-=2*stripe_width;
       }
+
+      fill(front)
+      x1=step-(0.63*stripe_width); y1=7*stripe_width;
+      for(i=0;i<4;i++){
+        x2=x1+step; y2=y1-2*stripe_width; x3 = x2+mechanic*stripe_width; y3=y2; x4=x1+mechanic*stripe_width; y4=y1;
+        quad(x1,y1,x2,y2,x3,y3,x4,y4);
+        x1+=2*step; y1-=2*stripe_width;
+      }
+      fill(back)
+      x1=step-(0.84*stripe_width); y1=6*stripe_width;
+      for(i=0;i<4;i++){
+        x2=x1+step; y2=y1-2*stripe_width; x3 = x2+mechanic*stripe_width; y3=y2; x4=x1+mechanic*stripe_width; y4=y1;
+        quad(x1,y1,x2,y2,x3,y3,x4,y4);
+        x1+=2*step; y1-=2*stripe_width;
+      }
+      fill(front)
+      x1=step-(1.05*stripe_width); y1=5*stripe_width;
+      for(i=0;i<4;i++){
+        x2=x1+step; y2=y1-2*stripe_width; x3 = x2+mechanic*stripe_width; y3=y2; x4=x1+mechanic*stripe_width; y4=y1;
+        quad(x1,y1,x2,y2,x3,y3,x4,y4);
+        x1+=2*step; y1-=2*stripe_width;
+      }
+      fill(back)
+      x1=step-(1.26*stripe_width); y1=4*stripe_width;
+      for(i=0;i<4;i++){
+        x2=x1+step; y2=y1-2*stripe_width; x3 = x2+mechanic*stripe_width; y3=y2; x4=x1+mechanic*stripe_width; y4=y1;
+        quad(x1,y1,x2,y2,x3,y3,x4,y4);
+        x1+=2*step; y1-=2*stripe_width;
+      }
+
+
+
       noLoop();
       fxpreview();
     }
