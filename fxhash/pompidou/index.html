@@ -58,13 +58,15 @@
     var one_pompidou_height = 264;
     var pad = 10;
     var nb_pompidou = 3;
-    var w = one_pompidou_width*3 + 5 * pad;//document.documentElement.clientWidth;//width of window that is available for drawing
+    var w = one_pompidou_width*3 + 4 * pad;//document.documentElement.clientWidth;//width of window that is available for drawing
     var h = one_pompidou_height * nb_pompidou + (nb_pompidou + 1) * pad;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
     var palette_black = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57']]
     var palette_white = [['#000000', '#ffffff'], ['#713F1D', '#ffffff'], ['#E25B26', '#ffffff'], ['#452AA8', '#ffffff'], ['#925B9B', '#ffffff'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff']]
     var palette_color = [['#000000', '#ffffff'], ['#CD00CB', '#FFD926'], ['#713F1D', '#E25B26'], ['#24C434', '#FD961C'], ['#452AA8', '#925B9B'], ['#55A6C1', '#2B8426'], ['#6D6E69', '#D3BC57']]
+    var palette_all = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff'], ['#CD00CB', '#FFD926'], ['#713F1D', '#E25B26'], ['#24C434', '#FD961C'], ['#452AA8', '#925B9B'], ['#55A6C1', '#2B8426'], ['#6D6E69', '#D3BC57'], ['#002fa7','#D9027D']]
     var palette = []
+    var explored_ind = []
     var stripe_width = 24;
     var step = 66;
     var mechanic = 1.6;
@@ -76,7 +78,7 @@
       window.$fxhashFeatures = {
 
       }
-      palette = palette_color
+      palette = palette_all
       noStroke()
       frameRate(1);
     }
@@ -84,20 +86,17 @@
     function draw() {
       background('#000000')
       for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
-        choose_palette()
         one_pompidou(pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
       }
       for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
-        choose_palette()
         one_pompidou(one_pompidou_width + 2 * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
       }
       for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
-        choose_palette()
-        one_pompidou(2*one_pompidou_width + 4 * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
+        one_pompidou(2*one_pompidou_width + 3 * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
       }
 
       noLoop();
-      save("pompidou9.png")
+      save("pompidou9all.png")
       fxpreview();
     }
 
@@ -115,9 +114,14 @@
 
     function one_pompidou(x_pom, y_pom) {
       var c_index = Math.floor(fxrand() * palette.length);
-      back = color(palette[c_index][0]);
+      // if this index in the palette has been chosen before, get another one until a new one is found
+      while (explored_ind.includes(c_index)){
+        c_index = Math.floor(fxrand() * palette.length);
+      }
+      // add selected index to the list of indices that have been explored
+      explored_ind.push(c_index)
+      back = color(palette[c_index][0]); 
       front = color(palette[c_index][1]);
-      console.log("back color "+palette[c_index][0]+" front color "+palette[c_index][1])
 
       //fill background with the back color
       fill(back);
@@ -154,13 +158,12 @@
         x1 += 2 * step; y1 -= 2 * stripe_width;
       }
 
-      var stairs = Math.floor(fxrand() * 3);
+      var stairs = Math.floor(fxrand() * 6);
       console.log("extra stairs above: " + stairs)
       extra_stairs_up(stairs)
-      stairs = Math.floor(fxrand() * 3);
+      stairs = Math.floor(fxrand() * 6);
       console.log("extra stairs below: " + stairs)
       extra_stairs_down(stairs, x_pom, y_pom)
-
     }
 
     function extra_stairs_down(nb_stairs, x_pom, y_pom) {
@@ -321,7 +324,7 @@
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(back)
-          x1 = sx_pom + tep - (0.84 * stripe_width); y1 = y_pom + 6 * stripe_width;
+          x1 = x_pom + step - (0.84 * stripe_width); y1 = y_pom + 6 * stripe_width;
           for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
