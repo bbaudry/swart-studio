@@ -54,8 +54,10 @@
     Hand-Hacked Bouquet 1: '#6D6E69', '#2B8426', '#55A6C1', '#D3BC57'
 
     */
-    var w = 600;//document.documentElement.clientWidth;//width of window that is available for drawing
-    var h = 264;//document.documentElement.clientHeight;//width of window that is available for drawing
+    var one_pompidou_width = 600;
+    var one_pompidou_height = 264;
+    var w = one_pompidou_width+20;//document.documentElement.clientWidth;//width of window that is available for drawing
+    var h = one_pompidou_height+20;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
     var palette_black = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57']]
     var palette_white = [['#000000', '#ffffff'], ['#713F1D', '#ffffff'], ['#E25B26', '#ffffff'], ['#452AA8', '#ffffff'], ['#925B9B', '#ffffff'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff']]
@@ -80,19 +82,28 @@
     }
 
     function draw() {
+      background('#000000')
+      one_pompidou(10,10)
+      noLoop();
+      save("pompidou.png")
+      fxpreview();
+    }
+
+    function one_pompidou(x_pom,y_pom){
       //fill background with the back color
-      background(back);
+      fill(back);
+      rect(x_pom,y_pom,one_pompidou_width,one_pompidou_height);
       //draw 9 horizontal stripes with the front color
       for (i = 1; i < 10; i += 2) {
         fill(front)
-        rect(0, i * stripe_width, w, stripe_width)
+        rect(x_pom, y_pom + i * stripe_width, one_pompidou_width, stripe_width)
         //pois(0,i*stripe_width,w,stripe_width,back)
       }
       //variables to select the coordinates of the four corners of the quadrilateres used to draw the escalator
       var x1, x2, x3, x4, y1, y2, y3, y4;
       //draw the 'bottom' part of the escalator with the back color
       fill(back)
-      x1 = step; y1 = 10 * stripe_width;
+      x1 = x_pom + step; y1 = y_pom + 10 * stripe_width;
       for (i = 0; i < 4; i++) {
         x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
         quad(x1, y1, x2, y2, x3, y3, x4, y4);
@@ -100,7 +111,7 @@
       }
       //draw the escalator with the front color
       fill(front)
-      x1 = step - (0.21 * stripe_width); y1 = 9 * stripe_width;
+      x1 = x_pom + step - (0.21 * stripe_width); y1 = y_pom + 9 * stripe_width;
       for (i = 0; i < 4; i++) {
         x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
         quad(x1, y1, x2, y2, x3, y3, x4, y4);
@@ -108,26 +119,24 @@
       }
       //draw the 'top' part of the escalator with the back color
       fill(back)
-      x1 = step - (0.42 * stripe_width); y1 = 8 * stripe_width;
+      x1 = x_pom + step - (0.42 * stripe_width); y1 = y_pom + 8 * stripe_width;
       for (i = 0; i < 4; i++) {
-        x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
+        x2 = x_pom + x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
         quad(x1, y1, x2, y2, x3, y3, x4, y4);
         x1 += 2 * step; y1 -= 2 * stripe_width;
       }
 
       //extra_stairs_up(Math.floor(fxrand()*7))
-      extra_stairs_down(5)
+      extra_stairs_down(Math.floor(fxrand()*6))
 
-//      noLoop();
-      fxpreview();
     }
 
-    function extra_stairs_down(nb_stairs) {
+    function extra_stairs_down(nb_stairs,x_pom,y_pom) {
       switch (nb_stairs) {
         case 0: break;
         case 1:
           fill(front)
-          x1 = step + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + step + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 4; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
@@ -136,14 +145,14 @@
           break;
           case 2:
           fill(front)
-          x1 = step + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + step + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 4; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(back)
-          x1 = 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 4; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
@@ -152,21 +161,21 @@
           break;
           case 3:
           fill(front)
-          x1 = step + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + step + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 4; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(back)
-          x1 = 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 4; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(front)
-          x1 = 2*step + 2*mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 2*step + 2*mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
@@ -175,28 +184,28 @@
           break;
           case 4:
           fill(front)
-          x1 = step + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + step + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 4; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(back)
-          x1 = 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(front)
-          x1 = 2*step + 2*mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 2*step + 2*mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(back)
-          x1 = 3*step + 3*mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 3*step + 3*mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 2; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
@@ -205,41 +214,42 @@
           break;
           case 5:
           fill(front)
-          x1 = step + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + step + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 4; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(back)
-          x1 = 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 2*step + mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(front)
-          x1 = 2*step + 2*mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 2*step + 2*mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(back)
-          x1 = 3*step + 3*mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 3*step + 3*mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 2; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           fill(front)
-          x1 = 3*step + 4*mechanic * stripe_width + (0.21 * stripe_width); y1 = 11 * stripe_width;
+          x1 = x_pom + 3*step + 4*mechanic * stripe_width + (0.21 * stripe_width); y1 = y_pom + 11 * stripe_width;
           for (i = 0; i < 2; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
-          break;      }
+          break;      
+        }
     }
 
     function extra_stairs_up(nb_stairs) {
