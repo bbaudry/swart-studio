@@ -49,7 +49,7 @@
     Color palettes were collected with Gpick and I chose 4 colors from each palette
 
     Original palette: '#000000','#ffffff'
-    Cryptopunk palette: '#CD00CB','#FFD926', '#713F1D', '#C6C6C6'
+    Cryptopunk palette: '#CD00CB','#FFD926', '#713F1D', '#E25B26'
     Sentimentite palette: '#24C434', '#FD961C', '#452AA8', '#925B9B'
     Hand-Hacked Bouquet 1: '#6D6E69', '#2B8426', '#55A6C1', '#D3BC57'
 
@@ -58,7 +58,7 @@
     var h = 264;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
     var palette_black = [['#000000','#ffffff'],['#000000','#CD00CB'],['#000000','#FFD926'],['#000000','#24C434'],['#000000','#FD961C'],['#000000','#55A6C1'],['#000000','#D3BC57']]
-    var palette_white = [['#000000','#ffffff'],['#713F1D','#ffffff'],['#C6C6C6','#ffffff'],['#452AA8','#ffffff'],['#925B9B','#ffffff'],['#6D6E69','#ffffff'],['#2B8426','#ffffff']]
+    var palette_white = [['#000000','#ffffff'],['#713F1D','#ffffff'],['#E25B26','#ffffff'],['#452AA8','#ffffff'],['#925B9B','#ffffff'],['#6D6E69','#ffffff'],['#2B8426','#ffffff']]
     var palette = []
     var stripe_width = 24;
     var step = 66;
@@ -81,9 +81,10 @@
       //fill background with the back color
       background(back);
       //draw 9 horizontal stripes with the front color
-      fill(front)
       for(i=1;i<10;i+=2){
+        fill(front)
         rect(0,i*stripe_width,w,stripe_width)
+        pois(0,i*stripe_width,w,stripe_width,back)
       }
       //variables to select the coordinates of the four corners of the quadrilateres used to draw the escalator
       var x1,x2,x3,x4,y1,y2,y3,y4;
@@ -111,17 +112,25 @@
         quad(x1,y1,x2,y2,x3,y3,x4,y4);
         x1+=2*step; y1-=2*stripe_width;
       }
-
-      /*      x1=step; y1=10*story; x2=x1+step; y2=y1-2*story; x3 = x2+mechanic*story; y3=y2; x4=x1+mechanic*story; y4=y1;
-      quad(x1,y1,x2,y2,x3,y3,x4,y4);
-      x1+=2*step; y1-=2*story; x2=x1+step; y2=y1-2*story; x3 = x2+mechanic*story; y3=y2; x4=x1+mechanic*story; y4=y1;
-      quad(x1,y1,x2,y2,x3,y3,x4,y4);
-      x1+=2*step; y1-=2*story; x2=x1+step; y2=y1-2*story; x3 = x2+mechanic*story; y3=y2; x4=x1+mechanic*story; y4=y1;
-      quad(x1,y1,x2,y2,x3,y3,x4,y4);
-      x1+=2*step; y1-=2*story; x2=x1+step; y2=y1-2*story; x3 = x2+mechanic*story; y3=y2; x4=x1+mechanic*story; y4=y1;
-      quad(x1,y1,x2,y2,x3,y3,x4,y4);*/
-
+      noLoop();
+      fxpreview();
     }
+
+    function pois (x,y,length_pois, height_pois, color_pois){
+      var y_hi = y + 0.27*height_pois
+      var y_lo = y + 0.73*height_pois
+      var diam = 0.5*height_pois
+      var x_pois=x+0.25*height_pois;
+      fill(color_pois);
+      noStroke();
+      while (x_pois<length_pois){
+        ellipse(x_pois,y_hi,diam,diam)
+        x_pois+=diam/(1+fxrand())
+        ellipse(x_pois,y_lo,diam,diam)
+        x_pois+=diam/(1+fxrand())
+      }
+    }
+
 
 
     function windowResized() {
