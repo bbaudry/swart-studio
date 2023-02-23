@@ -94,7 +94,7 @@
       }
 
       noLoop();
-      save("pompidou.png")
+      //save("pompidou9.png")
       fxpreview();
     }
 
@@ -111,7 +111,6 @@
       for (i = 1; i < 10; i += 2) {
         fill(front)
         rect(x_pom, y_pom + i * stripe_width, one_pompidou_width, stripe_width)
-        //pois(0,i*stripe_width,w,stripe_width,back)
       }
       //variables to select the coordinates of the four corners of the quadrilateres used to draw the escalator
       var x1, x2, x3, x4, y1, y2, y3, y4;
@@ -140,8 +139,10 @@
         x1 += 2 * step; y1 -= 2 * stripe_width;
       }
 
-      //extra_stairs_up(Math.floor(fxrand()*7))
       var stairs = Math.floor(fxrand() * 3);
+      console.log("extra stairs above: " + stairs)
+      extra_stairs_up(stairs)
+      stairs = Math.floor(fxrand() * 3);
       console.log("extra stairs below: " + stairs)
       extra_stairs_down(stairs, x_pom, y_pom)
 
