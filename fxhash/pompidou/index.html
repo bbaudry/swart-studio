@@ -84,18 +84,33 @@
     function draw() {
       background('#000000')
       for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
+        choose_palette()
         one_pompidou(pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
       }
       for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
+        choose_palette()
         one_pompidou(one_pompidou_width + 2 * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
       }
       for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
+        choose_palette()
         one_pompidou(2*one_pompidou_width + 4 * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
       }
 
       noLoop();
-      //save("pompidou9.png")
+      save("pompidou9.png")
       fxpreview();
+    }
+
+    function choose_palette(){
+      var which = 1+Math.floor(fxrand()*3)
+      switch (which){
+        case 1: palette = palette_black
+          break;
+        case 2: palette = palette_white
+          break;
+        case 3: palette = palette_color
+          break;
+      }
     }
 
     function one_pompidou(x_pom, y_pom) {
