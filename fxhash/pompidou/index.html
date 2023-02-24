@@ -65,8 +65,13 @@
     var palette_white = [['#000000', '#ffffff'], ['#713F1D', '#ffffff'], ['#E25B26', '#ffffff'], ['#452AA8', '#ffffff'], ['#925B9B', '#ffffff'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff']]
     var palette_color = [['#000000', '#ffffff'], ['#CD00CB', '#FFD926'], ['#713F1D', '#E25B26'], ['#24C434', '#FD961C'], ['#452AA8', '#925B9B'], ['#55A6C1', '#2B8426'], ['#6D6E69', '#D3BC57']]
     var palette_all = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff'], ['#CD00CB', '#FFD926'], ['#713F1D', '#E25B26'], ['#24C434', '#FD961C'], ['#452AA8', '#925B9B'], ['#55A6C1', '#2B8426'], ['#6D6E69', '#D3BC57'], ['#002fa7','#D9027D']]
+    var palette_back = ['#000000','#713F1D','#E25B26','#452AA8','#925B9B','#6D6E69','#2B8426','#002fa7']
+    var palette_front = ['#ffffff','#CD00CB','#FFD926','#24C434','#FD961C', '#55A6C1', '#D3BC57','#D9027D']
+
     var palette = []
-    var explored_ind = []
+    var explored_ind_color = []
+    var explored_ind_back = []
+    var explored_ind_front = []
     var stripe_width = 24;
     var step = 66;
     var mechanic = 1.6;
@@ -100,29 +105,37 @@
       fxpreview();
     }
 
-    function choose_palette(){
-      var which = 1+Math.floor(fxrand()*3)
-      switch (which){
-        case 1: palette = palette_black
-          break;
-        case 2: palette = palette_white
-          break;
-        case 3: palette = palette_color
-          break;
-      }
-    }
-
-    function one_pompidou(x_pom, y_pom) {
+    function choose_colors(){
       var c_index = Math.floor(fxrand() * palette.length);
       // if this index in the palette has been chosen before, get another one until a new one is found
-      while (explored_ind.includes(c_index)){
+      while (explored_ind_color.includes(c_index)){
         c_index = Math.floor(fxrand() * palette.length);
       }
       // add selected index to the list of indices that have been explored
-      explored_ind.push(c_index)
+      explored_ind_color.push(c_index)
       back = color(palette[c_index][0]); 
       front = color(palette[c_index][1]);
 
+      var b_index = Math.floor(fxrand() * palette_back.length);
+      // if this index in the palette has been chosen before, get another one until a new one is found
+      while (explored_ind_back.includes(b_index)){
+        b_index = Math.floor(fxrand() * palette_back.length);
+      }
+      // add selected index to the list of indices that have been explored
+      explored_ind_back.push(b_index)
+      var f_index = Math.floor(fxrand() * palette_front.length);
+      // if this index in the palette has been chosen before, get another one until a new one is found
+      while (explored_ind_front.includes(f_index)){
+        f_index = Math.floor(fxrand() * palette_front.length);
+      }
+      // add selected index to the list of indices that have been explored
+      explored_ind_front.push(f_index)
+      back=color(palette_back[b_index])
+      front=color(palette_front[f_index])
+    }
+
+    function one_pompidou(x_pom, y_pom) {
+      choose_colors();
       //fill background with the back color
       fill(back);
       rect(x_pom, y_pom, one_pompidou_width, one_pompidou_height);
