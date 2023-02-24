@@ -57,9 +57,10 @@
     var one_pompidou_width = 600;
     var one_pompidou_height = 264;
     var pad = 10;
-    var nb_pompidou = 3;
-    var w = one_pompidou_width*3 + 4 * pad;//document.documentElement.clientWidth;//width of window that is available for drawing
-    var h = one_pompidou_height * nb_pompidou + (nb_pompidou + 1) * pad;//document.documentElement.clientHeight;//width of window that is available for drawing
+    var nb_pompidou_hi = 3;
+    var nb_pompidou_wi = 3;
+    var w = one_pompidou_width * nb_pompidou_wi + (nb_pompidou_wi + 1) * pad;//document.documentElement.clientWidth;//width of window that is available for drawing
+    var h = one_pompidou_height * nb_pompidou_hi + (nb_pompidou_hi + 1) * pad;//document.documentElement.clientHeight;//width of window that is available for drawing
     var grain = 100;
     var palette_black = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57']]
     var palette_white = [['#000000', '#ffffff'], ['#713F1D', '#ffffff'], ['#E25B26', '#ffffff'], ['#452AA8', '#ffffff'], ['#925B9B', '#ffffff'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff']]
@@ -90,18 +91,14 @@
 
     function draw() {
       background('#000000')
-      for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
-        one_pompidou(pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
-      }
-      for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
-        one_pompidou(one_pompidou_width + 2 * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
-      }
-      for (beaubourg = 0; beaubourg < nb_pompidou; beaubourg++) {
-        one_pompidou(2*one_pompidou_width + 3 * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
+      for (molnar = 0; molnar < nb_pompidou_wi; molnar++){
+        for (beaubourg = 0; beaubourg < nb_pompidou_hi; beaubourg++) {
+          one_pompidou(molnar * one_pompidou_width + (molnar + 1) * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad)
+        }
       }
 
       noLoop();
-      save("pompidou9all.png")
+      //save("pompidou9all.png")
       fxpreview();
     }
 
@@ -162,7 +159,7 @@
 
       var stairs = Math.floor(fxrand() * 6);
       console.log("extra stairs above: " + stairs)
-      extra_stairs_up(stairs)
+      extra_stairs_up(stairs, x_pom, y_pom)
       stairs = Math.floor(fxrand() * 6);
       console.log("extra stairs below: " + stairs)
       extra_stairs_down(stairs, x_pom, y_pom)
@@ -290,21 +287,24 @@
     }
 
     function extra_stairs_up(nb_stairs, x_pom, y_pom) {
+      
       switch (nb_stairs) {
         case 0: break;
         case 1:
+        console.log("build 1 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_width); y1 = y_pom + 7 * stripe_width;
-          for (i = 0; i < 4; i++) {
+          for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           break;
         case 2:
+        console.log("build 2 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_width); y1 = y_pom + 7 * stripe_width;
-          for (i = 0; i < 4; i++) {
+          for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -318,9 +318,10 @@
           }
           break;
         case 3:
+        console.log("build 3 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_width); y1 = y_pom + 7 * stripe_width;
-          for (i = 0; i < 4; i++) {
+          for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -334,16 +335,17 @@
           }
           fill(front)
           x1 = x_pom + step - (1.05 * stripe_width); y1 = y_pom + 5 * stripe_width;
-          for (i = 0; i < 3; i++) {
+          for (i = 0; i < 2; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
           }
           break;
         case 4:
+        console.log("build 4 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_width); y1 = y_pom + 7 * stripe_width;
-          for (i = 0; i < 4; i++) {
+          for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -357,7 +359,7 @@
           }
           fill(front)
           x1 = x_pom + step - (1.05 * stripe_width); y1 = y_pom + 5 * stripe_width;
-          for (i = 0; i < 3; i++) {
+          for (i = 0; i < 2; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -371,9 +373,10 @@
           }
           break;
         case 5:
+        console.log("build 5 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_width); y1 = y_pom + 7 * stripe_width;
-          for (i = 0; i < 4; i++) {
+          for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -387,7 +390,7 @@
           }
           fill(front)
           x1 = x_pom + step - (1.05 * stripe_width); y1 = y_pom + 5 * stripe_width;
-          for (i = 0; i < 3; i++) {
+          for (i = 0; i < 2; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -401,7 +404,7 @@
           }
           fill(front)
           x1 = x_pom + step - (1.47 * stripe_width); y1 = y_pom + 3 * stripe_width;
-          for (i = 0; i < 2; i++) {
+          for (i = 0; i < 1; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -410,7 +413,7 @@
         case 6:
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_width); y1 = y_pom + 7 * stripe_width;
-          for (i = 0; i < 4; i++) {
+          for (i = 0; i < 3; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -424,7 +427,7 @@
           }
           fill(front)
           x1 = x_pom + step - (1.05 * stripe_width); y1 = y_pom + 5 * stripe_width;
-          for (i = 0; i < 3; i++) {
+          for (i = 0; i < 2; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
@@ -438,7 +441,7 @@
           }
           fill(front)
           x1 = x_pom + step - (1.47 * stripe_width); y1 = y_pom + 3 * stripe_width;
-          for (i = 0; i < 2; i++) {
+          for (i = 0; i < 1; i++) {
             x2 = x1 + step; y2 = y1 - 2 * stripe_width; x3 = x2 + mechanic * stripe_width; y3 = y2; x4 = x1 + mechanic * stripe_width; y4 = y1;
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
             x1 += 2 * step; y1 -= 2 * stripe_width;
