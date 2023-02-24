@@ -106,7 +106,7 @@
     }
 
     function choose_colors(){
-      var c_index = Math.floor(fxrand() * palette.length);
+     /* var c_index = Math.floor(fxrand() * palette.length);
       // if this index in the palette has been chosen before, get another one until a new one is found
       while (explored_ind_color.includes(c_index)){
         c_index = Math.floor(fxrand() * palette.length);
@@ -114,22 +114,11 @@
       // add selected index to the list of indices that have been explored
       explored_ind_color.push(c_index)
       back = color(palette[c_index][0]); 
-      front = color(palette[c_index][1]);
+      front = color(palette[c_index][1]);*/
 
+      
       var b_index = Math.floor(fxrand() * palette_back.length);
-      // if this index in the palette has been chosen before, get another one until a new one is found
-      while (explored_ind_back.includes(b_index)){
-        b_index = Math.floor(fxrand() * palette_back.length);
-      }
-      // add selected index to the list of indices that have been explored
-      explored_ind_back.push(b_index)
       var f_index = Math.floor(fxrand() * palette_front.length);
-      // if this index in the palette has been chosen before, get another one until a new one is found
-      while (explored_ind_front.includes(f_index)){
-        f_index = Math.floor(fxrand() * palette_front.length);
-      }
-      // add selected index to the list of indices that have been explored
-      explored_ind_front.push(f_index)
       back=color(palette_back[b_index])
       front=color(palette_front[f_index])
     }
