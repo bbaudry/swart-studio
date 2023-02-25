@@ -1,8 +1,8 @@
 {
-    "date-published":"2023-01-13",
-    "title":"accelerator",
-    "description":"smooth ribbons by almyre 2023::01::13 made in Stockholm with p5 and sys calls",
+    "date-published":"2023-02-25",
+    "title":"pompidou",
+    "description":"This series is a tribute to the centre Pompidou, which announced the acquired 18 NFTs in February 2023.On Feb 10, 2023, the centre Pompidou announced the acquisition of 18 NFTs, including pioneering generative artworks: https://www.centrepompidou.fr/en/magazine/article/the-centre-pompidou-in-the-age-of-nfts It was the ``first institution dedicated to modern and contemporary art to acquire a group of works dealing with the relations between blockchain and artistic creation''. In tribute to this major event for generative art, I have made this series inspired by the logo of centre Pompidou. Each piece is made of 6 variants of the logo. Variations are on the colors of the stripes as well as on the number of 'stairs'. The color palette is made of the iconic black and white of the original logo, as well as 10 colors from three NFT acquired by the museum: CryptoPunk 110, Sentimentite and Hand-Hacked Bouquet 1. The number of 'stairs' is maximum 13, which is the number of digital artists that have been included in the museum's collection. The series will be maximum 18 pieces, one for each NFT acquired by the centre Pompidou. The ``original'' feauture determines if the original black and white logo is part of the piece. The ``klein'' feauture determines if one variant includes the iconic Klein blue. The pompidou series is made by almyre 2023::02::25, in Stockholm with p5 and sys calls.",
     "price":1,
-    "royalties":11,
-    "max_pieces":11
+    "royalties":13,
+    "max_pieces":18
 }

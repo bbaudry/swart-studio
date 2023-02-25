@@ -75,6 +75,9 @@
 
     function setup() {
       createCanvas(w, h);
+      window.$fxhashFeatures = {
+
+      }
       noStroke()
       frameRate(1);
       window.$fxhashFeatures = {
@@ -91,8 +94,8 @@
 
     var paint_with_klein
     function klein(prob) {
-      if (prob<0.5) { paint_with_klein=true; return "fuschia" }
-      else { paint_with_klein=false;return "no blue" }
+      if (prob < 0.5) { paint_with_klein = true; return "fuschia" }
+      else { paint_with_klein = false; return "no blue" }
     }
 
     function draw() {
@@ -100,27 +103,31 @@
       var nb_extra_stairs_top, nb_extra_stairs_bottom
       var orig = Math.floor(fxrand() * (nb_pompidou_hi * nb_pompidou_wi))
       var blue = Math.floor(fxrand() * (nb_pompidou_hi * nb_pompidou_wi))
-      while (blue==orig){
+      while (blue == orig) {
         blue = Math.floor(fxrand() * (nb_pompidou_hi * nb_pompidou_wi))
       }
       for (molnar = 0; molnar < nb_pompidou_wi; molnar++) {
         for (beaubourg = 0; beaubourg < nb_pompidou_hi; beaubourg++) {
           if (draw_original && pompidou_count == orig) {
+            console.log("draw "+pompidou_count+" original logo (remix)")
             back = color('#000000'); front = color('#ffffff');
             nb_extra_stairs_top = 0;
             nb_extra_stairs_bottom = 0;
           }
-          else{
-          if (paint_with_klein && pompidou_count==blue){
-            back = color('#002fa7'); front=color('#D9027D');
-            nb_extra_stairs_top = Math.floor(fxrand() * 6);
-            nb_extra_stairs_bottom = Math.floor(fxrand() * 6);
-          }
           else {
-            choose_colors();
-            nb_extra_stairs_top = Math.floor(fxrand() * 6);
-            nb_extra_stairs_bottom = Math.floor(fxrand() * 6);
-          }}
+            if (paint_with_klein && pompidou_count == blue) {
+              console.log("draw "+pompidou_count+" with klein")
+              back = color('#002fa7'); front = color('#D9027D');
+              nb_extra_stairs_top = Math.floor(fxrand() * 6);
+              nb_extra_stairs_bottom = Math.floor(fxrand() * 6);
+            }
+            else {
+              console.log("draw "+pompidou_count+" with random colors")
+              choose_colors();
+              nb_extra_stairs_top = Math.floor(fxrand() * 6);
+              nb_extra_stairs_bottom = Math.floor(fxrand() * 6);
+            }
+          }
           one_pompidou(molnar * one_pompidou_width + (molnar + 1) * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad, nb_extra_stairs_top, nb_extra_stairs_bottom)
           pompidou_count++;
         }
@@ -135,19 +142,19 @@
     function choose_colors() {
       var b_index = Math.floor(fxrand() * palette_back.length);
       var f_index = Math.floor(fxrand() * palette_front.length);
-      while(explored_combo(palette_back[b_index],palette_front[f_index])){
+      while (explored_combo(palette_back[b_index], palette_front[f_index])) {
         b_index = Math.floor(fxrand() * palette_back.length);
         f_index = Math.floor(fxrand() * palette_front.length);
       }
-      explored_ind_color.push([palette_back[b_index],palette_front[f_index]])
+      explored_ind_color.push([palette_back[b_index], palette_front[f_index]])
       back = color(palette_back[b_index])
       front = color(palette_front[f_index])
     }
 
-    function explored_combo(backcolor, frontcolor){
-      inside=false
-      explored_ind_color.forEach(element=>{
-        if(element[0]=backcolor && element[1]==frontcolor){inside=true;}
+    function explored_combo(backcolor, frontcolor) {
+      inside = false
+      explored_ind_color.forEach(element => {
+        if (element[0] = backcolor && element[1] == frontcolor) { inside = true; }
       });
       return inside
     }
@@ -478,23 +485,6 @@
           break;
       }
     }
-
-    function pois(x, y, length_pois, height_pois, color_pois) {
-      var y_hi = y + 0.27 * height_pois
-      var y_lo = y + 0.73 * height_pois
-      var diam = 0.5 * height_pois
-      var x_pois = x + 0.25 * height_pois;
-      fill(color_pois);
-      noStroke();
-      while (x_pois < length_pois) {
-        ellipse(x_pois, y_hi, diam, diam)
-        x_pois += diam / (1 + fxrand())
-        ellipse(x_pois, y_lo, diam, diam)
-        x_pois += diam / (1 + fxrand())
-      }
-    }
-
-
 
     function windowResized() {
       w = document.documentElement.clientWidth;//width of window that is available for drawing
