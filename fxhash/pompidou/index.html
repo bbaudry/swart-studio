@@ -59,24 +59,20 @@
     var pad = 10;
     var nb_pompidou_hi = 3;
     var nb_pompidou_wi = 2;
-    var pompidou_count = 0;
     var w = one_pompidou_width * nb_pompidou_wi + (nb_pompidou_wi + 1) * pad;//document.documentElement.clientWidth;//width of window that is available for drawing
     var h = one_pompidou_height * nb_pompidou_hi + (nb_pompidou_hi + 1) * pad;//document.documentElement.clientHeight;//width of window that is available for drawing
-    var grain = 100;
-    var palette_black = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57']]
-    var palette_white = [['#000000', '#ffffff'], ['#713F1D', '#ffffff'], ['#E25B26', '#ffffff'], ['#452AA8', '#ffffff'], ['#925B9B', '#ffffff'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff']]
-    var palette_color = [['#000000', '#ffffff'], ['#CD00CB', '#FFD926'], ['#713F1D', '#E25B26'], ['#24C434', '#FD961C'], ['#452AA8', '#925B9B'], ['#55A6C1', '#2B8426'], ['#6D6E69', '#D3BC57']]
-    var palette_all = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff'], ['#CD00CB', '#FFD926'], ['#713F1D', '#E25B26'], ['#24C434', '#FD961C'], ['#452AA8', '#925B9B'], ['#55A6C1', '#2B8426'], ['#6D6E69', '#D3BC57'], ['#002fa7','#D9027D']]
-    var palette_back = ['#000000','#713F1D','#E25B26','#452AA8','#925B9B','#6D6E69','#2B8426','#002fa7']
-    var palette_front = ['#ffffff','#CD00CB','#FFD926','#24C434','#FD961C', '#55A6C1', '#D3BC57','#D9027D']
-
-    var palette = []
-    var explored_ind_color = []
-    var explored_ind_back = []
-    var explored_ind_front = []
     var stripe_height = 24;
     var step = 66;
     var mechanic = 1.6;
+    var pompidou_count = 0;
+
+    var palette_black = [['#000000', '#ffffff'], ['#000000', '#CD00CB'], ['#000000', '#FFD926'], ['#000000', '#24C434'], ['#000000', '#FD961C'], ['#000000', '#55A6C1'], ['#000000', '#D3BC57']]
+    var palette_white = [['#000000', '#ffffff'], ['#713F1D', '#ffffff'], ['#E25B26', '#ffffff'], ['#452AA8', '#ffffff'], ['#925B9B', '#ffffff'], ['#6D6E69', '#ffffff'], ['#2B8426', '#ffffff']]
+    var palette_color = [['#000000', '#ffffff'], ['#CD00CB', '#FFD926'], ['#713F1D', '#E25B26'], ['#24C434', '#FD961C'], ['#452AA8', '#925B9B'], ['#55A6C1', '#2B8426'], ['#6D6E69', '#D3BC57']]
+    var palette_back = ['#000000', '#713F1D', '#E25B26', '#452AA8', '#925B9B', '#6D6E69', '#2B8426']//,'#002fa7'
+    var palette_front = ['#ffffff', '#CD00CB', '#FFD926', '#24C434', '#FD961C', '#55A6C1', '#D3BC57']//,'#D9027D'
+    var palette = []
+    var explored_ind_color = []
     var back;
     var front;
 
@@ -85,28 +81,43 @@
       window.$fxhashFeatures = {
 
       }
-      palette = palette_all
       noStroke()
       frameRate(1);
+      window.$fxhashFeatures = {
+        "original": original(fxrand()),
+        "klein": klein(fxrand())
+      }
+      console.log("original :"+draw_original+"klein: ")
+    }
+
+    var draw_original;
+    function original(prob) {
+      if (prob < 0.33) { draw_original = true; return "yes" }
+      else { draw_original = false; return "no" }
+    }
+
+    function klein(prob) {
+      if (prob < 0.33) { palette_back.push('#002fa7'); palette_front('#D3BC57'); return "fuschia" }
+      else { return "no blue" }
     }
 
     function draw() {
       background('#000000')
       var nb_extra_stairs_top, nb_extra_stairs_bottom
-      var orig = Math.floor(fxrand()*(nb_pompidou_hi*nb_pompidou_wi))
-      for (molnar = 0; molnar < nb_pompidou_wi; molnar++){
+      var orig = Math.floor(fxrand() * (nb_pompidou_hi * nb_pompidou_wi))
+      for (molnar = 0; molnar < nb_pompidou_wi; molnar++) {
         for (beaubourg = 0; beaubourg < nb_pompidou_hi; beaubourg++) {
-          if (pompidou_count == orig){
-            back=color('#000000');front=color('#ffffff');
-            nb_extra_stairs_top=0;
-            nb_extra_stairs_bottom=0;
+          if (draw_original && pompidou_count == orig) {
+            back = color('#000000'); front = color('#ffffff');
+            nb_extra_stairs_top = 0;
+            nb_extra_stairs_bottom = 0;
           }
           else {
             choose_colors();
-            nb_extra_stairs_top=Math.floor(fxrand()*6);
-            nb_extra_stairs_bottom=Math.floor(fxrand()*6);
+            nb_extra_stairs_top = Math.floor(fxrand() * 6);
+            nb_extra_stairs_bottom = Math.floor(fxrand() * 6);
           }
-          one_pompidou(molnar * one_pompidou_width + (molnar + 1) * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad,nb_extra_stairs_top,nb_extra_stairs_bottom)
+          one_pompidou(molnar * one_pompidou_width + (molnar + 1) * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad, nb_extra_stairs_top, nb_extra_stairs_bottom)
           pompidou_count++;
         }
       }
@@ -115,22 +126,22 @@
       fxpreview();
     }
 
-    function choose_colors(){
-     /* var c_index = Math.floor(fxrand() * palette.length);
-      // if this index in the palette has been chosen before, get another one until a new one is found
-      while (explored_ind_color.includes(c_index)){
-        c_index = Math.floor(fxrand() * palette.length);
-      }
-      // add selected index to the list of indices that have been explored
-      explored_ind_color.push(c_index)
-      back = color(palette[c_index][0]); 
-      front = color(palette[c_index][1]);*/
+    function choose_colors() {
+      /* var c_index = Math.floor(fxrand() * palette.length);
+       // if this index in the palette has been chosen before, get another one until a new one is found
+       while (explored_ind_color.includes(c_index)){
+         c_index = Math.floor(fxrand() * palette.length);
+       }
+       // add selected index to the list of indices that have been explored
+       explored_ind_color.push(c_index)
+       back = color(palette[c_index][0]); 
+       front = color(palette[c_index][1]);*/
 
-      
+
       var b_index = Math.floor(fxrand() * palette_back.length);
       var f_index = Math.floor(fxrand() * palette_front.length);
-      back=color(palette_back[b_index])
-      front=color(palette_front[f_index])
+      back = color(palette_back[b_index])
+      front = color(palette_front[f_index])
     }
 
     function one_pompidou(x_pom, y_pom, nb_extra_stairs_top, nb_stairs_extra_bottom) {
@@ -295,11 +306,11 @@
     }
 
     function extra_stairs_up(nb_stairs, x_pom, y_pom) {
-      
+
       switch (nb_stairs) {
         case 0: break;
         case 1:
-        console.log("build 1 more stairs above")
+          console.log("build 1 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -309,7 +320,7 @@
           }
           break;
         case 2:
-        console.log("build 2 more stairs above")
+          console.log("build 2 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -326,7 +337,7 @@
           }
           break;
         case 3:
-        console.log("build 3 more stairs above")
+          console.log("build 3 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -350,7 +361,7 @@
           }
           break;
         case 4:
-        console.log("build 4 more stairs above")
+          console.log("build 4 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -381,7 +392,7 @@
           }
           break;
         case 5:
-        console.log("build 5 more stairs above")
+          console.log("build 5 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
