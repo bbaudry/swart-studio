@@ -92,31 +92,45 @@
 
     var draw_original;
     function original(prob) {
-      if (prob < 0.33) { draw_original = true; return "yes" }
+      if (prob < 0.5) { draw_original = true; return "yes" }
       else { draw_original = false; return "no" }
     }
 
+    var paint_with_klein
     function klein(prob) {
-      if (prob < 0.33) { palette_back.push('#002fa7'); palette_front.push('#D3BC57'); return "fuschia" }
-      else { return "no blue" }
+      if (prob<0.5) { paint_with_klein=true; return "fuschia" }
+      else { paint_with_klein=false;return "no blue" }
     }
 
     function draw() {
       background('#000000')
       var nb_extra_stairs_top, nb_extra_stairs_bottom
       var orig = Math.floor(fxrand() * (nb_pompidou_hi * nb_pompidou_wi))
+      var blue = Math.floor(fxrand() * (nb_pompidou_hi * nb_pompidou_wi))
+      while (blue==orig){
+        blue = Math.floor(fxrand() * (nb_pompidou_hi * nb_pompidou_wi))
+      }
       for (molnar = 0; molnar < nb_pompidou_wi; molnar++) {
         for (beaubourg = 0; beaubourg < nb_pompidou_hi; beaubourg++) {
           if (draw_original && pompidou_count == orig) {
+            console.log("build the original logo")
             back = color('#000000'); front = color('#ffffff');
             nb_extra_stairs_top = 0;
             nb_extra_stairs_bottom = 0;
           }
-          else {
-            choose_colors();
+          else{
+          if (paint_with_klein && pompidou_count==blue){
+            console.log("paint with blue")
+            back = color('#002fa7'); front=color('#D9027D');
             nb_extra_stairs_top = Math.floor(fxrand() * 6);
             nb_extra_stairs_bottom = Math.floor(fxrand() * 6);
           }
+          else {
+            console.log("choose colors randomly")
+            choose_colors();
+            nb_extra_stairs_top = Math.floor(fxrand() * 6);
+            nb_extra_stairs_bottom = Math.floor(fxrand() * 6);
+          }}
           one_pompidou(molnar * one_pompidou_width + (molnar + 1) * pad, beaubourg * one_pompidou_height + (beaubourg + 1) * pad, nb_extra_stairs_top, nb_extra_stairs_bottom)
           pompidou_count++;
         }
@@ -126,22 +140,28 @@
       fxpreview();
     }
 
+    // sets the front and back color, saves the pair in explored_ind_color and ensures that the pair has not been selected before
+    // Warning: this works only if nb_pompidou_hi * nb_pompidou_wi <= palette_back.length*palette_front.length
     function choose_colors() {
-      /* var c_index = Math.floor(fxrand() * palette.length);
-       // if this index in the palette has been chosen before, get another one until a new one is found
-       while (explored_ind_color.includes(c_index)){
-         c_index = Math.floor(fxrand() * palette.length);
-       }
-       // add selected index to the list of indices that have been explored
-       explored_ind_color.push(c_index)
-       back = color(palette[c_index][0]); 
-       front = color(palette[c_index][1]);*/
-
-
       var b_index = Math.floor(fxrand() * palette_back.length);
       var f_index = Math.floor(fxrand() * palette_front.length);
+      while(explored_combo(palette_back[b_index],palette_front[f_index])){
+        console.log("explored ("+palette_back[b_index]+", "+palette_front[f_index]+") before")
+        b_index = Math.floor(fxrand() * palette_back.length);
+        f_index = Math.floor(fxrand() * palette_front.length);
+      }
+      explored_ind_color.push([palette_back[b_index],palette_front[f_index]])
       back = color(palette_back[b_index])
       front = color(palette_front[f_index])
+    }
+
+    function explored_combo(backcolor, frontcolor){
+      inside=false
+      explored_ind_color.forEach(element=>{
+        if(element[0]=backcolor && element[1]==frontcolor){inside=true;}
+      });
+      console.log("tested ("+backcolor+", "+frontcolor+") and return "+inside)
+      return inside
     }
 
     function one_pompidou(x_pom, y_pom, nb_extra_stairs_top, nb_stairs_extra_bottom) {
@@ -310,7 +330,6 @@
       switch (nb_stairs) {
         case 0: break;
         case 1:
-          console.log("build 1 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -320,7 +339,6 @@
           }
           break;
         case 2:
-          console.log("build 2 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -337,7 +355,6 @@
           }
           break;
         case 3:
-          console.log("build 3 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -361,7 +378,6 @@
           }
           break;
         case 4:
-          console.log("build 4 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
@@ -392,7 +408,6 @@
           }
           break;
         case 5:
-          console.log("build 5 more stairs above")
           fill(front)
           x1 = x_pom + step - (0.63 * stripe_height); y1 = y_pom + 7 * stripe_height;
           for (i = 0; i < 3; i++) {
