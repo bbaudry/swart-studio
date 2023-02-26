@@ -28,7 +28,7 @@
         var soundOn;
         var soundWasNeverOn;
 
-        document.body.onclick=function(){startSound()}
+        document.body.onclick=function(){controlSound()}
 
         function preload() {
             myFont = loadFont('fonts/InconsolataSemiExpanded-Light.ttf');
@@ -42,18 +42,13 @@
             waveLeft = new p5.Oscillator();
             waveLeft.setType('sine');
             
-            waveCentre = new p5.Oscillator();
-            waveCentre.setType('sine');
-            waveCentre.start();
-            waveRight = new p5.Oscillator();
-            waveRight.setType('sine');
-            waveRight.start();
-            waveRightFreq=200;
             soundOn=false
             soundWasNeverOn=true
         }
 
-        function startSound(){
+        //this function starts the oscillators when it's invoked for the first time and turns volume on or off
+        //this function is invoked when clicking on the page
+        function controlSound(){
             if(!soundOn && soundWasNeverOn){
                 waveLeft.start();
                 soundWasNeverOn=false;
