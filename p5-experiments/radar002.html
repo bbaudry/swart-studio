@@ -23,8 +23,7 @@
         let horizon = [];
         var sig_x = 0;
         var sig_y = h / 2;
-        var waveLeft,waveCentre,waveRight;
-        var waveRightFreq;
+        var waveLeft;
         var soundOn;
         var soundWasNeverOn;
 
@@ -57,15 +56,11 @@
                 console.log("sound on");
                 soundOn=true;
                 waveLeft.amp(1);
-                waveCentre.amp(0);
-                waveRight.amp(0);
             }
             else{
                 console.log("sound off");
                 soundOn=false;
                 waveLeft.amp(0);
-                waveCentre.amp(0);
-                waveRight.amp(0);
             }
         }
 
