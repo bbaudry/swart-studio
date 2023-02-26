@@ -26,6 +26,7 @@
         var waveLeft,waveCentre,waveRight;
         var waveRightFreq;
         var soundOn;
+        var soundWasNeverOn;
 
         document.body.onclick=function(){startSound()}
 
@@ -40,24 +41,28 @@
             background(0, 0, 0);
             waveLeft = new p5.Oscillator();
             waveLeft.setType('sine');
+            
             waveCentre = new p5.Oscillator();
             waveCentre.setType('sine');
+            waveCentre.start();
             waveRight = new p5.Oscillator();
             waveRight.setType('sine');
+            waveRight.start();
             waveRightFreq=200;
             soundOn=false
+            soundWasNeverOn=true
         }
 
         function startSound(){
+            if(!soundOn && soundWasNeverOn){
+                waveLeft.start();
+                soundWasNeverOn=false;
+            }
             if(!soundOn){
                 console.log("sound on");
                 soundOn=true;
-                waveLeft.start();
-                waveLeft.amp(0);
-                waveLeft.freq(440);
-                waveCentre.start();
+                waveLeft.amp(1);
                 waveCentre.amp(0);
-                waveRight.start();
                 waveRight.amp(0);
             }
             else{
@@ -138,13 +143,11 @@
             fill(0, 100, 100)
             stroke(0, 100, 100)
             strokeWeight(2)
+            waveLeft.freq(200+(h-sig_y));
             let tmp_y
             y_vary = 13 - random() * 17;
             if (sig_x < w) {
                 if (sig_x > x_bounds[0] && sig_x <= x_bounds[1]) {
-                    waveLeft.amp(0);
-                    waveCentre.freq(200+h-sig_y);
-                    waveCentre.amp(1);
                     if (random() < 0.5) { grow = !grow }
                     tmp_y = sig_y
                     if (grow) {
@@ -161,8 +164,6 @@
                     stroke(0, 100, 100)
                 }
                 else {
-                    if (sig_x==0){waveLeft.amp(1);waveRight.amp(0);}
-                    if (sig_x>x_bounds[1]){waveCentre.amp(0);waveRight.freq(200+(h-sig_y)); waveRight.amp(1);}
                     if (sig_x < x_bounds[0] - bron || sig_x > x_bounds[1]) {//while x is not in the area where Y varies draw one rect ahed in blue to mark the position of drawing
                         fill(180, 100, 100)
                         stroke(180, 100, 100)
