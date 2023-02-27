@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <script src="libraries/p5.dom.js"></script>
+    <script src="libraries/p5.sound.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let blue = "#1f1fff"; //rgb(31,31,255)
+        let white = "#FFFFFF";
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var wave,volume;
+        var soundOn;
+        var soundWasNeverOn;
+        let buttonSound;
+        let buttonReverb, reverbOn;
+
+        var dream;
+
+        function setup() {
+            canvas = createCanvas(w, h);
+            colorMode(HSB,360,100,100);
+            frameRate(1);
+            wave = new p5.Oscillator();
+            wave.setType('triangle');
+            soundOn=false
+            soundWasNeverOn=true
+            dream = new p5.Reverb();
+            //dream.set(3,2)
+            reverbOn=false;
+            createInterface();
+        }
+
+        function createInterface(){
+            buttonSound = createButton('wave');
+            buttonSound.position(42,50);
+            buttonSound.mousePressed(controlSound);
+
+            buttonReverb = createButton('reverb');
+            buttonReverb.position(42,100);
+            buttonReverb.mousePressed(reverbControl);
+        }
+
+        function reverbControl(){
+            if (!reverbOn){
+                console.log("connect the reverb to the wave")
+                dream.process(wave,3,2);
+                reverbOn=true;
+            }
+            else{
+                console.log("disconnect the reverb")
+                dream.disconnect(); reverbOn=false;
+            }
+        }
+
+        function draw() {
+            background(230,50,50);
+            wave.amp(0,1)
+
+        }
+
+        
+        
+        
+        
+        
+        //document.body.onclick=function(){controlSound()}
+
+        //this function starts the oscillators when it's invoked for the first time and turns volume on or off
+        //this function is invoked when clicking on the page
+        function controlSound(){
+            if(!soundOn && soundWasNeverOn){
+                wave.start();
+                soundWasNeverOn=false;
+            }
+            if(!soundOn){
+                console.log("sound on");
+                soundOn=true;
+                wave.freq(440);
+                volume=1
+                wave.amp(volume);
+            }
+            else{
+                console.log("sound off");
+                soundOn=false;
+                wave.amp(0);
+            }
+        }
+
+        function windowResized() {
+        w = document.documentElement.clientWidth;//width of window that is available for drawing
+        h = document.documentElement.clientHeight;//width of window that is available for drawing
+        resizeCanvas(w, h);
+      }
+
+    </script>
+</body>
+
+</html>
