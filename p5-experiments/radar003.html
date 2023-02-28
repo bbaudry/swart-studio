@@ -21,6 +21,7 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var hor_x1, hor_y, hor_x2;
         var for_x1, for_y, for_x2;
+        let t1,t2;
 
         function preload() {
 
@@ -36,6 +37,8 @@
             for_y = 0.9*h;
             for_x1 = 0.02*w; 
             for_x2 = 0.98*w; 
+            t1=0; t2=0.09
+            frameRate(1)
         }
 
         function draw() {
@@ -45,7 +48,16 @@
             ellipse(hor_x2,hor_y,7,7)
             ellipse(for_x1,for_y,7,7)
             ellipse(for_x2,for_y,7,7)
-
+            let x1 = (1 - t1) * for_x1 + (t1 * hor_x1);
+            let y1 = (1 - t1) * for_y + (t1 * hor_y);
+            let x2 = (1 - t2) * for_x1 + (t2 * hor_x1);
+            let y2 = (1 - t2) * for_y + (t2 * hor_y);
+            let x3 = (1 - t2) * for_x2 + (t2 * hor_x2);
+            let y3 = y2;
+            let x4 = (1 - t1) * for_x2 + (t1 * hor_x2);
+            let y4 = y1;
+            quad(x1,y1,x2,y2,x3,y3,x4,y4);
+            t1+=0.1; t2+=0.1
         }
 
 
