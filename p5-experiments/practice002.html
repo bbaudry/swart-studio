@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        let blue = "#1f1fff"; //rgb(31,31,255)
+        let white = "#FFFFFF";
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var triAx1, triAx2, triAx3, triAy1, triAy2, triAy3; 
+        var rectAx1, rectAx2, rectAy1, rectAy2; //rectAx1 < rectAx2 and rectAy1 < rectAy2
+
+        
+
+        //draws white arcs of random length and width on a blue background
+
+        function setup() {
+            canvas = createCanvas(w, h);
+            colorMode(HSB,360,100,100);
+            frameRate(1);
+            triAx1 = 50; triAx2 = 200; triAx3=50; triAy1 = 50; triAy2 = 80; triAy3=200;
+            rectAx1 = 600; rectAx2 = 800; rectAy1 = 600; rectAy2 = 700;
+        }
+
+        function draw() {
+            var inside = isin(60,80);
+            console.log(inside);
+        }
+
+        function isin(x, y) {
+            //first check if the point is in square between (400,400) and (600,600), or in rectangle between (11,777) and (111,888)
+            if ((x >= rectAx1 & x < rectAx2 & y >= rectAy1 & y < rectAy2)) {
+                return true;
+            }
+            //second check if the point is in triangle 
+            else {
+                if (inTri(x, y)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+
+        function inTri(x,y){
+            var triangleSurf = surfTri(triAx1, triAy1, triAx2, triAy2, triAx3, triAy3);
+            var tri1 = surfTri(x,y,triAx1,triAy1,triAx2,triAy2);
+            var tri2 = surfTri(x,y,triAx2,triAy2,triAx3,triAy3);
+            var tri3 = surfTri(x,y,triAx1,triAy1,triAx3,triAy3);
+            return(triangleSurf == tri1+tri2+tri3);
+        }
+
+        //computes the surface of a triangl (x1,y1) (x2,y2) (x3,y3)
+        function surfTri(x1, y1, x2, y2,x3, y3){
+            return Math.abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
+        }
+
+
+
+        function windowResized() {
+        w = document.documentElement.clientWidth;//width of window that is available for drawing
+        h = document.documentElement.clientHeight;//width of window that is available for drawing
+        resizeCanvas(w, h);
+      }
+
+    </script>
+</body>
+
+</html>

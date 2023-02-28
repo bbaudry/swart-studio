@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <script src="libraries/p5.sound.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var hor_x1, hor_y, hor_x2;
+        var for_x1, for_y, for_x2;
+
+        function preload() {
+
+        }
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100);
+            createCanvas(w, h);
+            background(0,0,0)
+            hor_y = 0.42*h;
+            hor_x1 = 0.2*w; 
+            hor_x2 = 0.8*w; 
+            for_y = 0.9*h;
+            for_x1 = 0.02*w; 
+            for_x2 = 0.98*w; 
+        }
+
+        function draw() {
+            noFill();
+            stroke(0,100,100);
+            ellipse(hor_x1,hor_y,7,7)
+            ellipse(hor_x2,hor_y,7,7)
+            ellipse(for_x1,for_y,7,7)
+            ellipse(for_x2,for_y,7,7)
+
+        }
+
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
