@@ -38,7 +38,7 @@
             for_x1 = 0.02*w; 
             for_x2 = 0.98*w; 
             t1=0; t2=0.09
-            frameRate(1)
+            frameRate(17)
         }
 
         function draw() {
@@ -58,6 +58,7 @@
             let y4 = y1;
             quad(x1,y1,x2,y2,x3,y3,x4,y4);
             t1+=0.1; t2+=0.1
+            if(t1>=1.0){t1=0;t2=0.09;background(0,0,0)}
         }
 
 
