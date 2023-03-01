@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="libraries/p5.js"></script>
-    <script src="libraries/p5.sound.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
     <style>
         body {
             padding: 0;
@@ -23,7 +23,7 @@
         let horizon = [];
         var sig_x = 0;
         var sig_y = h / 2;
-        var waveLeft;
+        var waveLeft, env, reverb;
         var soundOn;
         var soundWasNeverOn;
 
@@ -39,7 +39,10 @@
             init_horizon()
             background(0, 0, 0);
             waveLeft = new p5.Oscillator();
-            waveLeft.setType('sine');
+            waveLeft.setType('square');
+            env = new p5.Envelope();
+            reverb = new p5.Reverb();
+            env.setADSR(0.05, 0.05, 0.42, 0.1);
             
             soundOn=false
             soundWasNeverOn=true
@@ -55,7 +58,9 @@
             if(!soundOn){
                 console.log("sound on");
                 soundOn=true;
-                waveLeft.amp(1);
+                reverb.process(waveLeft, 3, 2);
+                waveLeft.amp(env);
+                setInterval(() =>{env.play()},1042);
             }
             else{
                 console.log("sound off");
@@ -133,7 +138,7 @@
             fill(0, 100, 100)
             stroke(0, 100, 100)
             strokeWeight(2)
-            waveLeft.freq(200+(h-sig_y));
+            waveLeft.freq(2000+(h-sig_y));
             let tmp_y
             y_vary = 13 - random() * 17;
             if (sig_x < w) {
