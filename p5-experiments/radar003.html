@@ -19,8 +19,6 @@
         //global vars for the whole piece
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
-        var topleftx, toplefty, toprighty, toprightx;
-        var bottomleftx, bottomlefty, bottomrighty, bottomrightx;
         let t1,t2;
 
         function preload() {
@@ -41,26 +39,8 @@
             if (t1==0){background(0,0,0)}
 
             stroke(0,100,100);
-            topleftx = 0.42*w; 
-            toplefty = 0.52*h;
-            toprightx = 0.58*w; 
-            toprighty = 0.52*h;
-            bottomleftx = 0.02*w; 
-            bottomlefty = 0.98*h;
-            bottomrightx = 0.98*w; 
-            bottomrighty = 0.98*h;  
             drawQuads(0.42*w, 0.52*h, 0.58*w, 0.52*h, 0.02*w, 0.98*h, 0.98*w, 0.98*h); 
-            
-
             stroke(90,100,100);
-            topleftx = 0.4*w; 
-            toplefty = 0.49*h;
-            toprightx = 0.4*w; 
-            toprighty = 0.51*h;
-            bottomleftx = 0.02*w; 
-            bottomlefty = 0.04*h;
-            bottomrightx = 0.02*w; 
-            bottomrighty = 0.96*h; 
             drawQuads(0.4*w, 0.49*h, 0.4*w, 0.51*h, 0.02*w, 0.04*h, 0.02*w, 0.96*h)
 
             t1+=0.1; t2+=0.1
