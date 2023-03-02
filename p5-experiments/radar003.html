@@ -37,9 +37,9 @@
 
         function draw() {
             noFill();
-            stroke(0,100,100);
             let x1,x2,x3,x4,y1,y2,y3,y4;
 
+            stroke(0,100,100);
             hor_y = 0.52*h;
             hor_x1 = 0.42*w; 
             hor_x2 = 0.58*w; 
@@ -50,25 +50,26 @@
             ellipse(hor_x2,hor_y,7,7)
             ellipse(for_x1,for_y,7,7)
             ellipse(for_x2,for_y,7,7)
-            //drawQuads();
+            drawQuadsHorizon();
+
             stroke(90,100,100);
             hor_y = 0.4*w;
             hor_x1 = 0.49*h; 
             hor_x2 = 0.51*h; 
             for_y = 0.02*w;
-            for_x1 = 0.02*h; 
-            for_x2 = 0.98*h; 
+            for_x1 = 0.04*h; 
+            for_x2 = 0.96*h; 
             ellipse(hor_y,hor_x1,7,7)
             ellipse(hor_y,hor_x2,7,7)
             ellipse(for_y,for_x1,7,7)
             ellipse(for_y,for_x2,7,7)
-            //drawQuads();
+            drawQuadsVertical();
 
             t1+=0.1; t2+=0.1
             if(t1>=1.0){t1=0;t2=0.09;background(0,0,0)}
         }
 
-        function drawQuads(){
+        function drawQuadsHorizon(){
             x1 = (1 - t1) * for_x1 + (t1 * hor_x1);
             y1 = (1 - t1) * for_y + (t1 * hor_y);
             x2 = (1 - t2) * for_x1 + (t2 * hor_x1);
@@ -80,6 +81,18 @@
             quad(x1,y1,x2,y2,x3,y3,x4,y4);
         }
 
+        function drawQuadsVertical(){
+            x1 = (1 - t1) * for_y + (t1 * hor_y);
+            y1 = (1 - t1) * for_x1 + (t1 * hor_x1);
+            x2 = (1 - t2) * for_y + (t2 * hor_y);
+            y2 = (1 - t2) * for_x1 + (t2 * hor_x1);
+            
+            x3 = x2;
+            y3 = (1 - t2) * for_x2 + (t2 * hor_x2);
+            x4 = x1;
+            y4 = (1 - t1) * for_x2 + (t1 * hor_x2);
+            quad(x1,y1,x2,y2,x3,y3,x4,y4);
+        }
 
         function windowResized() {
             w = document.documentElement.clientWidth;//width of window that is available for drawing
