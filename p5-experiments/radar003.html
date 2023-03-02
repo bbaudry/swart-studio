@@ -41,32 +41,33 @@
             if (t1==0){background(0,0,0)}
 
             stroke(0,100,100);
-            toplefty = 0.52*h;
             topleftx = 0.42*w; 
+            toplefty = 0.52*h;
             toprightx = 0.58*w; 
-            toprighty = toplefty;
-            bottomlefty = 0.98*h;
+            toprighty = 0.52*h;
             bottomleftx = 0.02*w; 
+            bottomlefty = 0.98*h;
             bottomrightx = 0.98*w; 
-            bottomrighty = bottomlefty; 
-            drawQuads();
+            bottomrighty = 0.98*h;  
+            drawQuads(0.42*w, 0.52*h, 0.58*w, 0.52*h, 0.02*w, 0.98*h, 0.98*w, 0.98*h); 
+            
 
             stroke(90,100,100);
-            toplefty = 0.49*h;
             topleftx = 0.4*w; 
+            toplefty = 0.49*h;
             toprightx = 0.4*w; 
             toprighty = 0.51*h;
-            bottomlefty = 0.04*h;
             bottomleftx = 0.02*w; 
+            bottomlefty = 0.04*h;
             bottomrightx = 0.02*w; 
             bottomrighty = 0.96*h; 
-            drawQuads();
+            drawQuads(0.4*w, 0.49*h, 0.4*w, 0.51*h, 0.02*w, 0.04*h, 0.02*w, 0.96*h)
 
             t1+=0.1; t2+=0.1
-            if(t1>=0.9){t1=0;t2=0.09;noLoop();}//{background(0,0,0)}
+            if(t1>=0.9){t1=0;t2=0.09;}
         }
 
-        function drawQuads(){
+        function drawQuads(topleftx, toplefty, toprightx, toprighty, bottomleftx, bottomlefty, bottomrightx, bottomrighty){
             x1 = (1 - t1) * bottomleftx + (t1 * topleftx);
             y1 = (1 - t1) * bottomlefty + (t1 * toplefty);
             x2 = (1 - t2) * bottomleftx + (t2 * topleftx);
