@@ -38,7 +38,10 @@
             noFill();
             let x1, x2, x3, x4, y1, y2, y3, y4;
            background(0,0,0)
-           if (stepquad<0.99){stepquad += 0.001;}
+           if (quadgrow){stepquad += 0.003;}
+           else{stepquad -= 0.003;}
+           if (stepquad>=0.99){quadgrow=false;}
+           if (stepquad<=0.05){quadgrow=true;}
                 let c1 = { h: 0, s: 100, b: 100 };
                 drawQuads(0.42 * w, 0.52 * h, 0.58 * w, 0.52 * h, 0.02 * w, 0.98 * h, 0.98 * w, 0.98 * h, c1,stepquad);
                 let c2 = { h: 180, s: 100, b: 100 };
