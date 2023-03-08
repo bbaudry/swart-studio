@@ -22,6 +22,7 @@
         var palette;
         var synth;
         var soundOn=false;
+        var noise;
         const now = Tone.now()
 
 
@@ -45,6 +46,14 @@
             let c3 = { h: 90, s: 100, b: 100 };
             let c4 = { h: 270, s: 100, b: 100 };
             palette = [c1, c2, c3, c4];
+            synth = new Tone.Synth(200,'square').toDestination();
+            synth.type='square'
+            //synth.triggerAttack(42,now)
+            noise = new Tone.Noise({
+			volume: -10,
+			type: "brown"
+		}).toDestination();
+
 
             frameRate(17)
         }
@@ -74,9 +83,9 @@
 
         function playwaves(){
             if (soundOn){
-                
-            synth = new Tone.Synth(200,'sine').toDestination();
-            synth.triggerAttackRelease(42,now)
+                const toneWaveform = new Tone.Waveform();
+		noise.connect(toneWaveform);
+
             }
         }
 
