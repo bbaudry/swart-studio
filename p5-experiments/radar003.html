@@ -20,11 +20,12 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var palette;
-        const synth = new Tone.Synth().toDestination();
+        var synth;
+        var soundOn=false;
         const now = Tone.now()
 
-       
-       
+
+
         function preload() {
 
         }
@@ -32,10 +33,11 @@
         function setup() {
             colorMode(HSB, 360, 100, 100);
             let canvas = createCanvas(w, h);
-            canvas.mousePressed( async () => {
-	await Tone.start()
-	console.log('audio is ready')
-});
+            canvas.mousePressed(async () => {
+                await Tone.start()
+                soundOn=true;
+                console.log('audio is ready')
+            });
             background(0, 0, 0)
             stepquad = 0.05; quadgrow = true;
             let c1 = { h: 0, s: 100, b: 100 };
@@ -43,8 +45,6 @@
             let c3 = { h: 90, s: 100, b: 100 };
             let c4 = { h: 270, s: 100, b: 100 };
             palette = [c1, c2, c3, c4];
-            // trigger the attack immediately
-            synth.triggerAttack("C4", now)
 
             frameRate(17)
         }
@@ -52,13 +52,14 @@
         let stepquad, quadgrow;
         function draw() {
             background(0, 0, 0)
+            playwaves()
             if (frameCount % 333 < 111) {
                 drawCircles();
 
             }
             else {
                 noFill();
-                
+
                 if (quadgrow) { stepquad += 0.003; }
                 else { stepquad -= 0.003; }
                 if (stepquad >= 0.99) { quadgrow = false; }
@@ -71,34 +72,48 @@
             }
         }
 
-        function drawCircles(){
-            let c = palette[Math.floor(random()*palette.length)]
-            if(random()>0.1){
-            noFill();
-            stroke(c.h,c.s,c.b)
-            strokeWeight(3+random()*7)
-            circle(w/2,h/2,h,h)
-        }else{
-            background(0,0,100)
-            fill(c.h,c.s,c.b)
-            noStroke()
-            ellipse(w/2,h/2,h,h)
-            fill(0,0,100)
-            ellipse(w/2,h/2,h/2,h/2)
-        }
+        function playwaves(){
+            if (soundOn){
+                
+            synth = new Tone.Synth(200,'sine').toDestination();
+            synth.triggerAttackRelease(42,now)
+            }
         }
 
-        function moreRings(){
+        function drawCircles() {
+            let c = palette[Math.floor(random() * palette.length)]
+            if (random() > 0.1) {
+                noFill();
+                stroke(c.h, c.s, c.b)
+                strokeWeight(3 + random() * 7)
+                circle(w / 2, h / 2, h, h)
+            } else {
+                background(0, 0, 100)
+                fill(c.h, c.s, c.b)
+                noStroke()
+                ellipse(w / 2, h / 2, h, h)
+                fill(0, 0, 100)
+                ellipse(w / 2, h / 2, h / 2, h / 2)
+            }
+        }
+
+        function moreRings() {
             let c
-            if(random()<0.23){c = palette[Math.floor(random()*palette.length)];stroke(c.h,c.s,c.b)
-            strokeWeight(3+random()*7)
-            circle(w/2,h/2,h/2,h/2)}
-            if(random()<0.23){c = palette[Math.floor(random()*palette.length)];stroke(c.h,c.s,c.b)
-            strokeWeight(3+random()*7)
-            circle(w/2,h/2,h/3,h/3)}
-            if(random()<0.23){c = palette[Math.floor(random()*palette.length)];stroke(c.h,c.s,c.b)
-            strokeWeight(3+random()*7)
-            circle(w/2,h/2,h/4,h/4)}
+            if (random() < 0.23) {
+                c = palette[Math.floor(random() * palette.length)]; stroke(c.h, c.s, c.b)
+                strokeWeight(3 + random() * 7)
+                circle(w / 2, h / 2, h / 2, h / 2)
+            }
+            if (random() < 0.23) {
+                c = palette[Math.floor(random() * palette.length)]; stroke(c.h, c.s, c.b)
+                strokeWeight(3 + random() * 7)
+                circle(w / 2, h / 2, h / 3, h / 3)
+            }
+            if (random() < 0.23) {
+                c = palette[Math.floor(random() * palette.length)]; stroke(c.h, c.s, c.b)
+                strokeWeight(3 + random() * 7)
+                circle(w / 2, h / 2, h / 4, h / 4)
+            }
 
         }
 
