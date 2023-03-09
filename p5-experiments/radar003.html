@@ -17,6 +17,7 @@
 <body>
     <script>
         //global vars for the whole piece
+        // <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js">
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var palette;
@@ -24,6 +25,7 @@
         var soundOn=false;
         var noise;
         const now = Tone.now()
+        var stepquad, quadgrow;
 
 
 
@@ -48,17 +50,16 @@
             palette = [c1, c2, c3, c4];
             synth = new Tone.Synth(200,'square').toDestination();
             synth.type='square'
-            //synth.triggerAttack(42,now)
-            noise = new Tone.Noise({
+            synth.triggerAttack(42,now)
+            /*noise = new Tone.Noise({
 			volume: -10,
 			type: "brown"
-		}).toDestination();
+		}).toDestination();*/
 
 
             frameRate(17)
         }
 
-        let stepquad, quadgrow;
         function draw() {
             background(0, 0, 0)
             playwaves()
@@ -83,8 +84,7 @@
 
         function playwaves(){
             if (soundOn){
-                const toneWaveform = new Tone.Waveform();
-		noise.connect(toneWaveform);
+               
 
             }
         }
