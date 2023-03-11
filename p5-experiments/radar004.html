@@ -20,6 +20,7 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var rings = []
+        var ring = {cx:w/2, cy:h/2, speed:3, wid: w, hei: h}
 
         function preload() {
 
@@ -29,20 +30,18 @@
             colorMode(HSB, 360, 100, 100);
             let canvas = createCanvas(w, h);
             initRings()
-            printRings()
             frameRate(17);
         }
 
         function initRings(){
             let ikeda = 42+Math.floor((random()*42));
             for (ryoji=0;ryoji<ikeda;ryoji++){
-                rings.push({cx:w/2,cy:h/2,speed:random()})
-            }
-        }
-
-        function printRings(){
-            for (i=0;i<rings.length;i++){
-                console.log("cx: "+rings[i].cx+"; cy: "+rings[i].cy+"; speed: "+rings[i].speed)
+                if (random()<0.5){
+                    rings.push({cx:w/2,cy:h/2,wid:0.05*h+random()*0.05*h,hei:0.05*h+random()*0.4*h,speed:random()*42})
+                }
+                else{    
+                    rings.push({cx:w/2,cy:h/2,wid:0.4*h+random()*0.4*h,hei:0.4*h+random()*0.4*h,speed:random()*42})
+                }
             }
         }
 
@@ -50,8 +49,18 @@
             background(0, 0, 0)
             noFill();
             stroke(0,0,100,200)
+           
             for (i=0;i<rings.length;i++){
-                ellipse(rings[i].cx,rings[i].cy,random()*h,random()*h)
+                if (random()>0.5){
+            rings[i].wid -= rings[i].speed;
+            rings[i].hei += rings[i].speed;
+            }
+            else{
+                rings[i].wid += rings[i].speed;
+                rings[i].hei -= rings[i].speed;
+            }
+                ellipse(rings[i].cx,rings[i].cy,rings[i].wid,rings[i].hei)
+                rotate()
             }
 
 
