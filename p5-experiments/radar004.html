@@ -20,7 +20,7 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var rings = []
-        var ring = { cx: w / 2, cy: h / 2, speed: 1/10, wid: w / 7, hei: h / 7, ang: 0 }
+        var ring = { cx: w / 2, cy: h / 2, speed: 1/40, wid: w / 7, hei: h / 7, ang: 0 }
 
         function preload() {
 
@@ -34,7 +34,7 @@
         }
 
         function initRings() {
-            let ikeda = 42 + Math.floor((random() * 42));
+            let ikeda = 42+Math.floor((random() * 42));
             for (ryoji = 0; ryoji < ikeda; ryoji++) {
                 if (random() < 0.5) {
                     rings.push({ 
@@ -42,7 +42,7 @@
                         cy: h / 2, 
                         wid: 0.05 * h + random() * 0.05 * h, 
                         hei: 0.05 * h + random() * 0.4 * h, 
-                        speed: 1/(11+random()*42),
+                        speed: 1/80,
                         ang: 0
                      })
                 }
@@ -52,7 +52,7 @@
                         cy: h / 2, 
                         wid: 0.4 * h + random() * 0.4 * h, 
                         hei: 0.4 * h + random() * 0.4 * h, 
-                        speed: 1/(11+random()*42),
+                        speed: 1/80,
                         ang: 0
                     })
                 }
@@ -61,26 +61,46 @@
 
         function draw() {
             background(0, 0, 0)
+            oneRing()
+            allRings()
+        }
+        function oneRing(){
             noFill();
-            stroke(0, 0, 100)
-            
+            stroke(0, 100, 100)
+            push()
+            translate(w/2,h/2)
+            rotate(ring.ang)
+            ellipse(0,0, ring.wid, ring.hei)
+            ring.ang+=ring.speed*PI
+            //ring.speed+=1/42;
+            pop()
+        }
+
+        function allRings(){
+            noFill();
             push()
             translate(w/2,h/2)
             for (i = 0; i < rings.length; i++) {
-                /*if (random() > 0.5) {
-                    rings[i].wid -= rings[i].speed;
-                    rings[i].hei += rings[i].speed;
-                }
-                else {
-                    rings[i].wid += rings[i].speed;
-                    rings[i].hei -= rings[i].speed;
-                }*/
-                rotate(rings[i].ang)
+            stroke(0, 0, 100)
+                if (i==0) {stroke(90,100,100)
+                    rotate(rings[i].ang)
                 ellipse(0,0, rings[i].wid, rings[i].hei)
                 rings[i].ang+=rings[i].speed*PI
             }
+                if (i==41) {stroke(180,100,100)
+                    rotate(rings[i].ang)
+                ellipse(0,0, rings[i].wid, rings[i].hei)
+                rings[i].ang+=rings[i].speed*PI
+}
+if (i==33) {stroke(270,100,100)
+                    rotate(rings[i].ang)
+                ellipse(0,0, rings[i].wid, rings[i].hei)
+                rings[i].ang+=rings[i].speed*PI
+}
+            }
             pop()
         }
+
 
         function windowResized() {
             w = document.documentElement.clientWidth;//width of window that is available for drawing
