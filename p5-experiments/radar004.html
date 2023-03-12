@@ -48,12 +48,19 @@
         function draw() {
             background(0, 0, 0)
             noFill();
-            stroke(0, 0, 100, 200)
-            push()
-            rotate(ring.ang)
+            stroke(0, 0, 100)
+            
+            //rotate(ring.ang)
             ellipse(ring.cx,ring.cy,ring.wid,ring.hei)
+
+            push()
+            stroke(0, 100, 100)
+            translate(w/2,h/2)
+            rotate(ring.ang)
+            ellipse(0,0,ring.wid,ring.hei)
             pop()
             ring.ang+=ring.speed*PI;
+
             for (i = 0; i < rings.length; i++) {
                 if (random() > 0.5) {
                     rings[i].wid -= rings[i].speed;
