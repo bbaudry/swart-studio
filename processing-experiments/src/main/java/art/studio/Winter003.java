@@ -30,8 +30,8 @@ public class Winter003 extends PApplet {
 
     oneIceLayer();
     oneIceLayer();
-
-noLoop();
+    save("Winter003.png");
+    noLoop();
   }
 private void oneIceLayer(){
   int step =168;
