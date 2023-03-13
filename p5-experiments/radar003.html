@@ -48,8 +48,8 @@
             let c3 = { h: 90, s: 100, b: 100 };
             let c4 = { h: 270, s: 100, b: 100 };
             palette = [c1, c2, c3, c4];
-            synth = new Tone.Synth(200,'square').toDestination();
-            synth.type='square'
+            synth = new Tone.Synth(200,'sine').toDestination();
+            //synth.type='square'
             synth.triggerAttack(42,now)
             /*noise = new Tone.Noise({
 			volume: -10,

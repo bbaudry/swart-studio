@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var synth, osc, coolEnv, filter;
+        var soundOn = false;
+
+        StartAudioContext(Tone.context, canvas, function () {
+            soundOn = true
+        })
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100)
+            canvas = createCanvas(w, h);
+            background(0, 0, 0);
+            initSound()
+        }
+
+        function initSound() {
+/*
+            const noise = new Tone.Noise("white").start();
+            // make an autofilter to shape the noise
+            const autoFilter = new Tone.AutoFilter({
+                frequency: "8n",
+                baseFrequency: 200,
+                octaves: 8,
+
+            }).start();
+            // connect the noise
+            noise.connect(autoFilter);
+*/
+
+            filter = new Tone.Filter(20000, "lowpass");
+            osc = new Tone.Oscillator(660, "square").connect(filter).start();
+            const vol = new Tone.Volume(-28);
+            filter.connect(vol)
+            coolEnv = new Tone.AmplitudeEnvelope({
+                attack: 0.01,
+                decay: 0.2,
+                sustain: 0.5,
+                release: 0.8,
+            })
+            vol.connect(coolEnv)
+            const rev = new Tone.Reverb({decay:3,wet:0.8}).toDestination();
+            coolEnv.connect(rev)
+        }
+
+        function draw() {
+            background(0, 0, 0);
+            if (frameCount % 84 == 1) {
+                fill(0, 100, 100)
+                rect(100, 100, 400, 400)
+                if (soundOn) { 
+                    coolEnv.triggerAttackRelease(0.5); 
+                    filter.set({frequency:20000})
+                    filter.frequency.rampTo(400, 0.09);
+                }
+            }
+        }
+
+
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
