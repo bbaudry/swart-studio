@@ -46,6 +46,8 @@ private void oneIceLayer(){
   
   while (i<w){
     while(j<h){
+      float al = random(111,199);
+      fill(0, 0, 100, al);
        vera= random(off, step);
        molnar=random(off, step);
       quad(i,j,i+molnar+random(-off,off),j+random(-off,off),i+molnar+random(-off,off),j+vera+random(-off,off),i+random(-off,off),j+vera+random(-off,off));
