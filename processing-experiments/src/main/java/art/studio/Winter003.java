@@ -38,7 +38,7 @@ public class Winter003 extends PApplet {
     float i = 0; 
     float j = 0;
 
-    int step = 168; // basic value for width and height of eache quad
+    int step = 168; // basic value for width and height of each quad
     int off = 71; // randomly pick an offset in the [-off,off] range; inv: off<step
     float vera = random(step / 10, step); // width
     float molnar = random(step / 10, step); // height
