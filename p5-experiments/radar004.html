@@ -27,7 +27,7 @@
         }
 
         function setup() {
-            colorMode(HSB, 360, 100, 100);
+            colorMode(HSB, 360, 100, 100, 250);
             let canvas = createCanvas(w, h);
             //initRings()
             addRing()
@@ -65,12 +65,17 @@
         }
 
         function draw() {
-            background(0, 0, 0)
-            oneRing()
-            allRings()
+            background(0, 0, 0, 50)
+            //oneRing()
+            //allRings()
+            if (frameCount<840){
+            lastRing()
             if (frameCount%84==0){
                 addRing()
             }
+        }else{
+            allRings()
+        }
         }
 
         function oneRing() {
@@ -107,6 +112,21 @@
             pop()
         }
 
+        function lastRing(){
+            if (rings.length!=0){
+            noFill();
+            push()
+            translate(w / 2, h / 2)
+            let i = rings.length-1
+            rings[i]
+                stroke(random()*360, 0, 100)
+                rotate(rings[i].ang)
+                ellipse(0, 0, rings[i].wid, rings[i].hei)
+                rings[i].ang += rings[i].speed * PI
+            
+            pop()
+        }
+        }
 
         function windowResized() {
             w = document.documentElement.clientWidth;//width of window that is available for drawing
