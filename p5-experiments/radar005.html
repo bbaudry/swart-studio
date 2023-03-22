@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var angle;
+        var radius;
+
+        function preload() {
+
+        }
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100, 250);
+            let canvas = createCanvas(w, h);
+            angle = 0;
+            radius = h/2;
+        }
+
+
+        function draw() {
+            background(0, 0, 0, 50)
+            stroke(0,100,100)
+            let cx = w/2;
+            let cy = h/2;
+            let x = cx + radius * cos(angle);
+            let y = cy + radius * sin(angle);
+            line(cx,cy,x,y);
+            angle-=PI/168;
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
