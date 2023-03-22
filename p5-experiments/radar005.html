@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
     <style>
@@ -19,8 +20,10 @@
         //global vars for the whole piece
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
-        var angle;
-        var radius;
+        var angle = 0;
+        var radius = h / 2;
+        var particles = [];
+        var indices = [];
 
         function preload() {
 
@@ -29,20 +32,56 @@
         function setup() {
             colorMode(HSB, 360, 100, 100, 250);
             let canvas = createCanvas(w, h);
-            angle = 0;
-            radius = h/2;
+            initparticles(0.05 * h, 0.001, 0.001 * h, 0.01, 0, 336)
+            background(0, 0, 0)
+        }
+
+        function initparticles(initrad, initspeed, radstep, speedstep, initangle, nbparticles) {
+            for (i = 0; i < nbparticles; i++) {
+                let r = initrad + i * radstep;
+                let s = initspeed + i * speedstep;
+                particles.push({ rad: r, speed: s, angle: initangle })
+            }
         }
 
 
         function draw() {
             background(0, 0, 0, 50)
-            stroke(0,100,100)
-            let cx = w/2;
-            let cy = h/2;
-            let x = cx + radius * cos(angle);
-            let y = cy + radius * sin(angle);
-            line(cx,cy,x,y);
-            angle-=PI/168;
+            let cx = w / 2;
+            let cy = h / 2;
+            stroke(180, 100, 100); fill(180, 100, 100)
+            ellipse(cx, cy, 15, 15);
+            draw1by1();
+            //drawAll();
+        }
+
+        function draw1by1(){
+            let cx = w / 2;
+            let cy = h / 2;
+            stroke(0, 100, 100); fill(0, 100, 100);
+            if (frameCount%84==1){
+                let vera = Math.floor(random()*particles.length);
+                if (!indices.includes(vera)) {indices.push(vera);}
+            }
+            for (i = 0; i < indices.length; i++) {
+                let x = cx + particles[indices[i]].rad * cos(particles[indices[i]].angle);
+                let y = cy + particles[indices[i]].rad * sin(particles[indices[i]].angle);
+                ellipse(x, y, 5, 5);
+                particles[indices[i]].angle -= radians(particles[indices[i]].speed);//PI/168;
+            }
+
+        }
+
+        function drawAll(){
+            let cx = w / 2;
+            let cy = h / 2;
+            stroke(0, 100, 100); fill(0, 100, 100);
+            for (i = 0; i < particles.length; i++) {
+                let x = cx + particles[i].rad * cos(particles[i].angle);
+                let y = cy + particles[i].rad * sin(particles[i].angle);
+                ellipse(x, y, 5, 5);
+                particles[i].angle -= radians(particles[i].speed);//PI/168;
+            }
         }
 
         function windowResized() {
