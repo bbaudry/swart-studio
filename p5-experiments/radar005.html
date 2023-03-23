@@ -51,15 +51,15 @@
             let cy = h / 2;
             stroke(180, 100, 100); fill(180, 100, 100)
             ellipse(cx, cy, 15, 15);
-            //draw1by1();
-            drawAll();
+            if (frameCount<4200){draw1by1();}
+            else {drawAll();}
         }
 
         function draw1by1(){
             let cx = w / 2;
             let cy = h / 2;
             stroke(0, 100, 100); fill(0, 100, 100);
-            if (frameCount%84==1){
+            if (frameCount%42==1){
                 let vera = Math.floor(random()*particles.length);
                 if (!indices.includes(vera)) {indices.push(vera);}
             }
