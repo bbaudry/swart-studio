@@ -32,15 +32,24 @@
         function setup() {
             colorMode(HSB, 360, 100, 100, 250);
             let canvas = createCanvas(w, h);
-            initparticles(0.05 * h, 0.001, 0.001 * h, 0.01, 0, 450)
+            let smallest_radius = 0.05 * h;
+            let smallest_speed = 0.001;
+            let radius_increment = 0.001*h;
+            let speed_increment = 0.01;
+            let origin_angle = 0;
+            let nb_particles = 450.0;
+            initparticles(smallest_radius,smallest_speed,radius_increment,speed_increment,origin_angle,nb_particles)
             background(0, 0, 0)
         }
 
         function initparticles(initrad, initspeed, radstep, speedstep, initangle, nbparticles) {
+            let origin_saturation = 100.0;
+            let saturation_dec = 100.0/450.0;
             for (i = 0; i < nbparticles; i++) {
                 let r = initrad + i * radstep;
                 let s = initspeed + i * speedstep;
-                particles.push({ rad: r, speed: s, angle: initangle })
+                let sat = origin_saturation-(i*saturation_dec);
+                particles.push({ rad: r, speed: s, angle: initangle, saturation: sat })
             }
         }
 
@@ -51,19 +60,20 @@
             let cy = h / 2;
             stroke(180, 100, 100); fill(180, 100, 100)
             ellipse(cx, cy, 15, 15);
-            if (frameCount<4200){draw1by1();}
-            else {drawAll();}
+            drawAll();
+//            if (frameCount<8400){draw1by1();}
+//            else {drawAll();}
         }
 
         function draw1by1(){
             let cx = w / 2;
             let cy = h / 2;
-            stroke(0, 100, 100); fill(0, 100, 100);
             if (frameCount%42==1){
                 let vera = Math.floor(random()*particles.length);
                 if (!indices.includes(vera)) {indices.push(vera);}
             }
             for (i = 0; i < indices.length; i++) {
+                stroke(0, particles[indices[i]].saturation, 100); fill(0, particles[indices[i]].saturation, 100);
                 let x = cx + particles[indices[i]].rad * cos(particles[indices[i]].angle);
                 let y = cy + particles[indices[i]].rad * sin(particles[indices[i]].angle);
                 ellipse(x, y, 5, 5);
@@ -77,8 +87,9 @@
         function drawAll(){
             let cx = w / 2;
             let cy = h / 2;
-            stroke(0, 100, 100); fill(0, 100, 100);
+            
             for (i = 0; i < particles.length; i++) {
+                stroke(0, particles[i].saturation, 100); fill(0, particles[i].saturation, 100);
                 let x = cx + particles[i].rad * cos(particles[i].angle);
                 let y = cy + particles[i].rad * sin(particles[i].angle);
                 ellipse(x, y, 5, 5);
