@@ -45,11 +45,13 @@
         function initparticles(initrad, initspeed, radstep, speedstep, initangle, nbparticles) {
             let origin_saturation = 100.0;
             let saturation_dec = 100.0/450.0;
+            let cx = w / 2;
+            let cy = h / 2;
             for (i = 0; i < nbparticles; i++) {
                 let r = initrad + i * radstep;
                 let s = initspeed + i * speedstep;
                 let sat = origin_saturation-(i*saturation_dec);
-                particles.push({ rad: r, speed: s, angle: initangle, saturation: sat })
+                particles.push({ x:cx, y:cy, rad: r, speed: s, angle: initangle, saturation: sat })
             }
         }
 
@@ -61,23 +63,21 @@
             stroke(180, 100, 100); fill(180, 100, 100)
             ellipse(cx, cy, 15, 15);
             drawAll();
-//            if (frameCount<8400){draw1by1();}
-//            else {drawAll();}
+            //if (frameCount<8400){draw1by1();}
+            //else {drawAll();}
         }
 
         function draw1by1(){
-            let cx = w / 2;
-            let cy = h / 2;
             if (frameCount%42==1){
                 let vera = Math.floor(random()*particles.length);
                 if (!indices.includes(vera)) {indices.push(vera);}
             }
             for (i = 0; i < indices.length; i++) {
-                stroke(0, particles[indices[i]].saturation, 100); fill(0, particles[indices[i]].saturation, 100);
-                let x = cx + particles[indices[i]].rad * cos(particles[indices[i]].angle);
-                let y = cy + particles[indices[i]].rad * sin(particles[indices[i]].angle);
+                let p = particles[indices[i]];
+                stroke(0, p.saturation, 100); fill(0, p.saturation, 100);
+                let x = p.x + p.rad * cos(p.angle);
+                let y = p.y + p.rad * sin(p.angle);
                 ellipse(x, y, 5, 5);
-                //particles[indices[i]].angle -= radians(particles[indices[i]].speed);//PI/168;
             }
             for (i = 0; i < particles.length; i++) {
                 particles[i].angle -= radians(particles[i].speed);//PI/168;
@@ -85,15 +85,18 @@
         }
 
         function drawAll(){
-            let cx = w / 2;
-            let cy = h / 2;
-            
             for (i = 0; i < particles.length; i++) {
                 stroke(0, particles[i].saturation, 100); fill(0, particles[i].saturation, 100);
-                let x = cx + particles[i].rad * cos(particles[i].angle);
-                let y = cy + particles[i].rad * sin(particles[i].angle);
+                let x = particles[i].x + particles[i].rad * cos(particles[i].angle);
+                let y = particles[i].y + particles[i].rad * sin(particles[i].angle);
                 ellipse(x, y, 5, 5);
                 particles[i].angle -= radians(particles[i].speed);//PI/168;
+                if (i%2==0){
+                    particles[i].x-=0.1;
+                }
+                else{
+                    particles[i].x+=0.1;
+                }
             }
         }
 
