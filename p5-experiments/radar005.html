@@ -51,7 +51,9 @@
                 let r = initrad + i * radstep;
                 let s = initspeed + i * speedstep;
                 let sat = origin_saturation-(i*saturation_dec);
-                particles.push({ x:cx, y:cy, rad: r, speed: s, angle: initangle, saturation: sat })
+                let hu;
+                if (i%2==1){hu=300;} else{hu=210}
+                particles.push({ x:cx, y:cy, rad: r, speed: s, angle: initangle, hue: hu, saturation: sat })
             }
         }
 
@@ -62,9 +64,11 @@
             let cy = h / 2;
             stroke(180, 100, 100); fill(180, 100, 100)
             ellipse(cx, cy, 15, 15);
+            special();
             //drawAll();
-            if (frameCount<16800){draw1by1();}
-            else {drawAll();}
+            draw1by1();
+            //if (frameCount<16800){draw1by1();}
+            //else {drawAll();}
         }
 
         function draw1by1(){
@@ -74,7 +78,7 @@
             }
             for (i = 0; i < indices.length; i++) {
                 let p = particles[indices[i]];
-                stroke(0, p.saturation, 100); fill(0, p.saturation, 100);
+                stroke(p.hue, 100, 100); fill(p.hue, 100, 100);
                 let x = p.x + p.rad * cos(p.angle);
                 let y = p.y + p.rad * sin(p.angle);
                 ellipse(x, y, 3, 3);
@@ -85,19 +89,28 @@
         }
 
         function drawAll(){
+            let odd = random()*0.1;
+            let even = random()*0.1;
             for (i = 0; i < particles.length; i++) {
-                stroke(0, particles[i].saturation, 100); fill(0, particles[i].saturation, 100);
+                stroke(particles[i].hue, 100, 100, 150); fill(particles[i].hue, 100, 100, 150);
                 let x = particles[i].x + particles[i].rad * cos(particles[i].angle);
                 let y = particles[i].y + particles[i].rad * sin(particles[i].angle);
-                ellipse(x, y, 3, 3);
+                ellipse(x, y, 5, 5);
                 particles[i].angle -= radians(particles[i].speed);//PI/168;
                 if (i%2==0){
-                    particles[i].x-=0.1;
+                    particles[i].x-=even;
+                    if (random()*42 < 0.42) {particles[i].y+=even;}
                 }
                 else{
-                    particles[i].x+=0.1;
+                    particles[i].x+=odd;
+                    if (random()*42 < 0.42) {particles[i].y-=odd;}
                 }
             }
+        }
+
+        function special(){
+            let vera = particles[particles.length-1].angle%360
+            if (vera>=0 && vera<10){fill(0,100,100);ellipse(w/2,h/2,h,h)}
         }
 
         function windowResized() {
