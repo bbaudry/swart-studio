@@ -34,17 +34,17 @@
             let canvas = createCanvas(w, h);
             let smallest_radius = 0.05 * h;
             let smallest_speed = 0.001;
-            let radius_increment = 0.001*h;
-            let speed_increment = 0.01;
+            let radius_increment = 0.0001*h;
+            let speed_increment = 0.05;
             let origin_angle = 0;
-            let nb_particles = 450.0;
+            let nb_particles = 4500.0;
             initparticles(smallest_radius,smallest_speed,radius_increment,speed_increment,origin_angle,nb_particles)
             background(0, 0, 0)
         }
 
         function initparticles(initrad, initspeed, radstep, speedstep, initangle, nbparticles) {
             let origin_saturation = 100.0;
-            let saturation_dec = 100.0/450.0;
+            let saturation_dec = 100.0/nbparticles;
             let cx = w / 2;
             let cy = h / 2;
             for (i = 0; i < nbparticles; i++) {
@@ -62,9 +62,9 @@
             let cy = h / 2;
             stroke(180, 100, 100); fill(180, 100, 100)
             ellipse(cx, cy, 15, 15);
-            drawAll();
-            //if (frameCount<8400){draw1by1();}
-            //else {drawAll();}
+            //drawAll();
+            if (frameCount<16800){draw1by1();}
+            else {drawAll();}
         }
 
         function draw1by1(){
@@ -77,7 +77,7 @@
                 stroke(0, p.saturation, 100); fill(0, p.saturation, 100);
                 let x = p.x + p.rad * cos(p.angle);
                 let y = p.y + p.rad * sin(p.angle);
-                ellipse(x, y, 5, 5);
+                ellipse(x, y, 3, 3);
             }
             for (i = 0; i < particles.length; i++) {
                 particles[i].angle -= radians(particles[i].speed);//PI/168;
@@ -89,7 +89,7 @@
                 stroke(0, particles[i].saturation, 100); fill(0, particles[i].saturation, 100);
                 let x = particles[i].x + particles[i].rad * cos(particles[i].angle);
                 let y = particles[i].y + particles[i].rad * sin(particles[i].angle);
-                ellipse(x, y, 5, 5);
+                ellipse(x, y, 3, 3);
                 particles[i].angle -= radians(particles[i].speed);//PI/168;
                 if (i%2==0){
                     particles[i].x-=0.1;

@@ -49,8 +49,8 @@
 */
 
             filter = new Tone.Filter(20000, "lowpass");
-            osc = new Tone.Oscillator(660, "square").connect(filter).start();
-            const vol = new Tone.Volume(-28);
+            osc = new Tone.Oscillator(1000, "sine").connect(filter).start();
+            const vol = new Tone.Volume(-18);
             filter.connect(vol)
             coolEnv = new Tone.AmplitudeEnvelope({
                 attack: 0.01,
@@ -59,8 +59,13 @@
                 release: 0.8,
             })
             vol.connect(coolEnv)
-            const rev = new Tone.Reverb({decay:3,wet:0.8}).toDestination();
+            const rev = new Tone.Reverb({decay:5,wet:0.8}).toDestination();
             coolEnv.connect(rev)
+//            osc2 = new Tone.Oscillator(220, "sine").connect(filter).start()
+//            filter.toDestination();
+            osc3 = new Tone.Oscillator(220, "sine").start()
+            osc3.toDestination()
+            osc3.set({frequency:440})
         }
 
         function draw() {
@@ -69,7 +74,8 @@
                 fill(0, 100, 100)
                 rect(100, 100, 400, 400)
                 if (soundOn) { 
-                    coolEnv.triggerAttackRelease(0.5); 
+                    
+                    //coolEnv.triggerAttackRelease(0.5); 
                     filter.set({frequency:20000})
                     filter.frequency.rampTo(400, 0.09);
                 }
