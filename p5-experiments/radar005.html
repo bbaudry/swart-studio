@@ -33,8 +33,8 @@
             colorMode(HSB, 360, 100, 100, 250);
         
             let canvas = createCanvas(w, h);
-            textFont('Georgia');
-            textSize(42);
+            textFont(free);
+            textSize(8);
             let smallest_radius = 0.05 * h;
             let smallest_speed = 0.001;
             let radius_increment = 0.0001*h;
@@ -70,7 +70,7 @@
             let cy = h / 2;
             stroke(180, 100, 100); fill(180, 100, 100)
             ellipse(cx, cy, 15, 15);
-            special(); if(frameCount==111)[textFont(free)]
+            special();
             //drawAll();
               draw1by1();
             //if (frameCount<16800){draw1by1();}
