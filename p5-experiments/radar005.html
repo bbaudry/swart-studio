@@ -37,7 +37,7 @@
             textSize(8);
             let smallest_radius = 0.05 * h;
             let smallest_speed = 0.001;
-            let radius_increment = 0.0001*h;
+            let radius_increment = 0.0005*h;
             let speed_increment = 0.05;
             let origin_angle = 0;
             let nb_particles = 4500.0;
@@ -56,9 +56,9 @@
                 let s = initspeed + i * speedstep;
                 let sat = origin_saturation-(i*saturation_dec);
                 let hu;
-                if (i%2==1){hu=300;} else{hu=210}
+                if (i%2==1){hu=0;} else{hu=180} //300,210
                 if (i==0){hu=120}
-                let diam = 1+random()*5
+                let diam = 1+random()*9
                 particles.push({ x:cx, y:cy, rad: r, speed: s, angle: initangle, hue: hu, saturation: sat, diameter: diam })
             }
         }
@@ -72,13 +72,14 @@
             ellipse(cx, cy, 15, 15);
             special();
             //drawAll();
+            
               draw1by1();
             //if (frameCount<16800){draw1by1();}
             //else {drawAll();}
         }
 
         function draw1by1(){
-            if (frameCount%42==1){
+            if (frameCount%4==1){
                 let vera = Math.floor(random()*particles.length);
                 if (!indices.includes(vera)) {indices.push(vera);}
             }
@@ -116,11 +117,11 @@
 
         var vera
         function special(){
-            
+            vera = indices.length
             fill(50,100,100); stroke(50,100,100); 
             text(vera, 100, h/2);
             if (frameCount%84==0){
-                vera = particles[0].angle%360
+                //vera = particles[0].angle%360
             }
         }
 
