@@ -58,7 +58,7 @@
                 let hu;
                 if (i%2==1){hu=0;} else{hu=180} //300,210
                 if (i==0){hu=120}
-                let diam = 1+random()*9
+                let diam = 1+random()*4
                 particles.push({ x:cx, y:cy, rad: r, speed: s, angle: initangle, hue: hu, saturation: sat, diameter: diam })
             }
         }
@@ -73,7 +73,7 @@
             special();
             //drawAll();
             
-              draw1by1();
+              draw1by1_opt();
             //if (frameCount<16800){draw1by1();}
             //else {drawAll();}
         }
@@ -85,7 +85,7 @@
             }
             for (i = 0; i < indices.length; i++) {
                 let p = particles[indices[i]];
-                stroke(p.hue, 100, 100); fill(p.hue, 100, 100);
+                stroke(p.hue, 100, 100,50); fill(p.hue, 100, 100,50);
                 let x = p.x + p.rad * cos(p.angle);
                 let y = p.y + p.rad * sin(p.angle);
                 ellipse(x, y, p.diameter, p.diameter);
@@ -94,6 +94,26 @@
                 particles[i].angle -= radians(particles[i].speed);//PI/168;
             }
         }
+
+
+        function draw1by1_opt(){
+            if (frameCount%4==1){
+                let vera = Math.floor(random()*particles.length);
+                if (!indices.includes(vera)) {
+                    indices.push(vera);
+                    particles[vera].angle-=(frameCount-1)*radians(particles[vera].speed); // synchronize the angle of vera's particle
+                }
+            }
+            for (i = 0; i < indices.length; i++) {
+                let p = particles[indices[i]];
+                stroke(p.hue, 0, 100); fill(p.hue, 0, 100);
+                let x = p.x + p.rad * cos(p.angle);
+                let y = p.y + p.rad * sin(p.angle);
+                ellipse(x, y, p.diameter, p.diameter);
+                p.angle-= radians(p.speed);
+            }
+        }
+
 
         function drawAll(){
             let odd = random()*0.1;
