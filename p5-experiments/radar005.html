@@ -78,24 +78,7 @@
             //else {drawAll();}
         }
 
-        function draw1by1(){
-            if (frameCount%4==1){
-                let vera = Math.floor(random()*particles.length);
-                if (!indices.includes(vera)) {indices.push(vera);}
-            }
-            for (i = 0; i < indices.length; i++) {
-                let p = particles[indices[i]];
-                stroke(p.hue, 100, 100,50); fill(p.hue, 100, 100,50);
-                let x = p.x + p.rad * cos(p.angle);
-                let y = p.y + p.rad * sin(p.angle);
-                ellipse(x, y, p.diameter, p.diameter);
-            }
-            for (i = 0; i < particles.length; i++) {
-                particles[i].angle -= radians(particles[i].speed);//PI/168;
-            }
-        }
-
-
+        /*optimized version: don't update all angles all the time; instead synch the angle of a particle when its index enters indices*/
         function draw1by1_opt(){
             if (frameCount%4==1){
                 let vera = Math.floor(random()*particles.length);
@@ -106,6 +89,8 @@
             }
             for (i = 0; i < indices.length; i++) {
                 let p = particles[indices[i]];
+                // knob: choose white or colored particles
+                // stroke(p.hue, 100, 100,50); fill(p.hue, 100, 100,50);
                 stroke(p.hue, 0, 100); fill(p.hue, 0, 100);
                 let x = p.x + p.rad * cos(p.angle);
                 let y = p.y + p.rad * sin(p.angle);
