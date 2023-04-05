@@ -24,6 +24,7 @@
         var particles = [];
         var indices = [];
         var free;
+        var sketch_on = false;
 
         function preload() {
             free=loadFont('fonts/FreeMono.ttf')
@@ -34,7 +35,7 @@
         
             let canvas = createCanvas(w, h);
             textFont(free);
-            textSize(8);
+            textSize(42);
             let smallest_radius = 0.05 * h;
             let smallest_speed = 0.001;
             let radius_increment = 0.0005*h;
@@ -65,6 +66,7 @@
 
 
         function draw() {
+            if(sketch_on){
             background(0, 0, 0, 50)
             let cx = w / 2;
             let cy = h / 2;
@@ -76,6 +78,19 @@
               draw1by1_opt();
             //if (frameCount<16800){draw1by1();}
             //else {drawAll();}
+        }
+        else{
+            fill(50,100,100); stroke(50,100,100); 
+            textAlign("center")
+            text("click to start", w/2, h/2);
+
+        }
+        }
+
+        function mousePressed(){
+            if(!sketch_on){
+                sketch_on=true;
+            }
         }
 
         /*optimized version: don't update all angles all the time; instead synch the angle of a particle when its index enters indices*/

@@ -91,7 +91,7 @@ public class Birth007 extends PApplet {
         }
         if(cy>h+step){
             noLoop();
-            save("gift007.png");
+            save("gift007b.png");
         }
     }
 
