@@ -27,79 +27,78 @@
         var sketch_on = false;
 
         function preload() {
-            free=loadFont('fonts/FreeMono.ttf')
+            free = loadFont('fonts/FreeMono.ttf')
         }
 
         function setup() {
             colorMode(HSB, 360, 100, 100, 250);
-        
+
             let canvas = createCanvas(w, h);
             textFont(free);
             textSize(42);
             let smallest_radius = 0.05 * h;
             let smallest_speed = 0.001;
-            let radius_increment = 0.0005*h;
+            let radius_increment = 0.0005 * h;
             let speed_increment = 0.05;
             let origin_angle = 0;
             let nb_particles = 4500.0;
-            initparticles(smallest_radius,smallest_speed,radius_increment,speed_increment,origin_angle,nb_particles)
+            initparticles(smallest_radius, smallest_speed, radius_increment, speed_increment, origin_angle, nb_particles)
             indices.push(0)
             background(0, 0, 0)
         }
 
         function initparticles(initrad, initspeed, radstep, speedstep, initangle, nbparticles) {
             let origin_saturation = 100.0;
-            let saturation_dec = 100.0/nbparticles;
+            let saturation_dec = 100.0 / nbparticles;
             let cx = w / 2;
             let cy = h / 2;
             for (i = 0; i < nbparticles; i++) {
                 let r = initrad + i * radstep;
                 let s = initspeed + i * speedstep;
-                let sat = origin_saturation-(i*saturation_dec);
+                let sat = origin_saturation - (i * saturation_dec);
                 let hu;
-                if (i%2==1){hu=0;} else{hu=180} //300,210
-                if (i==0){hu=120}
-                let diam = 1+random()*4
-                particles.push({ x:cx, y:cy, rad: r, speed: s, angle: initangle, hue: hu, saturation: sat, diameter: diam })
+                if (i % 2 == 1) { hu = 0; } else { hu = 180 } //300,210
+                if (i == 0) { hu = 120 }
+                let diam = 1 + random() * 4
+                particles.push({ x: cx, y: cy, rad: r, speed: s, angle: initangle, hue: hu, saturation: sat, diameter: diam })
             }
         }
 
 
         function draw() {
-            if(sketch_on){
-            background(0, 0, 0, 50)
-            let cx = w / 2;
-            let cy = h / 2;
-            stroke(180, 100, 100); fill(180, 100, 100)
-            ellipse(cx, cy, 15, 15);
-            special();
-            //drawAll();
-            
-              draw1by1_opt();
-            //if (frameCount<16800){draw1by1();}
-            //else {drawAll();}
-        }
-        else{
-            fill(50,100,100); stroke(50,100,100); 
-            textAlign("center")
-            text("click to start", w/2, h/2);
+            if (sketch_on) {
+                background(0, 0, 0, 50)
+                let cx = w / 2;
+                let cy = h / 2;
+                stroke(180, 100, 100); fill(180, 100, 100)
+                ellipse(cx, cy, 15, 15);
+                special();
+                //drawAll();
 
-        }
+                draw1by1_opt();
+                //if (frameCount<16800){draw1by1();}
+                //else {drawAll();}
+            }
+            else {
+                fill(50, 100, 100); stroke(50, 100, 100);
+                textAlign("center")
+                text("click to start", w / 2, h / 2);
+            }
         }
 
-        function mousePressed(){
-            if(!sketch_on){
-                sketch_on=true;
+        function mousePressed() {
+            if (!sketch_on) {
+                sketch_on = true;
             }
         }
 
         /*optimized version: don't update all angles all the time; instead synch the angle of a particle when its index enters indices*/
-        function draw1by1_opt(){
-            if (frameCount%4==1){
-                let vera = Math.floor(random()*particles.length);
+        function draw1by1_opt() {
+            if (frameCount % 4 == 1) {
+                let vera = Math.floor(random() * particles.length);
                 if (!indices.includes(vera)) {
                     indices.push(vera);
-                    particles[vera].angle-=(frameCount-1)*radians(particles[vera].speed); // synchronize the angle of vera's particle
+                    particles[vera].angle -= (frameCount - 1) * radians(particles[vera].speed); // synchronize the angle of vera's particle
                 }
             }
             for (i = 0; i < indices.length; i++) {
@@ -110,37 +109,37 @@
                 let x = p.x + p.rad * cos(p.angle);
                 let y = p.y + p.rad * sin(p.angle);
                 ellipse(x, y, p.diameter, p.diameter);
-                p.angle-= radians(p.speed);
+                p.angle -= radians(p.speed);
             }
         }
 
 
-        function drawAll(){
-            let odd = random()*0.1;
-            let even = random()*0.1;
+        function drawAll() {
+            let odd = random() * 0.1;
+            let even = random() * 0.1;
             for (i = 0; i < particles.length; i++) {
                 stroke(particles[i].hue, 100, 100, 150); fill(particles[i].hue, 100, 100, 150);
                 let x = particles[i].x + particles[i].rad * cos(particles[i].angle);
                 let y = particles[i].y + particles[i].rad * sin(particles[i].angle);
                 ellipse(x, y, 5, 5);
                 particles[i].angle -= radians(particles[i].speed);//PI/168;
-                if (i%2==0){
-                    particles[i].x-=even;
-                    if (random()*42 < 0.42) {particles[i].y+=even;}
+                if (i % 2 == 0) {
+                    particles[i].x -= even;
+                    if (random() * 42 < 0.42) { particles[i].y += even; }
                 }
-                else{
-                    particles[i].x+=odd;
-                    if (random()*42 < 0.42) {particles[i].y-=odd;}
+                else {
+                    particles[i].x += odd;
+                    if (random() * 42 < 0.42) { particles[i].y -= odd; }
                 }
             }
         }
 
         var vera
-        function special(){
+        function special() {
             vera = indices.length
-            fill(50,100,100); stroke(50,100,100); 
-            text(vera, 100, h/2);
-            if (frameCount%84==0){
+            fill(50, 100, 100); stroke(50, 100, 100);
+            text(vera, 100, h / 2);
+            if (frameCount % 84 == 0) {
                 //vera = particles[0].angle%360
             }
         }
