@@ -36,18 +36,17 @@
             osc1 = new Tone.Oscillator();
             osc1.toDestination();
            //osc1.frequency.value=110;
-            const vol = new Tone.Volume(-6);
-            //osc1.connect(vol)
+            const vol = new Tone.Volume(-12).toDestination();
+            //osc1.connect(vol.volume)
             osc2 = new Tone.Oscillator();
 
             osc2.frequency.value=110;
-            osc2.toDestination();
+            //osc2.toDestination();
             
             wave=new Tone.Waveform()
             Tone.Master.connect(wave)
-            Tone.Master.volume.value=-9;
+            Tone.Master.volume.value=-3;
         }
-
         function mousePressed() {
             if (!soundOn) {
                 soundOn = true
