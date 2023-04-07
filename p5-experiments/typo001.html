@@ -31,18 +31,20 @@
             colorMode(HSB, 360, 100, 100)
             canvas = createCanvas(w, h);
             background(0, 0, 0);
-            fSize = 555
+            fSize = 0.5*w
         }
 
         function draw() {
             background(0, 0, 0);
-            drawletter()
+            drawletter('G', 0.01*w, 0.8 * h)
+            drawletter('P', 0.4*w, 0.8 * h)
+            drawletter('L', 0.7*w, 0.8 * h)
         }
 
-        function drawletter(){
-            let pix_density = 0.02
-            let pix_diam = 84;
-            let pts = bowie.textToPoints('C', 10, 0.47 * h, fSize, {
+        function drawletter(letter,x,y){
+            let pix_density = 0.2
+            let pix_diam = 21;
+            let pts = bowie.textToPoints(letter,x,y, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
             })
