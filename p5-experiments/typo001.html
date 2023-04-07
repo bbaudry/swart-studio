@@ -31,12 +31,12 @@
         }
 
         function setup() {
-            colorMode(HSB, 360, 100, 100)
+            colorMode(HSB, 360, 100, 100, 250)
             canvas = createCanvas(w, h);
             background(0, 0, 0);
             fSize = 0.5*w
             hu1=0; hu2=90; hu3=180; hu4=270;
-            pix_density = 0.002
+            pix_density = 0.42
             ptsg = bowie.textToPoints('g', 0.01*w, 0.8 * h, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
@@ -53,11 +53,12 @@
         }
 
         function draw() {
-            background(0, 0, 0);
+            background(0, 0, 0, 50);
             drawletter(ptsg)
             drawletter(ptsp)
             drawletter(ptsl)
-            //noLoop()
+            //updatepts(0.00001)
+            noLoop()
         }
 
         function drawletter(pts){
@@ -74,7 +75,10 @@
                 ellipse(p1.x, p1.y, pix_diam, pix_diam);
             }
             hu1++;hu2++;hu3++;hu4++;
-            pix_density +=0.000001;
+        }
+
+        function updatepts(speed){
+            pix_density +=speed;
             ptsg = bowie.textToPoints('g', 0.01*w, 0.8 * h, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
