@@ -22,7 +22,9 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var bowie;
         var fSize;
-        var hu1, hu2, hu3, hu4
+        var hu1, hu2, hu3, hu4;
+        var ptsg, ptsp, ptsl;
+        var pix_density;
 
         function preload() {
             bowie = loadFont("fonts/FreeMono.ttf");
@@ -33,24 +35,33 @@
             canvas = createCanvas(w, h);
             background(0, 0, 0);
             fSize = 0.5*w
-            hu1=0; hu2=90; hu3=180; hu4=270
+            hu1=0; hu2=90; hu3=180; hu4=270;
+            pix_density = 0.002
+            ptsg = bowie.textToPoints('g', 0.01*w, 0.8 * h, fSize, {
+                sampleFactor: pix_density,
+                simplifyThreshold: 0
+            })
+            ptsp = bowie.textToPoints('p',0.4*w, 0.8 * h,fSize, {
+                sampleFactor: pix_density,
+                simplifyThreshold: 0
+            })
+            ptsl = bowie.textToPoints('l',0.7*w, 0.8 * h, fSize, {
+                sampleFactor: pix_density,
+                simplifyThreshold: 0
+            })
+
         }
 
         function draw() {
             background(0, 0, 0);
-            drawletter('g', 0.01*w, 0.8 * h, true)
-            drawletter('p', 0.4*w, 0.8 * h, false)
-            drawletter('l', 0.7*w, 0.8 * h, false)
+            drawletter(ptsg)
+            drawletter(ptsp)
+            drawletter(ptsl)
             //noLoop()
         }
 
-        function drawletter(letter,x,y,a){
-            let pix_density = 0.42
+        function drawletter(pts){
             let pix_diam = 7;
-            let pts = bowie.textToPoints(letter,x,y, fSize, {
-                sampleFactor: pix_density,
-                simplifyThreshold: 0
-            })
             for (let i = 1; i < pts.length - 1; i++) {
                 let p1 = pts[i];
                 strokeWeight(2)
@@ -61,9 +72,22 @@
                 //else{stroke(0, 0, 100);} 
                 fill(0, 0, 0); 
                 ellipse(p1.x, p1.y, pix_diam, pix_diam);
-                if(a){console.log(i+" "+p1.alpha)}
             }
             hu1++;hu2++;hu3++;hu4++;
+            pix_density +=0.000001;
+            ptsg = bowie.textToPoints('g', 0.01*w, 0.8 * h, fSize, {
+                sampleFactor: pix_density,
+                simplifyThreshold: 0
+            })
+            ptsp = bowie.textToPoints('p',0.4*w, 0.8 * h,fSize, {
+                sampleFactor: pix_density,
+                simplifyThreshold: 0
+            })
+            ptsl = bowie.textToPoints('l',0.7*w, 0.8 * h, fSize, {
+                sampleFactor: pix_density,
+                simplifyThreshold: 0
+            })
+
         }
 
         function windowResized() {
