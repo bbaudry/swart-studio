@@ -36,12 +36,13 @@
 
         function draw() {
             background(0, 0, 0);
-            drawletter('G', 0.01*w, 0.8 * h)
-            drawletter('P', 0.4*w, 0.8 * h)
-            drawletter('L', 0.7*w, 0.8 * h)
+            drawletter('G', 0.01*w, 0.8 * h, true)
+            drawletter('P', 0.4*w, 0.8 * h, false)
+            drawletter('L', 0.7*w, 0.8 * h, false)
+            noLoop()
         }
 
-        function drawletter(letter,x,y){
+        function drawletter(letter,x,y,a){
             let pix_density = 0.2
             let pix_diam = 21;
             let pts = bowie.textToPoints(letter,x,y, fSize, {
@@ -51,8 +52,10 @@
             for (let i = 1; i < pts.length - 1; i++) {
                 let p1 = pts[i];
                 strokeWeight(2)
-                stroke(0, 0, 100); fill(0, 0, 0); 
+                if(p1.alpha==90){stroke(0,100,100);}
+                else{stroke(0, 0, 100);} fill(0, 0, 0); 
                 ellipse(p1.x, p1.y, pix_diam, pix_diam);
+                if(a){console.log(i+" "+p1.alpha)}
             }
         }
 
