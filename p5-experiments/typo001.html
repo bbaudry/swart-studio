@@ -22,6 +22,7 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var bowie;
         var fSize;
+        var hu1, hu2, hu3, hu4
 
         function preload() {
             bowie = loadFont("fonts/FreeMono.ttf");
@@ -32,19 +33,20 @@
             canvas = createCanvas(w, h);
             background(0, 0, 0);
             fSize = 0.5*w
+            hu1=0; hu2=90; hu3=180; hu4=270
         }
 
         function draw() {
             background(0, 0, 0);
-            drawletter('G', 0.01*w, 0.8 * h, true)
-            drawletter('P', 0.4*w, 0.8 * h, false)
-            drawletter('L', 0.7*w, 0.8 * h, false)
-            noLoop()
+            drawletter('g', 0.01*w, 0.8 * h, true)
+            drawletter('p', 0.4*w, 0.8 * h, false)
+            drawletter('l', 0.7*w, 0.8 * h, false)
+            //noLoop()
         }
 
         function drawletter(letter,x,y,a){
-            let pix_density = 0.2
-            let pix_diam = 21;
+            let pix_density = 0.42
+            let pix_diam = 7;
             let pts = bowie.textToPoints(letter,x,y, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
@@ -52,11 +54,16 @@
             for (let i = 1; i < pts.length - 1; i++) {
                 let p1 = pts[i];
                 strokeWeight(2)
-                if(p1.alpha==90){stroke(0,100,100);}
-                else{stroke(0, 0, 100);} fill(0, 0, 0); 
+                if(p1.alpha<180){stroke(hu2%360,100,100);}
+                if(p1.alpha==90){stroke(hu1%360,100,100);}
+                if(p1.alpha==180){stroke(hu3%360,100,100);}
+                if(p1.alpha>180){stroke(hu4%360,100,100);}
+                //else{stroke(0, 0, 100);} 
+                fill(0, 0, 0); 
                 ellipse(p1.x, p1.y, pix_diam, pix_diam);
                 if(a){console.log(i+" "+p1.alpha)}
             }
+            hu1++;hu2++;hu3++;hu4++;
         }
 
         function windowResized() {
