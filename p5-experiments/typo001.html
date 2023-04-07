@@ -58,8 +58,9 @@
             drawletter(ptsp)
             drawletter(ptsl)
             //updatepts(0.00001)
-            noLoop()
-        }
+            //noLoop()
+            hu1++;hu2++;hu3++;hu4++;
+            }
 
         function drawletter(pts){
             let pix_diam = 7;
@@ -74,7 +75,6 @@
                 fill(0, 0, 0); 
                 ellipse(p1.x, p1.y, pix_diam, pix_diam);
             }
-            hu1++;hu2++;hu3++;hu4++;
         }
 
         function updatepts(speed){
