@@ -36,17 +36,14 @@
             osc1 = new Tone.Oscillator();
             osc1.toDestination();
             osc1.volume.value=-15
-           //osc1.frequency.value=110;
-            const vol = new Tone.Volume(-12).toDestination();
-            //osc1.connect(vol.volume)
             osc2 = new Tone.Oscillator();
             osc2.frequency.value=110;
             osc2.toDestination();
             osc2.volume.value=-22
             
             wave1=new Tone.Waveform()
-            osc1.connect(wave1)
             wave2=new Tone.Waveform()
+            osc1.connect(wave1)
             osc2.connect(wave2)
             //Tone.Master.volume.value=-3;
         }
@@ -67,12 +64,14 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-                if (frameCount % 84 == 1) {
-                    fill(0, 100, 100); noStroke()
-                    rect(100, 100, 400, 400)
-                }
                 osc1.frequency.value= map(mouseX,0,w,110,880)
                 osc2.frequency.value= map(mouseY,0,h,110,330)
+                //displayWaves();
+                displayWavesCircle();
+            }
+        }
+
+        function displayWaves(){
                 let buffer1 = wave1.getValue(0)
                 let buffer2 = wave2.getValue(0)
                 let start1 = 0;
@@ -99,30 +98,47 @@
                     stroke(0,100,100)
                     line(x1,y1,x2,y2)
                 }
-                start2=1; end2=buffer2.length;
-                let a_step=2*PI/buffer2.length;
+                for (t=start2;t<end2;t++){
+                    let x1 = map(t-1,start2,end2,0,w)
+                    let y1 = map(buffer2[t-1],-1,1,0,h)
+                    let x2 = map(t,start2,end2,0,w)
+                    let y2 = map(buffer2[t],-1,1,0,h)
+                    stroke(180,100,100)
+                    line(x1,y1,x2,y2) 
+                }
+        }
+
+        function displayWavesCircle(){
+                noStroke()
+                let buffer1 = wave1.getValue(0)
+                let buffer2 = wave2.getValue(0)
+                let start1 = 1;
+                let start2 = 1
+                let end1 = buffer1.length;
+                let end2 = buffer2.length;
+                let a_step=2*PI/(end1-start1);
                 let angle = 0
+                for (i=start1;i<end1;i++){
+                    let x1 = w/2 + h/2*cos(angle)
+                    let y1 = h/2+map(buffer1[i-1],-1,1,0,h/2)*sin(angle)
+                    let x2 = w/2 + h/2*cos(angle+a_step)
+                    let y2 = h/2+map(buffer1[i],-1,1,0,h)*sin(angle+a_step)
+                    angle+=a_step
+                    fill(180,100,100); ellipse(x1,y1,5,5)
+                    fill(230,100,100); ellipse(x2,y2,5,5)
+                }
+                a_step=2*PI/(end1-start1);
+                angle=0
                 for (t=start2;t<end2;t++){
                     let x1 = w/2 + h/2*cos(angle)
                     let y1 = h/2+map(buffer2[t-1],-1,1,0,h/2)*sin(angle)
                     let x2 = w/2 + h/2*cos(angle+a_step)
                     let y2 = h/2+map(buffer2[t],-1,1,0,h)*sin(angle+a_step)
                     angle+=a_step
-//                    let x1 = map(t-1,start2,end2,0,w)
-//                    let y1 = map(buffer2[t-1],-1,1,0,h)
-//                    let x2 = map(t,start2,end2,0,w)
-//                    let y2 = map(buffer2[t],-1,1,0,h)
-                    stroke(180,100,100)
-                    line(x1,y1,x2,y2)
+                    fill(0,100,100); ellipse(x1,y1,5,5)
+                    fill(50,100,100); ellipse(x2,y2,5,5)
                 }
-                textSize(42)
-                textAlign("center")
-                text("osc1: "+buffer1.length, w / 2, h / 2);
-                text("osc2: "+buffer2.length, w / 2, h / 2+42);
-            }
         }
-
-
 
         function windowResized() {
             w = document.documentElement.clientWidth;//width of window that is available for drawing
