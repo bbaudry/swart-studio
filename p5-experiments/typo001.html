@@ -27,7 +27,7 @@
         var pix_density;
 
         function preload() {
-            bowie = loadFont("fonts/FreeMono.ttf");
+            bowie = loadFont("fonts/ChunkFive-Regular.otf");
         }
 
         function setup() {
@@ -36,16 +36,16 @@
             background(0, 0, 0);
             fSize = 0.5*w
             hu1=0; hu2=90; hu3=180; hu4=270;
-            pix_density = 0.42
-            ptsg = bowie.textToPoints('g', 0.01*w, 0.8 * h, fSize, {
+            pix_density = 0.01
+            ptsg = bowie.textToPoints('G', 0.001*w, 0.85 * h, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
             })
-            ptsp = bowie.textToPoints('p',0.4*w, 0.8 * h,fSize, {
+            ptsp = bowie.textToPoints('P',0.38*w, 0.85 * h,fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
             })
-            ptsl = bowie.textToPoints('l',0.7*w, 0.8 * h, fSize, {
+            ptsl = bowie.textToPoints('L',0.69*w, 0.85 * h, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
             })
@@ -79,15 +79,15 @@
 
         function updatepts(speed){
             pix_density +=speed;
-            ptsg = bowie.textToPoints('g', 0.01*w, 0.8 * h, fSize, {
+            ptsg = bowie.textToPoints('G', 0.01*w, 0.8 * h, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
             })
-            ptsp = bowie.textToPoints('p',0.4*w, 0.8 * h,fSize, {
+            ptsp = bowie.textToPoints('P',0.4*w, 0.8 * h,fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
             })
-            ptsl = bowie.textToPoints('l',0.7*w, 0.8 * h, fSize, {
+            ptsl = bowie.textToPoints('L',0.7*w, 0.8 * h, fSize, {
                 sampleFactor: pix_density,
                 simplifyThreshold: 0
             })
