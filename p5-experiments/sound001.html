@@ -44,30 +44,33 @@
             osc4.toDestination();
             osc4.frequency.value = 11;
             osc4.volume.value=-15
-            autoFilter = new Tone.AutoFilter("2n").toDestination()
+            //autoFilter = new Tone.AutoFilter("2n").toDestination()
             noise = new Tone.Noise("pink").toDestination()
-            noise.connect(autoFilter)
+            //noise.connect(autoFilter)
             
             wave1=new Tone.Waveform()
             wave2=new Tone.Waveform()
             osc1.connect(wave2)
-            osc2.connect(wave2)
+            osc2.connect(wave2) 
             osc3.connect(wave2)
             osc4.connect(wave2)
-            osc4.connect(wave1)
             //Tone.Master.volume.value=-3;
         }
 
         function mousePressed() {
             if (!soundOn) {
                 soundOn = true
-                noise.start();
+                //noise.start();
                 //osc1.connect(noise).start()
-                autoFilter.start();
-                //osc1.connect(autoFilter).start();
-                //osc2.start()
-                //osc3.start()
-                //osc4.start()
+                //autoFilter.start();
+                osc1.start();
+                osc2.start()
+                osc3.start()
+                osc4.start()
+                osc1.frequency.value = 110;//map(mouseX,0,w,110,880)
+                osc2.frequency.value = 770;//map(mouseY,0,h,110,330)
+                osc3.frequency.value = 220;
+
                 background(0, 0, 0);
             }
         }
@@ -81,73 +84,19 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-                osc1.frequency.value = 99;//map(mouseX,0,w,110,880)
-                osc2.frequency.value = 93;//map(mouseY,0,h,110,330)
-                osc3.frequency.value = 87;
                 osc4.frequency.value += 0.1;
-                //displayWaves();
                 displayWavesCircle();
               }
         }
 
-        function displayWaves(){
-                let buffer1 = wave1.getValue(0)
-                let buffer2 = wave2.getValue(0)
-                let start1 = 0;
-                for (i=1;i<buffer1.length;i++){
-                    if(buffer1[i-1]<0 && buffer1[i]>=0){
-                        start1=i;
-                        break
-                    }
-                }
-                let start2 = 0;
-                for (i=1;i<buffer2.length;i++){
-                    if(buffer2[i-1]<0 && buffer2[i]>=0){
-                        start2=i;
-                        break
-                    }
-                }
-                let end1 = start1 + buffer1.length/2;
-                let end2 = start2 + buffer2.length/2;
-                for (i=start1;i<end1;i++){
-                    let x1 = map(i-1,start1,end1,0,w)
-                    let y1 = map(buffer1[i-1],-1,1,0,h)
-                    let x2 = map(i,start1,end1,0,w)
-                    let y2 = map(buffer1[i],-1,1,0,h)
-                    stroke(0,100,100)
-                    line(x1,y1,x2,y2)
-                }
-                for (t=start2;t<end2;t++){
-                    let x1 = map(t-1,start2,end2,0,w)
-                    let y1 = map(buffer2[t-1],-1,1,0,h)
-                    let x2 = map(t,start2,end2,0,w)
-                    let y2 = map(buffer2[t],-1,1,0,h)
-                    stroke(180,100,100)
-                    line(x1,y1,x2,y2) 
-                }
-        }
 
         function displayWavesCircle(){
                 noStroke()
-                let buffer1 = wave1.getValue(0)
                 let buffer2 = wave2.getValue(0)
-                let start1 = 1;
                 let start2 = 1
-                let end1 = buffer1.length;
-                let end2 = buffer2.length;
-                let a_step=2*PI/(end1-start1);
-                let angle = 0
-                for (i=start1;i<end1;i++){
-                    let x1 = w/2 + h/2*cos(angle)
-                    let y1 = h/2+map(buffer1[i-1],-1,1,0,h/2)*sin(angle)
-                    let x2 = w/2 + h/2*cos(angle+a_step)
-                    let y2 = h/2+map(buffer1[i],-1,1,0,h)*sin(angle+a_step)
-                    angle+=a_step
-                    fill(180,100,100,50); ellipse(x1,y1,1,1)
-                    fill(230,100,100,50); ellipse(x2,y2,1,1)
-                }
-                a_step=2*PI/(end1-start1);
-                angle=0
+                let end2 = buffer2.length;                
+                let a_step=2*PI/(end2-start2);
+                let angle=0
                 for (t=start2;t<end2;t++){
                     let x1 = w/2 + w/2*cos(angle)
                     let y1 = h/2+map(buffer2[t-1],-1,1,0,h/2)*sin(angle)
