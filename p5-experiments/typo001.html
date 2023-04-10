@@ -24,7 +24,7 @@
         var fSize;
         var hu1, hu2, hu3, hu4;
         var ptsg, ptsp, ptsl;
-        var pix_density;
+        var initialPixelDensity;
 
         function preload() {
             bowie = loadFont("fonts/ChunkFive-Regular.otf");
@@ -36,17 +36,17 @@
             background(0, 0, 0);
             fSize = 0.5*w
             hu1=0; hu2=90; hu3=180; hu4=270;
-            pix_density = 0.01
+            initialPixelDensity = 0.001
             ptsg = bowie.textToPoints('G', 0.001*w, 0.85 * h, fSize, {
-                sampleFactor: pix_density,
+                sampleFactor: initialPixelDensity,
                 simplifyThreshold: 0
             })
             ptsp = bowie.textToPoints('P',0.38*w, 0.85 * h,fSize, {
-                sampleFactor: pix_density,
+                sampleFactor: initialPixelDensity,
                 simplifyThreshold: 0
             })
             ptsl = bowie.textToPoints('L',0.69*w, 0.85 * h, fSize, {
-                sampleFactor: pix_density,
+                sampleFactor: initialPixelDensity,
                 simplifyThreshold: 0
             })
 
@@ -54,15 +54,20 @@
 
         function draw() {
             background(0, 0, 0, 50);
-            drawletter(ptsg)
-            drawletter(ptsp)
-            drawletter(ptsl)
-            //updatepts(0.00001)
-            //noLoop()
+
+            // draw letters with colors and increase hue values at each iteration
+            drawletterswithcolors(ptsg)
+            drawletterswithcolors(ptsp)
+            drawletterswithcolors(ptsl)
             hu1++;hu2++;hu3++;hu4++;
+
+            // option to increase the density of letters over time. 
+            // to use this function, start with a very low initialPixelDensity (e.g., 0.001) in setup()
+            updatepts(0.00001) //
+            //noLoop()
             }
 
-        function drawletter(pts){
+        function drawletterswithcolors(pts){
             let pix_diam = 7;
             for (let i = 1; i < pts.length - 1; i++) {
                 let p1 = pts[i];
@@ -77,18 +82,19 @@
             }
         }
 
+        //adds 'speed' to the density of characters
         function updatepts(speed){
-            pix_density +=speed;
+            initialPixelDensity +=speed;
             ptsg = bowie.textToPoints('G', 0.01*w, 0.8 * h, fSize, {
-                sampleFactor: pix_density,
+                sampleFactor: initialPixelDensity,
                 simplifyThreshold: 0
             })
             ptsp = bowie.textToPoints('P',0.4*w, 0.8 * h,fSize, {
-                sampleFactor: pix_density,
+                sampleFactor: initialPixelDensity,
                 simplifyThreshold: 0
             })
             ptsl = bowie.textToPoints('L',0.7*w, 0.8 * h, fSize, {
-                sampleFactor: pix_density,
+                sampleFactor: initialPixelDensity,
                 simplifyThreshold: 0
             })
 
