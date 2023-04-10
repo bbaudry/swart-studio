@@ -98,7 +98,8 @@
                 let vera = Math.floor(random() * particles.length);
                 if (!indices.includes(vera)) {
                     indices.push(vera);
-                    particles[vera].angle -= (frameCount - 1) * radians(particles[vera].speed); // synchronize the angle of vera's particle
+                    // synchronize the angle of vera's particle
+                    particles[vera].angle -= (frameCount - 1) * radians(particles[vera].speed); 
                 }
             }
             for (i = 0; i < indices.length; i++) {
