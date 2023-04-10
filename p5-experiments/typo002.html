@@ -60,20 +60,23 @@
             }
 
         function drawlettersinblack(){
-            let pix_diam = 3;
+            let pix_diam = 5;
             let j = Math.floor(random()*letters.length);
             let pts=letters[j]
             let i = Math.floor(random()*pts.length);
             let p = pts[i];
             noStroke();
             fill(0, 0, 0); 
-            //ellipse(p.x, p.y, pix_diam, pix_diam);
-            let rad = 7+random()*84
+            ellipse(p.x, p.y, pix_diam, pix_diam);
+            let rad = 7+random()*168
             let angle = radians(p.alpha + 90-(random()*180))
             let x1=p.x+rad*cos(angle)
             let y1=p.y+rad*sin(angle)
-            stroke(0,100,100);strokeWeight(3)
-            line(p.x,p.y,x1,y1)
+            //stroke(0,100,100);strokeWeight(3)
+            //line(p.x,p.y,x1,y1)
+            ellipse(x1, y1, pix_diam, pix_diam);
+            if (random()<0.1){stroke(0,0,0);strokeWeight(1);line(p.x,p.y,x1,y1)}
+
         }
 
         function windowResized() {
