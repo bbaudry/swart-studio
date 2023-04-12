@@ -46,8 +46,8 @@
             osc4.frequency.value = 11;
             osc4.volume.value=-15
             //autoFilter = new Tone.AutoFilter("2n").toDestination()
-            //noise = new Tone.Noise("pink").toDestination()
-            noise = new Tone.NoiseSynth().toDestination();
+            noise = new Tone.Noise("pink").toDestination()
+//            noise = new Tone.NoiseSynth().toDestination();
 
             //noise.connect(autoFilter)
             
@@ -91,11 +91,11 @@
                 displayWavesCircle();
                 
                 if ((frameCount-firstFrame==42)){
-                    //noise.start() 
-                   noise.triggerAttack();
+                    noise.start() 
+                   
                 }
                 if ((frameCount-firstFrame==63)){
-                   // noise.stop()
+                   noise.stop()
                 }
               }
         }

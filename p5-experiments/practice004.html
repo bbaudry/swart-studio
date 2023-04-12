@@ -62,20 +62,20 @@
             const rev = new Tone.Reverb({decay:5,wet:0.8}).toDestination();
             coolEnv.connect(rev)
 //            osc2 = new Tone.Oscillator(220, "sine").connect(filter).start()
-//            filter.toDestination();
-            osc3 = new Tone.Oscillator(220, "sine").start()
-            osc3.toDestination()
-            osc3.set({frequency:440})
+            filter.toDestination();
+            //osc3 = new Tone.Oscillator(220, "sine").start()
+//            osc3.toDestination()
+//            osc3.set({frequency:440})
         }
 
         function draw() {
             background(0, 0, 0);
             if (frameCount % 84 == 1) {
                 fill(0, 100, 100)
-                rect(100, 100, 400, 400)
+                //rect(100, 100, 400, 400)
                 if (soundOn) { 
                     
-                    //coolEnv.triggerAttackRelease(0.5); 
+                    coolEnv.triggerAttackRelease(0.5); 
                     filter.set({frequency:20000})
                     filter.frequency.rampTo(400, 0.09);
                 }

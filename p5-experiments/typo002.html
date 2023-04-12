@@ -34,7 +34,7 @@
         function setup() {
             colorMode(HSB, 360, 100, 100, 250)
             canvas = createCanvas(w, h);
-            background(0, 0, 100);
+            background(0, 0, 0);
             fSize = 0.5*w
             initialPixelDensity = 0.42
             ptsg = bowie.textToPoints('G', 0.001*w, 0.85 * h, fSize, {
@@ -60,15 +60,15 @@
             }
 
         function drawlettersinblack(){
-            let pix_diam = 3;
+            let pix_diam = 5;
             let j = Math.floor(random()*letters.length);
             let pts=letters[j]
             let i = Math.floor(random()*pts.length);
             let p = pts[i];
             noStroke();
-            fill(0, 0, 0, 50); 
+            fill(0, 0, 100, 50); 
             //ellipse(p.x, p.y, pix_diam, pix_diam);
-            let rad = Math.exp(random()*7)
+            let rad = Math.exp(random()*5)
             let angle = radians(p.alpha + 90-(random()*180))
             let x1=p.x+rad*cos(angle)
             let y1=p.y+rad*sin(angle)
