@@ -57,6 +57,26 @@
         function draw() {
             background(0,0,0)
             drawSpokes()
+            testBezier()
+        }
+
+        function testBezier(){
+            noFill()
+            strokeWeight(3)
+            stroke(0,100,100)
+            let x1=150; let y1=100;
+            let x2=50; let y2=200
+            ellipse(x1,y1,5,5)
+            ellipse(x2,y2,5,5)
+            //x1>x2 && y2>y1
+            bezier(x1,y1,x1-(x1-x2),y1,x2,y2-((y2-y1)*0.3),x2,y2)
+            bezier(x1,y1,x1,y2,x2,y1,x2,y2)
+            stroke(90,100,100)
+            x1=50; x2=150; y1=250; y2= 350
+            ellipse(x1,y1,5,5)
+            ellipse(x2,y2,5,5)
+            //x1<x2 && y2>y1
+            bezier(x1,y1,x1,y2,x2,y1,x2,y2)
         }
 
         function drawSpokes(){
@@ -68,7 +88,8 @@
                 y1=spokes1[i-1].y+spokes1[i-1].rad*sin(spokes1[i-1].angle)
                 x2=spokes1[i].x+spokes1[i].rad*cos(spokes1[i].angle)
                 y2=spokes1[i].y+spokes1[i].rad*sin(spokes1[i].angle)
-                bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
+                //bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)  
+                bezier(x1,y1,x1,y2,x2,y1,x2,y2)              
             }
             x1=spokes1[resolution-1].x+spokes1[resolution-1].rad*cos(spokes1[resolution-1].angle)
             y1=spokes1[resolution-1].y+spokes1[resolution-1].rad*sin(spokes1[resolution-1].angle)
