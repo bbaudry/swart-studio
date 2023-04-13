@@ -89,7 +89,9 @@
                 x2=spokes1[i].x+spokes1[i].rad*cos(spokes1[i].angle)
                 y2=spokes1[i].y+spokes1[i].rad*sin(spokes1[i].angle)
                 //bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)  
-                bezier(x1,y1,x1,y2,x2,y1,x2,y2)              
+                
+                bezier(x1,y1,x1,y2,x2,y1,x2,y2)     
+                         
             }
             x1=spokes1[resolution-1].x+spokes1[resolution-1].rad*cos(spokes1[resolution-1].angle)
             y1=spokes1[resolution-1].y+spokes1[resolution-1].rad*sin(spokes1[resolution-1].angle)
