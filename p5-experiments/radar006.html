@@ -19,7 +19,8 @@
         //global vars for the whole piece
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
-        var spokes = [];
+        var spokes1 = [];
+        var spokes2 = [];
         var free;
         var resolution;
 
@@ -44,31 +45,58 @@
             for (i=0;i<resolution;i++){
                 r=0.45*h+random()*(0.05*h) 
                 a=i*step;
-                spokes.push({rad:r,x:cx,y:cy,angle:a})
+                spokes1.push({rad:r,x:cx,y:cy,angle:a})
+            }
+            for (i=0;i<resolution;i++){
+                r=0.45*h+random()*(0.05*h) 
+                a=i*step;
+                spokes2.push({rad:r,x:cx,y:cy,angle:a})
             }
         }
 
         function draw() {
             background(0,0,0)
+            drawSpokes()
+        }
+
+        function drawSpokes(){
+            noFill()
             stroke(0,0,100)
+            let x1,y1,x2,y2;
             for (i=1;i<resolution;i++){
-                let x1=spokes[i-1].x+spokes[i-1].rad*cos(spokes[i-1].angle)
-                let y1=spokes[i-1].y+spokes[i-1].rad*sin(spokes[i-1].angle)
-                let x2=spokes[i].x+spokes[i].rad*cos(spokes[i].angle)
-                let y2=spokes[i].y+spokes[i].rad*sin(spokes[i].angle)
-                line(x1,y1,x2,y2)                
+                x1=spokes1[i-1].x+spokes1[i-1].rad*cos(spokes1[i-1].angle)
+                y1=spokes1[i-1].y+spokes1[i-1].rad*sin(spokes1[i-1].angle)
+                x2=spokes1[i].x+spokes1[i].rad*cos(spokes1[i].angle)
+                y2=spokes1[i].y+spokes1[i].rad*sin(spokes1[i].angle)
+                bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
             }
-            let x1=spokes[resolution-1].x+spokes[resolution-1].rad*cos(spokes[resolution-1].angle)
-                let y1=spokes[resolution-1].y+spokes[resolution-1].rad*sin(spokes[resolution-1].angle)
-                let x2=spokes[0].x+spokes[0].rad*cos(spokes[0].angle)
-                let y2=spokes[0].y+spokes[0].rad*sin(spokes[0].angle)
-                line(x1,y1,x2,y2)                
+            x1=spokes1[resolution-1].x+spokes1[resolution-1].rad*cos(spokes1[resolution-1].angle)
+            y1=spokes1[resolution-1].y+spokes1[resolution-1].rad*sin(spokes1[resolution-1].angle)
+            x2=spokes1[0].x+spokes1[0].rad*cos(spokes1[0].angle)
+            y2=spokes1[0].y+spokes1[0].rad*sin(spokes1[0].angle)
+            bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
             moveSpokes()
+            stroke(0,100,100)
+            for (i=1;i<resolution;i++){
+                x1=spokes2[i-1].x+spokes2[i-1].rad*cos(spokes2[i-1].angle)
+                y1=spokes2[i-1].y+spokes2[i-1].rad*sin(spokes2[i-1].angle)
+                x2=spokes2[i].x+spokes2[i].rad*cos(spokes2[i].angle)
+                y2=spokes2[i].y+spokes2[i].rad*sin(spokes2[i].angle)
+                bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
+            }
+            x1=spokes2[resolution-1].x+spokes2[resolution-1].rad*cos(spokes2[resolution-1].angle)
+            y1=spokes2[resolution-1].y+spokes2[resolution-1].rad*sin(spokes2[resolution-1].angle)
+            x2=spokes2[0].x+spokes2[0].rad*cos(spokes2[0].angle)
+            y2=spokes2[0].y+spokes2[0].rad*sin(spokes2[0].angle)
+            bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
+            moveSpokes()    
         }
 
         function moveSpokes(){     
             for (i=0;i<resolution;i++){
-                spokes[i].rad+=0.05*h-random()*0.1*h
+                let p = 0.1*h
+                spokes1[i].rad+=3-random()*6
+                spokes2[i].rad+=3-random()*6
             }
         }
 
