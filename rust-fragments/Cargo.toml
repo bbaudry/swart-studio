@@ -7,5 +7,6 @@ members = [
 "torg002",
 "torg003",
 "torg004",
+"supply-chain-in-chrome"
 ]
 resolver="2"
