@@ -21,8 +21,11 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var spokes1 = [];
         var spokes2 = [];
+        var spokes3 = [];
+        var spokes4 = [];
+        var spokes = [];
+        var nbshapes;
         var free;
-        var resolution;
 
         function preload() {
             free = loadFont('fonts/FreeMono.ttf');
@@ -33,93 +36,130 @@
             let canvas = createCanvas(w, h);
             textFont(free);
             textSize(42);
-            resolution=42;
-            initSpokes();
+            nbshapes=21
+            /*initSpokes(spokes1);
+            initSpokes(spokes2);
+            initSpokes(spokes3);
+            initSpokes(spokes4);*/
+            init(nbshapes)
         }
 
-        function initSpokes(){
-            let step=(2*PI)/resolution
+        function init(nbrays){
+            let hues=[0,90,180,270]
+            for (i=0;i<nbrays;i++){
+                spokes.push({
+                    res:7+Math.floor(random()*20),
+                    cx:w/2,
+                    cy:h/2,
+                    hu:hues[Math.floor(random()*hues.length)],
+                    rays:[]
+                })
+            }
+            for (j=0;j<nbrays;j++){
+                initSpokes(spokes[j])
+            }
+        }
+
+        function initSpokes(sp){
+            let rays=sp.rays
+            let step=(2*PI)/sp.res
             let a, r
             let cx=w/2
             let cy=h/2
-            for (i=0;i<resolution;i++){
+            for (i=0;i<sp.res;i++){
                 r=0.45*h+random()*(0.05*h) 
                 a=i*step;
-                spokes1.push({rad:r,x:cx,y:cy,angle:a})
-            }
-            for (i=0;i<resolution;i++){
-                r=0.45*h+random()*(0.05*h) 
-                a=i*step;
-                spokes2.push({rad:r,x:cx,y:cy,angle:a})
+                rays.push({rad:r,angle:a})
             }
         }
 
         function draw() {
             background(0,0,0)
+            noFill()
+            strokeWeight(5)
             drawSpokes()
-            testBezier()
-        }
-
-        function testBezier(){
-            noFill()
-            strokeWeight(3)
-            stroke(0,100,100)
-            let x1=150; let y1=100;
-            let x2=50; let y2=200
-            ellipse(x1,y1,5,5)
-            ellipse(x2,y2,5,5)
-            //x1>x2 && y2>y1
-            bezier(x1,y1,x1-(x1-x2),y1,x2,y2-((y2-y1)*0.3),x2,y2)
-            bezier(x1,y1,x1,y2,x2,y1,x2,y2)
+            /*stroke(0,100,100)
+            fill(0,100,100)
+            drawRays(spokes1)
             stroke(90,100,100)
-            x1=50; x2=150; y1=250; y2= 350
-            ellipse(x1,y1,5,5)
-            ellipse(x2,y2,5,5)
-            //x1<x2 && y2>y1
-            bezier(x1,y1,x1,y2,x2,y1,x2,y2)
+            fill(90,100,100)
+            drawRays(spokes2)
+            stroke(180,100,100)
+            fill(180,100,100)
+            drawRays(spokes3)
+            stroke(270,100,100)
+            fill(270,100,100)
+            drawRays(spokes4)*/
+            //noLoop()
         }
-
         function drawSpokes(){
-            noFill()
-            stroke(0,0,100)
+            for (v=0;v<spokes.length;v++){
+                stroke(spokes[v].hu,100,100)
+                fill(spokes[v].hu,100,100)
+                drawRays(spokes[v],v)
+            }
+        }
+        function drawRays(spoke,v){
+            let sp=spoke.rays
+            let cx=spoke.cx
+            let cy = spoke.cy
+            let resolution = spoke.res
+            let x1,y1,x2,y2;
+            for (b=1;b<resolution;b++){
+                x1=cx+sp[b-1].rad*cos(sp[b-1].angle)
+                y1=cy+sp[b-1].rad*sin(sp[b-1].angle)
+                x2=cx+sp[b].rad*cos(sp[b].angle)
+                y2=cy+sp[b].rad*sin(sp[b].angle)
+                oneCurve(x1,y1,x2,y2)
+                push()
+                fill(180,100,100)
+                pop()
+            }
+            x1=cx+sp[sp.length-1].rad*cos(sp[sp.length-1].angle)
+            y1=cy+sp[sp.length-1].rad*sin(sp[sp.length-1].angle)
+            x2=cx+sp[0].rad*cos(sp[0].angle)
+            y2=cy+sp[0].rad*sin(sp[0].angle)
+            oneCurve(x1,y1,x2,y2)
+            moveRays(spoke,v)
+        }
+/*        function drawRays(sp){
             let x1,y1,x2,y2;
             for (i=1;i<resolution;i++){
-                x1=spokes1[i-1].x+spokes1[i-1].rad*cos(spokes1[i-1].angle)
-                y1=spokes1[i-1].y+spokes1[i-1].rad*sin(spokes1[i-1].angle)
-                x2=spokes1[i].x+spokes1[i].rad*cos(spokes1[i].angle)
-                y2=spokes1[i].y+spokes1[i].rad*sin(spokes1[i].angle)
-                //bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)  
-                
-                bezier(x1,y1,x1,y2,x2,y1,x2,y2)     
-                         
+                x1=sp[i-1].x+sp[i-1].rad*cos(sp[i-1].angle)
+                y1=sp[i-1].y+sp[i-1].rad*sin(sp[i-1].angle)
+                x2=sp[i].x+sp[i].rad*cos(sp[i].angle)
+                y2=sp[i].y+sp[i].rad*sin(sp[i].angle)
+                oneCurve(x1,y1,x2,y2)
+                push()
+                fill(180,100,100)
+                ellipse(x1,y1,5,5) 
+                ellipse(x2,y2,5,5)
+                pop()
             }
-            x1=spokes1[resolution-1].x+spokes1[resolution-1].rad*cos(spokes1[resolution-1].angle)
-            y1=spokes1[resolution-1].y+spokes1[resolution-1].rad*sin(spokes1[resolution-1].angle)
-            x2=spokes1[0].x+spokes1[0].rad*cos(spokes1[0].angle)
-            y2=spokes1[0].y+spokes1[0].rad*sin(spokes1[0].angle)
-            bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
-            moveSpokes()
-            stroke(0,100,100)
-            for (i=1;i<resolution;i++){
-                x1=spokes2[i-1].x+spokes2[i-1].rad*cos(spokes2[i-1].angle)
-                y1=spokes2[i-1].y+spokes2[i-1].rad*sin(spokes2[i-1].angle)
-                x2=spokes2[i].x+spokes2[i].rad*cos(spokes2[i].angle)
-                y2=spokes2[i].y+spokes2[i].rad*sin(spokes2[i].angle)
-                bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
-            }
-            x1=spokes2[resolution-1].x+spokes2[resolution-1].rad*cos(spokes2[resolution-1].angle)
-            y1=spokes2[resolution-1].y+spokes2[resolution-1].rad*sin(spokes2[resolution-1].angle)
-            x2=spokes2[0].x+spokes2[0].rad*cos(spokes2[0].angle)
-            y2=spokes2[0].y+spokes2[0].rad*sin(spokes2[0].angle)
-            bezier(x1,y1,x2,y2+42,x1,y1-42,x2,y2)                
-            moveSpokes()    
+            x1=sp[resolution-1].x+sp[resolution-1].rad*cos(sp[resolution-1].angle)
+            y1=sp[resolution-1].y+sp[resolution-1].rad*sin(sp[resolution-1].angle)
+            x2=sp[0].x+sp[0].rad*cos(sp[0].angle)
+            y2=sp[0].y+sp[0].rad*sin(sp[0].angle)
+            oneCurve(x1,y1,x2,y2)
+            moveRays(sp)
+        }*/
+
+        function oneCurve(x1,y1,x2,y2){
+            let diff=Math.abs(y2-y1)
+            if(diff>diff/2){
+                bezier(x1,y1,x1,y2,x2,y1,x2,y2)  
+            }   
+            else{
+                bezier(x1,y1,x1,y1+diff,x2,y2-diff,x2,y2)  
+            }    
         }
 
-        function moveSpokes(){     
-            for (i=0;i<resolution;i++){
+        function moveRays(spoke,v){
+            let sp=spoke.rays
+            let resolution = spoke.res
+            for (r=0;r<resolution;r++){
                 let p = 0.1*h
-                spokes1[i].rad+=3-random()*6
-                spokes2[i].rad+=3-random()*6
+                sp[r].rad+=6-random()*12
             }
         }
 
