@@ -1,32 +1,46 @@
 use std::error::Error;
+use std::sync::Arc;
 
 use headless_chrome::Browser;
 use headless_chrome::protocol::cdp::Page;
+
+pub struct NetworkInterceptor;
+
+impl headless_chrome::browser::tab::RequestInterceptor for NetworkInterceptor
+{
+    fn intercept(
+        &self,
+        transport: std::sync::Arc<headless_chrome::browser::transport::Transport>,
+        session_id: headless_chrome::browser::transport::SessionId,
+        event: headless_chrome::protocol::cdp::Fetch::events::RequestPausedEvent,
+    ) -> headless_chrome::browser::tab::RequestPausedDecision {
+        
+        println!("{:?}", event);
+
+        return headless_chrome::browser::tab::RequestPausedDecision::Continue(None)
+    }
+}
 
 fn browse_wikipedia() -> Result<(), Box<dyn Error>> {
     let mut browser = Browser::new(
         headless_chrome::LaunchOptions { 
             headless: false, 
-            sandbox: true, 
-            window_size: None, 
-            port: None, 
-            ignore_certificate_errors: true, 
-            path: None, 
-            user_data_dir: None, 
-            extensions: vec![], 
-            args: vec![], 
-            disable_default_args: false, 
-            idle_browser_timeout: std::time::Duration::from_secs(30), 
-            process_envs: None, 
-            proxy_server: None }
+            ..Default::default()}
     )?;
     
 
     let tab = browser.new_tab()?;
 
-    /// Navigate to wikipedia
-    tab.navigate_to("https://www.wikipedia.org")?;
+    /// Navigate to a site
+    tab.navigate_to("https://www.kth.se")?;
+    tab.wait_until_navigated()?;
 
+    tab.enable_request_interception(Arc::new(NetworkInterceptor)).unwrap();
+
+
+    
+    std::thread::sleep(std::time::Duration::from_secs(300));
+    /*
     /// Wait for network/javascript/dom to make the search-box available
     /// and click it.
     tab.wait_for_element("input#searchInput")?.click()?;
@@ -64,7 +78,7 @@ fn browse_wikipedia() -> Result<(), Box<dyn Error>> {
             assert_eq!(returned_string, "firstHeadingfirstHeading".to_string());
         }
         _ => unreachable!()
-    };
+    };*/
 
     Ok(())
 }
