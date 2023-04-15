@@ -36,7 +36,7 @@
             let canvas = createCanvas(w, h);
             textFont(free);
             textSize(42);
-            nbshapes=21
+            nbshapes=11
             /*initSpokes(spokes1);
             initSpokes(spokes2);
             initSpokes(spokes3);
@@ -66,8 +66,9 @@
             let a, r
             let cx=w/2
             let cy=h/2
+            let range=0.1*h+random()*(0.35*h)
             for (i=0;i<sp.res;i++){
-                r=0.45*h+random()*(0.05*h) 
+                r=range*h+random()*(0.05*h) 
                 a=i*step;
                 rays.push({rad:r,angle:a})
             }
@@ -96,6 +97,7 @@
             for (v=0;v<spokes.length;v++){
                 stroke(spokes[v].hu,100,100)
                 fill(spokes[v].hu,100,100)
+                strokeWeight(17)
                 drawRays(spokes[v],v)
             }
         }
