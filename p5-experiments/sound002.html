@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var soundOn = false;
+        var osc1, osc2, osc3, osc4, osc5;
+        var env5;
+        var autoFilter;
+        var noise;
+        var wave1, wave2;
+        var firstFrame;
+        var noise_duration;
+        var noise_play;
+        var loop;
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100)
+            canvas = createCanvas(w, h);
+            background(0, 0, 0);
+            noise_play = false;
+
+            osc5 = new Tone.Oscillator();
+            osc5.toDestination();
+            osc5.volume.value = -15
+            env5 = new Tone.Envelope({
+                attack: 0.1,
+		        decay: 0.2,
+		        sustain: 0.5,
+		        release: 0.8,
+	        }).toDestination();
+            //const rev = new Tone.Reverb({decay:5,wet:0.8}).toDestination();
+            //env5.connect(rev)
+            wave2 = new Tone.Waveform()
+            osc5.connect(wave2)
+
+
+            loop = new Tone.Loop()
+            loop.interval="8n"
+
+            //Tone.Master.volume.value=-3;
+        }
+
+        function mousePressed() {
+            if (!soundOn) {
+                soundOn = true
+                background(0, 0, 0);
+                loop.start()
+                const synth = new Tone.MembraneSynth().toMaster();
+
+   loop = new Tone.Loop(function(time) {
+    //triggered every eighth note.
+    console.log(time);
+    synth.triggerAttackRelease("C2", "2n");
+  }, "2n").start(0);
+            }
+        }
+
+        function draw() { 
+            background(0, 0, 0);
+            if (!soundOn) {
+                fill(50, 100, 100); stroke(50, 100, 100);
+                textSize(42)
+                textAlign("center")
+                text("click to start", w / 2, h / 2);
+            }
+            else {
+                //env5.triggerAttackRelease(0.5);
+               if (osc5.state=="stopped"){
+                console.log(osc5.state)
+                osc5.start(); osc5.stop("4n")
+               }
+                displayWavesCircle()
+                console.log(osc5.state)
+            }
+        }
+
+        function displayWavesCircle() {
+            noStroke()
+            let buffer2 = wave2.getValue(0)
+            let start2 = 1
+            let end2 = buffer2.length;
+            let a_step = 2 * PI / (end2 - start2);
+            let angle = 0
+            for (t = start2; t < end2; t++) {
+                let x1 = w / 2 + w / 2 * cos(angle)
+                let y1 = h / 2 + map(buffer2[t - 1], -1, 1, 0, h / 2) * sin(angle)
+                let x2 = w / 2 + w / 2 * cos(angle + a_step)
+                let y2 = h / 2 + map(buffer2[t], -1, 1, 0, h) * sin(angle + a_step)
+                angle += a_step
+                fill(0, 0, 100); ellipse(x1, y1, 7, 7)
+                fill(50, 0, 100); ellipse(x2, y2, 7, 7)
+            }
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
