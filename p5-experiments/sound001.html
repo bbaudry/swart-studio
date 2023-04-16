@@ -50,18 +50,6 @@
             osc4.toDestination();
             osc4.frequency.value = 11;
             osc4.volume.value = -15
-            osc5 = new Tone.Oscillator();
-            osc5.toDestination();
-            osc5.volume.value = -15
-            env5 = new Tone.Envelope({
-                attack: 0.1,
-		        decay: 0.2,
-		        sustain: 0.5,
-		        release: 0.8,
-	        }).toDestination();
-            env5.connect(osc5)
-            //const rev = new Tone.Reverb({decay:5,wet:0.8}).toDestination();
-            //env5.connect(rev)
             noise = new Tone.Noise("pink").toDestination()
             //noise = new Tone.NoiseSynth().toDestination();
             //autoFilter = new Tone.AutoFilter("2n").toDestination()
@@ -83,15 +71,14 @@
                 soundOn = true
                 //noise.start();
                 //autoFilter.start();
-                /*osc1.start();
+                osc1.start();
                 osc2.start()
                 osc3.start()
                 osc4.start()
                 osc1.frequency.value = 110;//map(mouseX,0,w,110,880)
                 osc2.frequency.value = 770;//map(mouseY,0,h,110,330)
                 osc3.frequency.value = 220;
-                firstFrame = frameCount*/
-                osc5.start()
+                firstFrame = frameCount
                 background(0, 0, 0);
             }
         }
@@ -105,10 +92,9 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-                //osc4.frequency.value += 0.1;
-                //displayWavesCircle()
-                env5.triggerAttackRelease(0.5);
-                /*if (random() < 0.01 && !noise_play) {
+                osc4.frequency.value += 0.1;
+                displayWavesCircle()
+                if (random() < 0.01 && !noise_play) {
                     noise.start()
                     noise_play = true
                     noise_duration = frameCount + 42
@@ -122,9 +108,9 @@
                     osc1.start();
                     osc2.start()
                     osc3.start()
-                    osc4.start()
+                    osc4.start();
                     noise_play = false
-                }*/
+                }
             }
         }
 

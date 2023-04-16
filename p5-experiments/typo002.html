@@ -55,31 +55,52 @@
         }
 
         function draw() {
-            drawlettersinblack()
+            let p = pickpoint()
+            drawlettersinblack(p)
+            drawGrid(p)
             //noLoop()
             }
 
-        function drawlettersinblack(){
-            let pix_diam = 5;
+        function pickpoint(){
             let j = Math.floor(random()*letters.length);
             let pts=letters[j]
             let i = Math.floor(random()*pts.length);
             let p = pts[i];
+            return p
+        }
+
+        function drawlettersinblack(p){
+            let pix_diam = random()*5+1;
             noStroke();
-            fill(0, 0, 100, 50); 
+            fill(0, 0, 100,140); 
             //ellipse(p.x, p.y, pix_diam, pix_diam);
-            let rad = Math.exp(random()*5)
+            let rad = Math.exp(random()*4)
             let angle = radians(p.alpha + 90-(random()*180))
             let x1=p.x+rad*cos(angle)
             let y1=p.y+rad*sin(angle)
             ellipse(x1, y1, pix_diam, pix_diam);
+        }
+
+        function drawGrid(p){
+            stroke(0,100,100,140)
+            let py1 = p.y - random()*424
+            let py2 = p.y + random()*424
+            let p2 = pickpoint()
             if(p.alpha==180){
                 if(random()<0.1){
-                let py1 = p.y - random()*424
-                let py2 = p.y + random()*424
-                stroke(0,100,100,50)
-                line(p.x,py1,p.x,py2)
+                    
+                    line(p.x,py1,p.x,py2)
+                }
             }
+            if(p.alpha<=180 && random()<0.05){
+                if(random()<0.5){
+                    
+                    line(p.x,py1,p2.x,p2.y)
+                }
+                else{
+                    
+                    line(p.x,py2,p2.x,p2.y)
+                }
             }
         }
 
