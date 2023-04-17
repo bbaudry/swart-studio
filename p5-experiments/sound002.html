@@ -30,6 +30,10 @@
             colorMode(HSB, 360, 100, 100)
             canvas = createCanvas(w, h);
             background(0, 0, 0);
+        }
+
+
+        function initSound(){
             env5 = new Tone.Envelope({
                 attack: 0.1,
 		        decay: 0.2,
@@ -38,10 +42,19 @@
 	        }).toDestination();
             //const rev = new Tone.Reverb({decay:5,wet:0.8}).toDestination();
             //env5.connect(rev)
-            osc1 = new Tone.Oscillator();
-            osc1.toDestination();
-            osc1.volume.value = -15
-            synth=new Tone.FMSynth().toDestination();
+
+
+            // create a new synth
+            synth=new Tone.Synth().toDestination();
+            
+            //play a note every quarter-note
+            loop = new Tone.Loop(time => {
+                synth.triggerAttackRelease(220, "8n", time);
+            }, "4n").start(0);
+            // the loops start when the Transport is started
+            Tone.Transport.start()
+            // ramp up to 800 bpm over 10 seconds
+            //Tone.Transport.bpm.rampTo(800, 10);
             wave2 = new Tone.Waveform()
             synth.connect(wave2)
             Tone.Master.volume.value=-3;
@@ -51,17 +64,7 @@
             if (!soundOn) {
                 soundOn = true
                 background(0, 0, 0);
-                osc1.start()
-
-                //play a note every quarter-note
-                loop = new Tone.Loop(time => {
-                    synth.triggerAttackRelease("C2", "8n", time);
-                }, "4n").start(0);
-
-                // the loops start when the Transport is started
-                Tone.Transport.start()
-                // ramp up to 800 bpm over 10 seconds
-                Tone.Transport.bpm.rampTo(800, 10);
+                initSound()
             }
         }
 
@@ -74,7 +77,6 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-                osc1.stop()
                 displayWavesCircle()
                 console.log(frameCount+loop.state)
             }
