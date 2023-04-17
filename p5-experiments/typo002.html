@@ -55,9 +55,10 @@
         }
 
         function draw() {
+            background(0,0,0,10)
             let p = pickpoint()
             drawlettersinblack(p)
-            drawGrid(p)
+            //drawGrid(p)
             //noLoop()
             }
 
@@ -72,7 +73,7 @@
         function drawlettersinblack(p){
             let pix_diam = random()*5+1;
             noStroke();
-            fill(0, 0, 100,140); 
+            fill(0, 0, 100); 
             //ellipse(p.x, p.y, pix_diam, pix_diam);
             let rad = Math.exp(random()*4)
             let angle = radians(p.alpha + 90-(random()*180))
