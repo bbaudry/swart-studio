@@ -25,6 +25,7 @@
         var wave2;
         var loop;
         var synth;
+        var freq;
 
         function setup() {
             colorMode(HSB, 360, 100, 100)
@@ -46,11 +47,11 @@
 
             // create a new synth
             synth=new Tone.Synth().toDestination();
-            
+            freq=30+Math.floor(random()*555)
             //play a note every quarter-note
             loop = new Tone.Loop(time => {
-                synth.triggerAttackRelease(220, "8n", time);
-            }, "4n").start(0);
+                synth.triggerAttackRelease(freq, "8n", time);
+            }, "16n").start(0);
             // the loops start when the Transport is started
             Tone.Transport.start()
             // ramp up to 800 bpm over 10 seconds
@@ -78,6 +79,7 @@
             }
             else {
                 displayWavesCircle()
+                freq=30+Math.floor(random()*555)
                 console.log(frameCount+loop.state)
             }
         }
