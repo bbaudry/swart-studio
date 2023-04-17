@@ -21,25 +21,15 @@
         var w = document.documentElement.clientWidth;//width of window that is available for drawing
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var soundOn = false;
-        var osc1, osc2, osc3, osc4, osc5;
-        var env5;
-        var autoFilter;
-        var noise;
-        var wave1, wave2;
-        var firstFrame;
-        var noise_duration;
-        var noise_play;
+        var env5,osc1;
+        var wave2;
         var loop;
+        var synth;
 
         function setup() {
             colorMode(HSB, 360, 100, 100)
             canvas = createCanvas(w, h);
             background(0, 0, 0);
-            noise_play = false;
-
-            osc5 = new Tone.Oscillator();
-            osc5.toDestination();
-            osc5.volume.value = -15
             env5 = new Tone.Envelope({
                 attack: 0.1,
 		        decay: 0.2,
@@ -48,28 +38,30 @@
 	        }).toDestination();
             //const rev = new Tone.Reverb({decay:5,wet:0.8}).toDestination();
             //env5.connect(rev)
+            osc1 = new Tone.Oscillator();
+            osc1.toDestination();
+            osc1.volume.value = -15
+            synth=new Tone.FMSynth().toDestination();
             wave2 = new Tone.Waveform()
-            osc5.connect(wave2)
-
-
-            loop = new Tone.Loop()
-            loop.interval="8n"
-
-            //Tone.Master.volume.value=-3;
+            synth.connect(wave2)
+            Tone.Master.volume.value=-3;
         }
 
         function mousePressed() {
             if (!soundOn) {
                 soundOn = true
                 background(0, 0, 0);
-                loop.start()
-                const synth = new Tone.MembraneSynth().toMaster();
+                osc1.start()
 
-   loop = new Tone.Loop(function(time) {
-    //triggered every eighth note.
-    console.log(time);
-    synth.triggerAttackRelease("C2", "2n");
-  }, "2n").start(0);
+                //play a note every quarter-note
+                loop = new Tone.Loop(time => {
+                    synth.triggerAttackRelease("C2", "8n", time);
+                }, "4n").start(0);
+
+                // the loops start when the Transport is started
+                Tone.Transport.start()
+                // ramp up to 800 bpm over 10 seconds
+                Tone.Transport.bpm.rampTo(800, 10);
             }
         }
 
@@ -82,13 +74,9 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-                //env5.triggerAttackRelease(0.5);
-               if (osc5.state=="stopped"){
-                console.log(osc5.state)
-                osc5.start(); osc5.stop("4n")
-               }
+                osc1.stop()
                 displayWavesCircle()
-                console.log(osc5.state)
+                console.log(frameCount+loop.state)
             }
         }
 
