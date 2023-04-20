@@ -68,7 +68,7 @@
             let cy=h/2
             let range=0.1*h+random()*(0.35*h)
             for (i=0;i<sp.res;i++){
-                r=range*h+random()*(0.05*h) 
+                r=range+random()*(0.05*h) 
                 a=i*step;
                 rays.push({rad:r,angle:a})
             }
@@ -76,9 +76,8 @@
 
         function draw() {
             background(0,0,0)
-            noFill()
-            strokeWeight(5)
             drawSpokes()
+
             /*stroke(0,100,100)
             fill(0,100,100)
             drawRays(spokes1)
@@ -113,9 +112,6 @@
                 x2=cx+sp[b].rad*cos(sp[b].angle)
                 y2=cy+sp[b].rad*sin(sp[b].angle)
                 oneCurve(x1,y1,x2,y2)
-                push()
-                fill(180,100,100)
-                pop()
             }
             x1=cx+sp[sp.length-1].rad*cos(sp[sp.length-1].angle)
             y1=cy+sp[sp.length-1].rad*sin(sp[sp.length-1].angle)
@@ -147,6 +143,7 @@
         }*/
 
         function oneCurve(x1,y1,x2,y2){
+            
             let diff=Math.abs(y2-y1)
             if(diff>diff/2){
                 bezier(x1,y1,x1,y2,x2,y1,x2,y2)  
