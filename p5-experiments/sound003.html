@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var soundOn = false;
+        var osc1,osc2,osc3;
+        var wave1,wave2;
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100)
+            canvas = createCanvas(w, h);
+            background(0, 0, 0);
+
+            osc1 = new Tone.Oscillator();
+            osc1.toDestination();
+            osc1.volume.value=-15
+            osc2 = new Tone.Oscillator();
+            osc2.frequency.value=110;
+            osc2.toDestination();
+            osc2.volume.value=-22
+            
+            wave1=new Tone.Waveform()
+            wave2=new Tone.Waveform()
+            osc1.connect(wave1)
+            osc2.connect(wave2)
+            //Tone.Master.volume.value=-3;
+        }
+        function mousePressed() {
+            if (!soundOn) {
+                soundOn = true
+                osc1.start()
+                osc2.start()
+            }
+        }
+
+        function draw() {
+            background(0, 0, 0);
+            if (!soundOn) {
+                fill(50, 100, 100); stroke(50, 100, 100);
+                textSize(42)
+                textAlign("center")
+                text("click to start", w / 2, h / 2);
+            }
+            else {
+                osc1.frequency.value= map(mouseX,0,w,110,880)
+                osc2.frequency.value= map(mouseY,0,h,110,330)
+                //displayWaves();
+                displayWavesCircle();
+            }
+        }
+
+        function displayWaves(){
+                let buffer1 = wave1.getValue(0)
+                let buffer2 = wave2.getValue(0)
+                let start1 = 0;
+                for (i=1;i<buffer1.length;i++){
+                    if(buffer1[i-1]<0 && buffer1[i]>=0){
+                        start1=i;
+                        break
+                    }
+                }
+                let start2 = 0;
+                for (i=1;i<buffer2.length;i++){
+                    if(buffer2[i-1]<0 && buffer2[i]>=0){
+                        start2=i;
+                        break
+                    }
+                }
+                let end1 = start1 + buffer1.length/2;
+                let end2 = start2 + buffer2.length/2;
+                for (i=start1;i<end1;i++){
+                    let x1 = map(i-1,start1,end1,0,w)
+                    let y1 = map(buffer1[i-1],-1,1,0,h)
+                    let x2 = map(i,start1,end1,0,w)
+                    let y2 = map(buffer1[i],-1,1,0,h)
+                    stroke(0,100,100)
+                    line(x1,y1,x2,y2)
+                }
+                for (t=start2;t<end2;t++){
+                    let x1 = map(t-1,start2,end2,0,w)
+                    let y1 = map(buffer2[t-1],-1,1,0,h)
+                    let x2 = map(t,start2,end2,0,w)
+                    let y2 = map(buffer2[t],-1,1,0,h)
+                    stroke(180,100,100)
+                    line(x1,y1,x2,y2) 
+                }
+        }
+
+        function displayWavesCircle(){
+                noStroke()
+                let buffer1 = wave1.getValue(0)
+                let buffer2 = wave2.getValue(0)
+                let start1 = 1;
+                let start2 = 1
+                let end1 = buffer1.length;
+                let end2 = buffer2.length;
+                let a_step=2*PI/(end1-start1);
+                let angle = 0
+                for (i=start1;i<end1;i++){
+                    let x1 = w/2 + h/2*cos(angle)
+                    let y1 = h/2+map(buffer1[i-1],-1,1,0,h/2)*sin(angle)
+                    let x2 = w/2 + h/2*cos(angle+a_step)
+                    let y2 = h/2+map(buffer1[i],-1,1,0,h)*sin(angle+a_step)
+                    angle+=a_step
+                    fill(180,100,100); ellipse(x1,y1,5,5)
+                    fill(230,100,100); ellipse(x2,y2,5,5)
+                }
+                a_step=2*PI/(end1-start1);
+                angle=0
+                for (t=start2;t<end2;t++){
+                    let x1 = w/2 + h/2*cos(angle)
+                    let y1 = h/2+map(buffer2[t-1],-1,1,0,h/2)*sin(angle)
+                    let x2 = w/2 + h/2*cos(angle+a_step)
+                    let y2 = h/2+map(buffer2[t],-1,1,0,h)*sin(angle+a_step)
+                    angle+=a_step
+                    fill(0,100,100); ellipse(x1,y1,5,5)
+                    fill(50,100,100); ellipse(x2,y2,5,5)
+                }
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
