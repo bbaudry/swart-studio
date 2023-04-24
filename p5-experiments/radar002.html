@@ -39,7 +39,7 @@
             init_horizon()
             background(0, 0, 0);
             waveLeft = new p5.Oscillator();
-            waveLeft.setType('square');
+            waveLeft.setType('sine');
             env = new p5.Envelope();
             reverb = new p5.Reverb();
             env.setADSR(0.05, 0.05, 0.42, 0.1);
