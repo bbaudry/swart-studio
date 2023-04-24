@@ -33,9 +33,16 @@
 
 
         function draw() {
-            code()
-            if(frameCount%126==0){
-                //background(0,0,0)
+            no()
+            //code()
+        }
+
+        function no(){
+            background(0,0,0,3)
+            noStroke()
+            fill(0,0,100)
+            if (frameCount%210==1){
+                ellipse(w/2,h/2,h,h)
             }
         }
         
