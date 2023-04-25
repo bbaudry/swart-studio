@@ -14,9 +14,18 @@ pub fn main(){
         println!("* {}", header);
     }
 
-    socket.write_message(Message::Text("{{'id': 1, 'method': 'Network.enable'}}".into())).unwrap();
+    // This enables the network event listener
+    // socket.write_message("{\"id\": 1, \"method\": \"Network.enable\"}".into()).unwrap();
+    // This enables the performance event listener
+    socket.write_message("{\"id\": 1, \"method\": \"Profiler.enable\" }".into()).unwrap();
+
+    //socket.write_message("{\"id\": 3, \"method\": \"Runtime.enable\" }".into()).unwrap();
+
     loop {
+        socket.write_message("{\"id\": 2, \"method\": \"Profiler.start\" }".into()).unwrap();
+        std::thread::sleep(std::time::Duration::from_secs(10));
+        socket.write_message("{\"id\": 3, \"method\": \"Profiler.stop\" }".into()).unwrap();
         let msg = socket.read_message().expect("Error reading message");
-        println!("Received: {}", msg);
+        println!("{}", msg);
     }
 }
