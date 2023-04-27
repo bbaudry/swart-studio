@@ -36,7 +36,7 @@
             else {
 
                 freq =990//map(mouseX, 0, w, 110, 880)
-                synth.triggerAttackRelease(freq, "2n");
+                synth.triggerAttackRelease(freq, "4n");
             }
         }
 
@@ -51,13 +51,14 @@
                     type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
                 },
                 envelope: { //sets the various sound properties for the synth
-                    attack: 0.1,
-                    decay: 0.05,
+                    attack: 0.02,
+                    decay: 0.15,
                     sustain: 0.2,
-                    release: 5
+                    release: 3
                 }
             });
-            var rev = new Tone.Reverb(5)
+            synth.volume=-1
+            var rev = new Tone.Reverb({decay:7,wet:0.8})
             rev.toDestination()
             synth.connect(rev)
 
