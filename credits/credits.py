@@ -16,7 +16,10 @@ def mutateart():
 
 for line in crewfile:
     l = line.strip()
-    x=l.rpartition(",")
-    print(x[0].rjust(42)+''.join(asciiart)+x[2].ljust(42))
+    x=l.partition(",")
+    if x[1]==",":
+        print(x[0].rjust(42)+''.join(asciiart)+x[2].ljust(42))
+    else:
+        print(x[0])
     mutateart()
     time.sleep(0.42)
