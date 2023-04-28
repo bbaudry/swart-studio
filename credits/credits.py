@@ -2,6 +2,7 @@ import glob
 import os
 import sys
 import random
+import time
 
 crewfile = open(sys.argv[1],'r')
 asciiart =  [':',':',':',':',':']
@@ -18,3 +19,4 @@ for line in crewfile:
     x=l.rpartition(",")
     print(x[0].rjust(42)+''.join(asciiart)+x[2].ljust(42))
     mutateart()
+    time.sleep(0.42)
