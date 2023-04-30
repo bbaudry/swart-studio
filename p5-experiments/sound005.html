@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var soundOn = false;
+
+        var radar;
+        var freq;
+        var loop;
+        var osc1, osc2, osc3, osc4;
+        var wave1, wave2;
+
+
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100)
+            canvas = createCanvas(w, h);
+            background(0, 0, 0);
+
+        }
+        function mousePressed() {
+            if (!soundOn) {
+                soundOn = true
+                initSound()
+            }
+            else {
+
+            }
+        }
+
+        function initSound() {
+            radar = new Tone.Synth({
+                oscillator: {
+                    type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
+                },
+                envelope: { //sets the various sound properties for the synth
+                    attack: 0.03,
+                    decay: 0.05,
+                    sustain: 0.1,
+                    release: 3
+                }
+            });
+            radar.volume=-1
+            var rev = new Tone.Reverb({decay:11,wet:0.8})
+            rev.toDestination()
+            radar.connect(rev)
+            radar.toDestination();
+
+            freq =1780//map(mouseX, 0, w, 110, 880)
+            loop = new Tone.Loop(time => {
+                radar.triggerAttackRelease(freq, "1", time);
+            }, "2").start(0);
+            // the loops start when the Transport is started
+            Tone.Transport.start()
+           
+
+            // ramp up to 800 bpm over 10 seconds
+            //Tone.Transport.bpm.rampTo(800, 10);
+
+            osc1 = new Tone.Oscillator();
+            osc1.toDestination();
+            osc1.frequency.value= 110
+            osc2 = new Tone.Oscillator();
+            osc2.toDestination();
+            osc2.frequency.value= 80
+            osc3 = new Tone.Oscillator();
+            osc3.toDestination();
+            osc3.frequency.value= 130
+            osc1.start();
+            osc2.start();
+            osc3.start();
+
+            Tone.Master.volume.value = -15;
+        }
+
+        function draw() {
+            background(0, 0, 0);
+            if (!soundOn) {
+                fill(50, 100, 100); stroke(50, 100, 100);
+                textSize(42)
+                textAlign("center")
+                text("click to start", w / 2, h / 2);
+            }
+            else {
+
+            }
+        }
+
+
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
