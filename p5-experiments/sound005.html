@@ -22,7 +22,7 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var soundOn = false;
 
-        var radar;
+        var synth;
         var freq;
         var loop;
         var osc1, osc2, osc3, osc4;
@@ -47,46 +47,25 @@
         }
 
         function initSound() {
-            radar = new Tone.Synth({
+            synth = new Tone.Synth({
                 oscillator: {
                     type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
                 },
                 envelope: { //sets the various sound properties for the synth
-                    attack: 0.03,
+                    attack: 0.01,
                     decay: 0.05,
-                    sustain: 0.1,
-                    release: 3
+                    sustain: 0.01,
+                    release: 0.01
                 }
             });
-            radar.volume=-1
-            var rev = new Tone.Reverb({decay:11,wet:0.8})
-            rev.toDestination()
-            radar.connect(rev)
-            radar.toDestination();
-
-            freq =1780//map(mouseX, 0, w, 110, 880)
+            synth.volume=-1
+            synth.toDestination();
+            freq =2780
             loop = new Tone.Loop(time => {
-                radar.triggerAttackRelease(freq, "1", time);
-            }, "9").start(15);
+                synth.triggerAttackRelease(freq, "64n", time);
+            }, "64n").start(0);
             // the loops start when the Transport is started
             Tone.Transport.start()
-           
-
-            // ramp up to 800 bpm over 10 seconds
-            //Tone.Transport.bpm.rampTo(800, 10);
-
-            osc1 = new Tone.Oscillator();
-            osc1.toDestination();
-            osc1.frequency.value= 110
-            osc2 = new Tone.Oscillator();
-            osc2.toDestination();
-            osc2.frequency.value= 80
-            osc3 = new Tone.Oscillator();
-            osc3.toDestination();
-            osc3.frequency.value= 130
-            osc1.start();
-            osc2.start(5);
-            osc3.start(10);
 
             Tone.Master.volume.value = -15;
         }
@@ -100,7 +79,7 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-
+                freq=map(mouseX,0,w,2500,4200)
             }
         }
 
