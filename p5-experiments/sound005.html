@@ -67,7 +67,7 @@
             freq =1780//map(mouseX, 0, w, 110, 880)
             loop = new Tone.Loop(time => {
                 radar.triggerAttackRelease(freq, "1", time);
-            }, "2").start(0);
+            }, "2").start(15);
             // the loops start when the Transport is started
             Tone.Transport.start()
            
@@ -85,8 +85,8 @@
             osc3.toDestination();
             osc3.frequency.value= 130
             osc1.start();
-            osc2.start();
-            osc3.start();
+            osc2.start(5);
+            osc3.start(10);
 
             Tone.Master.volume.value = -15;
         }
