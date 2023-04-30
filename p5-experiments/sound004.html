@@ -22,6 +22,13 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var soundOn = false;
 
+        var synth;
+        var freq;
+        var loop;
+        var wave1, wave2;
+
+
+
         function setup() {
             colorMode(HSB, 360, 100, 100)
             canvas = createCanvas(w, h);
@@ -35,15 +42,10 @@
             }
             else {
 
-                freq =990//map(mouseX, 0, w, 110, 880)
-                synth.triggerAttackRelease(freq, "4n");
+                freq =1780//map(mouseX, 0, w, 110, 880)
+                synth.triggerAttackRelease(freq, "8n");
             }
         }
-
-        var synth;
-        var freq;
-        var loop;
-        var wave1, wave2;
 
         function initSound() {
             synth = new Tone.Synth({
@@ -52,13 +54,13 @@
                 },
                 envelope: { //sets the various sound properties for the synth
                     attack: 0.02,
-                    decay: 0.15,
-                    sustain: 0.2,
+                    decay: 0.05,
+                    sustain: 0.1,
                     release: 3
                 }
             });
             synth.volume=-1
-            var rev = new Tone.Reverb({decay:7,wet:0.8})
+            var rev = new Tone.Reverb({decay:11,wet:0.8})
             rev.toDestination()
             synth.connect(rev)
 
