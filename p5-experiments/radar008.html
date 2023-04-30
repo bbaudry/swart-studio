@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+var h,w
+var cx,cy
+var angle
+var dust=[]
+function setup() {
+	createCanvas(windowWidth, windowHeight)
+	w=windowWidth
+	h=windowHeight
+	cx=w/2
+	cy=h/2
+	angle=0
+	colorMode(HSB,360,100,100,250)
+	init()
+	
+}
+
+function init(){
+	for (i=0;i<400;i++){
+		let tom = w/2*random()
+		let waits = h/2*random()
+		let john = (i*90)%360+40
+		dust.push({x:w/2, y:h/2, wid:tom, hei:waits, hu:john})
+	}
+}
+
+function draw() {
+	background(0,0,0,10)
+	c()
+	d()
+}
+
+function d(){
+	for (vera=0;vera<dust.length;vera++){
+		console.log()
+		let p = dust[vera]
+	let x = p.x+p.wid*cos(angle)
+	let y = p.y+p.hei*sin(angle)
+	fill(p.hu,100,100,100)
+	ellipse(x,y,2,2)
+		
+	}
+}
+
+function c(){
+	noStroke()
+	let x = cx+200*cos(angle)
+	let y = cy+200*sin(angle)
+	fill(0,60,100,10)
+	ellipse(x,y,17,17)
+	let x1 = cx+200*cos(angle)
+	let y1 = cy+100*sin(angle)
+	fill(320,100,100)
+	ellipse(x1,y1,25,25)
+	angle+=radians(0.99)
+}
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
