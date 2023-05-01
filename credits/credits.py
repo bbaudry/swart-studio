@@ -5,8 +5,8 @@ import random
 import time
 
 crewfile = open(sys.argv[1],'r')
-asciiart =  [':',':',':',':',':']
-asciichars = ['°','+','-','_','*','.']
+asciiart =  [']','~','|','°','{']
+asciichars = ['°','+','-','_','*','.','~','|',']']
 
 def mutateart():
     i = random.randint(0,len(asciiart)-1)
