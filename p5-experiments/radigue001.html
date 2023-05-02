@@ -28,15 +28,18 @@
 		}
 
 		function init() {
-			let off = w/6
+			let offx = w/6
+			let offy = h/6
 			for (let j = 0; j<3; j++){
+				for (let k=0;k<3;k++){
 				let p ={
-					cx:off+2*j*off,
-					cy:h/2,
+					cx:offx+2*j*offx,
+					cy:offy+2*k*offy,
 					diam:7,
-					pulse:84+j
+					pulse:84+k*7
 				}
 				hits.push(p)
+			}
 			}
 		}
 
