@@ -45,14 +45,20 @@
 
 		function draw() {
 			background(0,0,0,7)
-			one()
+			play([4])
+			if (frameCount>60*30){play([3,5])}
+			if (frameCount>60*60){play([1,7])}
+			if (frameCount>60*90){play([0,8])}
+			if (frameCount>60*120){play([2,6])}
 		}
 
-		function one(){
+		function play(indices){
 			noStroke()
 			fill(0,0,100)
-			for(let i=0;i<hits.length;i++){
-				let p=hits[i]
+			console.log(indices[0]);
+			for(let i=0;i<indices.length;i++){
+				k = indices[i]
+				let p=hits[k]
 				let c=p.pulse
 				if (frameCount%c==0){
 					let rx = random()*w*0.33
