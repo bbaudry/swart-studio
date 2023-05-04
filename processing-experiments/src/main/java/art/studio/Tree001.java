@@ -15,23 +15,29 @@ public class Tree001 extends PApplet {
 
     @Override
     public void setup() {
-        colorMode(HSB,360,100,100);
+        colorMode(HSB,360,100,100,250);
         alea=new Random();
         strokeWeight(1);
         background(0,0,0);
+        frameRate(1);
     }
 
     @Override
     public void draw() {
-        if(frameCount<6){
+        if(frameCount<42){
+            background(0,0,0,42);
             float rx = random((float)0.4*w, (float)0.6*w);
-            branch(1,84,rx,h);}
-//noLoop();
+            branch(1,84,rx,h);
+        }
+        else{
+            save("Tree002.png");
+            noLoop();
+        }
     }
 
     private void branch(int depth, float length, float x, float y){
         if (depth<11){
-        stroke(0,0,100,80);
+        stroke(100,100,100,80);
         float y2 = y-length;
         float x2 = x+random(-142, 142);
         line(x,y,x2,y2);
