@@ -24,8 +24,7 @@ public class Tree001 extends PApplet {
 
     @Override
     public void draw() {
-        testCurve();
-/*      if(frameCount<42){
+      if(frameCount<42){
             background(0,0,0,42);
             float rx = random((float)0.4*w, (float)0.6*w);
             branch(1,84,rx,h);
@@ -33,26 +32,10 @@ public class Tree001 extends PApplet {
         else{
             save("Tree002.png");
             noLoop();
-        }*/
+        }
     }
 
-    private void testCurve(){
-        noFill();
-        strokeWeight(2);
-        stroke(100,100,100);
-        float ox = w/2+random(-42,42);
-        float ix = w/2;
-        float dx = ix+random(-11,11);
-        beginShape();
-        curveVertex(ox, h); // the first control point
-        curveVertex(ox, h); // is also the start point of curve
-        curveVertex(ix+random(-21,21), h-42);
-        curveVertex(ix+random(-11,11), h-63);
-        curveVertex(ix+random(-11,11), h-105);
-        curveVertex(dx, h-150); // the last point of curve
-        curveVertex(dx, h-150); // is also the last control point
-        endShape();
-    }
+
     private void branch(int depth, float length, float x, float y){
         if (depth<11){
         stroke(100,100,100,80);
