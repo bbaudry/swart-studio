@@ -3,11 +3,14 @@ package art.studio;
 
 import processing.core.PApplet;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Tree002 extends PApplet {
     int w = 1800;
     int h = 1000;
     Random alea;
+    ArrayList<ArrayList<Float>> branches; 
+    int branch_index = 0;
     @Override
     public void settings() {
         size(w, h);
@@ -17,14 +20,22 @@ public class Tree002 extends PApplet {
     public void setup() {
         colorMode(HSB,360,100,100,250);
         alea=new Random();
+        branches = new ArrayList<>();
         strokeWeight(1);
         background(0,0,0);
-        frameRate(1);
     }
 
     @Override
     public void draw() {
-        trunkCurve();
+        if (frameCount<42){
+            trunkCurve();
+        }
+        else{
+            if (branch_index < branches.size()){
+                branch(1,random(42, 84),branches.get(branch_index).get(0),branches.get(branch_index).get(1));
+                branch_index++;
+            }
+        }
     }
 
     private void trunkCurve(){
@@ -43,10 +54,16 @@ public class Tree002 extends PApplet {
         curveVertex(dx, h-150); // the last point of curve
         curveVertex(dx, h-150); // is also the last control point
         endShape();
+        ArrayList<Float> coord = new ArrayList<>();
+        coord.add(dx);
+        coord.add((float)h-150);
+        branches.add(coord);
     }
+
     private void branch(int depth, float length, float x, float y){
         if (depth<11){
-        stroke(100,100,100,80);
+        stroke(100,100,100);
+        strokeWeight(2);
         float y2 = y-length;
         float x2 = x+random(-142, 142);
         line(x,y,x2,y2);
