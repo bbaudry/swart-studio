@@ -1,6 +1,7 @@
 //https://youtu.be/v0Qp7eWVyes
 use std::time::Duration;
-use rodio::{OutputStream,Source};
+use rodio::{OutputStream,Decoder,Sink};
+use rodio::source::{SineWave, Source};
 
 struct wavetableosc{
     samplerate : u32,
@@ -66,6 +67,7 @@ impl  Source for wavetableosc {
 
 
 fn main(){
+    
     let wavetablesize = 64;
     let mut wavetable: Vec<f32> = Vec::with_capacity(wavetablesize);
     for n in 0..wavetablesize{
@@ -75,6 +77,18 @@ fn main(){
     osc.setfreq(440.0); 
 
     let (_stream, stream_handle) = OutputStream::try_default().unwrap();
-    let _result = stream_handle.play_raw(osc.convert_samples());
-    std::thread::sleep(Duration::from_secs(5));
+    //let _result = stream_handle.play_raw(osc.convert_samples());
+    //std::thread::sleep(Duration::from_secs(5));
+
+
+    let sink = Sink::try_new(&stream_handle).unwrap();
+
+    // Add a dummy source of the sake of the example. .take_duration(Duration::from_secs_f32(25.0))
+    let source = SineWave::new(440.0).amplify(0.15);
+    sink.append(source);
+
+    // The sound plays in a separate thread. This call will block the current thread until the sink
+    // has finished playing all its queued sounds.
+    sink.sleep_until_end();
+
 }
