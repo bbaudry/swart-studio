@@ -47,25 +47,30 @@
         var hei = 42;
         var starty = 0;
         var speed = 4;
+        var startx = w/2-1;
+        var wid = 2;
         function bw(){
             noStroke()
             fill(0,0,100)
             let y = starty
             while (y<h){
-                rect(0,y,w,hei+random()*hei)
+                rect(startx,y,wid,hei+random()*hei)
                 y+=2*hei;
             }
             if (starty<hei){
                 starty+=speed
             }
             if (starty>=hei&&starty<2*hei){
-                rect(0,0,w,starty-hei)
+                rect(startx,0,wid,starty-hei)
                 starty+=speed
             }
             if (starty==2*hei){
                 starty=0
             }
-            
+            if (startx>=0){
+                startx--;
+                wid+=2;
+            }
         }
 
 
