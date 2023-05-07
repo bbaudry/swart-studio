@@ -49,20 +49,21 @@ public class Tree002 extends PApplet {
         curveVertex(ox, h); // the first control point
         curveVertex(ox, h); // is also the start point of curve
         curveVertex(ix+random(-21,21), h-42);
-        curveVertex(ix+random(-11,11), h-63);
-        curveVertex(ix+random(-11,11), h-105);
-        curveVertex(dx, h-150); // the last point of curve
-        curveVertex(dx, h-150); // is also the last control point
+        curveVertex(ix+random(-11,11), h-93);
+        curveVertex(ix+random(-11,11), h-145);
+        curveVertex(dx, h-200); // the last point of curve
+        curveVertex(dx, h-200); // is also the last control point
         endShape();
         ArrayList<Float> coord = new ArrayList<>();
         coord.add(dx);
-        coord.add((float)h-150);
+        coord.add((float)h-200);
         branches.add(coord);
     }
 
     private void branch(int depth, float length, float x, float y){
         if (depth<11){
-        stroke(100,100,100);
+        if (alea.nextFloat()<0.8){stroke(100,100,100);}
+        else {stroke(320,50,100);}
         strokeWeight(2);
         float y2 = y-length;
         float x2 = x+random(-142, 142);
