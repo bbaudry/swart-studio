@@ -32,7 +32,7 @@ public class Tree002 extends PApplet {
         }
         else{
             if (branch_index < branches.size()){
-                branch(1,random(42, 84),branches.get(branch_index).get(0),branches.get(branch_index).get(1));
+                branchcurve(1,random(42, 84),branches.get(branch_index).get(0),branches.get(branch_index).get(1));
                 branch_index++;
             }
         }
@@ -58,6 +58,23 @@ public class Tree002 extends PApplet {
         coord.add(dx);
         coord.add((float)h-200);
         branches.add(coord);
+    }
+
+
+    private void branchcurve(int depth, float length, float x, float y){
+        
+        float ix = x;
+        float dx = ix+random(-111,111);
+        float dy = y-length;
+        beginShape();
+        curveVertex(x, y); // the first control point
+        curveVertex(x, y); // is also the start point of curve
+        curveVertex(ix+random(-21,21), (float)(y-0.2*length));
+        curveVertex(ix+random(-11,11), (float)(y-0.6*length));
+        curveVertex(ix+random(-11,11), (float)(y-0.8*length));
+        curveVertex(dx, dy); // the last point of curve
+        curveVertex(dx, dy); // is also the last control point
+        endShape();
     }
 
     private void branch(int depth, float length, float x, float y){
