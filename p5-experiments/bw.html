@@ -26,7 +26,7 @@
             colorMode(HSB, 360, 100, 100, 250)
             canvas = createCanvas(w, h);
             background(0, 0, 0);
-            saveGif('bw', 10);
+
 
         }
 
@@ -41,8 +41,19 @@
                 background(0, 0, 0, 2);
             }
             else{
-                background(0, 0, 0);
-               bw()
+                if (frameCount<480){
+                    background(0, 0, 0);
+                    bw()
+                }
+                else{
+                    background(0, 0, 0);
+                    fill(0, 0, 100); stroke(0, 0, 100);
+                textSize(42)
+                textAlign("center")
+                text("sys|call", w / 2, h / 2-53);
+                text("opening on 2023::06::15", w / 2, h / 2);
+                text("turbine hall @ KTH", w / 2, h / 2+53);
+                }
             }
         }
 
