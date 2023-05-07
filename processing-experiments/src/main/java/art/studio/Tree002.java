@@ -67,7 +67,7 @@ public class Tree002 extends PApplet {
         float y2 = y-length;
         float x2 = x+random(-142, 142);
         line(x,y,x2,y2);
-        int spin = alea.nextInt(3)+1;
+        int spin = alea.nextInt(2)+1;
         for (int i = 0; i<spin;i++){
             branch(depth+1,length+random(-17,9),x2,y2);
         }
