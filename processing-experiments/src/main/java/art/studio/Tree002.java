@@ -11,6 +11,7 @@ public class Tree002 extends PApplet {
     Random alea;
     ArrayList<ArrayList<Float>> branches; 
     int branch_index = 0;
+    int nb_children_branches = 3;
     @Override
     public void settings() {
         size(w, h);
@@ -62,19 +63,30 @@ public class Tree002 extends PApplet {
 
 
     private void branchcurve(int depth, float length, float x, float y){
-        
-        float ix = x;
-        float dx = ix+random(-111,111);
+        if (depth<9){
+            if (alea.nextFloat()<0.8){stroke(100,100,100);}
+            else {stroke(320,50,100);}
+            strokeWeight(2);
+            float dx = x+random(-111,111);
         float dy = y-length;
+        float t,px,py;
         beginShape();
         curveVertex(x, y); // the first control point
         curveVertex(x, y); // is also the start point of curve
-        curveVertex(ix+random(-21,21), (float)(y-0.2*length));
-        curveVertex(ix+random(-11,11), (float)(y-0.6*length));
-        curveVertex(ix+random(-11,11), (float)(y-0.8*length));
+        for (int i = 1; i<=3; i++){
+            t=i*(float)0.3; 
+            px = (1 - t) * x + (t * dx) +random(-21,42); 
+            py = (float)(y-t*length);
+            curveVertex(px, py);    
+        }
         curveVertex(dx, dy); // the last point of curve
         curveVertex(dx, dy); // is also the last control point
         endShape();
+        int spin = alea.nextInt(nb_children_branches-1)+1;
+        for (int i = 0; i<spin;i++){
+            branchcurve(depth+1,length+random(-9,9),dx,dy);
+        }
+    }
     }
 
     private void branch(int depth, float length, float x, float y){
