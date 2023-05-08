@@ -84,8 +84,9 @@ fn main(){
     let sink = Sink::try_new(&stream_handle).unwrap();
 
     // Add a dummy source of the sake of the example. .take_duration(Duration::from_secs_f32(25.0))
-    let source = SineWave::new(440.0).amplify(0.15);
+    let source = SineWave::new(415.0).amplify(0.15);
     sink.append(source);
+    
 
     // The sound plays in a separate thread. This call will block the current thread until the sink
     // has finished playing all its queued sounds.
