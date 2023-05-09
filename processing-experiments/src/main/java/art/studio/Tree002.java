@@ -28,7 +28,9 @@ public class Tree002 extends PApplet {
 
     @Override
     public void draw() {
-        if (frameCount<42){
+        if (frameCount%168==1){
+            background(0,0,0);}
+        if (frameCount%168<=42){
             trunkCurve();
         }
         else{
@@ -37,6 +39,7 @@ public class Tree002 extends PApplet {
                 branch_index++;
             }
         }
+    
     }
 
     private void trunkCurve(){
@@ -63,30 +66,33 @@ public class Tree002 extends PApplet {
 
 
     private void branchcurve(int depth, float length, float x, float y){
-        if (depth<9){
-            if (alea.nextFloat()<0.8){stroke(100,100,100);}
-            else {stroke(320,50,100);}
+        if (depth < 9) {
+            if (alea.nextFloat() < 0.8) {
+                stroke(100, 100, 100);
+            } else {
+                stroke(320, 50, 100);
+            }
             strokeWeight(2);
-            float dx = x+random(-111,111);
-        float dy = y-length;
-        float t,px,py;
-        beginShape();
-        curveVertex(x, y); // the first control point
-        curveVertex(x, y); // is also the start point of curve
-        for (int i = 1; i<=3; i++){
-            t=i*(float)0.3; 
-            px = (1 - t) * x + (t * dx) +random(-21,42); 
-            py = (float)(y-t*length);
-            curveVertex(px, py);    
+            float dx = x + random(-222, 222);
+            float dy = y - length;
+            float t, px, py;
+            beginShape();
+            curveVertex(x, y); // the first control point
+            curveVertex(x, y); // is also the start point of curve
+            for (int i = 1; i <= 3; i++) {
+                t = i * (float) 0.3;
+                px = (1 - t) * x + (t * dx) + random(-21, 21);
+                py = (float) (y - t * length);
+                curveVertex(px, py);
+            }
+            curveVertex(dx, dy); // the last point of curve
+            curveVertex(dx, dy); // is also the last control point
+            endShape();
+            int spin = alea.nextInt(nb_children_branches - 1) + 1;
+            for (int i = 0; i < spin; i++) {
+                branchcurve(depth + 1, length + random(-9, 9), dx, dy);
+            }
         }
-        curveVertex(dx, dy); // the last point of curve
-        curveVertex(dx, dy); // is also the last control point
-        endShape();
-        int spin = alea.nextInt(nb_children_branches-1)+1;
-        for (int i = 0; i<spin;i++){
-            branchcurve(depth+1,length+random(-9,9),dx,dy);
-        }
-    }
     }
 
     private void branch(int depth, float length, float x, float y){
