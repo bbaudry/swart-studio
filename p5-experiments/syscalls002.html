@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100, 250)
+            canvas = createCanvas(w, h);
+            background(0, 0, 0);
+            initparticles();
+        }
+
+        var particles = []
+        var nbparticles = 420;
+        function initparticles(){
+            for (let i=0;i<nbparticles;i++){
+            let p = {
+                cx:w/2,
+                cy:h/2,
+                direction:random()*2*PI,
+                dist:0,
+                speed:random()
+            }
+            particles.push(p)
+        }
+        }
+
+        function draw() {
+            background(0,0,0)
+            if (random()*42>40){
+                fill(0,100,100)
+                noStroke()
+                rect(w/2-420,h/2-420,840,840)
+            }
+            fireworks()
+        }
+
+        function fireworks(){
+            fill(0,0,100,84);
+            noStroke()
+            for (let i=0;i<particles.length;i++){
+                let newc = newCoord(particles[i]);
+                ellipse(newc[0],newc[1],5,5)
+            }
+        }
+
+        function newCoord(p){
+            let res=[];
+            p.dist+=p.speed;
+            let x = w/2+p.dist*cos(p.direction);
+            let y = h/2+p.dist*sin(p.direction);
+            res.push(x)
+            res.push(y)
+            return res
+        }
+
+        function bw(){
+        }
+
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
