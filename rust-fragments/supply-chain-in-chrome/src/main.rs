@@ -43,7 +43,7 @@ pub struct Profile {
 #[derive(serde::Deserialize, Debug)]
 pub struct ProfileWrapper {
 
-    pub profile: Profile
+    pub profile: Option<Profile>
 }
 
 #[derive(serde::Deserialize, Debug)]
@@ -56,7 +56,7 @@ pub struct GenericResult<T>
 pub fn main(){
 
     let (mut socket, response) =
-        connect(Url::parse("ws://localhost:9222/devtools/page/24C488F0B6682D43EA71B6911DEE77C1").unwrap()).expect("Can't connect");
+        connect(Url::parse("ws://localhost:9222/devtools/page/6A20CBE9141F61E13600F3455B8BB64C").unwrap()).expect("Can't connect");
 
     println!("Connected to the server");
     println!("Response HTTP code: {}", response.status());
@@ -81,6 +81,8 @@ pub fn main(){
             "id": 2i32,
             "method": "Profiler.start"
         }).to_string().into()).unwrap();
+
+        // Collect the profiling for XX seconds
         std::thread::sleep(std::time::Duration::from_secs(10));
 
         socket.write_message(serde_json::json!({
@@ -96,10 +98,24 @@ pub fn main(){
 
                 if let Some(result) = result_obj.result {
                     // println!("{:?}", result);
-                    for node in result.profile.nodes {
-                        println!("{}", node.callFrame.url);
+                    if let Some(profile) = result.profile {
+                        for node in profile.nodes {
+                            println!("{}", node.callFrame.url);
+                            println!("\t{}", node.callFrame.functionName);
+                        }
                     }
-                } 
+                } else {
+
+                    // This is for debugging reasons about why the parsing
+                    // is wrong
+                    if msg.len() > 59 {
+                        println!("msg {}", &msg[..59]);
+                    } else {
+
+                        println!("msg {}", &msg[..59]);
+                    }
+
+                }
             }
             Err(e) => {
                 if msg.len() > 59 {
