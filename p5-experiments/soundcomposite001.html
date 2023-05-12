@@ -22,8 +22,8 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var soundOn = false;
 
-        var radar;
-        var freq;
+        var radar1;
+        var freq1;
         var loop;
         var osc1, osc2, osc3, osc4;
         var wave1, wave2;
@@ -39,38 +39,86 @@
         function mousePressed() {
             if (!soundOn) {
                 soundOn = true
+                beatcount=0
                 initSound()
             }
             else {
 
             }
         }
-
+        var beatcount
         function initSound() {
-            radar = new Tone.Synth({
+            Tone.Master.volume.value = -15;
+            var dist = new Tone.Distortion(0.21).toDestination();
+            var ampEnvstart = new Tone.AmplitudeEnvelope({
+                "attack": 0.03,
+                "decay": 0.2,
+                "sustain": 0,
+                "release": 0
+            }).toMaster();
+            var ampEnvend = new Tone.AmplitudeEnvelope({
+                "attack": 0.2,
+                "decay": 5,
+                "sustain": 1.0,
+                "release": 0.8
+            }).toMaster();
+            radar1 = new Tone.Synth({
                 oscillator: {
                     type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
                 },
                 envelope: { //sets the various sound properties for the synth
                     attack: 0.03,
-                    decay: 0.05,
+                    decay: 0.5,
                     sustain: 0.1,
                     release: 3
                 }
             });
-            radar.volume=-1
+            radar2 = new Tone.Synth({
+                oscillator: {
+                    type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
+                },
+                envelope: { //sets the various sound properties for the synth
+                    attack: 0.03,
+                    decay: 0.5,
+                    sustain: 0.1,
+                    release: 3
+                }
+            });
+            radar1.volume=-1
+            radar2.volume=-1
             var rev = new Tone.Reverb({decay:11,wet:0.8})
             rev.toDestination()
-            radar.connect(rev)
-            radar.toDestination();
+            radar1.connect(ampEnvstart)
+            radar2.connect(ampEnvstart)
+            radar1.connect(ampEnvend)
+            radar2.connect(ampEnvend)
+            ampEnvstart.connect(dist)
+            dist.connect(rev)
+            ampEnvend.connect(rev)
+            radar1.toDestination()
+            radar2.toDestination()
 
-            freq =1780//map(mouseX, 0, w, 110, 880)
+            freq1 =1780//map(mouseX, 0, w, 110, 880)
+            freq2 =1790//map(mouseX, 0, w, 110, 880)
             loop = new Tone.Loop(time => {
-                radar.triggerAttackRelease(freq, "1", time);
-            }, "9").start(15);
+                ampEnvstart.triggerAttackRelease({time:time,duration:1})
+                ampEnvend.triggerAttackRelease({time:time,duration:3})
+                radar1.triggerAttackRelease(freq1, "1", time);
+                radar2.triggerAttackRelease(freq2, "1", time);
+            }, "4").start();
             // the loops start when the Transport is started
             Tone.Transport.start()
-           
+
+            const kickDrum = new Tone.MembraneSynth({
+                volume: 6
+            }).toDestination();
+            loop = new Tone.Loop(time => {
+                if (beatcount<3){
+                  kickDrum.triggerAttackRelease('C1', '8n', time);
+                }
+                beatcount=(beatcount+1)%8
+            }, "16n").start();
+
 
             // ramp up to 800 bpm over 10 seconds
             //Tone.Transport.bpm.rampTo(800, 10);
@@ -88,7 +136,7 @@
             osc2.start(5);
             osc3.start(10);
 
-            Tone.Master.volume.value = -15;
+            
         }
 
         function draw() {
