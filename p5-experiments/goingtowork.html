@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var bowie;
+        var message;
+        
+        function preload() {
+            bowie = loadFont("./FreeMono.otf");
+        }
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100, 250)
+            canvas = createCanvas(w, h);
+            alpha = 10
+            textFont(bowie)
+            textSize(42)
+       }
+
+        function draw() {
+            background(0, 0, 0);
+            message = "ce thread risque d'aller au boulot pour un nouveau cours. il faut peut être le supprimer tout de suite. Code Bending: A new creative coding practice Programming music camp: Using web audio to teach creative coding Lissajus Curves: an Experiment in Creative Coding Creative coding for the Raspberry Pi using the HappyBrackets platform"
+            asciiart()
+            noLoop()
+        }
+
+        function mousePressed() {
+            draw()
+        }
+
+        function asciiart() {
+            let newText = message.replace(/ /g, "");
+            let chars = Array.from(newText)
+            let y = 0
+            for (let i=0; i<10; i++){
+                let row=""
+                for (let j=0;j<28;j++){
+                    row+=pickchar(chars)
+                }
+                stroke(50,100,100)
+                fill(50,100,100)
+                textAlign("center")
+                y+=84
+                text(row,w/2,y)
+            }
+        }
+
+        function pickchar(chars){
+            let s = chars.length
+            let x= Math.floor(random()*s)
+            let r = chars[x]
+            chars.splice(x,1)
+            return(r)
+        }
+
+        function getDivisorsCnt(n) {
+
+            var numDivisors = 1;
+            var factor = 2; // Candidate for prime factor of `n`
+
+            // If `n` is not a prime number then it must have one factor
+            // which is <= `sqrt(n)`, so we try these first:
+            while (factor * factor <= n) {
+                if (n % factor === 0) {
+                    // `factor` is a prime factor of `n`, determine the exponent:
+                    var exponent = 0;
+                    do {
+                        n /= factor;
+                        exponent++;
+                    } while (n % factor === 0)
+                    // `factor^exponent` is one term in the prime factorization of n,
+                    // this contributes as factor `exponent + 1`:
+                    numDivisors *= exponent + 1;
+                }
+                // Next possible prime factor:
+                factor = factor == 2 ? 3 : factor + 2
+            }
+
+            // Now `n` is either 1 or a prime number. In the latter case,
+            // it contributes a factor 2:
+            if (n > 1) {
+                numDivisors *= 2;
+            }
+
+            return numDivisors;
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
