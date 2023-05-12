@@ -101,8 +101,8 @@
             freq1 =1780//map(mouseX, 0, w, 110, 880)
             freq2 =1790//map(mouseX, 0, w, 110, 880)
             loop = new Tone.Loop(time => {
-                ampEnvstart.triggerAttackRelease({time:time,duration:1})
-                ampEnvend.triggerAttackRelease({time:time,duration:3})
+                ampEnvstart.triggerAttackRelease(1)
+                ampEnvend.triggerAttackRelease(3)
                 radar1.triggerAttackRelease(freq1, "1", time);
                 radar2.triggerAttackRelease(freq2, "1", time);
             }, "4").start();
