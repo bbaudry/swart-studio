@@ -22,7 +22,12 @@
         var h = document.documentElement.clientHeight;//width of window that is available for drawing
         var bowie;
         var message;
-        
+        var row;
+        var spaceLessText;
+        var chars = [];
+        var gentext = [];
+        var yrow;
+
         function preload() {
             bowie = loadFont("./FreeMono.otf");
         }
@@ -33,16 +38,60 @@
             alpha = 10
             textFont(bowie)
             textSize(42)
-       }
+            message = "ce thread risque d'aller au boulot pour un nouveau cours. il faut peut être le supprimer tout de suite. Code Bending: A new creative coding practice Programming music camp: Using web audio to teach creative coding Lissajus Curves: an Experiment in Creative Coding Creative coding for the Raspberry Pi using the HappyBrackets platform"
+            spaceLessText = message.replace(/ /g, "");
+            chars = Array.from(spaceLessText)
+            row = "";
+            yrow=84
+        }
 
         function draw() {
             background(0, 0, 0);
-            message = "ce thread risque d'aller au boulot pour un nouveau cours. il faut peut être le supprimer tout de suite. Code Bending: A new creative coding practice Programming music camp: Using web audio to teach creative coding Lissajus Curves: an Experiment in Creative Coding Creative coding for the Raspberry Pi using the HappyBrackets platform"
-            asciiart()
-            noLoop()
+            //asciiart()
+            stroke(50, 100, 100)
+            fill(50, 100, 100)
+            textAlign("center")
+            if (row.length<28){
+                if (gentext.length < 10) {
+                    if (gentext.length > 0){
+                        for (let r=0; r<gentext.length; r++){
+                            console.log(gentext[r])
+                            text(gentext[r], w / 2, 84+r*84)
+                        }
+                    }
+                    let s = chars.length
+                    let x = Math.floor(random() * s)
+                    let r = chars[x]; console.log(r)
+                    chars.splice(x, 1)
+                    row += r
+                    text(row, w / 2, yrow)
+                }
+                else{
+                    if (gentext.length > 0){
+                        for (let r=0; r<gentext.length; r++){
+                            console.log(gentext[r])
+                            text(gentext[r], w / 2, 84+r*84)
+                        }
+                    }
+                    noLoop()
+                }
+            }
+            else{
+                yrow+=84;
+                gentext.push(row)
+                row="";
+            }
         }
 
         function mousePressed() {
+            message = "ce thread risque d'aller au boulot pour un nouveau cours. il faut peut être le supprimer tout de suite. Code Bending: A new creative coding practice Programming music camp: Using web audio to teach creative coding Lissajus Curves: an Experiment in Creative Coding Creative coding for the Raspberry Pi using the HappyBrackets platform"
+            spaceLessText = message.replace(/ /g, "");
+            chars = Array.from(spaceLessText)
+            background(0, 0, 0);
+            row = "";
+            yrow=84;
+            gentext=[];
+            loop()
             draw()
         }
 
@@ -50,25 +99,25 @@
             let newText = message.replace(/ /g, "");
             let chars = Array.from(newText)
             let y = 0
-            for (let i=0; i<10; i++){
-                let row=""
-                for (let j=0;j<28;j++){
-                    row+=pickchar(chars)
+            for (let i = 0; i < 10; i++) {
+                let row = ""
+                for (let j = 0; j < 28; j++) {
+                    row += pickchar(chars)
                 }
-                stroke(50,100,100)
-                fill(50,100,100)
+                stroke(50, 100, 100)
+                fill(50, 100, 100)
                 textAlign("center")
-                y+=84
-                text(row,w/2,y)
+                y += 84
+                text(row, w / 2, y)
             }
         }
 
-        function pickchar(chars){
+        function pickchar(chars) {
             let s = chars.length
-            let x= Math.floor(random()*s)
+            let x = Math.floor(random() * s)
             let r = chars[x]
-            chars.splice(x,1)
-            return(r)
+            chars.splice(x, 1)
+            return (r)
         }
 
         function getDivisorsCnt(n) {
