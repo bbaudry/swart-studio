@@ -27,6 +27,7 @@
         var loop;
         var osc1, osc2, osc3, osc4;
         var wave1, wave2;
+        var drumspeed;
 
 
 
@@ -112,14 +113,16 @@
             const kickDrum = new Tone.MembraneSynth({
                 volume: 6
             }).toDestination();
+            drumspeed="16n"
             loop = new Tone.Loop(time => {
                 if (beatcount<3){
                   kickDrum.triggerAttackRelease('C1', '8n', time);
                 }
                 beatcount=(beatcount+1)%8
-            }, "16n").start();
+            }, drumspeed).start();
 
-
+            wave2 = new Tone.Waveform()
+            kickDrum.connect(wave2)
             // ramp up to 800 bpm over 10 seconds
             //Tone.Transport.bpm.rampTo(800, 10);
 
@@ -140,7 +143,7 @@
         }
 
         function draw() {
-            background(0, 0, 0);
+            background(0, 0, 0, 10);
             if (!soundOn) {
                 fill(50, 100, 100); stroke(50, 100, 100);
                 textSize(42)
@@ -148,10 +151,39 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-                
+                displayWavesCircle()
             }
         }
 
+        function kickcircle(){
+            let buffer2 = wave2.getValue(0)
+            if (buffer[3]!=0){
+                fill(0,0,100);noStroke();ellipse(w/2,h/2,333,333);
+                  text(frameCount, w / 2, h / 2);
+                  console.log(frameCount)
+
+            }
+        }
+
+        function displayWavesCircle() {
+            noStroke()
+            
+            let buffer2 = wave2.getValue(0)
+            console.log("display "+buffer2[0]+" "+buffer2[1]+" "+buffer2[2]+" "+buffer2[3])
+            let start2 = 1
+            let end2 = buffer2.length;
+            let a_step = 2 * PI / (end2 - start2);
+            let angle = 0
+            for (t = start2; t < end2; t++) {
+                let x1 = w / 2 + w / 2 * cos(angle)
+                let y1 = h / 2 + map(buffer2[t - 1], -1, 1, 0, h / 2) * sin(angle)
+                let x2 = w / 2 + w / 2 * cos(angle + a_step)
+                let y2 = h / 2 + map(buffer2[t], -1, 1, 0, h) * sin(angle + a_step)
+                angle += a_step
+                fill(0, 0, 100); ellipse(x1, y1, 7, 7)
+                fill(50, 0, 100); ellipse(x2, y2, 7, 7)
+            }
+        }
 
 
         function windowResized() {
