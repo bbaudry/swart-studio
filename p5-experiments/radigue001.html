@@ -5,6 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+
 	<style>
 		body {
 			padding: 0;
@@ -17,7 +19,8 @@
 	<script>
 		var h, w
 		var hits = []
-
+		var kickDrum
+var soundOn
 		function setup() {
 			createCanvas(windowWidth, windowHeight)
 			w = windowWidth
@@ -26,6 +29,16 @@
 			init()
 			background(0,0,0)
 		}
+
+		function mousePressed() {
+            if (!soundOn) {
+                soundOn = true
+            }
+            else {
+
+            }
+        }
+
 
 		function init() {
 			let offx = w/6
@@ -41,15 +54,28 @@
 				hits.push(p)
 			}
 			}
+		
+            kickDrum = new Tone.MembraneSynth({
+                volume: 6
+            }).toDestination();
+			background(0,0,0)
 		}
 
 		function draw() {
-			background(0,0,0,7)
-			play([4])
-			if (frameCount>60*30){play([3,5])}
-			if (frameCount>60*60){play([1,7])}
-			if (frameCount>60*90){play([0,8])}
-			if (frameCount>60*120){play([2,6])}
+			if (!soundOn) {
+                fill(50, 100, 100); stroke(50, 100, 100);
+                textSize(42)
+                textAlign("center")
+                text("click to start", w / 2, h / 2);
+            }
+            else {
+				background(0,0,0,7)
+			play([4]);console.log(frameCount)
+			if (frameCount>60*30){play([3,5]);}
+			if (frameCount>60*60){play([1,7]);}
+			if (frameCount>60*90){play([0,8]);}
+			if (frameCount>60*120){play([2,6]);}
+            }
 		}
 
 		function play(indices){
@@ -64,6 +90,7 @@
 					let rx = random()*w*0.33
 					let ry = random()*h*0.33
 					rect(p.cx-rx/2,p.cy-ry/2,rx,ry)
+					kickDrum.triggerAttackRelease('C1', '8n');
 				}
 			}
 		}
