@@ -20,77 +20,79 @@
 		var h, w
 		var hits = []
 		var kickDrum
-var soundOn
+		var soundOn
+
 		function setup() {
 			createCanvas(windowWidth, windowHeight)
 			w = windowWidth
 			h = windowHeight
 			colorMode(HSB, 360, 100, 100, 250)
 			init()
-			background(0,0,0)
+			background(0, 0, 0)
 		}
 
 		function mousePressed() {
-            if (!soundOn) {
-                soundOn = true
-            }
-            else {
-
-            }
-        }
+			if (!soundOn) {
+				soundOn = true
+			}
+		}
 
 
 		function init() {
-			let offx = w/6
-			let offy = h/6
-			for (let j = 0; j<3; j++){
-				for (let k=0;k<3;k++){
-				let p ={
-					cx:offx+2*j*offx,
-					cy:offy+2*k*offy,
-					diam:7,
-					pulse:84+k*7
+			let offx = w / 6
+			let offy = h / 6
+			for (let j = 0; j < 3; j++) {
+				for (let k = 0; k < 3; k++) {
+					kickDrum = new Tone.MembraneSynth({
+				volume: 6
+			}).toDestination();
+					let p = {
+						cx: offx + 2 * j * offx,
+						cy: offy + 2 * k * offy,
+						diam: 7,
+						pulse: 84 + k * 7,
+						beat : kickDrum
+					}
+					hits.push(p)
 				}
-				hits.push(p)
 			}
-			}
-		
-            kickDrum = new Tone.MembraneSynth({
-                volume: 6
-            }).toDestination();
-			background(0,0,0)
+
+			kickDrum = new Tone.MembraneSynth({
+				volume: 6
+			}).toDestination();
+			background(0, 0, 0)
 		}
 
 		function draw() {
 			if (!soundOn) {
-                fill(50, 100, 100); stroke(50, 100, 100);
-                textSize(42)
-                textAlign("center")
-                text("click to start", w / 2, h / 2);
-            }
-            else {
-				background(0,0,0,7)
-			play([4]);console.log(frameCount)
-			if (frameCount>60*30){play([3,5]);}
-			if (frameCount>60*60){play([1,7]);}
-			if (frameCount>60*90){play([0,8]);}
-			if (frameCount>60*120){play([2,6]);}
-            }
+				fill(50, 100, 100); stroke(50, 100, 100);
+				textSize(42)
+				textAlign("center")
+				text("click to start", w / 2, h / 2);
+			}
+			else {
+				background(0, 0, 0, 7)
+				play([4]); console.log(frameCount)
+				if (frameCount > 60 * 30) { play([3, 5]); }
+				if (frameCount > 60 * 60) { play([1, 7]); }
+				if (frameCount > 60 * 90) { play([0, 8]); }
+				if (frameCount > 60 * 120) { play([2, 6]); }
+			}
 		}
 
-		function play(indices){
+		function play(indices) {
 			noStroke()
-			fill(0,0,100)
+			fill(0, 0, 100)
 			console.log(indices[0]);
-			for(let i=0;i<indices.length;i++){
+			for (let i = 0; i < indices.length; i++) {
 				k = indices[i]
-				let p=hits[k]
-				let c=p.pulse
-				if (frameCount%c==0){
-					let rx = random()*w*0.33
-					let ry = random()*h*0.33
-					rect(p.cx-rx/2,p.cy-ry/2,rx,ry)
-					kickDrum.triggerAttackRelease('C1', '8n');
+				let p = hits[k]
+				let c = p.pulse
+				if (frameCount % c == 0) {
+					let rx = random() * w * 0.33
+					let ry = random() * h * 0.33
+					rect(p.cx - rx / 2, p.cy - ry / 2, rx, ry)
+					p.beat.triggerAttackRelease('C1', '8n');
 				}
 			}
 		}
