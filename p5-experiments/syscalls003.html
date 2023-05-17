@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let canvas;
+        var w = document.documentElement.clientWidth;//width of window that is available for drawing
+        var h = document.documentElement.clientHeight;//width of window that is available for drawing
+        var initial_radius;
+        var nb_angles;
+        var ring=[];
+        var current_point;
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100, 250)
+            canvas = createCanvas(w, h);
+            background(0, 0, 0);
+            initial_radius = 0.01*w;
+            nb_angles = 42;
+            current_point = 0;
+            initangles(nb_angles,initial_radius);
+            fill(0,0,100)
+            noStroke()
+        }
+
+        function initangles(nb_angles,rad){
+            let a = 2*PI/nb_angles;
+            for(let i=0; i<nb_angles;i++){
+                ring.push({angle:a*i,radius:rad})
+            }
+        }
+
+        function draw() {
+            if(current_point<ring.length){
+                let r = ring[current_point].radius;
+                let cx=w/2+r*cos(ring[current_point].angle);
+                let cy=h/2+r*sin(ring[current_point].angle);
+                ellipse(cx,cy,3,3);
+                current_point++;
+            }
+            else{
+                current_point=0;
+                nb_angles+=5;
+                //ring=[];
+                //initial_radius+=2
+                //initangles(nb_angles,initial_radius);
+                updateRing(nb_angles,5)
+                //noLoop();
+            }
+        }
+
+        function fireworks(){
+            noFill();
+            stroke(0,0,100);
+            let a = 2*PI/nb_angles;
+            for(let i =0;i<nb_angles;i++){
+                let r = initial_radius+random()*(0.42*frameCount);
+                let cx=w/2+r*cos(i*a);
+                let cy=h/2+r*sin(i*a);
+                ellipse(cx,cy,5,5);
+            }
+            nb_angles+=42;
+            initial_radius+=5;
+        }
+
+        function updateRing(nb_angles,rad_inc){
+            let a = 2*PI/nb_angles;
+            let rad;
+            let newring = []
+            for(let i=0; i<ring.length;i++){
+                rad=ring[i].radius
+                newring.push({angle:a*i,radius:rad+rad_inc+random()})
+            }
+            let t = ring.length
+            console.log(nb_angles-t)
+            for(let j=nb_angles-t;j<nb_angles;j++){
+                newring.push({
+                    angle:a*j,
+                    radius:rad+random()*rad_inc
+                })
+            }
+            console.log(ring.length+" "+newring.length)
+            ring=newring
+        }
+
+        function windowResized() {
+            w = document.documentElement.clientWidth;//width of window that is available for drawing
+            h = document.documentElement.clientHeight;//width of window that is available for drawing
+            resizeCanvas(w, h);
+        }
+
+    </script>
+</body>
+
+</html>
