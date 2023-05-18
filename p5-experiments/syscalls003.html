@@ -85,16 +85,17 @@
                 rad=ring[i].radius
                 newring.push({angle:a*i,radius:rad+rad_inc+random()})
             }
-            let t = ring.length
-            console.log(nb_angles-t)
+            let t = newring.length
+            console.log("newring length: "+t+" nb angles "+nb_angles+" ring length "+ring.length)
             for(let j=nb_angles-t;j<nb_angles;j++){
                 newring.push({
                     angle:a*j,
                     radius:rad+random()*rad_inc
                 })
             }
-            console.log(ring.length+" "+newring.length)
+            ring=[]
             ring=newring
+            console.log("newring length: "+t+" nb angles "+nb_angles+" ring length "+ring.length)
         }
 
         function windowResized() {
