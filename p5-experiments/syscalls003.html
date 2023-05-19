@@ -30,7 +30,7 @@
             canvas = createCanvas(w, h);
             background(0, 0, 0);
             initial_radius = 0.01*w;
-            nb_angles = 42;
+            nb_angles = 63;
             current_point = 0;
             initangles(nb_angles,initial_radius);
             fill(0,0,100)
@@ -53,13 +53,9 @@
                 current_point++;
             }
             else{
-                nb_angles+=5;
+                nb_angles+=11;
                 current_point=0
-                //ring=[];
-                //initial_radius+=2
-                //initangles(nb_angles,initial_radius);
-                updateRing(nb_angles,11)
-                //noLoop();
+                updateRing(nb_angles,17)
             }
         }
 
