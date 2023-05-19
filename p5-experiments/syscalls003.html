@@ -58,7 +58,7 @@
                 //ring=[];
                 //initial_radius+=2
                 //initangles(nb_angles,initial_radius);
-                updateRing(nb_angles,5)
+                updateRing(nb_angles,3)
                 //noLoop();
             }
         }
@@ -93,7 +93,7 @@
             for(i=len;i<nb_angles;i++){
                 ring.push({
                     angle:a*i,
-                    radius:rad+random()*rad_inc
+                    radius:rad+random()+rad_inc
                 })
             }
             console.log("ring length "+ring.length)
