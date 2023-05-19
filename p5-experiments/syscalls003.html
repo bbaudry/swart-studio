@@ -30,7 +30,7 @@
             canvas = createCanvas(w, h);
             background(0, 0, 0);
             initial_radius = 0.01*w;
-            nb_angles = 4;
+            nb_angles = 42;
             current_point = 0;
             initangles(nb_angles,initial_radius);
             fill(0,0,100)
@@ -53,8 +53,8 @@
                 current_point++;
             }
             else{
-                current_point=0;
                 nb_angles+=5;
+                current_point=0
                 //ring=[];
                 //initial_radius+=2
                 //initangles(nb_angles,initial_radius);
@@ -79,29 +79,24 @@
 
         function updateRing(nb_angles,rad_inc){
             let a = 2*PI/nb_angles;
-            let rad;
-            let newring = []
-            let len = ring.length
-            for(let i=0; i<ring.length;i++){
-                rad=ring[i].radius
-                newring.push({angle:a*i,radius:rad+rad_inc+random()})
+            let rad, i;
+            let oldring = Array.from(ring)
+            let len = oldring.length
+            ring=[]
+            for(i=0; i<len;i++){
+                rad=oldring[i].radius
+                ring.push({
+                    angle:a*i,
+                    radius:rad+rad_inc+random()
+                })
             }
-            let t = newring.length
-            console.log("newring length: "+t+" nb angles "+nb_angles+" ring length "+ring.length)
-            for(let j=nb_angles-t;j<nb_angles;j++){
-                newring.push({
-                    angle:a*j,
+            for(i=len;i<nb_angles;i++){
+                ring.push({
+                    angle:a*i,
                     radius:rad+random()*rad_inc
                 })
             }
-            ring=[]
             console.log("ring length "+ring.length)
-            ring=[...newring]
-            console.log("newring length: "+t+" nb angles "+nb_angles+" ring length "+ring.length)
-            console.log("NEWRING")
-            show(newring)
-            console.log("RING")
-            show(ring)
         }
 
 
