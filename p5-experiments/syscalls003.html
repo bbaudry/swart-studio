@@ -59,20 +59,6 @@
             }
         }
 
-        function fireworks(){
-            noFill();
-            stroke(0,0,100);
-            let a = 2*PI/nb_angles;
-            for(let i =0;i<nb_angles;i++){
-                let r = initial_radius+random()*(0.42*frameCount);
-                let cx=w/2+r*cos(i*a);
-                let cy=h/2+r*sin(i*a);
-                ellipse(cx,cy,5,5);
-            }
-            nb_angles+=42;
-            initial_radius+=5;
-        }
-
         function updateRing(nb_angles,rad_inc){
             let a = 2*PI/nb_angles;
             let rad, i;
@@ -91,14 +77,6 @@
                     angle:a*i,
                     radius:rad+random()*rad_inc
                 })
-            }
-            console.log("ring length "+ring.length)
-        }
-
-
-        function show(arr){
-            for (let ind=0;ind<arr.length;ind++){
-                console.log(arr[ind])
             }
         }
 
