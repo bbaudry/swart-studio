@@ -64,6 +64,7 @@
                     fill(0, 0, 100, random() * 250);
                     let newc = newCoordRotate(particles[i]);
                     ellipse(newc[0], newc[1], 5, 5)
+                    if(random()<0.1){newCoord(particles[i])}
                 }
             }
         }
