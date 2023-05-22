@@ -38,7 +38,7 @@
                     cx: w / 2,
                     cy: h / 2,
                     direction: random() * 2 * PI,
-                    dist: 0,
+                    radius: 0,
                     speed: random(),
                     rotate: random()*0.01
                 }
@@ -56,35 +56,35 @@
             if (frameCount < fireworksLength) {
                 for (let i = 0; i < particles.length; i++) {
                     fill(0, 0, 100, random() * maxAlpha);
-                    let newc = newCoord(particles[i]);
+                    let newc = updateDistance(particles[i]);
                     ellipse(newc[0], newc[1], 5, 5)
                 }
             }
             else {
                 for (let i = 0; i < particles.length; i++) {
                     fill(0, 0, 100, random() * maxAlpha);
-                    let newc = newCoordRotate(particles[i]);
+                    let newc = updateAngle(particles[i]);
                     ellipse(newc[0], newc[1], 5, 5)
-                    if(random()<0.1){newCoord(particles[i])}
+                    if(random()<0.1){updateDistance(particles[i])}
                 }
             }
         }
 
-        function newCoord(p) {
+        function updateDistance(p) {
             let res = [];
-            p.dist += p.speed;
-            let x = w / 2 + p.dist * cos(p.direction);
-            let y = h / 2 + p.dist * sin(p.direction);
+            p.radius += p.speed;
+            let x = w / 2 + p.radius * cos(p.direction);
+            let y = h / 2 + p.radius * sin(p.direction);
             res.push(x)
             res.push(y)
             return res
         }
 
-        function newCoordRotate(p) {
+        function updateAngle(p) {
             let res = [];
             p.direction += p.rotate;
-            let x = w / 2 + p.dist * cos(p.direction);
-            let y = h / 2 + p.dist * sin(p.direction);
+            let x = w / 2 + p.radius * cos(p.direction);
+            let y = h / 2 + p.radius * sin(p.direction);
             res.push(x)
             res.push(y)
             return res
