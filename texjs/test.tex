@@ -1,10 +1,15 @@
-\documentclass{article}
-\usepackage[pdftex]{insdljs}
- 
-\OpenAction{\JS{%
-app.alert("HALLO WELT");
-}}
- 
+\documentclass[tikz,border=7mm]{standalone}
+\pgfmathsetseed{\pdfuniformdeviate 10000000} % new seed at each compilation
+\usetikzlibrary{calc}
 \begin{document}
-THIS DOCUMENT IS A DOCUMENT
+	% create \n random points around the circle with radious 5
+	\def\n{50}
+	\xdef\pts{}
+	\foreach \i in {1,...,\n}{
+		\xdef\pts{\pts ({\i/\n*360}:{5+random})}
+	}
+	\begin{tikzpicture}
+		%draw random curve with some tension
+		\draw[red, thick, smooth, tension=10] plot coordinates {\pts}--cycle;
+	\end{tikzpicture}
 \end{document}
