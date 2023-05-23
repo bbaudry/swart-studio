@@ -1,5 +1,7 @@
 \documentclass[tikz,border=7mm]{standalone}
 \pgfmathsetseed{\pdfuniformdeviate 10000000} % new seed at each compilation
+ 	\pgfmathdeclarerandomlist{color}{{red}{blue}{green}{yellow}{white}}
+ 	\pgfmathrandomitem{\c}{color}
 \usetikzlibrary{calc}
 \begin{document}
 	% create \n random points around the circle with radious 5
@@ -8,8 +10,12 @@
 	\foreach \i in {1,...,\n}{
 		\xdef\pts{\pts ({\i/\n*360}:{5+random})}
 	}
+	\xdef\color{{red}{blue}{green}{yellow}{white}}
+	\pgfmathrandominteger{\i}{0}{4}
 	\begin{tikzpicture}
 		%draw random curve with some tension
-		\draw[red, thick, smooth, tension=10] plot coordinates {\pts}--cycle;
+		\draw[color[i], thick, smooth, tension=10] plot coordinates {\pts}--cycle;
 	\end{tikzpicture}
+
+
 \end{document}
