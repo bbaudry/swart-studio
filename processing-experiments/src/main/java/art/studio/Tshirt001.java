@@ -40,6 +40,7 @@ public class Tshirt001 extends PApplet {
             diameter+=0.001*w;
         }
         else{
+            save("tshirt001.png");
             noLoop();
         }
     }
