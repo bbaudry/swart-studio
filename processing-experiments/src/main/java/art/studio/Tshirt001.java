@@ -8,14 +8,6 @@ public class Tshirt001 extends PApplet {
     int w = 1000*ratio;
     int h = 1000*ratio;
     float diameter = (float)0.01 * w;
-    int st;
-    float cx;
-    float cy;
-    float rad;
-    float x1;
-    float x2;
-    float y1;
-    float y2;
 
     int hu;
     boolean grow;
@@ -36,8 +28,8 @@ public class Tshirt001 extends PApplet {
     @Override
     public void draw() {
         if (diameter<w){
-            ellipse(w/2,w/2,diameter+random(frameCount),diameter+random(frameCount));
-            diameter+=0.001*w;
+            ellipse(w/2,w/2,diameter,diameter+random(frameCount));
+            diameter+=0.001*w+random(1);
         }
         else{
             save("tshirt001.png");
