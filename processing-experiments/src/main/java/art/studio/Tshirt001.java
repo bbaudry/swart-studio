@@ -36,7 +36,7 @@ public class Tshirt001 extends PApplet {
     @Override
     public void draw() {
         if (diameter<w){
-            ellipse(w/2,w/2,diameter,diameter+random(frameCount));
+            ellipse(w/2,w/2,diameter+random(frameCount),diameter+random(frameCount));
             diameter+=0.001*w;
         }
         else{
