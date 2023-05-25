@@ -27,7 +27,7 @@ public class Tshirt002 extends PApplet {
     @Override
     public void draw() {
         if(frameCount == 3){
-            layer((float)0,(float)0,(float)w,(float)y,resolution);
+            layer((float)0,(float)0,(float)w,(float)y,4);
             resolution = resolution*resolution;
 
         }
@@ -41,11 +41,6 @@ public class Tshirt002 extends PApplet {
         if (resolution>random(1)*w){
             float newwid = (float)0.5*wid;
             float newhei = (float)0.5*hei;
-            for (int i=0; i<resolution;i++){
-                if (random(42)>21){
-
-                }
-            }
         }
     }
 
