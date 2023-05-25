@@ -18,7 +18,7 @@ public class Tshirt002 extends PApplet {
 
     @Override
     public void setup() {
-        colorMode(HSB,360,100,100);
+        colorMode(HSB,360,100,100,250);
         background(0,0,0);   
         noFill();
         stroke(0,0,100);
@@ -26,24 +26,53 @@ public class Tshirt002 extends PApplet {
 
     @Override
     public void draw() {
-        if(frameCount == 3){
-            layer((float)0,(float)0,(float)w,(float)y,4);
-            resolution = resolution*resolution;
-
+        if(frameCount < 10){
+            background(0,0,0);
+            layer((float)(w*0.5), w/2, h/2);
         }
         else{
             save("tshirt001.png");
             noLoop();
         }
+
     }
 
-    private void layer(float x, float y, float wid, float hei, int resolution){
-        if (resolution>random(1)*w){
-            float newwid = (float)0.5*wid;
-            float newhei = (float)0.5*hei;
+
+    private void layer(float wid, float cx, float cy){
+        noStroke();
+        if(random(42)>21){fill(0,100,100);}
+        else{fill(0,0,100);}
+        if (wid>33){
+            if (random(42)<21){
+                layer(wid/2, (float)(cx-wid*0.5), (float)(cy-wid*0.5));
+            }
+            else{
+                rect(cx-wid,cy-wid,wid,wid);
+            }
+
+            if (random(42)<21){
+                layer(wid/2, (float)(cx+wid*0.5), (float)(cy-wid*0.5));
+            }
+            else{
+                rect(cx,cy-wid,wid,wid);
+            }
+            
+            if (random(42)<21){
+                layer(wid/2, (float)(cx+wid*0.5), (float)(cy-wid*0.5));
+            }
+            else{
+                rect(cx-wid,cy,wid,wid);
+            }
+
+            if (random(42)<21){
+                layer(wid/2, (float)(cx+wid*0.5), (float)(cy+wid*0.5));
+            }
+            else{
+                rect(cx,cy,wid,wid);
+            }
         }
     }
-
+    
     public static void main(String[] args) {
         String[] processingArgs = { "Tshirt002 " };
         Tshirt002 mySketch = new Tshirt002();
