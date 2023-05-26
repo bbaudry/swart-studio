@@ -27,7 +27,7 @@ public class Tshirt002 extends PApplet {
     @Override
     public void draw() {
         if(frameCount < 10){
-            background(0,0,0);
+            background(0,0,100);
             layer((float)(w*0.5), w/2, h/2);
         }
         else{
@@ -40,17 +40,17 @@ public class Tshirt002 extends PApplet {
 
     private void layer(float wid, float cx, float cy){
         noStroke();
-        if(random(42)>21){fill(0,100,100);}
-        else{fill(0,0,100);}
+        if(random(42)>31){fill(320,100,100);}
+        else{fill(180,100,100);}
         if (wid>33){
-            if (random(42)<21){
+            if (random(42)<31){
                 layer(wid/2, (float)(cx-wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
             }
             else{
                 rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
 
-            if (random(42)<21){
+            if (random(42)<31){
                 layer(wid/2, (float)(cx+wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
             }
             else{
@@ -70,6 +70,12 @@ public class Tshirt002 extends PApplet {
             else{
                 rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
+        }
+        else{
+                rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
+                rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
+                rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
+            rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
         }
     }
     
