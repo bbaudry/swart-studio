@@ -44,31 +44,31 @@ public class Tshirt002 extends PApplet {
         else{fill(0,0,100);}
         if (wid>33){
             if (random(42)<21){
-                layer(wid/2, (float)(cx-wid*0.5), (float)(cy-wid*0.5));
+                layer(wid/2, (float)(cx-wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
             }
             else{
-                rect(cx-wid,cy-wid,wid,wid);
+                rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
 
             if (random(42)<21){
-                layer(wid/2, (float)(cx+wid*0.5), (float)(cy-wid*0.5));
+                layer(wid/2, (float)(cx+wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
             }
             else{
-                rect(cx,cy-wid,wid,wid);
+                rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
             
             if (random(42)<21){
-                layer(wid/2, (float)(cx+wid*0.5), (float)(cy-wid*0.5));
+                layer(wid/2, (float)(cx+wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
             }
             else{
-                rect(cx-wid,cy,wid,wid);
+                rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
 
             if (random(42)<21){
-                layer(wid/2, (float)(cx+wid*0.5), (float)(cy+wid*0.5));
+                layer(wid/2, (float)(cx+wid*0.5)+random(-7,7), (float)(cy+wid*0.5)+random(-7,7));
             }
             else{
-                rect(cx,cy,wid,wid);
+                rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
         }
     }
