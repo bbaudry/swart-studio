@@ -40,8 +40,8 @@ public class Tshirt002 extends PApplet {
 
     private void layer(float wid, float cx, float cy){
         noStroke();
-        if(random(42)>31){fill(320,100,100);}
-        else{fill(180,100,100);}
+        if(random(42)>31){fill(320,100,100,42);}
+        else{fill(180,100,100,42);}
         if (wid>33){
             if (random(42)<31){
                 layer(wid/2, (float)(cx-wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
