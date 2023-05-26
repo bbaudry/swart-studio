@@ -1,7 +1,6 @@
 /* Metadata {"endless":false, "BW": false, "knobs": "false", "data": false, "interaction": false}*/
 package art.studio;
 
-import java.nio.ReadOnlyBufferException;
 
 import processing.core.PApplet;
 
@@ -58,7 +57,7 @@ public class Tshirt002 extends PApplet {
             }
             
             if (random(42)<31){
-                layer(wid/2, (float)(cx+wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
+                layer(wid/2, (float)(cx-wid*0.5)+random(-7,7), (float)(cy+wid*0.5)+random(-7,7));
             }
             else{
                 rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
