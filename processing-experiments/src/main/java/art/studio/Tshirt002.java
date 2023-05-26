@@ -19,7 +19,7 @@ public class Tshirt002 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB,360,100,100,250);
-        background(0,0,0);   
+        background(0,0,100);   
         noFill();
         stroke(0,0,100);
     }
@@ -27,7 +27,7 @@ public class Tshirt002 extends PApplet {
     @Override
     public void draw() {
         if(frameCount < 10){
-            background(0,0,100);
+            //background(0,0,100);
             layer((float)(w*0.5), w/2, h/2);
         }
         else{
@@ -57,14 +57,14 @@ public class Tshirt002 extends PApplet {
                 rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
             
-            if (random(42)<21){
+            if (random(42)<31){
                 layer(wid/2, (float)(cx+wid*0.5)+random(-7,7), (float)(cy-wid*0.5)+random(-7,7));
             }
             else{
                 rect(cx-wid,cy-wid,wid+random(-7,7),wid+random(-7,7));
             }
 
-            if (random(42)<21){
+            if (random(42)<31){
                 layer(wid/2, (float)(cx+wid*0.5)+random(-7,7), (float)(cy+wid*0.5)+random(-7,7));
             }
             else{
