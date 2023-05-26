@@ -31,7 +31,7 @@ public class Tshirt002 extends PApplet {
             layer((float)(w*0.5), w/2, h/2);
         }
         else{
-            save("tshirt001.png");
+            save("tshirt002.png");
             noLoop();
         }
 
