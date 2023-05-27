@@ -119,7 +119,7 @@
                   kickDrum.triggerAttackRelease('C1', '8n', time);
                 }
                 beatcount=(beatcount+1)%8
-            }, drumspeed).start();
+            }, drumspeed);
 
             wave2 = new Tone.Waveform()
             kickDrum.connect(wave2)
@@ -152,6 +152,7 @@
             }
             else {
                 displayWavesCircle()
+                if (frameCount>220){loop.start()}
             }
         }
 
