@@ -83,42 +83,37 @@ function setTypo(){
 
 
 var pulse
-
+var madonna=4
 function draw(){
-	background(0,0,0,1)
+	background(0,0,0,3)
 	//g()
-//	if(frameCount%1==0){d();madonna++}
+	d();madonna+=0.3
 	r(pickpoint())
 }
 
 
 function g(){
-	fill(0,0,100)
-	if(frameCount%84==0){
-	rect(0,h/2-42,w,84)
-}
+	if(frameCount%82==0){
+rect(w/2-424,h/2-42,848,84)
+	}		
 	
 }
-//w/2-42
-var madonna=2
 function d(){
-	let step=42+random()*42
-	for(i=0;i<h;i+=step){
-		rect(w/2-madonna/2,i,madonna,random()*42)
-		step=42+random()*42
+	if(frameCount%21==0){
+	for(i=0;i<h;i+=42+random()*42){
+		rect(w/2-madonna/2,i,madonna, random()*63)
 	}
+}
 	
 }
 
 
 function r(p){
-            let pix_diam = random()*15+1;
-            noStroke();
-            fill(0, 0, 100); 
-            //ellipse(p.x, p.y, pix_diam, pix_diam);
+            let diam = random()*15+1;
             let rad = Math.exp(random()*4)
             let angle = radians(p.alpha + 90-(random()*180))
             let x1=p.x+rad*cos(angle)
             let y1=p.y+rad*sin(angle)
-            ellipse(x1, y1, pix_diam, pix_diam);
-        }
+            ellipse(x1, y1, diam, diam);
+
+}
