@@ -74,11 +74,8 @@ function setTypo(){
 
 
         function pickpoint(){
-            let j = Math.floor(random()*letters.length);
-            let pts=letters[j]
-            let i = Math.floor(random()*pts.length);
-            let p = pts[i];
-            return p
+            let pts=letters[floor(random()*3)]
+            return pts[floor(random()*pts.length)];
         }
 
 
@@ -88,7 +85,7 @@ function draw(){
 	background(0,0,0,3)
 	//g()
 	d();madonna+=0.3
-	r(pickpoint())
+	r()
 }
 
 
@@ -108,7 +105,9 @@ function d(){
 }
 
 
-function r(p){
+function r(){
+            let pts=letters[floor(random()*3)]
+            let p= pts[floor(random()*pts.length)];
             let diam = random()*15+1;
             let rad = Math.exp(random()*4)
             let angle = radians(p.alpha + 90-(random()*180))
