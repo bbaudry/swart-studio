@@ -6,8 +6,8 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Tshirt003 extends PApplet {
-    int ratio = 1;
+public class Tshirt004 extends PApplet {
+    int ratio = 3;
     int w = 1000*ratio;
     int h = 1000*ratio;
     int resolution = 4;
@@ -33,11 +33,11 @@ public class Tshirt003 extends PApplet {
 
     @Override
     public void draw() {
-        if(frameCount<5){
+        if(frameCount<2){
             test_matrix();
         }
         else{
-            save("tshirt003.png");
+            save("tshirt004.png");
         }
     }
 
@@ -52,23 +52,37 @@ public class Tshirt003 extends PApplet {
             for (double j=init;j<target;j+=inc){
                 noStroke();
                 x=(float)i*w;
-                y=(float)j*h;       
+                y=(float)j*h;  
+                fill(hues.get(alea.nextInt(hues.size())),100,100);
+                ellipse(x,y,diam,diam);
+                     
 
                 fill(hues.get(alea.nextInt(hues.size())),100,100,100);
-                vera = vera + random(-21, 21);
                 if(alea.nextBoolean()){
-                    //quad(x-vera, y-vera, x, y-vera, x+vera, y+vera, x, y+vera);
+                    quad(x-vera, y-vera, x, y-vera, x+vera, y+vera, x, y+vera);
                 }
                 else{
-                    //quad(x, y-vera, x+vera, y-vera, x, y+vera, x-vera, y+vera);
+                    quad(x, y-vera, x+vera, y-vera, x, y+vera, x-vera, y+vera);
                 }
                 
                 noFill();
                 strokeWeight(alea.nextFloat()*84); alea.nextFloat();
                 strokeCap(SQUARE);
                 stroke(hues.get(alea.nextInt(hues.size())),100,100,100);
-                arc(x-vera, y-vera, diam*2, diam*2, radians(random(-21, 21)), radians(random(80, 100)));
-                
+                int jarrett = alea.nextInt(4);
+                switch (jarrett){
+                case 0:arc(x-vera, y-vera, diam*2, diam*2, radians(random(-21, 21)), radians(random(80, 100)));
+                break;
+                case 1:arc(x+vera, y-vera, diam*2, diam*2, PI/2,PI);
+                break;
+                case 2: stroke(hues.get(alea.nextInt(hues.size())),100,100,100);
+                arc(x+vera, y+vera, diam*2, diam*2, PI, PI+PI/2);
+                break;
+                case 3: stroke(hues.get(alea.nextInt(hues.size())),100,100,100);
+                arc(x-vera, y+vera, diam*2, diam*2, PI+PI/2,2*PI);
+                break;
+                }
+                /*
                 stroke(hues.get(alea.nextInt(hues.size())),100,100,100);
                 arc(x+vera, y-vera, diam*2, diam*2, PI/2,PI);
                 
@@ -76,15 +90,15 @@ public class Tshirt003 extends PApplet {
                 arc(x+vera, y+vera, diam*2, diam*2, PI, PI+PI/2);
 
                 stroke(hues.get(alea.nextInt(hues.size())),100,100,100);
-                arc(x-vera, y+vera, diam*2, diam*2, PI+PI/2,2*PI);
+                arc(x-vera, y+vera, diam*2, diam*2, PI+PI/2,2*PI);*/
             }
         }
     }
 
     
     public static void main(String[] args) {
-        String[] processingArgs = { "Tshirt003" };
-        Tshirt003 mySketch = new Tshirt003();
+        String[] processingArgs = { "Tshirt004" };
+        Tshirt004 mySketch = new Tshirt004();
         PApplet.runSketch(processingArgs, mySketch);
     }
 }
