@@ -1,44 +1,26 @@
 // no p5sound
 let libs = ["https://unpkg.com/tone", "includes/libs/Tone.js"]
-let drone,radar
+let drone
 let bowie
 let w,h
-        var fSize;
-        var hu1, hu2, hu3, hu4;
-        var ptsg, ptsp, ptsl;
-        var initialPixelDensity;
-        var letters=[]
-        var beatcount=0
-        var kickDrum
+var radar, radarLoop
+var fSize;
+var ptsg, ptsp, ptsl;
+var initialPixelDensity;
+var letters=[]
+var beatcount=0
+var kickDrum, kickLoop
+var madonna=4
 
 
 ///sounds/deepsea.wav
 function preload() {
   	drone=new Tone.Player("/sounds/drone.wav").toDestination();
-	radar=new Tone.Player("/sounds/radar2.mp3").toDestination();
 	drone.volume.value=-20
-	radar.volume.value=-15
 	bowie=loadFont("./fonts/ChunkFive-Regular.otf");
-	Tone.Master.volume.value = -1;
-	Tone.Transport.start()
-
-    osc1 = new Tone.Oscillator();
-    osc1.toDestination();
-    osc1.frequency.value= 60
-    //osc1.start()
-    osc1.volume.value = -1;
-                kickDrum = new Tone.MembraneSynth({
-                volume: 6
-            }).toDestination();
-            drumspeed="16n"
-            loop = new Tone.Loop(time => {
-                if (beatcount<3){
-                  kickDrum.triggerAttackRelease('C1', '4n', time);
-                }
-                beatcount=(beatcount+1)%8
-            }, drumspeed)//.start();
-
+	sound()
 }
+
 
 function setup() {
 	colorMode(HSB,360,100,100,250)
@@ -51,67 +33,119 @@ function setup() {
 }
 
 function setTypo(){
-	            alpha=10
-            fSize = 0.45*w
-            initialPixelDensity = 0.42
-            ptsg = bowie.textToPoints('G', 0.05*w, 0.85 * h, fSize, {
-                sampleFactor: initialPixelDensity,
-                simplifyThreshold: 0
-            })
-            letters.push(ptsg)
-            ptsp = bowie.textToPoints('P',0.4*w, 0.85 * h,fSize, {
-                sampleFactor: initialPixelDensity,
-                simplifyThreshold: 0
-            })
-            letters.push(ptsp)
-            ptsl = bowie.textToPoints('L',0.69*w, 0.85 * h, fSize, {
-                sampleFactor: initialPixelDensity,
-                simplifyThreshold: 0
-            })
-            letters.push(ptsl)
+	alpha=10
+    fSize = 0.45*w
+    initialPixelDensity = 0.42
+    ptsg = bowie.textToPoints('G', 0.05*w, 0.85 * h, fSize, {
+    	sampleFactor: initialPixelDensity,
+        simplifyThreshold: 0
+    })
+    letters.push(ptsg)
+    ptsp = bowie.textToPoints('P',0.4*w, 0.85 * h,fSize, {
+    	sampleFactor: initialPixelDensity,
+        simplifyThreshold: 0
+    })
+    letters.push(ptsp)
+    ptsl = bowie.textToPoints('L',0.69*w, 0.85 * h, fSize, {
+    	sampleFactor: initialPixelDensity,
+        simplifyThreshold: 0
+    })
+    letters.push(ptsl)
 }
 
+function sound(){
+	Tone.Master.volume.value = -1;
+	Tone.Transport.start()
 
+    osc1 = new Tone.Oscillator();
+    osc1.toDestination();
+    osc1.frequency.value= 60
+    osc1.volume.value = -2;
+    
+    kickDrum = new Tone.MembraneSynth({
+                volume: 5
+    }).toDestination();
+    drumspeed="16n"
+    kickLoop = new Tone.Loop(time => {
+    if (beatcount<3){
+       kickDrum.triggerAttackRelease(20, '4n', time);
+    }
+       beatcount=(beatcount+1)%8
+    }, drumspeed)
+            
+    var dist = new Tone.Distortion(0.21).toDestination();
+    var ampEnvstart = new Tone.AmplitudeEnvelope({
+        "attack": 0.03,
+        "decay": 0.2,
+        "sustain": 0,
+        "release": 0
+    }).toDestination();
+    var ampEnvend = new Tone.AmplitudeEnvelope({
+       "attack": 0.2,
+       "decay": 5,
+       "sustain": 1.0,
+       "release": 0.8
+    }).toDestination();
+    radar = new Tone.Synth({
+    	oscillator:
+        { 
+            type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
+        },
+        envelope: { //sets the various sound properties for the synth
+        	attack: 0.03,
+            decay: 0.5,
+            sustain: 0.1,
+        	release: 3
+    	}
+    });
+	radar.volume=-1
+    var rev = new Tone.Reverb({decay:15,wet:0.99})
+    rev.toDestination()
+    //radar.connect(ampEnvstart)
+    //radar.connect(ampEnvend)
+    //ampEnvstart.connect(dist)
+    radar.connect(rev)
+//    dist.connect(rev)
+    ampEnvend.connect(rev)
+    radar.toDestination()
+    freq =1080//map(mouseX, 0, w, 110, 880)
+    radarLoop = new Tone.Loop(time => {
+    	ampEnvstart.triggerAttackRelease(1)
+        ampEnvend.triggerAttackRelease(3)
+        radar.triggerAttackRelease(freq, "1", time);
+    }, "4")
 
-        function pickpoint(){
-            let pts=letters[floor(random()*3)]
-            return pts[floor(random()*pts.length)];
-        }
+    //osc1.start();
+    //kickLoop.start();
+	radarLoop.start();
+}
 
-
-var pulse
-var madonna=4
 function draw(){
-//	background(0,0,0,1)
-	//g()
-//	d();madonna+=0.3
+	background(0,0,0,10)
+	g()
+	d();
 	r()
 }
 
-
 function g(){
-	if(frameCount%82==0){
-rect(w/2-424,h/2-42,848,84)
-	}		
-	
-}
-function d(){
-	if(frameCount%21==0){
-	for(i=0;i<h;i+=42+random()*42){
-		rect(w/2-madonna/2,i,madonna, random()*63)
+	if(frameCount%84==0){
+//	rect(w/2-424,h/2-84,848,168)
 	}
 }
-	
+
+function d(){
+	madonna+=0.9
+	for (i=0;i<h;i+=42){
+//		rect(w/2-madonna/2,i,madonna,random()*34)
+	}
 }
 
-
 function r(){
-let ikeda = letters[floor(random()*3)]
-let ryoji = ikeda[floor(random()*ikeda.length)]
-let vera = random()*15
-let molnar = exp(random()*5)
-let x1=ryoji.x+molnar*cos(ryoji.alpha)
-
-let y1=ryoji.y+molnar*sin(ryoji.alpha)
-ellipse(x1,y1,vera,vera)
+	let ikeda = letters[floor(random()*3)]
+	let ryoji = ikeda[floor(random()*ikeda.length)]
+	let vera = random()*15
+	let molnar = exp(random()*5)
+	let x1 = ryoji.x+molnar*cos(ryoji.alpha)
+	let y1 = ryoji.y+molnar*sin(ryoji.alpha)
+	ellipse(x1,y1,vera,vera)
 }
