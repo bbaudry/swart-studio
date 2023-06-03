@@ -32,26 +32,32 @@ public class Tshirt003 extends PApplet {
 
     @Override
     public void draw() {
-        noStroke();
-        float diam = (float)0.5*w;
-        float x,y;
-        fill(hues.get(alea.nextInt(hues.size())),100,100);
-        x=(float)0.25*w;
-        y=(float)0.25*h;
-        ellipse(x,y,diam,diam);
-        fill(hues.get(alea.nextInt(hues.size())),100,100);
-        x=(float)0.75*w;
-        y=(float)0.25*h;
-        ellipse(x,y,diam,diam);
-        fill(hues.get(alea.nextInt(hues.size())),100,100);
-        x=(float)0.25*w;
-        y=(float)0.75*h;
-        ellipse(x,y,diam,diam);
-        fill(hues.get(alea.nextInt(hues.size())),100,100);
-        x=(float)0.75*w;
-        y=(float)0.75*h;
-        ellipse(x,y,diam,diam);
+        test_matrix();
+        noLoop();
+    }
 
+    private void test_matrix(){
+        
+        float x,y;
+        double init = 0.1;
+        double inc = 0.2;
+        float diam = (float)0.2*w;
+        for (double i=init;i<1;i+=inc){
+            for (double j=init;j<1;j+=inc){
+                noStroke();
+                fill(hues.get(alea.nextInt(hues.size())),100,100);
+                x=(float)i*w;
+                y=(float)j*h;        
+                ellipse(x,y,diam,diam);
+                stroke(0,0,100);
+                float vera = (float)0.5*diam;
+                fill(hues.get(alea.nextInt(hues.size())),100,100);
+                quad(x-vera, y-vera, x, y-vera, x+vera, y+vera, x, y+vera);
+                fill(hues.get(alea.nextInt(hues.size())),100,100,100);
+                quad(x, y-vera, x+vera, y-vera, x, y+vera, x-vera, y+vera);
+                arc(vera, x, y, diam, diam, vera, MODEL);
+            }
+        }
     }
 
     
