@@ -28,34 +28,39 @@ public class Tshirt003 extends PApplet {
         hues = new ArrayList<>();
         hues.add(50); hues.add(330);hues.add(140);hues.add(230);
         alea = new Random();
+        frameRate(1);
     }
 
     @Override
     public void draw() {
         test_matrix();
-        noLoop();
     }
 
     private void test_matrix(){
-        
+        noStroke();
         float x,y;
-        double init = 0.1;
-        double inc = 0.2;
-        float diam = (float)0.2*w;
+        double init = 0.05;
+        double inc = 0.1;
+        float diam = (float)0.1*w;
         for (double i=init;i<1;i+=inc){
             for (double j=init;j<1;j+=inc){
-                noStroke();
-                fill(hues.get(alea.nextInt(hues.size())),100,100);
+                fill(hues.get(alea.nextInt(hues.size())),100,100,100);
                 x=(float)i*w;
                 y=(float)j*h;        
                 ellipse(x,y,diam,diam);
-                stroke(0,0,100);
                 float vera = (float)0.5*diam;
-                fill(hues.get(alea.nextInt(hues.size())),100,100);
+                fill(hues.get(alea.nextInt(hues.size())),100,100,100);
                 quad(x-vera, y-vera, x, y-vera, x+vera, y+vera, x, y+vera);
                 fill(hues.get(alea.nextInt(hues.size())),100,100,100);
                 quad(x, y-vera, x+vera, y-vera, x, y+vera, x-vera, y+vera);
-                arc(vera, x, y, diam, diam, vera, MODEL);
+                fill(hues.get(alea.nextInt(hues.size())),100,100,100);
+                arc(x-vera, y-vera, diam*2, diam*2, 0, PI/2);
+                fill(hues.get(alea.nextInt(hues.size())),100,100,100);
+                arc(x+vera, y-vera, diam*2, diam*2, PI/2,PI);
+                fill(hues.get(alea.nextInt(hues.size())),100,100,100);
+                arc(x+vera, y+vera, diam*2, diam*2, PI, PI+PI/2);
+                fill(hues.get(alea.nextInt(hues.size())),100,100,100);
+                arc(x+vera, y-vera, diam*2, diam*2, PI+PI/2,2*PI);
             }
         }
     }
