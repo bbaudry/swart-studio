@@ -10,7 +10,10 @@ var initialPixelDensity;
 var letters=[]
 var beatcount=0
 var kickDrum, kickLoop
-var madonna=4
+var madonna=84
+var cx,cy
+var vera, molnar, ryoji, ikeda, gen,art
+
 
 
 ///sounds/deepsea.wav
@@ -27,6 +30,8 @@ function setup() {
 	w=windowWidth
 	h=windowHeight
 	createCanvas(w, h)
+	cx=w/2
+	cy=h/2
 	setTypo()
 	fill(0,0,100)
 	noStroke()
@@ -117,35 +122,30 @@ function sound(){
 
     //osc1.start();
     //kickLoop.start();
-	radarLoop.start();
+//	radarLoop.start();
 }
 
 function draw(){
-	background(0,0,0,10)
-	g()
-	d();
-	r()
-}
-
-function g(){
+	background(0,0,0,42)
 	if(frameCount%84==0){
-//	rect(w/2-424,h/2-84,848,168)
+	//rect(cx-484,cy-42,848,84)
+		
 	}
+	for(i=0;i<h;i+=random(84)){
+	//	rect(cx-madonna/2,i,madonna,random(4))
+	}
+	madonna++
+	r()
+	vera=random(9)
+	molnar=exp(random(5))
+	gen=ryoji.x+vera*cos(ryoji.alpha)
+	art=ryoji.y+vera*sin(ryoji.alpha)
+	ellipse(gen,art,vera,vera)
+	
 }
 
-function d(){
-	madonna+=0.9
-	for (i=0;i<h;i+=42){
-//		rect(w/2-madonna/2,i,madonna,random()*34)
-	}
-}
 
 function r(){
-	let ikeda = letters[floor(random()*3)]
-	let ryoji = ikeda[floor(random()*ikeda.length)]
-	let vera = random()*15
-	let molnar = exp(random()*5)
-	let x1 = ryoji.x+molnar*cos(ryoji.alpha)
-	let y1 = ryoji.y+molnar*sin(ryoji.alpha)
-	ellipse(x1,y1,vera,vera)
+	ikeda = letters[floor(random()*3)]
+	ryoji = ikeda[floor(random()*ikeda.length)]
 }
