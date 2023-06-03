@@ -3,14 +3,15 @@ let libs = ["https://unpkg.com/tone", "includes/libs/Tone.js"]
 let drone
 let bowie
 let w,h
-var radar, radarLoop
+var radar1, radar2, radarLoop1, radarLoop2
 var fSize;
 var ptsg, ptsp, ptsl;
 var initialPixelDensity;
 var letters=[]
 var beatcount=0
+var radarcount=0
 var kickDrum, kickLoop
-var madonna=84
+var rick=84
 var cx,cy
 var vera, molnar, ryoji, ikeda, gen,art
 
@@ -59,7 +60,7 @@ function setTypo(){
 }
 
 function sound(){
-	Tone.Master.volume.value = -1;
+	Tone.Master.volume.value = -3;
 	Tone.Transport.start()
 
     osc1 = new Tone.Oscillator();
@@ -91,7 +92,7 @@ function sound(){
        "sustain": 1.0,
        "release": 0.8
     }).toDestination();
-    radar = new Tone.Synth({
+    radar1 = new Tone.Synth({
     	oscillator:
         { 
             type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
@@ -103,49 +104,70 @@ function sound(){
         	release: 3
     	}
     });
-	radar.volume=-1
+    radar2 = new Tone.Synth({
+    	oscillator:
+        { 
+            type: "sine" //the type of waveform the synthesizer produces. Can be square, since, triangle, or sawtooth
+        },
+        envelope: { //sets the various sound properties for the synth
+        	attack: 0.03,
+            decay: 0.5,
+            sustain: 0.1,
+        	release: 3
+    	}
+    });
+	radar1.volume=-5
+	radar2.volume=-5
     var rev = new Tone.Reverb({decay:15,wet:0.99})
     rev.toDestination()
-    //radar.connect(ampEnvstart)
-    //radar.connect(ampEnvend)
-    //ampEnvstart.connect(dist)
-    radar.connect(rev)
-//    dist.connect(rev)
+    radar1.connect(rev)
+    radar2.connect(rev)
     ampEnvend.connect(rev)
-    radar.toDestination()
-    freq =1080//map(mouseX, 0, w, 110, 880)
-    radarLoop = new Tone.Loop(time => {
+    radar1.toDestination()
+    freq1 =980//map(mouseX, 0, w, 110, 880)
+    freq2 =1480//map(mouseX, 0, w, 110, 880)
+    radarLoop1 = new Tone.Loop(time => {
     	ampEnvstart.triggerAttackRelease(1)
         ampEnvend.triggerAttackRelease(3)
-        radar.triggerAttackRelease(freq, "1", time);
+        radar1.triggerAttackRelease(freq1, "1", time);
     }, "4")
+    radarLoop2 = new Tone.Loop(time => {
+	    if (radarcount==3){
+    	   kickDrum.triggerAttackRelease(10, '1', time);
+    	ampEnvstart.triggerAttackRelease(1)
+        ampEnvend.triggerAttackRelease(3)
+        radar2.triggerAttackRelease(freq2, "1", time);
+	    }
+	    radarcount=(radarcount+1)%8
+    }, "4n")
 
-    //osc1.start();
+    osc1.start();
     //kickLoop.start();
-//	radarLoop.start();
+	radarLoop1.start();
+	radarLoop2.start();
 }
 
 function draw(){
-	background(0,0,0,42)
+//	background(0,0,0,2)
 	if(frameCount%84==0){
-	//rect(cx-484,cy-42,848,84)
+//	rect(cx-424,cy-42,848,84)
 		
 	}
 	for(i=0;i<h;i+=random(84)){
-	//	rect(cx-madonna/2,i,madonna,random(4))
+//		rect(cx-rick/2,i,rick,random(4))
 	}
-	madonna++
-	r()
-	vera=random(9)
+//	rick++
+	pick()
+	vera=3+random(9)
 	molnar=exp(random(5))
-	gen=ryoji.x+vera*cos(ryoji.alpha)
-	art=ryoji.y+vera*sin(ryoji.alpha)
+	gen=ryoji.x+molnar*cos(ryoji.alpha)
+	art=ryoji.y+molnar*sin(ryoji.alpha)
 	ellipse(gen,art,vera,vera)
 	
 }
 
 
-function r(){
+function pick(){
 	ikeda = letters[floor(random()*3)]
 	ryoji = ikeda[floor(random()*ikeda.length)]
 }

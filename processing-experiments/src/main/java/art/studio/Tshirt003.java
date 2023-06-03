@@ -33,12 +33,17 @@ public class Tshirt003 extends PApplet {
 
     @Override
     public void draw() {
-        test_matrix();
+        if(frameCount<7){
+            test_matrix();
+        }
+        else{
+            save("Tshirt003.png");
+        }
     }
 
     private void test_matrix(){
         float x,y;
-        double init = 0.2;
+        double init = 0.19;
         double target = 0.81;
         double inc = 0.2;
         float diam = (float)inc*w;
@@ -48,12 +53,9 @@ public class Tshirt003 extends PApplet {
                 noStroke();
                 x=(float)i*w;
                 y=(float)j*h;       
-                //fill(hues.get(alea.nextInt(hues.size())),100,100,100);
-                //ellipse(x,y,diam,diam);
 
                 fill(hues.get(alea.nextInt(hues.size())),100,100,100);
-                //stroke(0,0,100);strokeWeight(2);
-                vera = vera + alea.nextFloat()*4;
+                vera = vera + random(-42, 42);
                 if(alea.nextBoolean()){
                     quad(x-vera, y-vera, x, y-vera, x+vera, y+vera, x, y+vera);
                 }
@@ -62,7 +64,7 @@ public class Tshirt003 extends PApplet {
                 }
                 
                 noFill();
-                strokeWeight(alea.nextFloat()*84);
+                strokeWeight(alea.nextFloat()*84); alea.nextFloat();
                 stroke(hues.get(alea.nextInt(hues.size())),100,100,100);
                 arc(x-vera, y-vera, diam*2, diam*2, 0, PI/2);
                 
