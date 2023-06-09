@@ -31,8 +31,9 @@ public class Tshirt008 extends PApplet {
 
     @Override
     public void draw() {
+        background(0,0,0);
         row(h/2,7+alea.nextInt(7));
-        noLoop();
+        //noLoop();
     }
 
     private void row(float y, float grain){
