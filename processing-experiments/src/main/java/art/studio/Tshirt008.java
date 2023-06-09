@@ -23,18 +23,17 @@ public class Tshirt008 extends PApplet {
         colorMode(HSB,360,100,100,250);
         background(0,0,0); 
         alea=new Random();
-        fill(0,0,100);noStroke();// stroke(0,0,0);
+        fill(0,0,100);noStroke();
         wid = new ArrayList<>();
         cx=w/2;cy=0;
-        frameRate(1);
     }
 
     @Override
     public void draw() {
         if(cy<=h){
-            float t = 20+alea.nextInt(20);
+            float t = 7+alea.nextInt(7);
         row(cy,t);
-        cy+=t;
+        cy+=t+1;
     }
         //noLoop();
     }
@@ -44,12 +43,12 @@ public class Tshirt008 extends PApplet {
         x1=0;x2=1;
         while(cx+x2<w){
             int t = alea.nextInt(42);
-            if (t<1){stroke(0,0,0);fill(330,100,100);}
+            if (t<1){fill(330,100,100);}
             else{
-                if (t<2){stroke(0,0,0);fill(180,100,100);}
-                else{stroke(0,0,0);fill(330,0,100);}
+                if (t<2){fill(180,100,100);}
+                else{fill(330,0,100,42+alea.nextInt(100));}
             }
-            rect(cx+x1,y-grain/2,x2-x1,grain);
+            rect(cx+x1,y,x2-x1,grain);
             x1=x2;
             x2+=(0.2+alea.nextFloat())*x2;//+random(-x2,x2);
         }
@@ -57,12 +56,12 @@ public class Tshirt008 extends PApplet {
         while(cx+x2>0){
 
             int t = alea.nextInt(42);
-            if (t<1){stroke(0,0,0);fill(330,100,100);}
+            if (t<1){fill(330,100,100);}
             else{
-                if (t<2){stroke(0,0,0);fill(180,100,100);}
-                else{stroke(0,0,0);fill(330,0,100);}
+                if (t<2){fill(180,100,100);}
+                else{fill(330,0,100,42+alea.nextInt(100));}
             }
-            rect(cx+x1,y-grain/2,x2-x1,grain);
+            rect(cx+x1,y,x2-x1,grain);
             x1=x2;
             x2+=(0.2+alea.nextFloat())*x2;//-random(x2,-x2);
         }
