@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Tshirt008 extends PApplet {
     int ratio = 1;
-    int w = 1000*ratio;
+    int w = 2000*ratio;
     int h = 1000*ratio;
     Random alea;
     ArrayList<Float> wid;
@@ -43,9 +43,9 @@ public class Tshirt008 extends PApplet {
         x1=0;x2=1;
         while(cx+x2<w){
             int t = alea.nextInt(42);
-            if (t<1){fill(330,100,100);}
+            if (t<2){fill(330,100,100);}
             else{
-                if (t<2){fill(180,100,100);}
+                if (t<4){fill(180,100,100);}
                 else{fill(330,0,100,42+alea.nextInt(100));}
             }
             rect(cx+x1,y,x2-x1,grain);
@@ -59,7 +59,7 @@ public class Tshirt008 extends PApplet {
             if (t<1){fill(330,100,100);}
             else{
                 if (t<2){fill(180,100,100);}
-                else{fill(330,0,100,42+alea.nextInt(100));}
+                else{fill(330,0,100,84+alea.nextInt(100));}
             }
             rect(cx+x1,y,x2-x1,grain);
             x1=x2;
