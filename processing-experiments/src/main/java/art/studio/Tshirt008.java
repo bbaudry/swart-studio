@@ -48,7 +48,7 @@ public class Tshirt008 extends PApplet {
             }
             rect(cx+x1,y-grain/2,x2-x1,grain);
             x1=x2;
-            x2+=0.2*x2;//+random(-x2,x2);
+            x2+=(0.2+alea.nextFloat())*x2;//+random(-x2,x2);
         }
         x1=0;x2=-1;
         while(cx+x2>0){
@@ -61,7 +61,7 @@ public class Tshirt008 extends PApplet {
             }
             rect(cx+x1,y-grain/2,x2-x1,grain);
             x1=x2;
-            x2+=0.2*x2;//-random(x2,-x2);
+            x2+=(0.2+alea.nextFloat())*x2;//-random(x2,-x2);
         }
     }
 
