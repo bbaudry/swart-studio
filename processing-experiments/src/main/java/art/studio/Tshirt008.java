@@ -31,8 +31,11 @@ public class Tshirt008 extends PApplet {
 
     @Override
     public void draw() {
-        background(0,0,0);
-        row(h/2,20+alea.nextInt(20));
+        if(cy<=h){
+            float t = 20+alea.nextInt(20);
+        row(cy,t);
+        cy+=t;
+    }
         //noLoop();
     }
 
