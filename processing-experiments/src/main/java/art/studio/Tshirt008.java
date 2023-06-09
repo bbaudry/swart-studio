@@ -32,7 +32,7 @@ public class Tshirt008 extends PApplet {
     @Override
     public void draw() {
         background(0,0,0);
-        row(h/2,7+alea.nextInt(7));
+        row(h/2,20+alea.nextInt(20));
         //noLoop();
     }
 
@@ -41,27 +41,27 @@ public class Tshirt008 extends PApplet {
         x1=0;x2=1;
         while(cx+x2<w){
             int t = alea.nextInt(42);
-            if (t<1){stroke(0,0,100);fill(330,100,100);}
+            if (t<1){stroke(0,0,0);fill(330,100,100);}
             else{
                 if (t<2){stroke(0,0,0);fill(180,100,100);}
                 else{stroke(0,0,0);fill(330,0,100);}
             }
             rect(cx+x1,y-grain/2,x2-x1,grain);
             x1=x2;
-            x2+=0.3*x2+random(-x2,x2);
+            x2+=0.2*x2;//+random(-x2,x2);
         }
         x1=0;x2=-1;
         while(cx+x2>0){
 
             int t = alea.nextInt(42);
-            if (t<1){stroke(0,0,100);fill(330,100,100);}
+            if (t<1){stroke(0,0,0);fill(330,100,100);}
             else{
                 if (t<2){stroke(0,0,0);fill(180,100,100);}
-                else{stroke(0,0,0);fill(330,0,100,100);}
+                else{stroke(0,0,0);fill(330,0,100);}
             }
             rect(cx+x1,y-grain/2,x2-x1,grain);
             x1=x2;
-            x2+=0.2*x2-random(x2,-x2);
+            x2+=0.2*x2;//-random(x2,-x2);
         }
     }
 
