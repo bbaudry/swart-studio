@@ -31,9 +31,9 @@ public class Tshirt008 extends PApplet {
     @Override
     public void draw() {
         if(cy<=h){
-            float t = 1+alea.nextInt(7);
+            float t = 1+alea.nextInt(5);
         row(cy,t);
-        cy+=t+3;
+        cy+=t;
         }
         else{
             noLoop();
