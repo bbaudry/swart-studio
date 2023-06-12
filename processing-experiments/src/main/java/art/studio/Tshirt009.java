@@ -22,11 +22,11 @@ public class Tshirt009 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB, 360, 100, 100, 250);
-        background(330, 100, 100);
+        background(0, 0, 100);
         alea = new Random();
         wid = new ArrayList<>();
-        cx = w / 20;
-        cy = h / 20;
+        cx = w / 40;
+        cy = h / 40;
         al = 250;
         dia = w;
         noFill();
@@ -36,14 +36,14 @@ public class Tshirt009 extends PApplet {
     public void draw() {
         if (cx < w) {
             noFill();
-            strokeWeight(alea.nextInt(5));
-            stroke(0, 0, 0);
+            strokeWeight(alea.nextInt(11));
+            stroke(330, 100, 100);
             ellipse(cx, cy, 17, 17);
-            cx += w / 20;
+            cx += w / 40;
         } else {
-            if (cy < h) {
-                cx = w / 20;
-                cy += h / 20;
+            if (cy < h-h/40) {
+                cx = w / 40;
+                cy += h / 40;
             } else {
                 if (al > 0) {
                     stroke(0, 0, 0, al);
