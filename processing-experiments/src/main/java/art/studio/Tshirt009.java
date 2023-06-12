@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class Tshirt009 extends PApplet {
     int ratio = 1;
-    int w = 1000*ratio;
-    int h = 1000*ratio;
+    int w = 1000 * ratio;
+    int h = 1000 * ratio;
     Random alea;
     ArrayList<Float> wid;
-    float cx,cy;
-    int al,dia;
+    float cx, cy;
+    int al, dia;
 
     @Override
     public void settings() {
@@ -21,25 +21,41 @@ public class Tshirt009 extends PApplet {
 
     @Override
     public void setup() {
-        colorMode(HSB,360,100,100,250);
-        background(0,0,100); 
-        alea=new Random();
+        colorMode(HSB, 360, 100, 100, 250);
+        background(330, 100, 100);
+        alea = new Random();
         wid = new ArrayList<>();
-        cx=w/2;cy=h/2; al=250; dia=750;
-        noStroke();fill(330,100,100);rect(125,125,750,750);
-        noFill();strokeWeight(3);
+        cx = w / 20;
+        cy = h / 20;
+        al = 250;
+        dia = w;
+        noFill();
     }
 
     @Override
     public void draw() {
-        if(al>0){
-            stroke(0,0,0,al);
-            ellipse(cx,cy,dia,dia);
-            dia-=3;al--;
-        }
-        else{
-            noLoop();
-            save("tshirt009.png");
+        if (cx < w) {
+            noFill();
+            strokeWeight(alea.nextInt(5));
+            stroke(0, 0, 0);
+            ellipse(cx, cy, 17, 17);
+            cx += w / 20;
+        } else {
+            if (cy < h) {
+                cx = w / 20;
+                cy += h / 20;
+            } else {
+                if (al > 0) {
+                    stroke(0, 0, 0, al);
+                    strokeWeight(3);
+                    ellipse(w / 2, h / 2, dia, dia);
+                    dia -= 3;
+                    al--;
+                } else {
+                    noLoop();
+                    save("tshirt009.png");
+                }
+            }
         }
     }
 
