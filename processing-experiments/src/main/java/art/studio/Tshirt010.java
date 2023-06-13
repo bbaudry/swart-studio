@@ -20,7 +20,7 @@ public class Tshirt010 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100, 250);
         background(0, 0, 0);
-        stroke(0,0,100);noFill();
+        stroke(0,0,100); fill(0,0,100,7);// noFill();
         alea = new Random();
         
     }
