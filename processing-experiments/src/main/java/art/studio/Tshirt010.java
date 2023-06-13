@@ -29,6 +29,7 @@ public class Tshirt010 extends PApplet {
     public void draw() {
         if(frameCount<7){
             pattern();
+            pattern2();
         }
         else{
             noLoop();
@@ -51,6 +52,24 @@ public class Tshirt010 extends PApplet {
         curveVertex(w,h);
         endShape();
         x0+=7;x1+=17;x2+=9;x3-=3;
+        }
+    }
+    private void pattern2(){
+        float x0=w/10+alea.nextFloat()*w/10;
+        float x1=x0+alea.nextFloat()*w/10;
+        float x2=w/2+alea.nextFloat()*w/7;
+        float x3=x2+alea.nextFloat()*w/7;
+        for(int i=0;i<11;i++){
+        beginShape();
+        curveVertex(w,h);
+        curveVertex(x0,h);
+        curveVertex(x1,5*h/6);
+        curveVertex(x2,h/2);
+        curveVertex(x2+42,h/3);
+        curveVertex(x3,42);
+        curveVertex(0,0);
+        endShape();
+        x0+=11;x1+=7;x2+=19;x3-=9;
         }
     }
 
