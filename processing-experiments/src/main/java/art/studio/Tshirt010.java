@@ -28,15 +28,19 @@ public class Tshirt010 extends PApplet {
     @Override
     public void draw() {
         if(frameCount<7){
-        pattern();
+            pattern();
         }
         else{
-        noLoop();}
+            noLoop();
+            save("tshirt010.png");
+        }
     }
 
     private void pattern(){
-        float x0,x1,x2,x3;
-        x0=w/20+alea.nextFloat()*w/10;x1=x0+alea.nextFloat()*w/10;x2=500+alea.nextFloat()*168;x3=x2+alea.nextFloat()*168;
+        float x0=w/20+alea.nextFloat()*w/10;
+        float x1=x0+alea.nextFloat()*w/10;
+        float x2=w/2+alea.nextFloat()*w/7;
+        float x3=x2+alea.nextFloat()*w/7;
         for(int i=0;i<21;i++){
         beginShape();
         curveVertex(0,0);
