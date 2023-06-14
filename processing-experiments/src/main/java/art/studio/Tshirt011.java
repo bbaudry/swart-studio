@@ -31,7 +31,7 @@ public class Tshirt011 extends PApplet {
     @Override
     public void draw() {
         if(x<w){
-            carre();
+            //carre();
             demi();
             //quart();
             x+=xratio;
@@ -72,7 +72,7 @@ public class Tshirt011 extends PApplet {
         float rad=xratio;
         if(t<11){
             fill(0,0,50);
-            arc(cx,cy,rad,rad,(float)(1.5*PI),(float)(0.5*PI));
+            arc(cx,cy,rad,rad,(float)(1.5*PI),(float)(2.5*PI));
         }
         else{
             if(t<22){
@@ -86,7 +86,7 @@ public class Tshirt011 extends PApplet {
                 }
                 else{
                     fill(0,0,100);
-                    arc(cx,cy,rad,rad,(float)(1.5*PI),(float)(0.5*PI));
+                    arc(cx,cy,rad,rad,(float)(1.5*PI),(float)(2.5*PI));
                 }
             }
         }
