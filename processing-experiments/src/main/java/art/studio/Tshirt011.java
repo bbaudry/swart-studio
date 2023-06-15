@@ -29,7 +29,7 @@ public class Tshirt011 extends PApplet {
         stroke(0,0,100); fill(0,0,100,7);// noFill();
         alea = new Random();
         x=0;y=0;
-        xratio=w/12;yratio=h/12;
+        xratio=100;yratio=100;
         noStroke();
     }
 
@@ -39,7 +39,7 @@ public class Tshirt011 extends PApplet {
             carre();
             bigquart();
             //demi();
-            //quart();
+            quart();
             x+=xratio;
         }
         else{
@@ -128,13 +128,13 @@ public class Tshirt011 extends PApplet {
 
     private void chooseFill(){
         int t = alea.nextInt(ikeda);
-        int al=182;
+        int al=192;
         if(t<black){
-            fill(330,100,100,al);//fill(0,0,0);
+            fill(290,100,100,al);//fill(0,0,0);
         }
         else{
             if(t<gray){
-                fill(200,100,100,al);//fill(0,0,50);
+                fill(170,100,100,al);//fill(0,0,50);
             }
             else{
                 fill(50,100,100,al);//fill(0,0,100);
