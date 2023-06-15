@@ -128,15 +128,16 @@ public class Tshirt011 extends PApplet {
 
     private void chooseFill(){
         int t = alea.nextInt(ikeda);
+        int al=182;
         if(t<black){
-            fill(0,0,0);
+            fill(330,100,100,al);//fill(0,0,0);
         }
         else{
             if(t<gray){
-                fill(0,0,50);
+                fill(200,100,100,al);//fill(0,0,50);
             }
             else{
-                fill(0,0,100);
+                fill(50,100,100,al);//fill(0,0,100);
             }
         }
     }
