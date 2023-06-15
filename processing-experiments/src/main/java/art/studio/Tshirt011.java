@@ -36,9 +36,11 @@ public class Tshirt011 extends PApplet {
     @Override
     public void draw() {
         if(x<w){
-            carre();
+//            carre();
+            bigquart();
             bigquart();
             //demi();
+            quart();
             quart();
             x+=xratio;
         }
@@ -134,7 +136,7 @@ public class Tshirt011 extends PApplet {
         }
         else{
             if(t<gray){
-                fill(170,100,100,al);//fill(0,0,50);
+                fill(140,100,100,al);//fill(0,0,50);
             }
             else{
                 fill(50,100,100,al);//fill(0,0,100);
