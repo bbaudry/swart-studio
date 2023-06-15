@@ -11,6 +11,10 @@ public class Tshirt011 extends PApplet {
     Random alea;
     float x,y;
     float xratio,yratio;
+    int ikeda = 42;
+    int black = 7;
+    int gray = 26;
+
 
 
     @Override
@@ -25,13 +29,14 @@ public class Tshirt011 extends PApplet {
         stroke(0,0,100); fill(0,0,100,7);// noFill();
         alea = new Random();
         x=0;y=0;
-        xratio=w/10;yratio=h/10;
+        xratio=w/8;yratio=h/8;
+        noStroke();
     }
 
     @Override
     public void draw() {
         if(x<w){
-            //carre();
+            carre();
             demi();
             //quart();
             x+=xratio;
@@ -47,51 +52,49 @@ public class Tshirt011 extends PApplet {
     }
 
     private void carre(){
-        noStroke();
-        int t = alea.nextInt(42);
-        if(t<1){
-            fill(0,0,0);
-            rect(x,y,xratio,yratio);
-        }
-        else{
-            if(t<11){
-            fill(0,0,100);
-            rect(x,y,xratio,yratio);
-        }
-            else{
-                fill(0,0,50);
-            rect(x,y,xratio,yratio);
-            }
-        }
+        chooseFill();        
+        rect(x,y,xratio,yratio);
     }
+
     private void demi(){
         noStroke();
-        int t = alea.nextInt(44);
+        int t = alea.nextInt(ikeda);
         float cx=x+xratio/2;
         float cy=y+yratio/2;
         float rad=xratio;
-        if(t<11){
-            fill(0,0,50);
+        chooseFill();
+        if(t<ikeda/4){
             arc(cx,cy,rad,rad,(float)(1.5*PI),(float)(2.5*PI));
         }
         else{
-            if(t<22){
-                fill(0,0,50);
+            if(t<ikeda/2){
                 arc(cx,cy,rad,rad,(float)(0.5*PI),(float)(1.5*PI));
             }
             else{
-                if(t<33){
-                    fill(0,0,100);
-                    arc(cx,cy,rad,rad,(float)(0.5*PI),(float)(1.5*PI));
+                if(t<3*ikeda/4){
+                    arc(cx,cy,rad,rad,0,PI);
                 }
                 else{
-                    fill(0,0,100);
-                    arc(cx,cy,rad,rad,(float)(1.5*PI),(float)(2.5*PI));
+                    arc(cx,cy,rad,rad,PI,2*PI);
                 }
             }
         }
     }
 
+    private void chooseFill(){
+        int t = alea.nextInt(ikeda);
+        if(t<black){
+            fill(0,0,0);
+        }
+        else{
+            if(t<gray){
+                fill(0,0,50);
+            }
+            else{
+                fill(0,0,100);
+            }
+        }
+    }
 
     public static void main(String[] args) {
         String[] processingArgs = { "Tshirt011" };
