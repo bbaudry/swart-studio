@@ -29,7 +29,7 @@ public class Tshirt011 extends PApplet {
         stroke(0,0,100); fill(0,0,100,7);// noFill();
         alea = new Random();
         x=0;y=0;
-        xratio=w/8;yratio=h/8;
+        xratio=w/12;yratio=h/12;
         noStroke();
     }
 
@@ -37,7 +37,8 @@ public class Tshirt011 extends PApplet {
     public void draw() {
         if(x<w){
             carre();
-            demi();
+            bigquart();
+            //demi();
             //quart();
             x+=xratio;
         }
@@ -57,7 +58,6 @@ public class Tshirt011 extends PApplet {
     }
 
     private void demi(){
-        noStroke();
         int t = alea.nextInt(ikeda);
         float cx=x+xratio/2;
         float cy=y+yratio/2;
@@ -76,6 +76,51 @@ public class Tshirt011 extends PApplet {
                 }
                 else{
                     arc(cx,cy,rad,rad,PI,2*PI);
+                }
+            }
+        }
+    }
+
+    private void bigquart(){
+        int t = alea.nextInt(ikeda);
+        float rad=xratio*2;
+        chooseFill();
+        if(t<ikeda/4){
+            arc(x,y,rad,rad,0,(float)(0.5*PI));
+        }
+        else{
+            if(t<ikeda/2){
+                arc(x+xratio,y,rad,rad,(float)(0.5*PI),PI);
+            }
+            else{
+                if(t<3*ikeda/4){
+                    arc(x+xratio,y+yratio,rad,rad,PI,(float)(1.5*PI));
+                }
+                else{
+                    arc(x,y+yratio,rad,rad,(float)(1.5*PI),2*PI);
+                }
+            }
+        }
+    }
+    private void quart(){
+        int t = alea.nextInt(ikeda);
+        float cx=x+xratio/2;
+        float cy=y+yratio/2;
+        float rad=xratio;
+        chooseFill();
+        if(t<ikeda/4){
+            arc(cx,cy,rad,rad,0,(float)(0.5*PI));
+        }
+        else{
+            if(t<ikeda/2){
+                arc(cx,cy,rad,rad,(float)(0.5*PI),PI);
+            }
+            else{
+                if(t<3*ikeda/4){
+                    arc(cx,cy,rad,rad,PI,(float)(1.5*PI));
+                }
+                else{
+                    arc(cx,cy,rad,rad,(float)(1.5*PI),2*PI);
                 }
             }
         }
