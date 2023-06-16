@@ -7,13 +7,14 @@ import java.util.Random;
 public class Tshirt011 extends PApplet {
     int ratio = 1;
     int w = 1000 * ratio;
-    int h = 1000 * ratio;
+    int h = 1200 * ratio;
     Random alea;
     float x,y;
     float xratio,yratio;
     int ikeda = 42;
     int black = 7;
     int gray = 26;
+    int al = 250;
 
 
 
@@ -43,10 +44,11 @@ public class Tshirt011 extends PApplet {
             quart();
             quart();
             x+=xratio;
+            
         }
         else{
             x=0;
-            if(y<h){y+=yratio;}
+            if(y<h){y+=yratio;al-=19;}
             else{
                 noLoop();
                 save("tshirt011.png");
@@ -130,7 +132,7 @@ public class Tshirt011 extends PApplet {
 
     private void chooseFill(){
         int t = alea.nextInt(ikeda);
-        int al=192;
+        //int al=192;
         if(t<black){
             fill(290,100,100,al);//fill(0,0,0);
         }
