@@ -25,16 +25,19 @@ public class Tshirt012 extends PApplet {
 
     @Override
     public void draw() {
-        if(frameCount<999){
+        if(frameCount<199){
         stroke(0,0,100);
+        fill(0,0,100,42);
         float cx=(float)(0.84*w)+alea.nextFloat()*11;
         float cy=(float)(0.21*w)+alea.nextFloat()*11;
-        float angle = alea.nextFloat()*(2*PI);
+        float angle1 = alea.nextFloat()*(2*PI);
+        float angle2 = angle1+alea.nextFloat()*PI/10;
         float l = alea.nextFloat()*h;
-        float dx=cx+l*cos(angle);
-        float dy=cy+l*sin(angle);
-        
-        line(cx,cy,dx,dy);
+        float dx1=cx+l*cos(angle1);
+        float dy1=cy+l*sin(angle1);
+        float dx2=cx+l*cos(angle2);
+        float dy2=cy+l*sin(angle2);
+        triangle(cx,cy,dx1,dy1,dx2,dy2);
         }
         else{
             noLoop();
