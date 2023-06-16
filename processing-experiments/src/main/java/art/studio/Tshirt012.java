@@ -25,13 +25,21 @@ public class Tshirt012 extends PApplet {
 
     @Override
     public void draw() {
+        if(frameCount<999){
         stroke(0,0,100);
-        float cx=(float)(0.84*w);
-        float cy=(float)(0.21*w);
+        float cx=(float)(0.84*w)+alea.nextFloat()*11;
+        float cy=(float)(0.21*w)+alea.nextFloat()*11;
         float angle = alea.nextFloat()*(2*PI);
-        float dx=cx+h*cos(angle);
-        float dy=cy+h*sin(angle);
+        float l = alea.nextFloat()*h;
+        float dx=cx+l*cos(angle);
+        float dy=cy+l*sin(angle);
+        
         line(cx,cy,dx,dy);
+        }
+        else{
+            noLoop();
+            save("tshirt12.png");
+        }
     }
 
 
