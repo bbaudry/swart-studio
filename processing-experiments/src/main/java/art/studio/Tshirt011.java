@@ -15,6 +15,9 @@ public class Tshirt011 extends PApplet {
     int black = 7;
     int gray = 26;
     int al = 250;
+    int hu1=290;
+    int hu2=50;
+    int hu3=140;
 
 
 
@@ -48,7 +51,7 @@ public class Tshirt011 extends PApplet {
         }
         else{
             x=0;
-            if(y<h){y+=yratio;al-=19;}
+            if(y<h){y+=yratio;al-=19;hu1-=10;hu2-=10;hu3-=10;}
             else{
                 noLoop();
                 save("tshirt011.png");
@@ -134,14 +137,14 @@ public class Tshirt011 extends PApplet {
         int t = alea.nextInt(ikeda);
         //int al=192;
         if(t<black){
-            fill(290,100,100,al);//fill(0,0,0);
+            fill(hu1,100,100,al);//fill(0,0,0);
         }
         else{
             if(t<gray){
-                fill(140,100,100,al);//fill(0,0,50);
+                fill(hu3,100,100,al);//fill(0,0,50);
             }
             else{
-                fill(50,100,100,al);//fill(0,0,100);
+                fill(hu2,100,100,al);//fill(0,0,100);
             }
         }
     }
