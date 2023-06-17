@@ -26,6 +26,15 @@ public class Tshirt012 extends PApplet {
     @Override
     public void draw() {
         if(frameCount<199){
+            ray();
+        }
+        else{
+            noLoop();
+            save("tshirt12.png");
+        }
+    }
+
+    private void ray(){
         stroke(0,0,100);
         fill(0,0,100,42);
         float cx=(float)(0.84*w)+alea.nextFloat()*11;
@@ -38,13 +47,19 @@ public class Tshirt012 extends PApplet {
         float dx2=cx+l*cos(angle2);
         float dy2=cy+l*sin(angle2);
         triangle(cx,cy,dx1,dy1,dx2,dy2);
-        }
-        else{
-            noLoop();
-            save("tshirt12.png");
-        }
-    }
 
+        float t;
+        float px1,py1,px2,py2;
+        for (int i=0;i<17;i++){
+        t=alea.nextFloat();
+        px1 = (1 - t) * cx + (t * dx1);
+        py1 = (1 - t) * cy + (t * dy1);
+        t=alea.nextFloat();
+        px2 = (1 - t) * cx + (t * dx2);
+        py2 = (1 - t) * cy + (t * dy2);
+        line(px1,py1,px2,py2);}
+
+    }
 
     public static void main(String[] args) {
         String[] processingArgs = { "Tshirt012" };
