@@ -26,7 +26,7 @@ public class Tshirt012 extends PApplet {
 
     @Override
     public void draw() {
-        if (frameCount < 42) {
+        if (frameCount < 84) {
             ray();
         } else {
             noLoop();
@@ -41,8 +41,8 @@ public class Tshirt012 extends PApplet {
         float cy = (float) (0.21 * w) + alea.nextFloat() * 11;
         float angle1 = alea.nextFloat() * (2 * PI);
         float angle2 = angle1 + alea.nextFloat() * PI / 10;
-        float l = h/2;//alea.nextFloat() * h;
-        float t=(float)0.1;
+        float l = alea.nextFloat() * h;
+        float t= alea.nextFloat();
         float cx1, cy1, cx2, cy2;
         float dx1 = cx + l * cos(angle1);
         float dy1 = cy + l * sin(angle1);
