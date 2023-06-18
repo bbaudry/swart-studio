@@ -53,7 +53,7 @@ public class Tshirt012 extends PApplet {
             cx2 = (1 - t) * cx + (t * dx2);
             cy2 = (1 - t) * cy + (t * dy2);
         quad(cx1,cy1,dx1,dy1,dx2,dy2,cx2,cy2);
-
+        stroke(330,100,100);
         float px1, py1, px2, py2;        
         for (int i = 0; i < 42; i++) {
             t = alea.nextFloat();
