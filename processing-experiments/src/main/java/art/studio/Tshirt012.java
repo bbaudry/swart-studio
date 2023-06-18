@@ -18,7 +18,7 @@ public class Tshirt012 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB, 360, 100, 100, 250);
-        background(0, 0, 0);
+        background(0, 0, 100);
         stroke(0, 0, 100);
         fill(0, 0, 100, 7);// noFill();
         alea = new Random();
@@ -35,10 +35,10 @@ public class Tshirt012 extends PApplet {
     }
 
     private void ray() {
-        stroke(0, 0, 100);
-        fill(0, 0, 100, 42);
-        float cx = (float) (0.84 * w) + alea.nextFloat() * 11;
-        float cy = (float) (0.21 * w) + alea.nextFloat() * 11;
+        stroke(0, 0, 0);
+        fill(0, 0, 0, 42);
+        float cx = (float) (0.84 * w);
+        float cy = (float) (0.21 * w);
         float angle1 = alea.nextFloat() * (2 * PI);
         float angle2 = angle1 + alea.nextFloat() * PI / 10;
         float l = alea.nextFloat() * h;
@@ -52,10 +52,9 @@ public class Tshirt012 extends PApplet {
             cy1 = (1 - t) * cy + (t * dy1);
             cx2 = (1 - t) * cx + (t * dx2);
             cy2 = (1 - t) * cy + (t * dy2);
-//        triangle(cx, cy, dx1, dy1, dx2, dy2);
         quad(cx1,cy1,dx1,dy1,dx2,dy2,cx2,cy2);
-        float px1, py1, px2, py2;
-        
+
+        float px1, py1, px2, py2;        
         for (int i = 0; i < 42; i++) {
             t = alea.nextFloat();
             px1 = (1 - t) * cx1 + (t * dx1);
