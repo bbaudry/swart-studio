@@ -45,7 +45,7 @@ public class Tshirt014 extends PApplet {
         float cx=(float)(0.5*w);
         float cy=(float)(0.5*h);
         float rad1 = alea.nextFloat()*w/2;
-        float rad2 = rad1 + alea.nextFloat();
+        float rad2 = rad1 + alea.nextFloat()*w/3;
         noFill();
         stroke(0,0,100);
         strokeWeight(5);
@@ -59,7 +59,11 @@ public class Tshirt014 extends PApplet {
         float py4 = cy + rad2 * sin(angle2);
         line(px1,py1,px2,py2);
         line(px3,py3,px4,py4);
-
+        stroke(330,100,100);
+        arc(cx,cy,rad1*2,rad1*2,angle1,angle2);
+        arc(cx,cy,rad2*2,rad2*2,angle1,angle2);
+        //line(px4,py4,px2,py2);
+        //line(px1,py1,px3,py3);
     }
 
     public static void main(String[] args) {
