@@ -35,17 +35,17 @@ public class Tshirt014 extends PApplet {
             ray();
         } else {
             noLoop();
-            save("tshirt12.png");
+            save("tshirt014.png");
         }
     }
 
     private void ray() {
         float angle1 = 2*PI*alea.nextFloat();
         float angle2 = angle1 + alea.nextFloat() * PI;
-        float cx=(float)(0.5*w);
-        float cy=(float)(0.5*h);
-        float rad1 = alea.nextFloat()*w/2;
-        float rad2 = rad1 + alea.nextFloat()*w/4;
+        float cx=(float)(0.75*w);
+        float cy=(float)(0.25*h);
+        float rad1 = alea.nextFloat()*w/3;
+        float rad2 = rad1 + alea.nextFloat()*w/3;
         float px1 = cx + rad1 * cos(angle1);
         float py1 = cy + rad1 * sin(angle1);
         float px2 = cx + rad2 * cos(angle1);
@@ -56,6 +56,7 @@ public class Tshirt014 extends PApplet {
         float py4 = cy + rad2 * sin(angle2);
         noFill();
         stroke(50,100,100);
+        strokeWeight(3);
         line(px1,py1,px2,py2);
         line(px3,py3,px4,py4);
         arc(cx,cy,rad1*2,rad1*2,angle1,angle2);
