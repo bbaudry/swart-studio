@@ -44,8 +44,8 @@ public class Tshirt015 extends PApplet {
         float angle2 = angle1 + alea.nextFloat() * PI;
         float cx=(float)(0.5*w);
         float cy=(float)(0.5*h);
-        float rad1 = w/10;//alea.nextFloat()*w/3;
-        float rad2 = rad1 + alea.nextFloat()*w/3;
+        float rad1 = alea.nextFloat()*(float)(0.1*w);//alea.nextFloat()*w/3;
+        float rad2 = rad1 + alea.nextFloat()*(float)(0.45*w);
         float px1 = cx + rad1 * cos(angle1);
         float py1 = cy + rad1 * sin(angle1);
         float px2 = cx + rad2 * cos(angle1);
