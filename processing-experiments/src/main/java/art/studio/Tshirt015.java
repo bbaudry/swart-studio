@@ -35,7 +35,7 @@ public class Tshirt015 extends PApplet {
             ray();
         } else {
             noLoop();
-            save("tshirt014.png");
+            save("tshirt015.png");
         }
     }
 
