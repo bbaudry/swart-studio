@@ -31,7 +31,7 @@ public class Tshirt015 extends PApplet {
 
     @Override
     public void draw() {
-        if (frameCount <= 17) {
+        if (frameCount <= 42) {
             ray();
         } else {
             noLoop();
@@ -44,7 +44,7 @@ public class Tshirt015 extends PApplet {
         float angle2 = angle1 + alea.nextFloat() * PI;
         float cx=(float)(0.5*w);
         float cy=(float)(0.5*h);
-        float rad1 = w/8;//alea.nextFloat()*w/3;
+        float rad1 = w/10;//alea.nextFloat()*w/3;
         float rad2 = rad1 + alea.nextFloat()*w/3;
         float px1 = cx + rad1 * cos(angle1);
         float py1 = cy + rad1 * sin(angle1);
@@ -56,13 +56,13 @@ public class Tshirt015 extends PApplet {
         float py4 = cy + rad2 * sin(angle2);
         noFill();
         int r = alea.nextInt(2)+1;
-        stroke(hues.get(r),100,100);
+        stroke(hues.get(r),100,100,42);
         strokeWeight(2);
         line(px1,py1,px2,py2);
         line(px3,py3,px4,py4);
         arc(cx,cy,rad1*2,rad1*2,angle1,angle2);
         arc(cx,cy,rad2*2,rad2*2,angle1,angle2);
-        for(int i=0;i<42;i++){
+        for(int i=0;i<84;i++){
             float angle3 = angle1 + alea.nextFloat() * (angle2 - angle1);
             float angle4 = angle1 + alea.nextFloat() * (angle2 - angle1);
             float px5 = cx + rad1 * cos(angle3);
