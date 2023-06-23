@@ -26,7 +26,7 @@ public class Tshirt016 extends PApplet {
         hues = new ArrayList<>();
         hues.add(60); hues.add(180); hues.add(300);
         fill(hues.get(0),100,100);
-        ellipse(w/2, h/2, w,w);
+        //ellipse(w/2, h/2, w,w);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Tshirt016 extends PApplet {
         float cx=(float)(0.5*w);
         float cy=(float)(0.5*h);
         float rad1 = alea.nextFloat()*(float)(0.1*w);//alea.nextFloat()*w/3;
-        float rad2 = rad1 + alea.nextFloat()*(float)(0.4*w);
+        float rad2 = rad1 + alea.nextFloat()*(float)(0.38*w);
         float px1 = cx + rad1 * cos(angle1);
         float py1 = cy + rad1 * sin(angle1);
         float px2 = cx + rad2 * cos(angle1);
@@ -61,8 +61,8 @@ public class Tshirt016 extends PApplet {
         float rad = (float)(0.01*w)+alea.nextFloat()*(float)(0.01*w);
         ellipse(px1,py1,rad,rad);
         ellipse(px2,py2,rad,rad);
-        ellipse(px3,py3,rad,rad);
-        ellipse(px4,py4,rad,rad);
+        //ellipse(px3,py3,rad,rad);
+        //ellipse(px4,py4,rad,rad);
         noFill();
         stroke(hues.get(r),100,100,42);
         beginShape();
