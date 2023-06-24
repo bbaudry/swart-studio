@@ -59,8 +59,8 @@ public class Tshirt016 extends PApplet {
         fill(hues.get(r),100,100,42);
         strokeWeight(2);
         float rad = (float)(0.03*w)+alea.nextFloat()*(float)(0.01*w);
-        ellipse(px1,py1,rad,rad);
-        ellipse(px2,py2,rad,rad);
+        //ellipse(px1,py1,rad,rad);
+        //ellipse(px2,py2,rad,rad);
         //ellipse(px3,py3,rad,rad);
         //ellipse(px4,py4,rad,rad);
         noFill();
