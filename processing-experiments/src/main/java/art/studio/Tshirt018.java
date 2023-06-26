@@ -8,8 +8,8 @@ import java.util.Random;
 
 public class Tshirt018 extends PApplet {
     int ratio = 1;
-    int w = 1000 * ratio;
-    int h = 1200 * ratio;
+    int w = 1200 * ratio;
+    int h = 1500 * ratio;
     Random alea;
     float x1,y1,x2,y2;
     float block_width;
@@ -28,8 +28,8 @@ public class Tshirt018 extends PApplet {
         stroke(0,0,0);
         alea = new Random();
         x1=0;y1=0;
-        block_width=alea.nextFloat()*w/3;
-        block_height=alea.nextFloat()*h/12;
+        block_width=alea.nextFloat()*w/5;
+        block_height=alea.nextFloat()*h/17;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Tshirt018 extends PApplet {
             else{
                 y1=0;
                 x1+=block_width;
-                block_width=alea.nextFloat()*w/3;
+                block_width=alea.nextFloat()*w/5;
             }
         } else {
             noLoop();
@@ -55,7 +55,7 @@ public class Tshirt018 extends PApplet {
         fill(palette[c],100,100);
         rect(x1,y1,block_width,block_height);
         y1+=block_height;
-        block_height=alea.nextFloat()*h/12;
+        block_height=alea.nextFloat()*h/17;
     }
 
     public static void main(String[] args) {
