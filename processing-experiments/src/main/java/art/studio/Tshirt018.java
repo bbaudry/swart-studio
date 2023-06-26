@@ -14,7 +14,8 @@ public class Tshirt018 extends PApplet {
     float x1,y1,x2,y2;
     float block_width;
     float block_height;
-    int[] palette = {40,130,220,310};
+    int inc = 72;
+    int[] palette = {50,50+inc,50+2*inc,50+3*inc,50+4*inc};
     
     @Override
     public void settings() {
@@ -29,7 +30,7 @@ public class Tshirt018 extends PApplet {
         alea = new Random();
         x1=0;y1=0;
         block_width=alea.nextFloat()*w/5;
-        block_height=alea.nextFloat()*h/17;
+        block_height=alea.nextFloat()*h/21;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class Tshirt018 extends PApplet {
         fill(palette[c],100,100);
         rect(x1,y1,block_width,block_height);
         y1+=block_height;
-        block_height=alea.nextFloat()*h/17;
+        block_height=alea.nextFloat()*h/21;
     }
 
     public static void main(String[] args) {
