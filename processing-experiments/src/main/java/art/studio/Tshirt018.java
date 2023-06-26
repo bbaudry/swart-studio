@@ -29,7 +29,7 @@ public class Tshirt018 extends PApplet {
         alea = new Random();
         x1=0;y1=0;
         block_width=alea.nextFloat()*w/3;
-        block_height=alea.nextFloat()*h/10;
+        block_height=alea.nextFloat()*h/12;
     }
 
     @Override
@@ -51,11 +51,11 @@ public class Tshirt018 extends PApplet {
 
     private void ray(){
         int c = alea.nextInt(palette.length);
-        noStroke();
+        stroke(0,0,0);strokeWeight(4);//noStroke();
         fill(palette[c],100,100);
         rect(x1,y1,block_width,block_height);
         y1+=block_height;
-        block_height=alea.nextFloat()*h/10;
+        block_height=alea.nextFloat()*h/12;
     }
 
     public static void main(String[] args) {
