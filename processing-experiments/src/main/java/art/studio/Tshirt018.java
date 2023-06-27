@@ -29,20 +29,20 @@ public class Tshirt018 extends PApplet {
         stroke(0,0,0);
         alea = new Random();
         x1=0;y1=0;
-        block_height=alea.nextFloat()*h/21;
-                block_width=alea.nextFloat()*w/5;
+        change_block_width();
+        change_block_height();
     }
 
     @Override
     public void draw() {
         if (x1 < w) {
             if (y1<h){
-                ray();
+                block();
             }
             else{
                 y1=0;
                 x1+=block_width;
-                block_width=alea.nextFloat()*w/5;
+                change_block_width();
                 if(x1+block_width>w){block_width=w-x1;}
             }
         } else {
@@ -51,14 +51,20 @@ public class Tshirt018 extends PApplet {
         }
     }
 
-    private void ray(){
+    private void block(){
         int c = alea.nextInt(palette.length);
         stroke(0,0,100);strokeWeight(4);
         fill(palette[c],100,100);
         rect(x1,y1,block_width,block_height,alea.nextFloat()*84);
         y1+=block_height;
-        block_height=alea.nextFloat()*h/20;
+        change_block_height();
         if(y1+block_height>w){block_height=h-y1;}
+    }
+    private void change_block_width(){
+        block_width=alea.nextFloat()*w/5;
+    }
+    private void change_block_height(){
+        block_height=alea.nextFloat()*h/11;
     }
 
     public static void main(String[] args) {
