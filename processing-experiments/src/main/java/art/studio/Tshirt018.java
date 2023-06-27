@@ -57,7 +57,7 @@ public class Tshirt018 extends PApplet {
         fill(palette[c],100,100);
         rect(x1,y1,block_width,block_height,alea.nextFloat()*84);
         y1+=block_height;
-        block_height=alea.nextFloat()*h/21;
+        block_height=alea.nextFloat()*h/20;
         if(y1+block_height>w){block_height=h-y1;}
     }
 
