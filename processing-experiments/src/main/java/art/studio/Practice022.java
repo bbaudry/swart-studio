@@ -8,9 +8,9 @@ public class Practice022  extends PApplet {
     int w = 1000;
     int h = 1000;
     int res = 5;
-    float xoff = 0;
-    float yoff = 0;
-    float zoff = 0;
+    float xoff = (float)0.0;
+    float yoff = (float)0.0;
+    float zoff =(float) 0.0;
     float grain = (float)0.05;
 
 
@@ -28,19 +28,21 @@ public class Practice022  extends PApplet {
 
     @Override
     public void draw() {
+        background(0,0,0);
+        yoff=0;
         for (int j=0; j<h; j+=res){
             for (int i=0; i<w; i+=res){
-                float s = noise(xoff,yoff,zoff)*100;
-                fill(0,s,100);
-                stroke(0,s,100);
+                float s = noise(xoff,yoff,zoff)*100+170;
+                fill(s,100,100);
+                stroke(s,100,100);
                 rect(i,j,res,res);
                 xoff += grain;
             }
-            xoff=0;
+            xoff=(float)0.0;
             yoff+=grain;
         }  
-        zoff+=0.0005;
-        noLoop();
+        zoff+=0.01;
+        //noLoop();
 
     } 
 
