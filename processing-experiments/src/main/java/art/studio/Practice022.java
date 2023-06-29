@@ -7,7 +7,7 @@ import processing.core.PApplet;
 public class Practice022  extends PApplet {
     int w = 1000;
     int h = 1000;
-    int res = 4;
+    int res = 2;
     float xoff = (float)0.0;
     float yoff = (float)0.0;
     float zoff =(float) 0.0;
@@ -29,7 +29,7 @@ public class Practice022  extends PApplet {
     @Override
     public void draw() {
         background(0,0,0);
-        yoff=0;
+        yoff=0;xoff=0;
         for (int j=0; j<h; j+=res){
             for (int i=0; i<w; i+=res){
                 float s=0;
@@ -40,10 +40,10 @@ public class Practice022  extends PApplet {
                 if (n>=0.6){s=310;}
                 fill(s,100,100);
                 stroke(s,100,100);
-                rect(i,j,res,res);
+                ellipse(i,j,res,res);
                 xoff += grain;
             }
-            xoff=(float)0.0;
+            xoff=0;
             yoff+=grain;
         }  
         zoff+=0.01;
