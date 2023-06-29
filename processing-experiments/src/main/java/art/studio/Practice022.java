@@ -7,7 +7,7 @@ import processing.core.PApplet;
 public class Practice022  extends PApplet {
     int w = 1000;
     int h = 1000;
-    int res = 5;
+    int res = 4;
     float xoff = (float)0.0;
     float yoff = (float)0.0;
     float zoff =(float) 0.0;
@@ -32,7 +32,12 @@ public class Practice022  extends PApplet {
         yoff=0;
         for (int j=0; j<h; j+=res){
             for (int i=0; i<w; i+=res){
-                float s = noise(xoff,yoff,zoff)*100+170;
+                float s=0;
+                float n = noise(xoff,yoff,zoff);
+                if (n<0.4){s=50;}
+                if (n>=0.4&&n<0.5){s=230;}
+                if (n>=0.5&&n<0.6){s=140;}
+                if (n>=0.6){s=310;}
                 fill(s,100,100);
                 stroke(s,100,100);
                 rect(i,j,res,res);
@@ -43,7 +48,6 @@ public class Practice022  extends PApplet {
         }  
         zoff+=0.01;
         //noLoop();
-
     } 
 
 
