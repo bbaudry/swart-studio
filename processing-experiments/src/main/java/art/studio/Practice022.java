@@ -32,14 +32,23 @@ public class Practice022  extends PApplet {
         yoff=0;xoff=0;
         for (int j=0; j<h; j+=res){
             for (int i=0; i<w; i+=res){
-                float s=0;
                 float n = noise(xoff,yoff,zoff);
-                if (n<0.4){s=50;}
-                if (n>=0.4&&n<0.5){s=230;}
-                if (n>=0.5&&n<0.6){s=140;}
-                if (n>=0.6){s=310;}
-                fill(s,100,100);
-                stroke(s,100,100);
+                if (n<0.4){
+                    fill(50,100,100);
+                    stroke(50,100,100);
+                }   
+                if (n>=0.4&&n<0.5){
+                    fill(230,100,100);
+                    stroke(230,100,100);
+                }
+                if (n>=0.5&&n<0.58){
+                    fill(140,100,100);
+                    stroke(140,100,100);}
+                if (n>=0.58){
+                    noFill();noStroke();
+//                    fill(0,0,0);
+//                    stroke(0,0,0);//stroke(310,100,100);
+                }
                 ellipse(i,j,res,res);
                 xoff += grain;
             }
@@ -47,7 +56,8 @@ public class Practice022  extends PApplet {
             yoff+=grain;
         }  
         zoff+=0.01;
-        //noLoop();
+        noLoop();
+        save("practice.png");
     } 
 
 
