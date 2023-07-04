@@ -58,9 +58,6 @@ public class Tshirt020 extends PApplet {
         noStroke();
         fill(330, 100, 100);
         ellipse(cx, cy, 21, 21);
-        fill(50, 100, 100);
-        ellipse(x5, y5, 21, 21);
-        ellipse(x1, y1, 21, 21);
         fill(190, 100, 100);
         ellipse(x2, y2, 21, 21);
         ellipse(x3, y3, 21, 21);
@@ -70,20 +67,25 @@ public class Tshirt020 extends PApplet {
         arc(cx, cy, rad1 * 2, rad1 * 2, angle1, 2 * PI + PI / 5);
         arc(cx, cy, rad2 * 2, rad2 * 2, angle1, 2 * PI + PI / 5);
 
-        stroke(50, 100, 100);
-        line(x1, y1, x5, y5);
-        for (int i = 0; i < 11; i++) {
-            angle1 += PI / 11;
+        int hu = 50;
+        stroke(hu, 100, 100);
+        fill(hu, 100, 100);
+        hu+=2;
+        ellipse(x5, y5, 5, 5);
+//        ellipse(x1, y1, 21, 21);
+//        line(x1, y1, x5, y5);
+        for (int i = 0; i < 126; i++) {
+            angle1 += PI /84;
             x1 = cx + rad1 * cos(angle1);
             x5 = x1 + (rad2 - rad1) * cos(PI + PI / 2);
             y1 = cy + rad1 * sin(angle1);
             y5 = y1 + (rad2 - rad1) * sin(PI + PI / 2);
-            noStroke();
-            fill(50, 100, 100);
-            ellipse(x5, y5, 21, 21);
-            ellipse(x1, y1, 21, 21);
-            stroke(50, 100, 100);
-            line(x1, y1, x5, y5);
+            stroke(hu, 100, 100);
+            fill(hu, 100, 100);
+            hu+=2;
+            ellipse(x5, y5, 5, 5);
+//            ellipse(x1, y1, 21, 21);
+//            line(x1, y1, x5, y5);
         }
     }
 
