@@ -35,8 +35,8 @@ public class Tshirt021 extends PApplet {
         cellsCount = 0;
         xoff = (float)0.0;
         grain = (float)0.05;
-        minx = (float)(0.1*w); maxx = (float)(0.9*w);
-        miny = (float)(0.1*h); maxy = (float)(0.9*h);
+        minx = (float)(0.12*w); maxx = (float)(0.76*w);
+        miny = (float)(0.12*h); maxy = (float)(0.76*h);
         drawing=false;
     }
 
@@ -68,13 +68,26 @@ public class Tshirt021 extends PApplet {
             radius = noise(xoff)*168; xoff+=grain;
             float dx = cx + radius*cos(angle);
             float dy = cy + radius*sin(angle);
-            line(cx,cy,dx,dy);
+            //line(cx,cy,dx,dy);
+            edge(radius,dx,dy);
             angle += (2*PI)/nbsections;
             section++;
         }
         else{
             drawing=false;
             cellsCount++;
+        }
+    }
+
+    private void edge(float r, float dx, float dy){
+        float t,px,py;
+        stroke(50,100,100);
+        fill(50,100,100);
+        for (int i=1; i<11; i++){
+            t = (float)(i*0.1);
+            px = (1-t) * cx + (t * dx);
+            py = (1-t) * cy + (t * dy);
+            ellipse(px,py,i,i);
         }
     }
 
