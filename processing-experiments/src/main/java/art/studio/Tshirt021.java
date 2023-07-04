@@ -14,7 +14,10 @@ public class Tshirt021 extends PApplet {
     int totalCells;
     int cellsCount;
     float minx,miny,maxx,maxy;
-    float cx,cy,radius;
+    float xoff,grain;
+
+    float cx,cy,radius,angle;
+    int nbsections,section;
     boolean drawing;
 
     @Override
@@ -28,8 +31,10 @@ public class Tshirt021 extends PApplet {
         background(0, 0, 0);
         stroke(0, 0, 0);
         alea = new Random();
-        totalCells = alea.nextInt(7) + 2;
+        totalCells = alea.nextInt(5) + 5;
         cellsCount = 0;
+        xoff = (float)0.0;
+        grain = (float)0.05;
         minx = (float)(0.1*w); maxx = (float)(0.9*w);
         miny = (float)(0.1*h); maxy = (float)(0.9*h);
         drawing=false;
@@ -44,7 +49,10 @@ public class Tshirt021 extends PApplet {
             if(cellsCount<totalCells){
                 cx = randomInWidth();
                 cy = randomInHeight();
-                radius = 84 + alea.nextFloat()*84;
+                angle = 0;
+                section = 0;
+                radius = noise(xoff)*168; xoff+=grain;
+                nbsections = 42 + alea.nextInt(42);
                 drawing=true;
             }
             else{
@@ -55,11 +63,19 @@ public class Tshirt021 extends PApplet {
     }
 
     private void paintCell(){
-        fill(50,100,100,42+alea.nextFloat()*42);
-        noStroke();
-        ellipse(cx,cy,radius,radius);
-        drawing=false;
-        cellsCount++;
+        if (section<nbsections){
+            stroke(50,100,100);//,42+alea.nextFloat()
+            radius = noise(xoff)*168; xoff+=grain;
+            float dx = cx + radius*cos(angle);
+            float dy = cy + radius*sin(angle);
+            line(cx,cy,dx,dy);
+            angle += (2*PI)/nbsections;
+            section++;
+        }
+        else{
+            drawing=false;
+            cellsCount++;
+        }
     }
 
     private float randomInWidth(){
