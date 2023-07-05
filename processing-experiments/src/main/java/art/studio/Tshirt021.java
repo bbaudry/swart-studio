@@ -34,7 +34,7 @@ public class Tshirt021 extends PApplet {
         totalCells = alea.nextInt(5) + 5;
         cellsCount = 0;
         xoff = (float)0.0;
-        grain = (float)0.05;
+        grain = (float)0.01;
         minx = (float)(0.12*w); maxx = (float)(0.76*w);
         miny = (float)(0.12*h); maxy = (float)(0.76*h);
         drawing=false;
@@ -66,7 +66,7 @@ public class Tshirt021 extends PApplet {
 
     private void oneCell(){
         noFill();
-        stroke(50,100,100);
+        stroke(50,0,100,84);
         int cake = 17+alea.nextInt(17); 
         angle = 0;
         float a_inc = (2*PI)/cake;
