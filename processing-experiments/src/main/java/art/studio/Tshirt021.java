@@ -43,7 +43,9 @@ public class Tshirt021 extends PApplet {
     @Override
     public void draw() {
         if(drawing){
-            paintCell();
+            //paintCell();
+            //testB();
+            oneCell();
         }
         else{
             if(cellsCount<totalCells){
@@ -60,6 +62,47 @@ public class Tshirt021 extends PApplet {
                 save("tshirt021.png");
             }
         }
+    }
+
+    private void oneCell(){
+        noFill();
+        stroke(50,100,100,84);
+        int cake = 17+alea.nextInt(17); 
+        angle = 0;
+        float a_inc = (2*PI)/cake;
+        cx=w/2;cy=h/2;
+        radius = noise(xoff)*w/2; xoff+=grain;
+        float xinit = cx+radius*cos(angle);
+        float yinit = cy+radius*sin(angle);
+        float ix=xinit;
+        float iy = yinit;
+        float dx=0;
+        float dy=0;
+        for (int i=0;i<cake;i++){
+            radius = noise(xoff)*w/2; xoff+=grain;
+            dx = cx + radius*cos(angle);
+            dy = cy + radius*sin(angle);
+            line(ix,iy,dx,dy);
+            ix=dx;
+            iy=dy;
+            angle+=a_inc;
+        }
+        line(ix,iy,xinit,yinit);
+    }
+
+    private void testB(){
+        noFill();
+        stroke(180,100,100);
+beginShape();
+vertex(120, 80);
+bezierVertex(320, 0, 320, 300, 120, 300);
+endShape();
+noStroke();
+fill(0,100,100);
+ellipse(120,80,9,9);
+ellipse(320,0,9,9);
+ellipse(320,300,9,9);
+ellipse(120,300,9,9);
     }
 
     private void paintCell(){
