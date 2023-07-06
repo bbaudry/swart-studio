@@ -80,18 +80,27 @@ public class Tshirt021 extends PApplet {
         float iy = yinit;
         float dx=0;
         float dy=0;
+        beginShape();
+        curveVertex(xinit, yinit);
+        curveVertex(xinit, yinit);
         for (int i=0;i<cake-1;i++){
             angle+=a_inc;
             radius = noise(xoff)*w/2; xoff+=grain;
             dx = cx + radius*cos(angle);
             dy = cy + radius*sin(angle);
-            line(ix,iy,dx,dy);
-            triangle(cx,cy, ix, iy, dx, dy);
+            curveVertex(dx, dy);
+//            line(ix,iy,dx,dy);
+//            triangle(cx,cy, ix, iy, dx, dy);
             ix=dx;
             iy=dy;
         }
-        line(ix,iy,xinit,yinit);
-        triangle(cx,cy, ix, iy, dx, dy);
+        //curveVertex(dx, dy);
+                curveVertex(xinit, yinit);
+        curveVertex(xinit, yinit);
+
+        endShape();
+//        line(ix,iy,xinit,yinit);
+//        triangle(cx,cy, ix, iy, dx, dy);
     }
 
     private void testB(){
