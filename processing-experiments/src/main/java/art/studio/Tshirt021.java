@@ -47,7 +47,7 @@ public class Tshirt021 extends PApplet {
         if(drawing){
             //paintCell();
             //testB();
-            oneCell();noLoop();
+            oneCell();//noLoop();
         }
         else{
             if(cellsCount<totalCells){
@@ -69,7 +69,7 @@ public class Tshirt021 extends PApplet {
     private void oneCell(){
         noFill();
         stroke(50,0,100,84);
-        int cake = 21+alea.nextInt(42); 
+        int cake = 42+alea.nextInt(42); 
         angle = 0;
         float a_inc = (2*PI)/cake;
         cx=w/2;cy=h/2;
