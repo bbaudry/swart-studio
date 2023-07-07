@@ -154,10 +154,6 @@ public class Tshirt022 extends PApplet {
         xoff += grain;
         float dx , dy ;
         float t, px, py;
-        rotate(angle);
-//        t = (float) (0.5);
- //       py = (1 - t) * cy + (t * dy);
-//        ellipse(0, py, 42+alea.nextFloat() * 42, alea.nextFloat() * w / 2);
         for (int i = 0; i < cake ; i++) {
             angle += a_inc;
             radius = w / 4 + noise(xoff) * w / 2;
