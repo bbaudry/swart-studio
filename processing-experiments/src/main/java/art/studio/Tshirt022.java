@@ -152,10 +152,6 @@ public class Tshirt022 extends PApplet {
         cy = 0;// h / 2;
         radius = w / 4 + noise(xoff) * w / 2;
         xoff += grain;
-        float xinit = cx + radius * cos(angle);
-        float yinit = cx + radius * cos(angle);
-        float ix = xinit;
-        float iy = yinit;
         float dx , dy ;
         float t, px, py;
         rotate(angle);
@@ -170,7 +166,7 @@ public class Tshirt022 extends PApplet {
             dy = cy + radius * sin(angle);
             rotate(angle);
             t = (float) (0.5);
-            py = (1 - t) * cy + (t * iy);
+            py = (1 - t) * cy + (t * dy);
             ellipse(0, py, 42+alea.nextFloat() * 42, alea.nextFloat() * w/2);
         }
     }
