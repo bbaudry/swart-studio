@@ -36,8 +36,9 @@ public class Tshirt022 extends PApplet {
 
     @Override
     public void draw() {
-        // background(0, 0, 0);
-        if (frameCount <12) {
+        if (frameCount <42) {
+         background(0, 0, 0);
+            
             oneCell();
 //ell();
 //angletest+=PI/4;
@@ -98,12 +99,12 @@ public class Tshirt022 extends PApplet {
         px = (1 - t) * cx + (t * ix);
         py = (1 - t) * cy + (t * iy);
 //        ellipse(px, py, 42, 42);
-        ellipse(0,py, 42, 142);
+//        ellipse(0,py, 42, 142);
         t = (float) (0.75);
         px = (1 - t) * cx + (t * ix);
         py = (1 - t) * cy + (t * iy);
 //        ellipse(px, py, 42, 42);
-        ellipse(0,py, 42, 142);
+//        ellipse(0,py, 42, 142);
 
         for (int i = 0; i < cake - 1; i++) {
             angle += a_inc;
@@ -123,12 +124,12 @@ public class Tshirt022 extends PApplet {
         px = (1 - t) * cx + (t * ix);
         py = (1 - t) * cy + (t * iy);
 //        ellipse(px, py, 42, 42);
-        ellipse(0,py, 42, 142);
+//        ellipse(0,py, 42, 142);
         t = (float) (0.75);
         px = (1 - t) * cx + (t * ix);
         py = (1 - t) * cy + (t * iy);
 //        ellipse(px, py, 42, 42);
-        ellipse(0,py, 42, 142);
+//        ellipse(0,py, 42, 142);
             // triangle(cx,cy, ix, iy, dx, dy);
             ix = dx;
             iy = dy;
