@@ -38,7 +38,7 @@ public class Tshirt022 extends PApplet {
     public void draw() {
         if (frameCount < 42) {
             // background(0, 0, 0);
-            oneCellStar();
+            flower();
             // ell();
             // angletest+=PI/4;
         } else {
@@ -139,7 +139,7 @@ public class Tshirt022 extends PApplet {
         // triangle(cx,cy, ix, iy, dx, dy);
     }
 
-    private void oneCellStar() {
+    private void flower() {
         xoff = (float) 0.0;
         float cx, cy, radius, angle;
         noFill();
@@ -153,17 +153,16 @@ public class Tshirt022 extends PApplet {
         radius = w / 4 + noise(xoff) * w / 2;
         xoff += grain;
         float xinit = cx + radius * cos(angle);
-        float yinit = cy + radius * sin(angle);
+        float yinit = cx + radius * cos(angle);
         float ix = xinit;
         float iy = yinit;
-        float dx = 0;
-        float dy = 0;
+        float dx , dy ;
         float t, px, py;
         rotate(angle);
-        t = (float) (0.5);
-        py = (1 - t) * cy + (t * iy);
-        ellipse(0, py, 42+alea.nextFloat() * 42, alea.nextFloat() * w / 2);
-        for (int i = 0; i < cake - 1; i++) {
+//        t = (float) (0.5);
+ //       py = (1 - t) * cy + (t * dy);
+//        ellipse(0, py, 42+alea.nextFloat() * 42, alea.nextFloat() * w / 2);
+        for (int i = 0; i < cake ; i++) {
             angle += a_inc;
             radius = w / 4 + noise(xoff) * w / 2;
             xoff += grain;
@@ -173,8 +172,6 @@ public class Tshirt022 extends PApplet {
             t = (float) (0.5);
             py = (1 - t) * cy + (t * iy);
             ellipse(0, py, 42+alea.nextFloat() * 42, alea.nextFloat() * w/2);
-            ix = dx;
-            iy = dy;
         }
     }
 
