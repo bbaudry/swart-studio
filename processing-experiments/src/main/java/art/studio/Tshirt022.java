@@ -11,11 +11,10 @@ public class Tshirt022 extends PApplet {
     int w = 1000 * ratio;
     int h = 1000 * ratio;
     Random alea;
-    float minx,miny,maxx,maxy;
-    float xoff,grain;
+    float minx, miny, maxx, maxy;
+    float xoff, grain;
     float hu;
-
-    
+    float angletest;
 
     @Override
     public void settings() {
@@ -28,59 +27,159 @@ public class Tshirt022 extends PApplet {
         background(0, 0, 0);
         stroke(0, 0, 0);
         alea = new Random();
-        hu=140;
-        xoff = (float)0.0; grain = (float)0.1; //control the noise
+        hu = 140;
+        xoff = (float) 0.0;
+        grain = (float) 0.1; // control the noise
+        angletest=0;
+        frameRate(1);
     }
 
     @Override
     public void draw() {
-        if(frameCount<4){
+        // background(0, 0, 0);
+        if (frameCount <12) {
             oneCell();
-        }
-        else{
+//ell();
+//angletest+=PI/4;
+        } else {
             noLoop();
             save("tshirt022.png");
         }
     }
 
-    private void oneCell(){
-        float cx,cy,radius,angle;
-//        noStroke();
-//        fill(hu,100,100,21);
-//        hu+=4;
+    private void ell(){
+        //pushStyle();
         noFill();
-        stroke(50,0,100,84);
-        strokeWeight(3);
-        int cake = 42+alea.nextInt(42); // number of sections in the shape
-        float a_inc = (2*PI)/cake;
-        angle = 0;
-        cx=w/2;cy=h/2;
-        radius = noise(xoff)*w/2; xoff+=grain;
-        float xinit = cx+radius*cos(angle);
-        float yinit = cy+radius*sin(angle);
-        float ix=xinit;
+        translate(w/2,h/2);
+        rotate(angletest);
+        stroke(0,100,100);
+        ellipse(0,0,244,444);
+        stroke(90,100,100);
+        ellipse(0,100,244,444);
+        stroke(180,100,100);
+        ellipse(0,200,244,444);
+        //popStyle();
+    }
+
+    private void oneCell() {
+        float cx, cy, radius, angle;
+        // noStroke();
+        // fill(hu,100,100,21);
+        // hu+=4;
+        noFill();
+        stroke(50, 0, 100, 42);
+        int cake = 42 + alea.nextInt(42); // number of sections in the shape
+        float a_inc = (2 * PI) / cake;
+        translate(w/2,h/2);
+        angle = alea.nextFloat()*PI;
+        cx = 0;//w / 2;
+        cy = 0;//h / 2;
+        radius = noise(xoff) * w / 2;
+        xoff += grain;
+        float xinit = cx + radius * cos(angle);
+        float yinit = cy + radius * sin(angle);
+        float ix = xinit;
         float iy = yinit;
-        float dx=0;
-        float dy=0;
-        //line(cx,cy,ix,iy);
+        float dx = 0;
+        float dy = 0;
+        line(cx, cy, ix, iy);
         beginShape();
         curveVertex(xinit, yinit);
         curveVertex(xinit, yinit);
-        for (int i=0;i<cake-1;i++){
-            angle+=a_inc;
-            radius = noise(xoff)*w/2; xoff+=grain;
-            dx = cx + radius*cos(angle);
-            dy = cy + radius*sin(angle);
+        float t, px, py;
+        line(cx, cy, ix, iy);
+        rotate(angle);
+        t = (float) (0.5);
+        px = (1 - t) * cx + (t * ix);
+        py = (1 - t) * cy + (t * iy);
+//        ellipse(px, py, 42, 42);
+        ellipse(0,py, 42, 142);
+        t = (float) (0.25);
+        px = (1 - t) * cx + (t * ix);
+        py = (1 - t) * cy + (t * iy);
+//        ellipse(px, py, 42, 42);
+        ellipse(0,py, 42, 142);
+        t = (float) (0.75);
+        px = (1 - t) * cx + (t * ix);
+        py = (1 - t) * cy + (t * iy);
+//        ellipse(px, py, 42, 42);
+        ellipse(0,py, 42, 142);
+
+        for (int i = 0; i < cake - 1; i++) {
+            angle += a_inc;
+            radius = noise(xoff) * w / 2;
+            xoff += grain;
+            dx = cx + radius * cos(angle);
+            dy = cy + radius * sin(angle);
             curveVertex(dx, dy);
-            //line(cx,cy,dx,dy);
-            //triangle(cx,cy, ix, iy, dx, dy);
-            ix=dx;
-            iy=dy;
+            line(cx, cy, dx, dy);
+            rotate(angle);
+        t = (float) (0.5);
+        px = (1 - t) * cx + (t * ix);
+        py = (1 - t) * cy + (t * iy);
+//        ellipse(px, py, 42, 42);
+        ellipse(0,py, 42, 142);
+        t = (float) (0.25);
+        px = (1 - t) * cx + (t * ix);
+        py = (1 - t) * cy + (t * iy);
+//        ellipse(px, py, 42, 42);
+        ellipse(0,py, 42, 142);
+        t = (float) (0.75);
+        px = (1 - t) * cx + (t * ix);
+        py = (1 - t) * cy + (t * iy);
+//        ellipse(px, py, 42, 42);
+        ellipse(0,py, 42, 142);
+            // triangle(cx,cy, ix, iy, dx, dy);
+            ix = dx;
+            iy = dy;
         }
         curveVertex(xinit, yinit);
         curveVertex(xinit, yinit);
         endShape();
-        //triangle(cx,cy, ix, iy, dx, dy);
+        // triangle(cx,cy, ix, iy, dx, dy);
+    }
+
+    private void oneCellEllipse() {
+        float cx, cy, radius, angle;
+        noFill();
+        stroke(50, 0, 100, 84);
+        int cake = 4 + alea.nextInt(4); // number of sections in the shape
+        float a_inc = (2 * PI) / cake;
+        angle = 0;
+        cx = w / 2;
+        cy = h / 2;
+        radius = noise(xoff) * w / 2;
+        xoff += grain;
+        float xinit = cx + radius * cos(angle);
+        float yinit = cy + radius * sin(angle);
+        float ix = xinit;
+        float iy = yinit;
+        float dx = 0;
+        float dy = 0;
+        float t, px, py;
+        t = (float) (0.5);
+        line(cx, cy, ix, iy);
+        px = (1 - t) * cx + (t * ix);
+        py = (1 - t) * cy + (t * iy);
+        ellipse(px, py, 42, 42);
+        for (int i = 0; i < cake - 1; i++) {
+            angle += a_inc;
+            radius = noise(xoff) * w / 2;
+            xoff += grain;
+            dx = cx + radius * cos(angle);
+            dy = cy + radius * sin(angle);
+            line(cx, cy, dx, dy);
+            t = (float) (0.5);// (float)(radius*0.5);
+            px = (1 - t) * cx + (t * dx);
+            py = (1 - t) * cy + (t * dy);
+            // pushStyle();
+            // translate(w/2, h/2);
+            // rotate(angle);
+            // popStyle();
+            ellipse(px, py, 42, 42);
+            ix = dx;
+            iy = dy;
+        }
     }
 
     public static void main(String[] args) {
