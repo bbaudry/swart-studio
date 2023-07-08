@@ -34,16 +34,15 @@ public class Tshirt022 extends PApplet {
         sharestest = 5;
         inctest = radians(360/sharestest);
         angletest = inctest;
-        frameRate(1);
     }
 
     @Override
     public void draw() {
-        if (frameCount < 2) {
+        if (frameCount < 63) {
             //background(0, 0, 0);
             //ell();
             //angletest+=inctest;
-            flower();
+            flower(w/2,h/2,21);
         } else {
             noLoop();
             save("tshirt022.png");
@@ -52,6 +51,8 @@ public class Tshirt022 extends PApplet {
 
     private void ell() {
         noFill();
+        for (int i=0;i<sharestest;i++){
+            pushMatrix();
         translate(w / 2, h / 2);        
         rotate(angletest);
         stroke(0, 100, 100);
@@ -62,31 +63,30 @@ public class Tshirt022 extends PApplet {
         ellipse(0, 200, 244, 444);
         stroke(0,0,100);
         line(0,0,0,400);
+        angletest+=inctest;
+        popMatrix();
+        }
     }
 
-    private void flower() {
+    private void flower(float cx, float cy, int cake) {
         xoff = (float) 0.0;
-        float cx, cy, a_inc, radius, angle, dy , t,  py;
-        translate(w / 2, h / 2);
-        cx = 0;// w / 2;
-        cy = 0;// h / 2;
-        int cake = 5;// + alea.nextInt(42); // number of sections in the shape
+        noFill();
+        float a_inc, radius, angle, t,  py;
+        // + alea.nextInt(42); // number of sections in the shape
         a_inc = radians(360/cake);// (2 * PI) / cake;
         angle =  a_inc;//alea.nextFloat()*PI;
         for (int i = 0; i < cake ; i++) {
-            radius = w / 4 + noise(xoff) * w / 2;
-            xoff += grain;
+            pushMatrix();
+            translate(cx, cy);
+            radius =  noise(xoff) * (float)(0.8 * w );
             rotate(angle); 
-            dy = radius;            
-            t = (float) (0.5);
-            py = radius/2;//(1 - t) * cy + (t * dy);
-            noFill();
-            strokeWeight(i+1);
-            stroke(i*30, 100, 100);
-            ellipse(0, py, 42, w/4);
-            stroke(i*30, 100, 100);
-            line(cx,cy,0,radius);
-            angle += a_inc;            
+            t = noise(xoff)*(float)(0.5);
+            py = (1 - t) * 0 + (t * radius);
+            stroke(280+alea.nextInt(60),100,100,42);
+            ellipse(0, py, 42+alea.nextFloat()*42, radius/3+alea.nextFloat()*radius/4);
+            angle += a_inc;      
+            popMatrix();      
+            xoff += grain;
         }
     }
 
