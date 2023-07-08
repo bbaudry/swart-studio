@@ -11,7 +11,7 @@ public class Tshirt023 extends PApplet {
     int w = 1000 * ratio;
     int h = 1000 * ratio;
     Random alea = new Random();
-    ArrayList<ArrayList<Float>> coords = new ArrayList<>();;
+    ArrayList<ArrayList<Float>> radii = new ArrayList<>();;
     float xoffglobal = (float) 0.0;
     float grainglobal = (float) 0.05;
 
@@ -30,6 +30,7 @@ public class Tshirt023 extends PApplet {
     @Override
     public void draw() {
         if (frameCount < 2) {
+            setRadii(7,42);
             oneEnvelop(7,42);
         } else {
             noLoop();
@@ -44,16 +45,6 @@ public class Tshirt023 extends PApplet {
         angle_inc = radians(360 / cake);
         cx = w / 2;
         cy = h / 2;
-        ArrayList<ArrayList<Float>> radii = new ArrayList<>();
-        for (int i = 0; i < cake; i++) {
-            ArrayList<Float> radiiVec = new ArrayList<>();
-            for (int j = 0; j < layers; j++) {
-                radius = w / 4 + noise(xoffglobal) * w/4;
-                xoffglobal += grainglobal;
-                radiiVec.add(radius);
-            }
-            radii.add(radiiVec);
-        }
         for (int k = 0; k < layers; k++) {
             angle = angle_inc;
             beginShape();
@@ -76,21 +67,18 @@ public class Tshirt023 extends PApplet {
         }
     }
 
-    private void setRadii(int cake) {
-        float xoff = (float) 0.0;
-        float a_inc = radians(360 / cake);
-        float grain = (float) 0.1; // control the noise
-        float angle = a_inc;
+    private void setRadii(int cake, int layers) {
         float radius;
         for (int i = 0; i < cake; i++) {
-            ArrayList<Float> vec = new ArrayList<>();
-            radius = noise(xoff) * (float) (0.8 * w);
-            vec.add(radius);
-            xoff += grain;
-            vec.add(angle);
-            angle += a_inc;
-            coords.add(vec);
+            ArrayList<Float> radiiVec = new ArrayList<>();
+            for (int j = 0; j < layers; j++) {
+                radius = w / 4 + noise(xoffglobal) * w/4;
+                xoffglobal += grainglobal;
+                radiiVec.add(radius);
+            }
+            radii.add(radiiVec);
         }
+
     }
 
     private void flower(float cx, float cy, int cake) {
