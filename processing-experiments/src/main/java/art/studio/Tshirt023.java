@@ -11,7 +11,6 @@ public class Tshirt023 extends PApplet {
     int w = 1000 * ratio;
     int h = 1000 * ratio;
     Random alea = new Random();
-    ArrayList<ArrayList<Float>> radii = new ArrayList<>();;
     float xoffglobal = (float) 0.0;
     float grainglobal = (float) 0.05;
 
@@ -30,21 +29,18 @@ public class Tshirt023 extends PApplet {
     @Override
     public void draw() {
         if (frameCount < 2) {
-            setRadii(7,42);
-            oneEnvelop(7,42);
+            oneCell(7, 12, w/2, h/2);
         } else {
             noLoop();
             save("tshirt023.png");
         }
     }
 
-    private void oneEnvelop(int cake, int layers) {
+    private void oneEnvelop(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
         noFill();
         stroke(0, 0, 100);
-        float angle, radius, angle_inc, cx, cy, x1, x2, y1, y2;
+        float angle, radius, angle_inc, x1, x2, y1, y2;
         angle_inc = radians(360 / cake);
-        cx = w / 2;
-        cy = h / 2;
         for (int k = 0; k < layers; k++) {
             angle = angle_inc;
             beginShape();
@@ -67,7 +63,29 @@ public class Tshirt023 extends PApplet {
         }
     }
 
-    private void setRadii(int cake, int layers) {
+    private void petals(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
+        noFill();
+        stroke(0, 0, 100);
+        float angle, radius, py,t, angle_inc;
+        angle_inc = radians(360 / cake);
+        angle=angle_inc;
+        for (int k = 0; k < layers; k++) {
+            angle = angle_inc;
+            for (int i = 0; i < cake; i++) {
+            pushMatrix();
+            translate(cx, cy);
+            radius = radii.get(i).get(k);
+            rotate(angle);
+            t = (float) (0.5);
+            py = (1 - t) * 0 + (t * radius);
+            ellipse(0, py, 84 + alea.nextFloat() * 84, radius / 3 + alea.nextFloat() * radius / 3);
+            angle += angle_inc;
+            popMatrix();            }
+        }
+    }
+
+    private ArrayList<ArrayList<Float>> setRadii(int cake, int layers) {
+        ArrayList<ArrayList<Float>> radii = new ArrayList<>();
         float radius;
         for (int i = 0; i < cake; i++) {
             ArrayList<Float> radiiVec = new ArrayList<>();
@@ -78,110 +96,13 @@ public class Tshirt023 extends PApplet {
             }
             radii.add(radiiVec);
         }
-
+        return radii;
     }
 
-    private void flower(float cx, float cy, int cake) {
-        float xoff = (float) 0.0;
-        float grain = (float) 0.1;
-        noFill();
-        float a_inc, radius, angle, t, py;
-        // + alea.nextInt(42); // number of sections in the shape
-        a_inc = radians(360 / cake);// (2 * PI) / cake;
-        angle = a_inc;// alea.nextFloat()*PI;
-        for (int i = 0; i < cake; i++) {
-            pushMatrix();
-            translate(cx, cy);
-            radius = noise(xoff) * (float) (0.8 * w);
-            rotate(angle);
-            t = noise(xoff) * (float) (0.5);
-            py = (1 - t) * 0 + (t * radius);
-            stroke(280 + alea.nextInt(60), 100, 100, 42);
-            ellipse(0, py, 42 + alea.nextFloat() * 42, radius / 3 + alea.nextFloat() * radius / 4);
-            angle += a_inc;
-            popMatrix();
-            xoff += grain;
-        }
-    }
-
-    private void oneCell() {
-        float xoff = (float) 0.0;
-        float grain = (float) 0.1;
-        float cx, cy, radius, angle;
-        // noStroke();
-        // fill(hu,100,100,21);
-        // hu+=4;
-        noFill();
-        stroke(50, 0, 100, 42);
-        int cake = 42 + alea.nextInt(42); // number of sections in the shape
-        float a_inc = (2 * PI) / cake;
-        translate(w / 2, h / 2);
-        angle = alea.nextFloat() * PI;
-        cx = 0;// w / 2;
-        cy = 0;// h / 2;
-        radius = noise(xoff) * w / 2;
-        xoff += grain;
-        float xinit = cx + radius * cos(angle);
-        float yinit = cy + radius * sin(angle);
-        float ix = xinit;
-        float iy = yinit;
-        float dx = 0;
-        float dy = 0;
-        line(cx, cy, ix, iy);
-        beginShape();
-        curveVertex(xinit, yinit);
-        curveVertex(xinit, yinit);
-        float t, px, py;
-        line(cx, cy, ix, iy);
-        rotate(angle);
-        t = (float) (0.5);
-        px = (1 - t) * cx + (t * ix);
-        py = (1 - t) * cy + (t * iy);
-        // ellipse(px, py, 42, 42);
-        ellipse(0, py, 42, 142);
-        t = (float) (0.25);
-        px = (1 - t) * cx + (t * ix);
-        py = (1 - t) * cy + (t * iy);
-        // ellipse(px, py, 42, 42);
-        // ellipse(0,py, 42, 142);
-        t = (float) (0.75);
-        px = (1 - t) * cx + (t * ix);
-        py = (1 - t) * cy + (t * iy);
-        // ellipse(px, py, 42, 42);
-        // ellipse(0,py, 42, 142);
-
-        for (int i = 0; i < cake - 1; i++) {
-            angle += a_inc;
-            radius = noise(xoff) * w / 2;
-            xoff += grain;
-            dx = cx + radius * cos(angle);
-            dy = cy + radius * sin(angle);
-            curveVertex(dx, dy);
-            line(cx, cy, dx, dy);
-            rotate(angle);
-            t = (float) (0.5);
-            px = (1 - t) * cx + (t * ix);
-            py = (1 - t) * cy + (t * iy);
-            // ellipse(px, py, 42, 42);
-            ellipse(0, py, 42, 142);
-            t = (float) (0.25);
-            px = (1 - t) * cx + (t * ix);
-            py = (1 - t) * cy + (t * iy);
-            // ellipse(px, py, 42, 42);
-            // ellipse(0,py, 42, 142);
-            t = (float) (0.75);
-            px = (1 - t) * cx + (t * ix);
-            py = (1 - t) * cy + (t * iy);
-            // ellipse(px, py, 42, 42);
-            // ellipse(0,py, 42, 142);
-            // triangle(cx,cy, ix, iy, dx, dy);
-            ix = dx;
-            iy = dy;
-        }
-        curveVertex(xinit, yinit);
-        curveVertex(xinit, yinit);
-        endShape();
-        // triangle(cx,cy, ix, iy, dx, dy);
+    private void oneCell(int cake, int layers, float cx, float cy){
+        ArrayList<ArrayList<Float>> radii = setRadii(cake,layers);
+        oneEnvelop(cake, layers, radii, cx,cy);
+        petals(cake, layers, radii, cx, cy);
     }
 
     public static void main(String[] args) {
