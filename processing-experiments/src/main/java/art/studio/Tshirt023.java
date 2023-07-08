@@ -38,6 +38,13 @@ public class Tshirt023 extends PApplet {
         }
     }
 
+    private void oneCell(int cake, int layers, float cx, float cy){
+        ArrayList<ArrayList<Float>> radii = setRadii(cake,layers);
+        oneEnvelop(cake, layers, radii, cx,cy);
+        petals(cake, layers, radii, cx, cy);
+    }
+
+
     private void oneEnvelop(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
         float angle, radius, angle_inc, x1, x2, y1, y2;
         angle_inc = radians(360 / cake);
@@ -62,6 +69,7 @@ public class Tshirt023 extends PApplet {
             endShape();
         }
     }
+
 
     private void petals(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
         float angle, radius, py,t, angle_inc;
@@ -97,11 +105,6 @@ public class Tshirt023 extends PApplet {
         return radii;
     }
 
-    private void oneCell(int cake, int layers, float cx, float cy){
-        ArrayList<ArrayList<Float>> radii = setRadii(cake,layers);
-        oneEnvelop(cake, layers, radii, cx,cy);
-        petals(cake, layers, radii, cx, cy);
-    }
 
     public static void main(String[] args) {
         String[] processingArgs = { "Tshirt023" };
