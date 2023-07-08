@@ -2,8 +2,6 @@
 package art.studio;
 
 import processing.core.PApplet;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Tshirt018 extends PApplet {
