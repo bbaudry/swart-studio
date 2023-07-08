@@ -14,7 +14,8 @@ public class Tshirt022 extends PApplet {
     float minx, miny, maxx, maxy;
     float xoff, grain;
     float hu;
-    float angletest;
+    float angletest,inctest;
+    int sharestest;
 
     @Override
     public void settings() {
@@ -30,17 +31,19 @@ public class Tshirt022 extends PApplet {
         hu = 140;
         xoff = (float) 0.0;
         grain = (float) 0.1; // control the noise
-        angletest = 0;
+        sharestest = 5;
+        inctest = radians(360/sharestest);
+        angletest = inctest;
         frameRate(1);
     }
 
     @Override
     public void draw() {
-        if (frameCount < 42) {
-            // background(0, 0, 0);
+        if (frameCount < 2) {
+            //background(0, 0, 0);
+            //ell();
+            //angletest+=inctest;
             flower();
-            // ell();
-            // angletest+=PI/4;
         } else {
             noLoop();
             save("tshirt022.png");
@@ -48,9 +51,8 @@ public class Tshirt022 extends PApplet {
     }
 
     private void ell() {
-        // pushStyle();
         noFill();
-        translate(w / 2, h / 2);
+        translate(w / 2, h / 2);        
         rotate(angletest);
         stroke(0, 100, 100);
         ellipse(0, 0, 244, 444);
@@ -58,7 +60,34 @@ public class Tshirt022 extends PApplet {
         ellipse(0, 100, 244, 444);
         stroke(180, 100, 100);
         ellipse(0, 200, 244, 444);
-        // popStyle();
+        stroke(0,0,100);
+        line(0,0,0,400);
+    }
+
+    private void flower() {
+        xoff = (float) 0.0;
+        float cx, cy, a_inc, radius, angle, dy , t,  py;
+        translate(w / 2, h / 2);
+        cx = 0;// w / 2;
+        cy = 0;// h / 2;
+        int cake = 5;// + alea.nextInt(42); // number of sections in the shape
+        a_inc = radians(360/cake);// (2 * PI) / cake;
+        angle =  a_inc;//alea.nextFloat()*PI;
+        for (int i = 0; i < cake ; i++) {
+            radius = w / 4 + noise(xoff) * w / 2;
+            xoff += grain;
+            rotate(angle); 
+            dy = radius;            
+            t = (float) (0.5);
+            py = radius/2;//(1 - t) * cy + (t * dy);
+            noFill();
+            strokeWeight(i+1);
+            stroke(i*30, 100, 100);
+            ellipse(0, py, 42, w/4);
+            stroke(i*30, 100, 100);
+            line(cx,cy,0,radius);
+            angle += a_inc;            
+        }
     }
 
     private void oneCell() {
@@ -139,33 +168,6 @@ public class Tshirt022 extends PApplet {
         // triangle(cx,cy, ix, iy, dx, dy);
     }
 
-    private void flower() {
-        xoff = (float) 0.0;
-        float cx, cy, radius, angle;
-        noFill();
-        stroke(50, 0, 100, 42);
-        int cake = 84;// + alea.nextInt(42); // number of sections in the shape
-        float a_inc = (2 * PI) / cake;
-        translate(w / 2, h / 2);
-        angle =  alea.nextFloat()*PI;
-        cx = 0;// w / 2;
-        cy = 0;// h / 2;
-        radius = w / 4 + noise(xoff) * w / 2;
-        xoff += grain;
-        float dx , dy ;
-        float t, px, py;
-        for (int i = 0; i < cake ; i++) {
-            angle += a_inc;
-            radius = w / 4 + noise(xoff) * w / 2;
-            xoff += grain;
-            dx = cx + radius * cos(angle);
-            dy = cy + radius * sin(angle);
-            rotate(angle);
-            t = (float) (0.5);
-            py = (1 - t) * cy + (t * dy);
-            ellipse(0, py, 42+alea.nextFloat() * 42, alea.nextFloat() * w/2);
-        }
-    }
 
     private void oneCellEllipse() {
         float cx, cy, radius, angle;
