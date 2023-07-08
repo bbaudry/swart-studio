@@ -29,7 +29,9 @@ public class Tshirt023 extends PApplet {
     @Override
     public void draw() {
         if (frameCount < 2) {
-            oneCell(7, 12, w/2, h/2);
+            noFill();
+            stroke(25+alea.nextFloat()*10,100,100,84);
+            oneCell(11,84, w/2, h/2);
         } else {
             noLoop();
             save("tshirt023.png");
@@ -37,8 +39,6 @@ public class Tshirt023 extends PApplet {
     }
 
     private void oneEnvelop(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
-        noFill();
-        stroke(0, 0, 100);
         float angle, radius, angle_inc, x1, x2, y1, y2;
         angle_inc = radians(360 / cake);
         for (int k = 0; k < layers; k++) {
@@ -64,8 +64,6 @@ public class Tshirt023 extends PApplet {
     }
 
     private void petals(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
-        noFill();
-        stroke(0, 0, 100);
         float angle, radius, py,t, angle_inc;
         angle_inc = radians(360 / cake);
         angle=angle_inc;
@@ -76,9 +74,9 @@ public class Tshirt023 extends PApplet {
             translate(cx, cy);
             radius = radii.get(i).get(k);
             rotate(angle);
-            t = (float) (0.5);
+            t = (float) (0.6);
             py = (1 - t) * 0 + (t * radius);
-            ellipse(0, py, 84 + alea.nextFloat() * 84, radius / 3 + alea.nextFloat() * radius / 3);
+            ellipse(0, py, radius / 4 + alea.nextFloat() * radius / 10, radius / 3 + alea.nextFloat() * radius / 4);
             angle += angle_inc;
             popMatrix();            }
         }
