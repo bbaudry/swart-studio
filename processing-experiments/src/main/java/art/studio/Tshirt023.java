@@ -24,13 +24,15 @@ public class Tshirt023 extends PApplet {
         colorMode(HSB, 360, 100, 100, 250);
         background(0, 0, 0);
         stroke(0, 0, 0);
+        frameRate(1);
     }
 
     @Override
     public void draw() {
-        if (frameCount < 2) {
+        if (frameCount < 12) {
             noFill();
-            stroke(25+alea.nextFloat()*10,100,100,84);
+            stroke(185+alea.nextFloat()*10,100,100,84);
+            background(0,0,0);
             oneCell(11,84, w/2, h/2);
         } else {
             noLoop();
@@ -81,11 +83,11 @@ public class Tshirt023 extends PApplet {
             pushMatrix();
             translate(cx, cy);
             radius = radii.get(i).get(k);
-            rotate(angle+radians(-7+alea.nextFloat()*14));
+            rotate(angle+radians(-4+alea.nextFloat()*8));
             t = (float) (0.6);
             py = (1 - t) * 0 + (t * radius);
-            strokeWeight(1+alea.nextFloat()*3);
-            ellipse(0, py, radius / 4 + alea.nextFloat() * radius / 10, radius / 3 + alea.nextFloat() * radius / 4);
+            strokeWeight(1+alea.nextFloat()*2);
+            ellipse(0, py, radius / 4 + alea.nextFloat() * radius / 9, radius / 3 + alea.nextFloat() * radius / 4);
             angle += angle_inc;
             popMatrix();            }
         }
