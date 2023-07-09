@@ -75,15 +75,16 @@ public class Tshirt023 extends PApplet {
         float angle, radius, py,t, angle_inc;
         angle_inc = radians(360 / cake);
         angle=angle_inc;
-        for (int k = 0; k < layers; k++) {
+        for (int k = 0; k < layers/2; k++) {
             angle = angle_inc;
             for (int i = 0; i < cake; i++) {
             pushMatrix();
             translate(cx, cy);
             radius = radii.get(i).get(k);
-            rotate(angle);
+            rotate(angle+radians(-7+alea.nextFloat()*14));
             t = (float) (0.6);
             py = (1 - t) * 0 + (t * radius);
+            strokeWeight(1+alea.nextFloat()*3);
             ellipse(0, py, radius / 4 + alea.nextFloat() * radius / 10, radius / 3 + alea.nextFloat() * radius / 4);
             angle += angle_inc;
             popMatrix();            }
