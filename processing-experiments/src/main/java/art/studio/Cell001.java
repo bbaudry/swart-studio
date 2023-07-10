@@ -8,7 +8,7 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Tshirt023 extends PApplet {
+public class Cell001 extends PApplet {
     int ratio = 1;
     int w = 1000 * ratio;
     int h = 1000 * ratio;
@@ -31,21 +31,22 @@ public class Tshirt023 extends PApplet {
 
     @Override
     public void draw() {
-        if (frameCount < 12) {
+        if (frameCount < 2) {
             noFill();
             stroke(185+alea.nextFloat()*10,100,100,84);
             background(0,0,0);
             oneCell(11,84, w/2, h/2);
         } else {
             noLoop();
-            save("tshirt023.png");
+            save("cell001.png");
         }
     }
 
     private void oneCell(int cake, int layers, float cx, float cy){
         ArrayList<ArrayList<Float>> radii = setRadii(cake,layers);
-        oneEnvelop(cake, layers, radii, cx,cy);
-        petals(cake, layers, radii, cx, cy);
+        //oneEnvelop(cake, layers, radii, cx,cy);
+        //petals(cake, layers, radii, cx, cy);
+        core(cake, layers, radii, cx, cy);
     }
 
 
@@ -86,7 +87,7 @@ public class Tshirt023 extends PApplet {
         angle_inc = radians(360 / cake);
         angle=angle_inc;
         for (int k = 0; k < layers/2; k++) {
-            angle = angle_inc;
+            angle = angle_inc/2;
             for (int i = 0; i < cake; i++) {
             pushMatrix();
             translate(cx, cy);
@@ -117,10 +118,48 @@ public class Tshirt023 extends PApplet {
         return radii;
     }
 
+    private void core(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy){
+        changeStrokeColor();
+        float s = w/20;
+        strokeWeight(9);
+        ellipse(cx,cy, w/3, w/3);
+        fill(180,100,100,100);
+        ellipse(cx,cy,w/20,w/20);
+        for(int i=0;i<360;i+=60){
+            float dx = cx+s*cos(radians(i));
+            float dy = cy+s*sin(radians(i));
+            ellipse(dx,dy,s,s);
+
+            dx = cx+2*s*cos(radians(i));
+            dy = cy+2*s*sin(radians(i));
+            ellipse(dx,dy,w/20,w/20);
+            float t=2*s;//2*sqrt(s*s-(s/2)*(s/2));
+            dx = cx+t*cos(radians(i+30));
+            dy = cy+t*sin(radians(i+30));
+            ellipse(dx,dy,s,s);
+
+            dx = cx+3*s*cos(radians(i));
+            dy = cy+3*s*sin(radians(i));
+            ellipse(dx,dy,w/20,w/20);
+            t=3*s;//2*sqrt(s*s-(s/2)*(s/2))+s;
+            dx = cx+t*cos(radians(i+45));
+            dy = cy+t*sin(radians(i+45));
+            ellipse(dx,dy,s,s);
+            dx = cx+t*cos(radians(i+15));
+            dy = cy+t*sin(radians(i+15));
+            ellipse(dx,dy,s,s);
+            dx = cx+t*cos(radians(i+30));
+            dy = cy+t*sin(radians(i+30));
+            ellipse(dx,dy,s,s);
+        }
+
+        
+    }
+
 
     public static void main(String[] args) {
-        String[] processingArgs = { "Tshirt023" };
-        Tshirt023 mySketch = new Tshirt023();
+        String[] processingArgs = { "Cell001" };
+        Cell001 mySketch = new Cell001();
         PApplet.runSketch(processingArgs, mySketch);
     }
 }
