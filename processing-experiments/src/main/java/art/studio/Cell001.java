@@ -126,30 +126,32 @@ public class Cell001 extends PApplet {
         fill(180,100,100,100);
         ellipse(cx,cy,w/20,w/20);
         for(int i=0;i<360;i+=60){
-            float dx = cx+s*cos(radians(i));
-            float dy = cy+s*sin(radians(i));
+            float t,dx,dy;
+            t = s;
+            dx = cx+t*cos(radians(i));
+            dy = cy+t*sin(radians(i));
             ellipse(dx,dy,s,s);
 
-            dx = cx+2*s*cos(radians(i));
-            dy = cy+2*s*sin(radians(i));
+            t=2*s;//2*sqrt(s*s-(s/2)*(s/2));
+            dx = cx+t*s*cos(radians(i));
+            dy = cy+t*s*sin(radians(i));
             ellipse(dx,dy,w/20,w/20);
-            float t=2*s;//2*sqrt(s*s-(s/2)*(s/2));
             dx = cx+t*cos(radians(i+30));
             dy = cy+t*sin(radians(i+30));
             ellipse(dx,dy,s,s);
 
-            dx = cx+3*s*cos(radians(i));
-            dy = cy+3*s*sin(radians(i));
+            t=3*s;
+            dx = cx+t*cos(radians(i));
+            dy = cy+t*sin(radians(i));
             ellipse(dx,dy,w/20,w/20);
-            t=3*s;//2*sqrt(s*s-(s/2)*(s/2))+s;
-            dx = cx+t*cos(radians(i+45));
-            dy = cy+t*sin(radians(i+45));
-            ellipse(dx,dy,s,s);
             dx = cx+t*cos(radians(i+15));
             dy = cy+t*sin(radians(i+15));
             ellipse(dx,dy,s,s);
             dx = cx+t*cos(radians(i+30));
             dy = cy+t*sin(radians(i+30));
+            ellipse(dx,dy,s,s);
+            dx = cx+t*cos(radians(i+45));
+            dy = cy+t*sin(radians(i+45));
             ellipse(dx,dy,s,s);
         }
 
