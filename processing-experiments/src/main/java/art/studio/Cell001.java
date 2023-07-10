@@ -133,8 +133,8 @@ public class Cell001 extends PApplet {
             ellipse(dx,dy,s,s);
 
             t=2*s;//2*sqrt(s*s-(s/2)*(s/2));
-            dx = cx+t*s*cos(radians(i));
-            dy = cy+t*s*sin(radians(i));
+            dx = cx+t*cos(radians(i));
+            dy = cy+t*sin(radians(i));
             ellipse(dx,dy,w/20,w/20);
             dx = cx+t*cos(radians(i+30));
             dy = cy+t*sin(radians(i+30));
