@@ -129,8 +129,8 @@ public class Cell001 extends PApplet {
         for(int k=1;k<9;k++){
             t=s*k;
                 for(int i=0;i<360;i+=60/k){
-                    dx = cx+t*cos(radians(i+alea.nextFloat()*7));
-                    dy = cy+t*sin(radians(i+alea.nextFloat()*7));
+                    dx = cx+(t+alea.nextFloat()*7)*cos(radians(i+alea.nextFloat()*7));
+                    dy = cy+(t+alea.nextFloat()*7)*sin(radians(i+alea.nextFloat()*7));
                     changeStrokeColor();
                     fill(130+alea.nextFloat()*60,100,100,100);
                     ellipse(dx,dy,s,s);
