@@ -44,13 +44,14 @@ public class Cell001 extends PApplet {
 
     private void oneCell(int cake, int layers, float cx, float cy){
         ArrayList<ArrayList<Float>> radii = setRadii(cake,layers);
-        //oneEnvelop(cake, layers, radii, cx,cy);
-        //petals(cake, layers, radii, cx, cy);
         core(cake, layers, radii, cx, cy);
+        petals(cake, layers, radii, cx, cy);
+        oneEnvelop(cake, layers, radii, cx,cy);
     }
 
 
     private void oneEnvelop(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
+        noFill();
         float angle, radius, angle_inc, x1, x2, y1, y2;
         angle_inc = radians(360 / cake);
         for (int k = 0; k < layers; k++) {
@@ -83,6 +84,7 @@ public class Cell001 extends PApplet {
 
 
     private void petals(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
+        noFill();
         float angle, radius, py,t, angle_inc;
         angle_inc = radians(360 / cake);
         angle=angle_inc;
@@ -120,20 +122,20 @@ public class Cell001 extends PApplet {
 
     private void core(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy){
         changeStrokeColor();
-        float s = w/50;
-        strokeWeight(9);
-        ellipse(cx,cy, w/3, w/3);
+        float s = w/100; //diameter for each particle
+        int rings = 13; //controls the number of rings that are drawn
+        int density = 30; //60 is the most regular distribution, lower is more dense
         fill(180,100,100,100);
         ellipse(cx,cy,s,s);
         float dx,dy,t;
-        for(int k=1;k<9;k++){
-            t=s*k;
-                for(int i=0;i<360;i+=60/k){
-                    dx = cx+(t+alea.nextFloat()*7)*cos(radians(i+alea.nextFloat()*7));
-                    dy = cy+(t+alea.nextFloat()*7)*sin(radians(i+alea.nextFloat()*7));
+        for(int k=1;k<rings;k++){
+            t=s*k;//distance from center (cy,cy)
+                for(int i=0;i<360;i+=density/k){
+                    dx = cx+(t+alea.nextFloat()*11)*cos(radians(i+alea.nextFloat()*7));
+                    dy = cy+(t+alea.nextFloat()*11)*sin(radians(i+alea.nextFloat()*7));
                     changeStrokeColor();
                     fill(130+alea.nextFloat()*60,100,100,100);
-                    ellipse(dx,dy,s,s);
+                    ellipse(dx,dy,s+alea.nextFloat()*7,s+alea.nextFloat()*7);
                 }
         }
 /*         for(int i=0;i<360;i+=60){
