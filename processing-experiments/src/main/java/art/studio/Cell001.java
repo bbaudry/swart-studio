@@ -120,13 +120,24 @@ public class Cell001 extends PApplet {
 
     private void core(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy){
         changeStrokeColor();
-        float s = w/20;
+        float s = w/50;
         strokeWeight(9);
         ellipse(cx,cy, w/3, w/3);
         fill(180,100,100,100);
-        ellipse(cx,cy,w/20,w/20);
-        for(int i=0;i<360;i+=60){
-            float t,dx,dy;
+        ellipse(cx,cy,s,s);
+        float dx,dy,t;
+        for(int k=1;k<9;k++){
+            t=s*k;
+                for(int i=0;i<360;i+=60/k){
+                    dx = cx+t*cos(radians(i));
+                    dy = cy+t*sin(radians(i));
+        changeStrokeColor();
+        fill(130+alea.nextFloat()*60,100,100,100);
+                    ellipse(dx,dy,s,s);
+                }
+        }
+/*         for(int i=0;i<360;i+=60){
+            float dx,dy;
             t = s;
             dx = cx+t*cos(radians(i));
             dy = cy+t*sin(radians(i));
@@ -154,7 +165,7 @@ public class Cell001 extends PApplet {
             dy = cy+t*sin(radians(i+45));
             ellipse(dx,dy,s,s);
         }
-
+*/
         
     }
 
