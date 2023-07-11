@@ -26,7 +26,7 @@ public class Cell001 extends PApplet {
         colorMode(HSB, 360, 100, 100, 250);
         background(0, 0, 0);
         stroke(0, 0, 0);
-        frameRate(1);
+        //frameRate(1);
     }
 
     @Override
@@ -129,10 +129,10 @@ public class Cell001 extends PApplet {
         for(int k=1;k<9;k++){
             t=s*k;
                 for(int i=0;i<360;i+=60/k){
-                    dx = cx+t*cos(radians(i));
-                    dy = cy+t*sin(radians(i));
-        changeStrokeColor();
-        fill(130+alea.nextFloat()*60,100,100,100);
+                    dx = cx+t*cos(radians(i+alea.nextFloat()*7));
+                    dy = cy+t*sin(radians(i+alea.nextFloat()*7));
+                    changeStrokeColor();
+                    fill(130+alea.nextFloat()*60,100,100,100);
                     ellipse(dx,dy,s,s);
                 }
         }
