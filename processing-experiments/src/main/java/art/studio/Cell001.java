@@ -122,10 +122,11 @@ public class Cell001 extends PApplet {
 
     private void core(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy){
         changeStrokeColor();
-        float s = w/100; //diameter for each particle
-        int rings = 13; //controls the number of rings that are drawn
+        noFill();
+        float s = w/80; //diameter for each particle
+        int rings = 11; //controls the number of rings that are drawn
         int density = 30; //60 is the most regular distribution, lower is more dense
-        fill(180,100,100,100);
+        stroke(180,100,100,100);
         ellipse(cx,cy,s,s);
         float dx,dy,t;
         for(int k=1;k<rings;k++){
@@ -134,7 +135,7 @@ public class Cell001 extends PApplet {
                     dx = cx+(t+alea.nextFloat()*11)*cos(radians(i+alea.nextFloat()*7));
                     dy = cy+(t+alea.nextFloat()*11)*sin(radians(i+alea.nextFloat()*7));
                     changeStrokeColor();
-                    fill(130+alea.nextFloat()*60,100,100,100);
+                    //stroke(130+alea.nextFloat()*60,100,100,100);
                     ellipse(dx,dy,s+alea.nextFloat()*7,s+alea.nextFloat()*7);
                 }
         }
