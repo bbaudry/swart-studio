@@ -93,6 +93,7 @@ public class Cell002 extends PApplet {
         for (int k = 0; k < layers / 2; k++) {
             angle = angle_inc / 2;
             for (int i = 0; i < cake; i++) {
+                if(alea.nextFloat()<0.8){
                 pushMatrix();
                 translate(cx, cy);
                 radius = radii.get(i).get(k);
@@ -104,6 +105,7 @@ public class Cell002 extends PApplet {
                 ellipse(0, py, radius / 4 + alea.nextFloat() * radius / 9, radius / 3 + alea.nextFloat() * radius / 4);
                 angle += angle_inc;
                 popMatrix();
+            }
             }
         }
     }
