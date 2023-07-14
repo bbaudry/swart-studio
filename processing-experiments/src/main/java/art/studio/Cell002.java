@@ -12,7 +12,7 @@ public class Cell002 extends PApplet {
     int ratio = 3;
     int wi = 1000 * ratio;
     int he = 1000 * ratio;
-    int w;
+    float w;
     Random alea = new Random();
     float xoffglobal = (float) 0.0;
     float grainglobal = (float) 0.05;
@@ -36,10 +36,10 @@ public class Cell002 extends PApplet {
             noFill();
             stroke(185 + alea.nextFloat() * 10, 100, 100, 84);
             background(0, 0, 0);
-            w = 888;
-            oneCell(11, 84, wi / 3, he / 2);
-            w = 444;
-            oneCell(7, 128, wi / 4, he / 4);
+            w = (float)(0.3*wi+alea.nextFloat()*0.2*wi);
+            oneCell(11, 84, (float)(0.2*wi+alea.nextFloat()*0.2*wi), (float)(0.3*he+alea.nextFloat()*0.2*he));
+            w = (float)(0.3*wi+alea.nextFloat()*0.2*wi);
+            oneCell(9, 128, (float)(0.6*wi+alea.nextFloat()*0.2*wi), (float)(0.6*he+alea.nextFloat()*0.2*he));
         } else {
             noLoop();
             save("cell002.png");
