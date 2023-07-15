@@ -26,32 +26,77 @@ public class Practice023  extends PApplet {
 
     @Override
     public void draw() {
-        marks();
-
+        fill(40,100,100);
+        stroke(40,100,100);
+        float px, py, px1, py1, px2, py2;
+        px1=cx+rad*cos(radians(0));
+        py1=cy+rad*sin(radians(0));
+        px=px1;
+        py=py1;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(60));
+        py2=cy+rad*sin(radians(60));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(120));
+        py2=cy+rad*sin(radians(120));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(200));
+        py2=cy+rad*sin(radians(200));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(300));
+        py2=cy+rad*sin(radians(300));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        line(px1,py1,px,py);
 
         noLoop();
-
     } 
 
     private void marks(){
-        noStroke();
         fill(40,100,100);
-        float px, py;
-        px=cx+rad*cos(radians(0));
-        py=cy+rad*sin(radians(0));
-        ellipse(px,py,11,11);
-        px=cx+rad*cos(radians(60));
-        py=cy+rad*sin(radians(60));
-        ellipse(px,py,11,11);
-        px=cx+rad*cos(radians(120));
-        py=cy+rad*sin(radians(120));
-        ellipse(px,py,11,11);
-        px=cx+rad*cos(radians(200));
-        py=cy+rad*sin(radians(200));
-        ellipse(px,py,11,11);
-        px=cx+rad*cos(radians(300));
-        py=cy+rad*sin(radians(300));
-        ellipse(px,py,11,11);
+        stroke(40,100,100);
+        float px, py, px1, py1, px2, py2;
+        px1=cx+rad*cos(radians(0));
+        py1=cy+rad*sin(radians(0));
+        px=px1;
+        py=py1;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(60));
+        py2=cy+rad*sin(radians(60));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(120));
+        py2=cy+rad*sin(radians(120));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(200));
+        py2=cy+rad*sin(radians(200));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        px2=cx+rad*cos(radians(300));
+        py2=cy+rad*sin(radians(300));
+        line(px1,py1,px2,py2);
+        px1=px2;
+        py1=py2;
+        ellipse(px1,py1,11,11);
+        line(px1,py1,px,py);
     }
 
     public static void main(String[] args) {
