@@ -35,6 +35,7 @@ public class Practice023  extends PApplet {
         beginShape();
         px=cx+rad*cos(radians(0));
         py=cy+rad*sin(radians(0));
+        drawRay(0);
         cpx=px;
         cpy=py+72;
         fill(180,100,100);ellipse(px,py,11,11);noFill();
@@ -42,17 +43,18 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(60));
         py1=cy+rad*sin(radians(60));
-        //line(px1,py1,px2,py2);
+        drawRay(60);
         ellipse(px1,py1,11,11);
         cpx1=px1+42;//alea.nextInt(100);
         cpy1=py1-142;//alea.nextInt(100);
         bezierVertex(cpx, cpy, cpx1, cpy1, px1, py1);
-
         cpx2=px1-12;//(float)(0.5*px1+(0.5*cpx1));
         cpy2=py1+42;//(float)(0.5*py1+(0.5*cpy1));
-        line(cpx1,cpy1,cpx2,cpy2);
+        drawControls(cpx1,cpy1,cpx2,cpy2);
+
         px1=cx+rad*cos(radians(120));
         py1=cy+rad*sin(radians(120));
+        drawRay(120);
         ellipse(px1,py1,11,11);
         cpx1=px1+42;//alea.nextInt(100);
         cpy1=py1+42;//alea.nextInt(100);
@@ -60,9 +62,22 @@ public class Practice023  extends PApplet {
 
         cpx2=px1-42;//(float)(0.5*px1+(0.5*cpx1));
         cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
-        line(cpx1,cpy1,cpx2,cpy2);
+        drawControls(cpx1,cpy1,cpx2,cpy2);
+        px1=cx+rad*cos(radians(150));
+        py1=cy+rad*sin(radians(150));
+        drawRay(150);
+        fill(0,100,100);ellipse(px1,py1,11,11);noFill();
+        cpx1=px1+42;//alea.nextInt(100);
+        cpy1=py1+42;//alea.nextInt(100);
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
+
+
+        cpx2=px1-42;//(float)(0.5*px1+(0.5*cpx1));
+        cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
+        drawControls(cpx1,cpy1,cpx2,cpy2);
         px1=cx+rad*cos(radians(200));
         py1=cy+rad*sin(radians(200));
+        drawRay(200);
         ellipse(px1,py1,11,11);
         cpx1=px1-142;//alea.nextInt(100);
         cpy1=py1+42;//alea.nextInt(100);
@@ -70,7 +85,7 @@ public class Practice023  extends PApplet {
 
         cpx2=px1+142;//(float)(0.5*px1+(0.5*cpx1));
         cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
-        line(cpx1,cpy1,cpx2,cpy2);
+        drawControls(cpx1,cpy1,cpx2,cpy2);
         cpx1=px;//alea.nextInt(100);
         cpy1=py-142;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
@@ -79,6 +94,21 @@ public class Practice023  extends PApplet {
         endShape();
         noLoop();
     } 
+
+    private void drawRay(int deg){
+        stroke(90,100,100);
+        strokeWeight(2);
+        float x = cx+rad*cos(radians(deg));
+        float y = cy+rad*sin(radians(deg));
+        line(cx,cy,x,y);
+        strokeWeight(1);
+    }
+
+    private void drawControls(float cpx1,float cpy1,float cpx2,float cpy2){
+        stroke(180,100,100);
+        line(cpx1,cpy1,cpx2,cpy2);
+        strokeWeight(1);
+    }
 
     public static void main(String[] args) {
         String[] processingArgs = { "Practice023" };
