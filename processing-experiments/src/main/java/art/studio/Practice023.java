@@ -4,6 +4,7 @@ import processing.core.PApplet;
 import java.util.Random;
 
 
+
 //practice shades
 public class Practice023  extends PApplet {
     int w = 1000;
@@ -43,7 +44,7 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(60));
         py1=cy+rad*sin(radians(60));
-        drawRay(60);
+        drawRay(60);drawTang(60);
         ellipse(px1,py1,11,11);
         cpx1=px1+42;//alea.nextInt(100);
         cpy1=py1-142;//alea.nextInt(100);
@@ -54,38 +55,37 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(120));
         py1=cy+rad*sin(radians(120));
-        drawRay(120);
+        drawRay(120);drawTang(120);
         ellipse(px1,py1,11,11);
         cpx1=px1+42;//alea.nextInt(100);
         cpy1=py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-
         cpx2=px1-42;//(float)(0.5*px1+(0.5*cpx1));
         cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
+
         px1=cx+rad*cos(radians(150));
         py1=cy+rad*sin(radians(150));
-        drawRay(150);
+        drawRay(150);drawTang(150);
         fill(0,100,100);ellipse(px1,py1,11,11);noFill();
         cpx1=px1+42;//alea.nextInt(100);
         cpy1=py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-
-
         cpx2=px1-42;//(float)(0.5*px1+(0.5*cpx1));
         cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
+
         px1=cx+rad*cos(radians(200));
         py1=cy+rad*sin(radians(200));
-        drawRay(200);
+        drawRay(200);drawTang(200);
         ellipse(px1,py1,11,11);
         cpx1=px1-142;//alea.nextInt(100);
         cpy1=py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-
         cpx2=px1+142;//(float)(0.5*px1+(0.5*cpx1));
         cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
+
         cpx1=px;//alea.nextInt(100);
         cpy1=py-142;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
@@ -108,6 +108,21 @@ public class Practice023  extends PApplet {
         stroke(180,100,100);
         line(cpx1,cpy1,cpx2,cpy2);
         strokeWeight(1);
+    }
+
+    private Float[] drawTang(int deg){
+        float tx = cx+rad*cos(radians(deg));
+        float ty = cy+rad*sin(radians(deg));
+        int rad = 200;
+        int ang = 120;
+        float dx1 = tx+rad*cos(radians(deg-ang));
+        float dy1 = ty+rad*sin(radians(deg-ang));
+        float dx2 = tx+rad*cos(radians(deg-ang+180));
+        float dy2 = ty+rad*sin(radians(deg-ang+180));
+        stroke(330,100,100);
+        line(dx1,dy1,dx2,dy2);
+        Float[] res = {dx1,dy1, dx2, dy2};
+        return res;
     }
 
     public static void main(String[] args) {
