@@ -120,6 +120,7 @@ public class Practice023  extends PApplet {
         float dx2 = tx+rad*cos(radians(deg-ang+180));
         float dy2 = ty+rad*sin(radians(deg-ang+180));
         stroke(330,100,100);
+        ellipse(dx1,dy1,5,5);
         line(dx1,dy1,dx2,dy2);
         Float[] res = {dx1,dy1, dx2, dy2};
         return res;
