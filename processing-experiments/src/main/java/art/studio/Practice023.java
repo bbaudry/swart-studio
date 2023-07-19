@@ -33,6 +33,7 @@ public class Practice023  extends PApplet {
         noFill();//fill(40,100,100);
         stroke(40,100,100);
         float px, py, px1, py1, cpx, cpy, cpx1, cpy1, cpx2, cpy2;
+        Float[] controls;
         beginShape();
         px=cx+rad*cos(radians(0));
         py=cy+rad*sin(radians(0));
@@ -44,46 +45,46 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(60));
         py1=cy+rad*sin(radians(60));
-        drawRay(60);drawTang(60);
+        drawRay(60);controls=drawTang(60);
         ellipse(px1,py1,11,11);
-        cpx1=px1+42;//alea.nextInt(100);
-        cpy1=py1-142;//alea.nextInt(100);
+        cpx1=controls[0];//px1+42;//alea.nextInt(100);
+        cpy1=controls[1];//py1-142;//alea.nextInt(100);
         bezierVertex(cpx, cpy, cpx1, cpy1, px1, py1);
-        cpx2=px1-12;//(float)(0.5*px1+(0.5*cpx1));
-        cpy2=py1+42;//(float)(0.5*py1+(0.5*cpy1));
+        cpx2=controls[2];//px1-12;//(float)(0.5*px1+(0.5*cpx1));
+        cpy2=controls[3];//py1+42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
 
         px1=cx+rad*cos(radians(120));
         py1=cy+rad*sin(radians(120));
-        drawRay(120);drawTang(120);
+        drawRay(120);controls=drawTang(120);
         ellipse(px1,py1,11,11);
-        cpx1=px1+42;//alea.nextInt(100);
-        cpy1=py1+42;//alea.nextInt(100);
+        cpx1=controls[0];//px1+42;//alea.nextInt(100);
+        cpy1=controls[1];//py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-        cpx2=px1-42;//(float)(0.5*px1+(0.5*cpx1));
-        cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
+        cpx2=controls[2];//px1-42;//(float)(0.5*px1+(0.5*cpx1));
+        cpy2=controls[3];//py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
 
-        px1=cx+rad*cos(radians(150));
-        py1=cy+rad*sin(radians(150));
-        drawRay(150);drawTang(150);
+        px1=cx+rad*cos(radians(190));
+        py1=cy+rad*sin(radians(190));
+        drawRay(190);controls=drawTang(190);
         fill(0,100,100);ellipse(px1,py1,11,11);noFill();
-        cpx1=px1+42;//alea.nextInt(100);
-        cpy1=py1+42;//alea.nextInt(100);
+        cpx1=controls[0];//px1+42;//alea.nextInt(100);
+        cpy1=controls[1];//py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-        cpx2=px1-42;//(float)(0.5*px1+(0.5*cpx1));
-        cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
+        cpx2=controls[2];//px1-42;//(float)(0.5*px1+(0.5*cpx1));
+        cpy2=controls[3];//py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
 
-        px1=cx+rad*cos(radians(200));
-        py1=cy+rad*sin(radians(200));
-        drawRay(200);drawTang(200);
+        px1=cx+rad*cos(radians(250));
+        py1=cy+rad*sin(radians(250));
+        drawRay(250);controls=drawTang(250);
         ellipse(px1,py1,11,11);
-        cpx1=px1-142;//alea.nextInt(100);
-        cpy1=py1+42;//alea.nextInt(100);
+        cpx1=controls[0];//px1-142;//alea.nextInt(100);
+        cpy1=controls[1];//py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-        cpx2=px1+142;//(float)(0.5*px1+(0.5*cpx1));
-        cpy2=py1-42;//(float)(0.5*py1+(0.5*cpy1));
+        cpx2=controls[2];//px1+142;//(float)(0.5*px1+(0.5*cpx1));
+        cpy2=controls[3];//py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
 
         cpx1=px;//alea.nextInt(100);
@@ -92,8 +93,8 @@ public class Practice023  extends PApplet {
         line(cpx, cpy, cpx1, cpy1);
 
         endShape();
-        noLoop();
-    } 
+        //noLoop();
+    }
 
     private void drawRay(int deg){
         stroke(90,100,100);
@@ -113,8 +114,8 @@ public class Practice023  extends PApplet {
     private Float[] drawTang(int deg){
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
-        int rad = 200;
-        int ang = 120;
+        int rad = 42+frameCount;
+        int ang = 90-frameCount;
         float dx1 = tx+rad*cos(radians(deg-ang));
         float dy1 = ty+rad*sin(radians(deg-ang));
         float dx2 = tx+rad*cos(radians(deg-ang+180));
