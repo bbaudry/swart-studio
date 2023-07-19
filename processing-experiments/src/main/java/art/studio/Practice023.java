@@ -114,7 +114,7 @@ public class Practice023  extends PApplet {
     private Float[] drawTang(int deg){
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
-        int rad = 42+frameCount;
+        int rad = 4+frameCount;
         int ang = 90-frameCount;
         float dx1 = tx+rad*cos(radians(deg-ang));
         float dy1 = ty+rad*sin(radians(deg-ang));
