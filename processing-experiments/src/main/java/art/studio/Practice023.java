@@ -19,25 +19,30 @@ public class Practice023  extends PApplet {
 
     @Override
     public void setup() {
-        colorMode(HSB,360,100,100);
-        background(0,0,0);
+        colorMode(HSB,360,100,100,250);
         alea=new Random();
     }
 
     @Override
     public void draw() {
-        background(0,0,0);
+        background(0,0,0,2);
         noFill();
         float rad;
         stroke(55,100,100);
         rad = (float)(w*0.3);
-        //oneLayerCompact(36, rad);
+        oneLayerCompact(4, 3*w/4, h/3, rad);
         stroke(95,100,100);
         rad = (float)(w*0.25);
-        //oneLayerCompact(16, rad);
+        oneLayerCompact(4, w/4, h/2, rad);
         stroke(185,100,100); strokeWeight(2);
         rad = (float)(w*0.1);
         oneLayerCompact(4, w/2, h/2, rad);
+        stroke(230,100,100);
+        rad = (float)(w*0.17);
+        oneLayerCompact(4, 3*w/4, 2*h/3, rad);
+        stroke(330,100,100);
+        rad = (float)(w*0.21);
+        oneLayerCompact(4, w/4, h/3, rad);
         //noLoop();
     }
 
