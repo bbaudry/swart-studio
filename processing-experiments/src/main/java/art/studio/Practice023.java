@@ -32,6 +32,50 @@ public class Practice023  extends PApplet {
         background(0,0,0);
         noFill();//fill(40,100,100);
         stroke(40,100,100);
+        oneLayerCompact(5);
+        //noLoop();
+    }
+
+    private void oneLayerCompact(int nbRays){
+        float angle = 360/nbRays;
+        float px, py, px1, py1, cpx, cpy, cpx1, cpy1, cpx2, cpy2;
+        Float[] controls;
+        beginShape();
+        px=cx+rad*cos(radians(0));
+        py=cy+rad*sin(radians(0));
+        cpx=px;
+        cpy=py+72;
+        fill(180,100,100);ellipse(px,py,11,11);noFill();
+        vertex(px, py);
+        px1 = cx + rad * cos(radians(angle));
+        py1 = cy + rad * sin(radians(angle));
+        controls = drawTang(angle);
+        ellipse(px1, py1, 11, 11);
+        cpx1 = controls[0]; cpy1 = controls[1];
+        bezierVertex(cpx, cpy, cpx1, cpy1, px1, py1);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+        drawControls(cpx1, cpy1, cpx2, cpy2);
+        for (int i=2; i<=nbRays; i++){
+            px1 = cx + rad * cos(radians(angle));
+            py1 = cy + rad * sin(radians(angle));
+            controls = drawTang(angle);
+            ellipse(px1, py1, 11, 11);
+            cpx1 = controls[0];
+            cpy1 = controls[1];
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
+            cpx2 = controls[2];
+            cpy2 = controls[3];
+            drawControls(cpx1, cpy1, cpx2, cpy2);
+        }
+        controls=drawTang(0);
+        cpx1=controls[0];
+        cpy1=controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+        endShape();
+
+    }
+    private void oneLayer(){
         float px, py, px1, py1, cpx, cpy, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
         beginShape();
@@ -87,13 +131,13 @@ public class Practice023  extends PApplet {
         cpy2=controls[3];//py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
 
-        cpx1=px;//alea.nextInt(100);
-        cpy1=py-142;//alea.nextInt(100);
+        controls=drawTang(0);
+        cpx1=controls[0];//px1-142;//alea.nextInt(100);
+        cpy1=controls[1];//py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-        line(cpx, cpy, cpx1, cpy1);
 
         endShape();
-        //noLoop();
+
     }
 
     private void drawRay(int deg){
@@ -111,7 +155,7 @@ public class Practice023  extends PApplet {
         strokeWeight(1);
     }
 
-    private Float[] drawTang(int deg){
+    private Float[] drawTang(float deg){
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
         int rad = 4+frameCount;
