@@ -33,13 +33,13 @@ public class Practice023  extends PApplet {
         float rad;
         stroke(55,100,100);
         rad = (float)(w*0.3);
-        oneLayerCompact(36, rad);
+        //oneLayerCompact(36, rad);
         stroke(95,100,100);
         rad = (float)(w*0.25);
-        oneLayerCompact(16, rad);
-        stroke(185,100,100);
-        rad = (float)(w*0.2);
-        oneLayerCompact(6, rad);
+        //oneLayerCompact(16, rad);
+        stroke(185,100,100); strokeWeight(2);
+        rad = (float)(w*0.01);
+        oneLayerCompact(72, rad);
         //noLoop();
     }
 
@@ -75,13 +75,12 @@ public class Practice023  extends PApplet {
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
         int wid = 4+frameCount;
-        int ang = 90-frameCount;
+        int ang = 90-frameCount/2;
         float dx1 = tx+wid*cos(radians(deg-ang));
         float dy1 = ty+wid*sin(radians(deg-ang));
         float dx2 = tx+wid*cos(radians(deg-ang+180));
         float dy2 = ty+wid*sin(radians(deg-ang+180));
-        ellipse(dx1,dy1,5,5);
-        line(dx1,dy1,dx2,dy2);
+//        line(dx1,dy1,dx2,dy2);
         Float[] res = {dx1,dy1, dx2, dy2};
         return res;
     }
