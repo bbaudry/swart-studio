@@ -11,7 +11,6 @@ public class Practice023  extends PApplet {
     int h = 1000;
     float cx=w/2;
     float cy=h/2;
-    float rad = w/3;
     Random alea;
 
 
@@ -30,46 +29,73 @@ public class Practice023  extends PApplet {
     @Override
     public void draw() {
         background(0,0,0);
-        noFill();//fill(40,100,100);
-        stroke(40,100,100);
-        oneLayerCompact(5);
+        noFill();
+        float rad;
+        stroke(55,100,100);
+        rad = (float)(w*0.3);
+        oneLayerCompact(36, rad);
+        stroke(95,100,100);
+        rad = (float)(w*0.25);
+        oneLayerCompact(16, rad);
+        stroke(185,100,100);
+        rad = (float)(w*0.2);
+        oneLayerCompact(6, rad);
         //noLoop();
     }
 
-    private void oneLayerCompact(int nbRays){
-        float angle = 360/nbRays;
+    private void oneLayerCompact(int nbRays, float rad){
+        int angle = 360/nbRays;
         float px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
         beginShape();
         px=cx+rad*cos(radians(0));
         py=cy+rad*sin(radians(0));
         vertex(px, py);
-        controls = drawTang(0);
+        controls = drawTang(0,rad);
         cpx2 = controls[2];
         cpy2 = controls[3];
         for (int i=1; i<=nbRays; i++){
-            px1 = cx + rad * cos(radians(angle));
-            py1 = cy + rad * sin(radians(angle));
-            controls = drawTang(angle);
+            px1 = cx + rad * cos(radians(angle*i));
+            py1 = cy + rad * sin(radians(angle*i));
+            controls = drawTang(angle*i,rad);
             cpx1 = controls[0];
             cpy1 = controls[1];
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
             cpx2 = controls[2];
             cpy2 = controls[3];
         }
-        controls=drawTang(0);
+        controls=drawTang(0,rad);
         cpx1=controls[0];
         cpy1=controls[1];
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
         endShape();
     }
-    private void oneLayer(){
+
+    private Float[] drawTang(float deg, float rad){
+        float tx = cx+rad*cos(radians(deg));
+        float ty = cy+rad*sin(radians(deg));
+        int wid = 4+frameCount;
+        int ang = 90-frameCount;
+        float dx1 = tx+wid*cos(radians(deg-ang));
+        float dy1 = ty+wid*sin(radians(deg-ang));
+        float dx2 = tx+wid*cos(radians(deg-ang+180));
+        float dy2 = ty+wid*sin(radians(deg-ang+180));
+        ellipse(dx1,dy1,5,5);
+        line(dx1,dy1,dx2,dy2);
+        Float[] res = {dx1,dy1, dx2, dy2};
+        return res;
+    }
+
+
+
+
+    private void oneLayer(float rad){
         float px, py, px1, py1, cpx, cpy, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
         beginShape();
         px=cx+rad*cos(radians(0));
         py=cy+rad*sin(radians(0));
-        drawRay(0);
+        drawRay(0,rad);
         cpx=px;
         cpy=py+72;
         fill(180,100,100);ellipse(px,py,11,11);noFill();
@@ -77,7 +103,7 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(60));
         py1=cy+rad*sin(radians(60));
-        drawRay(60);controls=drawTang(60);
+        drawRay(60,rad);controls=drawTang(60,rad);
         ellipse(px1,py1,11,11);
         cpx1=controls[0];//px1+42;//alea.nextInt(100);
         cpy1=controls[1];//py1-142;//alea.nextInt(100);
@@ -88,7 +114,7 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(120));
         py1=cy+rad*sin(radians(120));
-        drawRay(120);controls=drawTang(120);
+        drawRay(120,rad);controls=drawTang(120,rad);
         ellipse(px1,py1,11,11);
         cpx1=controls[0];//px1+42;//alea.nextInt(100);
         cpy1=controls[1];//py1+42;//alea.nextInt(100);
@@ -99,7 +125,7 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(190));
         py1=cy+rad*sin(radians(190));
-        drawRay(190);controls=drawTang(190);
+        drawRay(190,rad);controls=drawTang(190,rad);
         fill(0,100,100);ellipse(px1,py1,11,11);noFill();
         cpx1=controls[0];//px1+42;//alea.nextInt(100);
         cpy1=controls[1];//py1+42;//alea.nextInt(100);
@@ -110,7 +136,7 @@ public class Practice023  extends PApplet {
 
         px1=cx+rad*cos(radians(250));
         py1=cy+rad*sin(radians(250));
-        drawRay(250);controls=drawTang(250);
+        drawRay(250,rad);controls=drawTang(250,rad);
         ellipse(px1,py1,11,11);
         cpx1=controls[0];//px1-142;//alea.nextInt(100);
         cpy1=controls[1];//py1+42;//alea.nextInt(100);
@@ -119,7 +145,7 @@ public class Practice023  extends PApplet {
         cpy2=controls[3];//py1-42;//(float)(0.5*py1+(0.5*cpy1));
         drawControls(cpx1,cpy1,cpx2,cpy2);
 
-        controls=drawTang(0);
+        controls=drawTang(0,rad);
         cpx1=controls[0];//px1-142;//alea.nextInt(100);
         cpy1=controls[1];//py1+42;//alea.nextInt(100);
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
@@ -128,7 +154,7 @@ public class Practice023  extends PApplet {
 
     }
 
-    private void drawRay(int deg){
+    private void drawRay(int deg, float rad){
         stroke(90,100,100);
         strokeWeight(2);
         float x = cx+rad*cos(radians(deg));
@@ -143,21 +169,6 @@ public class Practice023  extends PApplet {
         strokeWeight(1);
     }
 
-    private Float[] drawTang(float deg){
-        float tx = cx+rad*cos(radians(deg));
-        float ty = cy+rad*sin(radians(deg));
-        int rad = 4+frameCount;
-        int ang = 90-frameCount;
-        float dx1 = tx+rad*cos(radians(deg-ang));
-        float dy1 = ty+rad*sin(radians(deg-ang));
-        float dx2 = tx+rad*cos(radians(deg-ang+180));
-        float dy2 = ty+rad*sin(radians(deg-ang+180));
-        stroke(330,100,100);
-        ellipse(dx1,dy1,5,5);
-        line(dx1,dy1,dx2,dy2);
-        Float[] res = {dx1,dy1, dx2, dy2};
-        return res;
-    }
 
     public static void main(String[] args) {
         String[] processingArgs = { "Practice023" };
