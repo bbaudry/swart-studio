@@ -31,11 +31,11 @@ public class Summer002  extends PApplet {
         coords=new ArrayList<>();
         for(int i=0; i<7; i++){
             ArrayList<Float> onepoint=new ArrayList<>();
-            float col = i*50; onepoint.add(col);
+            float col = 180+i*21; onepoint.add(col);
             float cx = (float)(0.2*w+alea.nextFloat()*0.6*w); onepoint.add(cx);
             float cy = (float)(0.2*h+alea.nextFloat()*0.6*h); onepoint.add(cy);
             float rad = (float)(0.05*w+alea.nextFloat()*0.4*w); onepoint.add(rad);
-            float nb = 2+2*alea.nextInt(3); onepoint.add(nb);
+            float nb = 2+2*alea.nextInt(4); onepoint.add(nb);
             coords.add(onepoint);
         }
     }
