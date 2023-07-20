@@ -38,42 +38,30 @@ public class Practice023  extends PApplet {
 
     private void oneLayerCompact(int nbRays){
         float angle = 360/nbRays;
-        float px, py, px1, py1, cpx, cpy, cpx1, cpy1, cpx2, cpy2;
+        float px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
         beginShape();
         px=cx+rad*cos(radians(0));
         py=cy+rad*sin(radians(0));
-        cpx=px;
-        cpy=py+72;
-        fill(180,100,100);ellipse(px,py,11,11);noFill();
         vertex(px, py);
-        px1 = cx + rad * cos(radians(angle));
-        py1 = cy + rad * sin(radians(angle));
-        controls = drawTang(angle);
-        ellipse(px1, py1, 11, 11);
-        cpx1 = controls[0]; cpy1 = controls[1];
-        bezierVertex(cpx, cpy, cpx1, cpy1, px1, py1);
+        controls = drawTang(0);
         cpx2 = controls[2];
         cpy2 = controls[3];
-        drawControls(cpx1, cpy1, cpx2, cpy2);
-        for (int i=2; i<=nbRays; i++){
+        for (int i=1; i<=nbRays; i++){
             px1 = cx + rad * cos(radians(angle));
             py1 = cy + rad * sin(radians(angle));
             controls = drawTang(angle);
-            ellipse(px1, py1, 11, 11);
             cpx1 = controls[0];
             cpy1 = controls[1];
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
             cpx2 = controls[2];
             cpy2 = controls[3];
-            drawControls(cpx1, cpy1, cpx2, cpy2);
         }
         controls=drawTang(0);
         cpx1=controls[0];
         cpy1=controls[1];
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
         endShape();
-
     }
     private void oneLayer(){
         float px, py, px1, py1, cpx, cpy, cpx1, cpy1, cpx2, cpy2;
