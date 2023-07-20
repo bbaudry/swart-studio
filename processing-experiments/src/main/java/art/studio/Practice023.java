@@ -75,7 +75,7 @@ public class Practice023  extends PApplet {
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
         int wid = 4+frameCount;
-        int ang = 90-frameCount/2;
+        int ang = 90-frameCount;//alea.nextInt(10);
         float dx1 = tx+wid*cos(radians(deg-ang));
         float dy1 = ty+wid*sin(radians(deg-ang));
         float dx2 = tx+wid*cos(radians(deg-ang+180));
