@@ -12,6 +12,7 @@ public class Summer001  extends PApplet {
     int h = 1000;
     Random alea;
     ArrayList<ArrayList<Float>> coords;
+    int alpha;
 
 
     @Override
@@ -25,6 +26,8 @@ public class Summer001  extends PApplet {
         alea=new Random();
         background(0,0,0);
         initCoords();
+        if (alea.nextFloat()<0.5){alpha=42;}
+        else{alpha=250;}
     }
 
     private void initCoords(){
@@ -44,7 +47,7 @@ public class Summer001  extends PApplet {
         if(frameCount<336){
         noFill();
         for (int i=0;i<coords.size();i++){
-            stroke(coords.get(i).get(0),100,100,42);
+            stroke(coords.get(i).get(0),100,100, alpha);
             oneLayerCompact(4, coords.get(i).get(1),coords.get(i).get(2),coords.get(i).get(3));
         }
         }
