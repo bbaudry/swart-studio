@@ -29,9 +29,9 @@ public class Summer002  extends PApplet {
 
     private void initCoords(){
         coords=new ArrayList<>();
-        for(int i=0; i<7; i++){
+        for(int i=0; i<8; i++){
             ArrayList<Float> onepoint=new ArrayList<>();
-            float col = 180+i*21; onepoint.add(col);
+            float col = 42*i; onepoint.add(col);
             float cx = (float)(0.2*w+alea.nextFloat()*0.6*w); onepoint.add(cx);
             float cy = (float)(0.2*h+alea.nextFloat()*0.6*h); onepoint.add(cy);
             float rad = (float)(0.05*w+alea.nextFloat()*0.4*w); onepoint.add(rad);

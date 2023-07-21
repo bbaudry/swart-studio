@@ -21,11 +21,12 @@ public class Practice023  extends PApplet {
     public void setup() {
         colorMode(HSB,360,100,100,250);
         alea=new Random();
+        background(0, 0, 0);
     }
 
     @Override
     public void draw() {
-        background(0,0,0,2);
+        //background(0,0,0,2);
         noFill();
         float rad;
         stroke(55,100,100);
