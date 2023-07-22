@@ -11,9 +11,11 @@ public class Summer004  extends PApplet {
     int w = 1000;
     int h = 1000;
     Random alea;
-    ArrayList<Float> coords;
+    ArrayList<ArrayList<Float>> coords;
     float xoff=(float)0.0;
     float grain=(float)0.05;
+    int nbAngles;
+    int nbLayers;
 
 
     @Override
@@ -26,16 +28,21 @@ public class Summer004  extends PApplet {
         colorMode(HSB,360,100,100,250);
         alea=new Random();
         background(0,0,0);
+        nbLayers=5;
         initCoords();
     }
 
     private void initCoords(){
         coords=new ArrayList<>();
         float angle=0;
-        while(angle<360){
-            coords.add(angle);
-            angle+=21+21*noise(xoff);
-            xoff+=grain;
+        for (int i=0;i<nbLayers;i++){
+            ArrayList<Float> layer=new ArrayList<>();
+            while(angle<360){
+                layer.add(angle);
+                angle+=21+21*noise(xoff);
+                xoff+=grain;
+            }
+            coords.add(layer);
         }
     }
 
@@ -43,13 +50,13 @@ public class Summer004  extends PApplet {
     public void draw() {
         float rad_seed = (float)0.1*w;
         float rad;
-        if(frameCount<42){
+        if(frameCount<2){
             background(0,0,0,42);
             noFill();
             stroke(193,100,100);
-            for (int i=0; i<7; i++){
+            for (int i=0; i<nbLayers; i++){
                 rad = (float)(0.3*w+rad_seed*noise(xoff));xoff+=grain;
-                oneLayerCompact(w/2, h/2, rad);
+                oneLayerCompact(w/2, h/2, rad, coords.get(i));
             }
         }
         else{
@@ -58,7 +65,7 @@ public class Summer004  extends PApplet {
         }
     }
 
-    private void showAngles(){
+    private void showAngles(ArrayList<Float> angles){
         float hu = 20;
         float rad_seed = (float)0.1*w;
         float rad;
@@ -67,35 +74,35 @@ public class Summer004  extends PApplet {
             stroke(hu,100,100); hu+=27;
             for(int i=0; i<7;i++){
                 rad = (float)(0.3*w+rad_seed*noise(xoff));xoff+=grain;
-                float x = w/2 + rad*cos(radians(coords.get(j)));
-                float y = h/2 + rad*sin(radians(coords.get(j)));
+                float x = w/2 + rad*cos(radians(angles.get(j)));
+                float y = h/2 + rad*sin(radians(angles.get(j)));
                 ellipse(x,y,17,17);
         }
     }
     }
 
-    private void oneLayerCompact(float cx, float cy, float rad){
+    private void oneLayerCompact(float cx, float cy, float rad, ArrayList<Float> angles){
         
         float px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
         beginShape();
-        px=cx+rad*cos(radians(coords.get(0)));
-        py=cy+rad*sin(radians(coords.get(0)));
+        px=cx+rad*cos(radians(angles.get(0)));
+        py=cy+rad*sin(radians(angles.get(0)));
         vertex(px, py);
-        controls = drawTang(coords.get(0),cx,cy,rad);
+        controls = drawTang(angles.get(0),cx,cy,rad);
         cpx2 = controls[2];
         cpy2 = controls[3];
         for (int i=1; i<coords.size(); i++){
-            px1 = cx + rad * cos(radians(coords.get(i)));
-            py1 = cy + rad * sin(radians(coords.get(i)));
-            controls = drawTang(coords.get(i),cx,cy,rad);
+            px1 = cx + rad * cos(radians(angles.get(i)));
+            py1 = cy + rad * sin(radians(angles.get(i)));
+            controls = drawTang(angles.get(i),cx,cy,rad);
             cpx1 = controls[0];
             cpy1 = controls[1];
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
             cpx2 = controls[2];
             cpy2 = controls[3];
         }
-        controls=drawTang(coords.get(0),cx,cy,rad);
+        controls=drawTang(angles.get(0),cx,cy,rad);
         cpx1=controls[0];
         cpy1=controls[1];
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
