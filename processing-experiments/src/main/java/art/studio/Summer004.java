@@ -92,7 +92,7 @@ public class Summer004  extends PApplet {
         controls = drawTang(angles.get(0),cx,cy,rad);
         cpx2 = controls[2];
         cpy2 = controls[3];
-        for (int i=1; i<coords.size(); i++){
+        for (int i=1; i<angles.size(); i++){
             px1 = cx + rad * cos(radians(angles.get(i)));
             py1 = cy + rad * sin(radians(angles.get(i)));
             controls = drawTang(angles.get(i),cx,cy,rad);
