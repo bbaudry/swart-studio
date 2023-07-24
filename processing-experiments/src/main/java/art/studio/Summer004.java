@@ -1,6 +1,8 @@
 package art.studio;
 
 import processing.core.PApplet;
+import processing.core.PGraphics;
+
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ public class Summer004  extends PApplet {
     float grain=(float)0.09;
     int nbAngles;
     int nbLayers;
+    ArrayList<ArrayList<Float[]>> coords;
 
 
     @Override
@@ -27,19 +30,19 @@ public class Summer004  extends PApplet {
         colorMode(HSB,360,100,100,250);
         alea=new Random();
         background(0,0,0);
-        nbLayers=81;
-        frameRate(1);
+        nbLayers=21;
+//        frameRate(1);
+        coords = initCoords();
     }
 
 
     @Override
     public void draw() {
-        if(frameCount<42){
-            background(0,0,0,42);
+        if(frameCount<4242){
+            background(42, 42, 42);
             noFill();
             stroke(193,100,100);
-            ArrayList<ArrayList<Float[]>> coords = initCoords();
-            for (int i=0; i<nbLayers; i++){
+            for (int i=0; i<coords.size(); i++){
                 oneLayerCompact(w/2, h/2, coords.get(i));
             }
         }
@@ -67,11 +70,12 @@ public class Summer004  extends PApplet {
 
     private ArrayList<ArrayList<Float[]>> initCoords(){
         ArrayList<ArrayList<Float[]>> coords=new ArrayList<>();
-        float angle,radius;
+        float angle,initangle, radius;
         for (int i=0;i<nbLayers;i++){
-            angle=0;
+            initangle=alea.nextInt(180);
+            angle=initangle;
             ArrayList<Float[]> layer=new ArrayList<>();
-            while(angle<340){
+            while(angle<340+initangle){
                 radius=(float)(0.3*w+w*0.2*noise(xoff));
                 xoff+=grain;
                 angle+=21+21*noise(xoff);
@@ -80,7 +84,6 @@ public class Summer004  extends PApplet {
                 layer.add(vec);
             }
             coords.add(layer);
-        System.out.println(layer.size());
         }
         return(coords);
     }
@@ -114,13 +117,22 @@ public class Summer004  extends PApplet {
         endShape();
     }
 
-
+    float ang=90;
+    boolean grow=true;
     private Float[] drawTang(float deg, float cx, float cy, float rad){
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
-        float wid1 = w/10+w/10*alea.nextFloat();
-        float wid2 = w/10+w/10*alea.nextFloat();
-        int ang = 90+(-11+alea.nextInt(22));
+        float wid1 = w/10;//*alea.nextFloat();
+        float wid2 = w/10;//*alea.nextFloat();
+        //int ang = 90;//+(-11+alea.nextInt(22));
+        if(grow){
+            ang+=0.001;
+        }
+        else{
+            ang-=0.001;
+        }
+        if(ang>=200){grow=false;}
+        if(ang<=-20){grow=true;}
         float dx1 = tx+wid1*cos(radians(deg-ang));
         float dy1 = ty+wid1*sin(radians(deg-ang));
         float dx2 = tx+wid2*cos(radians(deg-ang+180));
