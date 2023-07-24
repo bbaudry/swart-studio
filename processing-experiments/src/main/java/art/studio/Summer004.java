@@ -13,11 +13,6 @@ public class Summer004 extends PApplet {
     Random alea;
     float xoff = (float) 0.0;
     float grain = (float) 0.09;
-    int nbAngles;
-    int nbLayers;
-    ArrayList<ArrayList<Float[]>> coords;
-    ArrayList<Cell> core;
-
     float ang = 90;
     boolean grow = true;
     float wid=w/10;
@@ -32,33 +27,20 @@ public class Summer004 extends PApplet {
         colorMode(HSB, 360, 100, 100, 250);
         alea = new Random();
         background(0, 0, 0);
-        nbLayers = 4;
-        // frameRate(1);
-        initCoords();
-        initCore();
     }
 
     @Override
     public void draw() {
-            background(42, 42, 42);
+            background(42, 0, 0);
             noFill();
             stroke(193, 100, 100);
-            for (int i = 0; i < coords.size(); i++) {
-                //oneLayerCompact(w / 2, h / 2, coords.get(i));
-            }
-            stroke(0,0,100);noFill();ellipse(w/2,h/2,w/2,w/2);
-            for(int j=0;j<core.size();j++){
-                Cell c = core.get(j);
-                c.move();
-                fill(30,100,100,84);
-                ellipse(c.cx, c.cy, c.rad, c.rad);
-            }
-            if (grow) {
+            wave();
+             if (grow) {
                 ang += 0.1;
-                wid += 0.05;
+                wid += 0.5;
             } else {
                 ang -= 0.1;
-                wid -= 0.05;
+                wid -= 0.5;
             }
             if (ang >= 180) {
                 grow = false;
@@ -66,132 +48,87 @@ public class Summer004 extends PApplet {
             if (ang <= 0) {
                 grow = true;
             }
-            if(alea.nextFloat()<0.01){initOneLayer();}
+
     }
 
-    private void initCoords() {
-        coords = new ArrayList<>();
-        for (int i = 0; i < nbLayers; i++) {
-            initOneLayer();
-        }
-    }
 
-    private  void initOneLayer(){
-            float initangle = alea.nextInt(180);
-            float angle = initangle;
-            float radius;
-            ArrayList<Float[]> layer = new ArrayList<>();
-            while (angle < 340 + initangle) {
-                radius = (float) (0.2 * w + w * 0.3 * noise(xoff));
-                xoff += grain;
-                angle += 42 + 21 * noise(xoff);
-                xoff += grain;
-                Float[] vec = { angle, radius };
-                layer.add(vec);
-            }
-            coords.add(layer);
-    }
-
-    private void initCore(){
-        core=new ArrayList<>();
-        int nbCells=2;
-        for(int i=0; i<nbCells; i++){
-            Cell c = new Cell(w/2, h/2, 7+7*i, 2);
-            core.add(c);
-        }
-    }
-
-    private void oneLayerCompact(float cx, float cy, ArrayList<Float[]> angles) {
-        float px, py, px1, py1, cpx1, cpy1, cpx2, cpy2, rad;
+    private void wave(){
+        float cx,cy, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
+
         beginShape();
-        rad = angles.get(0)[1];
-        px = cx + rad * cos(radians(angles.get(0)[0]));
-        py = cy + rad * sin(radians(angles.get(0)[0]));
-        vertex(px, py);
-        controls = drawTang(angles.get(0)[0], cx, cy, rad);
+        cx = 0; cy=(float)0.5*h;
+        ellipse(cx, cy, 7, 7);
+        vertex(cx, cy);
+        controls = drawTang(cx,cy);
         cpx2 = controls[2];
         cpy2 = controls[3];
-        for (int i = 1; i < angles.size(); i++) {
-            rad = angles.get(i)[1];
-            px1 = cx + rad * cos(radians(angles.get(i)[0]));
-            py1 = cy + rad * sin(radians(angles.get(i)[0]));
-            controls = drawTang(angles.get(i)[0], cx, cy, rad);
-            cpx1 = controls[0];
-            cpy1 = controls[1];
-            bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-            cpx2 = controls[2];
-            cpy2 = controls[3];
-        }
-        controls = drawTang(angles.get(0)[0], cx, cy, rad);
+
+        cx = (float)0.2*w; cy=(float)0.7*h;
+        ellipse(cx, cy, 7, 7);
+        controls = drawTang(cx,cy);
         cpx1 = controls[0];
         cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+
+        cx = (float)0.29*w; cy=(float)0.65*h;
+        ellipse(cx, cy, 7, 7);
+        controls = drawTang(cx,cy);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+        
+        cx = (float)0.5*w; cy=(float)0.42*h;
+        ellipse(cx, cy, 7, 7);
+        controls = drawTang(cx,cy);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+        
+        cx = (float)0.65*w; cy=(float)0.35*h;
+        ellipse(cx, cy, 7, 7);
+        controls = drawTang(cx,cy);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+        
+        cx = (float)0.84*w; cy=(float)0.5*h;
+        ellipse(cx, cy, 7, 7);
+        controls = drawTang(cx,cy);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+        
+        cx = w; cy=(float)0.66*h;
+        ellipse(cx, cy, 7, 7);
+        controls = drawTang(cx,cy);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
         endShape();
     }
 
-    private Float[] drawTang(float deg, float cx, float cy, float rad) {
-        float tx = cx + rad * cos(radians(deg));
-        float ty = cy + rad * sin(radians(deg));
+    private Float[] drawTang( float cx, float cy) {
         //float wid1 = w / 10;// *alea.nextFloat();
         //float wid2 = w / 10;// *alea.nextFloat();
         // int ang = 90;//+(-11+alea.nextInt(22));
-        float dx1 = tx + wid * cos(radians(deg - ang));
-        float dy1 = ty + wid * sin(radians(deg - ang));
-        float dx2 = tx + wid * cos(radians(deg - ang + 180));
-        float dy2 = ty + wid * sin(radians(deg - ang + 180));
+        float dx1 = cx + wid * cos(radians(ang));
+        float dy1 = cy + wid * sin(radians(ang));
+        float dx2 = cx + wid * cos(radians(ang + 180));
+        float dy2 = cy + wid * sin(radians(ang + 180));
         Float[] res = { dx1, dy1, dx2, dy2 };
+        line(dx1,dy1,dx2,dy2);
         return res;
-    }
-
-    private class Cell{
-        boolean left;
-        boolean up;
-        float speed;
-        float cx,cy,rad;
-        float areaX,areaY,areaRad;
-        float xoff,grain;
-
-        public Cell(float x, float y, float r, float s){
-            cx=x;cy=y;rad=r;
-            left=alea.nextBoolean();
-            up=alea.nextBoolean();
-            speed=s;
-            areaRad=w/4;
-            areaX=w/2;
-            areaY=h/2;
-            xoff=alea.nextFloat()*82;
-            grain=(float)55;
-        }
-        
-        public void move(){
-            if(!xIn()){
-                left=!left;
-                System.out.println("changeX");
-            }
-            if(!yIn()){
-                up=!up;
-                System.out.println("changeY");
-            }
-            if(left){if(alea.nextBoolean()){cx-=speed;}}
-            else{if(alea.nextBoolean()){cx+=speed;}}
-            if(up){if(alea.nextBoolean()){cy-=speed;}}
-            else{if(alea.nextBoolean()){cx+=speed;}}
-        }
-
-        private boolean xIn(){
-            boolean is = Math.abs(cx-areaX)<areaRad;
-            return is;
-        }
-        private boolean yIn(){
-            boolean is = Math.abs(cy-areaY)<areaRad;
-            return is;
-        }
-        private boolean isInside(){
-            boolean is = (cx-areaX)*(cx-areaX)+(cy-areaY)*(cy-areaY) <= areaRad*areaRad;
-            return is;
-        }
-
     }
 
     public static void main(String[] args) {
