@@ -33,12 +33,12 @@ public class Cell003 extends PApplet {
 
     @Override
     public void draw() {
-        if (frameCount < 3) {
+        if (frameCount < 2) {
             noFill();
             stroke(185 + alea.nextFloat() * 10, 100, 100, 84);
 //            background(0, 0, 0);
-            w = (float)(0.3 * wi + alea.nextFloat() * 0.2 * wi);
-            oneCell(9, 42, (float) (0.2 * wi+ alea.nextFloat() * 0.6 * wi), (float) (0.2 * he+ alea.nextFloat() * 0.6 * he));
+            w = (float)(0.3 * wi + alea.nextFloat() * 0.5 * wi);
+            oneCell(9, 42, (float) (0.2 * wi+ alea.nextFloat() * 0.6 * wi), (float) (0.2 * he+ alea.nextFloat() * 0.5 * he));
         } else {
             noLoop();
             save("cell002.png");
@@ -131,18 +131,17 @@ public class Cell003 extends PApplet {
         float angle, radius, py, t;
         for (int k = 0; k < angles.size(); k++) {
             for (int i = 0; i < angles.get(k).size(); i++) {
-                if (alea.nextFloat() < 0.21) {
+                if (alea.nextFloat() < 0.1) {
                     pushMatrix();
                     translate(cx, cy);
                     angle = angles.get(k).get(i)[0];
                     radius = angles.get(k).get(i)[1];
-                    rotate(angle + radians(-4 + alea.nextFloat() * 8));
+                    rotate(angle);
                     t = (float) (0.6);
                     py = (1 - t) * 0 + (t * radius);
-                    // strokeWeight(1 + alea.nextFloat() * 2);
                     changeStrokeColor();
-                    ellipse(0, py, radius / 4 + alea.nextFloat() * radius / 9,
-                    radius / 3 + alea.nextFloat() * radius / 4);
+                    ellipse(0, py, radius / 9 + alea.nextFloat() * radius / 9,
+                    radius / 3 + alea.nextFloat() * radius / 3);
                     popMatrix();
                 }
             }
