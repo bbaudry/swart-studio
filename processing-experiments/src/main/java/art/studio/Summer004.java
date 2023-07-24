@@ -94,7 +94,7 @@ public class Summer004 extends PApplet {
 
     private void initCore(){
         core=new ArrayList<>();
-        int nbCells=25;
+        int nbCells=2;
         for(int i=0; i<nbCells; i++){
             Cell c = new Cell(w/2, h/2, 7+7*i, 2);
             core.add(c);
@@ -168,11 +168,12 @@ public class Summer004 extends PApplet {
             if(!isInside()){
                 left=!left;
                 up=!up;
+                System.out.println("change");
             }
-            if(left){cx-=speed+noise(xoff);xoff+=grain;}
-            else{cx+=speed+noise(xoff);xoff+=grain;}
-            if(up){cy-=speed+noise(xoff);xoff+=grain;}
-            else{cy+=speed+noise(xoff);xoff+=grain;}
+            if(left){if(alea.nextBoolean()){cx-=speed;}}
+            else{if(alea.nextBoolean()){cx+=speed;}}
+            if(up){if(alea.nextBoolean()){cy-=speed;}}
+            else{if(alea.nextBoolean()){cx+=speed;}}
         }
 
         private boolean isInside(){
