@@ -124,43 +124,6 @@ public class Cell003 extends PApplet {
         Float[] res = {dx1,dy1, dx2, dy2};
         return res;
     }
-
-/* 
-    private void oneEnvelop(ArrayList<ArrayList<Float>> angles, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
-        noFill();
-        float angle, radius, angle_inc, px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
-        Float[] controls;
-        for (int k = 0; k < layers; k++) {
-            changeStrokeColor();
-            strokeWeight(1);
-            beginShape();
-            radius = w/2;
-            px = cx + radius * cos(radians(angles.get(k).get(0)));
-            py = cy + radius * sin(radians(angles.get(k).get(0)));
-            vertex(px, py);
-            controls = drawTang(angles.get(k).get(0), cx, cy, radius);
-            cpx2 = controls[2];
-            cpy2 = controls[3];
-            for (int i = 1; i < angles.size(); i++) {
-                radius = w/2;//radii.get(i).get(k);
-                xoffglobal += grainglobal;
-                px1 = cx + radius * cos(radians(angles.get(k).get(i)));
-                py1 = cy + radius * sin(radians(angles.get(k).get(i)));
-                controls = drawTang(angles.get(k).get(i), cx, cy, radius);
-                cpx1 = controls[0];
-                cpy1 = controls[1];
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-                cpx2 = controls[2];
-                cpy2 = controls[3];
-            }
-        controls = drawTang(0, cx, cy, radius);
-        cpx1 = controls[0];
-        cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-        endShape();
-        }
-    }
-*/
     private void changeStrokeColor() {
         stroke(25 + alea.nextFloat() * 30, 100, 100);
     }
