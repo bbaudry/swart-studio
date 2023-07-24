@@ -113,12 +113,13 @@ public class Cell003 extends PApplet {
     private Float[] drawTang(float deg, float cx, float cy, float rad){
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
-        float wid = 68;
-        int ang = 90+42;//alea.nextInt(10);
-        float dx1 = tx+wid*cos(radians(deg-ang));
-        float dy1 = ty+wid*sin(radians(deg-ang));
-        float dx2 = tx+wid*cos(radians(deg-ang+180));
-        float dy2 = ty+wid*sin(radians(deg-ang+180));
+        float wid1 = w/10+w/10*alea.nextFloat();
+        float wid2 = w/10+w/10*alea.nextFloat();
+        int ang = 90+(-11+alea.nextInt(22));
+        float dx1 = tx+wid1*cos(radians(deg-ang));
+        float dy1 = ty+wid1*sin(radians(deg-ang));
+        float dx2 = tx+wid2*cos(radians(deg-ang+180));
+        float dy2 = ty+wid2*sin(radians(deg-ang+180));
         Float[] res = {dx1,dy1, dx2, dy2};
         return res;
     }
@@ -141,7 +142,7 @@ public class Cell003 extends PApplet {
                     py = (1 - t) * 0 + (t * radius);
                     changeStrokeColor();
                     ellipse(0, py, radius / 9 + alea.nextFloat() * radius / 9,
-                    radius / 3 + alea.nextFloat() * radius / 3);
+                    radius / 3 + alea.nextFloat() * radius / 2);
                     popMatrix();
                 }
             }

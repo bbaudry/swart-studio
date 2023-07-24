@@ -120,17 +120,12 @@ public class Summer004  extends PApplet {
         float ty = cy+rad*sin(radians(deg));
         float wid1 = w/10+w/10*alea.nextFloat();
         float wid2 = w/10+w/10*alea.nextFloat();
-        int ang = 90+(-11+alea.nextInt(22));//alea.nextInt(10);
+        int ang = 90+(-11+alea.nextInt(22));
         float dx1 = tx+wid1*cos(radians(deg-ang));
         float dy1 = ty+wid1*sin(radians(deg-ang));
         float dx2 = tx+wid2*cos(radians(deg-ang+180));
         float dy2 = ty+wid2*sin(radians(deg-ang+180));
         Float[] res = {dx1,dy1, dx2, dy2};
-        pushStyle();
-        stroke(300,100,100);
-        //line(cx,cy,tx,ty);
-        //line(dx1,dy1,dx2,dy2);
-        popStyle();
         return res;
     }
 
