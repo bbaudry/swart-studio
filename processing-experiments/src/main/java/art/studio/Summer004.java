@@ -46,7 +46,7 @@ public class Summer004 extends PApplet {
             for (int i = 0; i < coords.size(); i++) {
                 //oneLayerCompact(w / 2, h / 2, coords.get(i));
             }
-            stroke(0,0,100);noFill();ellipse(w/2,h/2,w,w);
+            stroke(0,0,100);noFill();ellipse(w/2,h/2,w/2,w/2);
             for(int j=0;j<core.size();j++){
                 Cell c = core.get(j);
                 c.move();
@@ -157,7 +157,7 @@ public class Summer004 extends PApplet {
             left=alea.nextBoolean();
             up=alea.nextBoolean();
             speed=s;
-            areaRad=w/2;
+            areaRad=w/4;
             areaX=w/2;
             areaY=h/2;
             xoff=alea.nextFloat()*82;
@@ -165,10 +165,13 @@ public class Summer004 extends PApplet {
         }
         
         public void move(){
-            if(!isInside()){
+            if(!xIn()){
                 left=!left;
+                System.out.println("changeX");
+            }
+            if(!yIn()){
                 up=!up;
-                System.out.println("change");
+                System.out.println("changeY");
             }
             if(left){if(alea.nextBoolean()){cx-=speed;}}
             else{if(alea.nextBoolean()){cx+=speed;}}
@@ -176,6 +179,14 @@ public class Summer004 extends PApplet {
             else{if(alea.nextBoolean()){cx+=speed;}}
         }
 
+        private boolean xIn(){
+            boolean is = Math.abs(cx-areaX)<areaRad;
+            return is;
+        }
+        private boolean yIn(){
+            boolean is = Math.abs(cy-areaY)<areaRad;
+            return is;
+        }
         private boolean isInside(){
             boolean is = (cx-areaX)*(cx-areaX)+(cy-areaY)*(cy-areaY) <= areaRad*areaRad;
             return is;
