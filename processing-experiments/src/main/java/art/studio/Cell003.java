@@ -33,12 +33,12 @@ public class Cell003 extends PApplet {
 
     @Override
     public void draw() {
-        if (frameCount < 2) {
+        if (frameCount < 3) {
             noFill();
             stroke(185 + alea.nextFloat() * 10, 100, 100, 84);
-            background(0, 0, 0);
-            w = (float)(0.8*wi);// (0.3 * wi + alea.nextFloat() * 0.2 * wi);
-            oneCell(9, 42, (float) (0.5 * wi), (float) (0.5 * he));
+//            background(0, 0, 0);
+            w = (float)(0.3 * wi + alea.nextFloat() * 0.2 * wi);
+            oneCell(9, 42, (float) (0.2 * wi+ alea.nextFloat() * 0.6 * wi), (float) (0.2 * he+ alea.nextFloat() * 0.6 * he));
         } else {
             noLoop();
             save("cell002.png");
@@ -147,21 +147,6 @@ public class Cell003 extends PApplet {
                 }
             }
         }
-    }
-
-    private ArrayList<ArrayList<Float>> setRadii(int cake, int layers) {
-        ArrayList<ArrayList<Float>> radii = new ArrayList<>();
-        float radius;
-        for (int i = 0; i < cake; i++) {
-            ArrayList<Float> radiiVec = new ArrayList<>();
-            for (int j = 0; j < layers; j++) {
-                radius = w / 4 + noise(xoffglobal) * w / 4;
-                xoffglobal += grainglobal;
-                radiiVec.add(radius);
-            }
-            radii.add(radiiVec);
-        }
-        return radii;
     }
 
     private void core(float cx, float cy) {
