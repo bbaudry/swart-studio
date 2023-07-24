@@ -16,6 +16,7 @@ public class Summer004 extends PApplet {
     int nbAngles;
     int nbLayers;
     ArrayList<ArrayList<Float[]>> coords;
+    ArrayList<Cell> core;
 
     float ang = 90;
     boolean grow = true;
@@ -31,9 +32,10 @@ public class Summer004 extends PApplet {
         colorMode(HSB, 360, 100, 100, 250);
         alea = new Random();
         background(0, 0, 0);
-        nbLayers = 84;
+        nbLayers = 4;
         // frameRate(1);
-        coords = initCoords();
+        initCoords();
+        initCore();
     }
 
     @Override
@@ -42,7 +44,14 @@ public class Summer004 extends PApplet {
             noFill();
             stroke(193, 100, 100);
             for (int i = 0; i < coords.size(); i++) {
-                oneLayerCompact(w / 2, h / 2, coords.get(i));
+                //oneLayerCompact(w / 2, h / 2, coords.get(i));
+            }
+            stroke(0,0,100);noFill();ellipse(w/2,h/2,w,w);
+            for(int j=0;j<core.size();j++){
+                Cell c = core.get(j);
+                c.move();
+                fill(30,100,100,84);
+                ellipse(c.cx, c.cy, c.rad, c.rad);
             }
             if (grow) {
                 ang += 0.1;
@@ -57,32 +66,20 @@ public class Summer004 extends PApplet {
             if (ang <= 0) {
                 grow = true;
             }
+            if(alea.nextFloat()<0.01){initOneLayer();}
     }
 
-    private void showAngles(ArrayList<Float> angles, ArrayList<ArrayList<Float[]>> coords) {
-        float hu = 20;
-        float rad_seed = (float) 0.1 * w;
-        float rad;
-        System.out.println("will draw " + coords.size() + " ellipses");
-        for (int j = 0; j < coords.size(); j++) {
-            stroke(hu, 100, 100);
-            hu += 27;
-            for (int i = 0; i < 7; i++) {
-                rad = (float) (0.3 * w + rad_seed * noise(xoff));
-                xoff += grain;
-                float x = w / 2 + rad * cos(radians(angles.get(j)));
-                float y = h / 2 + rad * sin(radians(angles.get(j)));
-                ellipse(x, y, 17, 17);
-            }
+    private void initCoords() {
+        coords = new ArrayList<>();
+        for (int i = 0; i < nbLayers; i++) {
+            initOneLayer();
         }
     }
 
-    private ArrayList<ArrayList<Float[]>> initCoords() {
-        ArrayList<ArrayList<Float[]>> coords = new ArrayList<>();
-        float angle, initangle, radius;
-        for (int i = 0; i < nbLayers; i++) {
-            initangle = alea.nextInt(180);
-            angle = initangle;
+    private  void initOneLayer(){
+            float initangle = alea.nextInt(180);
+            float angle = initangle;
+            float radius;
             ArrayList<Float[]> layer = new ArrayList<>();
             while (angle < 340 + initangle) {
                 radius = (float) (0.2 * w + w * 0.3 * noise(xoff));
@@ -93,8 +90,15 @@ public class Summer004 extends PApplet {
                 layer.add(vec);
             }
             coords.add(layer);
+    }
+
+    private void initCore(){
+        core=new ArrayList<>();
+        int nbCells=25;
+        for(int i=0; i<nbCells; i++){
+            Cell c = new Cell(w/2, h/2, 7+7*i, 2);
+            core.add(c);
         }
-        return (coords);
     }
 
     private void oneLayerCompact(float cx, float cy, ArrayList<Float[]> angles) {
@@ -138,6 +142,44 @@ public class Summer004 extends PApplet {
         float dy2 = ty + wid * sin(radians(deg - ang + 180));
         Float[] res = { dx1, dy1, dx2, dy2 };
         return res;
+    }
+
+    private class Cell{
+        boolean left;
+        boolean up;
+        float speed;
+        float cx,cy,rad;
+        float areaX,areaY,areaRad;
+        float xoff,grain;
+
+        public Cell(float x, float y, float r, float s){
+            cx=x;cy=y;rad=r;
+            left=alea.nextBoolean();
+            up=alea.nextBoolean();
+            speed=s;
+            areaRad=w/2;
+            areaX=w/2;
+            areaY=h/2;
+            xoff=alea.nextFloat()*82;
+            grain=(float)55;
+        }
+        
+        public void move(){
+            if(!isInside()){
+                left=!left;
+                up=!up;
+            }
+            if(left){cx-=speed+noise(xoff);xoff+=grain;}
+            else{cx+=speed+noise(xoff);xoff+=grain;}
+            if(up){cy-=speed+noise(xoff);xoff+=grain;}
+            else{cy+=speed+noise(xoff);xoff+=grain;}
+        }
+
+        private boolean isInside(){
+            boolean is = (cx-areaX)*(cx-areaX)+(cy-areaY)*(cy-areaY) <= areaRad*areaRad;
+            return is;
+        }
+
     }
 
     public static void main(String[] args) {
