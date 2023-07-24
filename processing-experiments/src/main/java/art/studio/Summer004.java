@@ -31,25 +31,6 @@ public class Summer004  extends PApplet {
         frameRate(1);
     }
 
-    private ArrayList<ArrayList<Float[]>> initCoords(){
-        ArrayList<ArrayList<Float[]>> coords=new ArrayList<>();
-        float angle,radius;
-        for (int i=0;i<nbLayers;i++){
-            angle=0;
-            ArrayList<Float[]> layer=new ArrayList<>();
-            while(angle<360){
-                radius=(float)(0.3*w+w*0.2*noise(xoff));
-                xoff+=grain;
-                angle+=21+21*noise(xoff);
-                xoff+=grain;
-                Float[] vec={angle,radius};
-                layer.add(vec);
-            }
-            coords.add(layer);
-        System.out.println(layer.size());
-        }
-        return(coords);
-    }
 
     @Override
     public void draw() {
@@ -82,6 +63,26 @@ public class Summer004  extends PApplet {
                 ellipse(x,y,17,17);
             }
         }
+    }
+    
+    private ArrayList<ArrayList<Float[]>> initCoords(){
+        ArrayList<ArrayList<Float[]>> coords=new ArrayList<>();
+        float angle,radius;
+        for (int i=0;i<nbLayers;i++){
+            angle=0;
+            ArrayList<Float[]> layer=new ArrayList<>();
+            while(angle<360){
+                radius=(float)(0.3*w+w*0.2*noise(xoff));
+                xoff+=grain;
+                angle+=21+21*noise(xoff);
+                xoff+=grain;
+                Float[] vec={angle,radius};
+                layer.add(vec);
+            }
+            coords.add(layer);
+        System.out.println(layer.size());
+        }
+        return(coords);
     }
 
     private void oneLayerCompact(float cx, float cy, ArrayList<Float[]> angles){
