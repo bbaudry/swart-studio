@@ -27,14 +27,14 @@ public class Summer004  extends PApplet {
         colorMode(HSB,360,100,100,250);
         alea=new Random();
         background(0,0,0);
-        nbLayers=85;
+        nbLayers=81;
         frameRate(1);
     }
 
 
     @Override
     public void draw() {
-        if(frameCount<7){
+        if(frameCount<42){
             background(0,0,0,42);
             noFill();
             stroke(193,100,100);
@@ -64,14 +64,14 @@ public class Summer004  extends PApplet {
             }
         }
     }
-    
+
     private ArrayList<ArrayList<Float[]>> initCoords(){
         ArrayList<ArrayList<Float[]>> coords=new ArrayList<>();
         float angle,radius;
         for (int i=0;i<nbLayers;i++){
             angle=0;
             ArrayList<Float[]> layer=new ArrayList<>();
-            while(angle<360){
+            while(angle<340){
                 radius=(float)(0.3*w+w*0.2*noise(xoff));
                 xoff+=grain;
                 angle+=21+21*noise(xoff);
@@ -118,13 +118,19 @@ public class Summer004  extends PApplet {
     private Float[] drawTang(float deg, float cx, float cy, float rad){
         float tx = cx+rad*cos(radians(deg));
         float ty = cy+rad*sin(radians(deg));
-        float wid = 68;
-        int ang = 90+42;//alea.nextInt(10);
-        float dx1 = tx+wid*cos(radians(deg-ang));
-        float dy1 = ty+wid*sin(radians(deg-ang));
-        float dx2 = tx+wid*cos(radians(deg-ang+180));
-        float dy2 = ty+wid*sin(radians(deg-ang+180));
+        float wid1 = w/10+w/10*alea.nextFloat();
+        float wid2 = w/10+w/10*alea.nextFloat();
+        int ang = 90+(-11+alea.nextInt(22));//alea.nextInt(10);
+        float dx1 = tx+wid1*cos(radians(deg-ang));
+        float dy1 = ty+wid1*sin(radians(deg-ang));
+        float dx2 = tx+wid2*cos(radians(deg-ang+180));
+        float dy2 = ty+wid2*sin(radians(deg-ang+180));
         Float[] res = {dx1,dy1, dx2, dy2};
+        pushStyle();
+        stroke(300,100,100);
+        //line(cx,cy,tx,ty);
+        //line(dx1,dy1,dx2,dy2);
+        popStyle();
         return res;
     }
 
