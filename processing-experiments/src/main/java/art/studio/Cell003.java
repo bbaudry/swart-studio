@@ -98,6 +98,7 @@ public class Cell003 extends PApplet {
             controls = drawTang(angles.get(i)[0],cx,cy,rad);
             cpx1 = controls[0];
             cpy1 = controls[1];
+            changeStrokeColor();
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
             cpx2 = controls[2];
             cpy2 = controls[3];
@@ -105,6 +106,7 @@ public class Cell003 extends PApplet {
         controls=drawTang(angles.get(0)[0],cx,cy,rad);
         cpx1=controls[0];
         cpy1=controls[1];
+        changeStrokeColor();
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
         endShape();
     }
