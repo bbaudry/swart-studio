@@ -47,7 +47,6 @@ public class Cell003 extends PApplet {
 
     private void oneCell(int cake, int layers, float cx, float cy) {
         ArrayList<ArrayList<Float[]>> angles = initCoords(layers);
-
         core(cx, cy);
         petals(angles, cx, cy);
         oneEnvelop(cx, cy, angles);
@@ -69,7 +68,6 @@ public class Cell003 extends PApplet {
                 layer.add(vec);
             }
             coords.add(layer);
-        System.out.println(layer.size());
         }
         return(coords);
     }
@@ -131,9 +129,9 @@ public class Cell003 extends PApplet {
     private void petals(ArrayList<ArrayList<Float[]>> angles, float cx, float cy) {
         noFill();
         float angle, radius, py, t;
-        for (int k = 0; k < angles.size() / 2; k++) {
+        for (int k = 0; k < angles.size(); k++) {
             for (int i = 0; i < angles.get(k).size(); i++) {
-                if (alea.nextFloat() < 0.8) {
+                if (alea.nextFloat() < 0.21) {
                     pushMatrix();
                     translate(cx, cy);
                     angle = angles.get(k).get(i)[0];
