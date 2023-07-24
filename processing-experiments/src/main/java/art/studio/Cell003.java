@@ -7,6 +7,7 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Cell003 extends PApplet {
     int ratio = 1;
@@ -36,8 +37,8 @@ public class Cell003 extends PApplet {
             noFill();
             stroke(185 + alea.nextFloat() * 10, 100, 100, 84);
             background(0, 0, 0);
-            w = (float) (0.3 * wi + alea.nextFloat() * 0.2 * wi);
-            oneCell(11, 84, (float) (0.5 * wi), (float) (0.5 * he));
+            w = (float)(0.8*wi);// (0.3 * wi + alea.nextFloat() * 0.2 * wi);
+            oneCell(9, 4, (float) (0.5 * wi), (float) (0.5 * he));
         } else {
             noLoop();
             save("cell002.png");
@@ -46,48 +47,64 @@ public class Cell003 extends PApplet {
 
     private void oneCell(int cake, int layers, float cx, float cy) {
         ArrayList<ArrayList<Float>> radii = setRadii(cake, layers);
-//        core(cake, layers, radii, cx, cy);
-//        petals(cake, layers, radii, cx, cy);
-        oneEnvelop(cake, layers, radii, cx, cy);
+        ArrayList<ArrayList<Float>> angles = initCoords(layers);
+
+        core(cake, layers, radii, cx, cy);
+        petals(cake, layers, radii, cx, cy);
+        oneEnvelop(angles, layers, radii, cx, cy);
     }
 
-    private void oneEnvelop(int cake, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
+    private void oneEnvelop(ArrayList<ArrayList<Float>> angles, int layers, ArrayList<ArrayList<Float>> radii, float cx, float cy) {
         noFill();
         float angle, radius, angle_inc, px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
-        angle_inc = radians(360 / cake);
         for (int k = 0; k < layers; k++) {
-            angle = angle_inc;
             changeStrokeColor();
             strokeWeight(1);
             beginShape();
-            radius = radii.get(0).get(k);
-            px = cx + radius * cos(radians(angle));
-            py = cy + radius * sin(radians(angle));
+            radius = w/2;
+            px = cx + radius * cos(radians(angles.get(k).get(0)));
+            py = cy + radius * sin(radians(angles.get(k).get(0)));
             vertex(px, py);
-            controls = drawTang(angle, cx, cy, radius);
+            controls = drawTang(angles.get(k).get(0), cx, cy, radius);
             cpx2 = controls[2];
             cpy2 = controls[3];
-            for (int i = 1; i < cake; i++) {
-                angle += angle_inc;
-                radius = radii.get(i).get(k);
+            for (int i = 1; i < angles.size(); i++) {
+                radius = w/2;//radii.get(i).get(k);
                 xoffglobal += grainglobal;
-                px1 = cx + radius * cos(radians(angle));
-                py1 = cy + radius * sin(radians(angle));
-                controls = drawTang(angle, cx, cy, radius);
+                px1 = cx + radius * cos(radians(angles.get(k).get(i)));
+                py1 = cy + radius * sin(radians(angles.get(k).get(i)));
+                controls = drawTang(angles.get(k).get(i), cx, cy, radius);
                 cpx1 = controls[0];
                 cpy1 = controls[1];
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
                 cpx2 = controls[2];
                 cpy2 = controls[3];
             }
-        controls = drawTang(angle, cx, cy, radius);
+        controls = drawTang(0, cx, cy, radius);
         cpx1 = controls[0];
         cpy1 = controls[1];
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
         endShape();
         }
     }
+
+    private ArrayList<ArrayList<Float>> initCoords(int nbLayers){
+        ArrayList<ArrayList<Float>> coords=new ArrayList<>();
+        float angle;
+        for (int i=0;i<nbLayers;i++){
+            angle=0;
+            ArrayList<Float> layer=new ArrayList<>();
+            while(angle<360){
+                layer.add(angle);
+                angle+=21+21*noise(xoffglobal);
+                xoffglobal+=grainglobal;
+            }
+            coords.add(layer);
+        }
+        return coords;
+    }
+
 
     private void oneLayerCompact(float cx, float cy, float rad, ArrayList<Float> angles) {
         float px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
@@ -119,8 +136,8 @@ public class Cell003 extends PApplet {
     private Float[] drawTang(float deg, float cx, float cy, float rad) {
         float tx = cx + rad * cos(radians(deg));
         float ty = cy + rad * sin(radians(deg));
-        float wid = 68;
-        int ang = 90 + 42;// alea.nextInt(10);
+        float wid = 68+alea.nextFloat()*68;
+        int ang = 90+11+alea.nextInt(21);
         float dx1 = tx + wid * cos(radians(deg - ang));
         float dy1 = ty + wid * sin(radians(deg - ang));
         float dx2 = tx + wid * cos(radians(deg - ang + 180));
