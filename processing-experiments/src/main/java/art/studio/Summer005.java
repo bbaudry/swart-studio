@@ -35,12 +35,11 @@ public class Summer005 extends PApplet {
         vertices = new ArrayList<>();
         for (int j = 0; j < 4; j++) {
             ArrayList<Float[]> v = new ArrayList<>();
-            float x = noise(xoff) * j;
-            xoff += grain;
-            while (x < w) {
+            float x = 0;
+            while (x <  1.5*w) {
                 Float[] one = { x, (float) 0.9 * h - j * h / 84 };
                 v.add(one);
-                x += noise(xoff) * w / 4;
+                x += noise(xoff) * w ;
                 xoff += grain;
             }
             vertices.add(v);
@@ -49,12 +48,11 @@ public class Summer005 extends PApplet {
     private void addVertices() {
         int j=vertices.size();
             ArrayList<Float[]> v = new ArrayList<>();
-            float x = noise(xoff) * j;
-            xoff += grain;
-            while (x < w) {
+            float x = 0;
+            while (x < 1.5*w) {
                 Float[] one = { x, (float) 0.99 * h - j * h / 84 };
                 v.add(one);
-                x += noise(xoff) * w / 4;
+                x += noise(xoff) * w ;
                 xoff += grain;
             }
             vertices.add(v);
