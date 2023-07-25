@@ -46,23 +46,10 @@ public class Summer006 extends PApplet {
             vertices.add(v);
         }
     }
-    private void addVertices() {
-        int j=vertices.size();
-            ArrayList<Float[]> v = new ArrayList<>();
-            float x = noise(xoff) * j;
-            xoff += grain;
-            while (x < w) {
-                Float[] one = { x, (float) 0.9 * h - j * h / 100 };
-                v.add(one);
-                x += noise(xoff) * w / 4;
-                xoff += grain;
-            }
-            vertices.add(v);
-    }
 
+    /* vary by: changing the alpha, the ang and wid increments, the max value in the condition */
     @Override
     public void draw() {
-        // background(42, 0, 0);
             noFill();
             stroke(334, 0, 0, 8);
             wave();

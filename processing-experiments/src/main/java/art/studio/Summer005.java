@@ -38,7 +38,7 @@ public class Summer005 extends PApplet {
             float x = noise(xoff) * j;
             xoff += grain;
             while (x < w) {
-                Float[] one = { x, (float) 0.9 * h - j * h / 100 };
+                Float[] one = { x, (float) 0.9 * h - j * h / 84 };
                 v.add(one);
                 x += noise(xoff) * w / 4;
                 xoff += grain;
@@ -52,7 +52,7 @@ public class Summer005 extends PApplet {
             float x = noise(xoff) * j;
             xoff += grain;
             while (x < w) {
-                Float[] one = { x, (float) 0.9 * h - j * h / 100 };
+                Float[] one = { x, (float) 0.99 * h - j * h / 84 };
                 v.add(one);
                 x += noise(xoff) * w / 4;
                 xoff += grain;
@@ -68,11 +68,11 @@ public class Summer005 extends PApplet {
             if (alea.nextFloat() < 0.21) {
                 addVertices();
             }
-            stroke(334, 90, 90, 7);
+            stroke(334, 90, 90, 2);
             wave();
             if (grow) {
                 ang += 0.1;
-                wid += 0.29;
+                wid += 0.1;
             } else {
                 ang -= 0.1;
                 wid -= 0.5;
