@@ -55,7 +55,7 @@ public class Summer006 extends PApplet {
             wave();
                 ang += 0.21;
                 wid += 0.84;
-            if (ang >= 260) {
+            if (ang >= 290) {
             noLoop();
             save("summer006.png");
             exit();
