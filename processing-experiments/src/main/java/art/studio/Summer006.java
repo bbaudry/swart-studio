@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.ArrayList;
 
 //practice shades
-public class Summer005 extends PApplet {
+public class Summer006 extends PApplet {
     int w = 1000;
     int h = 1000;
     Random alea;
@@ -33,16 +33,16 @@ public class Summer005 extends PApplet {
 
     private void setVertices() {
         vertices = new ArrayList<>();
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < 9; j++) {
             ArrayList<Float[]> v = new ArrayList<>();
-            float x = noise(xoff) * j;
-            xoff += grain;
-            while (x < w) {
-                Float[] one = { x, (float) 0.9 * h - j * h / 100 };
-                v.add(one);
-                x += noise(xoff) * w / 4;
-                xoff += grain;
-            }
+            Float[] one = { (float) 0, (float) 0.9 * h - j * h / 10 };
+            v.add(one);
+            Float[] two = { (float) 0.33*w, (float) 0.9 * h - j * h / 10 };
+            v.add(two);
+            Float[] three = { (float) 0.66*w, (float) 0.9 * h - j * h / 10 };
+            v.add(three);
+            Float[] four = { (float) w, (float) 0.9 * h - j * h / 10 };
+            v.add(four);
             vertices.add(v);
         }
     }
@@ -63,29 +63,14 @@ public class Summer005 extends PApplet {
     @Override
     public void draw() {
         // background(42, 0, 0);
-        if (frameCount < 420) {
             noFill();
-            if (alea.nextFloat() < 0.21) {
-                addVertices();
-            }
-            stroke(334, 90, 90, 7);
+            stroke(334, 0, 0, 8);
             wave();
-            if (grow) {
-                ang += 0.1;
-                wid += 0.29;
-            } else {
-                ang -= 0.1;
-                wid -= 0.5;
-            }
-            if (ang >= 180) {
-                grow = false;
-            }
-            if (ang <= 0) {
-                grow = true;
-            }
-        } else {
+                ang += 0.21;
+                wid += 0.84;
+            if (ang >= 260) {
             noLoop();
-            save("summer005.png");
+            save("summer006.png");
             exit();
         }
     }
@@ -125,8 +110,8 @@ public class Summer005 extends PApplet {
     }
 
     public static void main(String[] args) {
-        String[] processingArgs = { "Summer005" };
-        Summer005 mySketch = new Summer005();
+        String[] processingArgs = { "Summer006" };
+        Summer006 mySketch = new Summer006();
         PApplet.runSketch(processingArgs, mySketch);
     }
 
