@@ -15,7 +15,8 @@ public class Summer004 extends PApplet {
     float grain = (float) 0.09;
     float ang = 90;
     boolean grow = true;
-    float wid=w/10;
+    float wid = w / 10;
+    ArrayList<ArrayList<Float[]>> vertices;
 
     @Override
     public void settings() {
@@ -27,107 +28,87 @@ public class Summer004 extends PApplet {
         colorMode(HSB, 360, 100, 100, 250);
         alea = new Random();
         background(0, 0, 0);
+        setVertices();
+    }
+
+    private void setVertices() {
+        vertices = new ArrayList<>();
+        for(int j=0; j<84; j++){
+        ArrayList<Float[]> v = new ArrayList<>();
+        float x=noise(xoff)*j;xoff+=grain;
+        while(x<w) {
+            Float[] one = { x, (float) 0.9*h - j * h/100 };
+            v.add(one);
+            x+=noise(xoff)*w/4;
+            xoff+=grain;
+        }
+        vertices.add(v);
+        }
     }
 
     @Override
     public void draw() {
-            background(42, 0, 0);
-            noFill();
-            stroke(193, 100, 100);
-            wave();
-             if (grow) {
-                ang += 0.1;
-                wid += 0.5;
-            } else {
-                ang -= 0.1;
-                wid -= 0.5;
-            }
-            if (ang >= 180) {
-                grow = false;
-            }
-            if (ang <= 0) {
-                grow = true;
-            }
-
+//        background(42, 0, 0);
+if(frameCount<420){
+        noFill();
+        if(alea.nextFloat()<0.1){stroke(334, 100, 100,1);}
+        else{stroke(234, 0, 100,1);}
+        wave();
+        if (grow) {
+            ang += 0.1;
+            wid += 0.2;
+        } else {
+            ang -= 0.1;
+            wid -= 0.5;
+        }
+        if (ang >= 180) {
+            grow = false;
+        }
+        if (ang <= 0) {
+            grow = true;
+        }
+}
+    else{
+        noLoop();
+    }
     }
 
-
-    private void wave(){
-        float cx,cy, cpx1, cpy1, cpx2, cpy2;
+    private void wave() {
+        
+        float cx, cy, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
-
-        beginShape();
-        cx = 0; cy=(float)0.5*h;
-        ellipse(cx, cy, 7, 7);
-        vertex(cx, cy);
-        controls = drawTang(cx,cy);
-        cpx2 = controls[2];
-        cpy2 = controls[3];
-
-        cx = (float)0.2*w; cy=(float)0.7*h;
-        ellipse(cx, cy, 7, 7);
-        controls = drawTang(cx,cy);
-        cpx1 = controls[0];
-        cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
-        cpx2 = controls[2];
-        cpy2 = controls[3];
-
-        cx = (float)0.29*w; cy=(float)0.65*h;
-        ellipse(cx, cy, 7, 7);
-        controls = drawTang(cx,cy);
-        cpx1 = controls[0];
-        cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
-        cpx2 = controls[2];
-        cpy2 = controls[3];
-        
-        cx = (float)0.5*w; cy=(float)0.42*h;
-        ellipse(cx, cy, 7, 7);
-        controls = drawTang(cx,cy);
-        cpx1 = controls[0];
-        cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
-        cpx2 = controls[2];
-        cpy2 = controls[3];
-        
-        cx = (float)0.65*w; cy=(float)0.35*h;
-        ellipse(cx, cy, 7, 7);
-        controls = drawTang(cx,cy);
-        cpx1 = controls[0];
-        cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
-        cpx2 = controls[2];
-        cpy2 = controls[3];
-        
-        cx = (float)0.84*w; cy=(float)0.5*h;
-        ellipse(cx, cy, 7, 7);
-        controls = drawTang(cx,cy);
-        cpx1 = controls[0];
-        cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
-        cpx2 = controls[2];
-        cpy2 = controls[3];
-        
-        cx = w; cy=(float)0.66*h;
-        ellipse(cx, cy, 7, 7);
-        controls = drawTang(cx,cy);
-        cpx1 = controls[0];
-        cpy1 = controls[1];
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx,cy);
-        endShape();
+        for (int i = 0; i < vertices.size(); i++) {
+            beginShape();
+            cx = vertices.get(i).get(0)[0];
+            cy = vertices.get(i).get(0)[1];
+            vertex(cx, cy);
+            controls = drawTang(cx, cy);
+            cpx2 = controls[2];
+            cpy2 = controls[3];
+            for (int j = 1; j < vertices.get(i).size(); j++) {
+                cx = vertices.get(i).get(j)[0];
+                cy = vertices.get(i).get(j)[1];
+                controls = drawTang(cx, cy);
+                cpx1 = controls[0];
+                cpy1 = controls[1];
+                bezierVertex(cpx2, cpy2, cpx1, cpy1, cx, cy);
+                cpx2 = controls[2];
+                cpy2 = controls[3];
+            }
+            endShape();
+        }
     }
 
-    private Float[] drawTang( float cx, float cy) {
-        //float wid1 = w / 10;// *alea.nextFloat();
-        //float wid2 = w / 10;// *alea.nextFloat();
+    private Float[] drawTang(float cx, float cy) {
+        // float wid1 = w / 10;// *alea.nextFloat();
+        // float wid2 = w / 10;// *alea.nextFloat();
         // int ang = 90;//+(-11+alea.nextInt(22));
         float dx1 = cx + wid * cos(radians(ang));
         float dy1 = cy + wid * sin(radians(ang));
         float dx2 = cx + wid * cos(radians(ang + 180));
         float dy2 = cy + wid * sin(radians(ang + 180));
         Float[] res = { dx1, dy1, dx2, dy2 };
-        line(dx1,dy1,dx2,dy2);
+//        line(dx1, dy1, dx2, dy2);
         return res;
     }
 
