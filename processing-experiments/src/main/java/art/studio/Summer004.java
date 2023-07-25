@@ -27,7 +27,7 @@ public class Summer004 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100, 250);
         alea = new Random();
-        background(0, 0, 0);
+        background(0, 0, 100);
         setVertices();
     }
 
@@ -51,8 +51,8 @@ public class Summer004 extends PApplet {
 //        background(42, 0, 0);
 if(frameCount<420){
         noFill();
-        if(alea.nextFloat()<0.11){stroke(334, 100, 100,7);}
-        else{stroke(234, 0, 100,7);}
+        if(alea.nextFloat()<0.11){stroke(50, 100, 100,7);}
+        else{stroke(234, 0, 0,7);}
         wave();
         if (grow) {
             ang += 0.1;
@@ -102,15 +102,11 @@ if(frameCount<420){
     }
 
     private Float[] drawTang(float cx, float cy) {
-        // float wid1 = w / 10;// *alea.nextFloat();
-        // float wid2 = w / 10;// *alea.nextFloat();
-        // int ang = 90;//+(-11+alea.nextInt(22));
         float dx1 = cx + wid * cos(radians(ang));
         float dy1 = cy + wid * sin(radians(ang));
         float dx2 = cx + wid * cos(radians(ang + 180));
         float dy2 = cy + wid * sin(radians(ang + 180));
         Float[] res = { dx1, dy1, dx2, dy2 };
-//        line(dx1, dy1, dx2, dy2);
         return res;
     }
 
