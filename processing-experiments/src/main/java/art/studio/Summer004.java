@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 //practice shades
 public class Summer004 extends PApplet {
-    int w = 1000;
-    int h = 1000;
+    int w = 3000;
+    int h = 3000;
     Random alea;
     float xoff = (float) 0.0;
     float grain = (float) 0.09;
@@ -51,8 +51,8 @@ public class Summer004 extends PApplet {
 //        background(42, 0, 0);
 if(frameCount<420){
         noFill();
-        if(alea.nextFloat()<0.1){stroke(334, 100, 100,1);}
-        else{stroke(234, 0, 100,1);}
+        if(alea.nextFloat()<0.11){stroke(334, 100, 100,7);}
+        else{stroke(234, 0, 100,7);}
         wave();
         if (grow) {
             ang += 0.1;
@@ -70,6 +70,8 @@ if(frameCount<420){
 }
     else{
         noLoop();
+        save("summer004.png");
+        exit();
     }
     }
 
