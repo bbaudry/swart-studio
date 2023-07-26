@@ -33,37 +33,53 @@ public class Summer007 extends PApplet {
 
     private void setVertices() {
         vertices = new ArrayList<>();
-            ArrayList<Float[]> v = new ArrayList<>();
-            Float[] one = { (float) 0, (float) 0.2 * h -  h / 10 };
-            v.add(one);
-            Float[] two = { (float) 0.5*w, (float) 0.2 * h + h / 10 };
-            v.add(two);
-            Float[] three = { (float) w, (float) 0.2 * h -  h / 10 };
-            v.add(three);
-            vertices.add(v);
+        ArrayList<Float[]> v = new ArrayList<>();
+        Float[] one = { (float) 0, (float) 0.2 * h - h / 10 };
+        v.add(one);
+        Float[] two = { (float) 0.5 * w, (float) 0.2 * h + h / 10 };
+        v.add(two);
+        Float[] three = { (float) w, (float) 0.2 * h - h / 10 };
+        v.add(three);
+        vertices.add(v);
     }
 
-    /* vary by: changing the alpha, the ang and wid increments, the max value in the condition */
+    /*
+     * vary by: changing the alpha, the ang and wid increments, the max value in the
+     * condition
+     */
     @Override
     public void draw() {
-        //background(0, 0, 100);
+        background(0, 0, 100);
         noFill();
-        stroke(0,0,0);
-                wave();
+        stroke(0, 0, 0);
+        wave();
         updateVertices();
-        //noLoop();
-          //  save("summer007.png");
-            
+        // noLoop();
+        // save("summer007.png");
+
     }
 
-    private void updateVertices(){
-        
-                if(vertices.get(0).get(1)[1]<h){
-                    vertices.get(0).get(1)[0]+=3;
-        vertices.get(0).get(1)[1]+=7;}
-        else{
-            vertices.get(0).get(1)[0]-=5;
-        vertices.get(0).get(1)[1]-=3;}
+    private void updateVertices() {
+        if (vertices.get(0).get(1)[1] < 0.9*h) {
+            vertices.get(0).get(1)[0] += 3;
+            vertices.get(0).get(1)[1] += 7;
+        } else {
+            if (vertices.get(0).get(2)[0]>0.42*w){
+                vertices.get(0).get(2)[0] -= 5;
+                vertices.get(0).get(2)[1] += 3;
+            }
+            else{
+                if (vertices.get(0).get(2)[1]>0){
+                    vertices.get(0).get(2)[1] -= 1;
+                }
+                else{
+                    if (vertices.get(0).get(1)[0]>0){
+                        vertices.get(0).get(1)[0] -= 2;
+                    }
+                }
+
+            }
+        }
     }
 
     private void wave() {
@@ -92,7 +108,8 @@ public class Summer007 extends PApplet {
     }
 
     private Float[] drawTang(float cx, float cy) {
-        ang=90; wid=w/2;
+        ang = 90;
+        wid = w / 2;
         float dx1 = cx + wid * cos(radians(ang));
         float dy1 = cy + wid * sin(radians(ang));
         float dx2 = cx + wid * cos(radians(ang + 180));
