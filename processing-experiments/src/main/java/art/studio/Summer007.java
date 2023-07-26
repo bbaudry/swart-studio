@@ -27,17 +27,17 @@ public class Summer007 extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100, 250);
         alea = new Random();
-        background(0, 0, 100);
+        background(0, 0, 0);
         setVertices();
     }
 
     private void setVertices() {
         vertices = new ArrayList<>();
-        for(int i=0;i<42;i++){
+        for(int i=0;i<84;i++){
         ArrayList<Float[]> v = new ArrayList<>();
-        Float[] one = { (float) 0, (float) 0.2 * h - i* h / 10 };
+        Float[] one = { (float) 0, (float) 0.42 * h - i* h / 42 };
         v.add(one);
-        Float[] two = { (float) 0.5 * w + i*w/100, (float) 0.2 * h + i * h / 10 };
+        Float[] two = { (float) 0.5 * w + i*w/100, (float) 0.2 * h + i * h / 42 };
         v.add(two);
         Float[] three = { (float) w, (float) 0.2 * h - h / 10 };
         v.add(three);
@@ -51,9 +51,9 @@ public class Summer007 extends PApplet {
      */
     @Override
     public void draw() {
-        background(0, 0, 100);
+        background(0, 0, 0);
         noFill();
-        stroke(0, 0, 0);
+        stroke(0, 0, 100);
         wave();
         updateVertices();
         // noLoop();
@@ -67,7 +67,7 @@ public class Summer007 extends PApplet {
             vertices.get(i).get(1)[0] += 3;
             vertices.get(i).get(1)[1] += 3;
         } else {
-            if (vertices.get(i).get(2)[0]>0.42*w){
+            if (vertices.get(i).get(2)[0]>0.84*w){
                 vertices.get(i).get(2)[0] -= 5;
                 vertices.get(i).get(2)[1] += 3;
             }
