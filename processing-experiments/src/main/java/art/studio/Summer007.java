@@ -33,7 +33,7 @@ public class Summer007 extends PApplet {
 
     private void setVertices() {
         vertices = new ArrayList<>();
-        for(int i=0;i<4;i++){
+        for(int i=0;i<42;i++){
         ArrayList<Float[]> v = new ArrayList<>();
         Float[] one = { (float) 0, (float) 0.2 * h - i* h / 10 };
         v.add(one);
@@ -62,25 +62,27 @@ public class Summer007 extends PApplet {
     }
 
     private void updateVertices() {
-        if (vertices.get(0).get(1)[1] < 0.9*h) {
-            vertices.get(0).get(1)[0] += 3;
-            vertices.get(0).get(1)[1] += 7;
+        for (int i=0; i<vertices.size();i++){
+        if (vertices.get(i).get(1)[1] < 0.9*h) {
+            vertices.get(i).get(1)[0] += 3;
+            vertices.get(i).get(1)[1] += 3;
         } else {
-            if (vertices.get(0).get(2)[0]>0.42*w){
-                vertices.get(0).get(2)[0] -= 5;
-                vertices.get(0).get(2)[1] += 3;
+            if (vertices.get(i).get(2)[0]>0.42*w){
+                vertices.get(i).get(2)[0] -= 5;
+                vertices.get(i).get(2)[1] += 3;
             }
             else{
-                if (vertices.get(0).get(2)[1]>0){
-                    vertices.get(0).get(2)[1] -= 1;
+                if (vertices.get(i).get(2)[1]>0){
+                    vertices.get(i).get(2)[1] -= 1;
                 }
                 else{
-                    if (vertices.get(0).get(1)[0]>0){
-                        vertices.get(0).get(1)[0] -= 2;
+                    if (vertices.get(i).get(1)[0]>0){
+                        vertices.get(i).get(1)[0] -= 2;
                     }
                 }
 
             }
+        }
         }
     }
 
