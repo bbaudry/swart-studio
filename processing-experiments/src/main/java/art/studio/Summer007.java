@@ -34,12 +34,13 @@ public class Summer007 extends PApplet {
     private void setVertices() {
         vertices = new ArrayList<>();
         for(int i=0;i<84;i++){
+            int speed = 1+alea.nextInt(2);
         ArrayList<Float[]> v = new ArrayList<>();
-        Float[] one = { (float) 0, (float) 0.42 * h - i* h / 42 };
+        Float[] one = { (float) 0, (float) 0.72 * h - i* h / 142, (float)speed };
         v.add(one);
-        Float[] two = { (float) 0.5 * w + i*w/100, (float) 0.2 * h + i * h / 42 };
+        Float[] two = { (float) 0.5 * w + i*w/200, (float) 0.2 * h + i * h / 142,(float)speed };
         v.add(two);
-        Float[] three = { (float) w, (float) 0.2 * h - h / 10 };
+        Float[] three = { (float) w, (float) 0.2 * h - h / 10,(float)speed };
         v.add(three);
         vertices.add(v);
         }
@@ -51,7 +52,7 @@ public class Summer007 extends PApplet {
      */
     @Override
     public void draw() {
-        if (frameCount<420){
+        if (frameCount<840){
         background(0, 0, 0);
         noFill();
         stroke(0, 0, 100);
@@ -67,20 +68,20 @@ public class Summer007 extends PApplet {
     private void updateVertices() {
         for (int i=0; i<vertices.size();i++){
         if (vertices.get(i).get(1)[1] < 0.9*h) {
-            vertices.get(i).get(1)[0] += 3;
-            vertices.get(i).get(1)[1] += 3;
+            vertices.get(i).get(1)[0] += vertices.get(i).get(1)[2];
+            vertices.get(i).get(1)[1] += vertices.get(i).get(1)[2];
         } else {
             if (vertices.get(i).get(2)[0]>0.84*w){
-                vertices.get(i).get(2)[0] -= 5;
-                vertices.get(i).get(2)[1] += 3;
+                vertices.get(i).get(2)[0] -= vertices.get(i).get(2)[2];
+                vertices.get(i).get(2)[1] += vertices.get(i).get(2)[2];
             }
             else{
                 if (vertices.get(i).get(2)[1]>0){
-                    vertices.get(i).get(2)[1] -= 1;
+                    vertices.get(i).get(2)[1] -= vertices.get(i).get(2)[2];
                 }
                 else{
                     if (vertices.get(i).get(1)[0]>0){
-                        vertices.get(i).get(1)[0] -= 2;
+                        vertices.get(i).get(1)[0] -= vertices.get(i).get(1)[2];
                     }
                 }
 
