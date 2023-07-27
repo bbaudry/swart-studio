@@ -51,13 +51,16 @@ public class Summer007 extends PApplet {
      */
     @Override
     public void draw() {
+        if (frameCount<420){
         background(0, 0, 0);
         noFill();
         stroke(0, 0, 100);
         wave();
-        updateVertices();
-        // noLoop();
-        // save("summer007.png");
+        updateVertices();}
+        else{
+         noLoop();
+         save("summer007.png");
+        }
 
     }
 
