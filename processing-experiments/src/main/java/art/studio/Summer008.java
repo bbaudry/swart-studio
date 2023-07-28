@@ -34,7 +34,7 @@ public class Summer008 extends PApplet {
     private void setVertices() {
         vertices = new ArrayList<>();
         for(int i=1;i<22;i++){
-            float speed = (float)(i*0.21);
+            float speed = (float)(i*0.1);
         ArrayList<Float[]> v = new ArrayList<>();
         Float[] one = { (float) 0, (float) 0.5 * h, speed };
         v.add(one);
@@ -58,9 +58,7 @@ public class Summer008 extends PApplet {
         background(0, 0, 0);
         noFill();
         stroke(0, 0, 100);
-        for (int i=0;i<vertices.size();i++){
         wave();
-        }
         updateVertices();}
         else{
          noLoop();
