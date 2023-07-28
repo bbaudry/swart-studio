@@ -33,19 +33,17 @@ public class Summer008 extends PApplet {
 
     private void setVertices() {
         vertices = new ArrayList<>();
-        for(int i=1;i<2;i++){
+        for(int i=1;i<22;i++){
             float speed = (float)(i*0.21);
         ArrayList<Float[]> v = new ArrayList<>();
         Float[] one = { (float) 0, (float) 0.5 * h, speed };
         v.add(one);
-        Float[] two = { (float) 0.25*w, (float) 0.25 * h ,speed };
+        Float[] two = { (float) 0.25*w, (float) 0.5 * h ,speed };
         v.add(two);
-        Float[] three = { (float) 0.5*w, (float) 0.5 * h ,speed };
-        //v.add(three);
-        Float[] four = { (float) 0.75*w, (float) 0.75 * h ,speed };
+        Float[] three = { (float) 0.75*w, (float) 0.5 * h ,speed };
+        v.add(three);
+        Float[] four = { (float) w, (float) 0.5 * h ,speed };
         v.add(four);
-        Float[] five = { (float) w, (float) 0.5 * h ,speed };
-        v.add(five);
         vertices.add(v);
         }
     }
