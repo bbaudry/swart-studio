@@ -57,33 +57,57 @@ public class Summer008 extends PApplet {
      */
     @Override
     public void draw() {
-        if (frameCount<252){
+        if (frameCount<273){
         background(0, 0, 0);
         wave();
-        updateVertices();}
+        updateVerticesUp();}
         else{
+            if (frameCount<546){
         background(0, 0, 0);
         wave();
         updateVerticesCenter();
+        }
+        else{
+        background(0, 0, 0);
+        wave();
+        updateVerticesDown();
+
+        }
     //     noLoop();
     //     save("summer008.png");
         }
 
     }
 
-    private void updateVertices() {
+    private void updateVerticesUp() {
         for (int i=0; i<vertices.size();i++){
             vertices.get(i).get(1)[1]-=vertices.get(i).get(1)[2];
             vertices.get(i).get(2)[1]+=vertices.get(i).get(2)[2];
         }
     }
 
+    private void updateVerticesDown() {
+        for (int i=0; i<vertices.size();i++){
+            vertices.get(i).get(1)[1]+=vertices.get(i).get(1)[2];
+            vertices.get(i).get(2)[1]-=vertices.get(i).get(2)[2];
+        }
+    }
+
     private void updateVerticesCenter() {
         for (int i=0; i<vertices.size();i++){
-//            vertices.get(i).get(1)[4]-=vertices.get(i).get(1)[2];
+            vertices.get(i).get(1)[4]-=vertices.get(i).get(1)[2];
             vertices.get(i).get(1)[5]+=vertices.get(i).get(1)[2];
             vertices.get(i).get(2)[4]+=vertices.get(i).get(2)[2];
-//            vertices.get(i).get(2)[5]-=vertices.get(i).get(2)[2];
+            vertices.get(i).get(2)[5]-=vertices.get(i).get(2)[2];
+        }
+    }
+
+    private void updateVerticesSide() {
+        for (int i=0; i<vertices.size();i++){
+            vertices.get(i).get(1)[4]+=vertices.get(i).get(1)[2];
+            vertices.get(i).get(1)[5]-=vertices.get(i).get(1)[2];
+            vertices.get(i).get(2)[4]-=vertices.get(i).get(2)[2];
+            vertices.get(i).get(2)[5]+=vertices.get(i).get(2)[2];
         }
     }
 
