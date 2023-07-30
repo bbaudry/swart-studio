@@ -29,90 +29,86 @@ public class Summer008 extends PApplet {
         alea = new Random();
         background(0, 0, 0);
         setVertices();
-                noFill();
+        noFill();
         stroke(0, 0, 100);
 
     }
 
     private void setVertices() {
         vertices = new ArrayList<>();
-        for(int i=1;i<63;i++){
-            float speed = (float)(i*0.03);
-        ArrayList<Float[]> v = new ArrayList<>();
-        Float[] one = { (float) 0, (float) 0.5 * h, speed, (float)180, (float) 0.125*w, (float) 0.125*w };
-        v.add(one);
-        Float[] two = { (float) 0.25*w, (float) 0.5 * h ,speed, (float)180, (float) 0.125*w, (float) 0.125*w };
-        v.add(two);
-        Float[] three = { (float) 0.75*w, (float) 0.5 * h ,speed, (float)180, (float) 0.125*w, (float) 0.125*w };
-        v.add(three);
-        Float[] four = { (float) w, (float) 0.5 * h ,speed, (float)180, (float) 0.125*w, (float) 0.125*w };
-        v.add(four);
-        vertices.add(v);
+        for (int i = 1; i < 63; i++) {
+            float speed = (float) (i * 0.03);
+            ArrayList<Float[]> v = new ArrayList<>();
+            Float[] one = { (float) 0, (float) 0.5 * h, speed, (float) 180, (float) 0.125 * w, (float) 0.125 * w };
+            v.add(one);
+            Float[] two = { (float) 0.25 * w, (float) 0.5 * h, speed, (float) 180, (float) 0.125 * w,
+                    (float) 0.125 * w };
+            v.add(two);
+            Float[] three = { (float) 0.75 * w, (float) 0.5 * h, speed, (float) 180, (float) 0.125 * w,
+                    (float) 0.125 * w };
+            v.add(three);
+            Float[] four = { (float) w, (float) 0.5 * h, speed, (float) 180, (float) 0.125 * w, (float) 0.125 * w };
+            v.add(four);
+            vertices.add(v);
         }
     }
 
-    /*
-     * vary by: changing the alpha, the ang and wid increments, the max value in the
-     * condition
-     */
     @Override
     public void draw() {
-        if (frameCount<273){
-        background(0, 0, 0);
-        wave();
-        updateVerticesUp();}
-        else{
-            if (frameCount<546){
-        background(0, 0, 0);
-        wave();
-        updateVerticesCenter();
-        }
-        else{
-        background(0, 0, 0);
-        wave();
-        updateVerticesDown();
-
-        }
-    //     noLoop();
-    //     save("summer008.png");
+        if (vertices.get(vertices.size()-1).get(1)[1]>0) {
+            background(0, 0, 0);
+            wave();
+            updateVerticesUp();
+        } else {
+            if (frameCount < 546) {
+                background(0, 0, 0);
+                wave();
+                updateVerticesCenter();
+            } else {
+                background(0, 0, 0);
+                wave();
+                updateVerticesDown();
+            }
+            // noLoop();
+            // save("summer008.png");
         }
 
     }
 
     private void updateVerticesUp() {
-        for (int i=0; i<vertices.size();i++){
-            vertices.get(i).get(1)[1]-=vertices.get(i).get(1)[2];
-            vertices.get(i).get(2)[1]+=vertices.get(i).get(2)[2];
+        for (int i = 0; i < vertices.size(); i++) {
+            vertices.get(i).get(1)[1] -= vertices.get(i).get(1)[2];
+            vertices.get(i).get(2)[1] += vertices.get(i).get(2)[2];
         }
     }
 
     private void updateVerticesDown() {
-        for (int i=0; i<vertices.size();i++){
-            vertices.get(i).get(1)[1]+=vertices.get(i).get(1)[2];
-            vertices.get(i).get(2)[1]-=vertices.get(i).get(2)[2];
+        for (int i = 0; i < vertices.size(); i++) {
+            vertices.get(i).get(1)[1] += vertices.get(i).get(1)[2];
+            vertices.get(i).get(2)[1] -= vertices.get(i).get(2)[2];
         }
     }
 
     private void updateVerticesCenter() {
-        for (int i=0; i<vertices.size();i++){
-            vertices.get(i).get(1)[4]-=vertices.get(i).get(1)[2];
-            vertices.get(i).get(1)[5]+=vertices.get(i).get(1)[2];
-            vertices.get(i).get(2)[4]+=vertices.get(i).get(2)[2];
-            vertices.get(i).get(2)[5]-=vertices.get(i).get(2)[2];
+        for (int i = 0; i < vertices.size(); i++) {
+            vertices.get(i).get(1)[4] -= vertices.get(i).get(1)[2];
+            vertices.get(i).get(1)[5] += vertices.get(i).get(1)[2];
+            vertices.get(i).get(2)[4] += vertices.get(i).get(2)[2];
+            vertices.get(i).get(2)[5] -= vertices.get(i).get(2)[2];
         }
     }
 
     private void updateVerticesSide() {
-        for (int i=0; i<vertices.size();i++){
-            vertices.get(i).get(1)[4]+=vertices.get(i).get(1)[2];
-            vertices.get(i).get(1)[5]-=vertices.get(i).get(1)[2];
-            vertices.get(i).get(2)[4]-=vertices.get(i).get(2)[2];
-            vertices.get(i).get(2)[5]+=vertices.get(i).get(2)[2];
+        for (int i = 0; i < vertices.size(); i++) {
+            vertices.get(i).get(1)[4] += vertices.get(i).get(1)[2];
+            vertices.get(i).get(1)[5] -= vertices.get(i).get(1)[2];
+            vertices.get(i).get(2)[4] -= vertices.get(i).get(2)[2];
+            vertices.get(i).get(2)[5] += vertices.get(i).get(2)[2];
         }
     }
 
     private void wave() {
-        
+
         float cx, cy, cpx1, cpy1, cpx2, cpy2;
         Float[] controls;
         for (int i = 0; i < vertices.size(); i++) {
@@ -120,13 +116,15 @@ public class Summer008 extends PApplet {
             cx = vertices.get(i).get(0)[0];
             cy = vertices.get(i).get(0)[1];
             vertex(cx, cy);
-            controls = drawTang(cx, cy, vertices.get(i).get(0)[3], vertices.get(i).get(0)[4], vertices.get(i).get(0)[5]);
+            controls = drawTang(cx, cy, vertices.get(i).get(0)[3], vertices.get(i).get(0)[4],
+                    vertices.get(i).get(0)[5]);
             cpx2 = controls[2];
             cpy2 = controls[3];
             for (int j = 1; j < vertices.get(i).size(); j++) {
                 cx = vertices.get(i).get(j)[0];
                 cy = vertices.get(i).get(j)[1];
-                controls = drawTang(cx, cy, vertices.get(i).get(j)[3], vertices.get(i).get(j)[4], vertices.get(i).get(j)[5]);
+                controls = drawTang(cx, cy, vertices.get(i).get(j)[3], vertices.get(i).get(j)[4],
+                        vertices.get(i).get(j)[5]);
                 cpx1 = controls[0];
                 cpy1 = controls[1];
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, cx, cy);
@@ -138,7 +136,7 @@ public class Summer008 extends PApplet {
     }
 
     private Float[] drawTang(float cx, float cy, float angle, float radleft, float radright) {
-        ang=angle;
+        ang = angle;
         wid = w / 8;
         float dx1 = cx + radleft * cos(radians(ang));
         float dy1 = cy + radleft * sin(radians(ang));
