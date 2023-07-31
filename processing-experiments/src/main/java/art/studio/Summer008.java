@@ -15,6 +15,8 @@ public class Summer008 extends PApplet {
     float grain = (float) 0.09;
     float ang = 180;
     boolean grow = true;
+    boolean bend = true;
+    boolean fold = true;
     float wid = w / 10;
     ArrayList<ArrayList<Float[]>> vertices;
 
@@ -55,19 +57,25 @@ public class Summer008 extends PApplet {
 
     @Override
     public void draw() {
-        if (vertices.get(vertices.size()-1).get(1)[1]>0) {
+        if (vertices.get(vertices.size()-1).get(1)[1]>0 && grow) {
             background(0, 0, 0);
             wave();
             updateVerticesUp();
         } else {
-            if (frameCount < 546) {
+            grow=false;
+            if (vertices.get(vertices.size()-1).get(1)[4]>-(float) 0.25 * w && bend) {
                 background(0, 0, 0);
                 wave();
                 updateVerticesCenter();
             } else {
+                bend=false;
+                System.out.println(vertices.get(vertices.size()-1).get(1)[1]);
+                if (vertices.get(vertices.size()-1).get(1)[1]<(float)0.5* h && fold) {
                 background(0, 0, 0);
                 wave();
                 updateVerticesDown();
+                }
+                else{fold=false;}
             }
             // noLoop();
             // save("summer008.png");
