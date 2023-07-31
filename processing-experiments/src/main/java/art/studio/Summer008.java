@@ -57,25 +57,29 @@ public class Summer008 extends PApplet {
 
     @Override
     public void draw() {
-        if (vertices.get(vertices.size()-1).get(1)[1]>0 && grow) {
+        if (vertices.get(vertices.size() - 1).get(1)[1] > 0 && grow) {
             background(0, 0, 0);
             wave();
             updateVerticesUp();
         } else {
-            grow=false;
-            if (vertices.get(vertices.size()-1).get(1)[4]>-(float) 0.25 * w && bend) {
+            grow = false;
+            if (vertices.get(vertices.size() - 1).get(1)[4] > -(float) 0.25 * w && bend) {
                 background(0, 0, 0);
                 wave();
                 updateVerticesCenter();
             } else {
-                bend=false;
-                System.out.println(vertices.get(vertices.size()-1).get(1)[1]);
-                if (vertices.get(vertices.size()-1).get(1)[1]<(float)0.5* h && fold) {
-                background(0, 0, 0);
-                wave();
-                updateVerticesDown();
+                bend = false;
+                if (vertices.get(vertices.size() - 1).get(1)[1] < (float) 0.5 * h && fold) {
+                    background(0, 0, 0);
+                    wave();
+                    updateVerticesDown();
+                } else {
+                    fold = false;
+                    background(0, 0, 0);
+                    wave();
+                    spinVertices();
+                    updateVerticesUp();
                 }
-                else{fold=false;}
             }
             // noLoop();
             // save("summer008.png");
@@ -103,6 +107,14 @@ public class Summer008 extends PApplet {
             vertices.get(i).get(1)[5] += vertices.get(i).get(1)[2];
             vertices.get(i).get(2)[4] += vertices.get(i).get(2)[2];
             vertices.get(i).get(2)[5] -= vertices.get(i).get(2)[2];
+        }
+    }
+    private void spinVertices() {
+        for (int i = 0; i < vertices.size(); i++) {
+            vertices.get(i).get(1)[3] -= vertices.get(i).get(1)[2];
+//            vertices.get(i).get(1)[5] += vertices.get(i).get(1)[2];
+            vertices.get(i).get(2)[3] += vertices.get(i).get(2)[2];
+//            vertices.get(i).get(2)[5] -= vertices.get(i).get(2)[2];
         }
     }
 
