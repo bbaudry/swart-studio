@@ -17,8 +17,11 @@ public class Summer008 extends PApplet {
     boolean grow = true;
     boolean bend = true;
     boolean fold = true;
+    boolean secondPhase=false;
+    int startSecond=0;
     float wid = w / 10;
     ArrayList<ArrayList<Float[]>> vertices;
+    
 
     @Override
     public void settings() {
@@ -72,15 +75,25 @@ public class Summer008 extends PApplet {
                 if (vertices.get(vertices.size() - 1).get(1)[1] < (float) 0.5 * h && fold) {
                     background(0, 0, 0);
                     wave();
+                    updateVerticesCenter();
                     updateVerticesDown();
                 } else {
                     fold = false;
-                    background(0, 0, 0);
-                    wave();
-                    spinVertices();
-                    updateVerticesUp();
+                    if(!secondPhase){
+                    secondPhase=true;
+                    startSecond=frameCount;System.out.println(startSecond);
+                    }
                 }
             }
+        if (secondPhase && frameCount-startSecond<168){
+                    updateVerticesUp();
+        }
+        if (secondPhase && frameCount-startSecond<startSecond){
+            background(0, 0, 0);
+                    wave();
+                    spinVertices();
+        }
+
             // noLoop();
             // save("summer008.png");
         }
