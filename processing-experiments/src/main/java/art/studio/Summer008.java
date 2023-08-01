@@ -1,7 +1,6 @@
 package art.studio;
 
 import processing.core.PApplet;
-import processing.core.PGraphics;
 
 import java.util.Random;
 import java.util.ArrayList;

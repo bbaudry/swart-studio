@@ -38,11 +38,17 @@ public class Galaxy002 extends PApplet {
     private void grid() {
         int i=hcell;
         while(i<h-hcell){
-            if (alea.nextBoolean()){
+            int a = alea.nextInt(3);
+            switch(a){
+            case 0:
                 sliders(i);
-            }
-            else{
-                knobs(i);
+                break;
+            case 1:
+                plug(i);
+                break;
+            case 2:
+                knob(i);
+                break;
             }
             i+=hcell;
         }
@@ -60,7 +66,7 @@ public class Galaxy002 extends PApplet {
         }
     }
 
-    private void knobs(int hindex){
+    private void plug(int hindex){
         float w4 = wcell/4;
         float h8 = hcell/8;
         int j=wcell;
@@ -77,6 +83,32 @@ public class Galaxy002 extends PApplet {
             }
             j+=wcell;
         }
+    }
+
+    private void knob(int hindex){
+        float w4 = wcell/4;
+        float h8 = hcell/8;
+        int j=wcell;
+        while (j<w-wcell){
+            for (float x=w4; x<wcell; x+=w4*2){
+                for (float y=h8; y < hcell; y+=h8*2){
+                    float cx = j+x;
+                    float cy = hindex+y;
+                    ellipse(cx,cy, (float)1.2*w4, (float)1.2*w4);
+                    int ang = alea.nextInt(360);
+                    float rad = (float)0.9*w4;
+                    float dx = cx + rad*cos(radians(ang));
+                    float dy = cy + rad*sin(radians(ang));
+                    pushStyle();
+                    strokeWeight(7);
+                    stroke(0,0,0);
+                    line(cx,cy,dx,dy);
+                    popStyle();
+                }
+            }
+            j+=wcell;
+        }
+
     }
 
     public static void main(String[] args) {
