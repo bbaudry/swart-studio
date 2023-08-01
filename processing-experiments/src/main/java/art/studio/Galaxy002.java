@@ -20,14 +20,16 @@ public class Galaxy002 extends PApplet {
     @Override
     public void setup() {
         colorMode(HSB,360,100,100);
-        background(0,0,0);
+        background(230,100,50);
         noStroke();
         alea = new Random();
     }
 
     @Override
     public void draw() {
-        fill(0,100,100);
+        noStroke();
+        fill(0,0,0);
+
         grid();
         noLoop();
         save("galaxy002.png");
@@ -51,7 +53,6 @@ public class Galaxy002 extends PApplet {
         while (j<w-wcell){
             noStroke();
             float x = (float)0.42*wcell;
-            fill(230,100,50);
             rect(j+x,hindex,(float)0.16*wcell,hcell,5);
             float y = alea.nextFloat()*(hcell-(float)0.08*hcell);
             rect(j+10,hindex+y,wcell-20,(float)0.08*hcell,9);
@@ -66,11 +67,12 @@ public class Galaxy002 extends PApplet {
         while (j<w-wcell){
             for (float x=w4; x<wcell; x+=w4*2){
                 for (float y=h8; y < hcell; y+=h8*2){
+                    ellipse(j+x, hindex+y, (float)1.5*w4, (float)1.5*w4);
+                    pushStyle();
                     noStroke();
                     fill(230,100,50);
-                    ellipse(j+x, hindex+y, (float)1.5*w4, (float)1.5*w4);
-                    fill(230,100,10);
                     ellipse(j+x, hindex+y, (float)0.5*w4, (float)0.5*w4);
+                    popStyle();
                 }
             }
             j+=wcell;
