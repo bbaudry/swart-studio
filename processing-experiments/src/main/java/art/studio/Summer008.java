@@ -17,11 +17,13 @@ public class Summer008 extends PApplet {
     boolean grow = true;
     boolean bend = true;
     boolean fold = true;
-    boolean secondPhase=false;
-    int startSecond=0;
+    boolean secondPhase = false;
+    boolean closing = false;
+    int startSecond = 0;
+    int startClosing = 0;
+    int nbVertices = 63;
     float wid = w / 10;
     ArrayList<ArrayList<Float[]>> vertices;
-    
 
     @Override
     public void settings() {
@@ -41,7 +43,7 @@ public class Summer008 extends PApplet {
 
     private void setVertices() {
         vertices = new ArrayList<>();
-        for (int i = 1; i < 63; i++) {
+        for (int i = 1; i < nbVertices; i++) {
             float speed = (float) (i * 0.03);
             ArrayList<Float[]> v = new ArrayList<>();
             Float[] one = { (float) 0, (float) 0.5 * h, speed, (float) 180, (float) 0.125 * w, (float) 0.125 * w };
@@ -79,25 +81,38 @@ public class Summer008 extends PApplet {
                     updateVerticesDown();
                 } else {
                     fold = false;
-                    if(!secondPhase){
-                    secondPhase=true;
-                    startSecond=frameCount;System.out.println(startSecond);
+                    if (!secondPhase) {
+                        secondPhase = true;
+                        startSecond = frameCount;
+                    }
+                    if (secondPhase && frameCount - startSecond < 168) {
+                        updateVerticesUp();
+                    }
+                    if (secondPhase && frameCount - startSecond < startSecond + 168) {
+                        background(0, 0, 0);
+                        wave();
+                        spinVertices();
+                    } else {
+                        if (!closing) {
+                            closing = true;
+                            startClosing = frameCount;
+                        }
                     }
                 }
             }
-        if (secondPhase && frameCount-startSecond<168){
-                    updateVerticesUp();
+
         }
-        if (secondPhase && frameCount-startSecond<startSecond+168){
+        if (closing) {
             background(0, 0, 0);
-                    wave();
-                    spinVertices();
-        }
+            wave();
+            trimVertices();
+            spinVertices();
 
-            // noLoop();
-            // save("summer008.png");
         }
-
+        if (vertices.isEmpty()) {
+            background(0, 0, 0);
+            noLoop();
+        }
     }
 
     private void updateVerticesUp() {
@@ -122,22 +137,19 @@ public class Summer008 extends PApplet {
             vertices.get(i).get(2)[5] -= vertices.get(i).get(2)[2];
         }
     }
+
     private void spinVertices() {
         for (int i = 0; i < vertices.size(); i++) {
             vertices.get(i).get(1)[3] -= vertices.get(i).get(1)[2];
-//            vertices.get(i).get(1)[5] += vertices.get(i).get(1)[2];
+            // vertices.get(i).get(1)[5] += vertices.get(i).get(1)[2];
             vertices.get(i).get(2)[3] += vertices.get(i).get(2)[2];
-//            vertices.get(i).get(2)[5] -= vertices.get(i).get(2)[2];
+            // vertices.get(i).get(2)[5] -= vertices.get(i).get(2)[2];
         }
     }
 
-    private void updateVerticesSide() {
-        for (int i = 0; i < vertices.size(); i++) {
-            vertices.get(i).get(1)[4] += vertices.get(i).get(1)[2];
-            vertices.get(i).get(1)[5] -= vertices.get(i).get(1)[2];
-            vertices.get(i).get(2)[4] -= vertices.get(i).get(2)[2];
-            vertices.get(i).get(2)[5] += vertices.get(i).get(2)[2];
-        }
+    private void trimVertices() {
+        int i = alea.nextInt(vertices.size());
+        vertices.remove(i);
     }
 
     private void wave() {
