@@ -40,7 +40,7 @@ public class Galaxy002 extends PApplet {
         int i=hcell;
         while(i<h-hcell){
             int a = alea.nextInt(3);
-            int amount = alea.nextInt(ratio-2);
+            int amount = 1+ alea.nextInt(ratio-1);
 
             switch(a){
             case 0:
@@ -65,7 +65,7 @@ public class Galaxy002 extends PApplet {
         while (j<wend){
             noStroke();
             float x = (float)0.42*wcell;
-            rect(j+x,hindex,(float)0.16*wcell,hcell,5);
+            rect(j+x,hindex,(float)0.18*wcell,hcell,5);
             float y = alea.nextFloat()*(hcell-(float)0.08*hcell);
             rect(j+10,hindex+y,wcell-20,(float)0.08*hcell,9);
             j+=wcell;
@@ -79,7 +79,7 @@ public class Galaxy002 extends PApplet {
         while (j<wend){
             for (float x=w4; x<wcell; x+=w4*2){
                 for (float y=h8; y < hcell; y+=h8*2){
-                    ellipse(j+x, hindex+y, (float)1.5*w4, (float)1.5*w4);
+                    ellipse(j+x, hindex+y, (float)1.7*w4, (float)1.7*w4);
                     pushStyle();
                     noStroke();
                     fill(230,100,50);
@@ -102,7 +102,7 @@ public class Galaxy002 extends PApplet {
                     float cy = hindex+y;
                     ellipse(cx,cy, (float)1.4*w4, (float)1.4*w4);
                     int ang = alea.nextInt(360);
-                    float rad = (float)1.05*w4;
+                    float rad = (float)1.1*w4;
                     float dx = cx + rad*cos(radians(ang));
                     float dy = cy + rad*sin(radians(ang));
                     pushStyle();
