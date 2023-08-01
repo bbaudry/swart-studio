@@ -88,7 +88,7 @@ public class Summer008 extends PApplet {
         if (secondPhase && frameCount-startSecond<168){
                     updateVerticesUp();
         }
-        if (secondPhase && frameCount-startSecond<startSecond){
+        if (secondPhase && frameCount-startSecond<startSecond+168){
             background(0, 0, 0);
                     wave();
                     spinVertices();
