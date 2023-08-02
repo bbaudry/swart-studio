@@ -39,7 +39,7 @@ public class Galaxy002 extends PApplet {
     private void grid() {
         int i=hcell;
         while(i<h-hcell){
-            int a = alea.nextInt(3);
+            int a = alea.nextInt(4);
             int amount = 1+ alea.nextInt(ratio-1);
 
             switch(a){
@@ -55,6 +55,10 @@ public class Galaxy002 extends PApplet {
                 knob(i,wcell,amount*wcell);
                 sliders(i,amount*wcell,w-wcell);
                 break;
+            case 3:
+                board(i,wcell,amount*wcell);
+                plug(i,amount*wcell,w-wcell);
+                break;
             }
             i+=hcell;
         }
@@ -65,8 +69,8 @@ public class Galaxy002 extends PApplet {
         while (j<wend){
             noStroke();
             float x = (float)0.42*wcell;
-            rect(j+x,hindex,(float)0.18*wcell,hcell,5);
-            float y = alea.nextFloat()*(hcell-(float)0.08*hcell);
+            rect(j+x,hindex+(float)0.1*hcell,(float)0.18*wcell,(float)0.8*hcell,5);
+            float y = alea.nextFloat()*(hcell-(float)0.18*hcell);
             rect(j+wcell/10,hindex+y,wcell-2*wcell/10,(float)0.08*hcell,9);
             pushStyle();
             fill(230,100,50);
@@ -94,6 +98,28 @@ public class Galaxy002 extends PApplet {
             j+=wcell;
         }
     }
+
+    private void board(int hindex,int wstart, int wend){
+        float w4 = wcell/4;
+        float h6 = hcell/6;
+        float w2 = wcell/2;
+        float h3 = hcell/3;
+        int j=wstart;
+        while (j<wend){
+            for (float x=w2; x<wcell; x+=w2*2){
+                
+        ellipse(j+x, hindex+h3, (float)1.5*w2, (float)1.5*w2);
+        pushStyle();
+        noStroke();
+        fill(230,100,50);
+        ellipse(j+x, hindex+h3, (float)0.42*w2, (float)0.42*w2);
+        popStyle();
+         
+            }
+            j+=wcell;
+        }       
+    }
+
 
     private void knob(int hindex,int wstart, int wend){
         float w4 = wcell/4;
