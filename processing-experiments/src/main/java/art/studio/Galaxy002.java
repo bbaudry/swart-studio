@@ -72,7 +72,8 @@ public class Galaxy002 extends PApplet {
             noStroke();
             float x = (float) 0.42 * wcell;
             rect(j + x, hindex + (float) 0.1 * hcell, (float) 0.18 * wcell, (float) 0.8 * hcell, 5);
-            float y = alea.nextFloat() * (hcell - (float) 0.18 * hcell);
+
+            float y = (float)(0.1*hcell) + alea.nextFloat() * ((float) 0.8 * hcell);
             rect(j + wcell / 10, hindex + y, wcell - 2 * wcell / 10, (float) 0.08 * hcell, 9);
             pushStyle();
             fill(230, 100, 50);
@@ -140,9 +141,9 @@ public class Galaxy002 extends PApplet {
                 for (float y = h8; y < hcell; y += h8 * 2) {
                     float cx = j + x;
                     float cy = hindex + y;
-                    ellipse(cx, cy, (float) 1.4 * w4, (float) 1.4 * w4);
+                    ellipse(cx, cy, (float) 1.3 * w4, (float) 1.3 * w4);
                     int ang = 160 + alea.nextInt(200);
-                    float rad = (float) 1.05 * w4;
+                    float rad = (float) 0.85 * w4;
                     float dx = cx + rad * cos(radians(ang));
                     float dy = cy + rad * sin(radians(ang));
                     pushStyle();
