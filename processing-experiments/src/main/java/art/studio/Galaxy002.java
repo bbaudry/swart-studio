@@ -118,14 +118,14 @@ public class Galaxy002 extends PApplet {
                 popStyle();
                 pushStyle();
                 stroke(0,0,0);
-                line(j+x, hindex+2*h3,j+x,hindex+hcell);
+                line(j+x, hindex+(float)0.53*hcell,j+x,hindex+(float)0.9*hcell);
                 popStyle();
             }
             for (float x = w4; x < wcell; x += w4 * 2) {
                 pushStyle();
                 stroke(0,0,0);
                 strokeWeight(3);
-                line(j+x, hindex+hcell/2,j+x,hindex+hcell);
+                line(j+x, hindex+hcell/2,j+x,hindex+(float)0.9*hcell);
                 popStyle();
             }
             j += wcell;
