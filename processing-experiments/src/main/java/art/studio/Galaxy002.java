@@ -39,31 +39,37 @@ public class Galaxy002 extends PApplet {
     private void grid() {
         int i = hcell;
         while (i < h - hcell) {
-            int a = alea.nextInt(4);
+            int a = alea.nextInt(5);
+            int b = alea.nextInt(5);
+            int c = alea.nextInt(5);
             int share2 = 1 + alea.nextInt(ratio/2);
-            int share3 = share2 + alea.nextInt(ratio - 1);
-
-            switch (a) {
-                case 0:
-                    sliders(i, wcell, share2 * wcell);
-                    plug(i, share2 * wcell, share3 * wcell);
-                    board(i, share3 * wcell, w - wcell);
-                    break;
-                case 1:
-                    plug(i, wcell, share2 * wcell);
-                    knob(i, share2 * wcell, w - wcell);
-                    break;
-                case 2:
-                    knob(i, wcell, share2 * wcell);
-                    sliders(i, share2 * wcell, w - wcell);
-                    break;
-                case 3:
-                    board(i, wcell, share2 * wcell);
-                    plug(i, share2 * wcell, w - wcell);
-                    break;
-            }
+            int share3 = share2 + alea.nextInt(ratio/2 - 1);
+            shape(a,i, wcell, share2 * wcell);
+            shape(b,i, share2 * wcell, share3 * wcell);
+            shape(c,i, share3 * wcell, w - wcell);
             i += hcell;
         }
+    }
+
+    private void shape (int proba, int hindex, int wstart, int wend){
+            switch (proba) {
+                case 0:
+                    sliders(hindex, wstart, wend);
+                    break;
+                case 1:
+                    plug(hindex, wstart, wend);
+                    break;
+                case 2:
+                    knob(hindex, wstart, wend);
+                    break;
+                case 3:
+                    board(hindex, wstart, wend);
+                    break;
+                case 4:
+                    needle(hindex, wstart, wend);
+                    break;
+            }
+
     }
 
     private void sliders(int hindex, int wstart, int wend) {
@@ -104,7 +110,6 @@ public class Galaxy002 extends PApplet {
 
     private void board(int hindex, int wstart, int wend) {
         float w4 = wcell / 4;
-        float h6 = hcell / 6;
         float w2 = wcell / 2;
         float h3 = hcell / 3;
         int j = wstart;
@@ -126,6 +131,25 @@ public class Galaxy002 extends PApplet {
                 stroke(0,0,0);
                 strokeWeight(3);
                 line(j+x, hindex+hcell/2,j+x,hindex+(float)0.9*hcell);
+                popStyle();
+            }
+            j += wcell;
+        }
+    }
+
+    private void needle(int hindex, int wstart, int wend) {
+        float w2 = wcell / 2;
+        float h2 = hcell / 4;
+        int j = wstart;
+        
+        while (j < wend) {
+            for (float x = w2; x < wcell; x += w2 * 2) {
+                pushStyle();
+                stroke(0,0,0);
+                strokeWeight(3);
+                noFill();
+                ellipse(j + x, hindex + h2, (float) 1.5 * w2, (float) 1.5 *  w2);
+                ellipse(j + x, hindex + 3*h2, (float) 1.5 * w2, (float) 1.5 *  w2);
                 popStyle();
             }
             j += wcell;
