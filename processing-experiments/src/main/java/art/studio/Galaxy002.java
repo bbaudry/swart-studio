@@ -149,7 +149,7 @@ public class Galaxy002 extends PApplet {
                 strokeWeight(3);
                 noFill();
                 ellipse(j + x, hindex + h2, (float) 1.5 * w2, (float) 1.5 *  w2);
-                ellipse(j + x, hindex + 3*h2, (float) 1.5 * w2, (float) 1.5 *  w2);
+                ellipse(j + x, hindex + (float)2.7*h2, (float) 1.5 * w2, (float) 1.5 *  w2);
                 popStyle();
             }
             j += wcell;
