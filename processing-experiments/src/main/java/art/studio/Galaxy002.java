@@ -153,6 +153,7 @@ public class Galaxy002 extends PApplet {
                 float cy = hindex+h4;
                 float rad = (float)0.57*w2;
                 needle(cx, cy, rad);
+                marks(cx, cy, (float) 0.75 * w2);
                 strokeWeight(3);
                 ellipse(j + x, hindex + (float)2.7*h4, (float) 1.5 * w2, (float) 1.5 *  w2);
                 cx = j+x;
@@ -166,10 +167,21 @@ public class Galaxy002 extends PApplet {
 
     private void needle (float cx, float cy, float rad){
                 float angle = 130+alea.nextInt(280);
-                float px = cx+rad*cos(angle);
-                float py = cy+rad*sin(angle);
+                float px = cx+rad*cos(radians(angle));
+                float py = cy+rad*sin(radians(angle));
                 strokeWeight(1);
                 line (cx,cy,px,py);
+    }
+
+    private void marks (float cx, float cy, float rad){
+        for (float a=130; a<410; a+=20){
+                float px = cx+rad*cos(a);
+                float py = cy+rad*sin(a);
+                strokeWeight(1);
+                fill(0,100,100);
+                ellipse(py, cy, 3,3);
+                noFill();
+        }
     }
 
     private void knob(int hindex, int wstart, int wend) {
