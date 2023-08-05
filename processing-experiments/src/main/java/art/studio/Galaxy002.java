@@ -66,7 +66,7 @@ public class Galaxy002 extends PApplet {
                     board(hindex, wstart, wend);
                     break;
                 case 4:
-                    needle(hindex, wstart, wend);
+                    needleBoard(hindex, wstart, wend);
                     break;
             }
 
@@ -137,9 +137,9 @@ public class Galaxy002 extends PApplet {
         }
     }
 
-    private void needle(int hindex, int wstart, int wend) {
+    private void needleBoard(int hindex, int wstart, int wend) {
         float w2 = wcell / 2;
-        float h2 = hcell / 4;
+        float h4 = hcell / 4;
         int j = wstart;
         
         while (j < wend) {
@@ -148,12 +148,28 @@ public class Galaxy002 extends PApplet {
                 stroke(0,0,0);
                 strokeWeight(3);
                 noFill();
-                ellipse(j + x, hindex + h2, (float) 1.5 * w2, (float) 1.5 *  w2);
-                ellipse(j + x, hindex + (float)2.7*h2, (float) 1.5 * w2, (float) 1.5 *  w2);
+                ellipse(j + x, hindex + h4, (float) 1.5 * w2, (float) 1.5 *  w2);
+                float cx = j+x;
+                float cy = hindex+h4;
+                float rad = (float)0.57*w2;
+                needle(cx, cy, rad);
+                strokeWeight(3);
+                ellipse(j + x, hindex + (float)2.7*h4, (float) 1.5 * w2, (float) 1.5 *  w2);
+                cx = j+x;
+                cy = hindex+ (float)2.7*h4;
+                needle(cx, cy, rad);
                 popStyle();
             }
             j += wcell;
         }
+    }
+
+    private void needle (float cx, float cy, float rad){
+                float angle = 130+alea.nextInt(280);
+                float px = cx+rad*cos(angle);
+                float py = cy+rad*sin(angle);
+                strokeWeight(1);
+                line (cx,cy,px,py);
     }
 
     private void knob(int hindex, int wstart, int wend) {
