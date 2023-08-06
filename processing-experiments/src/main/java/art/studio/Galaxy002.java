@@ -39,9 +39,9 @@ public class Galaxy002 extends PApplet {
     private void grid() {
         int i = hcell;
         while (i < h - hcell) {
-            int a = alea.nextInt(5);
-            int b = alea.nextInt(5);
-            int c = alea.nextInt(5);
+            int a = alea.nextInt(6);
+            int b = alea.nextInt(6);
+            int c = alea.nextInt(6);
             int share2 = 1 + alea.nextInt(ratio/2);
             int share3 = share2 + alea.nextInt(ratio/2 - 1);
             shape(a,i, wcell, share2 * wcell);
@@ -67,6 +67,9 @@ public class Galaxy002 extends PApplet {
                     break;
                 case 4:
                     needleBoard(hindex, wstart, wend);
+                    break;
+                case 5:
+                    tape(hindex, wstart, wend);
                     break;
             }
 
@@ -106,6 +109,43 @@ public class Galaxy002 extends PApplet {
             }
             j += wcell;
         }
+    }
+
+    private void tape(int hindex, int wstart, int wend) {
+            float cx = wstart+(float)0.1*wcell;
+            float cy = hindex+(float)0.1*hcell;
+            float tapewid = wend-wstart-(float)0.2*wcell;
+            float tapehei = hcell-(float)0.2*hcell;
+            pushStyle();
+            noFill();
+            stroke(0,0,0);
+            strokeWeight(3);
+            rect(cx,cy,tapewid,tapehei,5);
+            popStyle();
+        if(wend-wstart>=2*wcell){
+            cx=wstart+wcell;
+            cy=hindex+hcell/2;
+            reel(cx,cy);
+        }
+    }
+
+    private void reel(float cx, float cy){
+            pushStyle();
+            noFill();
+            stroke(0,0,0);
+            float tapewid = 2*wcell;
+            float rad = (float)0.5*tapewid;
+            strokeWeight((float)0.3*tapewid);strokeCap(SQUARE);
+            int initangle = alea.nextInt(90);
+            for(int i =0; i<360;i+=120){
+            arc(cx, cy, rad, rad, radians(initangle+i), radians(initangle+i+60));
+            }
+            strokeWeight(3);
+            float rad1 = (float)0.1*tapewid*2;
+            float rad2 = (float)0.4*tapewid*2;    
+            ellipse(cx,cy,rad1,rad1);
+            ellipse(cx,cy,rad2,rad2);
+            popStyle();
     }
 
     private void board(int hindex, int wstart, int wend) {
@@ -209,7 +249,6 @@ public class Galaxy002 extends PApplet {
             }
             j += wcell;
         }
-
     }
 
     public static void main(String[] args) {
