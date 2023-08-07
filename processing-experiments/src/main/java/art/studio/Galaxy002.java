@@ -37,17 +37,15 @@ public class Galaxy002 extends PApplet {
     }
 
     private void grid() {
-        int i = hcell;
-        while (i < h - hcell) {
+        for (int j = hcell;j <= h - hcell;j+=hcell) {
             int a = alea.nextInt(6);
             int b = alea.nextInt(6);
             int c = alea.nextInt(6);
             int share2 = 1 + alea.nextInt(ratio / 2);
             int share3 = share2 + alea.nextInt(ratio / 2 - 1);
-            shape(a, i, wcell, share2 * wcell);
-            shape(b, i, share2 * wcell, share3 * wcell);
-            shape(c, i, share3 * wcell, w - wcell);
-            i += hcell;
+            shape(a, j, wcell, share2 * wcell);
+            shape(b, j, share2 * wcell, share3 * wcell);
+            shape(c, j, share3 * wcell, w - wcell);
         }
     }
 
