@@ -127,6 +127,11 @@ public class Galaxy002 extends PApplet {
             cy=hindex+hcell/2;
             reel(cx,cy);
         }
+        if(wend-wstart-2*wcell>=2*wcell){
+            cx=wstart+3*wcell;
+            cy=hindex+hcell/2;
+            reel(cx,cy);
+        }
     }
 
     private void reel(float cx, float cy){
