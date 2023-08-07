@@ -37,7 +37,7 @@ public class Galaxy002 extends PApplet {
     }
 
     private void grid() {
-        for (int j = hcell;j <= h - hcell;j+=hcell) {
+        for (int j = hcell;j < h - hcell;j+=hcell) {
             int a = alea.nextInt(6);
             int b = alea.nextInt(6);
             int c = alea.nextInt(6);
