@@ -16,13 +16,13 @@
 <body>
     <script>
         //global vars for the whole piece
-        var w = 800*2;
+        var w = 800;
         var realw = w*2;
         var h = 800;
 
         function setup() {
             createCanvas(w, h);
-            colorMode(HSB, 360, 100, 100);
+            colorMode(HSB, 360, 100, 100, 250);
             background(230, 100, 50);
             cadre();
         }
@@ -58,8 +58,8 @@
 
         function rays(x1,y1,x2,y2,x3,y3){
             let px1,py1;
-            stroke(50,100,50)
-            let inc = random(0.01,0.07)
+            stroke(50,100,100,84)
+            let inc = random(0.01,0.02)
             for(t=0;t<1;t+=inc){
                 strokeWeight(3)
                 px1 = (1-t) * x2 + (t * x3);
@@ -72,7 +72,101 @@
             let px1,py1,px2,py2;
             strokeWeight(3);
             if(p<2){
-                var coin=Math.floor(random(4));
+                var coin=Math.floor(random(3));
+                switch(coin){
+                    case 0: 
+                            px1 = 0.5 * x1 + (0.5 * x2);
+                            py1 = 0.5 * y1 + (0.5 * y2);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py1,7,7)
+                            px2 = 0.5 * x1 + (0.5 * x3);
+                            py2 = 0.5 * y1 + (0.5 * y3);
+                            fill(p*42,100,100);
+                            //ellipse(px2,py2,7,7)
+                            //stroke(p*42,100,100); line(px1,py1,px2,py2);line(x1,y1,px2,py2);line(px1,py1,x1,y1);
+                            //triangle(x1,y1,px1,py1,px2,py2)
+                            stripes(x1,y1,px1,py1,px2,py2)
+                            dive(x1,y1,px1,py1,px2,py2,p++)
+                        break;
+                    case 1: 
+                            px1 = 0.5 * x2 + (0.5 * x1);
+                            py1 = 0.5 * y2 + (0.5 * y1);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py1,7,7)
+                            px2 = 0.5 * x2 + (0.5 * x3);
+                            py2 = 0.5 * y2 + (0.5 * y3);
+                            fill(p*42,100,100);
+                            //ellipse(px2,py2,7,7)
+                            //stroke(p*42,100,100); line(px1,py1,px2,py2);line(x2,y2,px2,py2);line(px1,py1,x2,y2);
+                            //triangle(px1,py1,x2,y2,px2,py2)
+                            stripes(px1,py1,x2,y2,px2,py2)
+                            dive(px1,py1,x2,y2,px2,py2,p++)
+                        
+                        break;
+                    case 2: 
+                            px1 = 0.5 * x3 + (0.5 * x2);
+                            py1 = 0.5 * y3 + (0.5 * y2);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py1,7,7)
+                            px2 = 0.5 * x3 + (0.5 * x1);
+                            py2 = 0.5 * y3 + (0.5 * y1);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py2,7,7)
+                            //stroke(p*42,100,100); line(px1,py1,px2,py2);;line(x3,y3,px2,py2);line(px1,py1,x3,y3);
+                            //triangle(px1,py1,px2,py2,x3,y3,p++)
+                            stripes(px1,py1,px2,py2,x3,y3,p++)
+                            dive(px1,py1,px2,py2,x3,y3,p++)
+                        
+                        break;
+                }
+                coin=Math.floor(random(3));
+                switch(coin){
+                    case 0: 
+                            px1 = 0.5 * x1 + (0.5 * x2);
+                            py1 = 0.5 * y1 + (0.5 * y2);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py1,7,7)
+                            px2 = 0.5 * x1 + (0.5 * x3);
+                            py2 = 0.5 * y1 + (0.5 * y3);
+                            fill(p*42,100,100);
+                            //ellipse(px2,py2,7,7)
+                            //stroke(p*42,100,100); line(px1,py1,px2,py2);line(x1,y1,px2,py2);line(px1,py1,x1,y1);
+                            //triangle(x1,y1,px1,py1,px2,py2)
+                            stripes(x1,y1,px1,py1,px2,py2)
+                            dive(x1,y1,px1,py1,px2,py2,p++)
+                        break;
+                    case 1: 
+                            px1 = 0.5 * x2 + (0.5 * x1);
+                            py1 = 0.5 * y2 + (0.5 * y1);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py1,7,7)
+                            px2 = 0.5 * x2 + (0.5 * x3);
+                            py2 = 0.5 * y2 + (0.5 * y3);
+                            fill(p*42,100,100);
+                            //ellipse(px2,py2,7,7)
+                            //stroke(p*42,100,100); line(px1,py1,px2,py2);line(x2,y2,px2,py2);line(px1,py1,x2,y2);
+                            //triangle(px1,py1,x2,y2,px2,py2)
+                            stripes(px1,py1,x2,y2,px2,py2)
+                            dive(px1,py1,x2,y2,px2,py2,p++)
+                        
+                        break;
+                    case 2: 
+                            px1 = 0.5 * x3 + (0.5 * x2);
+                            py1 = 0.5 * y3 + (0.5 * y2);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py1,7,7)
+                            px2 = 0.5 * x3 + (0.5 * x1);
+                            py2 = 0.5 * y3 + (0.5 * y1);
+                            fill(p*42,100,100);
+                            //ellipse(px1,py2,7,7)
+                            //stroke(p*42,100,100); line(px1,py1,px2,py2);;line(x3,y3,px2,py2);line(px1,py1,x3,y3);
+                            //triangle(px1,py1,px2,py2,x3,y3,p++)
+                            stripes(px1,py1,px2,py2,x3,y3,p++)
+                            dive(px1,py1,px2,py2,x3,y3,p++)
+                        
+                        break;
+                }
+                coin=Math.floor(random(3));
                 switch(coin){
                     case 0: 
                             px1 = 0.5 * x1 + (0.5 * x2);
@@ -122,6 +216,9 @@
             }
         }
 
+        function layer(){
+            
+        }
     </script>
 </body>
 
