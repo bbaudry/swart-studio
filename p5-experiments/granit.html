@@ -31,6 +31,7 @@
             background(230, 100, 50);
             //cadre();
             citydense(0, 0, w, 0, w, h)
+            //densify(0,0,w,h,40)
             noLoop();
         }
 
@@ -70,43 +71,49 @@
         }
 
         function citydense(x1, y1, x2, y2, x3, y3) {
-            let px1, py1, px2, py2, inc;
-            stroke(50, 100, 100, 84)
+            let px1, py1, px2, py2, inc, interval;
+            stroke(50, 100, 100)
             var corner = Math.floor(random(3));
             switch (corner) {
-                case 0:
+                case 0:console.log(0)
                     inc = random(0.01, 0.02)
+                    if(x1!=x3){interval = Math.abs(x1-x3)*inc}
+                    else{interval = Math.abs(x1-x2)*inc}
                     for (t = 0; t < 1; t += inc) {
                         strokeWeight(3)
                         px1 = (1 - t) * x1 + (t * x3);
                         py1 = (1 - t) * y1 + (t * y3);
                         px2 = (1 - t) * x1 + (t * x2);
                         py2 = (1 - t) * y1 + (t * y2);
-                        noFill();stroke(50, 100, 100);
-                        triangle(x1, y1, x2, y2, x3, y3)
-                        line(px1, py1, px2, py2)
-                        densify(px1, py1, px2, py2,t)
+                        densify(px1, py1, px2, py2,interval)
                     }
                     break;
                 case 1:
                     inc = random(0.01, 0.02)
+                    if(x2!=x3){interval = Math.abs(x2-x3)*inc}
+                    else{interval = Math.abs(x1-x2)*inc}
+                    console.log(interval)
                     for (t = 0; t < 1; t += inc) {
                         strokeWeight(3)
                         px1 = (1 - t) * x2 + (t * x3);
                         py1 = (1 - t) * y2 + (t * y3);
                         px2 = (1 - t) * x2 + (t * x1);
                         py2 = (1 - t) * y2 + (t * y1);
-                        line(px1, py1, px2, py2)
-                    }
+                        densify(px1, py1, px2, py2,interval)
+                        }
                     break;
                 case 2:
                     inc = random(0.01, 0.02)
+                    if(x1!=x3){interval = Math.abs(x1-x3)*inc}
+                    else{interval = Math.abs(x3-x2)*inc}
                     for (t = 0; t < 1; t += inc) {
                         strokeWeight(3)
                         px1 = (1 - t) * x3 + (t * x1);
                         py1 = (1 - t) * y3 + (t * y1);
                         px2 = (1 - t) * x3 + (t * x2);
                         py2 = (1 - t) * y3 + (t * y2);
+                        densify(px1, py1, px2, py2,interval)
+
                         line(px1, py1, px2, py2)
                     }
                     break;
@@ -114,6 +121,40 @@
         }
 
         function densify(x1,y1,x2,y2,t){
+            let px1,py1,px2,py2,i,drop;
+            let horizontal=false 
+            let vertical=false
+            noStroke()
+            px1=x1
+            py1=y1
+            if(x1==x2){vertical=true}
+            if(y1==y2){horizontal=true}
+            i = random(0.01, 0.02)
+            while (i<1){
+                px2 = (1 - i) * x1 + (i * x2);
+                py2 = (1 - i) * y1 + (i * y2);
+                drop = t+random(t);
+                fill(330,100,100,random(84,168))
+                if(vertical){
+                    console.log("vert")
+                    quad(px1,py1,px2,py2,px2+drop,py2,px1+drop,py1)
+                }
+                else{
+                    if(horizontal){console.log("hori")
+                        quad(px1,py1,px2,py2,px2,py2+drop,px1,py1+drop)   
+                    }
+                    else{
+                        console.log("hey")
+                        quad(px1,py1,px1+drop,py1,px2+drop,py2,px2,py2)
+                    }
+                }
+                px1=px2
+                py1=py2
+                i += random(0.01, 0.02)  
+            }
+        }
+
+        function densifyglitch(x1,y1,x2,y2,t){
             let px1,py1,px2,py2,i,drop;
             
             noStroke()
@@ -206,7 +247,6 @@
                 strokeWeight(3);
                 var iter = Math.floor(random(3, 7));
                 for (i = 0; i < iter; i++) {
-                    console.log(i)
                     var coin = Math.floor(random(3));
                     switch (coin) {
                         case 0:
