@@ -37,7 +37,7 @@
 
         function cadre() {
             stripes(0, 0, w, 0, w, h);
-            dive(0, 0, w, 0, w, h, 0);
+            diveall(0, 0, w, 0, w, h, 0);
             stripes(0, 0, w, h, 0, h);
             diveall(0, 0, w, h, 0, h, 0);
         }
@@ -75,23 +75,23 @@
             stroke(50, 100, 100)
             var corner = Math.floor(random(3));
             switch (corner) {
-                case 0:console.log(0)
+                case 0: console.log(0)
                     inc = random(0.01, 0.02)
-                    if(x1!=x3){interval = Math.abs(x1-x3)*inc}
-                    else{interval = Math.abs(x1-x2)*inc}
+                    if (x1 != x3) { interval = Math.abs(x1 - x3) * inc }
+                    else { interval = Math.abs(x1 - x2) * inc }
                     for (t = 0; t < 1; t += inc) {
                         strokeWeight(3)
                         px1 = (1 - t) * x1 + (t * x3);
                         py1 = (1 - t) * y1 + (t * y3);
                         px2 = (1 - t) * x1 + (t * x2);
                         py2 = (1 - t) * y1 + (t * y2);
-                        densify(px1, py1, px2, py2,interval)
+                        densify(px1, py1, px2, py2, interval)
                     }
                     break;
                 case 1:
                     inc = random(0.01, 0.02)
-                    if(x2!=x3){interval = Math.abs(x2-x3)*inc}
-                    else{interval = Math.abs(x1-x2)*inc}
+                    if (x2 != x3) { interval = Math.abs(x2 - x3) * inc }
+                    else { interval = Math.abs(x1 - x2) * inc }
                     console.log(interval)
                     for (t = 0; t < 1; t += inc) {
                         strokeWeight(3)
@@ -99,20 +99,20 @@
                         py1 = (1 - t) * y2 + (t * y3);
                         px2 = (1 - t) * x2 + (t * x1);
                         py2 = (1 - t) * y2 + (t * y1);
-                        densify(px1, py1, px2, py2,interval)
-                        }
+                        densify(px1, py1, px2, py2, interval)
+                    }
                     break;
                 case 2:
                     inc = random(0.01, 0.02)
-                    if(x1!=x3){interval = Math.abs(x1-x3)*inc}
-                    else{interval = Math.abs(x3-x2)*inc}
+                    if (x1 != x3) { interval = Math.abs(x1 - x3) * inc }
+                    else { interval = Math.abs(x3 - x2) * inc }
                     for (t = 0; t < 1; t += inc) {
                         strokeWeight(3)
                         px1 = (1 - t) * x3 + (t * x1);
                         py1 = (1 - t) * y3 + (t * y1);
                         px2 = (1 - t) * x3 + (t * x2);
                         py2 = (1 - t) * y3 + (t * y2);
-                        densify(px1, py1, px2, py2,interval)
+                        densify(px1, py1, px2, py2, interval)
 
                         line(px1, py1, px2, py2)
                     }
@@ -120,54 +120,55 @@
             }
         }
 
-        function densify(x1,y1,x2,y2,t){
-            let px1,py1,px2,py2,i,drop;
-            let horizontal=false 
-            let vertical=false
+        function densify(x1, y1, x2, y2, t) {
+            let px1, py1, px2, py2, i, drop;
+            let horizontal = false
+            let vertical = false
             noStroke()
-            px1=x1
-            py1=y1
-            if(x1==x2){vertical=true}
-            if(y1==y2){horizontal=true}
+            px1 = x1
+            py1 = y1
+            if (x1 == x2) { vertical = true }
+            if (y1 == y2) { horizontal = true }
             i = random(0.01, 0.02)
-            while (i<1){
+            while (i < 1) {
                 px2 = (1 - i) * x1 + (i * x2);
                 py2 = (1 - i) * y1 + (i * y2);
-                drop = t+random(t);
-                fill(330,100,100,random(84,168))
-                if(vertical){
+                drop = t + random(t);
+                fill(330, 100, 100, random(84, 168))
+                if (vertical) {
                     console.log("vert")
-                    quad(px1,py1,px2,py2,px2+drop,py2,px1+drop,py1)
+                    quad(px1, py1, px2, py2, px2 + drop, py2, px1 + drop, py1)
                 }
-                else{
-                    if(horizontal){console.log("hori")
-                        quad(px1,py1,px2,py2,px2,py2+drop,px1,py1+drop)   
+                else {
+                    if (horizontal) {
+                        console.log("hori")
+                        quad(px1, py1, px2, py2, px2, py2 + drop, px1, py1 + drop)
                     }
-                    else{
+                    else {
                         console.log("hey")
-                        quad(px1,py1,px1+drop,py1,px2+drop,py2,px2,py2)
+                        quad(px1, py1, px1 + drop, py1, px2 + drop, py2, px2, py2)
                     }
                 }
-                px1=px2
-                py1=py2
-                i += random(0.01, 0.02)  
+                px1 = px2
+                py1 = py2
+                i += random(0.01, 0.02)
             }
         }
 
-        function densifyglitch(x1,y1,x2,y2,t){
-            let px1,py1,px2,py2,i,drop;
-            
+        function densifyglitch(x1, y1, x2, y2, t) {
+            let px1, py1, px2, py2, i, drop;
+
             noStroke()
-            px1=x1
-            py1=y1
+            px1 = x1
+            py1 = y1
             i = random(0.01, 0.02)
-            while (i<1){
+            while (i < 1) {
                 px2 = (1 - i) * x1 + (i * x2);
                 py2 = (1 - i) * y1 + (i * y2);
-                drop = t+random(t);
-                fill(330,100,100,random(84,168))
-                rect(px1,py1,px2,py2,px2+drop,py2+drop,px1+drop,py1+drop)
-                i += random(0.01, 0.02)  
+                drop = t + random(t);
+                fill(330, 100, 100, random(84, 168))
+                rect(px1, py1, px2, py2, px2 + drop, py2 + drop, px1 + drop, py1 + drop)
+                i += random(0.01, 0.02)
             }
         }
 
@@ -254,8 +255,8 @@
                             py1 = 0.5 * y1 + (0.5 * y2);
                             px2 = 0.5 * x1 + (0.5 * x3);
                             py2 = 0.5 * y1 + (0.5 * y3);
-                            
-                                citydense(x1, y1, px1, py1, px2, py2)
+
+                            citydense(x1, y1, px1, py1, px2, py2)
                             dive(x1, y1, px1, py1, px2, py2, p + 1);
                             break;
                         case 1:
@@ -263,9 +264,9 @@
                             py1 = 0.5 * y2 + (0.5 * y1);
                             px2 = 0.5 * x2 + (0.5 * x3);
                             py2 = 0.5 * y2 + (0.5 * y3);
-                            
-                                citydense(px1, py1, x2, y2, px2, py2)
-                            
+
+                            citydense(px1, py1, x2, y2, px2, py2)
+
                             dive(px1, py1, x2, y2, px2, py2, p + 1);
                             break;
                         case 2:
@@ -273,9 +274,9 @@
                             py1 = 0.5 * y3 + (0.5 * y2);
                             px2 = 0.5 * x3 + (0.5 * x1);
                             py2 = 0.5 * y3 + (0.5 * y1);
-                            
-                                citydense(px1, py1, px2, py2, x3, y3)
-                            
+
+                            citydense(px1, py1, px2, py2, x3, y3)
+
                             dive(px1, py1, px2, py2, x3, y3, p + 1);
                             break;
                     }
@@ -284,37 +285,41 @@
         }
 
         function diveall(x1, y1, x2, y2, x3, y3, p) {
-            if (p < 3) {
+            let density = 0.7
+            if (p < 2) {
                 let px1, py1, px2, py2, px3, py3;
                 px1 = 0.5 * x1 + (0.5 * x2);
                 py1 = 0.5 * y1 + (0.5 * y2);
                 px2 = 0.5 * x1 + (0.5 * x3);
                 py2 = 0.5 * y1 + (0.5 * y3);
-                
-                    citydense(x1, y1, px1, py1, px2, py2)
-                
+
+                if(random()<density){citydense(x1, y1, px1, py1, px2, py2)}
+
                 diveall(x1, y1, px1, py1, px2, py2, p + 1)
 
                 px1 = 0.5 * x2 + (0.5 * x1);
                 py1 = 0.5 * y2 + (0.5 * y1);
                 px2 = 0.5 * x2 + (0.5 * x3);
                 py2 = 0.5 * y2 + (0.5 * y3);
-                
-                    citydense(px1, py1, x2, y2, px2, py2)
-                
+
+                if(random()<density){citydense(px1, py1, x2, y2, px2, py2)}
+
                 diveall(px1, py1, x2, y2, px2, py2, p + 1)
 
                 px1 = 0.5 * x3 + (0.5 * x2);
                 py1 = 0.5 * y3 + (0.5 * y2);
                 px2 = 0.5 * x3 + (0.5 * x1);
                 py2 = 0.5 * y3 + (0.5 * y1);
-                
-                    citydense(px1, py1, px2, py2, x3, y3)
-                
+
+                if(random()<density){citydense(px1, py1, px2, py2, x3, y3)}
+
                 diveall(px1, py1, px2, py2, x3, y3, p + 1)
 
                 px3 = 0.5 * x2 + (0.5 * x1);
                 py3 = 0.5 * y2 + (0.5 * y1);
+                if(random()<density){citydense(px1, py1, px2, py2, px3, py3)}
+
+                diveall(px1, py1, px2, py2, px3, py3, p + 1)
                 //corerays(px1,py1,px2,py2,px3,py3)
             }
         }
