@@ -29,9 +29,9 @@
 
         function draw() {
             background(230, 100, 50);
-            cadre();
+            //cadre();
             //citydense(0, 0, w, 0, w, h)
-            //densify(0,0,w,h,40)
+            densify(0,0,w,h,40)
             noLoop();
         }
 
@@ -121,37 +121,39 @@
         }
 
         function densify(x1, y1, x2, y2, t) {
-            let px1, py1, px2, py2, i, drop;
+            let px1, py1, px2, py2, i, j, drop;
             let horizontal = false
             let vertical = false
+            let len = Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))
+            console.log(len)
+            
             noStroke()
             px1 = x1
             py1 = y1
             if (x1 == x2) { vertical = true }
             if (y1 == y2) { horizontal = true }
-            i = random(0.01, 0.02)
+            j = random()*len/100
+            i = map(j,0,len/100,0,1)
             while (i < 1) {
                 px2 = (1 - i) * x1 + (i * x2);
                 py2 = (1 - i) * y1 + (i * y2);
                 drop = t + random(t);
                 fill(330, 100, 100, random(84, 168))
                 if (vertical) {
-                    console.log("vert")
                     quad(px1, py1, px2, py2, px2 + drop, py2, px1 + drop, py1)
                 }
                 else {
                     if (horizontal) {
-                        console.log("hori")
                         quad(px1, py1, px2, py2, px2, py2 + drop, px1, py1 + drop)
                     }
                     else {
-                        console.log("hey")
-                        quad(px1, py1, px1 + drop, py1, px2 + drop, py2, px2, py2)
+                            quad(px1, py1, px1 + drop, py1, px2 + drop, py2, px2, py2)
                     }
                 }
                 px1 = px2
                 py1 = py2
-                i += random(0.01, 0.02)
+                j = random()*len
+                i += map(j,0,len,0,1)
             }
         }
 
