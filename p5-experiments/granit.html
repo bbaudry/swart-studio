@@ -29,9 +29,15 @@
 
         function draw() {
             background(230, 100, 50);
-            //cadre();
-            //citydense(0, 0, w, 0, w, h)
-            densify(0,0,w,h,40)
+            cadre();
+            //citydense(0, 0, w/2, 0, w/2, h/2)
+            //citydense(w/2, 0, w, h/2, w, 0)
+            //citydense(w/2, h/2, w, h/2, w/2, 0)
+            //citydense(w/2, h/2, w/2, h, w, h/2)
+            //citydense(w/2, h/2, w/2, h, 0, h/2)
+            //densify(0,0,w,h,40)
+            //densify(w/2,0,w,h/2,40)
+            //save("granit.png")
             noLoop();
         }
 
@@ -124,20 +130,17 @@
             let px1, py1, px2, py2, i, j, drop;
             let horizontal = false
             let vertical = false
-            let len = Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))
-            console.log(len)
-            
+            let len = Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1*y2))            
             noStroke()
             px1 = x1
             py1 = y1
             if (x1 == x2) { vertical = true }
             if (y1 == y2) { horizontal = true }
-            j = random()*len/100
-            i = map(j,0,len/100,0,1)
+            i=random(3/len,7/len)
             while (i < 1) {
                 px2 = (1 - i) * x1 + (i * x2);
                 py2 = (1 - i) * y1 + (i * y2);
-                drop = t + random(t);
+                drop = t + random(-t/2,t/2);
                 fill(330, 100, 100, random(84, 168))
                 if (vertical) {
                     quad(px1, py1, px2, py2, px2 + drop, py2, px1 + drop, py1)
@@ -152,8 +155,7 @@
                 }
                 px1 = px2
                 py1 = py2
-                j = random()*len
-                i += map(j,0,len,0,1)
+                i+=random(3/len,7/len)
             }
         }
 
