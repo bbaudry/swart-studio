@@ -29,7 +29,8 @@
 
         function draw() {
             background(230, 100, 50);
-            cadre();
+            //cadre();
+            citydense(0, 0, w, 0, w, h)
             noLoop();
         }
 
@@ -38,6 +39,138 @@
             diveall(0, 0, w, 0, w, h, 0);
             stripes(0, 0, w, h, 0, h);
             diveall(0, 0, w, h, 0, h, 0);
+        }
+
+        function corerays(x1, y1, x2, y2, x3, y3) {
+            let cx = (x1 + x2 + x3) / 3
+            let cy = (y1 + y2 + y3) / 3
+            stroke(50, 100, 100, 84)
+            let inc = random(0.01, 0.02)
+            for (t = 0; t < 1; t += inc) {
+                strokeWeight(3)
+                px1 = (1 - t) * x2 + (t * x3);
+                py1 = (1 - t) * y2 + (t * y3);
+                line(cx, cy, px1, py1)
+            }
+            inc = random(0.01, 0.02)
+            for (t = 0; t < 1; t += inc) {
+                strokeWeight(3)
+                px1 = (1 - t) * x1 + (t * x3);
+                py1 = (1 - t) * y1 + (t * y3);
+                line(cx, cy, px1, py1)
+            }
+            inc = random(0.01, 0.02)
+            for (t = 0; t < 1; t += inc) {
+                strokeWeight(3)
+                px1 = (1 - t) * x2 + (t * x1);
+                py1 = (1 - t) * y2 + (t * y1);
+                line(cx, cy, px1, py1)
+            }
+
+        }
+
+        function citydense(x1, y1, x2, y2, x3, y3) {
+            let px1, py1, px2, py2, inc;
+            stroke(50, 100, 100, 84)
+            var corner = Math.floor(random(3));
+            switch (corner) {
+                case 0:
+                    inc = random(0.01, 0.02)
+                    for (t = 0; t < 1; t += inc) {
+                        strokeWeight(3)
+                        px1 = (1 - t) * x1 + (t * x3);
+                        py1 = (1 - t) * y1 + (t * y3);
+                        px2 = (1 - t) * x1 + (t * x2);
+                        py2 = (1 - t) * y1 + (t * y2);
+                        noFill();stroke(50, 100, 100);
+                        triangle(x1, y1, x2, y2, x3, y3)
+                        line(px1, py1, px2, py2)
+                        densify(px1, py1, px2, py2,t)
+                    }
+                    break;
+                case 1:
+                    inc = random(0.01, 0.02)
+                    for (t = 0; t < 1; t += inc) {
+                        strokeWeight(3)
+                        px1 = (1 - t) * x2 + (t * x3);
+                        py1 = (1 - t) * y2 + (t * y3);
+                        px2 = (1 - t) * x2 + (t * x1);
+                        py2 = (1 - t) * y2 + (t * y1);
+                        line(px1, py1, px2, py2)
+                    }
+                    break;
+                case 2:
+                    inc = random(0.01, 0.02)
+                    for (t = 0; t < 1; t += inc) {
+                        strokeWeight(3)
+                        px1 = (1 - t) * x3 + (t * x1);
+                        py1 = (1 - t) * y3 + (t * y1);
+                        px2 = (1 - t) * x3 + (t * x2);
+                        py2 = (1 - t) * y3 + (t * y2);
+                        line(px1, py1, px2, py2)
+                    }
+                    break;
+            }
+        }
+
+        function densify(x1,y1,x2,y2,t){
+            let px1,py1,px2,py2,i,drop;
+            
+            noStroke()
+            px1=x1
+            py1=y1
+            i = random(0.01, 0.02)
+            while (i<1){
+                px2 = (1 - i) * x1 + (i * x2);
+                py2 = (1 - i) * y1 + (i * y2);
+                drop = t+random(t);
+                fill(230,random(100),100,random(84,168))
+                rect(px1,py1,px2,py2,px2+drop,py2+drop,px1+drop,py1+drop)
+                i += random(0.01, 0.02)  
+            }
+        }
+
+        function city(x1, y1, x2, y2, x3, y3) {
+            let px1, py1, px2, py2, inc;
+            stroke(50, 100, 100, 84)
+            var corner = Math.floor(random(3));
+            switch (corner) {
+                case 0:
+                    inc = random(0.01, 0.02)
+                    for (t = 0; t < 1; t += inc) {
+                        strokeWeight(3)
+                        px1 = (1 - t) * x1 + (t * x3);
+                        py1 = (1 - t) * y1 + (t * y3);
+                        px2 = (1 - t) * x1 + (t * x2);
+                        py2 = (1 - t) * y1 + (t * y2);
+                        line(px1, py1, px2, py2)
+                    }
+                    break;
+                case 1:
+                    inc = random(0.01, 0.02)
+                    for (t = 0; t < 1; t += inc) {
+                        strokeWeight(3)
+                        px1 = (1 - t) * x2 + (t * x3);
+                        py1 = (1 - t) * y2 + (t * y3);
+                        px2 = (1 - t) * x2 + (t * x1);
+                        py2 = (1 - t) * y2 + (t * y1);
+                        line(px1, py1, px2, py2)
+                    }
+                    break;
+                case 2:
+                    inc = random(0.01, 0.02)
+                    for (t = 0; t < 1; t += inc) {
+                        strokeWeight(3)
+                        px1 = (1 - t) * x3 + (t * x1);
+                        py1 = (1 - t) * y3 + (t * y1);
+                        px2 = (1 - t) * x3 + (t * x2);
+                        py2 = (1 - t) * y3 + (t * y2);
+                        line(px1, py1, px2, py2)
+                    }
+                    break;
+            }
+
+
         }
 
         function stripes(x1, y1, x2, y2, x3, y3) {
@@ -71,7 +204,7 @@
             if (p < 3) {
                 let px1, py1, px2, py2;
                 strokeWeight(3);
-                var iter = Math.floor(random(3,7));
+                var iter = Math.floor(random(3, 7));
                 for (i = 0; i < iter; i++) {
                     console.log(i)
                     var coin = Math.floor(random(3));
@@ -81,24 +214,39 @@
                             py1 = 0.5 * y1 + (0.5 * y2);
                             px2 = 0.5 * x1 + (0.5 * x3);
                             py2 = 0.5 * y1 + (0.5 * y3);
-                            stripes(x1, y1, px1, py1, px2, py2)
-                            dive(x1, y1, px1, py1, px2, py2, p+1);
+                            if (random() < 0.1) {
+                                stripes(x1, y1, px1, py1, px2, py2)
+                            }
+                            else {
+                                city(x1, y1, px1, py1, px2, py2)
+                            }
+                            dive(x1, y1, px1, py1, px2, py2, p + 1);
                             break;
                         case 1:
                             px1 = 0.5 * x2 + (0.5 * x1);
                             py1 = 0.5 * y2 + (0.5 * y1);
                             px2 = 0.5 * x2 + (0.5 * x3);
                             py2 = 0.5 * y2 + (0.5 * y3);
-                            stripes(px1, py1, x2, y2, px2, py2)
-                            dive(px1, py1, x2, y2, px2, py2, p+1); 
+                            if (random() < 0.1) {
+                                stripes(px1, py1, x2, y2, px2, py2)
+                            }
+                            else {
+                                city(px1, py1, x2, y2, px2, py2)
+                            }
+                            dive(px1, py1, x2, y2, px2, py2, p + 1);
                             break;
                         case 2:
                             px1 = 0.5 * x3 + (0.5 * x2);
                             py1 = 0.5 * y3 + (0.5 * y2);
                             px2 = 0.5 * x3 + (0.5 * x1);
                             py2 = 0.5 * y3 + (0.5 * y1);
-                            stripes(px1, py1, px2, py2, x3, y3)
-                            dive(px1, py1, px2, py2, x3, y3, p+1);
+                            if (random() < 0.1) {
+                                stripes(px1, py1, px2, py2, x3, y3)
+                            }
+                            else {
+                                city(px1, py1, px2, py2, x3, y3)
+                            }
+                            dive(px1, py1, px2, py2, x3, y3, p + 1);
                             break;
                     }
                 }
@@ -107,27 +255,46 @@
 
         function diveall(x1, y1, x2, y2, x3, y3, p) {
             if (p < 3) {
-                let px1, py1, px2, py2;
+                let px1, py1, px2, py2, px3, py3;
                 px1 = 0.5 * x1 + (0.5 * x2);
                 py1 = 0.5 * y1 + (0.5 * y2);
                 px2 = 0.5 * x1 + (0.5 * x3);
                 py2 = 0.5 * y1 + (0.5 * y3);
-                stripes(x1, y1, px1, py1, px2, py2)
-                diveall(x1, y1, px1, py1, px2, py2, p+1)
- 
+                if (random() < 0.5) {
+                    stripes(x1, y1, px1, py1, px2, py2)
+                }
+                else {
+                    city(x1, y1, px1, py1, px2, py2)
+                }
+                diveall(x1, y1, px1, py1, px2, py2, p + 1)
+
                 px1 = 0.5 * x2 + (0.5 * x1);
                 py1 = 0.5 * y2 + (0.5 * y1);
                 px2 = 0.5 * x2 + (0.5 * x3);
                 py2 = 0.5 * y2 + (0.5 * y3);
-                stripes(px1, py1, x2, y2, px2, py2)
-                diveall(px1, py1, x2, y2, px2, py2, p+1)
- 
+                if (random() < 0.5) {
+                    stripes(px1, py1, x2, y2, px2, py2)
+                }
+                else {
+                    city(px1, py1, x2, y2, px2, py2)
+                }
+                diveall(px1, py1, x2, y2, px2, py2, p + 1)
+
                 px1 = 0.5 * x3 + (0.5 * x2);
                 py1 = 0.5 * y3 + (0.5 * y2);
                 px2 = 0.5 * x3 + (0.5 * x1);
                 py2 = 0.5 * y3 + (0.5 * y1);
-                stripes(px1, py1, px2, py2, x3, y3)
-                diveall(px1, py1, px2, py2, x3, y3, p+1)
+                if (random() < 0.5) {
+                    stripes(px1, py1, px2, py2, x3, y3)
+                }
+                else {
+                    city(px1, py1, px2, py2, x3, y3)
+                }
+                diveall(px1, py1, px2, py2, x3, y3, p + 1)
+
+                px3 = 0.5 * x2 + (0.5 * x1);
+                py3 = 0.5 * y2 + (0.5 * y1);
+                //corerays(px1,py1,px2,py2,px3,py3)
             }
         }
 
