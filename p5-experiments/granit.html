@@ -29,15 +29,15 @@
 
         function draw() {
             background(230, 100, 50);
-            //cadre();
-            citydense(0, 0, w, 0, w, h)
+            cadre();
+            //citydense(0, 0, w, 0, w, h)
             //densify(0,0,w,h,40)
             noLoop();
         }
 
         function cadre() {
             stripes(0, 0, w, 0, w, h);
-            diveall(0, 0, w, 0, w, h, 0);
+            dive(0, 0, w, 0, w, h, 0);
             stripes(0, 0, w, h, 0, h);
             diveall(0, 0, w, h, 0, h, 0);
         }
@@ -165,7 +165,7 @@
                 px2 = (1 - i) * x1 + (i * x2);
                 py2 = (1 - i) * y1 + (i * y2);
                 drop = t+random(t);
-                fill(230,random(100),100,random(84,168))
+                fill(330,100,100,random(84,168))
                 rect(px1,py1,px2,py2,px2+drop,py2+drop,px1+drop,py1+drop)
                 i += random(0.01, 0.02)  
             }
@@ -254,12 +254,8 @@
                             py1 = 0.5 * y1 + (0.5 * y2);
                             px2 = 0.5 * x1 + (0.5 * x3);
                             py2 = 0.5 * y1 + (0.5 * y3);
-                            if (random() < 0.1) {
-                                stripes(x1, y1, px1, py1, px2, py2)
-                            }
-                            else {
-                                city(x1, y1, px1, py1, px2, py2)
-                            }
+                            
+                                citydense(x1, y1, px1, py1, px2, py2)
                             dive(x1, y1, px1, py1, px2, py2, p + 1);
                             break;
                         case 1:
@@ -267,12 +263,9 @@
                             py1 = 0.5 * y2 + (0.5 * y1);
                             px2 = 0.5 * x2 + (0.5 * x3);
                             py2 = 0.5 * y2 + (0.5 * y3);
-                            if (random() < 0.1) {
-                                stripes(px1, py1, x2, y2, px2, py2)
-                            }
-                            else {
-                                city(px1, py1, x2, y2, px2, py2)
-                            }
+                            
+                                citydense(px1, py1, x2, y2, px2, py2)
+                            
                             dive(px1, py1, x2, y2, px2, py2, p + 1);
                             break;
                         case 2:
@@ -280,12 +273,9 @@
                             py1 = 0.5 * y3 + (0.5 * y2);
                             px2 = 0.5 * x3 + (0.5 * x1);
                             py2 = 0.5 * y3 + (0.5 * y1);
-                            if (random() < 0.1) {
-                                stripes(px1, py1, px2, py2, x3, y3)
-                            }
-                            else {
-                                city(px1, py1, px2, py2, x3, y3)
-                            }
+                            
+                                citydense(px1, py1, px2, py2, x3, y3)
+                            
                             dive(px1, py1, px2, py2, x3, y3, p + 1);
                             break;
                     }
@@ -300,36 +290,27 @@
                 py1 = 0.5 * y1 + (0.5 * y2);
                 px2 = 0.5 * x1 + (0.5 * x3);
                 py2 = 0.5 * y1 + (0.5 * y3);
-                if (random() < 0.5) {
-                    stripes(x1, y1, px1, py1, px2, py2)
-                }
-                else {
-                    city(x1, y1, px1, py1, px2, py2)
-                }
+                
+                    citydense(x1, y1, px1, py1, px2, py2)
+                
                 diveall(x1, y1, px1, py1, px2, py2, p + 1)
 
                 px1 = 0.5 * x2 + (0.5 * x1);
                 py1 = 0.5 * y2 + (0.5 * y1);
                 px2 = 0.5 * x2 + (0.5 * x3);
                 py2 = 0.5 * y2 + (0.5 * y3);
-                if (random() < 0.5) {
-                    stripes(px1, py1, x2, y2, px2, py2)
-                }
-                else {
-                    city(px1, py1, x2, y2, px2, py2)
-                }
+                
+                    citydense(px1, py1, x2, y2, px2, py2)
+                
                 diveall(px1, py1, x2, y2, px2, py2, p + 1)
 
                 px1 = 0.5 * x3 + (0.5 * x2);
                 py1 = 0.5 * y3 + (0.5 * y2);
                 px2 = 0.5 * x3 + (0.5 * x1);
                 py2 = 0.5 * y3 + (0.5 * y1);
-                if (random() < 0.5) {
-                    stripes(px1, py1, px2, py2, x3, y3)
-                }
-                else {
-                    city(px1, py1, px2, py2, x3, y3)
-                }
+                
+                    citydense(px1, py1, px2, py2, x3, y3)
+                
                 diveall(px1, py1, px2, py2, x3, y3, p + 1)
 
                 px3 = 0.5 * x2 + (0.5 * x1);
