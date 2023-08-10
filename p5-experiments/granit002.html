@@ -58,10 +58,21 @@
 
         function draw() {
             background(back_color[0], back_color[1], back_color[2]);
-            random_display();
+            set_sections();
             console.log("there are "+sections.length+" sections")
+            draw_sections()
             noLoop();
         }
+
+        function draw_sections(){
+            for(vera in sections){
+                quad(sections[vera].x1,sections[vera].y1,
+                sections[vera].x2,sections[vera].y2,
+                sections[vera].x3,sections[vera].y3,
+                sections[vera].x4,sections[vera].y4)
+            }
+        }
+
 
         var resolution = 42;
         var pad = 21
@@ -70,8 +81,7 @@
         var wmax = w - pad
         var hmax = h - pad
         var sections = []
-        var count = 0
-        function random_display() {
+        function set_sections() {
             let uppersection = 20;//upper bound when choosing the width and height of a section
             noFill()
             stroke(city_color[0], city_color[1], city_color[2])
@@ -99,13 +109,13 @@
                 else { y2 = hmax }
                 if (x1 + nbcellsw * resolution < wmax) {
                     x2 = x1 + nbcellsw * resolution
-                    quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                    //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
                     sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
                     x1 += nbcellsw * resolution
                 }
                 else {
                     x2 = wmax
-                    quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                    //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
                     sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
                     if (miny + nbcellsh * resolution < hmax) {
                         x1 = wmin
@@ -121,13 +131,13 @@
                             nbcellsw = 1 + Math.floor(random(uppersection))
                             if (x1 + nbcellsw * resolution < wmax) {
                                 x2 = x1 + nbcellsw * resolution
-                                quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                                //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
                                 sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
                                 x1 += nbcellsw * resolution
                             }
                             else {
                                 x2 = wmax
-                                quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                                //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
                                 sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
                                 last = false
                             }
@@ -136,7 +146,6 @@
                     }
                 }
             }
-            console.log("drew "+count+" sections")
         }
 
 
