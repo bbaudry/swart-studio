@@ -58,8 +58,23 @@
 
         function draw() {
             background(back_color[0],back_color[1],back_color[2]);
-            cadre1();
+            choose_shape();
             noLoop();
+        }
+
+        function choose_shape(){
+            var shape = Math.floor(random(3));
+            switch (shape) {
+                case 0:
+                    cadre1()
+                    break
+                case 1:
+                    cadre2()
+                    break
+                case 2:
+                    cadre3()
+                    break
+            }
         }
 
         function cadre1() {
@@ -78,6 +93,13 @@
             diveall(0, h, w / 2, h / 2, w, h, 0);
             stripes(w, h, w / 2, h / 2, w, 0);
             diveall(w, h, w / 2, h / 2, w, 0, 0);
+        }
+
+        function cadre3() {
+            stripes(w, 0, 0, h, w, h);
+            diveall(w, 0, 0, h, w, h, 0);
+            stripes(w, 0, 0, h, 0, 0);
+            diveall(w, 0, 0, h, 0, 0, 0);
         }
 
 
