@@ -29,7 +29,7 @@
 
         function draw() {
             background(230, 100, 50);
-            cadre();
+            cadre2();
             //citydense(0, 0, w/2, 0, w/2, h/2)
             //citydense(w/2, 0, w, h/2, w, 0)
             //citydense(w/2, h/2, w, h/2, w/2, 0)
@@ -41,11 +41,22 @@
             noLoop();
         }
 
-        function cadre() {
+        function cadre1() {
             stripes(0, 0, w, 0, w, h);
             diveall(0, 0, w, 0, w, h, 0);
             stripes(0, 0, w, h, 0, h);
             diveall(0, 0, w, h, 0, h, 0);
+        }
+
+        function cadre2() {
+            stripes(0, 0, w/2, h/2, w, 0);
+            diveall(0, 0, w/2, h/2, w, 0, 0);
+            stripes(0, 0, w/2, h/2, 0, h);
+            diveall(0, 0, w/2, h/2, 0, h, 0);
+            stripes(0, h, w/2, h/2, w, h);
+            diveall(0, h, w/2, h/2, w, h, 0);
+            stripes(w, h, w/2, h/2, w, 0);
+            diveall(w, h, w/2, h/2, w, 0, 0);
         }
 
         function corerays(x1, y1, x2, y2, x3, y3) {
