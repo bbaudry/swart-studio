@@ -73,48 +73,57 @@
             let max = 20;
             noFill()
             stroke(city_color[0], city_color[1], city_color[2])
-            var x, y, nbcellsw, nbcellsh, east, miny, maxy, shape;
-            x = wmin
-            y = hmin
+            var x1, y1, x2, y2, nbcellsw, nbcellsh, east, miny, maxy, shape;
+            x1 = wmin
+            y1 = hmin
             miny = wmin
             maxy = hmin
             east = true
             while (east) {
                 nbcellsw = 1 + Math.floor(random(max))
                 nbcellsh = 1 + Math.floor(random(max))
-                if (y + nbcellsh * cell < miny) {
-                    miny = y + nbcellsh * cell
+                if (y1 + nbcellsh * cell < miny) {
+                    miny = y1 + nbcellsh * cell
                 }
                 else {
-                    if (y + nbcellsh * cell > maxy) {
-                        maxy = y + nbcellsh * cell
-                        if (miny == y) { 
-                            miny = y + nbcellsh * cell; 
+                    if (y1 + nbcellsh * cell > maxy) {
+                        maxy = y1 + nbcellsh * cell
+                        if (miny == y1) { 
+                            miny = y1 + nbcellsh * cell; 
                         }
                     }
                 }
-                if (x + nbcellsw * cell < wmax) {
-                    quad(x, y, x + nbcellsw * cell, y, x + nbcellsw * cell, y + nbcellsh * cell, x, y + nbcellsh * cell)
-                    x += nbcellsw * cell
+                if(y1 + nbcellsh * cell <=hmax){y2=y1 + nbcellsh * cell}
+                else{y2=hmax}
+                if (x1 + nbcellsw * cell < wmax) {
+                    x2=x1 + nbcellsw * cell
+                    quad(x1, y1, x2, y1, x2, y2, x1, y2)
+                    x1 += nbcellsw * cell
                 }
                 else {
-                    quad(x, y, wmax, y, wmax, y + nbcellsh * cell, x, y + nbcellsh * cell)
+                    x2=wmax
+                    quad(x1, y1, x2, y1, x2, y2, x1, y2)
                     if (miny + nbcellsh * cell < hmax) {
-                        x = wmin
-                        y = miny
+                        x1 = wmin
+                        y1 = miny
                         maxy=miny
                     }
                     else {
                         var last = true
-                        x = wmin
+                        x1 = wmin
+                        if(miny<hmax){y1=miny}
+                        y2=hmax
+                        console.log("last row with x1: "+x1+"; y1: "+y1+"; y2: "+y2)
                         while (last) {
                             nbcellsw = 1 + Math.floor(random(max))
-                            if (x + nbcellsw * cell < wmax) {
-                                quad(x, miny, x + nbcellsw * cell, miny, x + nbcellsw * cell, hmax, x, hmax)
-                                x += nbcellsw * cell
+                            if (x1 + nbcellsw * cell < wmax) {
+                                x2=x1 + nbcellsw * cell
+                                quad(x1, y1, x2, y1, x2, y2, x1, y2)
+                                x1 += nbcellsw * cell
                             }
                             else {
-                                quad(x, miny, wmax, miny, wmax, hmax, x, hmax)
+                                x2=wmax
+                                quad(x1, y1, x2, y1, x2, y2, x1, y2)
                                 last = false
                             }
                         }
