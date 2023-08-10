@@ -16,8 +16,8 @@
 <body>
     <script>
         //global vars for the whole piece
-        var w = 800;
-        var h = 800;
+        var w = 900;
+        var h = 900;
         var palette = [
             {
                 back: [0, 0, 100],
@@ -63,21 +63,23 @@
         }
 
         var cell = 42;
+        var pad=21
+        var wmin=pad
+        var hmin=pad
+        var wmax=w-pad
+        var hmax=h-pad
+
         function random_display() {
             let max = 20;
             noFill()
             stroke(city_color[0], city_color[1], city_color[2])
             var x, y, nbcellsw, nbcellsh, east, miny, maxy, shape;
-            x = 0
-            y = 0
-            miny = 0
-            maxy = 0
-            shape = 0
+            x = wmin
+            y = hmin
+            miny = wmin
+            maxy = hmin
             east = true
-            hu = 0; fill(hu, 100, 100, 100)
             while (east) {
-                shape++
-                console.log("shape #"+shape+" at y: "+y+"; miny: "+miny+"; maxy: "+maxy)
                 nbcellsw = 1 + Math.floor(random(max))
                 nbcellsh = 1 + Math.floor(random(max))
                 if (y + nbcellsh * cell < miny) {
@@ -86,36 +88,33 @@
                 else {
                     if (y + nbcellsh * cell > maxy) {
                         maxy = y + nbcellsh * cell
-                        if (miny == y) { miny = y + nbcellsh * cell;console.log("miny update "+miny+" at "+y) }
+                        if (miny == y) { 
+                            miny = y + nbcellsh * cell; 
+                        }
                     }
                 }
-                if (x + nbcellsw * cell < w) {
+                if (x + nbcellsw * cell < wmax) {
                     quad(x, y, x + nbcellsw * cell, y, x + nbcellsw * cell, y + nbcellsh * cell, x, y + nbcellsh * cell)
                     x += nbcellsw * cell
                 }
                 else {
-                    quad(x, y, w, y, w, y + nbcellsh * cell, x, y + nbcellsh * cell)
-                    
-                    if (miny + nbcellsh * cell < h) {
-                        console.log("new row with miny: " + miny + "; maxy: " + maxy)
-                        x = 0
+                    quad(x, y, wmax, y, wmax, y + nbcellsh * cell, x, y + nbcellsh * cell)
+                    if (miny + nbcellsh * cell < hmax) {
+                        x = wmin
                         y = miny
                         maxy=miny
-                        hu += 50
-                        fill(hu, 100, 100, 100)
                     }
                     else {
                         var last = true
-                        x = 0
+                        x = wmin
                         while (last) {
-                            console.log("last row with miny: " + miny)
                             nbcellsw = 1 + Math.floor(random(max))
-                            if (x + nbcellsw * cell < w) {
-                                quad(x, miny, x + nbcellsw * cell, miny, x + nbcellsw * cell, h, x, h)
+                            if (x + nbcellsw * cell < wmax) {
+                                quad(x, miny, x + nbcellsw * cell, miny, x + nbcellsw * cell, hmax, x, hmax)
                                 x += nbcellsw * cell
                             }
                             else {
-                                quad(x, miny, w, miny, w, h, x, h)
+                                quad(x, miny, wmax, miny, wmax, hmax, x, hmax)
                                 last = false
                             }
                         }
