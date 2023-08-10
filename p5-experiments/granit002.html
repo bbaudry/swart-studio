@@ -59,18 +59,20 @@
         function draw() {
             background(back_color[0], back_color[1], back_color[2]);
             random_display();
+            console.log("there are "+sections.length+" sections")
             noLoop();
         }
 
-        var cell = 42;
-        var pad=21
-        var wmin=pad
-        var hmin=pad
-        var wmax=w-pad
-        var hmax=h-pad
-
+        var resolution = 42;
+        var pad = 21
+        var wmin = pad
+        var hmin = pad
+        var wmax = w - pad
+        var hmax = h - pad
+        var sections = []
+        var count = 0
         function random_display() {
-            let max = 20;
+            let uppersection = 20;//upper bound when choosing the width and height of a section
             noFill()
             stroke(city_color[0], city_color[1], city_color[2])
             var x1, y1, x2, y2, nbcellsw, nbcellsh, east, miny, maxy, shape;
@@ -80,50 +82,53 @@
             maxy = hmin
             east = true
             while (east) {
-                nbcellsw = 1 + Math.floor(random(max))
-                nbcellsh = 1 + Math.floor(random(max))
-                if (y1 + nbcellsh * cell < miny) {
-                    miny = y1 + nbcellsh * cell
+                nbcellsw = 1 + Math.floor(random(uppersection))
+                nbcellsh = 1 + Math.floor(random(uppersection))
+                if (y1 + nbcellsh * resolution < miny) {
+                    miny = y1 + nbcellsh * resolution
                 }
                 else {
-                    if (y1 + nbcellsh * cell > maxy) {
-                        maxy = y1 + nbcellsh * cell
-                        if (miny == y1) { 
-                            miny = y1 + nbcellsh * cell; 
+                    if (y1 + nbcellsh * resolution > maxy) {
+                        maxy = y1 + nbcellsh * resolution
+                        if (miny == y1) {
+                            miny = y1 + nbcellsh * resolution;
                         }
                     }
                 }
-                if(y1 + nbcellsh * cell <=hmax){y2=y1 + nbcellsh * cell}
-                else{y2=hmax}
-                if (x1 + nbcellsw * cell < wmax) {
-                    x2=x1 + nbcellsw * cell
-                    quad(x1, y1, x2, y1, x2, y2, x1, y2)
-                    x1 += nbcellsw * cell
+                if (y1 + nbcellsh * resolution <= hmax) { y2 = y1 + nbcellsh * resolution }
+                else { y2 = hmax }
+                if (x1 + nbcellsw * resolution < wmax) {
+                    x2 = x1 + nbcellsw * resolution
+                    quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                    sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
+                    x1 += nbcellsw * resolution
                 }
                 else {
-                    x2=wmax
-                    quad(x1, y1, x2, y1, x2, y2, x1, y2)
-                    if (miny + nbcellsh * cell < hmax) {
+                    x2 = wmax
+                    quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                    sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
+                    if (miny + nbcellsh * resolution < hmax) {
                         x1 = wmin
                         y1 = miny
-                        maxy=miny
+                        maxy = miny
                     }
                     else {
                         var last = true
                         x1 = wmin
-                        if(miny<hmax){y1=miny}
-                        y2=hmax
-                        console.log("last row with x1: "+x1+"; y1: "+y1+"; y2: "+y2)
+                        if (miny < hmax) { y1 = miny }
+                        y2 = hmax
                         while (last) {
-                            nbcellsw = 1 + Math.floor(random(max))
-                            if (x1 + nbcellsw * cell < wmax) {
-                                x2=x1 + nbcellsw * cell
-                                quad(x1, y1, x2, y1, x2, y2, x1, y2)
-                                x1 += nbcellsw * cell
+                            nbcellsw = 1 + Math.floor(random(uppersection))
+                            if (x1 + nbcellsw * resolution < wmax) {
+                                x2 = x1 + nbcellsw * resolution
+                                quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                                sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
+                                x1 += nbcellsw * resolution
                             }
                             else {
-                                x2=wmax
-                                quad(x1, y1, x2, y1, x2, y2, x1, y2)
+                                x2 = wmax
+                                quad(x1, y1, x2, y1, x2, y2, x1, y2); count++
+                                sections.push({x1:x1, y1:y1, x2:x2, y2:y1, x3:x2, y3:y2, x4:x1, y4:y2})
                                 last = false
                             }
                         }
@@ -131,6 +136,7 @@
                     }
                 }
             }
+            console.log("drew "+count+" sections")
         }
 
 
