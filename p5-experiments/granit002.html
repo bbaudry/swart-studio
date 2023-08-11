@@ -48,6 +48,7 @@
             colorMode(HSB, 360, 100, 100, 250);
             choose_color()
             set_sections()
+            strokeCap(SQUARE)
             console.log("there are " + sections.length + " sections")
         }
 
@@ -67,14 +68,31 @@
 
         function draw_sections() {
             for (vera in sections) {
-                strokeWeight(random(21))
+                strokeWeight(random(7))
+                stripes(sections[vera].x1, sections[vera].y1,
+                    sections[vera].x2, sections[vera].y2,
+                    sections[vera].x3, sections[vera].y3,
+                    sections[vera].x4, sections[vera].y4)
+            }
+            for (vera in sections) {
+                strokeWeight(random(7))
                 quad(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
             }
+            
         }
 
+        function stripes(x1,y1,x2,y2,x3,y3,x4,y4){
+            var ryoji = y3-y1
+            var y
+            var off = 10+Math.floor(random(10))
+            for(i=1;i<off;i++){
+                y=i*ryoji/off
+                line(x1,y,x2,y)
+            }
+        }
 
         var sectionresolution = 42;
         var maxsizesection = 20;//upper bound when choosing the width and height of a section
