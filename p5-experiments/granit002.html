@@ -60,37 +60,41 @@
         }
 
         function draw() {
-            background(back_color[0], back_color[1], back_color[2]);
+            //background(back_color[0], back_color[1], back_color[2]);
+            //stroke(ray_color[0], ray_color[1], ray_color[2]);
+            //fill(city_color[0], city_color[1], city_color[2]);
+            background(0,0,100)
+            fill(50,0,0)
+            stroke(0,0,100)
             sections.sort(() => random() - 0.5);
+            //stripes(30,30,400,30,400,400,30,400)
+            //quad(30,30,400,30,400,400,30,400)
             draw_sections()
             noLoop();
         }
 
         function draw_sections() {
             for (vera in sections) {
-                strokeWeight(random(7))
-                stripes(sections[vera].x1, sections[vera].y1,
-                    sections[vera].x2, sections[vera].y2,
-                    sections[vera].x3, sections[vera].y3,
-                    sections[vera].x4, sections[vera].y4)
-            }
-            for (vera in sections) {
-                strokeWeight(random(7))
+                strokeWeight(random(5))
                 quad(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
+                stripes(sections[vera].x1, sections[vera].y1,
+                    sections[vera].x2, sections[vera].y2,
+                    sections[vera].x3, sections[vera].y3,
+                    sections[vera].x4, sections[vera].y4)
+
             }
-            
         }
 
         function stripes(x1,y1,x2,y2,x3,y3,x4,y4){
             var ryoji = y3-y1
             var y
             var off = 10+Math.floor(random(10))
-            for(i=1;i<off;i++){
-                y=i*ryoji/off
-                line(x1,y,x2,y)
+            for(i=0;i<=off;i++){
+                y=y1+i*ryoji/off
+                line(x1+15,y,x2-15,y)
             }
         }
 
