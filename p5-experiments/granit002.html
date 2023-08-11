@@ -62,12 +62,12 @@
             background(back_color[0], back_color[1], back_color[2]);
             sections.sort(() => random() - 0.5);
             draw_sections()
-            //noLoop();
+            noLoop();
         }
 
         function draw_sections() {
             for (vera in sections) {
-                fill(50,100,100)
+                strokeWeight(random(21))
                 quad(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
@@ -76,7 +76,9 @@
         }
 
 
-        var resolution = 42;
+        var sectionresolution = 42;
+        var maxsizesection = 20;//upper bound when choosing the width and height of a section
+            
         var pad = 21
         var wmin = pad
         var hmin = pad
@@ -84,7 +86,6 @@
         var hmax = h - pad
         var sections = []
         function set_sections() {
-            let uppersection = 20;//upper bound when choosing the width and height of a section
             noFill()
             stroke(city_color[0], city_color[1], city_color[2])
             var x1, y1, x2, y2, nbcellsw, nbcellsh, east, miny, maxy, shape;
@@ -94,32 +95,32 @@
             maxy = hmin
             east = true
             while (east) {
-                nbcellsw = 1 + Math.floor(random(uppersection))
-                nbcellsh = 1 + Math.floor(random(uppersection))
-                if (y1 + nbcellsh * resolution < miny) {
-                    miny = y1 + nbcellsh * resolution
+                nbcellsw = 1 + Math.floor(random(maxsizesection))
+                nbcellsh = 1 + Math.floor(random(maxsizesection))
+                if (y1 + nbcellsh * sectionresolution < miny) {
+                    miny = y1 + nbcellsh * sectionresolution
                 }
                 else {
-                    if (y1 + nbcellsh * resolution > maxy) {
-                        maxy = y1 + nbcellsh * resolution
+                    if (y1 + nbcellsh * sectionresolution > maxy) {
+                        maxy = y1 + nbcellsh * sectionresolution
                         if (miny == y1) {
-                            miny = y1 + nbcellsh * resolution;
+                            miny = y1 + nbcellsh * sectionresolution;
                         }
                     }
                 }
-                if (y1 + nbcellsh * resolution <= hmax) { y2 = y1 + nbcellsh * resolution }
+                if (y1 + nbcellsh * sectionresolution <= hmax) { y2 = y1 + nbcellsh * sectionresolution }
                 else { y2 = hmax }
-                if (x1 + nbcellsw * resolution < wmax) {
-                    x2 = x1 + nbcellsw * resolution
+                if (x1 + nbcellsw * sectionresolution < wmax) {
+                    x2 = x1 + nbcellsw * sectionresolution
                     //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
                     sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
-                    x1 += nbcellsw * resolution
+                    x1 += nbcellsw * sectionresolution
                 }
                 else {
                     x2 = wmax
                     //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
                     sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
-                    if (miny + nbcellsh * resolution < hmax) {
+                    if (miny + nbcellsh * sectionresolution < hmax) {
                         x1 = wmin
                         y1 = miny
                         maxy = miny
@@ -130,12 +131,12 @@
                         if (miny < hmax) { y1 = miny }
                         y2 = hmax
                         while (last) {
-                            nbcellsw = 1 + Math.floor(random(uppersection))
-                            if (x1 + nbcellsw * resolution < wmax) {
-                                x2 = x1 + nbcellsw * resolution
+                            nbcellsw = 1 + Math.floor(random(maxsizesection))
+                            if (x1 + nbcellsw * sectionresolution < wmax) {
+                                x2 = x1 + nbcellsw * sectionresolution
                                 //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
                                 sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
-                                x1 += nbcellsw * resolution
+                                x1 += nbcellsw * sectionresolution
                             }
                             else {
                                 x2 = wmax
