@@ -76,8 +76,10 @@
         function draw_sections() {
             for (vera in sections) {
                 strokeWeight((1+random(7)))
-                if(random()>0.5){fill(130,100,100);stroke(330,100,100)}
-                else{fill(180,100,100);stroke(30,100,100)}
+                //if(random()>0.5){fill(130,100,100);stroke(330,100,100)}
+                //else{fill(180,100,100);stroke(30,100,100)}
+                if(random()>0.5){fill(0,0,100);stroke(0,0,0)}
+                else{fill(180,0,0);stroke(30,0,100)}
                 quad(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
@@ -95,7 +97,7 @@
                 x1+=off;x2-=off;x3=x2;x4=x1;
                 y1+=off;y2=y1;y3-=off;y4=y3;
                 quad(x1,y1,x2,y2,x3,y3,x4,y4)
-                off -= 0.3
+                
             }
         }
 
