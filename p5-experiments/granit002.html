@@ -63,7 +63,7 @@
             //background(back_color[0], back_color[1], back_color[2]);
             //stroke(ray_color[0], ray_color[1], ray_color[2]);
             //fill(city_color[0], city_color[1], city_color[2]);
-            background(0,0,100)
+            background(230, 100, 50)
             fill(50,0,0)
             stroke(0,0,100)
             sections.sort(() => random() - 0.5);
@@ -75,31 +75,53 @@
 
         function draw_sections() {
             for (vera in sections) {
-                strokeWeight(random(5))
+                strokeWeight((1+random(7)))
+                if(random()>0.5){fill(130,100,100);stroke(330,100,100)}
+                else{fill(180,100,100);stroke(30,100,100)}
                 quad(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
-                stripes(sections[vera].x1, sections[vera].y1,
+                zoom(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
 
             }
         }
-
-        function stripes(x1,y1,x2,y2,x3,y3,x4,y4){
-            var ryoji = y3-y1
-            var y
-            var off = 10+Math.floor(random(10))
-            for(i=0;i<=off;i++){
-                y=y1+i*ryoji/off
-                line(x1+15,y,x2-15,y)
+        function zoom(x1,y1,x2,y2,x3,y3,x4,y4){
+            var off = 7+random(11)
+            while (x2-x1>0){
+                x1+=off;x2-=off;x3=x2;x4=x1;
+                y1+=off;y2=y1;y3-=off;y4=y3;
+                quad(x1,y1,x2,y2,x3,y3,x4,y4)
+                off -= 0.3
             }
         }
 
+        function stripes(x1,y1,x2,y2,x3,y3,x4,y4){
+            var ryoji,ikeda
+            var off = 21
+            if(random()<0.5){
+                ryoji = y3-y1
+                for(i=0;i<=off;i++){
+                    ikeda=y1+i*ryoji/off
+                    line(x1,ikeda,x2,ikeda)
+                }
+            }
+            else{
+                ryoji = x2-x1
+                for(i=0;i<=off;i++){
+                    ikeda=x1+i*ryoji/off
+                    line(ikeda,y1,ikeda,y3)
+                }
+            }
+        }
+
+        //42,21 default values
+        //both values can be in the [7,42]range
         var sectionresolution = 42;
-        var maxsizesection = 20;//upper bound when choosing the width and height of a section
+        var maxsizesection = 21;//upper bound when choosing the width and height of a section. 
             
         var pad = 21
         var wmin = pad
