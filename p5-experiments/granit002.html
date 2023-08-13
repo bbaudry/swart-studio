@@ -60,17 +60,120 @@
         }
 
         function draw() {
-            //background(back_color[0], back_color[1], back_color[2]);
-            //stroke(ray_color[0], ray_color[1], ray_color[2]);
-            //fill(city_color[0], city_color[1], city_color[2]);
             background(230, 100, 50)
-            fill(50,0,0)
-            stroke(0,0,100)
             sections.sort(() => random() - 0.5);
-            //stripes(30,30,400,30,400,400,30,400)
-            //quad(30,30,400,30,400,400,30,400)
-            draw_sections()
+            //draw_sections()
+            test()
             noLoop();
+        }
+
+        function test(){
+            fill(0,0,0); stroke(0,0,100)
+            let off = 20
+            strokeWeight(10)
+            let x1 = 50
+            let y1 = 50
+            let x2 = 450
+            let y2 = 50
+            let x3 = 450
+            let y3 = 350
+            let x4 = 50
+            let y4 = 350
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            //x1+=off; y1+=off; x2-=off; y2+=off; x3-=off; y3-=off; x4+=off; y4-=off
+            x3-=off; y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x3-=off; y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x3-=off; y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1 = 500
+            y1 = 50
+            x2 = 880
+            y2 = 50
+            x3 = 880
+            y3 = 350
+            x4 = 500
+            y4 = 350
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off; y1+=off; x2-=off; y2+=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off; y1+=off; x2-=off; y2+=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off; y1+=off; x2-=off; y2+=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1 = 50
+            y1 = 450
+            x2 = 450
+            y2 = 450
+            x3 = 450
+            y3 = 880
+            x4 = 50
+            y4 = 880
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1 = 500
+            y1 = 450
+            x2 = 880
+            y2 = 450
+            x3 = 880
+            y3 = 880
+            x4 = 500
+            y4 = 880
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            noFill()
+            //test4(x1,y1,x2,y2,x3,y3,x4,y4,off)
+            while(y1<=y1+((y3-y1)/2)){
+                y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+
+            }
+        }
+
+
+        function test4(x1,y1,x2,y2,x3,y3,x4,y4,off){
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            y1+=off; x2-=off; y2+=off; x3-=off; 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            x1+=off;  y3-=off; x4+=off; y4-=off
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
         }
 
         function draw_sections() {
@@ -84,20 +187,34 @@
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
-                zoom(sections[vera].x1, sections[vera].y1,
+                halfzoom(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
 
             }
         }
+
         function zoom(x1,y1,x2,y2,x3,y3,x4,y4){
             var off = 7+random(11)
-            while (x2-x1>0){
+            while (x2-x1>=off){
                 x1+=off;x2-=off;x3=x2;x4=x1;
                 y1+=off;y2=y1;y3-=off;y4=y3;
                 quad(x1,y1,x2,y2,x3,y3,x4,y4)
                 
+            }
+        }
+
+        function halfzoom(x1,y1,x2,y2,x3,y3,x4,y4){
+            var off = 20
+            strokeWeight(10)
+            while (x2-x1>=off){
+                x1+=off;x2-=off;x3=x2;x4=x1;
+                y1+=off;y2=y1;y3-=off;y4=y3;
+                line(x1,y1,x2,y2)   
+                line(x2,y2,x3,y3)
+                line(x3-off/2,y3-off/2,x4+off/2,y4-off/2)
+                line(x4+off/2,y4-off/2,x1+off/2,y1+off/2) 
             }
         }
 
