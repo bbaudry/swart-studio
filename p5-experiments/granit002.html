@@ -20,24 +20,20 @@
         var h = 900;
         var palette = [
             {
+                back: [0, 0, 0],
+                ray: [0, 0, 100]
+            },
+            {
+                back: [210, 100, 100],
+                ray: [30, 100, 100]
+            },
+            {
+                back: [160, 100, 100],
+                ray: [340, 100, 100]
+            },
+            {
                 back: [0, 0, 100],
-                ray: [330, 80, 100, 84],
-                city: [50, 100, 100]
-            },
-            {
-                back: [0, 0, 0],
-                ray: [0, 100, 100, 84],
-                city: [0, 0, 100]
-            },
-            {
-                back: [0, 0, 0],
-                ray: [0, 0, 100, 84],
-                city: [0, 100, 100]
-            },
-            {
-                back: [230, 100, 50],
-                ray: [50, 100, 100, 84],
-                city: [330, 100, 100]
+                ray: [0, 0, 0, 84]
             }
         ]
         var back_color, ray_color, city_color
@@ -60,10 +56,10 @@
         }
 
         function draw() {
-            background(230, 100, 50)
+            background(back_color[0], back_color[1], back_color[2])
             sections.sort(() => random() - 0.5);
-            //draw_sections()
-            test()
+            draw_sections()
+            //test()
             noLoop();
         }
 
@@ -87,14 +83,7 @@
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             x3 -= off; y3 -= off; x4 += off; y4 -= off
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 = 500
-            y1 = 50
-            x2 = 880
-            y2 = 50
-            x3 = 880
-            y3 = 350
-            x4 = 500
-            y4 = 350
+            x1 = 500; y1 = 50; x2 = 880; y2 = 50; x3 = 880; y3 = 350; x4 = 500; y4 = 350
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             x1 += off; y1 += off; x2 -= off; y2 += off;
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
@@ -111,67 +100,41 @@
         }
 
 
-        function test4(x1, y1, x2, y2, x3, y3, x4, y4, off) {
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            y1 += off; x2 -= off; y2 += off; x3 -= off;
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            x1 += off; y3 -= off; x4 += off; y4 -= off
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-        }
-
         function draw_sections() {
             for (vera in sections) {
-                strokeWeight((1 + random(7)))
                 //if(random()>0.5){fill(130,100,100);stroke(330,100,100)}
                 //else{fill(180,100,100);stroke(30,100,100)}
-                if (random() > 0.5) { fill(0, 0, 100); stroke(0, 0, 0) }
+                /*if (random() > 0.5) { fill(0, 0, 100); stroke(0, 0, 0) }
                 else { fill(180, 0, 0); stroke(30, 0, 100) }
                 quad(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
-                    sections[vera].x4, sections[vera].y4)
-                halfzoom(sections[vera].x1, sections[vera].y1,
+                    sections[vera].x4, sections[vera].y4)*/
+                    //var vera=Math.floor(random(sections.length))
+                    stroke(ray_color[0], ray_color[1], ray_color[2])
+                if (random()<0.2){
+                    zoom(sections[vera].x1, sections[vera].y1,
+                    sections[vera].x2, sections[vera].y2,
+                    sections[vera].x3, sections[vera].y3,
+                    sections[vera].x4, sections[vera].y4)    
+                }
+                else{
+                    halfzoom(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
+                }
+                
 
+                
             }
         }
 
         function zoom(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var off = 7 + random(11)
+            var off = 7 + Math.floor(random(11))
+            strokeWeight(off/2)
+            fill(back_color[0], back_color[1], back_color[2])
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
             while (x2 - x1 >= off) {
                 x1 += off; x2 -= off; x3 = x2; x4 = x1;
                 y1 += off; y2 = y1; y3 -= off; y4 = y3;
@@ -181,25 +144,40 @@
         }
 
         function halfzoom(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var off = 20
+            var off = 2*(1+Math.floor(random(7)))
             var bound
-            strokeWeight(10)
-            fill(0, 0, 0)
+            strokeWeight(off/2)
+            fill(back_color[0], back_color[1], back_color[2])
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             noFill()
             if ((x2 - x1) > (y3 - y1)) {
+                console.log("horizontal")
                 bound = y1 + ((y3 - y1) / 2)
-                while (y1 < bound) {
-                    y1 += off; x2 -= off; y2 += off; x3 -= off;
-                    quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                if (random() < 0.5) {
+                    while (y1 < bound) {
+                        y1 += off; x2 -= off; y2 += off; x3 -= off;
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                    while (y3 > bound + off) {
+                        x1 += off; y3 -= off; x4 += off; y4 -= off
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
                 }
-                while (y3 > bound + off) {
-                    x1 += off; y3 -= off; x4 += off; y4 -= off
-                    quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                else {
+                    while (y3 > bound + off) {
+                        x1 += off; y3 -= off; x4 += off; y4 -= off
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                    while (y1 < bound) {
+                        y1 += off; x2 -= off; y2 += off; x3 -= off;
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
                 }
             }
             else {
+                console.log("vertical")
                 bound = x1 + ((x2 - x1) / 2)
+                if (random() < 0.5) {
                 while (x2 > bound) {
                     y1 += off; x2 -= off; y2 += off; x3 -= off;
                     quad(x1, y1, x2, y2, x3, y3, x4, y4)
@@ -207,6 +185,18 @@
                 while (x1 < bound - off) {
                     x1 += off; y3 -= off; x4 += off; y4 -= off
                     quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                }
+            }
+                else{
+                    while (x1 < bound - off) {
+                    x1 += off; y3 -= off; x4 += off; y4 -= off
+                    quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                }
+                    while (x2 > bound) {
+                    y1 += off; x2 -= off; y2 += off; x3 -= off;
+                    quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                }
+
                 }
             }
         }
@@ -243,7 +233,6 @@
         var sections = []
         function set_sections() {
             noFill()
-            stroke(city_color[0], city_color[1], city_color[2])
             var x1, y1, x2, y2, nbcellsw, nbcellsh, east, miny, maxy, shape;
             x1 = wmin
             y1 = hmin
