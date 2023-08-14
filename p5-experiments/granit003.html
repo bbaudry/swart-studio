@@ -60,7 +60,7 @@
         var maxstroke = 5
         var ran //used to save the random numbers generated for the piece
         var randomnumbers = []
-        var fontsize = 21
+        var fontsize = 31
         var bowie
 
         function preload() {
@@ -89,32 +89,33 @@
         }
 
         function printrandomness() {
-            var ytext = hminnumbers + fontsize
-            var xtext = wminnumbers + fontsize
-            var max64 = 0
             noStroke()
             fill(ray_color[0], ray_color[1], ray_color[2])
             rect(wminnumbers, hminnumbers, w - 2 * paddding, h - 2 * paddding)
+
+            var asciiart=''
+            var oneasciiart
+            for (knob in randomnumbers) {
+                oneasciiart = nbtoasciiart(randomnumbers[knob].toPrecision(3).toString())
+                asciiart+=oneasciiart
+            }
+
+            var chstep = 0.6*fontsize
+            var ytext = hminnumbers + fontsize
+            var xtext = wminnumbers + chstep
             fill(back_color[0], back_color[1], back_color[2])
             textSize(fontsize)
             textFont(bowie)
-            //textAlign("center")
-            //if (randomnumbers.length * fontsize < h - 2 * paddding) {
-            for (knob in randomnumbers) {
-                let b6 = btoa(randomnumbers[knob].toPrecision(3))
-                let asci = nbtoasciiart(randomnumbers[knob].toPrecision(3).toString())
-                console.log(asci)
-                text(asci, xtext, ytext);
-                if (xtext + 4 * fontsize < wmaxnumbers - 4 * fontsize) {
-                    xtext += 4 * fontsize
+            for (a of asciiart) {
+                text(a, xtext, ytext);
+                if (xtext + chstep < wmaxnumbers - fontsize) {
+                    xtext += chstep
                 }
                 else {
                     ytext += fontsize
-                    xtext = wminnumbers + fontsize
+                    xtext = wminnumbers + chstep
                 }
             }
-            //}
-            console.log("the longest base64 encoded randome knob is " + max64)
         }
 
         function nbtoasciiart(nb) {
@@ -122,37 +123,37 @@
             for (const c of nb) {
                 switch (c) {
                     case '.':
-                        art += "]["
+                        art += "°°°"
                         break;
                     case '0':
-                        art += "#"
+                        art += "°:°"
                         break;
                     case '1':
-                        art += "|"
+                        art += "°°:"
                         break;
                     case '2':
-                        art += "+"
+                        art += "°::"
                         break;
                     case '3':
-                        art += "="
+                        art += "°°."
                         break;
                     case '4':
-                        art += "_"
+                        art += "°.°"
                         break;
                     case '5':
-                        art += "*"
+                        art += "°.."
                         break;
                     case '6':
-                        art += "°"
+                        art += ":°°"
                         break;
                     case '7':
-                        art += "\\"
+                        art += ".°°"
                         break;
                     case '8':
-                        art += "/"
+                        art += ":°:"
                         break;
                     case '9':
-                        art += "-"
+                        art += "::°"
                         break;
                 }
             }
