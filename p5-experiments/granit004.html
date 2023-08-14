@@ -31,8 +31,8 @@
         var back_color, ray_color, city_color
         var maxstroke = 3
         //sectionresolution and maxsizesection control the density of the section. They are good in the range [7,42] 
-        var sectionresolution = 42;
-        var maxsizesection = 21;
+        var sectionresolution = 84;
+        var maxsizesection = 5;
         var padding = sectionresolution
         var wmin = padding
         var hmin = padding
@@ -55,7 +55,7 @@
             draw_sections()
             //stroke(ray_color[0], ray_color[1], ray_color[2])
             //trizoom(50, 50, 450, 50, 450, 350, 50, 350)
-            //save("granit004.png")
+            save("granit004.png")
             noLoop();
         }
 
@@ -72,26 +72,27 @@
         function trizoom(x1, y1, x2, y2, x3, y3, x4, y4) {
             var off = 2 * (1 + Math.floor(random(maxstroke)))
             strokeWeight(off / 2)
-            noStroke()
             fill(back_color[0], back_color[1], back_color[2], 84)
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            noFill()
             stroke(ray_color[0], ray_color[1], ray_color[2])
             var cx = x1 + (x2 - x1) / 2
             var cy = y1 + (y3 - y1) / 2
             var radius = (x2 - x1) / 42
-            var initangle = Math.floor(random(90))
+            var initangle = Math.floor(random(21))
             var max
             if(x2-x1>y3-y1){max=y3-y1}
             else{max=x2-x1}
             var inc=0
+            var angleinc=1+random(5)
             var ex1, ey1, ex2, ey2, ex3, ey3;
             while(radius<max) {
-                ex1 = cx + radius * cos(radians(initangle+inc*11))
-                ey1 = cy + radius * sin(radians(initangle+inc*11))
-                ex2 = cx + radius * cos(radians(initangle+120+inc*11))
-                ey2 = cy + radius * sin(radians(initangle+120+inc*11))
-                ex3 = cx + radius * cos(radians(initangle+240+inc*11))
-                ey3 = cy + radius * sin(radians(initangle+240+inc*11))
+                ex1 = cx + radius * cos(radians(initangle+inc*angleinc))
+                ey1 = cy + radius * sin(radians(initangle+inc*angleinc))
+                ex2 = cx + radius * cos(radians(initangle+120+inc*angleinc))
+                ey2 = cy + radius * sin(radians(initangle+120+inc*angleinc))
+                ex3 = cx + radius * cos(radians(initangle+240+inc*angleinc))
+                ey3 = cy + radius * sin(radians(initangle+240+inc*angleinc))
                 triangle(ex1, ey1, ex2, ey2, ex3, ey3)
                 radius += off
                 inc++
@@ -176,6 +177,7 @@
         In the tuples we have: x2>x1, x2=x3, x3<x4, y1=y2, y2<y3, y3=y4. 
         These properties about the order of the coordinates in the tuple are used later when generating shapes in the sections
         */
+       var minsizesection=5
         function set_sections() {
             noFill()
             var x1, y1, x2, y2, sectionwidth, sectionheight, east, miny, maxy, shape;
@@ -185,8 +187,8 @@
             miny = wmin; maxy = hmin
             east = true
             while (east) {
-                sectionwidth = 1 + Math.floor(random(maxsizesection))
-                sectionheight = 1 + Math.floor(random(maxsizesection))
+                sectionwidth = minsizesection + Math.floor(random(maxsizesection))
+                sectionheight = minsizesection + Math.floor(random(maxsizesection))
                 if (y1 + sectionheight * sectionresolution < miny) {
                     miny = y1 + sectionheight * sectionresolution
                 }
@@ -219,7 +221,7 @@
                         if (miny < hmax) { y1 = miny }
                         y2 = hmax
                         while (last) {
-                            sectionwidth = 1 + Math.floor(random(maxsizesection))
+                            sectionwidth = minsizesection + Math.floor(random(maxsizesection))
                             if (x1 + sectionwidth * sectionresolution < wmax) {
                                 x2 = x1 + sectionwidth * sectionresolution
                                 sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
