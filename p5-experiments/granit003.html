@@ -60,7 +60,7 @@
         var maxstroke = 5
         var ran //used to save the random numbers generated for the piece
         var randomnumbers = []
-        var fontsize = 31
+        var fontsize = 42
         var bowie
 
         function preload() {
@@ -97,6 +97,7 @@
             var oneasciiart
             for (knob in randomnumbers) {
                 oneasciiart = nbtoasciiart(randomnumbers[knob].toPrecision(3).toString())
+                //oneasciiart = randomnumbers[knob].toPrecision(3).toString()
                 asciiart+=oneasciiart
             }
 
