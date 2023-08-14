@@ -64,7 +64,7 @@
         var bowie
 
         function preload() {
-        	bowie=loadFont("./fonts/FreeMono.ttf");
+            bowie = loadFont("./fonts/FreeMono.ttf");
         }
 
 
@@ -82,13 +82,15 @@
             sections.sort(() => ran - 0.5);
             draw_sections();
             printrandomness();
+            //var test = nbtoasciiart("0.19")
+            //console.log(test)
             //save("granit002.png")
             noLoop();
         }
 
         function printrandomness() {
-            var ytext = hminnumbers+fontsize
-            var xtext = wminnumbers+fontsize
+            var ytext = hminnumbers + fontsize
+            var xtext = wminnumbers + fontsize
             var max64 = 0
             noStroke()
             fill(ray_color[0], ray_color[1], ray_color[2])
@@ -98,21 +100,65 @@
             textFont(bowie)
             //textAlign("center")
             //if (randomnumbers.length * fontsize < h - 2 * paddding) {
-                for (knob in randomnumbers) {
-                    let b6 = btoa(randomnumbers[knob].toPrecision(3))
-                    if(b6.length>max64){max64=b6.length}
-                    text(b6, xtext, ytext);
-                    if(xtext+8*fontsize<wmaxnumbers-8*fontsize){
-                        xtext+=8*fontsize
-                    }
-                    else{
-                        ytext+=fontsize
-                        xtext = wminnumbers+fontsize
-                    }
+            for (knob in randomnumbers) {
+                let b6 = btoa(randomnumbers[knob].toPrecision(3))
+                let asci = nbtoasciiart(randomnumbers[knob].toPrecision(3).toString())
+                console.log(asci)
+                text(asci, xtext, ytext);
+                if (xtext + 4 * fontsize < wmaxnumbers - 4 * fontsize) {
+                    xtext += 4 * fontsize
                 }
+                else {
+                    ytext += fontsize
+                    xtext = wminnumbers + fontsize
+                }
+            }
             //}
-            console.log("the longest base64 encoded randome knob is "+max64)
+            console.log("the longest base64 encoded randome knob is " + max64)
         }
+
+        function nbtoasciiart(nb) {
+            var art = ''
+            for (const c of nb) {
+                switch (c) {
+                    case '.':
+                        art += "]["
+                        break;
+                    case '0':
+                        art += "#"
+                        break;
+                    case '1':
+                        art += "|"
+                        break;
+                    case '2':
+                        art += "+"
+                        break;
+                    case '3':
+                        art += "="
+                        break;
+                    case '4':
+                        art += "_"
+                        break;
+                    case '5':
+                        art += "*"
+                        break;
+                    case '6':
+                        art += "°"
+                        break;
+                    case '7':
+                        art += "\\"
+                        break;
+                    case '8':
+                        art += "/"
+                        break;
+                    case '9':
+                        art += "-"
+                        break;
+                }
+            }
+            return art
+        }
+
 
         function draw_sections() {
             for (vera in sections) {
