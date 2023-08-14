@@ -80,8 +80,8 @@
             strokeWeight(off / 2)
             fill(back_color[0], back_color[1], back_color[2], back_color[3])
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            //verticalsubD(x1, y1, x2, y2, x3, y3, x4, y4)
-            //horizontalsubD(x1, y1, x2, y2, x3, y3, x4, y4)
+            verticalsubD(x1, y1, x2, y2, x3, y3, x4, y4)
+            horizontalsubD(x1, y1, x2, y2, x3, y3, x4, y4)
         }
 
         function verticalsubD(x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -99,6 +99,7 @@
             }
             else {
                 quad(hx1, hy1, x2, y2, x3, y3, hx2, hy2)
+                verticalscratches(hx1, hy1, x2, y2, x3, y3, hx2, hy2)
             }
         }
 
@@ -161,7 +162,7 @@
             east = true
             while (east) {
                 sectionwidth = minsizesection + Math.floor(random(maxsizesection))
-                sectionheight = + Math.floor(random(maxsizesection))
+                sectionheight = 1 + Math.floor(random(maxsizesection))
                 if (y1 + sectionheight * sectionresolution < miny) {
                     miny = y1 + sectionheight * sectionresolution
                 }
