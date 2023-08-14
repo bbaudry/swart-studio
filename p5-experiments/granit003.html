@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = 900;
+        var h = 900;
+        var palette = [
+            {
+                back: [0, 0, 0],
+                ray: [0, 0, 100]
+            },
+            {
+                back: [230, 80, 50],
+                ray: [180, 60, 50]
+            },
+            {
+                back: [0, 0, 100],
+                ray: [0, 0, 0, 84]
+            }
+        ]/*            
+            {
+                back: [210, 100, 100],
+                ray: [30, 100, 100]
+            },
+            {
+                back: [160, 100, 100],
+                ray: [340, 100, 100]
+            },
+        */
+
+        //sectionresolution and maxsizesection control the density of the section. They are good in the range [7,42] 
+        var sectionresolution = 28;
+        var maxsizesection = 21;
+        var paddding = sectionresolution
+        var wmin = paddding
+        var hmin = paddding
+        var wmax = w - paddding
+        var hmax = h - paddding
+        var wminnumbers = w + paddding
+        var wmaxnumbers = 2 * w - paddding
+        var hminnumbers = hmin
+        var hmaxnumbers = hmax
+        var sections = []
+
+        var back_color, ray_color, city_color
+        var maxstroke = 5
+        var ran //used to save the random numbers generated for the piece
+        var randomnumbers = []
+        var fontsize = 21
+        var bowie
+
+        function preload() {
+        	bowie=loadFont("./fonts/FreeMono.ttf");
+        }
+
+
+        function setup() {
+            createCanvas(w * 2, h);
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            choose_color()
+            set_sections()
+        }
+
+        function draw() {
+            background(back_color[0], back_color[1], back_color[2])
+            ran = random(); randomnumbers.push(ran)
+            sections.sort(() => ran - 0.5);
+            draw_sections();
+            printrandomness();
+            //save("granit002.png")
+            noLoop();
+        }
+
+        function printrandomness() {
+            var ytext = hminnumbers+fontsize
+            var xtext = wminnumbers+fontsize
+            var max64 = 0
+            noStroke()
+            fill(ray_color[0], ray_color[1], ray_color[2])
+            rect(wminnumbers, hminnumbers, w - 2 * paddding, h - 2 * paddding)
+            fill(back_color[0], back_color[1], back_color[2])
+            textSize(fontsize)
+            textFont(bowie)
+            //textAlign("center")
+            //if (randomnumbers.length * fontsize < h - 2 * paddding) {
+                for (knob in randomnumbers) {
+                    let b6 = btoa(randomnumbers[knob].toPrecision(3))
+                    if(b6.length>max64){max64=b6.length}
+                    text(b6, xtext, ytext);
+                    if(xtext+8*fontsize<wmaxnumbers-8*fontsize){
+                        xtext+=8*fontsize
+                    }
+                    else{
+                        ytext+=fontsize
+                        xtext = wminnumbers+fontsize
+                    }
+                }
+            //}
+            console.log("the longest base64 encoded randome knob is "+max64)
+        }
+
+        function draw_sections() {
+            for (vera in sections) {
+                stroke(ray_color[0], ray_color[1], ray_color[2])
+                ran = random(); randomnumbers.push(ran)
+                if (ran < 0.2) {
+                    zoom(sections[vera].x1, sections[vera].y1,
+                        sections[vera].x2, sections[vera].y2,
+                        sections[vera].x3, sections[vera].y3,
+                        sections[vera].x4, sections[vera].y4)
+                }
+                else {
+                    halfzoom(sections[vera].x1, sections[vera].y1,
+                        sections[vera].x2, sections[vera].y2,
+                        sections[vera].x3, sections[vera].y3,
+                        sections[vera].x4, sections[vera].y4)
+                }
+            }
+        }
+
+        function zoom(x1, y1, x2, y2, x3, y3, x4, y4) {
+            ran = random(maxstroke); randomnumbers.push(ran)
+            var off = 2 * (1 + Math.floor(ran))
+            strokeWeight(off / 2)
+            fill(back_color[0], back_color[1], back_color[2], 84)
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            while (x2 - x1 >= off) {
+                x1 += off; x2 -= off; x3 = x2; x4 = x1;
+                y1 += off; y2 = y1; y3 -= off; y4 = y3;
+                quad(x1, y1, x2, y2, x3, y3, x4, y4)
+
+            }
+        }
+
+        function halfzoom(x1, y1, x2, y2, x3, y3, x4, y4) {
+            ran = random(maxstroke); randomnumbers.push(ran)
+            var off = 2 * (1 + Math.floor(ran))
+            var bound
+            strokeWeight(off / 2)
+            fill(back_color[0], back_color[1], back_color[2], 84)
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            noFill()
+            if ((x2 - x1) > (y3 - y1)) {
+                bound = y1 + ((y3 - y1) / 2)
+                ran = random(); randomnumbers.push(ran)
+                if (ran < 0.5) {
+                    while (y1 < bound) {
+                        y1 += off; x2 -= off; y2 += off; x3 -= off;
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                    while (y3 > bound + off) {
+                        x1 += off; y3 -= off; x4 += off; y4 -= off
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                }
+                else {
+                    while (y3 > bound + off) {
+                        x1 += off; y3 -= off; x4 += off; y4 -= off
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                    while (y1 < bound) {
+                        y1 += off; x2 -= off; y2 += off; x3 -= off;
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                }
+            }
+            else {
+                bound = x1 + ((x2 - x1) / 2)
+                ran = random(); randomnumbers.push(ran)
+                if (ran < 0.5) {
+                    while (x2 > bound) {
+                        y1 += off; x2 -= off; y2 += off; x3 -= off;
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                    while (x1 < bound - off) {
+                        x1 += off; y3 -= off; x4 += off; y4 -= off
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                }
+                else {
+                    while (x1 < bound - off) {
+                        x1 += off; y3 -= off; x4 += off; y4 -= off
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+                    while (x2 > bound) {
+                        y1 += off; x2 -= off; y2 += off; x3 -= off;
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                    }
+
+                }
+            }
+        }
+
+        function stripes(x1, y1, x2, y2, x3, y3, x4, y4) {
+            var ryoji, ikeda
+            var off = 21
+            ran = random(); randomnumbers.push(ran)
+            if (ran < 0.5) {
+                ryoji = y3 - y1
+                for (i = 0; i <= off; i++) {
+                    ikeda = y1 + i * ryoji / off
+                    line(x1, ikeda, x2, ikeda)
+                }
+            }
+            else {
+                ryoji = x2 - x1
+                for (i = 0; i <= off; i++) {
+                    ikeda = x1 + i * ryoji / off
+                    line(ikeda, y1, ikeda, y3)
+                }
+            }
+        }
+
+        function set_sections() {
+            noFill()
+            var x1, y1, x2, y2, nbcellsw, nbcellsh, east, miny, maxy, shape;
+            x1 = wmin
+            y1 = hmin
+            miny = wmin
+            maxy = hmin
+            east = true
+            while (east) {
+                ran = random(maxsizesection); randomnumbers.push(ran)
+                nbcellsw = 1 + Math.floor(ran)
+                ran = random(maxsizesection); randomnumbers.push(ran)
+                nbcellsh = 1 + Math.floor(ran)
+                if (y1 + nbcellsh * sectionresolution < miny) {
+                    miny = y1 + nbcellsh * sectionresolution
+                }
+                else {
+                    if (y1 + nbcellsh * sectionresolution > maxy) {
+                        maxy = y1 + nbcellsh * sectionresolution
+                        if (miny == y1) {
+                            miny = y1 + nbcellsh * sectionresolution;
+                        }
+                    }
+                }
+                if (y1 + nbcellsh * sectionresolution <= hmax) { y2 = y1 + nbcellsh * sectionresolution }
+                else { y2 = hmax }
+                if (x1 + nbcellsw * sectionresolution < wmax) {
+                    x2 = x1 + nbcellsw * sectionresolution
+                    //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
+                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                    x1 += nbcellsw * sectionresolution
+                }
+                else {
+                    x2 = wmax
+                    //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
+                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                    if (miny + nbcellsh * sectionresolution < hmax) {
+                        x1 = wmin
+                        y1 = miny
+                        maxy = miny
+                    }
+                    else {
+                        var last = true
+                        x1 = wmin
+                        if (miny < hmax) { y1 = miny }
+                        y2 = hmax
+                        while (last) {
+                            ran = random(maxsizesection); randomnumbers.push(ran)
+                            nbcellsw = 1 + Math.floor(ran)
+                            if (x1 + nbcellsw * sectionresolution < wmax) {
+                                x2 = x1 + nbcellsw * sectionresolution
+                                //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
+                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                                x1 += nbcellsw * sectionresolution
+                            }
+                            else {
+                                x2 = wmax
+                                //quad(x1, y1, x2, y1, x2, y2, x1, y2); 
+                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                                last = false
+                            }
+                        }
+                        east = false
+                    }
+                }
+            }
+        }
+
+        function choose_color() {
+            ran = random(palette.length); randomnumbers.push(ran)
+            let c = Math.floor(ran)
+            back_color = palette[c].back
+            ray_color = palette[c].ray
+            city_color = palette[c].city
+        }
+
+        function test() {
+            fill(0, 0, 0); stroke(0, 0, 100)
+            let off = 20
+            strokeWeight(10)
+            let x1 = 50
+            let y1 = 50
+            let x2 = 450
+            let y2 = 50
+            let x3 = 450
+            let y3 = 350
+            let x4 = 50
+            let y4 = 350
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            //x1+=off; y1+=off; x2-=off; y2+=off; x3-=off; y3-=off; x4+=off; y4-=off
+            x3 -= off; y3 -= off; x4 += off; y4 -= off
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            x3 -= off; y3 -= off; x4 += off; y4 -= off
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            x3 -= off; y3 -= off; x4 += off; y4 -= off
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            x1 = 500; y1 = 50; x2 = 880; y2 = 50; x3 = 880; y3 = 350; x4 = 500; y4 = 350
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            x1 += off; y1 += off; x2 -= off; y2 += off;
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            x1 += off; y1 += off; x2 -= off; y2 += off;
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            x1 += off; y1 += off; x2 -= off; y2 += off;
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+
+            x1 = 50; y1 = 450; x2 = 450; y2 = 450; x3 = 450; y3 = 650; x4 = 50; y4 = 650
+            halfzoom(x1, y1, x2, y2, x3, y3, x4, y4)
+            x1 = 500; y1 = 450; x2 = 880; y2 = 450; x3 = 880; y3 = 880; x4 = 500; y4 = 880
+            halfzoom(x1, y1, x2, y2, x3, y3, x4, y4)
+
+        }
+
+
+    </script>
+</body>
+
+</html>
