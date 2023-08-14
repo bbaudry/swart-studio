@@ -108,14 +108,14 @@
             maxscratches = 1 + random(3)
             if (random() < 0.21) {
                 console.log("scratches")
-                    t = random()
+                    t = random(0.8)
                     ox1 = (1 - t) * x1 + (t * x2);
                     ox2 = (1 - t) * x3 + (t * x4);
                 for (let i = 0; i < maxscratches; i++) {
                     sw = 2 * (1 + Math.floor(random(maxstroke)))
                     strokeWeight(sw)
-                    ox1+=i*7
-                    ox2+=i*7
+                    ox1+=i*sectionresolution/10
+                    ox2+=i*sectionresolution/10
                     t = 0//random(0.2)
                     oy1 = (1 - t) * y1 + (t * y3);
                     t = 1 //- random(0.2)
