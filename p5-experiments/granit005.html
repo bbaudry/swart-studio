@@ -20,12 +20,19 @@
         var h = 900;
         var palette = [
             {
-                back: [0, 0, 0],
-                ray: [0, 0, 100]
+                back: [0, 0, 0, 84],
+                ray: [0, 0, 100, 84],
+                scratch: [0, 80, 100, 84]
             },
             {
-                back: [0, 0, 100],
-                ray: [0, 0, 0, 84]
+                back: [0, 0, 0, 84],
+                ray: [0, 80, 100, 84],
+                scratch: [0, 0, 100, 84]
+            },
+            {
+                back: [0, 0, 100, 84],
+                ray: [0, 0, 0, 84],
+                scratch: [0, 80, 100, 84]
             }
         ]
         var back_color, ray_color, city_color
@@ -61,44 +68,77 @@
             for (vera in sections) {
                 stroke(ray_color[0], ray_color[1], ray_color[2])
                 subD(sections[vera].x1, sections[vera].y1,
-                        sections[vera].x2, sections[vera].y2,
-                        sections[vera].x3, sections[vera].y3,
-                        sections[vera].x4, sections[vera].y4)
+                    sections[vera].x2, sections[vera].y2,
+                    sections[vera].x3, sections[vera].y3,
+                    sections[vera].x4, sections[vera].y4)
             }
         }
 
         function subD(x1, y1, x2, y2, x3, y3, x4, y4) {
             //noStroke()
-            fill(back_color[0], back_color[1], back_color[2],84)
+            var off = 2 * (1 + Math.floor(random(maxstroke)))
+            strokeWeight(off / 2)
+            fill(back_color[0], back_color[1], back_color[2], back_color[3])
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            var t=0.5;
-            var hx1 = (1 - t) * x1 + (t * x2);
-            var hy1 = y1;
-            var hx2
-            if(random()<0.5){ t=random();hx2 = (1 - t) * x3 + (t * x4);}
-            else{ hx2=hx1 }
-            var hy2 = y3;
-            fill(ray_color[0], ray_color[1], ray_color[2],84)
-            if(random()<0.5){
-                quad(x1, y1, hx1,hy1,hx2,hy2, x4, y4)
+            //verticalsubD(x1, y1, x2, y2, x3, y3, x4, y4)
+            //horizontalsubD(x1, y1, x2, y2, x3, y3, x4, y4)
+        }
+
+        function verticalsubD(x1, y1, x2, y2, x3, y3, x4, y4) {
+            var t, hx1, hy1, hx2, hy2;
+            t = 0.5;
+            hx1 = (1 - t) * x1 + (t * x2);
+            hy1 = y1;
+            if (random() < 0.5) { t = random(); hx2 = (1 - t) * x3 + (t * x4); }
+            else { hx2 = hx1 }
+            hy2 = y3;
+            fill(ray_color[0], ray_color[1], ray_color[2], back_color[3])
+            if (random() < 0.5) {
+                quad(x1, y1, hx1, hy1, hx2, hy2, x4, y4)
+                verticalscratches(x1, y1, hx1, hy1, hx2, hy2, x4, y4)
             }
-            else{
-                quad(hx1,hy1,x2,y2,x3,y3,hx2,hy2)
+            else {
+                quad(hx1, hy1, x2, y2, x3, y3, hx2, hy2)
             }
-            t=0.5;
+        }
+
+        function verticalscratches(x1, y1, x2, y2, x3, y3, x4, y4) {
+            var sw, ox1, ox2, dx1, dx3, t, maxscratches;
+            maxscratches = 1 + random(3)
+            if (random() < 0.21) {
+                console.log("scratches")
+                    t = random()
+                    ox1 = (1 - t) * x1 + (t * x2);
+                    ox2 = (1 - t) * x3 + (t * x4);
+                for (let i = 0; i < maxscratches; i++) {
+                    sw = 2 * (1 + Math.floor(random(maxstroke)))
+                    strokeWeight(sw)
+                    ox1+=i*7
+                    ox2+=i*7
+                    t = 0//random(0.2)
+                    oy1 = (1 - t) * y1 + (t * y3);
+                    t = 1 //- random(0.2)
+                    oy2 = (1 - t) * y1 + (t * y3);
+                    line(ox1, oy1, ox2, oy2)
+                }
+            }
+        }
+
+        function horizontalsubD(x1, y1, x2, y2, x3, y3, x4, y4) {
+            var t, hx1, hy1, hx2, hy2;
+            t = 0.5;
             hx1 = x1;
             hy1 = (1 - t) * y1 + (t * y4);
             hx2 = x2
-            if(random()<0.5){ t=random(); hy2 = (1 - t) * y2 + (t * y3);}
-            else{ hy2=hy1 }
-            fill(back_color[0], back_color[1], back_color[2],84)
-                if(random()<0.5){
+            if (random() < 0.5) { t = random(); hy2 = (1 - t) * y2 + (t * y3); }
+            else { hy2 = hy1 }
+            fill(back_color[0], back_color[1], back_color[2], back_color[3])
+            if (random() < 0.5) {
                 quad(x1, y1, x2, y2, hx2, hy2, hx1, hy1)
             }
-            else{
+            else {
                 quad(hx1, hy1, hx2, hy2, x3, y3, x4, y4)
             }
-            
         }
 
         /* This function initializes a set of rectangular sections that cover the frame, leaving a 'padding' on the sides
@@ -110,7 +150,7 @@
         In the tuples we have: x2>x1, x2=x3, x3<x4, y1=y2, y2<y3, y3=y4. 
         These properties about the order of the coordinates in the tuple are used later when generating shapes in the sections
         */
-       var minsizesection=5
+        var minsizesection = 5
         function set_sections() {
             noFill()
             var x1, y1, x2, y2, sectionwidth, sectionheight, east, miny, maxy, shape;
@@ -121,7 +161,7 @@
             east = true
             while (east) {
                 sectionwidth = minsizesection + Math.floor(random(maxsizesection))
-                sectionheight =  + Math.floor(random(maxsizesection))
+                sectionheight = + Math.floor(random(maxsizesection))
                 if (y1 + sectionheight * sectionresolution < miny) {
                     miny = y1 + sectionheight * sectionresolution
                 }
