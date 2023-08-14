@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = 900;
+        var h = 900;
+        var palette = [
+            {
+                back: [0, 0, 0],
+                ray: [0, 0, 100]
+            },
+            {
+                back: [0, 0, 100],
+                ray: [0, 0, 0, 84]
+            }
+        ]
+        var back_color, ray_color, city_color
+        var maxstroke = 3
+        //sectionresolution and maxsizesection control the density of the section. They are good in the range [7,42] 
+        var sectionresolution = 42;
+        var maxsizesection = 17;
+        var padding = sectionresolution
+        var wmin = padding
+        var hmin = padding
+        var wmax = w - padding
+        var hmax = h - padding
+        var sections = []
+
+
+        function setup() {
+            createCanvas(w, h);
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            choose_color()
+            set_sections()
+        }
+
+        function draw() {
+            background(back_color[0], back_color[1], back_color[2])
+            sections.sort(() => random() - 0.5);
+            draw_sections()
+            //save("granit005.png")
+            noLoop();
+        }
+
+        function draw_sections() {
+            for (vera in sections) {
+                stroke(ray_color[0], ray_color[1], ray_color[2])
+                subD(sections[vera].x1, sections[vera].y1,
+                        sections[vera].x2, sections[vera].y2,
+                        sections[vera].x3, sections[vera].y3,
+                        sections[vera].x4, sections[vera].y4)
+            }
+        }
+
+        function subD(x1, y1, x2, y2, x3, y3, x4, y4) {
+            //noStroke()
+            fill(back_color[0], back_color[1], back_color[2],84)
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var t=random();
+            var hx1 = (1 - t) * x1 + (t * x2);
+            var hy1 = y1;
+            var hx2
+            if(random()<0.5){
+            hx2 = (1 - t) * x3 + (t * x4);
+            }
+            else{
+                hx2=hx1
+            }
+            var hy2 = y3;
+            fill(ray_color[0], ray_color[1], ray_color[2],84)
+            if(random()<0.5){
+                quad(x1, y1, hx1,hy1,hx2,hy2, x4, y4)
+            }
+            else{
+                quad(hx1,hy1,x2,y2,x3,y3,hx2,hy2)
+            }
+        }
+
+        /* This function initializes a set of rectangular sections that cover the frame, leaving a 'padding' on the sides
+        It generates the sections row by row.
+        When it generates the sections on a row, it keeps track of the lowest value on the y axis. 
+        This lowest value is used as the constant y value for the following row.
+        Lot of code is about handling corner cases when getting towards the max x and y values.
+        Each time a section is generated, it is saved as a 8-tuple (x1, y1, x2, y2, x3, y3, x4, y4)
+        In the tuples we have: x2>x1, x2=x3, x3<x4, y1=y2, y2<y3, y3=y4. 
+        These properties about the order of the coordinates in the tuple are used later when generating shapes in the sections
+        */
+       var minsizesection=5
+        function set_sections() {
+            noFill()
+            var x1, y1, x2, y2, sectionwidth, sectionheight, east, miny, maxy, shape;
+            x1 = wmin
+            y1 = hmin
+            //initialize with lowest possible values
+            miny = wmin; maxy = hmin
+            east = true
+            while (east) {
+                sectionwidth = minsizesection + Math.floor(random(maxsizesection))
+                sectionheight =  + Math.floor(random(maxsizesection))
+                if (y1 + sectionheight * sectionresolution < miny) {
+                    miny = y1 + sectionheight * sectionresolution
+                }
+                else {
+                    if (y1 + sectionheight * sectionresolution > maxy) {
+                        maxy = y1 + sectionheight * sectionresolution
+                        if (miny == y1) {
+                            miny = y1 + sectionheight * sectionresolution;
+                        }
+                    }
+                }
+                if (y1 + sectionheight * sectionresolution <= hmax) { y2 = y1 + sectionheight * sectionresolution }
+                else { y2 = hmax }
+                if (x1 + sectionwidth * sectionresolution < wmax) {
+                    x2 = x1 + sectionwidth * sectionresolution
+                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                    x1 += sectionwidth * sectionresolution
+                }
+                else {
+                    x2 = wmax
+                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                    if (miny + sectionheight * sectionresolution < hmax) {
+                        x1 = wmin
+                        y1 = miny
+                        maxy = miny
+                    }
+                    else {
+                        var last = true
+                        x1 = wmin
+                        if (miny < hmax) { y1 = miny }
+                        y2 = hmax
+                        while (last) {
+                            sectionwidth = minsizesection + Math.floor(random(maxsizesection))
+                            if (x1 + sectionwidth * sectionresolution < wmax) {
+                                x2 = x1 + sectionwidth * sectionresolution
+                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                                x1 += sectionwidth * sectionresolution
+                            }
+                            else {
+                                x2 = wmax
+                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                                last = false
+                            }
+                        }
+                        east = false
+                    }
+                }
+            }
+        }
+
+        function choose_color() {
+            let c = Math.floor(random(palette.length))
+            back_color = palette[c].back
+            ray_color = palette[c].ray
+            city_color = palette[c].city
+        }
+    </script>
+</body>
+
+</html>
