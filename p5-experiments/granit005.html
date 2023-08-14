@@ -71,11 +71,11 @@
             //noStroke()
             fill(back_color[0], back_color[1], back_color[2],84)
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            var t=random();
+            var t=0.5;
             var hx1 = (1 - t) * x1 + (t * x2);
             var hy1 = y1;
             var hx2
-            if(random()<0.5){ hx2 = (1 - t) * x3 + (t * x4);}
+            if(random()<0.5){ t=random();hx2 = (1 - t) * x3 + (t * x4);}
             else{ hx2=hx1 }
             var hy2 = y3;
             fill(ray_color[0], ray_color[1], ray_color[2],84)
@@ -85,11 +85,11 @@
             else{
                 quad(hx1,hy1,x2,y2,x3,y3,hx2,hy2)
             }
-            t=random();
+            t=0.5;
             hx1 = x1;
             hy1 = (1 - t) * y1 + (t * y4);
             hx2 = x2
-            if(random()<0.5){ hy2 = (1 - t) * y2 + (t * y3);}
+            if(random()<0.5){ t=random(); hy2 = (1 - t) * y2 + (t * y3);}
             else{ hy2=hy1 }
             fill(back_color[0], back_color[1], back_color[2],84)
                 if(random()<0.5){
