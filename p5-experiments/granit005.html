@@ -104,7 +104,7 @@
         }
 
         function verticalscratches(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var sw, ox1, ox2, dx1, dx3, t, maxscratches;
+            var sw, off, ox1, ox2, dx1, dx3, t, maxscratches;
             maxscratches = 1 + random(3)
             if (random() < 0.21) {
                 console.log("scratches")
@@ -113,13 +113,12 @@
                     ox2 = (1 - t) * x3 + (t * x4);
                 for (let i = 0; i < maxscratches; i++) {
                     sw = 2 * (1 + Math.floor(random(maxstroke)))
+                    off = sw/2
                     strokeWeight(sw)
-                    ox1+=i*sectionresolution/10
-                    ox2+=i*sectionresolution/10
-                    t = 0//random(0.2)
-                    oy1 = (1 - t) * y1 + (t * y3);
-                    t = 1 //- random(0.2)
-                    oy2 = (1 - t) * y1 + (t * y3);
+                    ox1+=i*off
+                    ox2+=i*off
+                    oy1 = y1;
+                    oy2 = y3;
                     line(ox1, oy1, ox2, oy2)
                 }
             }
