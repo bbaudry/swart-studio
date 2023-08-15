@@ -20,31 +20,58 @@
         var h = 900;
         var palette = [
             {
-                back: [0, 0, 0],
-                ray: [0, 0, 100]
+                back: [0, 0, 0, 84],
+                ray: [0, 0, 100, 84],
+                more:[30,80,80]
             },
             {
-                back: [0, 0, 100],
-                ray: [0, 0, 0, 84]
+                back: [0, 0, 0, 84],
+                ray: [230, 80, 50, 84],
+                more: [0,80,80]
+            },
+            {
+                back: [0, 0, 100, 84],
+                ray: [0, 0, 0, 84],
+                more:[330,80,80]
             }
         ]
-        var back_color, ray_color, city_color
-        var maxstroke = 5
+        var back_color, ray_color, extra_color
+        var maxstroke = 4
         //sectionresolution and maxsizesection control the density of the section. They are good in the range [7,42] 
-        var sectionresolution = 28;
-        var maxsizesection = 21;
-        var padding = sectionresolution
-        var wmin = padding
-        var hmin = padding
-        var wmax = w - padding
-        var hmax = h - padding
+        var sectionresolution 
+        var maxsizesection
+        var padding
+        var wmin, hmin, wmax, hmax
+        var lucid, extra
         var sections = []
 
+
+        /*
+        traits:
+        sectionresolution
+        maxsizesection
+        lucid
+        extra
+        */
 
         function setup() {
             createCanvas(w, h);
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
+            sectionresolution = Math.floor(random(28,43));
+            maxsizesection = Math.floor(random(17,21));
+            padding = sectionresolution
+            wmin = padding
+            hmin = padding
+            wmax = w - padding
+            hmax = h - padding
+            // if lucid is true, the back of each section is transparent
+            if (random()<0.21){lucid=false}
+            else {lucid=true}
+            // if extra is true, there can be an extra color on some lines
+            if (random()<0.21){extra=true}
+            else {extra=false}
+      
             choose_color()
             set_sections()
         }
@@ -58,8 +85,10 @@
         }
 
         function draw_sections() {
+            stroke(ray_color[0], ray_color[1], ray_color[2])
+            var b=ray_color[2]
             for (vera in sections) {
-                stroke(ray_color[0], ray_color[1], ray_color[2])
+                stroke(ray_color[0], ray_color[1], b)
                 if (random()<0.2){
                     zoom(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
@@ -72,13 +101,15 @@
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
                 }
+                b+=5
             }
         }
 
         function zoom(x1, y1, x2, y2, x3, y3, x4, y4) {
             var off = 2*(1+Math.floor(random(maxstroke)))
             strokeWeight(off/2)
-            fill(back_color[0], back_color[1], back_color[2],84)
+            if (lucid){fill(back_color[0], back_color[1], back_color[2],back_color[3])}
+            else {{fill(back_color[0], back_color[1], back_color[2])}}
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             while (x2 - x1 >= off) {
                 x1 += off; x2 -= off; x3 = x2; x4 = x1;
@@ -92,7 +123,8 @@
             var off = 2*(1+Math.floor(random(maxstroke)))
             var bound
             strokeWeight(off/2)
-            fill(back_color[0], back_color[1], back_color[2],84)
+            if (lucid){fill(back_color[0], back_color[1], back_color[2],back_color[3])}
+            else {{fill(back_color[0], back_color[1], back_color[2])}}
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             noFill()
             if ((x2 - x1) > (y3 - y1)) {
@@ -110,7 +142,14 @@
                 else {
                     while (y3 > bound + off) {
                         x1 += off; y3 -= off; x4 += off; y4 -= off
-                        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                        if(extra && random()<0.11){
+                            push()
+                            stroke(extra_color[0], extra_color[1], extra_color[2])
+                            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+                            pop()
+                        }
+                        else{
+                        quad(x1, y1, x2, y2, x3, y3, x4, y4)}
                     }
                     while (y1 < bound) {
                         y1 += off; x2 -= off; y2 += off; x3 -= off;
@@ -218,7 +257,7 @@
             let c = Math.floor(random(palette.length))
             back_color = palette[c].back
             ray_color = palette[c].ray
-            city_color = palette[c].city
+            extra_color = palette[c].more
         }
     </script>
 </body>
