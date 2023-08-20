@@ -87,41 +87,49 @@
             vedge=y3-y1
             cx=x1+hedge/2
             cy=y1+vedge/2
-            t1=1/3; t2=2/3;
-            px1=(1 - t1) * x1 + (t1 * x2);
-            py1=(1 - t1) * y1 + (t1 * y2);
-            px2=(1 - t2) * x1 + (t2 * x2);
-            py2=(1 - t2) * y1 + (t2 * y2);
+            t1=1/3; t2=2/3; 
+
+            px1=(1 - t1) * x1 + (t1 * x4);
+            py1=(1 - t1) * y1 + (t1 * y4);
+            px2=cx;
+            py2=y1;
             fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
             triangle(cx,cy,px1,py1,px2,py2)
 
-            px1=(1 - t1) * x2 + (t1 * x3);
-            py1=(1 - t1) * y2 + (t1 * y3);
+            px1=px2;
+            py1=py2;
+            px2=(1 - t1) * x2 + (t1 * x3);
+            py2=(1 - t1) * y2 + (t1 * y3);
             fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
-            triangle(cx,cy,px2,py2,px1,py1)
+            triangle(cx,cy,px1,py1,px2,py2)
+
+            px1=px2;
+            py1=py2;
             px2=(1 - t2) * x2 + (t2 * x3);
             py2=(1 - t2) * y2 + (t2 * y3);
             fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
             triangle(cx,cy,px1,py1,px2,py2)
 
-            px1=(1 - t1) * x3 + (t1 * x4);
-            py1=(1 - t1) * y3 + (t1 * y4);
-            fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
-            triangle(cx,cy,px2,py2,px1,py1)
-            px2=(1 - t2) * x4 + (t2 * x4);
-            py2=(1 - t2) * y4 + (t2 * y4);
+            px1=px2;
+            py1=py2;
+            px2=cx;
+            py2=y3;
             fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
             triangle(cx,cy,px1,py1,px2,py2)
 
-            px1=(1 - t1) * x4 + (t1 * x1);
-            py1=(1 - t1) * y4 + (t1 * y1);
-            fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
-            triangle(cx,cy,px2,py2,px1,py1)
-            px2=(1 - t2) * x4 + (t2 * x1);
-            py2=(1 - t2) * y4 + (t2 * y1);
+            px1=px2;
+            py1=py2;
+            px2=(1 - t2) * x1 + (t2 * x4);
+            py2=(1 - t2) * y1 + (t2 * y4);
             fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
             triangle(cx,cy,px1,py1,px2,py2)
 
+            px1=px2;
+            py1=py2;
+            px2=(1 - t1) * x1 + (t1 * x4);
+            py2=(1 - t1) * y1 + (t1 * y4);
+            fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
+            triangle(cx,cy,px1,py1,px2,py2)
         }
 
 
@@ -135,31 +143,17 @@
         In the tuples we have: x2>x1, x2=x3, x3<x4, y1=y2, y2<y3, y3=y4. 
         These properties about the order of the coordinates in the tuple are used later when generating shapes in the sections
         */
-        var minsizesection = 5
+        var minsizesection = 1
         function set_sections() {
             noFill()
             var x1, y1, x2, y2, sectionwidth, sectionheight, east, miny, maxy, shape;
+            east = true
+            sectionheight = 1 + Math.floor(random(maxsizesection))
             x1 = wmin
             y1 = hmin
-            //initialize with lowest possible values
-            miny = wmin; maxy = hmin
-            east = true
+            y2 = y1 + sectionheight * sectionresolution
             while (east) {
                 sectionwidth = minsizesection + Math.floor(random(maxsizesection))
-                sectionheight = 1 + Math.floor(random(maxsizesection))
-                if (y1 + sectionheight * sectionresolution < miny) {
-                    miny = y1 + sectionheight * sectionresolution
-                }
-                else {
-                    if (y1 + sectionheight * sectionresolution > maxy) {
-                        maxy = y1 + sectionheight * sectionresolution
-                        if (miny == y1) {
-                            miny = y1 + sectionheight * sectionresolution;
-                        }
-                    }
-                }
-                if (y1 + sectionheight * sectionresolution <= hmax) { y2 = y1 + sectionheight * sectionresolution }
-                else { y2 = hmax }
                 if (x1 + sectionwidth * sectionresolution < wmax) {
                     x2 = x1 + sectionwidth * sectionresolution
                     sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
@@ -168,15 +162,15 @@
                 else {
                     x2 = wmax
                     sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
-                    if (miny + sectionheight * sectionresolution < hmax) {
+                    y1 = y2
+                    sectionheight = 1 + Math.floor(random(maxsizesection))
+                    if (y2 + sectionheight * sectionresolution < hmax) {
                         x1 = wmin
-                        y1 = miny
-                        maxy = miny
+                        y2 += sectionheight * sectionresolution
                     }
                     else {
                         var last = true
                         x1 = wmin
-                        if (miny < hmax) { y1 = miny }
                         y2 = hmax
                         while (last) {
                             sectionwidth = minsizesection + Math.floor(random(maxsizesection))
