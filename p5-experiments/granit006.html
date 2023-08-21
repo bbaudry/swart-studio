@@ -75,8 +75,25 @@
         }
 
         function subDtri(x1, y1, x2, y2, x3, y3, x4, y4) {
-            deepTri(x1,y1,x2,y2,x3,y3,0)
-            deepTri(x2,y2,x3,y3,x4,y4,0)
+            var coin = Math.floor(random(4));
+                    switch (coin) {
+                        case 0:
+                            deepTri(x1,y1,x2,y2,x3,y3,0)
+                            deepTri(x2,y2,x3,y3,x4,y4,0)
+                        break;
+                        case 1:
+                            deepTri(x2,y2,x3,y3,x4,y4,0)
+                            deepTri(x2,y2,x4,y4,x1,y1,0)
+                        break;
+                        case 2:
+                            deepTri(x3,y3,x4,y4,x1,y1,0)
+                            deepTri(x3,y3,x1,y1,x2,y2,0)
+                        break;
+                        case 3:
+                            deepTri(x4,y4,x1,y1,x2,y2,0)
+                            deepTri(x4,y4,x2,y2,x3,y3,0)
+                        break;
+                    }
         }
 
         function deepTri(x1, y1, x2, y2, x3, y3, d) {
