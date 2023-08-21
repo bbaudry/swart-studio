@@ -38,8 +38,8 @@
         var back_color, ray_color, city_color
         var maxstroke = 3
         //sectionresolution and maxsizesection control the density of the section. They are good in the range [7,42] 
-        var sectionresolution = 42;
-        var maxsizesection = 17;
+        var sectionresolution = 31;
+        var maxsizesection = 11;
         var padding = sectionresolution
         var wmin = padding
         var hmin = padding
@@ -67,14 +67,41 @@
         function draw_sections() {
             for (vera in sections) {
                 stroke(ray_color[0], ray_color[1], ray_color[2])
-                subD(sections[vera].x1, sections[vera].y1,
+                subDtri(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
                     sections[vera].x4, sections[vera].y4)
             }
         }
 
-        function subD(x1, y1, x2, y2, x3, y3, x4, y4) {
+        function subDtri(x1, y1, x2, y2, x3, y3, x4, y4) {
+            deepTri(x1,y1,x2,y2,x3,y3,0)
+            deepTri(x2,y2,x3,y3,x4,y4,0)
+        }
+
+        function deepTri(x1, y1, x2, y2, x3, y3, d) {
+            console.log(d)
+            var px,py,t;
+            if(d<3){
+                if(random()<0.7) {
+                    t=random()
+                    px=(1 - t) * x2 + (t * x3);
+                    py=(1 - t) * y2 + (t * y3);
+                    deepTri(x1,y1,x2,y2,px,py,d++)
+                    deepTri(x2,y2,px,py,x3,y3,d++)
+                }
+                else {
+                    fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
+                    triangle(x1, y1, x2, y2, x3, y3)
+                }
+            }
+            else {
+                fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
+                triangle(x1, y1, x2, y2, x3, y3)
+            }
+        }
+
+        function subDhex(x1, y1, x2, y2, x3, y3, x4, y4) {
             //noStroke()
             var t1,t2,cx,cy,px1,py1,px2,py2
             var off = 2 * (1 + Math.floor(random(maxstroke)))
