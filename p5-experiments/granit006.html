@@ -59,6 +59,7 @@
         function draw() {
             background(back_color[0], back_color[1], back_color[2])
             sections.sort(() => random() - 0.5);
+            //subDtri(100,100,400,100,400,400,100,400)
             draw_sections()
             //save("granit005.png")
             noLoop();
@@ -99,20 +100,38 @@
         function deepTri(x1, y1, x2, y2, x3, y3, d) {
             console.log(d)
             var px,py,t;
-            if(d<4){
-                if(random()<0.7) {
-                    t=random()
+            if(d<3){
+                if(random()<1) {
+                    t=random(0.21,0.84)
                     px=(1 - t) * x2 + (t * x3);
                     py=(1 - t) * y2 + (t * y3);
-                    deepTri(x1,y1,x2,y2,px,py,d++)
-                    deepTri(x2,y2,px,py,x3,y3,d++)
+                    fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
+                    //fill(random()*360, ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
+                    triangle(x1, y1, x2, y2, x3, y3)
+                    var coin = Math.floor(random(3));
+                    switch (coin) {
+                        case 0:
+                            deepTri(x1,y1,x2,y2,px,py,d++)
+                            deepTri(x1,y1,px,py,x3,y3,d++)
+                        break;
+                        case 1:
+                            deepTri(x2,y2,px,py,x1,y1,d++)
+                            deepTri(px,py,x3,y3,x1,y1,d++)
+                        break;
+                        case 2:
+                            deepTri(px,py,x1,y1,x2,y2,d++)
+                            deepTri(x3,y3,x1,y1,px,py,d++)
+                        break;
+                    }
                 }
                 else {
+                    //fill(random()*360, 100,100,random(42,84))
                     fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
                     triangle(x1, y1, x2, y2, x3, y3)
                 }
             }
             else {
+                //fill(30*d, 100,100,random(42,84))
                 fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
                 triangle(x1, y1, x2, y2, x3, y3)
             }
