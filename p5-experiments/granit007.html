@@ -72,7 +72,7 @@
 
         function draw_sections() {
             for (vera in sections) {
-                stroke(ray_color[0], ray_color[1], ray_color[2])
+                noStroke();//stroke(ray_color[0], ray_color[1], ray_color[2])
                 subDtri(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
