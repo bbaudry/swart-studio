@@ -72,7 +72,7 @@
 
         function draw_sections() {
             for (vera in sections) {
-                noStroke();//(ray_color[0], ray_color[1], ray_color[2])
+                stroke(ray_color[0], ray_color[1], ray_color[2])
                 subDtri(sections[vera].x1, sections[vera].y1,
                     sections[vera].x2, sections[vera].y2,
                     sections[vera].x3, sections[vera].y3,
@@ -191,42 +191,51 @@
         var minsizesection = 1
         function set_sections() {
             noFill()
-            var x1, y1, x2, y2, sectionwidth, sectionheight, east, miny, maxy, shape;
+            var x1, y1, x2, y2, x3, x4, sectionwidthtop, sectionwidthbottom, sectionheight, east, miny, maxy, shape;
             east = true
             sectionheight = 1 + Math.floor(random(maxsizesection))
-            x1 = wmin
+            x1 = wmin; x4 = wmin;
             y1 = hmin
             y2 = y1 + sectionheight * sectionresolution
             while (east) {
-                sectionwidth = minsizesection + Math.floor(random(maxsizesection))
-                if (x1 + sectionwidth * sectionresolution < wmax) {
-                    x2 = x1 + sectionwidth * sectionresolution
-                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
-                    x1 += sectionwidth * sectionresolution
+                sectionwidthtop = minsizesection + Math.floor(random(maxsizesection))
+                sectionwidthbottom = minsizesection + Math.floor(random(maxsizesection))
+                
+                if (x1 + sectionwidthtop * sectionresolution < wmax && x4 + sectionwidthbottom * sectionresolution < wmax) {
+                    x2 = x1 + sectionwidthtop * sectionresolution
+                    x3 = x4 + sectionwidthbottom * sectionresolution
+                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x3, y3: y2, x4: x4, y4: y2 })
+                    x1 += sectionwidthtop * sectionresolution
+                    x4 += sectionwidthbottom * sectionresolution
                 }
                 else {
-                    x2 = wmax
-                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                    x2 = wmax; x3=wmax
+                    sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x3, y3: y2, x4: x4, y4: y2 })
                     y1 = y2
                     sectionheight = 1 + Math.floor(random(maxsizesection))
                     if (y2 + sectionheight * sectionresolution < hmax) {
-                        x1 = wmin
+                        x1 = wmin; x4 = wmin; 
                         y2 += sectionheight * sectionresolution
                     }
                     else {
                         var last = true
-                        x1 = wmin
+                        x1 = wmin; x4 = wmin; 
                         y2 = hmax
                         while (last) {
-                            sectionwidth = minsizesection + Math.floor(random(maxsizesection))
-                            if (x1 + sectionwidth * sectionresolution < wmax) {
-                                x2 = x1 + sectionwidth * sectionresolution
-                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
-                                x1 += sectionwidth * sectionresolution
+                            sectionwidthtop = minsizesection + Math.floor(random(maxsizesection))
+                            sectionwidthbottom = minsizesection + Math.floor(random(maxsizesection))
+                
+                            if (x1 + sectionwidthtop * sectionresolution < wmax && x4 + sectionwidthbottom * sectionresolution < wmax) {
+                                x2 = x1 + sectionwidthtop * sectionresolution
+                                x3 = x4 + sectionwidthbottom * sectionresolution
+                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x3, y3: y2, x4: x4, y4: y2 })
+                                x1 += sectionwidthtop * sectionresolution
+                                x4 += sectionwidthbottom * sectionresolution
+
                             }
                             else {
-                                x2 = wmax
-                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x2, y3: y2, x4: x1, y4: y2 })
+                                x2 = wmax; x3=wmax
+                                sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x3, y3: y2, x4: x4, y4: y2 })
                                 last = false
                             }
                         }
