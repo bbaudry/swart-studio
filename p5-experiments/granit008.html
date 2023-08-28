@@ -45,8 +45,8 @@
             createCanvas(w, h);
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            sectionresolution = Math.floor(random(1,22));
-            maxsizesection = Math.floor(random(3,14));
+            sectionresolution = Math.floor(random(2,22));
+            maxsizesection = Math.floor(random(7,14));
             set_sections()
             sections.sort(() => random() - 0.5);
             choose_color()
@@ -55,13 +55,17 @@
 
         var drawindex = 0
         function draw() {
-            if (drawindex < sections.length) {
+            /*if (drawindex < sections.length) {
                 draw_section(drawindex)
                 drawindex++
             }
             else {
                 noLoop();
-            }
+            }*/
+            fill(320,50,100); noStroke()
+            quad(50,50,250,50,350,400,120,400)
+            ssshhh(50,50,250,50,350,400,120,400)
+            noLoop()
         }
 
 
@@ -74,6 +78,18 @@
                 sections[sectionindex].x3, sections[sectionindex].y3,
                 sections[sectionindex].x4, sections[sectionindex].y4)
 
+        }
+
+        function ssshhh(x1, y1, x2, y2, x3, y3, x4, y4){
+            var shheight=y3-y1;
+            t = random()
+            ox1 = (1 - t) * x1 + (t * x4);
+            ox2 = (1 - t) * x2 + (t * x3);
+            oy = (1 - t) * y1 + (t * y3);
+            t = random()
+            ox3 = (1 - t) * ox1 + (t * ox2);
+            fill(230,100,100); noStroke();
+            ellipse(ox3,oy,5,5)
         }
 
         function subDtri(x1, y1, x2, y2, x3, y3, x4, y4) {
