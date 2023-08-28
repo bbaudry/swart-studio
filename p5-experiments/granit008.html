@@ -50,39 +50,27 @@
             background(0, 0, 0)
         }
 
-        var visited = []
+        var drawindex = 0
         function draw() {
             sections.sort(() => random() - 0.5);
-            if (visited.length < sections.length) {
-                draw_sections()
+            if (drawindex < sections.length) {
+                draw_section(drawindex)
+                drawindex++
             }
             else {
-                printvisited()
                 noLoop();
             }
         }
 
-        function printvisited() {
-            let allv = ""
-            for (v in visited){
-                allv+=v+" "
-            }
-            console.log(allv)
-        }
 
-        function draw_sections() {
-            let vera = Math.floor(random(sections.length))
-            while (visited.includes(vera)) {
-                vera = Math.floor(random(sections.length))
-            }
-            visited.push(vera)
+        function draw_section(sectionindex) {
             selected_color=[50, 100, 100, 84]//choose_color()
             fill(selected_color[0], selected_color[1], selected_color[2])
-            noStroke()
-            quad(sections[vera].x1, sections[vera].y1,
-                sections[vera].x2, sections[vera].y2,
-                sections[vera].x3, sections[vera].y3,
-                sections[vera].x4, sections[vera].y4)
+            stroke(selected_color[0], selected_color[1], selected_color[2])
+            quad(sections[sectionindex].x1, sections[sectionindex].y1,
+                sections[sectionindex].x2, sections[sectionindex].y2,
+                sections[sectionindex].x3, sections[sectionindex].y3,
+                sections[sectionindex].x4, sections[sectionindex].y4)
 
         }
 
