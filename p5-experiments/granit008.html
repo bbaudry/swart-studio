@@ -45,8 +45,8 @@
             createCanvas(w, h);
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            sectionresolution = Math.floor(random(7,22));
-            maxsizesection = Math.floor(random(7,14));
+            sectionresolution = Math.floor(random(17,22));
+            maxsizesection = Math.floor(random(11,14));
             set_sections()
             sections.sort(() => random() - 0.5);
             choose_color()
@@ -62,24 +62,41 @@
             else {
                 noLoop();
             }
+            /*choose_color()
+            stroke(selected_color[0],selected_color[1],selected_color[2])
+            noFill()
+            quad(50,50,442,50,567,437,20,437)
+            rays(50,50,442,50,567,437,20,437)
+            noLoop()*/
         }
 
 
         function draw_section(sectionindex) {
             choose_color()
             fill(selected_color[0], selected_color[1], selected_color[2])
-            stroke(selected_color[0], selected_color[1], selected_color[2])
-            if(random()<0.5){
+            //stroke(selected_color[0], selected_color[1], selected_color[2])
+            noStroke()
             quad(sections[sectionindex].x1, sections[sectionindex].y1,
                 sections[sectionindex].x2, sections[sectionindex].y2,
                 sections[sectionindex].x3, sections[sectionindex].y3,
                 sections[sectionindex].x4, sections[sectionindex].y4)
-            }
-            else{
-            ssshhh(sections[sectionindex].x1, sections[sectionindex].y1,
+            rays(sections[sectionindex].x1, sections[sectionindex].y1,
                 sections[sectionindex].x2, sections[sectionindex].y2,
                 sections[sectionindex].x3, sections[sectionindex].y3,
                 sections[sectionindex].x4, sections[sectionindex].y4)
+        }
+
+        function rays(x1, y1, x2, y2, x3, y3, x4, y4){
+            var ox1, ox2, ox3, oy, t, it, diam
+            t=0.001
+            choose_another_color()
+            stroke(selected_color[0],selected_color[1],selected_color[2])
+            while(t<1){
+                ox1 = (1 - t) * x1 + (t * x4);
+                ox2 = (1 - t) * x2 + (t * x3);
+                oy = (1 - t) * y1 + (t * y3);
+                line(ox1,oy,ox2,oy)
+                t=t*1.05
             }
         }
 
@@ -265,11 +282,22 @@
             }
         }
 
+        var selected_c_ind
         function choose_color() {
             let c = Math.floor(random(palette.length))
             selected_color = palette[c]
+            selected_c_ind = c
         }
-    </script>
+
+        function choose_another_color() {
+            let c = Math.floor(random(palette.length))
+            while(c==selected_c_ind){
+                c = Math.floor(random(palette.length))
+            }
+            selected_c_ind = c
+            selected_color = palette[c]
+        }
+</script>
 </body>
 
 </html>
