@@ -45,8 +45,8 @@
             createCanvas(w, h);
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            sectionresolution = Math.floor(random(17,22));
-            maxsizesection = Math.floor(random(11,14));
+            sectionresolution = 22//Math.floor(random(17,22));
+            maxsizesection = 17//Math.floor(random(11,14));
             set_sections()
             sections.sort(() => random() - 0.5);
             choose_color()
@@ -60,7 +60,14 @@
                 drawindex++
             }
             else {
-                noLoop();
+                if (frameCount<19){
+                drawindex = 0
+                set_sections()
+                sections.sort(() => random() - 0.5);    
+                }
+                else{
+                    noLoop()
+                }        
             }
             /*choose_color()
             stroke(selected_color[0],selected_color[1],selected_color[2])
@@ -73,13 +80,13 @@
 
         function draw_section(sectionindex) {
             choose_color()
-            fill(selected_color[0], selected_color[1], selected_color[2])
+            fill(selected_color[0], selected_color[1], selected_color[2], selected_color[3])
             //stroke(selected_color[0], selected_color[1], selected_color[2])
             noStroke()
-            quad(sections[sectionindex].x1, sections[sectionindex].y1,
+            /*quad(sections[sectionindex].x1, sections[sectionindex].y1,
                 sections[sectionindex].x2, sections[sectionindex].y2,
                 sections[sectionindex].x3, sections[sectionindex].y3,
-                sections[sectionindex].x4, sections[sectionindex].y4)
+                sections[sectionindex].x4, sections[sectionindex].y4)*/
             rays(sections[sectionindex].x1, sections[sectionindex].y1,
                 sections[sectionindex].x2, sections[sectionindex].y2,
                 sections[sectionindex].x3, sections[sectionindex].y3,
@@ -88,15 +95,29 @@
 
         function rays(x1, y1, x2, y2, x3, y3, x4, y4){
             var ox1, ox2, ox3, oy, t, it, diam
-            t=0.001
+            t=0.042
+            tinc=1.05
             choose_another_color()
+            strokeWeight(1.9)
             stroke(selected_color[0],selected_color[1],selected_color[2])
+            if(random()<0.5){
             while(t<1){
                 ox1 = (1 - t) * x1 + (t * x4);
                 ox2 = (1 - t) * x2 + (t * x3);
                 oy = (1 - t) * y1 + (t * y3);
                 line(ox1,oy,ox2,oy)
-                t=t*1.05
+                t=t*tinc
+            }
+            }
+            else{
+                while(t<1){
+                ox1 = (1 - t) * x4 + (t * x1);
+                ox2 = (1 - t) * x3 + (t * x2);
+                oy = (1 - t) * y3 + (t * y1);
+                line(ox1,oy,ox2,oy)
+                t=t*tinc
+            }
+
             }
         }
 
@@ -115,46 +136,6 @@
             fill(selected_color[0],selected_color[1],selected_color[2]); noStroke();
             ellipse(ox3,oy,diam,diam)
         }
-        }
-
-        function subDtri(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var coin = Math.floor(random(4));
-            switch (coin) {
-                case 0:
-                    deepTri(x1, y1, x2, y2, x3, y3, 0)
-                    deepTri(x1, y1, x3, y3, x4, y4, 0)
-                    break;
-                case 1:
-                    deepTri(x2, y2, x3, y3, x4, y4, 0)
-                    deepTri(x2, y2, x4, y4, x1, y1, 0)
-                    break;
-                case 2:
-                    deepTri(x3, y3, x4, y4, x1, y1, 0)
-                    deepTri(x3, y3, x1, y1, x2, y2, 0)
-                    break;
-                case 3:
-                    deepTri(x4, y4, x1, y1, x2, y2, 0)
-                    deepTri(x4, y4, x2, y2, x3, y3, 0)
-                    break;
-            }
-        }
-
-        function deepTri(x1, y1, x2, y2, x3, y3, d) {
-            console.log(d)
-            var px1, py1, px2, py2, t;
-            px1 = x2
-            py1 = y2
-            t = random(0.09, 0.12)
-            while (t < 1) {
-                px2 = (1 - t) * x2 + (t * x3);
-                py2 = (1 - t) * y2 + (t * y3);
-                fill(ray_color[0], ray_color[1], ray_color[2], ray_color[3] + random(-42, 42))
-                //fill(random()*360, ray_color[1], ray_color[2], ray_color[3]+random(-42,42))
-                triangle(x1, y1, px1, py1, px2, py2)
-                px1 = px2
-                py1 = py2
-                t += random(0.09, 0.12)
-            }
         }
 
         function subDhex(x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -225,12 +206,12 @@
         In the tuples we have: x2>x1, x2=x3, x3<x4, y1=y2, y2<y3, y3=y4. 
         These properties about the order of the coordinates in the tuple are used later when generating shapes in the sections
         */
-        var minsizesection = 1
+        var minsizesection = 7
         function set_sections() {
             noFill()
             var x1, y1, x2, y2, x3, x4, sectionwidthtop, sectionwidthbottom, sectionheight, east, miny, maxy, shape;
             east = true
-            sectionheight = 1 + Math.floor(random(maxsizesection))
+            sectionheight = minsizesection + Math.floor(random(maxsizesection))
             x1 = wmin; x4 = wmin;
             y1 = hmin
             y2 = y1 + sectionheight * sectionresolution
@@ -249,7 +230,7 @@
                     x2 = wmax; x3 = wmax
                     sections.push({ x1: x1, y1: y1, x2: x2, y2: y1, x3: x3, y3: y2, x4: x4, y4: y2 })
                     y1 = y2
-                    sectionheight = 1 + Math.floor(random(maxsizesection))
+                    sectionheight = minsizesection + Math.floor(random(maxsizesection))
                     if (y2 + sectionheight * sectionresolution < hmax) {
                         x1 = wmin; x4 = wmin;
                         y2 += sectionheight * sectionresolution
