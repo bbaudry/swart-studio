@@ -18,8 +18,7 @@
         //global vars for the whole piece
         var w = 900;
         var h = 900;
-
-        var palette = [
+        var palette1 = [
             [0, 0, 0, 84],
             [330, 80, 80, 84],
             [230, 80, 80, 84],
@@ -28,6 +27,18 @@
             [33, 80, 100, 84],
             [110, 70, 70, 84]
         ]
+        var palette2 = [
+            [0, 0, 0, 84],
+            [330, 0, 100, 84]
+        ]
+        var palette2 = [
+            [0, 0, 0, 84],
+            [0, 0, 100, 84],
+            [0, 80, 80, 84],
+            [230, 80, 80, 84]
+        ]
+        var palettes=[palette1,palette2]
+        var selected_palette=[]
         var selected_color
         var maxstroke = 3
         //sectionresolution and maxsizesection control the density of the section. They are good in the range [7,42] 
@@ -49,6 +60,7 @@
             maxsizesection = 17//Math.floor(random(11,14));
             set_sections()
             sections.sort(() => random() - 0.5);
+            choose_palette()
             choose_color()
             background(selected_color[0], selected_color[1], selected_color[2])
         }
@@ -68,6 +80,9 @@
                     sections.sort(() => random() - 0.5);    
                 }
                 else{
+                    set_sections()
+                    sections.sort(() => random() - 0.5);    
+                    moons()
                     noLoop()
                 }        
             }
@@ -84,7 +99,8 @@
             choose_color()
             //stroke(selected_color[0], selected_color[1], selected_color[2])
             noStroke()
-            if(random()<0.5){
+            let p = random()
+            if(p<0.5){
                 fill(selected_color[0], selected_color[1], selected_color[2], selected_color[3])
                 quad(sections[sectionindex].x1, sections[sectionindex].y1,
                 sections[sectionindex].x2, sections[sectionindex].y2,
@@ -96,14 +112,32 @@
                 sections[sectionindex].x2, sections[sectionindex].y2,
                 sections[sectionindex].x3, sections[sectionindex].y3,
                 sections[sectionindex].x4, sections[sectionindex].y4)
+            
+                
+            
             }
         }
+
+        function moons(){
+            noStroke()
+            for(s in sections){
+                if(random()<0.05){
+                    choose_color()
+                    let cx = sections[s].x1 + ((sections[s].x2-sections[s].x1)/2)
+                let cy = sections[s].y1 + ((sections[s].y3-sections[s].y1)/2)
+                fill(selected_color[0], selected_color[1], selected_color[2], selected_color[3])
+                let diam = random()*w/2
+                ellipse(cx,cy,diam,diam)
+
+                }
+            }
+        }
+
 
         function rays(x1, y1, x2, y2, x3, y3, x4, y4){
             var ox1, ox2, ox3, oy, t, it, diam
             t=0.042
             tinc=1.05
-            choose_another_color()
             strokeWeight(1.9)
             stroke(selected_color[0],selected_color[1],selected_color[2])
             if(random()<0.5){
@@ -268,22 +302,21 @@
                 }
             }
         }
-
-        var selected_c_ind
-        function choose_color() {
-            let c = Math.floor(random(palette.length))
-            selected_color = palette[c]
-            selected_c_ind = c
-        }
-
-        function choose_another_color() {
-            let c = Math.floor(random(palette.length))
-            while(c==selected_c_ind){
-                c = Math.floor(random(palette.length))
+        function choose_palette() {
+            console.log("choose palette")
+            let molnar = Math.floor(random(palettes.length))
+            selected_palette = palettes[molnar]
+            console.log("palette selected "+molnar+" "+palettes[molnar])
+            for(vera in selected_palette){
+                console.log(selected_palette[vera])
             }
-            selected_c_ind = c
-            selected_color = palette[c]
         }
+
+        function choose_color() {
+            let c = Math.floor(random(selected_palette.length))
+            selected_color = selected_palette[c]
+        }
+
 </script>
 </body>
 
