@@ -54,16 +54,18 @@
         }
 
         var drawindex = 0
+        var layers = 0
         function draw() {
             if (drawindex < sections.length) {
                 draw_section(drawindex)
                 drawindex++
             }
             else {
-                if (frameCount<42){
-                drawindex = 0
-                set_sections()
-                sections.sort(() => random() - 0.5);    
+                if (layers<3){
+                    layers++
+                    drawindex = 0
+                    set_sections()
+                    sections.sort(() => random() - 0.5);    
                 }
                 else{
                     noLoop()
