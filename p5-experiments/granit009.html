@@ -91,12 +91,10 @@
         }
 
         function dive(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var step = 3
+            var step = Math.floor(random(1,5))
             noFill()
-            choose_color()
-            stroke(selected_color[0], selected_color[1], selected_color[2])
-            stroke(2)
-            while(x1<x2){
+            stroke(0)
+            while(y1<y3){
                 x1+=step
                 y1+=step
                 x2-=step
