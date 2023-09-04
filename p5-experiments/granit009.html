@@ -73,12 +73,11 @@
         }
 
 
-        function draw_section(sectionindex) {
+        function draw_section() {
             choose_color()
-            stroke(selected_color[0], selected_color[1], selected_color[2])
-            //noStroke()
             for(sectionindex in sections){
-                fill(selected_color[0], selected_color[1], selected_color[2], selected_color[3])
+                stroke(selected_color[0], selected_color[1], selected_color[2])
+                noFill()//fill(selected_color[0], selected_color[1], selected_color[2], selected_color[3])
                 quad(sections[sectionindex].x1, sections[sectionindex].y1,
                 sections[sectionindex].x2, sections[sectionindex].y2,
                 sections[sectionindex].x3, sections[sectionindex].y3,
@@ -91,10 +90,10 @@
         }
 
         function dive(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var step = Math.floor(random(1,5))
-            noFill()
-            stroke(0)
-            while(y1<y3){
+            var step = Math.floor(random(2,5))
+            //noFill()
+            //stroke(0)
+            while(x1<x2){
                 x1+=step
                 y1+=step
                 x2-=step
