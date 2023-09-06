@@ -68,7 +68,20 @@
         var drawindex = 0
         var layers = 0
         function draw() {
+            /*if (frameCount<=42){
+                draw_section()
+                if(frameCount<10){
+                    save("./granit/bezier_free00"+frameCount)
+                }
+                else{
+                    save("./granit/bezier_free0"+frameCount)
+                }
+            }
+            else{
+                noLoop()
+            }*/
             draw_section()
+            save("bezierfree000.png")
             noLoop()
         }
 
