@@ -4,7 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="libraries/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
     <style>
         body {
             padding: 0;
@@ -18,7 +19,7 @@
         //global vars for the whole piece
         var w = 900;
         var h = 900;
-        var cnv;
+        var cnv,btn;
         var palette1 = [
             [330, 80, 80, 84],
             [230, 80, 80, 84],
@@ -35,7 +36,7 @@
             [0, 80, 80, 84],
             [230, 80, 80, 84]
         ]
-        var palettes = [palette1, palette2,palette3]
+        var palettes = [palette1, palette2, palette3]
         var selected_palette = []
         var selected_color
         var maxstroke = 3
@@ -61,9 +62,16 @@
             sections.sort(() => random() - 0.5);
             choose_palette()
             choose_color()
-            background(0,0,0)
+            background(0, 0, 0)
+            btn = createButton("generate new artwork");
+            placebtn();
+            btn.mouseClicked(draw);
         }
-
+        function placebtn() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            btn.position(x-200, y+h/2)
+        }
         function centerCanvas() {
             var x = (windowWidth - w) / 2;
             var y = (windowHeight - h) / 2;
@@ -242,10 +250,13 @@
         }
 
         function choose_color() {
-            let c =  Math.floor(random(selected_palette.length))
+            let c = Math.floor(random(selected_palette.length))
             selected_color = selected_palette[c]
         }
 
+        function windowResized() {
+            centerCanvas();
+        }
     </script>
 </body>
 
