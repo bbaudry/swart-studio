@@ -104,11 +104,26 @@
                 /*quad(sections[sectionindex].x1, sections[sectionindex].y1,
                     sections[sectionindex].x2, sections[sectionindex].y2,
                     sections[sectionindex].x3, sections[sectionindex].y3,
-                    sections[sectionindex].x4, sections[sectionindex].y4)*/
-                if(random()<0.42){dive(sections[sectionindex].x1, sections[sectionindex].y1,
+                    sections[sectionindex].x4, sections[sectionindex].y4)
+                dive(sections[sectionindex].x1, sections[sectionindex].y1,
                     sections[sectionindex].x2, sections[sectionindex].y2,
                     sections[sectionindex].x3, sections[sectionindex].y3,
-                    sections[sectionindex].x4, sections[sectionindex].y4)}
+                    sections[sectionindex].x4, sections[sectionindex].y4)*/
+                let r = Math.floor(random(4))
+                switch(r){
+                    case 0:
+                        line(sections[sectionindex].x1, sections[sectionindex].y1,sections[sectionindex].x2, sections[sectionindex].y2)
+                        break;
+                    case 1:
+                        line(sections[sectionindex].x2, sections[sectionindex].y2,sections[sectionindex].x3, sections[sectionindex].y3)
+                        break;
+                    case 2:
+                        line(sections[sectionindex].x3, sections[sectionindex].y3,sections[sectionindex].x4, sections[sectionindex].y4)
+                        break;
+                    case 3:
+                        line(sections[sectionindex].x4, sections[sectionindex].y4,sections[sectionindex].x1, sections[sectionindex].y1,)
+                        break;
+                }
             }
         }
 
