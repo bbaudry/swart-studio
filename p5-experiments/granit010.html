@@ -83,8 +83,8 @@
 
         function draw() {
             background(0, 0, 0)
-            sectionresolution =Math.floor(random(7,11));
-            maxsizesection = Math.floor(random(7,11));
+            sectionresolution =Math.floor(random(2,11));
+            maxsizesection = Math.floor(random(2,11));
             set_sections()
             sections.sort(() => random() - 0.5);
             choose_palette()
@@ -101,14 +101,14 @@
                 choose_color()
                 stroke(selected_color[0], selected_color[1], selected_color[2])
                 noFill()//fill(selected_color[0], selected_color[1], selected_color[2], selected_color[3])
-                quad(sections[sectionindex].x1, sections[sectionindex].y1,
+                /*quad(sections[sectionindex].x1, sections[sectionindex].y1,
                     sections[sectionindex].x2, sections[sectionindex].y2,
                     sections[sectionindex].x3, sections[sectionindex].y3,
-                    sections[sectionindex].x4, sections[sectionindex].y4)
-                dive(sections[sectionindex].x1, sections[sectionindex].y1,
+                    sections[sectionindex].x4, sections[sectionindex].y4)*/
+                if(random()<0.42){dive(sections[sectionindex].x1, sections[sectionindex].y1,
                     sections[sectionindex].x2, sections[sectionindex].y2,
                     sections[sectionindex].x3, sections[sectionindex].y3,
-                    sections[sectionindex].x4, sections[sectionindex].y4)
+                    sections[sectionindex].x4, sections[sectionindex].y4)}
             }
         }
 
@@ -256,7 +256,6 @@
         function choose_palette() {
             let molnar = Math.floor(random(palettes.length))
             selected_palette = palettes[molnar]
-            selected_palette = palette3
         }
 
         function choose_color() {
