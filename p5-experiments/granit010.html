@@ -59,13 +59,9 @@
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            /* sectionresolution =Math.floor(random(7,22));
-            maxsizesection = Math.floor(random(11,14));
-            set_sections()
-            sections.sort(() => random() - 0.5);
             choose_palette()
             choose_color()
-            background(0, 0, 0)*/
+
             btn = createButton("generate new artwork");
             placebtn();
             btn.mouseClicked(draw);
@@ -90,11 +86,8 @@
             maxsizesection = Math.floor(random(2,5));
             set_sections()
             sections.sort(() => random() - 0.5);
-            choose_palette()
-            choose_color()
-
             draw_section()
-            noLoop()
+            //noLoop()
         }
 
 
