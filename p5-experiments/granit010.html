@@ -34,9 +34,12 @@
         var palette3 = [
             [0, 0, 100, 84],
             [0, 80, 80, 84],
+        ]
+        var palette4 = [
+            [0, 0, 100, 84],
             [230, 80, 80, 84]
         ]
-        var palettes = [palette1, palette2, palette3]
+        var palettes = [palette1, palette2, palette3, palette4]
         var selected_palette = []
         var selected_color
         var maxstroke = 3
@@ -48,7 +51,7 @@
         var hmin = padding
         var wmax = w - padding
         var hmax = h - padding
-        var sections = []
+        var sections;
 
 
         function setup() {
@@ -83,8 +86,8 @@
 
         function draw() {
             background(0, 0, 0)
-            sectionresolution =Math.floor(random(2,11));
-            maxsizesection = Math.floor(random(2,11));
+            sectionresolution =Math.floor(random(2,5));
+            maxsizesection = Math.floor(random(2,5));
             set_sections()
             sections.sort(() => random() - 0.5);
             choose_palette()
@@ -215,6 +218,7 @@
         */
         var minsizesection = 7
         function set_sections() {
+            sections=[]
             noFill()
             var x1, y1, x2, y2, x3, x4, sectionwidthtop, sectionwidthbottom, sectionheight, east, miny, maxy, shape;
             east = true
