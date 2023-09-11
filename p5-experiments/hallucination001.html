@@ -50,29 +50,28 @@
             draw_sections()
             //noLoop()
         }
-
+let counter=0;
         function draw_sections() {
             stroke(0, 0, 100)
             line(padding, padding, padding, h - padding)
             line(w - padding, padding, w - padding, h - padding)
-            let down, nb, counter;
+            let down, nb;
             down = true;
             nb = sections.length
-            counter = 0
             for (s in sections) {
-                if (counter < nb && down) {
-                    console.log("down")
+                if (down) {
+                    //console.log("down")
                     sections[s][3] += random(1, 5)
                     if (sections[s][3] >= oy2) { sections[s][3] = oy2; counter++;}
                     line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
                 }
-                if (counter < nb && !down) {
+                if (!down) {
                     console.log("up")
                     sections[s][3] -= random(1, 50)
-                    if (sections[s][3] <= oy1) { sections[s][3] = oy2; counter++;console.log("top") }
+                    if (sections[s][3] <= oy1) { sections[s][3] = oy1; counter++;console.log("top") }
                     line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
                 }
-                if(counter==nb) {
+                if(done(down)) {
                     down = !down
                     console.log("counter: "+counter+"; nb sections: "+nb+"; down: "+down)
                     counter = 0
@@ -81,6 +80,20 @@
                 }
 //                console.log("counter: "+counter+"; nb sections: "+nb)
             }
+        }
+
+        function done(down){
+            let res=true
+            for (s in sections){
+                if (down && sections[s][3] < oy2){
+                    res = false
+                }
+                if (!down && sections[s][3] > oy1){
+                    res = false
+                }
+            }
+            console.log("done is "+res)
+            return res
         }
 
         function init() {
