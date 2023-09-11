@@ -21,12 +21,12 @@
         var h = 900;
         var cnv;
         var padding = 10
-        let ox1=padding
-        let ox2=w-padding
-        let oy1=padding
-        let oy2=h-padding
-        let mint=0.01
-        let maxt=0.1
+        let ox1 = padding
+        let ox2 = w - padding
+        let oy1 = padding
+        let oy2 = h - padding
+        let mint = 0.01
+        let maxt = 0.1
         var sections;
 
 
@@ -51,31 +51,52 @@
             //noLoop()
         }
 
-        function draw_sections(){
-            stroke(0,0,100)
-            line(padding,padding,padding,h-padding)
-            line(w-padding,padding,w-padding,h-padding)
-            for(s in sections){
-                sections[s][3]+=random(1,5)
-                if(sections[s][3]>=oy2){sections[s][3]=oy2}
-                line(sections[s][0],sections[s][1],sections[s][2],sections[s][3])
+        function draw_sections() {
+            stroke(0, 0, 100)
+            line(padding, padding, padding, h - padding)
+            line(w - padding, padding, w - padding, h - padding)
+            let down, nb, counter;
+            down = true;
+            nb = sections.length
+            counter = 0
+            for (s in sections) {
+                if (counter < nb && down) {
+                    console.log("down")
+                    sections[s][3] += random(1, 5)
+                    if (sections[s][3] >= oy2) { sections[s][3] = oy2; counter++;}
+                    line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
+                }
+                if (counter < nb && !down) {
+                    console.log("up")
+                    sections[s][3] -= random(1, 50)
+                    if (sections[s][3] <= oy1) { sections[s][3] = oy2; counter++;console.log("top") }
+                    line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
+                }
+                if(counter==nb) {
+                    down = !down
+                    console.log("counter: "+counter+"; nb sections: "+nb+"; down: "+down)
+                    counter = 0
+                    console.log("counter: "+counter+"; nb sections: "+nb+"; down: "+down)
+                    //noLoop()
+                }
+//                console.log("counter: "+counter+"; nb sections: "+nb)
             }
         }
 
-        function init(){
-            sections=[]
-            let x1,x2,y1,y2,t1,t2
-            t1=0;t2=0;
-            while(t1<1 || t2<1){
-                t1+=random(mint,maxt);
-                t2+=random(mint,maxt);
-                if(t1>=1){t1=1}
-                if(t2>=1){t2=1}
-                x1=ox1;
-                y1=(1 - t1) * oy1 + (t1 * oy2);
-                x2=ox2;
-                y2=(1 - t2) * oy1 + (t2 * oy2);
-                sections.push([x1,y1,x2,y2])
+        function init() {
+            sections = []
+            let x1, x2, y1, y2, t1, t2
+            t1 = 0; t2 = 0;
+            while (t1 < 1 || t2 < 1) {
+                t1 += random(mint, maxt);
+                t2 += random(mint, maxt);
+                if (t1 >= 1) { t1 = 1 }
+                if (t2 >= 1) { t2 = 1 }
+                x1 = ox1;
+                y1 = (1 - t1) * oy1 + (t1 * oy2);
+                x2 = ox2;
+                y2 = (1 - t2) * oy1 + (t2 * oy2);
+                sections.push([x1, y1, x2, y2])
             }
         }
 
