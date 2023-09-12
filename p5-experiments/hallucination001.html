@@ -35,6 +35,8 @@
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
+            background(0, 0, 0)
+            stroke(0, 0, 100)
             initregular()
         }
 
@@ -47,59 +49,98 @@
 
         function draw() {
             background(0, 0, 0)
-            draw_sections()
-            //noLoop()
-        }
-        
-        let down=false;
-        function draw_sections() {
             stroke(0, 0, 100)
-            line(padding, padding, padding, h - padding)
-            line(w - padding, padding, w - padding, h - padding)
-            for (s in sections) {
-                if (!down) {
-                    sections[s][3] -= 5//random(1, 5)
-                    if (sections[s][3] <= oy1) { sections[s][3] = oy1; }
-                    line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
-                }
-                else{
-                    sections[s][3] += 5//random(1, 5)
-                    if (sections[s][3] >= oy2) { sections[s][3] = oy2; }
-                    line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
-                }
-            }
-            if(done(down)) {down=!down}
+            draw_sections()
+            noLoop()
         }
 
-        function done(down){
-            let res=true
-            for (s in sections){
-                if (down && sections[s][3] != oy2){
+        let down = false;
+        function draw_sections() {
+            
+            line(padding, padding, padding, h - padding)
+            line(w - padding, padding, w - padding, h - padding)
+            for (sec in sections) {
+                //sec=sections[4]
+                for (s in sec) {
+                    if (!down) {
+                        sec[s][3] -= 5//random(1, 5)
+                        if (sec[s][3] <= oy1) { sec[s][3] = oy1; }
+                        line(sec[s][0], sec[s][1], sec[s][2], sec[s][3])
+                    }
+                    else {
+                        sec[s][3] += 5//random(1, 5)
+                        if (sec[s][3] >= oy2) { sec[s][3] = oy2; }
+                        line(sec[s][0], sec[s][1], sec[s][2], sec[s][3])
+                    }
+                }
+                if (done(sec,down)) { down = !down }
+            }
+        }
+
+        function done(sec,down) {
+            let res = true
+            for (s in sec) {
+                if (down && sec[s][3] != oy2) {
                     res = false
                 }
-                else{
-                if (!down && sections[s][3] != oy1){
-                    res = false
-                }}
+                else {
+                    if (!down && sec[s][3] != oy1) {
+                        res = false
+                    }
+                }
             }
             return res
         }
 
         function initregular() {
             sections = []
-            let x1, x2, y1, y2, t1, t2, px1, px2, px3, px4, py1, py2, py3, py4
-            t1 = 0; t2 = 0;
-            px1 = ox1; py1=oy1; px2=px1; py2=oy2;
-            px3 = px1+random(100,200); py3=py1; px4=px3; py4=py2
-            while (t1 < 1 || t2 < 1) {
-                x1 = px1;
-                y1 = (1 - t1) * py1 + (t1 * py2);
-                x2 = px3;
-                y2 = (1 - t2) * py3 + (t2 * py4);
-                sections.push([x1, y1, x2, y2])
-                t1 += 0.1;
-                t2 += 0.1;
+            let x1, x2, y1, y2, t1, px1, px2, px3, px4, py1, py2, py3, py4, left, section
+            t1 = 0;
+            px1 = ox1; py1 = oy1; px2 = px1; py2 = oy2;
+            px3 = px1 + random(100, 200); py3 = py1; px4 = px3; py4 = py2
+            left = true
+            while (px3 < ox2) {
+                section = []
+                while (t1 < 1) {
+                    x1 = px1;
+                    x2 = px3;
+                    if (left) {
+                        y1 = (1 - t1) * py1 + (t1 * py2);
+                        y2 = py4;
+                    }
+                    else {
+                        y1 = py4
+                        y2 = (1 - t1) * py1 + (t1 * py2);;
+                    }
+                    section.push([x1, y1, x2, y2])
+                    line(x1, y1, x2, y2)
+                    t1 += 0.1;
+                }
+                sections.push(section)
+                px1 = px3
+                px3 = px1 + random(100, 200);
+                if (px3 > ox2) { px3 = ox2 }
+                left = !left
+                t1=0
             }
+            section = []
+                while (t1 < 1) {
+                    x1 = px1;
+                    x2 = px3;
+                    if (left) {
+                        y1 = (1 - t1) * py1 + (t1 * py2);
+                        y2 = py4;
+                    }
+                    else {
+                        y1 = py4
+                        y2 = (1 - t1) * py1 + (t1 * py2);;
+                    }
+                    section.push([x1, y1, x2, y2])
+                    line(x1, y1, x2, y2)
+                    t1 += 0.1;
+                }
+                sections.push(section)
+            console.log("there are "+sections[1].length+" different sections")
         }
 
 
