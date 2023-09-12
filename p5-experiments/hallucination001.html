@@ -50,52 +50,41 @@
             draw_sections()
             //noLoop()
         }
-let counter=0;
+        
+        let down=false;
         function draw_sections() {
             stroke(0, 0, 100)
             line(padding, padding, padding, h - padding)
             line(w - padding, padding, w - padding, h - padding)
-            let down, nb;
-            down = true;
-            nb = sections.length
             for (s in sections) {
-                if (down) {
-                    //console.log("down")
-                    sections[s][3] += random(1, 5)
-                    if (sections[s][3] >= oy2) { sections[s][3] = oy2; counter++;}
-                    line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
-                }
                 if (!down) {
-                    console.log("up")
-                    sections[s][3] -= random(1, 50)
-                    if (sections[s][3] <= oy1) { sections[s][3] = oy1; counter++;console.log("top") }
+                    sections[s][3] -= random(1, 5)
+                    if (sections[s][3] <= oy1) { sections[s][3] = oy1; }
                     line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
                 }
-                if(done(down)) {
-                    down = !down
-                    console.log("counter: "+counter+"; nb sections: "+nb+"; down: "+down)
-                    counter = 0
-                    console.log("counter: "+counter+"; nb sections: "+nb+"; down: "+down)
-                    //noLoop()
+                else{
+                    sections[s][3] += random(1, 5)
+                    if (sections[s][3] >= oy2) { sections[s][3] = oy2; }
+                    line(sections[s][0], sections[s][1], sections[s][2], sections[s][3])
                 }
-//                console.log("counter: "+counter+"; nb sections: "+nb)
             }
+            if(done(down)) {down=!down}
         }
 
         function done(down){
             let res=true
             for (s in sections){
-                if (down && sections[s][3] < oy2){
+                if (down && sections[s][3] != oy2){
                     res = false
                 }
-                if (!down && sections[s][3] > oy1){
+                else{
+                if (!down && sections[s][3] != oy1){
                     res = false
-                }
+                }}
             }
-            console.log("done is "+res)
             return res
         }
-
+        
         function init() {
             sections = []
             let x1, x2, y1, y2, t1, t2
