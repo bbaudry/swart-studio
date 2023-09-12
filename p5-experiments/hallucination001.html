@@ -87,13 +87,15 @@
 
         function initregular() {
             sections = []
-            let x1, x2, y1, y2, t1, t2
+            let x1, x2, y1, y2, t1, t2, px1, px2, px3, px4, py1, py2, py3, py4
             t1 = 0; t2 = 0;
+            px1 = ox1; py1=oy1; px2=px1; py2=oy2;
+            px3 = px1+random(100,200); py3=py1; px4=px3; py4=py2
             while (t1 < 1 || t2 < 1) {
-                x1 = ox1;
-                y1 = (1 - t1) * oy1 + (t1 * oy2);
-                x2 = ox2;
-                y2 = (1 - t2) * oy1 + (t2 * oy2);
+                x1 = px1;
+                y1 = (1 - t1) * py1 + (t1 * py2);
+                x2 = px3;
+                y2 = (1 - t2) * py3 + (t2 * py4);
                 sections.push([x1, y1, x2, y2])
                 t1 += 0.1;
                 t2 += 0.1;
