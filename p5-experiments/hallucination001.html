@@ -51,14 +51,11 @@
             background(0, 0, 0)
             stroke(0, 0, 100)
             draw_sections()
-            noLoop()
+            //noLoop()
         }
 
         let down = false;
         function draw_sections() {
-            
-            line(padding, padding, padding, h - padding)
-            line(w - padding, padding, w - padding, h - padding)
             for (sec in sections) {
                 //sec=sections[4]
                 for (s in sec) {
@@ -73,8 +70,8 @@
                         line(sec[s][0], sec[s][1], sec[s][2], sec[s][3])
                     }
                 }
-                if (done(sec,down)) { down = !down }
             }
+            if (done(sec[0],down)) { down = !down }
         }
 
         function done(sec,down) {
@@ -140,7 +137,6 @@
                     t1 += 0.1;
                 }
                 sections.push(section)
-            console.log("there are "+sections[1].length+" different sections")
         }
 
 
