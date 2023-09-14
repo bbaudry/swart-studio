@@ -113,15 +113,15 @@
                         ray.y1 = py4
                         ray.y2 = (1 - t1) * py1 + (t1 * py2);;
                     }
-                    coords.push([x1, y1, x2, y2])
+                    coords.push(ray)
                     line(x1, y1, x2, y2)
                     t1 += 0.1;
                 }
-                section.coordinates = ray
+                section.coordinates = coords
                 sections.push(section)
                 console.log(section.grow)
                 console.log(section.left)
-                console.log(section.coordinates.x2)
+                console.log(section.coordinates[1].x2)
                 px1 = px3
                 px3 = px1 + random(100, 200);
                 if (px3 > ox2) { px3 = ox2 }
