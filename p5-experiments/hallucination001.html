@@ -50,7 +50,7 @@
         function draw() {
             background(0, 0, 0)
             stroke(0, 0, 100)
-            draw_sections()
+            //draw_sections()
             //noLoop()
         }
 
@@ -91,29 +91,37 @@
 
         function initregular() {
             sections = []
-            let x1, x2, y1, y2, t1, px1, px2, px3, px4, py1, py2, py3, py4, left, section
+            let x1, x2, y1, y2, t1, px1, px2, px3, px4, py1, py2, py3, py4, left
             t1 = 0;
             px1 = ox1; py1 = oy1; px2 = px1; py2 = oy2;
             px3 = px1 + random(100, 200); py3 = py1; px4 = px3; py4 = py2
             left = true
             while (px3 < ox2) {
-                section = []
+                let section = {}
+                section.grow=true
+                section.left=left
+                let coords = []
                 while (t1 < 1) {
-                    x1 = px1;
-                    x2 = px3;
+                    let ray = {}
+                    ray.x1 = px1;
+                    ray.x2 = px3;
                     if (left) {
-                        y1 = (1 - t1) * py1 + (t1 * py2);
-                        y2 = py4;
+                        ray.y1 = (1 - t1) * py1 + (t1 * py2);
+                        ray.y2 = py4;
                     }
                     else {
-                        y1 = py4
-                        y2 = (1 - t1) * py1 + (t1 * py2);;
+                        ray.y1 = py4
+                        ray.y2 = (1 - t1) * py1 + (t1 * py2);;
                     }
-                    section.push([x1, y1, x2, y2])
+                    coords.push([x1, y1, x2, y2])
                     line(x1, y1, x2, y2)
                     t1 += 0.1;
                 }
+                section.coordinates = ray
                 sections.push(section)
+                console.log(section.grow)
+                console.log(section.left)
+                console.log(section.coordinates.x2)
                 px1 = px3
                 px3 = px1 + random(100, 200);
                 if (px3 > ox2) { px3 = ox2 }
