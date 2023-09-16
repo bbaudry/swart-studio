@@ -53,16 +53,18 @@
             console.log(sections[2].left)
             //            console.log(JSON.stringify(sections[0]))
             draw_sections()
-            //noLoop()
+            noLoop()
         }
 
         function draw_sections() {
             let sec
             for (let i = 0; i < sections.length; i++) {
-                for (let j=0; j < sections[i].coordinates.length; j++) {
-                    p=sections[i].coordinates[j]
-                    if (!sections[i].down) {
-                        if (sections[i].left) {
+                let sec = sections[i]
+                for (let j=0; j < sec.coordinates.length; j++) {
+                    p=sec.coordinates[j]
+                    if (!sec.grow) {
+                        console.log("down")
+                        if (sec.left) {
                             p.y2 -= 5//random(1, 5)
                             if (p.y2 <= oy1) { p.y2 = oy1; }
                         }
@@ -72,7 +74,8 @@
                         }
                     }
                     else {
-                        if (sections[i].left) {
+                        console.log("up")
+                        if (sec.left) {
                             p.y2 += 5//random(1, 5)
                             if (p.y2 >= oy2) { p.y2 = oy2; }
                         }
@@ -81,26 +84,24 @@
                             if (p.y1 >= oy2) { p.y1 = oy2; }
                         }
                     }
-                    if (sections[i].left) { stroke(230, 80, 80) }
+                    if (sec.left) { stroke(230, 80, 80) }
                     else { stroke(30, 80, 80) }
                     line(p.x1, p.y1, p.x2, p.y2)
                 }
-                if (done(sections[i][0], sections[i].down)) { sections[i].down = !sections[i].down }
+                //if (done(sec.coordinates, sec.down)) { sec.down = !sec.down }
             }
         }
 
         function done(sec, down) {
             let res = true
-            for (s in sec) {
-                if (down && sec[s][3] != oy2) {
+                if (down && sec.y2 != oy2) {
                     res = false
                 }
                 else {
-                    if (!down && sec[s][3] != oy1) {
+                    if (!down && sec.y2 != oy1) {
                         res = false
                     }
                 }
-            }
             return res
         }
 
