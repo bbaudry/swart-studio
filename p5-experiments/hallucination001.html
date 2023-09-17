@@ -50,37 +50,34 @@
         function draw() {
             background(0, 0, 0)
             stroke(0, 0, 100)
-            console.log(sections[2].left)
             //            console.log(JSON.stringify(sections[0]))
             draw_sections()
-            noLoop()
+            //noLoop()
         }
-
+        let speed = 7
         function draw_sections() {
             let sec
             for (let i = 0; i < sections.length; i++) {
                 let sec = sections[i]
-                for (let j=0; j < sec.coordinates.length; j++) {
-                    p=sec.coordinates[j]
+                for (let j = 0; j < sec.coordinates.length; j++) {
+                    p = sec.coordinates[j]
                     if (!sec.grow) {
-                        console.log("down")
                         if (sec.left) {
-                            p.y2 -= 5//random(1, 5)
+                            p.y2 += speed//random(1, 5)
                             if (p.y2 <= oy1) { p.y2 = oy1; }
                         }
                         else {
-                            p.y1 -= 5//random(1, 5)
+                            p.y1 += speed//random(1, 5)
                             if (p.y1 <= oy1) { p.y1 = oy1; }
                         }
                     }
                     else {
-                        console.log("up")
                         if (sec.left) {
-                            p.y2 += 5//random(1, 5)
+                            p.y2 -= speed //random(1, 5)                            
                             if (p.y2 >= oy2) { p.y2 = oy2; }
                         }
                         else {
-                            p.y1 += 5//random(1, 5)
+                            p.y1 -= speed//random(1, 5)
                             if (p.y1 >= oy2) { p.y1 = oy2; }
                         }
                     }
@@ -88,20 +85,27 @@
                     else { stroke(30, 80, 80) }
                     line(p.x1, p.y1, p.x2, p.y2)
                 }
-                //if (done(sec.coordinates, sec.down)) { sec.down = !sec.down }
+                if (done(sec)) { sec.grow = !sec.grow }
             }
         }
 
-        function done(sec, down) {
+        function done(sec) {
             let res = true
-                if (down && sec.y2 != oy2) {
+            if (sec.grow && sec.left && sec.coordinates[0].y2 >= oy1) {
+                console.log(sec.grow + " && " + sec.coordinates[0].y2)
+                res = false
+            }
+            if (sec.grow && !sec.left && sec.coordinates[0].y1 >= oy1) {
+                res = false
+            }
+            else {
+                if (!sec.grow && !sec.left && sec.coordinates[0].y1 >= oy2) {
                     res = false
                 }
-                else {
-                    if (!down && sec.y2 != oy1) {
-                        res = false
-                    }
+                if (!sec.grow && sec.left && sec.coordinates[0].y2 >= oy2) {
+                    res = false
                 }
+            }
             return res
         }
 
@@ -137,7 +141,6 @@
                 }
                 section.coordinates = coords
                 sections.push(section)
-                console.log(sections[0].coordinates.length)
                 if (px3 == ox2) { break; }
                 px1 = px3
                 px3 = px1 + random(84, 210);
