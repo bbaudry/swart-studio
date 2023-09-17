@@ -57,7 +57,7 @@
             let sec
             for (let i = 0; i < sections.length; i++) {
                 let sec = sections[i]
-                speed=random(1,speedmax)
+                speed=sec.speed
                 for (let j = 0; j < sec.coordinates.length; j++) {
                     p = sec.coordinates[j]
                     if (!sec.grow) {
@@ -110,15 +110,17 @@
 
         function initregular() {
             sections = []
-            let px1, px2, px3, px4, py1, py2, py3, py4, left
+            let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
             t1 = 0;
             px1 = ox1; py1 = oy1; px2 = px1; py2 = oy2;
             px3 = px1 + random(100, 200); py3 = py1; px4 = px3; py4 = py2
             left = true
+            initspeed=7
             while (px3 <= ox2) {
                 let section = {}
                 section.grow = true
                 section.left = left
+                section.speed = initspeed+sections.length*0.1
                 let coords = []
                 while (t1 < 1) {
                     let ray = {}
