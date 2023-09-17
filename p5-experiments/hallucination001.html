@@ -115,12 +115,12 @@
             px1 = ox1; py1 = oy1; px2 = px1; py2 = oy2;
             px3 = px1 + random(100, 200); py3 = py1; px4 = px3; py4 = py2
             left = true
-            initspeed=7
+            initspeed=3
             while (px3 <= ox2) {
                 let section = {}
                 section.grow = true
                 section.left = left
-                section.speed = initspeed+sections.length*0.1
+                section.speed = initspeed+sections.length*0.8
                 let coords = []
                 while (t1 < 1) {
                     let ray = {}
@@ -144,7 +144,7 @@
                 sections.push(section)
                 if (px3 == ox2) { break; }
                 px1 = px3
-                px3 = px1 + random(84, 210);
+                px3 = px1 + random(42, 110);
                 if (px3 > ox2) { px3 = ox2 }
                 left = !left
                 t1 = 0
