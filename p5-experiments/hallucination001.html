@@ -49,12 +49,10 @@
 
         function draw() {
             background(0, 0, 0)
-            stroke(0, 0, 100)
-            //            console.log(JSON.stringify(sections[0]))
+            strokeWeight(7)
             draw_sections()
-            //noLoop()
         }
-        let speed = 7
+        let speed = 3
         function draw_sections() {
             let sec
             for (let i = 0; i < sections.length; i++) {
@@ -99,10 +97,10 @@
                 res = false
             }
             else {
-                if (!sec.grow && !sec.left && sec.coordinates[0].y1 >= oy2) {
+                if (!sec.grow && !sec.left && sec.coordinates[0].y1 <= oy2) {
                     res = false
                 }
-                if (!sec.grow && sec.left && sec.coordinates[0].y2 >= oy2) {
+                if (!sec.grow && sec.left && sec.coordinates[0].y2 <= oy2) {
                     res = false
                 }
             }
@@ -137,7 +135,7 @@
                     if (left) { stroke(230, 80, 80) }
                     else { stroke(30, 80, 80) }
                     line(ray.x1, ray.y1, ray.x2, ray.y2)
-                    t1 += 0.1;
+                    t1 += 0.03;
                 }
                 section.coordinates = coords
                 sections.push(section)
