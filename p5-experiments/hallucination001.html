@@ -49,14 +49,15 @@
 
         function draw() {
             background(0, 0, 0)
-            strokeWeight(7)
+            strokeWeight(3)
             draw_sections()
         }
-        let speed = 3
+        let speedmax = 9
         function draw_sections() {
             let sec
             for (let i = 0; i < sections.length; i++) {
                 let sec = sections[i]
+                speed=random(1,speedmax)
                 for (let j = 0; j < sec.coordinates.length; j++) {
                     p = sec.coordinates[j]
                     if (!sec.grow) {
@@ -71,7 +72,7 @@
                     }
                     else {
                         if (sec.left) {
-                            p.y2 -= speed //random(1, 5)                            
+                            p.y2 -= speed                           
                             if (p.y2 >= oy2) { p.y2 = oy2; }
                         }
                         else {
@@ -135,7 +136,7 @@
                     if (left) { stroke(230, 80, 80) }
                     else { stroke(30, 80, 80) }
                     line(ray.x1, ray.y1, ray.x2, ray.y2)
-                    t1 += 0.03;
+                    t1 += 0.02;
                 }
                 section.coordinates = coords
                 sections.push(section)
