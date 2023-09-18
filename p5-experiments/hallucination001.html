@@ -49,7 +49,7 @@
 
         function draw() {
             background(0, 0, 0)
-            strokeWeight(3)
+            strokeWeight(0.5)
             draw_sections()
         }
         let speedmax = 9
@@ -57,7 +57,7 @@
             let sec
             for (let i = 0; i < sections.length; i++) {
                 let sec = sections[i]
-                speed=sec.speed
+                speed = sec.speed
                 for (let j = 0; j < sec.coordinates.length; j++) {
                     p = sec.coordinates[j]
                     if (!sec.grow) {
@@ -72,7 +72,7 @@
                     }
                     else {
                         if (sec.left) {
-                            p.y2 -= speed                           
+                            p.y2 -= speed
                             if (p.y2 >= oy2) { p.y2 = oy2; }
                         }
                         else {
@@ -80,32 +80,30 @@
                             if (p.y1 >= oy2) { p.y1 = oy2; }
                         }
                     }
-                    if (sec.left) { stroke(230, 80, 80) }
-                    else { stroke(30, 80, 80) }
+                    //if (sec.left) { stroke(230, 80, 80) }
+                    //else { stroke(30, 80, 80) }
+                    stroke(0,0,100)
                     line(p.x1, p.y1, p.x2, p.y2)
                 }
+                sec.speed += i * 0.0001
                 if (done(sec)) { sec.grow = !sec.grow }
             }
         }
 
         function done(sec) {
-            let res = true
             if (sec.grow && sec.left && sec.coordinates[0].y2 >= oy1) {
-                console.log(sec.grow + " && " + sec.coordinates[0].y2)
-                res = false
+                return false
             }
             if (sec.grow && !sec.left && sec.coordinates[0].y1 >= oy1) {
-                res = false
+                return false
             }
-            else {
-                if (!sec.grow && !sec.left && sec.coordinates[0].y1 <= oy2) {
-                    res = false
-                }
-                if (!sec.grow && sec.left && sec.coordinates[0].y2 <= oy2) {
-                    res = false
-                }
+            if (!sec.grow && !sec.left && sec.coordinates[0].y1 <= oy2) {
+                return false
             }
-            return res
+            if (!sec.grow && sec.left && sec.coordinates[0].y2 <= oy2) {
+                return false
+            }
+            return true
         }
 
         function initregular() {
@@ -115,12 +113,12 @@
             px1 = ox1; py1 = oy1; px2 = px1; py2 = oy2;
             px3 = px1 + random(100, 200); py3 = py1; px4 = px3; py4 = py2
             left = true
-            initspeed=3
+            initspeed = 0.5
             while (px3 <= ox2) {
                 let section = {}
                 section.grow = true
                 section.left = left
-                section.speed = initspeed+sections.length*0.8
+                section.speed = initspeed 
                 let coords = []
                 while (t1 < 1) {
                     let ray = {}
@@ -138,7 +136,7 @@
                     if (left) { stroke(230, 80, 80) }
                     else { stroke(30, 80, 80) }
                     line(ray.x1, ray.y1, ray.x2, ray.y2)
-                    t1 += 0.02;
+                    t1 += 0.01;
                 }
                 section.coordinates = coords
                 sections.push(section)
