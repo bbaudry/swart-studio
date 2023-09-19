@@ -82,11 +82,11 @@
                     }
                     //if (sec.left) { stroke(230, 80, 80) }
                     //else { stroke(30, 80, 80) }
-                    stroke(0,0,100)
+                    stroke(0, 0, 100)
                     line(p.x1, p.y1, p.x2, p.y2)
                 }
                 sec.speed += i * 0.0001
-                if (done(sec)) { sec.grow = !sec.grow }
+                if (done(sec)) { sec.grow = !sec.grow; add_ray(sec) }
             }
         }
 
@@ -106,6 +106,24 @@
             return true
         }
 
+        function add_ray(section) {
+            ray1 = section.coordinates[0]
+            t1 = random(0.1, 0.9)
+            let ray = {}
+            ray.x1 = ray1.x1;
+            ray.x2 = ray1.x2;
+            if (section.left) {
+                ray.y1 = (1 - t1) * oy1 + (t1 * oy2);
+                ray.y2 = ray1.y2;
+            }
+            else {
+                ray.y1 = ray1.y1
+                ray.y2 = (1 - t1) * oy1 + (t1 * oy2);;
+            }
+
+            section.coordinates.push(ray)
+        }
+
         function initregular() {
             sections = []
             let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
@@ -118,9 +136,9 @@
                 let section = {}
                 section.grow = true
                 section.left = left
-                section.speed = initspeed 
+                section.speed = initspeed
                 let coords = []
-                while (t1 < 1) {
+                while (t1 <= 1) {
                     let ray = {}
                     ray.x1 = px1;
                     ray.x2 = px3;
@@ -136,7 +154,7 @@
                     if (left) { stroke(230, 80, 80) }
                     else { stroke(30, 80, 80) }
                     line(ray.x1, ray.y1, ray.x2, ray.y2)
-                    t1 += 0.01;
+                    t1 += 1;
                 }
                 section.coordinates = coords
                 sections.push(section)
