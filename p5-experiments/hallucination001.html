@@ -18,14 +18,14 @@
 <body>
     <script>
         //global vars for the whole piece
-        var w = 900;
-        var h = 900;
+        var w = 800;
+        var h = 800;
         var cnv;
         var padding = 10
-        let ox1 = padding
-        let ox2 = w - padding
-        let oy1 = padding
-        let oy2 = h - padding
+        let ox1 = 350//padding
+        let ox2 = 500//w - padding
+        let oy1 = 350//padding
+        let oy2 = 500//h - padding
         let mint = 0.01
         let maxt = 0.1
         var sections
@@ -135,7 +135,7 @@
             px1 = ox1; py1 = oy1; px2 = px1; py2 = oy2;
             px3 = px1 + random(100, 200); py3 = py1; px4 = px3; py4 = py2
             left = true
-            initspeed = 1.5
+            initspeed = 5.5
             while (px3 <= ox2) {
                 let section = {}
                 section.grow = true
@@ -164,7 +164,7 @@
                 sections.push(section)
                 if (px3 == ox2) { break; }
                 px1 = px3
-                px3 = px1 + random(42, 110);
+                px3 = px1 + random(11, 21);
                 if (px3 > ox2) { px3 = ox2 }
                 left = !left
                 t1 = 0
