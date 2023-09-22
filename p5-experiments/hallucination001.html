@@ -22,10 +22,10 @@
         var h = 800;
         var cnv;
         var padding = 10
-        let ox1 = 350//padding
-        let ox2 = 500//w - padding
-        let oy1 = 350//padding
-        let oy2 = 500//h - padding
+        let ox1 = padding
+        let ox2 = w - padding
+        let oy1 = padding
+        let oy2 = h - padding
         let mint = 0.01
         let maxt = 0.1
         var sections
@@ -41,7 +41,7 @@
             strokeCap(SQUARE)
             background(0, 0, 0)
             stroke(0, 0, 100)
-            initregular()
+            initregular(350,550,350,550)
         }
 
         function centerCanvas() {
@@ -128,16 +128,20 @@
             section.coordinates.push(ray)
         }
 
-        function initregular() {
+        function initregular(boundx1, boundx2, boundy1, boundy2) {
             sections = []
             let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
             t1 = 0;
-            px1 = ox1; py1 = oy1; px2 = px1; py2 = oy2;
-            px3 = px1 + random(100, 200); py3 = py1; px4 = px3; py4 = py2
+            px1 = boundx1; py1 = boundy1; px2 = boundx1; py2 = boundy2;
+            px3 = px1 + random(100, 200); py3 = boundy1; px4 = px3; py4 = boundy2
             left = true
             initspeed = 5.5
-            while (px3 <= ox2) {
+            while (px3 <= boundx2) {
                 let section = {}
+                section.xleft=boundx1
+                section.xright=boundx2 
+                section.ytop=boundy1 
+                section.ybottom=boundy2
                 section.grow = true
                 section.left = left
                 section.speed = initspeed
@@ -162,10 +166,10 @@
                 }
                 section.coordinates = coords
                 sections.push(section)
-                if (px3 == ox2) { break; }
+                if (px3 == boundx2) { break; }
                 px1 = px3
                 px3 = px1 + random(11, 21);
-                if (px3 > ox2) { px3 = ox2 }
+                if (px3 > boundx2) { px3 = boundx2 }
                 left = !left
                 t1 = 0
             }
