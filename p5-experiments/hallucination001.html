@@ -132,8 +132,9 @@
             sections = []
             let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
             t1 = 0;
+            let span = (boundx2-boundx1)/Math.floor(random(1,4))
             px1 = boundx1; py1 = boundy1; px2 = boundx1; py2 = boundy2;
-            px3 = px1 + random(100, 200); py3 = boundy1; px4 = px3; py4 = boundy2
+            px3 = px1 + span; py3 = boundy1; px4 = px3; py4 = boundy2
             left = true
             initspeed = 5.5
             while (px3 <= boundx2) {
@@ -146,6 +147,7 @@
                 section.left = left
                 section.speed = initspeed
                 let coords = []
+                
                 while (t1 <= 1) {
                     let ray = {}
                     ray.x1 = px1;
@@ -168,7 +170,7 @@
                 sections.push(section)
                 if (px3 == boundx2) { break; }
                 px1 = px3
-                px3 = px1 + random(11, 21);
+                px3 = px1 + span
                 if (px3 > boundx2) { px3 = boundx2 }
                 left = !left
                 t1 = 0
