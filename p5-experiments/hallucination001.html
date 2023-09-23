@@ -95,16 +95,16 @@
         }
 
         function done(sec) {
-            if (sec.grow && sec.left && sec.coordinates[0].y2 >= oy1) {
+            if (sec.grow && sec.left && sec.coordinates[0].y2 >= sec.ytop) {
                 return false
             }
-            if (sec.grow && !sec.left && sec.coordinates[0].y1 >= oy1) {
+            if (sec.grow && !sec.left && sec.coordinates[0].y1 >= sec.ytop) {
                 return false
             }
-            if (!sec.grow && !sec.left && sec.coordinates[0].y1 <= oy2) {
+            if (!sec.grow && !sec.left && sec.coordinates[0].y1 <= sec.ybottom) {
                 return false
             }
-            if (!sec.grow && sec.left && sec.coordinates[0].y2 <= oy2) {
+            if (!sec.grow && sec.left && sec.coordinates[0].y2 <= sec.ybottom) {
                 return false
             }
             return true
@@ -117,12 +117,12 @@
             ray.x1 = ray1.x1;
             ray.x2 = ray1.x2;
             if (section.left) {
-                ray.y1 = (1 - t1) * oy1 + (t1 * oy2);
+                ray.y1 = (1 - t1) * section.ytop + (t1 * section.ybottom);
                 ray.y2 = ray1.y2;
             }
             else {
                 ray.y1 = ray1.y1
-                ray.y2 = (1 - t1) * oy1 + (t1 * oy2);;
+                ray.y2 = (1 - t1) * section.ytop + (t1 * section.ybottom);;
             }
 
             section.coordinates.push(ray)
