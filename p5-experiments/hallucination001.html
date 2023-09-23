@@ -18,8 +18,8 @@
 <body>
     <script>
         //global vars for the whole piece
-        var w = 800;
-        var h = 800;
+        var w = 900;
+        var h = 900;
         var cnv;
         var padding = 10
         let ox1 = padding
@@ -28,7 +28,7 @@
         let oy2 = h - padding
         let mint = 0.01
         let maxt = 0.1
-        var sections
+        var matrix = []
         const numFrames = 100 // num of frames to record
         let recording = false
         let recordedFrames = 0
@@ -41,7 +41,7 @@
             strokeCap(SQUARE)
             background(0, 0, 0)
             stroke(0, 0, 100)
-            initregular(350,550,350,550)
+            initregular(400,500,400,500)
         }
 
         function centerCanvas() {
@@ -54,13 +54,25 @@
         function draw() {
             background(0, 0, 0)
             strokeWeight(0.5)
-            draw_sections()
+            draw_matrix()
+            if(frameCount==210){initregular(0,100,0,100)}
+            if(frameCount==420){initregular(100,200,100,200)}
+            if(frameCount==630){initregular(200,300,200,300)}
+            if(frameCount==840){initregular(200,300,0,300)}
         }
-        let speedmax = 9
-        function draw_sections() {
+
+        function draw_matrix() {
+            let cell
+            for (let i = 0; i < matrix.length; i++) {
+                cell=matrix[i]
+                draw_sections(cell)
+            }
+        }
+
+        function draw_sections(cell) {
             let sec
-            for (let i = 0; i < sections.length; i++) {
-                let sec = sections[i]
+            for (let i = 0; i < cell.length; i++) {
+                let sec = cell[i]
                 speed = sec.speed
                 for (let j = 0; j < sec.coordinates.length; j++) {
                     p = sec.coordinates[j]
@@ -129,14 +141,14 @@
         }
 
         function initregular(boundx1, boundx2, boundy1, boundy2) {
-            sections = []
+            let sections = []
             let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
             t1 = 0;
             let span = (boundx2-boundx1)/Math.floor(random(1,4))
             px1 = boundx1; py1 = boundy1; px2 = boundx1; py2 = boundy2;
             px3 = px1 + span; py3 = boundy1; px4 = px3; py4 = boundy2
             left = true
-            initspeed = 5.5
+            initspeed = 0.4
             while (px3 <= boundx2) {
                 let section = {}
                 section.xleft=boundx1
@@ -175,7 +187,7 @@
                 left = !left
                 t1 = 0
             }
-
+            matrix.push(sections)
         }
 
 
