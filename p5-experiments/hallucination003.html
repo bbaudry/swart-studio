@@ -55,8 +55,8 @@
             background(0, 0, 0)
             strokeWeight(0.5)
             noFill()
-            stroke(0, 0, 100)
-            strokeWeight(2)
+            stroke(0, 80, 80,80)
+            strokeWeight(7)
             //bezier(300,300,500,300,600,400,600,600-frameCount)
             draw_matrix()
             if (frameCount % 210 == 0) {
@@ -107,7 +107,6 @@
                             if (p.y1 >= oy2) { p.y1 = oy2; }
                         }
                     }
-                    stroke(0, 0, 100)
                     //if(sec.left){
                         let cx1 = p.x1+0.8*(p.x2-p.x1)
                         let cx2 = p.x2
@@ -191,9 +190,6 @@
                         ray.y2 = (1 - t1) * py1 + (t1 * py2);;
                     }
                     coords.push(ray)
-                    if (left) { stroke(230, 80, 80) }
-                    else { stroke(30, 80, 80) }
-                    line(ray.x1, ray.y1, ray.x2, ray.y2)
                     t1 += 1;
                 }
                 section.coordinates = coords
