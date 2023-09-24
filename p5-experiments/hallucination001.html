@@ -41,7 +41,7 @@
             strokeCap(SQUARE)
             background(0, 0, 0)
             stroke(0, 0, 100)
-            initregular(400,500,400,500)
+            initonecell(400,500,400,500)
         }
 
         function centerCanvas() {
@@ -55,10 +55,15 @@
             background(0, 0, 0)
             strokeWeight(0.5)
             draw_matrix()
-            if(frameCount==210){initregular(0,100,0,100)}
-            if(frameCount==420){initregular(100,200,100,200)}
-            if(frameCount==630){initregular(200,300,200,300)}
-            if(frameCount==840){initregular(200,300,0,300)}
+            if(frameCount%210==0){
+                x1=100*Math.floor(random(8))
+                x2=x1+100*Math.floor(random(1,5))
+                if (x2>ox2){x2=ox2}
+                y1=100*Math.floor(random(8))
+                y2=x1+100*Math.floor(random(1,5))
+                if (y2>oy2){y2=oy2}
+                initonecell(x1,x2,y1,y2)
+            }
         }
 
         function draw_matrix() {
@@ -140,7 +145,7 @@
             section.coordinates.push(ray)
         }
 
-        function initregular(boundx1, boundx2, boundy1, boundy2) {
+        function initonecell(boundx1, boundx2, boundy1, boundy2) {
             let sections = []
             let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
             t1 = 0;
@@ -148,7 +153,7 @@
             px1 = boundx1; py1 = boundy1; px2 = boundx1; py2 = boundy2;
             px3 = px1 + span; py3 = boundy1; px4 = px3; py4 = boundy2
             left = true
-            initspeed = 0.4
+            initspeed = 0.7
             while (px3 <= boundx2) {
                 let section = {}
                 section.xleft=boundx1
