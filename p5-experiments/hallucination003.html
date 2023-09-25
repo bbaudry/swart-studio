@@ -52,12 +52,15 @@
 
 
         function draw() {
-            background(0, 0, 0)
+            background(0, 0, 0, 7)
             strokeWeight(0.5)
             noFill()
             stroke(0, 80, 80,80)
             strokeWeight(7)
-            //bezier(300,300,500,300,600,400,600,600-frameCount)
+            /*bezier(150,150,350,150,450,250,450,450-frameCount)
+            bezier(450,450-frameCount,650,450-frameCount,750,350-frameCount,750,150)
+            bezier(450,450-frameCount,650,450-frameCount,750,550-frameCount,750,750)
+            bezier(150,750, 150,550-frameCount, 250,450-frameCount, 450,450-frameCount)*/
             draw_matrix()
             if (frameCount % 210 == 0) {
                 add_cell()
@@ -161,7 +164,7 @@
             let sections = []
             let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
             t1 = 0;
-            let span = (boundx2 - boundx1) / Math.floor(random(1, 4))
+            let span = (boundx2 - boundx1) / 2//Math.floor(random(1, 4))
             px1 = boundx1; py1 = boundy1; px2 = boundx1; py2 = boundy2;
             px3 = px1 + span; py3 = boundy1; px4 = px3; py4 = boundy2
             left = true
