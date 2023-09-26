@@ -120,7 +120,8 @@
                         cx1 = p.x1
                         cx2 = p.x1+0.8*(p.x2-p.x1)
                         cy1 = p.y1+0.8*(p.y2-p.y1)
-                        cy2 = p.y2}
+                        cy2 = p.y2
+                        }
                         else{
                         cx1 = p.x1+0.8*(p.x2-p.x1)
                         cx2 = p.x2
@@ -135,7 +136,21 @@
                     sec.grow = !sec.grow; 
                     if(random()<0.92){add_ray(sec)}
                 }
+                if(random()<0.02){moon(sec)}    
             }
+        }
+
+        function moon(sec){
+            push()
+            stroke(330,80,80,80)
+            strokeWeight(7)
+            if(sec.left){
+                ellipse(p.x2,p.y2,42,42)
+            }
+            else{
+                ellipse(p.x1,p.y1,17,17)
+            }
+            pop()
         }
 
         function done(sec) {
