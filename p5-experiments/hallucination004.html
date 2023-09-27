@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/h264-mp4-encoder/embuild/dist/h264-mp4-encoder.web.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //global vars for the whole piece
+        var w = 1800;
+        var h = 900;
+        var cnv;
+        var padding = 10
+        let ox1 = padding
+        let ox2 = w - padding
+        let oy1 = padding
+        let oy2 = h - padding
+        let mint = 0.01
+        let maxt = 0.1
+        var matrix = []
+        const numFrames = 100 // num of frames to record
+        let recording = false
+        let recordedFrames = 0
+
+
+        function setup() {
+            cnv = createCanvas(w, h);
+            centerCanvas();
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            background(0, 0, 0)
+            stroke(0, 0, 100)
+            initonecell(600, 900, 300, 600)
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+
+        function draw() {
+            background(0, 0, 0)
+            strokeWeight(0.5)
+            noFill()
+            stroke(20, 0, 60,80)
+            strokeWeight(1)
+            draw_matrix()
+            if (frameCount % 210 == 0) {
+                add_cell()
+            }
+        }
+
+        function add_cell() {
+            let x1 = 300 * Math.floor(random(6))
+            let x2 = x1 + 300
+            let y1 = 300 * Math.floor(random(3))
+            let y2 = y1 + 300 
+            initonecell(x1, x2, y1, y2)
+        }
+
+        function draw_matrix() {
+            let cell
+            for (let i = 0; i < matrix.length; i++) {
+                cell = matrix[i]
+                draw_sections(cell)
+            }
+        }
+
+        function draw_sections(cell) {
+            let sec
+            for (let i = 0; i < cell.length; i++) {
+                let sec = cell[i]
+                speed = sec.speed
+                for (let j = 0; j < sec.coordinates.length; j++) {
+                    p = sec.coordinates[j]
+                    if (!sec.grow) {
+                        if (sec.left) {
+                            p.y2 += speed
+                            if (p.y2 <= oy1) { p.y2 = oy1; }
+                        }
+                        else {
+                            p.y1 += speed
+                            if (p.y1 <= oy1) { p.y1 = oy1; }
+                        }
+                    }
+                    else {
+                        if (sec.left) {
+                            p.y2 -= speed
+                            if (p.y2 >= oy2) { p.y2 = oy2; }
+                        }
+                        else {
+                            p.y1 -= speed
+                            if (p.y1 >= oy2) { p.y1 = oy2; }
+                        }
+                    }
+                    let cx1,cx2,cy1,cy2;
+                    /*if(sec.left){
+                        let cx1 = p.x1+0.8*(p.x2-p.x1)
+                        let cx2 = p.x2
+                        let cy1 = p.y1
+                        let cy2 = p.y1+0.8*(p.y2-p.y1)*/
+                        if(sec.left){
+                        cx1 = p.x1
+                        cx2 = p.x1+0.8*(p.x2-p.x1)
+                        cy1 = p.y1+0.8*(p.y2-p.y1)
+                        cy2 = p.y2
+                        }
+                        else{
+                        cx1 = p.x1+0.8*(p.x2-p.x1)
+                        cx2 = p.x2
+                        cy1 = p.y1
+                        cy2 = p.y1+0.8*(p.y2-p.y1)
+                        }
+                        bezier(p.x1, p.y1, cx1, cy1, cx2, cy2, p.x2, p.y2)
+                    //}
+                    //  line(p.x1, p.y1, p.x2, p.y2)
+                }
+                if (done(sec)) { 
+                    sec.grow = !sec.grow; 
+                    if(random()<0.92){add_ray(sec)}
+                }
+                if(random()<0.02){moon(sec)}    
+            }
+        }
+
+        function moon(sec){
+            push()
+            stroke(330,80,80)
+            strokeWeight(1+random(4))
+            if(sec.left){
+                ellipse(p.x2,p.y2,42,42)
+            }
+            else{
+                ellipse(p.x1,p.y1,17,17)
+            }
+            pop()
+        }
+
+        function done(sec) {
+            if (sec.grow && sec.left && sec.coordinates[0].y2 >= sec.ytop) {
+                return false
+            }
+            if (sec.grow && !sec.left && sec.coordinates[0].y1 >= sec.ytop) {
+                return false
+            }
+            if (!sec.grow && !sec.left && sec.coordinates[0].y1 <= sec.ybottom) {
+                return false
+            }
+            if (!sec.grow && sec.left && sec.coordinates[0].y2 <= sec.ybottom) {
+                return false
+            }
+            return true
+        }
+
+        function add_ray(section) {
+            ray1 = section.coordinates[0]
+            t1 = 0.1 * Math.floor(random(9))
+            let ray = {}
+            ray.x1 = ray1.x1;
+            ray.x2 = ray1.x2;
+            if (section.left) {
+                ray.y1 = (1 - t1) * section.ytop + (t1 * section.ybottom);
+                ray.y2 = ray1.y2;
+            }
+            else {
+                ray.y1 = ray1.y1
+                ray.y2 = (1 - t1) * section.ytop + (t1 * section.ybottom);;
+            }
+
+            section.coordinates.push(ray)
+        }
+
+        function initonecell(boundx1, boundx2, boundy1, boundy2) {
+            let sections = []
+            let px1, px2, px3, px4, py1, py2, py3, py4, left, initspeed
+            t1 = 0;
+            let span = (boundx2 - boundx1) / 2//Math.floor(random(1, 4))
+            px1 = boundx1; py1 = boundy1; px2 = boundx1; py2 = boundy2;
+            px3 = px1 + span; py3 = boundy1; px4 = px3; py4 = boundy2
+            left = true
+            initspeed = 0.3+random()
+            while (px3 <= boundx2) {
+                let section = {}
+                section.xleft = boundx1
+                section.xright = boundx2
+                section.ytop = boundy1
+                section.ybottom = boundy2
+                section.grow = true
+                section.left = left
+                section.speed = initspeed
+                let coords = []
+
+                while (t1 <= 1) {
+                    let ray = {}
+                    ray.x1 = px1;
+                    ray.x2 = px3;
+                    if (left) {
+                        ray.y1 = (1 - t1) * py1 + (t1 * py2);
+                        ray.y2 = py4;
+                    }
+                    else {
+                        ray.y1 = py4
+                        ray.y2 = (1 - t1) * py1 + (t1 * py2);;
+                    }
+                    coords.push(ray)
+                    t1 += 1;
+                }
+                section.coordinates = coords
+                sections.push(section)
+                if (px3 == boundx2) { break; }
+                px1 = px3
+                px3 = px1 + span
+                if (px3 > boundx2) { px3 = boundx2 }
+                left = !left
+                t1 = 0
+            }
+            matrix.push(sections)
+        }
+
+
+        function init() {
+            sections = []
+            let x1, x2, y1, y2, t1, t2
+            t1 = 0; t2 = 0;
+            while (t1 < 1 || t2 < 1) {
+                t1 += random(mint, maxt);
+                t2 += random(mint, maxt);
+                if (t1 >= 1) { t1 = 1 }
+                if (t2 >= 1) { t2 = 1 }
+                x1 = ox1;
+                y1 = (1 - t1) * oy1 + (t1 * oy2);
+                x2 = ox2;
+                y2 = (1 - t2) * oy1 + (t2 * oy2);
+                sections.push([x1, y1, x2, y2])
+            }
+        }
+
+    </script>
+</body>
+
+</html>
