@@ -106,7 +106,7 @@
                             if (p.y1 >= oy2) { p.y1 = oy2; }
                         }
                     }
-                    if (sec.vertical) { (sec, p) }
+                    if (sec.vertical) { vertical_curves(sec, p) }
                 }
                 if (done(sec)) {
                     sec.grow = !sec.grow;
@@ -199,64 +199,13 @@
         function initonecell(boundx1, boundx2, boundy1, boundy2) {
             let sections = []
             let left, vertical, initspeed
-            if (random() < 0.5) { vertical = true } else { vertical = false }
-                let section = {}
-                section.vertical = vertical
-                section.xleft = boundx1
-                section.xright = boundx2
-                section.ytop = boundy1
-                section.ybottom = boundy2
-                section.grow = true
-                section.speed = initspeed
-                if (vertical) { initverticalcell(section, boundx1, boundx2, boundy1, boundy2) }
-                else { { inithorizontalcell(section, boundx1, boundx2, boundy1, boundy2) } }
-                sections.push(section)
-                /*while (t1 <= 1) {
-                    let ray = {}
-                    ray.x1 = px1;
-                    ray.x2 = px3;
-                    if (left) {
-                        ray.y1 = (1 - t1) * py1 + (t1 * py2);
-                        ray.y2 = py4;
-                    }
-                    else {
-                        ray.y1 = py4
-                        ray.y2 = (1 - t1) * py1 + (t1 * py2);;
-                    }
-                    coords.push(ray)
-                    t1 += 1;
-                }
-                else{
-                    let ray = {}
-                    ray.x1 = px1;
-                    ray.x2 = px3;
-                    if (left) {
-                        ray.y1 = (1 - t1) * py1 + (t1 * py2);
-                        ray.y2 = py4;
-                    }
-                    else {
-                        ray.y1 = py4
-                        ray.y2 = (1 - t1) * py1 + (t1 * py2);;
-                    }
-                    coords.push(ray)
-                    t1 += 1;
-                }
-                section.coordinates = coords
-                sections.push(section)
-                if (px3 == boundx2) { break; }
-                px1 = px3
-                px3 = px1 + span
-                if (px3 > boundx2) { px3 = boundx2 }
-                left = !left
-                t1 = 0*/
-            
-            matrix.push(sections)
+            if (true) { initverticalcell(sections, boundx1, boundx2, boundy1, boundy2)} 
+            else { inithorizontalcell(sections, boundx1, boundx2, boundy1, boundy2) }            
         }
 
-        function initverticalcell(section, boundx1, boundx2, boundy1, boundy2) {
-            let sections = []
+        function initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) {
             let section = {}
-            section.vertical = vertical
+            section.vertical = true
             section.xleft = boundx1
             section.xright = boundx2
             section.ytop = boundy1
@@ -281,7 +230,7 @@
             sections.push(section)
 
             section = {}
-            section.vertical = vertical
+            section.vertical = true
             section.xleft = boundx1
             section.xright = boundx2
             section.ytop = boundy1
@@ -304,7 +253,7 @@
             coords.push(ray2)
             section.coordinates = coords
             sections.push(section)
-            
+
             matrix.push(sections)
         }
 
