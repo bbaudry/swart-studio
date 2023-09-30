@@ -204,6 +204,7 @@
         }
 
         function initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) {
+            let speed =  0.3 + random()
             let section = {}
             section.vertical = true
             section.xleft = boundx1
@@ -211,7 +212,7 @@
             section.ytop = boundy1
             section.ybottom = boundy2
             section.grow = true
-            section.speed = 0.3 + random()
+            section.speed = speed
             let coords = []
             let ray1 = {}
             let ray2 = {}
@@ -236,19 +237,19 @@
             section.ytop = boundy1
             section.ybottom = boundy2
             section.grow = true
-            section.speed = 0.3 + random()
+            section.speed = speed
             coords = []
             ray1 = {}
             ray2 = {}
             section.left = false
-            ray1.x1 = boundx1
+            ray1.x1 = boundx1 + ((boundx2 - boundx1) / 2)
             ray1.y1 = boundy1
-            ray1.x2 = boundx1 + ((boundx2 - boundx1) / 2)
+            ray1.x2 = boundx2 
             ray1.y2 = boundy1
             coords.push(ray1)
-            ray2.x1 = boundx1
+            ray2.x1 = boundx1 + ((boundx2 - boundx1) / 2)
             ray2.y1 = boundy2
-            ray2.x2 = boundx1 + ((boundx2 - boundx1) / 2)
+            ray2.x2 = boundx2
             ray2.y2 = boundy1
             coords.push(ray2)
             section.coordinates = coords
