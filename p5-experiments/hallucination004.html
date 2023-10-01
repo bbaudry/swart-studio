@@ -106,7 +106,7 @@
                             if (p.y1 >= oy2) { p.y1 = oy2; }
                         }
                     }
-                    if (sec.vertical) { vertical_curves(sec, p) }
+                    if (!sec.vertical) { vertical_curves(sec, p) }
                 }
                 if (done(sec)) {
                     sec.grow = !sec.grow;
@@ -199,23 +199,28 @@
         function initonecell(boundx1, boundx2, boundy1, boundy2) {
             let sections = []
             let left, vertical, initspeed
-            if (true) { initverticalcell(sections, boundx1, boundx2, boundy1, boundy2)} 
+            if (false) { initverticalcell(sections, boundx1, boundx2, boundy1, boundy2)} 
             else { inithorizontalcell(sections, boundx1, boundx2, boundy1, boundy2) }            
         }
 
-        function initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) {
-            let speed =  0.3 + random()
-            let section = {}
-            section.vertical = true
+        function initsec(section, vert, boundx1, boundx2, boundy1, boundy2, speed){
+            section.vertical = vert
             section.xleft = boundx1
             section.xright = boundx2
             section.ytop = boundy1
             section.ybottom = boundy2
             section.grow = true
             section.speed = speed
-            let coords = []
-            let ray1 = {}
-            let ray2 = {}
+        }
+
+        function initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) {
+            let speed =  0.3 + random()
+            let coords, ray1, ray2, section
+            section = {}
+            initsec(section,true, boundx1, boundx2, boundy1, boundy2, speed)
+            coords = []
+            ray1 = {}
+            ray2 = {}
             section.left = true
             ray1.x1 = boundx1
             ray1.y1 = boundy1
@@ -231,13 +236,7 @@
             sections.push(section)
 
             section = {}
-            section.vertical = true
-            section.xleft = boundx1
-            section.xright = boundx2
-            section.ytop = boundy1
-            section.ybottom = boundy2
-            section.grow = true
-            section.speed = speed
+            initsec(section,true, boundx1, boundx2, boundy1, boundy2, speed)
             coords = []
             ray1 = {}
             ray2 = {}
@@ -248,9 +247,9 @@
             ray1.y2 = boundy1
             coords.push(ray1)
             ray2.x1 = boundx1 + ((boundx2 - boundx1) / 2)
-            ray2.y1 = boundy2
+            ray2.y1 = boundy1
             ray2.x2 = boundx2
-            ray2.y2 = boundy1
+            ray2.y2 = boundy2
             coords.push(ray2)
             section.coordinates = coords
             sections.push(section)
@@ -259,21 +258,48 @@
         }
 
         function inithorizontalcell(section, boundx1, boundx2, boundy1, boundy2) {
-            let coords = []
-            let ray1 = {}
-            let ray2 = {}
+            let speed =  0.3 + random()
+            let coords, ray1, ray2, section
+            section = {}
+            initsec(section,false, boundx1, boundx2, boundy1, boundy2, speed)
+            coords = []
+            ray1 = {}
+            ray2 = {}
             section.left = true
             ray1.x1 = boundx1
             ray1.y1 = boundy1
-            ray1.x2 = boundx1
+            ray1.x2 = boundx1 
             ray1.y2 = boundy1 + ((boundy2 - boundy1) / 2)
             coords.push(ray1)
             ray2.x1 = boundx2
             ray2.y1 = boundy1
-            ray2.x2 = boundx2
+            ray2.x2 = boundx1
             ray2.y2 = boundy1 + ((boundy2 - boundy1) / 2)
             coords.push(ray2)
             section.coordinates = coords
+            sections.push(section)
+
+            section = {}
+            initsec(section,false, boundx1, boundx2, boundy1, boundy2, speed)
+            coords = []
+            ray1 = {}
+            ray2 = {}
+            section.left = false
+            ray1.x1 = boundx1 
+            ray1.y1 = boundy1 + ((boundy2 - boundy1) / 2)
+            ray1.x2 = boundx1 
+            ray1.y2 = boundy2
+            coords.push(ray1)
+            ray2.x1 = boundx1
+            ray2.y1 = boundy1 + ((boundy2 - boundy1) / 2)
+            ray2.x2 = boundx2
+            ray2.y2 = boundy2
+            coords.push(ray2)
+            section.coordinates = coords
+            sections.push(section)
+
+            matrix.push(sections)
+
         }
 
         function init() {
