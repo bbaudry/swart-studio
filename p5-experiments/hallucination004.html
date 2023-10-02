@@ -57,10 +57,35 @@
             noFill()
             stroke(20, 0, 60, 80)
             strokeWeight(1)
-            draw_matrix()
+            let px1,py1,px2,py2,cx1,cy1,cx2,cy2
+            px1 = 300; py1=300; px2= 450; py2=450
+            cx1 = px1 + (0.55 * 150)
+            cx2 = px1 + 150
+            cy1 = py1
+            cy2 = py1
+            bezier(px1, py1, cx1, cy1, cx2, cy2, px2, py2)
+            px1 = 600; py1=300; px2= 450; py2=450
+            cx1 = px1 - (0.55 * 150)
+            cx2 = px1 - 150
+            cy1 = py1
+            cy2 = py1
+            bezier(px1, py1, cx1, cy1, cx2, cy2, px2, py2)
+            px1 = 300; py1=600; px2= 450; py2=450
+            cx1 = px1 + (0.55 * 150)
+            cx2 = px1 + 150 
+            cy1 = py1 
+            cy2 = py1 
+            bezier(px1, py1, cx1, cy1, cx2, cy2, px2, py2)
+            px1 = 600; py1=600; px2= 450; py2=450
+            cx1 = px1 - (0.55 * 150)
+            cx2 = px1 - 150
+            cy1 = py1 
+            cy2 = py1
+            bezier(px1, py1, cx1, cy1, cx2, cy2, px2, py2)
+            /*draw_matrix()
             if (frameCount % 210 == 0) {
                 add_cell()
-            }
+            }*/
         }
 
         function add_cell() {
@@ -257,7 +282,7 @@
             matrix.push(sections)
         }
 
-        function inithorizontalcell(section, boundx1, boundx2, boundy1, boundy2) {
+        function inithorizontalcell(sections, boundx1, boundx2, boundy1, boundy2) {
             let speed =  0.3 + random()
             let coords, ray1, ray2, section
             section = {}
