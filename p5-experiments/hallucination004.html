@@ -52,7 +52,7 @@
 
 
         function draw() {
-            //background(0, 0, 0)
+            background(0, 0, 0)
             strokeWeight(5)
             noFill()
             stroke(20, 0, 60, 80)
@@ -81,11 +81,11 @@
             cx2 = px1 - 150
             cy1 = py1 
             cy2 = py1
-            bezier(px1, py1, cx1, cy1, cx2, cy2, px2, py2)
+            bezier(px1, py1, cx1, cy1, cx2, cy2, px2, py2)*/
             draw_matrix()
             if (frameCount % 210 == 0) {
                 add_cell()
-            }*/
+            }
         }
 
         function add_cell() {
@@ -111,27 +111,8 @@
                 speed = sec.speed
                 for (let j = 0; j < sec.coordinates.length; j++) {
                     p = sec.coordinates[j]
-                    if (!sec.grow) {
-                        if (sec.left) {
-                            p.y2 += speed
-                            if (p.y2 <= oy1) { p.y2 = oy1; }
-                        }
-                        else {
-                            p.y1 += speed
-                            if (p.y1 <= oy1) { p.y1 = oy1; }
-                        }
-                    }
-                    else {
-                        if (sec.left) {
-                            p.y2 -= speed
-                            if (p.y2 >= oy2) { p.y2 = oy2; }
-                        }
-                        else {
-                            p.y1 -= speed
-                            if (p.y1 >= oy2) { p.y1 = oy2; }
-                        }
-                    }
-                    if (!sec.vertical) { horizontal_curves(sec, p) }
+                    if (sec.vertical) { vertical_curves(sec, p) }
+                    else {horizontal_curves(sec, p)}
                 }
                 if (done(sec)) {
                     sec.grow = !sec.grow;
@@ -142,6 +123,26 @@
         }
 
         function vertical_curves(sec, p) {
+            if (!sec.grow) {
+                if (sec.left) {
+                    p.y2 += speed
+                    if (p.y2 <= oy1) { p.y2 = oy1; }
+                }
+                else {
+                    p.y1 += speed
+                    if (p.y1 <= oy1) { p.y1 = oy1; }
+                }
+            }
+            else {
+                if (sec.left) {
+                    p.y2 -= speed
+                    if (p.y2 >= oy2) { p.y2 = oy2; }
+                }
+                else {
+                    p.y1 -= speed
+                    if (p.y1 >= oy2) { p.y1 = oy2; }
+                }
+            }
             let cx1, cx2, cy1, cy2;
             if (sec.left) {
                 cx1 = p.x1
@@ -158,20 +159,45 @@
             bezier(p.x1, p.y1, cx1, cy1, cx2, cy2, p.x2, p.y2)
         }
 
-           
+
         function horizontal_curves(sec, p) {
+            if (!sec.grow) {
+                if (sec.left) {
+                    p.x2 += speed
+                    if (p.x2 <= ox1) { p.x2 = ox1; }
+                }
+                else {
+                    p.x1 += speed
+                    if (p.x1 <= ox1) { p.x1 = ox1; }
+                }
+            }
+            else {
+                if (sec.left) {
+                    p.x2 -= speed
+                    if (p.x2 >= ox2) { p.x2 = ox2; }
+                }
+                else {
+                    p.x1 -= speed
+                    if (p.x1 >= ox2) { p.x1 = ox2; }
+                }
+            }
+
             let cx1, cx2, cy1, cy2;
+            //         bezier(ray1.x1, ray1.y1, ray1.x1+(0.55*(ray1.x2-ray1.x1)), ray1.y1,ray1.x2, ray1.y1, ray1.x2, ray1.y2)
+            //if(left){bezier(ray2.x1, ray2.y1, ray2.x1, ray2.y1, ray2.x2, ray2.y1, ray2.x2, ray2.y2)}
+            //else    {bezier(ray2.x1, ray2.y1, ray2.x1, ray2.y2, ray2.x2, ray2.y2, ray2.x2, ray2.y2)}
+
             if (sec.left) {
-                cx1 = p.x1 + 0.55 * (p.x2 - p.x1)
+                cx1 = p.x1 + (0.55 * (p.x2 - p.x1))
                 cx2 = p.x2
-                cy1 = p.y1 
+                cy1 = p.y1
                 cy2 = p.y1
             }
             else {
-                cx1 = p.x1 - 0.55 * (p.x2 - p.x1)
+                cx1 = p.x1 + (0.55 * (p.x2 - p.x1))
                 cx2 = p.x2
-                cy1 = p.y1
-                cy2 = p.y1 
+                cy1 = p.y2
+                cy2 = p.y2
             }
             bezier(p.x1, p.y1, cx1, cy1, cx2, cy2, p.x2, p.y2)
         }
@@ -226,11 +252,11 @@
         function initonecell(boundx1, boundx2, boundy1, boundy2) {
             let sections = []
             let left, vertical, initspeed
-            if (false) { initverticalcell(sections, boundx1, boundx2, boundy1, boundy2)} 
-            else { inithorizontalcell(sections, boundx1, boundx2, boundy1, boundy2) }            
+            if (true) { initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) }
+            else { inithorizontalcell(sections, boundx1, boundx2, boundy1, boundy2) }
         }
 
-        function initsec(section, vert, boundx1, boundx2, boundy1, boundy2, speed){
+        function initsec(section, vert, boundx1, boundx2, boundy1, boundy2, speed) {
             section.vertical = vert
             section.xleft = boundx1
             section.xright = boundx2
@@ -241,10 +267,10 @@
         }
 
         function initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) {
-            let speed =  0.3 + random()
+            let speed = 0.3 + random()
             let coords, ray1, ray2, section
             section = {}
-            initsec(section,true, boundx1, boundx2, boundy1, boundy2, speed)
+            initsec(section, true, boundx1, boundx2, boundy1, boundy2, speed)
             coords = []
             ray1 = {}
             ray2 = {}
@@ -263,14 +289,14 @@
             sections.push(section)
 
             section = {}
-            initsec(section,true, boundx1, boundx2, boundy1, boundy2, speed)
+            initsec(section, true, boundx1, boundx2, boundy1, boundy2, speed)
             coords = []
             ray1 = {}
             ray2 = {}
             section.left = false
             ray1.x1 = boundx1 + ((boundx2 - boundx1) / 2)
             ray1.y1 = boundy1
-            ray1.x2 = boundx2 
+            ray1.x2 = boundx2
             ray1.y2 = boundy1
             coords.push(ray1)
             ray2.x1 = boundx1 + ((boundx2 - boundx1) / 2)
@@ -285,62 +311,61 @@
         }
 
         function inithorizontalcell(sections, boundx1, boundx2, boundy1, boundy2) {
-            let speed =  0.3 + random()
+            let speed = 0.3 + random()
             let coords, ray1, ray2, section
             section = {}
-            initsec(section,false, boundx1, boundx2, boundy1, boundy2, speed)
+            initsec(section, false, boundx1, boundx2, boundy1, boundy2, speed)
             coords = []
             ray1 = {}
             ray2 = {}
             section.left = true; noFill()
             ray1.x1 = boundx1
-            ray1.y1 = boundy1; 
-            ray1.x2 = boundx1 
+            ray1.y1 = boundy1;
+            ray1.x2 = boundx1
             ray1.y2 = boundy1 + ((boundy2 - boundy1) / 2)
-            coords.push(ray1); 
-            stroke(0,100,100); 
-            line(ray1.x1, ray1.y1, ray1.x2, ray1.y2) 
-            bezier(ray1.x1, ray1.y1, ray1.x1+(0.55*(ray1.x2-ray1.x1)), ray1.y1,ray1.x2, ray1.y1, ray1.x2, ray1.y2)
+            coords.push(ray1);
+            stroke(0, 100, 100);
+            line(ray1.x1, ray1.y1, ray1.x2, ray1.y2)
+            bezier(ray1.x1, ray1.y1, ray1.x1 + (0.55 * (ray1.x2 - ray1.x1)), ray1.y1, ray1.x2, ray1.y1, ray1.x2, ray1.y2)
             ray2.x1 = boundx2
             ray2.y1 = boundy1
             ray2.x2 = boundx1
             ray2.y2 = boundy1 + ((boundy2 - boundy1) / 2)
-            coords.push(ray2); 
-            stroke(50,100,100);  
-            line(ray2.x1,ray2.y1,ray2.x2, ray2.y2)
+            coords.push(ray2);
+            stroke(50, 100, 100);
+            line(ray2.x1, ray2.y1, ray2.x2, ray2.y2)
             bezier(ray2.x1, ray2.y1, ray2.x1, ray2.y1, ray2.x2, ray2.y1, ray2.x2, ray2.y2)
             section.coordinates = coords
             sections.push(section)
 
             section = {}
-            initsec(section,false, boundx1, boundx2, boundy1, boundy2, speed)
+            initsec(section, false, boundx1, boundx2, boundy1, boundy2, speed)
             coords = []
             ray1 = {}
             ray2 = {}
             section.left = false
-            ray1.x1 = boundx1 
+            ray1.x1 = boundx1
             ray1.y1 = boundy1 + ((boundy2 - boundy1) / 2)
-            ray1.x2 = boundx1 
+            ray1.x2 = boundx1
             ray1.y2 = boundy2
-            coords.push(ray1); 
-            stroke(180,100,100);  
-            line(ray2.x1, ray1.y1, ray1.x2, ray1.y2) 
-            bezier(ray1.x1, ray1.y1, ray1.x1+(0.55*(ray1.x2-ray1.x1)), ray1.y1,ray1.x2, ray1.y1, ray1.x2, ray1.y2)
-            
+            coords.push(ray1);
+            stroke(180, 100, 100);
+            line(ray2.x1, ray1.y1, ray1.x2, ray1.y2)
+            bezier(ray1.x1, ray1.y1, ray1.x1 + (0.55 * (ray1.x2 - ray1.x1)), ray1.y1, ray1.x2, ray1.y1, ray1.x2, ray1.y2)
+
             ray2.x1 = boundx1
             ray2.y1 = boundy1 + ((boundy2 - boundy1) / 2)
             ray2.x2 = boundx2
             ray2.y2 = boundy2
-            coords.push(ray2); 
-            stroke(250,100,100);  
-            line(ray2.x1,ray2.y1,ray2.x2, ray2.y2)
+            coords.push(ray2);
+            stroke(250, 100, 100);
+            line(ray2.x1, ray2.y1, ray2.x2, ray2.y2)
             bezier(ray2.x1, ray2.y1, ray2.x1, ray2.y2, ray2.x2, ray2.y2, ray2.x2, ray2.y2)
             section.coordinates = coords
             sections.push(section)
-
             matrix.push(sections)
-
         }
+
 
         function init() {
             sections = []
