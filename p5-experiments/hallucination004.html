@@ -111,10 +111,23 @@
                 speed = sec.speed
                 for (let j = 0; j < sec.coordinates.length; j++) {
                     p = sec.coordinates[j]
-                    if (sec.vertical) { vertical_curves(sec, p) }
-                    else {horizontal_curves(sec, p)}
+                    if (sec.vertical) { 
+                        vertical_curves(sec, p) 
+                        if (donevertical(sec)) {
+                            sec.grow = !sec.grow;
+                            if (random() < 0.92) { add_ray(sec) }
+                        }
+                    }
+                    else {
+                        horizontal_curves(sec, p)
+                        if (donehorizontal(sec)) {
+                            sec.grow = !sec.grow;
+                            if (random() < 0.92) { add_ray(sec) }
+                        }
+
+                    }
                 }
-                if (done(sec)) {
+                if (donevertical(sec)) {
                     sec.grow = !sec.grow;
                     if (random() < 0.92) { add_ray(sec) }
                 }
@@ -215,7 +228,7 @@
             pop()
         }
 
-        function done(sec) {
+        function donevertical(sec) {
             if (sec.grow && sec.left && sec.coordinates[0].y2 >= sec.ytop) {
                 return false
             }
@@ -226,6 +239,22 @@
                 return false
             }
             if (!sec.grow && sec.left && sec.coordinates[0].y2 <= sec.ybottom) {
+                return false
+            }
+            return true
+        }
+
+        function donehorizontal(sec) {
+            if (sec.grow && sec.left && sec.coordinates[0].x2 >= sec.xright) {
+                return false
+            }
+            if (sec.grow && !sec.left && sec.coordinates[0].x1 >= sec.xright) {
+                return false
+            }
+            if (!sec.grow && !sec.left && sec.coordinates[0].x1 <= sec.xleft) {
+                return false
+            }
+            if (!sec.grow && sec.left && sec.coordinates[0].x2 <= sec.xleft) {
                 return false
             }
             return true
