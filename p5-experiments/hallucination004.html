@@ -163,21 +163,21 @@
         function horizontal_curves(sec, p) {
             if (!sec.grow) {
                 if (sec.left) {
-                    p.x2 += speed
+                    p.x2 -= speed
                     if (p.x2 <= ox1) { p.x2 = ox1; }
                 }
                 else {
-                    p.x1 += speed
+                    p.x1 -= speed
                     if (p.x1 <= ox1) { p.x1 = ox1; }
                 }
             }
             else {
                 if (sec.left) {
-                    p.x2 -= speed
+                    p.x2 += speed
                     if (p.x2 >= ox2) { p.x2 = ox2; }
                 }
                 else {
-                    p.x1 -= speed
+                    p.x1 += speed
                     if (p.x1 >= ox2) { p.x1 = ox2; }
                 }
             }
@@ -194,7 +194,7 @@
                 cy2 = p.y1
             }
             else {
-                cx1 = p.x1 + (0.55 * (p.x2 - p.x1))
+                cx1 = p.x1 + (0.05 * (p.x2 - p.x1))
                 cx2 = p.x2
                 cy1 = p.y2
                 cy2 = p.y2
@@ -252,7 +252,7 @@
         function initonecell(boundx1, boundx2, boundy1, boundy2) {
             let sections = []
             let left, vertical, initspeed
-            if (true) { initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) }
+            if (false) { initverticalcell(sections, boundx1, boundx2, boundy1, boundy2) }
             else { inithorizontalcell(sections, boundx1, boundx2, boundy1, boundy2) }
         }
 
