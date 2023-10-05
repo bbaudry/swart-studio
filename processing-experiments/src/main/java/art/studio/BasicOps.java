@@ -104,6 +104,13 @@ public class BasicOps extends PApplet {
     comment = rAA(21);
     fill(50,100,100);
     text(comment+"><"+revert(comment), 252, y);
+
+    // determine size of canvas with resolution
+    //A2:420 × 594
+    //pixel = dpi * mm / 25.4 mm
+    //w=300*420/25.4=4961
+    //h=300*594/25.4=7016
+
     
     //save and serialize the random numbers that have been generated
     y=y+asciioffset;
