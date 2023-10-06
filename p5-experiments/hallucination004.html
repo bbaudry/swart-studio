@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
     <script src="https://unpkg.com/h264-mp4-encoder/embuild/dist/h264-mp4-encoder.web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5.capture@1.4.1/dist/p5.capture.umd.min.js"></script>
     <style>
         body {
             padding: 0;
@@ -52,6 +53,14 @@
 
 
         function draw() {
+            if (frameCount === 1) {
+            const capture = P5Capture.getInstance();
+            capture.start({
+                format: "gif",
+                framerate: 30,
+                duration: 600,
+            });
+            }
             background(0, 0, 0)
             strokeWeight(5)
             noFill()
