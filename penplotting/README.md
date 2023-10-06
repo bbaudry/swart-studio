@@ -8,6 +8,8 @@ idraw docs and software: https://drive.google.com/drive/folders/1NlCBw1kUjKMBFF7
 
 idraw review @ generativehut: https://www.generativehut.com/post/reviewing-the-idraw-pen-plotter, by [Pierre Paslier](https://www.linkedin.com/in/pierrepaslier/?originalSubdomain=uk)
 
+axidraw Python API: https://axidraw.com/doc/py_api/#introduction
+
 axidraw user manual: https://wiki.evilmadscientist.com/AxiDraw_User_Guide
 
 inkscape and axidraw: https://wiki.evilmadscientist.com/Axidraw_Software_Installation

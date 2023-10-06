@@ -54,22 +54,36 @@
 
 
         function draw() {
-            if(frameCount<=w*h){
-                if(random()<(QV.alcool/100)){
-                    let x = random()*w
-                    let y = random()*h
-                    let diam = random()*QV.acidite
-                    fill(230,100,80)
-                    noStroke()
-                    ellipse(x,y,diam,diam)
-                }
-            }
-            else{
-                noLoop()
-            }
-
+            rect_alcool()
+            circle_alcool()
+            noLoop()
         }
 
+        function circle_alcool(){
+            let cx=w/2
+            let cy=h/2
+            let rad=0.45*w
+            let x1,y1,angle,r
+            for(r=0;r<rad;r++){
+                for(angle=0;angle<360;angle++){
+                    console.log("in circle")
+                    x1=cx+r*cos(radians(angle))
+                    y1=cy+r*sin(radians(angle))
+                    if (random()<QV.glucose){rect(x1,y1,1,1)}
+                }
+            }
+        }
+
+        function rect_alcool(){
+            let i,j;
+            noStroke()
+            fill(230,100,100)
+            for (i=0;i<w;i++){
+                for (j=0;j<h;j++){
+                    if (random()<QV.alcool/100){rect(i,j,1,1)}
+                }
+            }
+        }
 
     </script>
 </body>
