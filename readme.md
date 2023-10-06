@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/software-easter_egg-yellow?style=plastic&labelColor=%23CC44CC&color=%23EEEE77&link=https%3A%2F%2Frethread.art%2Feaster-eggs.pdf)
+
 # Software art studio
 
 In this repo I practice generative art, visuals and sounds, in different languages.
