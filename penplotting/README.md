@@ -1,6 +1,6 @@
 # Pen plotter uunatek idraw on Linux
 
-We have a pen plotter UUNA TEK ([uunatek.com](https://uunatek.com/)), iDraw A3 pen plotter. We want to use it on Linux. Here are some notes.
+We have a pen plotter UUNA TEK ([uunatek.com](https://uunatek.com/)), iDraw 2 A3 pen plotter. We want to use it on Linux. Here are some notes.
 
 ## General design
 
@@ -55,9 +55,9 @@ G00 X0 Y0
  
 ##   Notes
 
+* Version 1.0 of idraw was compatible with EBB commands, not version 2
+* iDraw is not compatible with axidraw software. It does not use the [EBB (EiBotBoard) Command Set](https://evil-mad.github.io/EggBot/ebb.html). [axidraw user manual](https://wiki.evilmadscientist.com/AxiDraw_User_Guide) [inkscape and axidraw]( https://wiki.evilmadscientist.com/Axidraw_Software_Installation)
 * One may do string art: <https://www.youtube.com/watch?v=ymWi15rvTvM>
-
-* iDraw is not compatible with axidraw software. It does not use the [EBB (EiBotBoard) Command Set](https://evil-mad.github.io/EggBot/ebb.html) (may be it does, because [this page](https://uunatek.com/product/idraw-handwriting-drawing-machine/) says "EBBV2.3 Compatible"). [axidraw user manual](https://wiki.evilmadscientist.com/AxiDraw_User_Guide) [inkscape and axidraw]( https://wiki.evilmadscientist.com/Axidraw_Software_Installation)
 
 ## Links:
 
