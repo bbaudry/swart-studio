@@ -5,9 +5,10 @@ We have a pen plotter UUNA TEK ([uunatek.com](https://uunatek.com/)), iDraw A3 p
 ## General design
 
 The pen plotter is connected to the Linux machine via USB, with a serial protocol.
-It uses a language called [g-code](https://en.wikipedia.org/wiki/G-code).
-
 The pen plotter motherboard is called DrawCore, the firmware is based on [grbl](https://github.com/grbl/grbl).
+It uses a language called [g-code](https://en.wikipedia.org/wiki/G-code).
+The spec of the gcode language is documented at <https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md>
+
 
 ## Configuration
 
