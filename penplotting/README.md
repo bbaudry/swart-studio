@@ -39,7 +39,7 @@ Grbl 1.1h DrawCore V2.09 ['$' for help]
 
 ### With raw GCODE and serial communication 
 
-From doc at <https://github.com/gamk67/idraw2linux/blob/925073a5b550bf1b0b20225f7e604967682c622d/README.md>
+See doc at <https://github.com/gamk67/idraw2linux/blob/925073a5b550bf1b0b20225f7e604967682c622d/README.md>
 
 Drawing a square with `tio`:
 
