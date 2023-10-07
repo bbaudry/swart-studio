@@ -74,6 +74,7 @@ G00 X0 Y0
 * drawing tools
   * [vsketch](https://github.com/abey79/vsketch) is a Python generative art toolkit for plotters (API inspired from Processing)
   * [vpype](https://pypi.org/project/vpype/) is the Swiss-Army-knife generative art command-line tool for plotter vector graphics and [vpype-gcode](https://github.com/tatarize/vpype-gcode/)
+  * [whiskers](https://github.com/abey79/vsvg/blob/master/crates/whiskers/README.md) is a Rust-based, Processing-like interactive sketching environment for generative plotter art.
 * other
   * [The fascination of pen plotting, handwriting and spirals](https://www.fxhash.xyz/article/the-fascination-of-pen-plotting-handwriting-and-spirals)
   * Awesome plotter resources <https://github.com/beardicus/awesome-plotters>
