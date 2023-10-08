@@ -54,30 +54,49 @@
 
 
         function draw() {
-            rect_alcool()
-            circle_alcool()
+            earth()
+            solar()
             noLoop()
         }
 
-        function circle_alcool(){
+        function solar(){
             let cx=w/2
-            let cy=h/2
+            let cy=h/2-random()*(h/2-w/2); console.log(cy)
             let rad=0.45*w
-            let x1,y1,angle,r
-            for(r=0;r<rad;r++){
-                for(angle=0;angle<360;angle++){
-                    console.log("in circle")
+            let surf = PI*rad*rad
+            let x1,y1,angle,i,r
+            fill(30,100,100)
+            noStroke()
+            for(i=0;i<surf;i++){
+                if (random()<QV.volatile){
+                    angle = random()*360
+                    r=random()*rad
                     x1=cx+r*cos(radians(angle))
                     y1=cy+r*sin(radians(angle))
-                    if (random()<QV.glucose){rect(x1,y1,1,1)}
+                    rect(x1,y1,1,1)
                 }
             }
         }
 
-        function rect_alcool(){
+        function earth(){
+            fill(230,100,100)
+            noStroke()
+            rect(0,0,w,h)
+            stroke(230,80,100)
+            let step
+            let offset=QV.acidite*7
+            console.log(Math.floor(QV.alcool))
+            strokeWeight(7)
+            for(let i=0;i<Math.floor(QV.alcool);i++){
+                step = i*offset
+                bezier(50+step,42, 0,400, 50+step+187,500,0+step,h-42+step)
+            }
+        }
+
+        function back(){
             let i,j;
             noStroke()
-            fill(230,100,100)
+            fill(210,100,100)
             for (i=0;i<w;i++){
                 for (j=0;j<h;j++){
                     if (random()<QV.alcool/100){rect(i,j,1,1)}
