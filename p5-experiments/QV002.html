@@ -54,7 +54,8 @@
 
 
         function draw() {
-            earth()
+            noFill(); stroke(0,0,0); rect(0,0,w,h)
+            cubicfield()
             solar()
             noLoop()
         }
@@ -63,7 +64,7 @@
             let cx=w/2
             let cy=h/2-random()*(h/2-w/2); console.log(cy)
             let rad=0.45*w
-            let surf = PI*rad*rad
+            let surf = PI*rad*rad/10
             let x1,y1,angle,i,r
             fill(30,100,100)
             noStroke()
@@ -76,6 +77,37 @@
                     rect(x1,y1,1,1)
                 }
             }
+        }
+
+        function cubicfield(){            
+            noStroke()
+            let ratio = QV.So2/100
+
+            let cx = random()*w
+            let cy = random()*h*ratio
+            let x1,x2,y1,y2;
+            x1=0;y1=cy;x2=0;y2=y1+ random()*h*ratio;
+            
+            while (y2<h){
+                let sat = 80+random()*20
+                let bright =  20+random()*80
+                fill(230,sat,bright)
+                triangle(x1,y1,cx,cy,x2,y2);
+                y1=y2
+                y2=y1+ random()*h*ratio
+            }
+            triangle(x1,y1,cx,cy,x2,h);
+            x2=x1+ random()*h*ratio;
+            y1=h; y2=h
+            while (x2<w){
+                let sat = 20+random()*80
+                let bright =  20+random()*80
+                fill(230,sat,bright)
+                triangle(x1,y1,cx,cy,x2,y2);
+                x1=x2
+                x2=x1+ random()*h*ratio;
+            }      
+            triangle(x1,y1,cx,cy,w,y2);
         }
 
         function earth(){
