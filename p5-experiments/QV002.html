@@ -25,8 +25,7 @@
         var res = 0.6
         var w = 826*res;
         var h = 1299*res;
-        var cnv;
-        var bowie;
+        var cnv, bowie
         var QV = {
             "glucose": 0.57, //g/L
             "alcool" : 15.57, //%vol
@@ -60,7 +59,6 @@
             btn = createButton("generate new artwork");
             placebtn();
             btn.mouseClicked(draw);
-
         }
 
         function centerCanvas() {
@@ -97,7 +95,7 @@
             let cy=h/2-random()*(h/2-w/2)*0.5; console.log(cy)
             let rad=0.45*w
             let surf = PI*rad*rad
-            let x1,y1,angle,i,r
+            let x1,y1,angle,i,r,n
             fill(palette.first.hue,palette.first.sat,palette.first.bri)
             noStroke()
             for(i=0;i<surf;i++){
