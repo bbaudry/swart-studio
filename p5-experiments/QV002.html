@@ -64,7 +64,7 @@
             let cx=w/2
             let cy=h/2-random()*(h/2-w/2); console.log(cy)
             let rad=0.45*w
-            let surf = PI*rad*rad/10
+            let surf = PI*rad*rad
             let x1,y1,angle,i,r
             fill(30,100,100)
             noStroke()
@@ -108,6 +108,18 @@
                 x2=x1+ random()*h*ratio;
             }      
             triangle(x1,y1,cx,cy,w,y2);
+            x1=w;x2=w;
+            y1=h; y2=y1- random()*h*ratio
+            while (y2>0){
+                let sat = 20+random()*80
+                let bright =  20+random()*80
+                fill(230,sat,bright)
+                triangle(x1,y1,cx,cy,x2,y2);
+                y1=y2; 
+                y2=y1- random()*h*ratio
+                console.log("draw at "+y2)
+            }      
+//            triangle(x1,y1,cx,cy,w,y2);
         }
 
         function earth(){
