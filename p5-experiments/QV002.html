@@ -78,7 +78,7 @@
         function draw() {
             noFill(); stroke(0,0,0); rect(0,0,w,h)
             cubicfield()
-            solar_spiral()
+            solar_spiral_2()
             qv()
             noLoop()
         }
@@ -111,30 +111,51 @@
             }
         }
 
-        function solar_spiral(){
+        function solar_spiral_1(){
             let cx=w/2
             let cy=h/2-random()*(h/2-w/2)*0.5; console.log(cy)
             let rad=0.45*w
             let surf = PI*rad*rad
             let x1,y1,angle,i,r,n
-            fill(palette.first.hue,palette.first.sat,palette.first.bri)
-            noStroke()
+            stroke(palette.first.hue,palette.first.sat,palette.first.bri)
+            noFill(); strokeWeight(1)
             r=0
             angle=random()*360
             for(i=0;i<surf;i++){
                 if(r>=rad){
                     r=0
                     angle=random()*360   
-                    //cx+=noise()
-                    //cy+=noise()
-                    //xoff+=0.1     
                 }
-                if (noise(xoff)<QV.volatile){
+                if (noise(xoff)<QV.alcool/100){
                     x1=cx+r*cos(radians(angle))
                     y1=cy+r*sin(radians(angle))
-                    rect(x1,y1,1,1)
-                    console.log(noise(xoff))
-                   
+                    rect(x1,y1,QV.alcool,QV.alcool)                   
+                }
+                xoff+=0.1 
+                angle += 1
+                r+=0.5
+            }
+        }
+
+        function solar_spiral_2(){
+            let cx=w/2
+            let cy=h/2-random()*(h/2-w/2)*0.5; console.log(cy)
+            let rad=0.45*w
+            let surf = PI*rad*rad
+            let x1,y1,angle,i,r,n
+            stroke(palette.first.hue,palette.first.sat,palette.first.bri)
+            noFill(); strokeWeight(1)
+            r=0
+            angle=random()*360
+            for(i=0;i<surf;i++){
+                if(r>=rad){
+                    r=0
+                    angle=random()*360   
+                }
+                if (noise(xoff)<QV.volatile*QV.glucose){
+                    x1=cx+r*cos(radians(angle))
+                    y1=cy+r*sin(radians(angle))
+                    rect(x1,y1,1,1)                   
                 }
                 xoff+=0.1 
                 angle += 1
