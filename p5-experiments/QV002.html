@@ -25,7 +25,7 @@
         var res = 0.6
         var w = 826*res;
         var h = 1299*res;
-        var cnv, bowie
+        var cnv, bowie, xoff
         var QV = {
             "glucose": 0.57, //g/L
             "alcool" : 15.57, //%vol
@@ -59,6 +59,7 @@
             btn = createButton("generate new artwork");
             placebtn();
             btn.mouseClicked(draw);
+            xoff=0.0
         }
 
         function centerCanvas() {
@@ -77,7 +78,7 @@
         function draw() {
             noFill(); stroke(0,0,0); rect(0,0,w,h)
             cubicfield()
-            solar()
+            solar_spiral()
             qv()
             noLoop()
         }
@@ -106,6 +107,37 @@
                     y1=cy+r*sin(radians(angle))
                     rect(x1,y1,1,1)
                 }
+            }
+        }
+
+        function solar_spiral(){
+            let cx=w/2
+            let cy=h/2-random()*(h/2-w/2)*0.5; console.log(cy)
+            let rad=0.45*w
+            let surf = PI*rad*rad
+            let x1,y1,angle,i,r,n
+            fill(palette.first.hue,palette.first.sat,palette.first.bri)
+            noStroke()
+            r=0
+            angle=random()*360
+            for(i=0;i<surf;i++){
+                if(r>=rad){
+                    r=0
+                    angle=random()*360   
+                    //cx+=noise()
+                    //cy+=noise()
+                    //xoff+=0.1     
+                }
+                if (noise(xoff)<QV.volatile){
+                    x1=cx+r*cos(radians(angle))
+                    y1=cy+r*sin(radians(angle))
+                    rect(x1,y1,1,1)
+                    console.log(noise(xoff))
+                   
+                }
+                xoff+=0.1 
+                angle += 1
+                r+=0.5
             }
         }
 
