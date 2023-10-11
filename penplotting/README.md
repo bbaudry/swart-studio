@@ -10,13 +10,9 @@ It uses a language called [g-code](https://en.wikipedia.org/wiki/G-code).
 The spec of the gcode language is documented at <https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md>
 
 
-<<<<<<< HEAD
 axidraw Python API: https://axidraw.com/doc/py_api/#introduction
 
 axidraw user manual: https://wiki.evilmadscientist.com/AxiDraw_User_Guide
-=======
-## Configuration
->>>>>>> 9b6b9cd29b33a8509e989de67665c192075e55bb
 
 Identify the USB device that is automatically created when you plug in the USB cable.
 
