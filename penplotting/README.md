@@ -75,7 +75,7 @@ Vpype works out-of-the-box to do two things:
 * low level gcode
   * [Gcmc](https://www.vagrearg.org/content/gcmc) is a front-end domain-specific language for generating G-code
   * [gcode-cli](https://github.com/hzeller/gcode-cli) command line tool to send gcode to serial pen plotter
-  * [Juicy-GCode](https://github.com/domoszlai/juicy-gcode) is a command-line application that converts SVG files to GCode
+  * [Juicy-GCode](https://github.com/domoszlai/juicy-gcode) is a command-line application that converts SVG files to GCode ([cannot build for now](https://github.com/domoszlai/juicy-gcode/issues/28))
   * [v-plotter](https://github.com/domoszlai/v-plotter): A pen plotter simulator
   * [inkscape-grbl](https://github.com/mahtDFR/inkscape-grbl) save Inkscape drawings as G-Code files
   * [gcode-generative-for-processing](https://github.com/o0morgan0o/gcode-generative-for-processing)
