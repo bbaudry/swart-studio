@@ -10,9 +10,7 @@ It uses a language called [g-code](https://en.wikipedia.org/wiki/G-code).
 The spec of the gcode language is documented at <https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md>
 
 
-axidraw Python API: https://axidraw.com/doc/py_api/#introduction
-
-axidraw user manual: https://wiki.evilmadscientist.com/AxiDraw_User_Guide
+## Configuration
 
 Identify the USB device that is automatically created when you plug in the USB cable.
 
@@ -60,6 +58,12 @@ G00 X0 Y0
 * Version 1.0 of idraw was compatible with EBB commands, not version 2
 * iDraw is not compatible with axidraw software. It does not use the [EBB (EiBotBoard) Command Set](https://evil-mad.github.io/EggBot/ebb.html). [axidraw user manual](https://wiki.evilmadscientist.com/AxiDraw_User_Guide) [inkscape and axidraw]( https://wiki.evilmadscientist.com/Axidraw_Software_Installation)
 * One may do string art: <https://www.youtube.com/watch?v=ymWi15rvTvM>
+
+### Vpype
+
+Vpype works out-of-the-box to do two things:
+- post-process and optimize SVG files, see doc
+- generate Gcode with vpyope-gcode `vpype read input.svg gwrite --profile gcode output.gcode` [doc](https://pypi.org/project/vpype-gcode/)
 
 ## Links:
 
