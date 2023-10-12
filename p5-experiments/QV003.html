@@ -98,14 +98,15 @@
 
         function noisefield(){
             noStroke()
-            let xoff, yoff, bri
+            let xoff, yoff, bri, step
             yoff=0.0
-            for (let j=0;j<h;j++){
+            step=2
+            for (let j=0;j<h;j+=step){
                 xoff=0.0
-                for (let i=0;i<w;i++){
-                    bri=63+noise(xoff,yoff)*21
-                    fill(palette.second.hue,palette.second.sat,bri)
-                    rect(i,j,3,3)
+                for (let i=0;i<w;i+=step){
+                    bri=72+noise(xoff,yoff)*28
+                    fill(palette.second.hue,bri,100)
+                    rect(i,j,step,step)
                     xoff+=QV.pH
                 }
                 yoff+=QV.pH
