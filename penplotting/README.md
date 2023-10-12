@@ -10,9 +10,7 @@ It uses a language called [g-code](https://en.wikipedia.org/wiki/G-code).
 The spec of the gcode language is documented at <https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md>
 
 
-axidraw Python API: https://axidraw.com/doc/py_api/#introduction
-
-axidraw user manual: https://wiki.evilmadscientist.com/AxiDraw_User_Guide
+## Configuration
 
 Identify the USB device that is automatically created when you plug in the USB cable.
 
@@ -61,6 +59,12 @@ G00 X0 Y0
 * iDraw is not compatible with axidraw software. It does not use the [EBB (EiBotBoard) Command Set](https://evil-mad.github.io/EggBot/ebb.html). [axidraw user manual](https://wiki.evilmadscientist.com/AxiDraw_User_Guide) [inkscape and axidraw]( https://wiki.evilmadscientist.com/Axidraw_Software_Installation)
 * One may do string art: <https://www.youtube.com/watch?v=ymWi15rvTvM>
 
+### Vpype
+
+Vpype works out-of-the-box to do two things:
+- post-process and optimize SVG files, see doc
+- generate Gcode with vpyope-gcode `vpype read input.svg gwrite --profile gcode output.gcode` [doc](https://pypi.org/project/vpype-gcode/)
+
 ## Links:
 
 * general idraw:
@@ -71,7 +75,7 @@ G00 X0 Y0
 * low level gcode
   * [Gcmc](https://www.vagrearg.org/content/gcmc) is a front-end domain-specific language for generating G-code
   * [gcode-cli](https://github.com/hzeller/gcode-cli) command line tool to send gcode to serial pen plotter
-  * [Juicy-GCode](https://github.com/domoszlai/juicy-gcode) is a command-line application that converts SVG files to GCode
+  * [Juicy-GCode](https://github.com/domoszlai/juicy-gcode) is a command-line application that converts SVG files to GCode ([cannot build for now](https://github.com/domoszlai/juicy-gcode/issues/28))
   * [v-plotter](https://github.com/domoszlai/v-plotter): A pen plotter simulator
   * [inkscape-grbl](https://github.com/mahtDFR/inkscape-grbl) save Inkscape drawings as G-Code files
   * [gcode-generative-for-processing](https://github.com/o0morgan0o/gcode-generative-for-processing)
@@ -79,6 +83,7 @@ G00 X0 Y0
   * [vsketch](https://github.com/abey79/vsketch) is a Python generative art toolkit for plotters (API inspired from Processing)
   * [vpype](https://pypi.org/project/vpype/) is the Swiss-Army-knife generative art command-line tool for plotter vector graphics and [vpype-gcode](https://github.com/tatarize/vpype-gcode/)
   * [whiskers](https://github.com/abey79/vsvg/blob/master/crates/whiskers/README.md) is a Rust-based, Processing-like interactive sketching environment for generative plotter art.
+  * [pypotrace](https://github.com/tatarize/potrace) transforms bitmaps into vector graphics , port of [potrace](https://potrace.sourceforge.net/)
 * other
   * [The fascination of pen plotting, handwriting and spirals](https://www.fxhash.xyz/article/the-fascination-of-pen-plotting-handwriting-and-spirals)
   * Awesome plotter resources <https://github.com/beardicus/awesome-plotters>
