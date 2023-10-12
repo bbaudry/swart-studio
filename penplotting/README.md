@@ -76,8 +76,9 @@ G00 X0 Y0
   * [idraw review @ generativehut](https://www.generativehut.com/post/reviewing-the-idraw-pen-plotter), by [Pierre Paslier](https://www.linkedin.com/in/pierrepaslier/?originalSubdomain=uk)
   * Review at generativehut <https://www.generativehut.com/post/reviewing-the-idraw-pen-plotter>
 * low level gcode
-  * [vpype](https://pypi.org/project/vpype/) is the Swiss-Army-knife generative art command-line tool for plotter vector graphics and [vpype-gcode](https://github.com/tatarize/vpype-gcode/)
+  * [vpype-gcode](https://github.com/tatarize/vpype-gcode/) to be used with [vpype](https://pypi.org/project/vpype/)
   * [Juicy-GCode](https://github.com/domoszlai/juicy-gcode) is a command-line application that converts SVG files to GCode
+  * [svg2gcode](https://github.com/vishpat/svg2gcode) -> [svg2gcode_grbl](https://github.com/arcadeperfect/svg2gcode_grbl) -> [svg2grbl](https://github.com/nknotts/svg2grbl)
   * [gcode-cli](https://github.com/hzeller/gcode-cli) command line tool to send gcode to serial pen plotter
   * [inkscape-grbl](https://github.com/mahtDFR/inkscape-grbl) save Inkscape drawings as G-Code files
   * [gcode-generative-for-processing](https://github.com/o0morgan0o/gcode-generative-for-processing)
