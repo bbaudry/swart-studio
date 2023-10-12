@@ -76,7 +76,7 @@
 
 
         function draw() {
-            trifield()
+            noisefield()
             solar_spiral_2()
             qv()
             noLoop()
@@ -94,6 +94,22 @@
             triangle(0,0,w,0,0,h)
             fill(palette.second.hue,palette.second.bri,palette.second.bri)
             triangle(w,0,0,h,w,h)
+        }
+
+        function noisefield(){
+            noStroke()
+            let xoff, yoff, bri
+            yoff=0.0
+            for (let j=0;j<h;j++){
+                xoff=0.0
+                for (let i=0;i<w;i++){
+                    bri=63+noise(xoff,yoff)*21
+                    fill(palette.second.hue,palette.second.sat,bri)
+                    rect(i,j,3,3)
+                    xoff+=0.01
+                }
+                yoff+=0.01
+            }
         }
 
         function qv(){
