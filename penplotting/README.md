@@ -76,17 +76,26 @@ G00 X0 Y0
   * [idraw review @ generativehut](https://www.generativehut.com/post/reviewing-the-idraw-pen-plotter), by [Pierre Paslier](https://www.linkedin.com/in/pierrepaslier/?originalSubdomain=uk)
   * Review at generativehut <https://www.generativehut.com/post/reviewing-the-idraw-pen-plotter>
 * low level gcode
-  * [Gcmc](https://www.vagrearg.org/content/gcmc) is a front-end domain-specific language for generating G-code
-  * [gcode-cli](https://github.com/hzeller/gcode-cli) command line tool to send gcode to serial pen plotter
+  * [vpype](https://pypi.org/project/vpype/) is the Swiss-Army-knife generative art command-line tool for plotter vector graphics and [vpype-gcode](https://github.com/tatarize/vpype-gcode/)
   * [Juicy-GCode](https://github.com/domoszlai/juicy-gcode) is a command-line application that converts SVG files to GCode
-  * [v-plotter](https://github.com/domoszlai/v-plotter): A pen plotter simulator
+  * [gcode-cli](https://github.com/hzeller/gcode-cli) command line tool to send gcode to serial pen plotter
   * [inkscape-grbl](https://github.com/mahtDFR/inkscape-grbl) save Inkscape drawings as G-Code files
   * [gcode-generative-for-processing](https://github.com/o0morgan0o/gcode-generative-for-processing)
+  * [Gcmc](https://www.vagrearg.org/content/gcmc) is a front-end domain-specific language for generating G-code
+* simulators
+  * <https://ncviewer.com/>
+  * <https://nraynaud.github.io/webgcode/> shows bounds and duration 
+  * <https://riverbendmath.org/modules/XY_Plotter/Simulator/>
+  * [v-plotter](https://github.com/domoszlai/v-plotter): A pen plotter simulator
 * drawing tools
   * [vsketch](https://github.com/abey79/vsketch) is a Python generative art toolkit for plotters (API inspired from Processing)
-  * [vpype](https://pypi.org/project/vpype/) is the Swiss-Army-knife generative art command-line tool for plotter vector graphics and [vpype-gcode](https://github.com/tatarize/vpype-gcode/)
   * [whiskers](https://github.com/abey79/vsvg/blob/master/crates/whiskers/README.md) is a Rust-based, Processing-like interactive sketching environment for generative plotter art.
   * [pypotrace](https://github.com/tatarize/potrace) transforms bitmaps into vector graphics , port of [potrace](https://potrace.sourceforge.net/)
+* samples:
+  * https://github.com/rsimmons/isovoxel/blob/master/docs/
+  * https://github.com/abey79/sketches
+  * https://github.com/Notgnoshi/generative/blob/main/examples/
+
 * other
   * [The fascination of pen plotting, handwriting and spirals](https://www.fxhash.xyz/article/the-fascination-of-pen-plotting-handwriting-and-spirals)
   * Awesome plotter resources <https://github.com/beardicus/awesome-plotters>
