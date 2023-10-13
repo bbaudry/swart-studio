@@ -103,6 +103,7 @@ G00 X0 Y0
   * Awesome plotter resources <https://github.com/beardicus/awesome-plotters>
   * [DrawingBotV3](https://github.com/SonarSonic/DrawingBotV3) is a software for converting images
   * [Making Machines that Make: Object-Oriented Hardware Meets Object-Oriented Software](http://infosyncratic.nl/peek-making-machines.pdf)
+  * [Machine agency](https://depts.washington.edu/machines/) Our work harnesses the precision of machines for the creativity of individuals.
 
 ## Help
 
