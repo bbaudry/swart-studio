@@ -135,6 +135,7 @@ One can change the size of the artwork by setting the density with `-d 32` (defa
   * <https://riverbendmath.org/modules/XY_Plotter/Simulator/>
   * [v-plotter](https://github.com/domoszlai/v-plotter): A pen plotter simulator
 * drawing tools
+  * [p5.js-svg](https://github.com/zenozeng/p5.js-svg)
   * [vsketch](https://github.com/abey79/vsketch) is a Python generative art toolkit for plotters (API inspired from Processing)
   * [whiskers](https://github.com/abey79/vsvg/blob/master/crates/whiskers/README.md) is a Rust-based, Processing-like interactive sketching environment for generative plotter art.
   * [DrawingBotV3](https://github.com/SonarSonic/DrawingBotV3) is a software for converting bitmap images to vector art
