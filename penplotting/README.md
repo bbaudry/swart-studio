@@ -32,6 +32,8 @@ $ tio -e /dev/ttyACM0
 [tio 16:15:29] Connected
 
 Grbl 1.1h DrawCore V2.09 ['$' for help]
+
+
 ```
 
 
@@ -45,6 +47,9 @@ See doc at <https://github.com/gamk67/idraw2linux/blob/925073a5b550bf1b0b20225f7
 Drawing a square with `tio`:
 
 ```
+; pen down
+G00 Z5
+; draw a square
 G00 X0 Y100
 G00 X100 Y100
 G00 X100 Y0
