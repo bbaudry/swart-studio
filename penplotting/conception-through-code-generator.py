@@ -18,7 +18,7 @@ def generate_gcode_line(x_start, y_start, x_end, y_end):
     # Pen down
     gcode.append(PENDOWN)
     # Move to end point
-    gcode.append(f'G0X{x_end} Y{y_end}')
+    gcode.append(f'G1X{x_end} Y{y_end}')
     return gcode
 
 def generate_random_coordinates():
