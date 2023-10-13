@@ -92,6 +92,7 @@ G00 X0 Y0
   * [vsketch](https://github.com/abey79/vsketch) is a Python generative art toolkit for plotters (API inspired from Processing)
   * [whiskers](https://github.com/abey79/vsvg/blob/master/crates/whiskers/README.md) is a Rust-based, Processing-like interactive sketching environment for generative plotter art.
   * [pypotrace](https://github.com/tatarize/potrace) transforms bitmaps into vector graphics , port of [potrace](https://potrace.sourceforge.net/)
+  * [p5.lab](https://github.com/machineagency/p5.fab) A p5js library for digital fabrication
 * samples:
   * https://github.com/rsimmons/isovoxel/blob/master/docs/
   * https://github.com/abey79/sketches
@@ -100,7 +101,8 @@ G00 X0 Y0
 * other
   * [The fascination of pen plotting, handwriting and spirals](https://www.fxhash.xyz/article/the-fascination-of-pen-plotting-handwriting-and-spirals)
   * Awesome plotter resources <https://github.com/beardicus/awesome-plotters>
-  * [DrawingBotV3](https://github.com/SonarSonic/DrawingBotV3) is a software for converting images 
+  * [DrawingBotV3](https://github.com/SonarSonic/DrawingBotV3) is a software for converting images
+  * [Making Machines that Make: Object-Oriented Hardware Meets Object-Oriented Software](http://infosyncratic.nl/peek-making-machines.pdf)
 
 ## Help
 
