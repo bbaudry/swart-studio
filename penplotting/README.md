@@ -114,12 +114,10 @@ One can change the size of the artwork by setting the density with `-d 32` (defa
 ## Links:
 
 * general idraw:
-  * uunatek doc, see <https://github.com/UUNATEK/iDraw-Pen-Plotter>
-  * idraw docs and software: https://drive.google.com/drive/folders/1NlCBw1kUjKMBFF7N0A6ynWSa8dYMOfuo
+  * uunatek official doc, see [github](https://github.com/UUNATEK/iDraw-Pen-Plotter>) and [drive](https://drive.google.com/drive/folders/1NlCBw1kUjKMBFF7N0A6ynWSa8dYMOfuo)
   * [idraw review @ generativehut](https://www.generativehut.com/post/reviewing-the-idraw-pen-plotter), by [Pierre Paslier](https://www.linkedin.com/in/pierrepaslier/?originalSubdomain=uk)
-  * Review at generativehut <https://www.generativehut.com/post/reviewing-the-idraw-pen-plotter>
 * controllers
-  * [tio](https://github.com/tio/tio) can be used to send gcode directly to the plotter
+  * [tio](https://github.com/tio/tio) can be used to send gcode directly to the plotter via usb serial
 * gcode tech
   * [vpype-gcode](https://github.com/tatarize/vpype-gcode/) to be used with [vpype](https://pypi.org/project/vpype/)
   * [Juicy-GCode](https://github.com/domoszlai/juicy-gcode) is a command-line application that converts SVG files to GCode
