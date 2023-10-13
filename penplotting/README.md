@@ -41,11 +41,13 @@ Grbl 1.1h DrawCore V2.09 ['$' for help]
 * `G90` Set to absolute coordinate mode
 * `G91` Set to relative coordinate mode (from its where now)
 * `G92 X0Y0Z0` save the current location of the head as (0,0,0)
-
-precision: hundredth of millimeter
+* `G02/G03` instructs the CNC machine to move along a Circular Arc from its current position to a new coordinate. The new coordinate can be absolute or relative, depending on the effective mode (G90 or G91). In G02, the movement will be in a clockwise (CW) direction. in G03 the movement will ve in counter-clockwise (CCW). ([source](https://www.machiningdoctor.com/gcodes/g2-3-circular/))
+  * Version 1 – “R” Syntax: `G02/G03 X12.5 Y14.7 R2.0`; X, Y – The target coordinates at the end of the movement. R – The arc’s radius.
+  * Version 2 – “Ijk” Syntax: `G02/G03 X12.5 Y14.7 I1.0 J2.0 F0.2`; X, Y – The target coordinates at the end of the movement. I, J – The arc’s center point relative to X, Y.
+* precision: hundredth of millimeter
 `G00 X0.1 Y0.1`, `G00 X0.01 Y0.01`
 
-
+See also <https://www.machiningdoctor.com/gcodes/>
 
 
 ### With raw GCODE and serial communication via tio
