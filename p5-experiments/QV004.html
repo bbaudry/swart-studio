@@ -108,18 +108,20 @@
         }
 
         function drawfield(){
-            noFill()
-            stroke(50,100,100)
-            
+            noStroke()
+            let hu;
+            let off=7
             for(let i=0;i<field.length;i++){
                 console.log(field[i].x4)
-                quad(field[i].x1,field[i].y1,field[i].x2,field[i].y2,field[i].x3,field[i].y3,field[i].x4,field[i].y4)
+                hu=(340+random(40))%360
+            fill(hu,100,100)
+                quad(field[i].x1+random(-off,off),field[i].y1+random(-off,off),field[i].x2+random(-off,off),field[i].y2+random(-off,off),field[i].x3+random(-off,off),field[i].y3+random(-off,off),field[i].x4+random(-off,off),field[i].y4+random(-off,off))
             }
         }
 
 
         function draw() {
-            background(0,0,0)
+            background(230,100,100)
             drawfield()
             qv()
             noLoop()
