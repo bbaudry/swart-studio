@@ -147,7 +147,7 @@ One can change the size of the artwork by setting the density with `-d 32` (defa
 * other
   * [The fascination of pen plotting, handwriting and spirals](https://www.fxhash.xyz/article/the-fascination-of-pen-plotting-handwriting-and-spirals)
   * Awesome plotter resources <https://github.com/beardicus/awesome-plotters>
-
+  * [Towards Foundational AI Models for Additive Manufacturing: Language Models for G-Code Debugging, Manipulation, and Comprehension. 2023](http://arxiv.org/pdf/2309.02465)
 ## Help
 
 ```
