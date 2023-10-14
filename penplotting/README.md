@@ -140,6 +140,7 @@ One can change the size of the artwork by setting the density with `-d 32` (defa
   * [whiskers](https://github.com/abey79/vsvg/blob/master/crates/whiskers/README.md) is a Rust-based, Processing-like interactive sketching environment for generative plotter art.
   * [DrawingBotV3](https://github.com/SonarSonic/DrawingBotV3) is a software for converting bitmap images to vector art
   * [pypotrace](https://github.com/tatarize/potrace) transforms bitmaps into vector graphics , port of [potrace](https://potrace.sourceforge.net/)
+  * [p5.lab](https://github.com/machineagency/p5.fab) A p5js library for digital fabrication
 * samples:
   * https://github.com/rsimmons/isovoxel/blob/master/docs/
   * https://github.com/abey79/sketches
@@ -147,6 +148,8 @@ One can change the size of the artwork by setting the density with `-d 32` (defa
 * other
   * [The fascination of pen plotting, handwriting and spirals](https://www.fxhash.xyz/article/the-fascination-of-pen-plotting-handwriting-and-spirals)
   * Awesome plotter resources <https://github.com/beardicus/awesome-plotters>
+  * [Making Machines that Make: Object-Oriented Hardware Meets Object-Oriented Software](http://infosyncratic.nl/peek-making-machines.pdf)
+  * [Machine agency](https://depts.washington.edu/machines/) Our work harnesses the precision of machines for the creativity of individuals.
   * [Towards Foundational AI Models for Additive Manufacturing: Language Models for G-Code Debugging, Manipulation, and Comprehension. 2023](http://arxiv.org/pdf/2309.02465)
 ## Help
 
