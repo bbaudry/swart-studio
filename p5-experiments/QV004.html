@@ -75,20 +75,22 @@
             btn.position(x-200, y+h/2)
         }
 
-        field=[]
+        var field=[]
         function initfield(){
+            let step = 1/QV.alcool
+            let inity = 0.2*h
             let x1,x2,y1,y2
-            x1=0; y1=0; x2=0; y2=0
+            x1=0; y1=inity; x2=0; y2=inity
             while(x2<w){
-                x2=x1+random(0.1*w,0.2*w)
+                x2=x1+random(step*w,2*step*w)
                 while(y2<h){
-                    y2=y1+random(0.1*h,0.2*h)
+                    y2=y1+random(step*h,2*step*h)
                     parcelle(x1,y1,x2,y2)
                     y1=y2
                     
                 }
                 x1=x2
-                y2=0;y1=0
+                y1=inity;y2=inity
             }
         }
 
@@ -110,11 +112,10 @@
         function drawfield(){
             noStroke()
             let hu;
-            let off=7
+            let off=QV.acidite  
             for(let i=0;i<field.length;i++){
-                console.log(field[i].x4)
                 hu=(random(33))%360
-            fill(hu,100,100)
+                fill(hu,100,100)
                 quad(field[i].x1+random(-off,off),field[i].y1+random(-off,off),field[i].x2+random(-off,off),field[i].y2+random(-off,off),field[i].x3+random(-off,off),field[i].y3+random(-off,off),field[i].x4+random(-off,off),field[i].y4+random(-off,off))
             }
         }
