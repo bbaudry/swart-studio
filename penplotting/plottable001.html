@@ -16,12 +16,21 @@
 </head>
 
 <body>
+    <script type="module">
+        import init, { svg2gcode } from "./web_svg2gcode.js";
+        var svg2gcode_wasm;
+        init().then(() => {
+            // Register the callback for later.
+            
+            window.svg2gcode_wasm = svg2gcode;
+        })
+    </script>
     <script>
         //global vars for the whole piece
     
         var w = 900;
         var h = 900;
-        var cnv,genbtn,svgbtn;
+        var cnv,genbtn,svgbtn,gcodebtn;
         var maxstroke = 3
         //sectionresolution and maxsizesection control the density of the section. They are good in the range [7,42] 
         var sectionresolution = 2;
@@ -42,15 +51,19 @@
 
             genbtn = createButton("add one layer");
             svgbtn = createButton("save svg");
+            gcodebtn = createButton("generate gcode");
+
             placebtn();
             genbtn.mouseClicked(draw);
             svgbtn.mouseClicked(savesvg);
+            gcodebtn.mouseClicked(getgcode)
         }
         function placebtn() {
             var x = (windowWidth - w) / 2;
             var y = (windowHeight - h) / 2;
             genbtn.position(x-200, y+h/2)
             svgbtn.position(x-200, y+h/2+42)
+            gcodebtn.position(x - 200, y +h/2+84 )
         }
         function centerCanvas() {
             var x = (windowWidth - w) / 2;
@@ -59,6 +72,38 @@
         }
         function savesvg(){
             save("plottable001.svg");
+        }
+        // This function creates an artificial hidden button to mimic downloading a file.
+        // Usefull for the function below that generates the gcode.
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+        function getgcode(){
+            if(window.svg2gcode_wasm){
+                // Get the SVG content
+                let svgelement = document.getElementsByTagName("svg");
+                if(svgelement.length > 0){
+                    let content = svgelement[0].outerHTML;
+                    let gcode = window.svg2gcode_wasm(content);
+
+                    // Now create a file for download
+                    download("plot.gcode", gcode)
+                }
+                else {
+                    console.warn("There is no svg element")
+                }
+            } else {
+                console.warn("The Wasm module is not initialized yet")
+            }
         }
         var drawindex = 0
         var layers = 0
@@ -245,16 +290,6 @@
         }
     </script>
 
-    <script type="module">
-        import init, { svg2gcode } from "./web_svg2gcode.js";
-        init().then(() => {
-            let svg_content = document.getElementsByTagName("svg").innerHTML;
-            console.log(svg_content);
-            console.log("Calling the converter");
-            let gcode = svg2gcode(svg_content);
-            console.log(gcode);
-        });
-    </script>
 </body>
 
 </html>
