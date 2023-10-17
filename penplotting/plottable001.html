@@ -244,6 +244,17 @@
             centerCanvas();
         }
     </script>
+
+    <script type="module">
+        import init, { svg2gcode } from "./web_svg2gcode.js";
+        init().then(() => {
+            let svg_content = document.getElementsByTagName("svg").innerHTML;
+            console.log(svg_content);
+            console.log("Calling the converter");
+            let gcode = svg2gcode(svg_content);
+            console.log(gcode);
+        });
+    </script>
 </body>
 
 </html>

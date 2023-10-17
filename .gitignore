@@ -1,4 +1,4 @@
 *.class
 rust-fragments/target/*.*
 penplotting/web_svg2gcode/target
-penplotting/web_svg2gcode/pkg/*.d.ts
+penplotting/*.d.ts

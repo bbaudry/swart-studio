@@ -8,7 +8,7 @@ This crate is meant to create a JS-Wasm bridge for SVG to GCODE encoding. The `l
 
 ## How to build
 
-- Build the project for web usage, `wasm-pack build --target web`
+- Build the project for web usage, `wasm-pack build --target web --no-pack --no-typescript --out-dir ../`
 - Collect the JS + Wasm code in the `pkg` folder
 
 ## How to use it
@@ -16,7 +16,7 @@ This crate is meant to create a JS-Wasm bridge for SVG to GCODE encoding. The `l
 In your page copy and integrate the following code as a script. See `plottable001.html` for a full integration example.
 
 ```js
-    import init, { svg2gcode } from "./pkg/simplesvg.js";
+    import init, { svg2gcode } from "./web_svg2gcode.js";
     init().then(() => {
         let svg_content = <read_from_html_element>;
         console.log(svg_content);
