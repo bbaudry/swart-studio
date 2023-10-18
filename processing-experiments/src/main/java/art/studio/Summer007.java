@@ -52,7 +52,7 @@ public class Summer007 extends PApplet {
      */
     @Override
     public void draw() {
-        if (frameCount<840){
+        if(frameCount<840){
         background(0, 0, 0);
         noFill();
         stroke(0, 0, 100);
