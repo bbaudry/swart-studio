@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="libraries/p5.js"></script>
+    <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
     <style>
         body {
             padding: 0;
@@ -19,11 +20,19 @@
         var w// = 900 
         var h// = 900 
         var cnv
+        // the frame rate (frames per second)
+        var fps = 30;
+        // the canvas capturer instance
+        var capturer = new CCapture({ format: 'png', framerate: fps });
+        // duration in milliseconds
+        var duration = 3000;
+        var startMillis;
 
         function setup() {
             w = windowHeight
             h = windowHeight
             cnv = createCanvas(w, h);
+            frameRate(fps)
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             background(0, 0, 0)
@@ -50,6 +59,25 @@
         }
 
         function draw() {
+            if (frameCount === 1) {
+                capturer.start();
+            }
+            if (startMillis == null) {
+                startMillis = millis();
+            }
+            var elapsed = millis() - startMillis;
+            var t = map(elapsed, 0, duration, 0, 1);
+
+            // if we have passed t=1 then end the animation.
+            if (t > 1) {
+                noLoop();
+                console.log('finished recording.');
+                capturer.stop();
+                capturer.save();
+                return;
+            }
+
+
             if (frameCount < 3600) {
                 noFill();
                 strokeWeight(0.5)
@@ -63,6 +91,10 @@
                 noLoop();
                 //            save("summer003.png");
             }
+            // handle saving the frame
+            console.log('capturing frame');
+            capturer.capture(document.getElementById('defaultCanvas0'));
+
         }
 
 
