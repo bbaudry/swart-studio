@@ -78,7 +78,7 @@
         function draw() {
             noisefield()
             solar_spiral_2()
-            qv()
+            //qv()
             noLoop()
         }
 
@@ -99,7 +99,7 @@
         function noisefield(){
             noStroke()
             let xoff, yoff, bri, step
-            yoff=0.0
+            yoff=random()*500
             step=2
             for (let j=0;j<h;j+=step){
                 xoff=0.0
@@ -124,12 +124,12 @@
 
         function solar_spiral_2(){
             let cx=0.5*w
-            let cy=0.54*w
+            let cy=0.42*h
             let rad=0.5*w
             let surf = PI*rad*rad
             let x1,y1,angle,i,r,n, hu
             hu=(palette.first.hue+random(50))%360
-            stroke(hu,palette.first.sat,palette.first.bri)
+            stroke(hu,50+random()*50,palette.first.bri)
             noFill(); strokeWeight(1)
             r=0
             angle=random()*360
