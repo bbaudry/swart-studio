@@ -16,14 +16,24 @@
 <body>
     <script>
         //global vars for the whole piece
-        var w = 900;
-        var h = 900
+        var w// = 900 
+        var h// = 900 
+        var cnv
 
         function setup() {
-            createCanvas(w, h);
+            w = windowHeight
+            h = windowHeight
+            cnv = createCanvas(w, h);
+            centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             background(0, 0, 0)
             initCoords()
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
         }
 
         function initCoords() {
@@ -43,7 +53,7 @@
             if (frameCount < 3600) {
                 noFill();
                 for (let i = 0; i < coords.length; i++) {
-                    stroke(coords[i][0], 100, 100, 42);
+                    stroke(coords[i][0], 100, 100, 21);
                     let black = Math.floor(coords[i][4]);
                     oneLayerCompact(black, coords[i][1], coords[i][2], coords[i][3]);
                 }
@@ -55,10 +65,10 @@
         }
 
 
-    function oneLayerCompact(nbRays, cx, cy, rad){
-        let angle = 360 / nbRays;
-        let px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
-            controls=[];
+        function oneLayerCompact(nbRays, cx, cy, rad) {
+            let angle = 360 / nbRays;
+            let px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
+            controls = [];
             beginShape();
             px = cx + rad * cos(radians(0));
             py = cy + rad * sin(radians(0));
@@ -82,16 +92,16 @@
             endShape();
         }
 
-    function drawTang( deg,  cx,  cy,  rad){
-        let tx = cx + rad * cos(radians(deg));
-        let ty = cy + rad * sin(radians(deg));
-        let wid = (float)(168 + frameCount * 0.1);
-        let ang = 90 - frameCount/10;
-        let dx1 = tx + wid * cos(radians(deg - ang));
-        let dy1 = ty + wid * sin(radians(deg - ang));
-        let dx2 = tx + wid * cos(radians(deg - ang + 180));
-        let dy2 = ty + wid * sin(radians(deg - ang + 180));
-            res = [ dx1, dy1, dx2, dy2 ];
+        function drawTang(deg, cx, cy, rad) {
+            let tx = cx + rad * cos(radians(deg));
+            let ty = cy + rad * sin(radians(deg));
+            let wid = (float)(168 + frameCount * 0.1);
+            let ang = 90 - frameCount / 10;
+            let dx1 = tx + wid * cos(radians(deg - ang));
+            let dy1 = ty + wid * sin(radians(deg - ang));
+            let dx2 = tx + wid * cos(radians(deg - ang + 180));
+            let dy2 = ty + wid * sin(radians(deg - ang + 180));
+            res = [dx1, dy1, dx2, dy2];
             return res;
         }
 
