@@ -52,8 +52,9 @@
         function draw() {
             if (frameCount < 3600) {
                 noFill();
+                strokeWeight(0.5)
                 for (let i = 0; i < coords.length; i++) {
-                    stroke(coords[i][0], 100, 100, 21);
+                    stroke(coords[i][0], 100, 100, 42);
                     let black = Math.floor(coords[i][4]);
                     oneLayerCompact(black, coords[i][1], coords[i][2], coords[i][3]);
                 }
