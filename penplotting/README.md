@@ -96,6 +96,23 @@ gcode-cli file.gcode
 
 Bonus: it can read gcode from standard input `python conception-through-code-generator.py | gcode-cli -` This opens some interesting persepective with respect to live coding, and unreproducible art.
 
+### With p5.js
+
+* [p5.js-svg](https://github.com/zenozeng/p5.js-svg) can export svg from your p5 sketch. Use it with [p5.js v1.5](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js). Add the following two lines at the top of your html
+```
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+```
+and use the 'SVG' argument when creating the p5 canvas
+```
+            createCanvas(w, h, SVG);
+```
+More documentation at [https://github.com/zenozeng/p5.js-svg](https://github.com/zenozeng/p5.js-svg). For example, see [plottable001](https://github.com/bbaudry/swart-studio/blob/main/penplotting/plottable001.html)
+
+Once you are happy with your sketch, save it as an svg.
+* Transform the svg to gcode with [Juicy-GCode](https://github.com/domoszlai/juicy-gcode). Check out the flavor.txt configuration file to fine-tune the generation of the gcode. Put the generated gcode in a file, for example sketch.gcode
+* Use [gcode-cli](https://github.com/hzeller/gcode-cli) to draw the sketch on the pen plotter, for example ```g-code-cli sketch.gcode```
+    
  
 ##   Notes
 
