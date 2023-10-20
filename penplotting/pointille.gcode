@@ -1,0 +1,12776 @@
+G21 ; Set Units to Millimeters
+G17 ; Set Plane Selection to XY
+G90 ; Set Absolute Positioning
+F5000  ; Set Speed to 2500 mm/min
+G00 Z0 ; pen up
+G00 X0 Y0 ; go to 0,0
+G0Z0 ; pen up
+G00 X9.5250 Y237.5958
+G0Z6 ; pen down on paper
+G01 X13.7583 Y237.5958
+G0Z0 ; pen up
+G00 X199.4958 Y225.9542
+G0Z6 ; pen down on paper
+G01 X203.7292 Y225.9542
+G0Z0 ; pen up
+G00 X109.0083 Y225.9542
+G0Z6 ; pen down on paper
+G01 X115.3583 Y230.1875
+G0Z0 ; pen up
+G00 X96.3083 Y225.9542
+G0Z6 ; pen down on paper
+G01 X103.7167 Y230.1875
+G0Z0 ; pen up
+G00 X0.5292 Y233.8917
+G0Z6 ; pen down on paper
+G01 X0.5292 Y237.5958
+G0Z0 ; pen up
+G00 X9.5250 Y237.5958
+G0Z6 ; pen down on paper
+G01 X10.0542 Y233.8917
+G0Z0 ; pen up
+G00 X76.2000 Y225.9542
+G0Z6 ; pen down on paper
+G01 X72.4958 Y225.9542
+G0Z0 ; pen up
+G00 X13.7583 Y237.5958
+G0Z6 ; pen down on paper
+G01 X17.9917 Y237.5958
+G0Z0 ; pen up
+G00 X35.4542 Y237.5958
+G0Z6 ; pen down on paper
+G01 X35.4542 Y233.8917
+G0Z0 ; pen up
+G00 X18.5208 Y233.8917
+G0Z6 ; pen down on paper
+G01 X17.9917 Y237.5958
+G0Z0 ; pen up
+G00 X30.6917 Y237.5958
+G0Z6 ; pen down on paper
+G01 X31.2208 Y233.8917
+G0Z0 ; pen up
+G00 X26.4583 Y237.5958
+G0Z6 ; pen down on paper
+G01 X27.5167 Y233.8917
+G0Z0 ; pen up
+G00 X59.7958 Y237.5958
+G0Z6 ; pen down on paper
+G01 X64.0292 Y237.5958
+G0Z0 ; pen up
+G00 X39.6875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X39.1583 Y237.5958
+G0Z0 ; pen up
+G00 X104.2458 Y225.9542
+G0Z6 ; pen down on paper
+G01 X111.6542 Y230.1875
+G0Z0 ; pen up
+G00 X82.0208 Y230.1875
+G0Z6 ; pen down on paper
+G01 X86.7833 Y230.1875
+G0Z0 ; pen up
+G00 X103.7167 Y230.1875
+G0Z6 ; pen down on paper
+G01 X96.3083 Y225.9542
+G0Z0 ; pen up
+G00 X35.4542 Y237.5958
+G0Z6 ; pen down on paper
+G01 X39.1583 Y237.5958
+G0Z0 ; pen up
+G00 X55.5625 Y237.5958
+G0Z6 ; pen down on paper
+G01 X56.6208 Y233.8917
+G0Z0 ; pen up
+G00 X47.0958 Y237.5958
+G0Z6 ; pen down on paper
+G01 X48.6833 Y233.8917
+G0Z0 ; pen up
+G00 X60.3250 Y233.8917
+G0Z6 ; pen down on paper
+G01 X56.6208 Y233.8917
+G0Z0 ; pen up
+G00 X72.4958 Y225.9542
+G0Z6 ; pen down on paper
+G01 X68.7917 Y225.9542
+G0Z0 ; pen up
+G00 X47.0958 Y237.5958
+G0Z6 ; pen down on paper
+G01 X51.8583 Y237.5958
+G0Z0 ; pen up
+G00 X68.7917 Y237.5958
+G0Z6 ; pen down on paper
+G01 X69.8500 Y233.8917
+G0Z0 ; pen up
+G00 X113.7708 Y221.1917
+G0Z6 ; pen down on paper
+G01 X111.1250 Y225.9542
+G0Z0 ; pen up
+G00 X103.1875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X103.1875 Y237.5958
+G0Z0 ; pen up
+G00 X86.7833 Y233.8917
+G0Z6 ; pen down on paper
+G01 X86.7833 Y237.5958
+G0Z0 ; pen up
+G00 X90.4875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X91.0167 Y237.5958
+G0Z0 ; pen up
+G00 X91.5458 Y230.1875
+G0Z6 ; pen down on paper
+G01 X85.1958 Y225.9542
+G0Z0 ; pen up
+G00 X86.7833 Y237.5958
+G0Z6 ; pen down on paper
+G01 X86.7833 Y233.8917
+G0Z0 ; pen up
+G00 X113.7708 Y221.1917
+G0Z6 ; pen down on paper
+G01 X109.5375 Y221.1917
+G0Z0 ; pen up
+G00 X96.3083 Y230.1875
+G0Z6 ; pen down on paper
+G01 X100.0125 Y230.1875
+G0Z0 ; pen up
+G00 X73.5542 Y233.8917
+G0Z6 ; pen down on paper
+G01 X73.0250 Y237.5958
+G0Z0 ; pen up
+G00 X111.6542 Y230.1875
+G0Z6 ; pen down on paper
+G01 X104.2458 Y225.9542
+G0Z0 ; pen up
+G00 X99.4833 Y237.5958
+G0Z6 ; pen down on paper
+G01 X98.4250 Y233.8917
+G0Z0 ; pen up
+G00 X182.5625 Y221.1917
+G0Z6 ; pen down on paper
+G01 X178.8583 Y221.1917
+G0Z0 ; pen up
+G00 X88.9000 Y225.9542
+G0Z6 ; pen down on paper
+G01 X85.1958 Y225.9542
+G0Z0 ; pen up
+G00 X124.3542 Y230.1875
+G0Z6 ; pen down on paper
+G01 X116.9458 Y225.9542
+G0Z0 ; pen up
+G00 X222.2500 Y221.1917
+G0Z6 ; pen down on paper
+G01 X218.5458 Y221.1917
+G0Z0 ; pen up
+G00 X179.9167 Y225.9542
+G0Z6 ; pen down on paper
+G01 X186.7958 Y221.1917
+G0Z0 ; pen up
+G00 X174.0958 Y221.1917
+G0Z6 ; pen down on paper
+G01 X168.2750 Y225.9542
+G0Z0 ; pen up
+G00 X133.3500 Y230.1875
+G0Z6 ; pen down on paper
+G01 X137.0542 Y230.1875
+G0Z0 ; pen up
+G00 X69.8500 Y233.8917
+G0Z6 ; pen down on paper
+G01 X68.7917 Y237.5958
+G0Z0 ; pen up
+G00 X124.3542 Y230.1875
+G0Z6 ; pen down on paper
+G01 X129.1167 Y230.1875
+G0Z0 ; pen up
+G00 X103.1875 Y237.5958
+G0Z6 ; pen down on paper
+G01 X103.1875 Y233.8917
+G0Z0 ; pen up
+G00 X77.7875 Y237.5958
+G0Z6 ; pen down on paper
+G01 X82.0208 Y237.5958
+G0Z0 ; pen up
+G00 X129.1167 Y230.1875
+G0Z6 ; pen down on paper
+G01 X133.3500 Y230.1875
+G0Z0 ; pen up
+G00 X128.0583 Y233.8917
+G0Z6 ; pen down on paper
+G01 X123.2958 Y233.8917
+G0Z0 ; pen up
+G00 X214.8417 Y221.1917
+G0Z6 ; pen down on paper
+G01 X211.1375 Y221.1917
+G0Z0 ; pen up
+G00 X132.8208 Y225.9542
+G0Z6 ; pen down on paper
+G01 X129.1167 Y225.9542
+G0Z0 ; pen up
+G00 X171.9792 Y230.1875
+G0Z6 ; pen down on paper
+G01 X161.3958 Y225.9542
+G0Z0 ; pen up
+G00 X119.5917 Y233.8917
+G0Z6 ; pen down on paper
+G01 X115.3583 Y233.8917
+G0Z0 ; pen up
+G00 X106.8917 Y237.5958
+G0Z6 ; pen down on paper
+G01 X111.6542 Y237.5958
+G0Z0 ; pen up
+G00 X111.6542 Y233.8917
+G0Z6 ; pen down on paper
+G01 X111.6542 Y237.5958
+G0Z0 ; pen up
+G00 X105.3042 Y221.1917
+G0Z6 ; pen down on paper
+G01 X103.1875 Y225.9542
+G0Z0 ; pen up
+G00 X214.8417 Y221.1917
+G0Z6 ; pen down on paper
+G01 X207.9625 Y225.9542
+G0Z0 ; pen up
+G00 X191.0292 Y221.1917
+G0Z6 ; pen down on paper
+G01 X186.7958 Y221.1917
+G0Z0 ; pen up
+G00 X143.9333 Y225.9542
+G0Z6 ; pen down on paper
+G01 X153.9875 Y230.1875
+G0Z0 ; pen up
+G00 X119.5917 Y233.8917
+G0Z6 ; pen down on paper
+G01 X119.0625 Y237.5958
+G0Z0 ; pen up
+G00 X144.9917 Y225.9542
+G0Z6 ; pen down on paper
+G01 X147.1083 Y221.1917
+G0Z0 ; pen up
+G00 X135.4667 Y237.5958
+G0Z6 ; pen down on paper
+G01 X137.5833 Y233.8917
+G0Z0 ; pen up
+G00 X188.3833 Y225.9542
+G0Z6 ; pen down on paper
+G01 X192.0875 Y225.9542
+G0Z0 ; pen up
+G00 X132.8208 Y233.8917
+G0Z6 ; pen down on paper
+G01 X128.0583 Y233.8917
+G0Z0 ; pen up
+G00 X226.4833 Y221.1917
+G0Z6 ; pen down on paper
+G01 X221.1917 Y225.9542
+G0Z0 ; pen up
+G00 X218.5458 Y233.8917
+G0Z6 ; pen down on paper
+G01 X214.3125 Y233.8917
+G0Z0 ; pen up
+G00 X214.3125 Y233.8917
+G0Z6 ; pen down on paper
+G01 X210.6083 Y233.8917
+G0Z0 ; pen up
+G00 X206.9042 Y237.5958
+G0Z6 ; pen down on paper
+G01 X210.6083 Y233.8917
+G0Z0 ; pen up
+G00 X115.8875 Y225.9542
+G0Z6 ; pen down on paper
+G01 X120.6500 Y225.9542
+G0Z0 ; pen up
+G00 X174.0958 Y237.5958
+G0Z6 ; pen down on paper
+G01 X174.6250 Y233.8917
+G0Z0 ; pen up
+G00 X214.3125 Y237.5958
+G0Z6 ; pen down on paper
+G01 X219.0750 Y237.5958
+G0Z0 ; pen up
+G00 X184.1500 Y233.8917
+G0Z6 ; pen down on paper
+G01 X179.3875 Y233.8917
+G0Z0 ; pen up
+G00 X166.1583 Y225.9542
+G0Z6 ; pen down on paper
+G01 X161.3958 Y225.9542
+G0Z0 ; pen up
+G00 X134.9375 Y221.1917
+G0Z6 ; pen down on paper
+G01 X131.2333 Y221.1917
+G0Z0 ; pen up
+G00 X191.0292 Y221.1917
+G0Z6 ; pen down on paper
+G01 X183.6208 Y225.9542
+G0Z0 ; pen up
+G00 X136.5250 Y225.9542
+G0Z6 ; pen down on paper
+G01 X132.8208 Y225.9542
+G0Z0 ; pen up
+G00 X149.7542 Y230.1875
+G0Z6 ; pen down on paper
+G01 X153.9875 Y230.1875
+G0Z0 ; pen up
+G00 X207.4333 Y221.1917
+G0Z6 ; pen down on paper
+G01 X203.7292 Y221.1917
+G0Z0 ; pen up
+G00 X223.8375 Y237.5958
+G0Z6 ; pen down on paper
+G01 X228.0708 Y237.5958
+G0Z0 ; pen up
+G00 X140.2292 Y225.9542
+G0Z6 ; pen down on paper
+G01 X136.5250 Y225.9542
+G0Z0 ; pen up
+G00 X195.7917 Y225.9542
+G0Z6 ; pen down on paper
+G01 X203.7292 Y221.1917
+G0Z0 ; pen up
+G00 X157.6917 Y230.1875
+G0Z6 ; pen down on paper
+G01 X162.4542 Y230.1875
+G0Z0 ; pen up
+G00 X131.2333 Y221.1917
+G0Z6 ; pen down on paper
+G01 X127.0000 Y221.1917
+G0Z0 ; pen up
+G00 X167.2167 Y230.1875
+G0Z6 ; pen down on paper
+G01 X157.1625 Y225.9542
+G0Z0 ; pen up
+G00 X223.8375 Y237.5958
+G0Z6 ; pen down on paper
+G01 X227.0125 Y233.8917
+G0Z0 ; pen up
+G00 X230.7167 Y233.8917
+G0Z6 ; pen down on paper
+G01 X228.0708 Y237.5958
+G0Z0 ; pen up
+G00 X229.6583 Y225.9542
+G0Z6 ; pen down on paper
+G01 X237.5958 Y225.9542
+G0Z0 ; pen up
+G00 X174.0958 Y225.9542
+G0Z6 ; pen down on paper
+G01 X169.8625 Y225.9542
+G0Z0 ; pen up
+G00 X135.4667 Y237.5958
+G0Z6 ; pen down on paper
+G01 X140.2292 Y237.5958
+G0Z0 ; pen up
+G00 X170.3917 Y233.8917
+G0Z6 ; pen down on paper
+G01 X166.1583 Y233.8917
+G0Z0 ; pen up
+G00 X226.4833 Y221.1917
+G0Z6 ; pen down on paper
+G01 X222.2500 Y221.1917
+G0Z0 ; pen up
+G00 X225.4250 Y225.9542
+G0Z6 ; pen down on paper
+G01 X229.6583 Y225.9542
+G0Z0 ; pen up
+G00 X166.1583 Y225.9542
+G0Z6 ; pen down on paper
+G01 X176.2125 Y230.1875
+G0Z0 ; pen up
+G00 X120.6500 Y225.9542
+G0Z6 ; pen down on paper
+G01 X124.8833 Y225.9542
+G0Z0 ; pen up
+G00 X184.6792 Y230.1875
+G0Z6 ; pen down on paper
+G01 X188.3833 Y230.1875
+G0Z0 ; pen up
+G00 X182.0333 Y225.9542
+G0Z6 ; pen down on paper
+G01 X177.8000 Y225.9542
+G0Z0 ; pen up
+G00 X237.5958 Y237.5958
+G0Z6 ; pen down on paper
+G01 X237.5958 Y233.8917
+G0Z0 ; pen up
+G00 X165.1000 Y237.5958
+G0Z6 ; pen down on paper
+G01 X166.1583 Y233.8917
+G0Z0 ; pen up
+G00 X143.4042 Y221.1917
+G0Z6 ; pen down on paper
+G01 X139.7000 Y221.1917
+G0Z0 ; pen up
+G00 X7.9375 Y233.8917
+G0Z6 ; pen down on paper
+G01 X11.6417 Y233.8917
+G0Z0 ; pen up
+G00 X148.6958 Y225.9542
+G0Z6 ; pen down on paper
+G01 X151.3417 Y221.1917
+G0Z0 ; pen up
+G00 X189.9708 Y225.9542
+G0Z6 ; pen down on paper
+G01 X201.0833 Y230.1875
+G0Z0 ; pen up
+G00 X185.7375 Y225.9542
+G0Z6 ; pen down on paper
+G01 X182.0333 Y225.9542
+G0Z0 ; pen up
+G00 X134.9375 Y221.1917
+G0Z6 ; pen down on paper
+G01 X133.3500 Y225.9542
+G0Z0 ; pen up
+G00 X4.7625 Y230.1875
+G0Z6 ; pen down on paper
+G01 X0.5292 Y230.1875
+G0Z0 ; pen up
+G00 X16.9333 Y230.1875
+G0Z6 ; pen down on paper
+G01 X12.1708 Y230.1875
+G0Z0 ; pen up
+G00 X179.3875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X174.6250 Y233.8917
+G0Z0 ; pen up
+G00 X185.7375 Y225.9542
+G0Z6 ; pen down on paper
+G01 X197.3792 Y230.1875
+G0Z0 ; pen up
+G00 X199.4958 Y225.9542
+G0Z6 ; pen down on paper
+G01 X194.7333 Y225.9542
+G0Z0 ; pen up
+G00 X4.2333 Y233.8917
+G0Z6 ; pen down on paper
+G01 X7.9375 Y233.8917
+G0Z0 ; pen up
+G00 X150.2833 Y233.8917
+G0Z6 ; pen down on paper
+G01 X146.0500 Y233.8917
+G0Z0 ; pen up
+G00 X148.6958 Y225.9542
+G0Z6 ; pen down on paper
+G01 X152.9292 Y225.9542
+G0Z0 ; pen up
+G00 X156.6333 Y225.9542
+G0Z6 ; pen down on paper
+G01 X160.3375 Y225.9542
+G0Z0 ; pen up
+G00 X21.6958 Y230.1875
+G0Z6 ; pen down on paper
+G01 X16.9333 Y230.1875
+G0Z0 ; pen up
+G00 X151.8708 Y237.5958
+G0Z6 ; pen down on paper
+G01 X155.5750 Y237.5958
+G0Z0 ; pen up
+G00 X158.7500 Y233.8917
+G0Z6 ; pen down on paper
+G01 X155.5750 Y237.5958
+G0Z0 ; pen up
+G00 X8.4667 Y225.9542
+G0Z6 ; pen down on paper
+G01 X8.9958 Y221.1917
+G0Z0 ; pen up
+G00 X181.5042 Y237.5958
+G0Z6 ; pen down on paper
+G01 X186.2667 Y237.5958
+G0Z0 ; pen up
+G00 X24.3417 Y233.8917
+G0Z6 ; pen down on paper
+G01 X25.4000 Y230.1875
+G0Z0 ; pen up
+G00 X152.9292 Y225.9542
+G0Z6 ; pen down on paper
+G01 X156.6333 Y225.9542
+G0Z0 ; pen up
+G00 X16.9333 Y221.1917
+G0Z6 ; pen down on paper
+G01 X15.8750 Y225.9542
+G0Z0 ; pen up
+G00 X194.7333 Y237.5958
+G0Z6 ; pen down on paper
+G01 X196.3208 Y233.8917
+G0Z0 ; pen up
+G00 X174.0958 Y221.1917
+G0Z6 ; pen down on paper
+G01 X169.3333 Y221.1917
+G0Z0 ; pen up
+G00 X214.8417 Y230.1875
+G0Z6 ; pen down on paper
+G01 X219.6042 Y230.1875
+G0Z0 ; pen up
+G00 X186.2667 Y237.5958
+G0Z6 ; pen down on paper
+G01 X190.5000 Y237.5958
+G0Z0 ; pen up
+G00 X141.2875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X140.2292 Y237.5958
+G0Z0 ; pen up
+G00 X201.0833 Y233.8917
+G0Z6 ; pen down on paper
+G01 X196.3208 Y233.8917
+G0Z0 ; pen up
+G00 X15.8750 Y225.9542
+G0Z6 ; pen down on paper
+G01 X16.9333 Y221.1917
+G0Z0 ; pen up
+G00 X199.4958 Y237.5958
+G0Z6 ; pen down on paper
+G01 X203.2000 Y237.5958
+G0Z0 ; pen up
+G00 X151.8708 Y237.5958
+G0Z6 ; pen down on paper
+G01 X153.9875 Y233.8917
+G0Z0 ; pen up
+G00 X228.0708 Y230.1875
+G0Z6 ; pen down on paper
+G01 X216.9583 Y225.9542
+G0Z0 ; pen up
+G00 X164.5708 Y221.1917
+G0Z6 ; pen down on paper
+G01 X160.3375 Y225.9542
+G0Z0 ; pen up
+G00 X24.3417 Y233.8917
+G0Z6 ; pen down on paper
+G01 X28.0458 Y233.8917
+G0Z0 ; pen up
+G00 X30.1625 Y230.1875
+G0Z6 ; pen down on paper
+G01 X28.0458 Y233.8917
+G0Z0 ; pen up
+G00 X66.6750 Y221.1917
+G0Z6 ; pen down on paper
+G01 X71.4375 Y221.1917
+G0Z0 ; pen up
+G00 X35.9833 Y233.8917
+G0Z6 ; pen down on paper
+G01 X39.6875 Y233.8917
+G0Z0 ; pen up
+G00 X219.6042 Y230.1875
+G0Z6 ; pen down on paper
+G01 X224.3667 Y230.1875
+G0Z0 ; pen up
+G00 X75.6708 Y216.4292
+G0Z6 ; pen down on paper
+G01 X80.4333 Y221.1917
+G0Z0 ; pen up
+G00 X35.9833 Y233.8917
+G0Z6 ; pen down on paper
+G01 X38.1000 Y230.1875
+G0Z0 ; pen up
+G00 X39.6875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X43.9208 Y233.8917
+G0Z0 ; pen up
+G00 X76.7292 Y230.1875
+G0Z6 ; pen down on paper
+G01 X72.4958 Y233.8917
+G0Z0 ; pen up
+G00 X68.2625 Y233.8917
+G0Z6 ; pen down on paper
+G01 X72.4958 Y230.1875
+G0Z0 ; pen up
+G00 X43.9208 Y233.8917
+G0Z6 ; pen down on paper
+G01 X47.6250 Y233.8917
+G0Z0 ; pen up
+G00 X60.3250 Y216.4292
+G0Z6 ; pen down on paper
+G01 X56.0917 Y216.4292
+G0Z0 ; pen up
+G00 X68.2625 Y233.8917
+G0Z6 ; pen down on paper
+G01 X72.4958 Y233.8917
+G0Z0 ; pen up
+G00 X43.3917 Y216.4292
+G0Z6 ; pen down on paper
+G01 X43.9208 Y221.1917
+G0Z0 ; pen up
+G00 X8.9958 Y221.1917
+G0Z6 ; pen down on paper
+G01 X8.4667 Y225.9542
+G0Z0 ; pen up
+G00 X80.4333 Y221.1917
+G0Z6 ; pen down on paper
+G01 X75.6708 Y216.4292
+G0Z0 ; pen up
+G00 X80.4333 Y233.8917
+G0Z6 ; pen down on paper
+G01 X85.7250 Y230.1875
+G0Z0 ; pen up
+G00 X71.9667 Y216.4292
+G0Z6 ; pen down on paper
+G01 X67.7333 Y216.4292
+G0Z0 ; pen up
+G00 X28.0458 Y225.9542
+G0Z6 ; pen down on paper
+G01 X31.7500 Y225.9542
+G0Z0 ; pen up
+G00 X14.2875 Y221.1917
+G0Z6 ; pen down on paper
+G01 X13.7583 Y216.4292
+G0Z0 ; pen up
+G00 X51.8583 Y233.8917
+G0Z6 ; pen down on paper
+G01 X56.0917 Y230.1875
+G0Z0 ; pen up
+G00 X210.0792 Y230.1875
+G0Z6 ; pen down on paper
+G01 X214.8417 Y230.1875
+G0Z0 ; pen up
+G00 X60.3250 Y230.1875
+G0Z6 ; pen down on paper
+G01 X55.5625 Y233.8917
+G0Z0 ; pen up
+G00 X20.1083 Y225.9542
+G0Z6 ; pen down on paper
+G01 X23.8125 Y225.9542
+G0Z0 ; pen up
+G00 X29.1042 Y221.1917
+G0Z6 ; pen down on paper
+G01 X25.4000 Y221.1917
+G0Z0 ; pen up
+G00 X38.6292 Y221.1917
+G0Z6 ; pen down on paper
+G01 X33.8667 Y221.1917
+G0Z0 ; pen up
+G00 X97.8958 Y230.1875
+G0Z6 ; pen down on paper
+G01 X94.1917 Y230.1875
+G0Z0 ; pen up
+G00 X84.1375 Y221.1917
+G0Z6 ; pen down on paper
+G01 X87.8417 Y221.1917
+G0Z0 ; pen up
+G00 X0.5292 Y221.1917
+G0Z6 ; pen down on paper
+G01 X4.7625 Y221.1917
+G0Z0 ; pen up
+G00 X55.5625 Y233.8917
+G0Z6 ; pen down on paper
+G01 X60.3250 Y230.1875
+G0Z0 ; pen up
+G00 X80.4333 Y233.8917
+G0Z6 ; pen down on paper
+G01 X84.6667 Y233.8917
+G0Z0 ; pen up
+G00 X94.1917 Y230.1875
+G0Z6 ; pen down on paper
+G01 X89.4292 Y230.1875
+G0Z0 ; pen up
+G00 X59.7958 Y233.8917
+G0Z6 ; pen down on paper
+G01 X64.5583 Y233.8917
+G0Z0 ; pen up
+G00 X97.8958 Y216.4292
+G0Z6 ; pen down on paper
+G01 X100.0125 Y221.1917
+G0Z0 ; pen up
+G00 X97.3667 Y233.8917
+G0Z6 ; pen down on paper
+G01 X102.1292 Y230.1875
+G0Z0 ; pen up
+G00 X92.6042 Y221.1917
+G0Z6 ; pen down on paper
+G01 X96.3083 Y221.1917
+G0Z0 ; pen up
+G00 X92.6042 Y221.1917
+G0Z6 ; pen down on paper
+G01 X89.4292 Y216.4292
+G0Z0 ; pen up
+G00 X232.8333 Y230.1875
+G0Z6 ; pen down on paper
+G01 X236.5375 Y230.1875
+G0Z0 ; pen up
+G00 X221.1917 Y225.9542
+G0Z6 ; pen down on paper
+G01 X216.9583 Y225.9542
+G0Z0 ; pen up
+G00 X128.0583 Y230.1875
+G0Z6 ; pen down on paper
+G01 X123.2958 Y230.1875
+G0Z0 ; pen up
+G00 X236.5375 Y230.1875
+G0Z6 ; pen down on paper
+G01 X237.5958 Y230.1875
+G0Z0 ; pen up
+G00 X100.0125 Y221.1917
+G0Z6 ; pen down on paper
+G01 X97.8958 Y216.4292
+G0Z0 ; pen up
+G00 X4.2333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X4.7625 Y221.1917
+G0Z0 ; pen up
+G00 X121.1792 Y233.8917
+G0Z6 ; pen down on paper
+G01 X125.4125 Y233.8917
+G0Z0 ; pen up
+G00 X132.2917 Y230.1875
+G0Z6 ; pen down on paper
+G01 X125.4125 Y233.8917
+G0Z0 ; pen up
+G00 X113.7708 Y233.8917
+G0Z6 ; pen down on paper
+G01 X117.4750 Y233.8917
+G0Z0 ; pen up
+G00 X105.8333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X109.0083 Y221.1917
+G0Z0 ; pen up
+G00 X112.7125 Y221.1917
+G0Z6 ; pen down on paper
+G01 X116.4167 Y221.1917
+G0Z0 ; pen up
+G00 X4.7625 Y221.1917
+G0Z6 ; pen down on paper
+G01 X0.5292 Y221.1917
+G0Z0 ; pen up
+G00 X109.5375 Y230.1875
+G0Z6 ; pen down on paper
+G01 X105.3042 Y233.8917
+G0Z0 ; pen up
+G00 X101.0708 Y233.8917
+G0Z6 ; pen down on paper
+G01 X105.8333 Y230.1875
+G0Z0 ; pen up
+G00 X113.7708 Y230.1875
+G0Z6 ; pen down on paper
+G01 X109.0083 Y233.8917
+G0Z0 ; pen up
+G00 X43.3917 Y221.1917
+G0Z6 ; pen down on paper
+G01 X39.1583 Y225.9542
+G0Z0 ; pen up
+G00 X105.8333 Y230.1875
+G0Z6 ; pen down on paper
+G01 X101.0708 Y233.8917
+G0Z0 ; pen up
+G00 X138.6417 Y233.8917
+G0Z6 ; pen down on paper
+G01 X144.9917 Y230.1875
+G0Z0 ; pen up
+G00 X47.6250 Y221.1917
+G0Z6 ; pen down on paper
+G01 X43.9208 Y225.9542
+G0Z0 ; pen up
+G00 X117.4750 Y216.4292
+G0Z6 ; pen down on paper
+G01 X113.2417 Y216.4292
+G0Z0 ; pen up
+G00 X140.2292 Y230.1875
+G0Z6 ; pen down on paper
+G01 X136.5250 Y230.1875
+G0Z0 ; pen up
+G00 X35.4542 Y225.9542
+G0Z6 ; pen down on paper
+G01 X39.1583 Y225.9542
+G0Z0 ; pen up
+G00 X18.5208 Y216.4292
+G0Z6 ; pen down on paper
+G01 X13.7583 Y216.4292
+G0Z0 ; pen up
+G00 X56.0917 Y221.1917
+G0Z6 ; pen down on paper
+G01 X52.3875 Y221.1917
+G0Z0 ; pen up
+G00 X65.0875 Y225.9542
+G0Z6 ; pen down on paper
+G01 X68.7917 Y225.9542
+G0Z0 ; pen up
+G00 X64.5583 Y221.1917
+G0Z6 ; pen down on paper
+G01 X60.8542 Y225.9542
+G0Z0 ; pen up
+G00 X147.1083 Y233.8917
+G0Z6 ; pen down on paper
+G01 X153.4583 Y230.1875
+G0Z0 ; pen up
+G00 X149.7542 Y230.1875
+G0Z6 ; pen down on paper
+G01 X144.9917 Y230.1875
+G0Z0 ; pen up
+G00 X64.5583 Y221.1917
+G0Z6 ; pen down on paper
+G01 X60.8542 Y221.1917
+G0Z0 ; pen up
+G00 X105.8333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X101.6000 Y216.4292
+G0Z0 ; pen up
+G00 X147.1083 Y233.8917
+G0Z6 ; pen down on paper
+G01 X151.8708 Y233.8917
+G0Z0 ; pen up
+G00 X161.9250 Y230.1875
+G0Z6 ; pen down on paper
+G01 X157.6917 Y230.1875
+G0Z0 ; pen up
+G00 X161.9250 Y230.1875
+G0Z6 ; pen down on paper
+G01 X155.5750 Y233.8917
+G0Z0 ; pen up
+G00 X171.4500 Y230.1875
+G0Z6 ; pen down on paper
+G01 X166.6875 Y230.1875
+G0Z0 ; pen up
+G00 X16.9333 Y225.9542
+G0Z6 ; pen down on paper
+G01 X13.2292 Y225.9542
+G0Z0 ; pen up
+G00 X204.7875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X209.5500 Y233.8917
+G0Z0 ; pen up
+G00 X8.9958 Y225.9542
+G0Z6 ; pen down on paper
+G01 X9.5250 Y230.1875
+G0Z0 ; pen up
+G00 X131.2333 Y221.1917
+G0Z6 ; pen down on paper
+G01 X129.1167 Y216.4292
+G0Z0 ; pen up
+G00 X60.8542 Y225.9542
+G0Z6 ; pen down on paper
+G01 X56.6208 Y225.9542
+G0Z0 ; pen up
+G00 X179.9167 Y230.1875
+G0Z6 ; pen down on paper
+G01 X174.0958 Y233.8917
+G0Z0 ; pen up
+G00 X60.8542 Y221.1917
+G0Z6 ; pen down on paper
+G01 X56.0917 Y221.1917
+G0Z0 ; pen up
+G00 X62.4417 Y221.1917
+G0Z6 ; pen down on paper
+G01 X66.6750 Y221.1917
+G0Z0 ; pen up
+G00 X171.4500 Y230.1875
+G0Z6 ; pen down on paper
+G01 X164.5708 Y233.8917
+G0Z0 ; pen up
+G00 X46.5667 Y230.1875
+G0Z6 ; pen down on paper
+G01 X50.2708 Y230.1875
+G0Z0 ; pen up
+G00 X210.6083 Y230.1875
+G0Z6 ; pen down on paper
+G01 X206.3750 Y230.1875
+G0Z0 ; pen up
+G00 X98.9542 Y225.9542
+G0Z6 ; pen down on paper
+G01 X103.1875 Y225.9542
+G0Z0 ; pen up
+G00 X4.7625 Y225.9542
+G0Z6 ; pen down on paper
+G01 X5.2917 Y230.1875
+G0Z0 ; pen up
+G00 X120.1208 Y221.1917
+G0Z6 ; pen down on paper
+G01 X123.8250 Y221.1917
+G0Z0 ; pen up
+G00 X93.1333 Y221.1917
+G0Z6 ; pen down on paper
+G01 X91.0167 Y225.9542
+G0Z0 ; pen up
+G00 X169.3333 Y233.8917
+G0Z6 ; pen down on paper
+G01 X174.0958 Y233.8917
+G0Z0 ; pen up
+G00 X184.6792 Y230.1875
+G0Z6 ; pen down on paper
+G01 X178.3292 Y233.8917
+G0Z0 ; pen up
+G00 X80.4333 Y221.1917
+G0Z6 ; pen down on paper
+G01 X77.7875 Y225.9542
+G0Z0 ; pen up
+G00 X68.7917 Y225.9542
+G0Z6 ; pen down on paper
+G01 X73.0250 Y225.9542
+G0Z0 ; pen up
+G00 X135.4667 Y221.1917
+G0Z6 ; pen down on paper
+G01 X132.8208 Y216.4292
+G0Z0 ; pen up
+G00 X125.4125 Y216.4292
+G0Z6 ; pen down on paper
+G01 X121.1792 Y216.4292
+G0Z0 ; pen up
+G00 X17.4625 Y230.1875
+G0Z6 ; pen down on paper
+G01 X21.1667 Y230.1875
+G0Z0 ; pen up
+G00 X76.7292 Y221.1917
+G0Z6 ; pen down on paper
+G01 X73.0250 Y225.9542
+G0Z0 ; pen up
+G00 X18.5208 Y216.4292
+G0Z6 ; pen down on paper
+G01 X19.0500 Y221.1917
+G0Z0 ; pen up
+G00 X31.2208 Y216.4292
+G0Z6 ; pen down on paper
+G01 X31.2208 Y221.1917
+G0Z0 ; pen up
+G00 X88.9000 Y221.1917
+G0Z6 ; pen down on paper
+G01 X85.1958 Y221.1917
+G0Z0 ; pen up
+G00 X45.5083 Y225.9542
+G0Z6 ; pen down on paper
+G01 X41.2750 Y225.9542
+G0Z0 ; pen up
+G00 X30.1625 Y230.1875
+G0Z6 ; pen down on paper
+G01 X34.3958 Y230.1875
+G0Z0 ; pen up
+G00 X25.4000 Y230.1875
+G0Z6 ; pen down on paper
+G01 X30.1625 Y230.1875
+G0Z0 ; pen up
+G00 X39.1583 Y216.4292
+G0Z6 ; pen down on paper
+G01 X34.9250 Y216.4292
+G0Z0 ; pen up
+G00 X53.4458 Y221.1917
+G0Z6 ; pen down on paper
+G01 X58.2083 Y221.1917
+G0Z0 ; pen up
+G00 X224.3667 Y230.1875
+G0Z6 ; pen down on paper
+G01 X219.6042 Y230.1875
+G0Z0 ; pen up
+G00 X86.7833 Y225.9542
+G0Z6 ; pen down on paper
+G01 X91.0167 Y225.9542
+G0Z0 ; pen up
+G00 X98.9542 Y225.9542
+G0Z6 ; pen down on paper
+G01 X101.0708 Y221.1917
+G0Z0 ; pen up
+G00 X194.2042 Y230.1875
+G0Z6 ; pen down on paper
+G01 X189.4417 Y230.1875
+G0Z0 ; pen up
+G00 X47.6250 Y216.4292
+G0Z6 ; pen down on paper
+G01 X48.6833 Y221.1917
+G0Z0 ; pen up
+G00 X26.9875 Y216.4292
+G0Z6 ; pen down on paper
+G01 X22.7542 Y216.4292
+G0Z0 ; pen up
+G00 X27.5167 Y221.1917
+G0Z6 ; pen down on paper
+G01 X31.2208 Y221.1917
+G0Z0 ; pen up
+G00 X43.9208 Y221.1917
+G0Z6 ; pen down on paper
+G01 X43.3917 Y216.4292
+G0Z0 ; pen up
+G00 X37.5708 Y225.9542
+G0Z6 ; pen down on paper
+G01 X32.8083 Y225.9542
+G0Z0 ; pen up
+G00 X56.6208 Y225.9542
+G0Z6 ; pen down on paper
+G01 X52.9167 Y225.9542
+G0Z0 ; pen up
+G00 X214.8417 Y230.1875
+G0Z6 ; pen down on paper
+G01 X209.5500 Y233.8917
+G0Z0 ; pen up
+G00 X60.8542 Y225.9542
+G0Z6 ; pen down on paper
+G01 X64.5583 Y230.1875
+G0Z0 ; pen up
+G00 X49.2125 Y225.9542
+G0Z6 ; pen down on paper
+G01 X50.2708 Y230.1875
+G0Z0 ; pen up
+G00 X224.3667 Y230.1875
+G0Z6 ; pen down on paper
+G01 X218.0167 Y233.8917
+G0Z0 ; pen up
+G00 X192.0875 Y233.8917
+G0Z6 ; pen down on paper
+G01 X196.3208 Y233.8917
+G0Z0 ; pen up
+G00 X41.2750 Y225.9542
+G0Z6 ; pen down on paper
+G01 X37.5708 Y225.9542
+G0Z0 ; pen up
+G00 X237.5958 Y233.8917
+G0Z6 ; pen down on paper
+G01 X237.5958 Y230.1875
+G0Z0 ; pen up
+G00 X194.2042 Y230.1875
+G0Z6 ; pen down on paper
+G01 X187.8542 Y233.8917
+G0Z0 ; pen up
+G00 X201.0833 Y233.8917
+G0Z6 ; pen down on paper
+G01 X206.3750 Y230.1875
+G0Z0 ; pen up
+G00 X232.8333 Y230.1875
+G0Z6 ; pen down on paper
+G01 X228.6000 Y230.1875
+G0Z0 ; pen up
+G00 X68.7917 Y225.9542
+G0Z6 ; pen down on paper
+G01 X64.5583 Y225.9542
+G0Z0 ; pen up
+G00 X25.4000 Y230.1875
+G0Z6 ; pen down on paper
+G01 X24.3417 Y225.9542
+G0Z0 ; pen up
+G00 X4.7625 Y225.9542
+G0Z6 ; pen down on paper
+G01 X0.5292 Y225.9542
+G0Z0 ; pen up
+G00 X165.1000 Y212.1958
+G0Z6 ; pen down on paper
+G01 X168.2750 Y216.4292
+G0Z0 ; pen up
+G00 X12.7000 Y204.2583
+G0Z6 ; pen down on paper
+G01 X13.2292 Y199.4958
+G0Z0 ; pen up
+G00 X48.6833 Y204.2583
+G0Z6 ; pen down on paper
+G01 X46.5667 Y207.9625
+G0Z0 ; pen up
+G00 X70.3792 Y207.9625
+G0Z6 ; pen down on paper
+G01 X69.3208 Y212.1958
+G0Z0 ; pen up
+G00 X4.2333 Y212.1958
+G0Z6 ; pen down on paper
+G01 X7.9375 Y212.1958
+G0Z0 ; pen up
+G00 X207.4333 Y212.1958
+G0Z6 ; pen down on paper
+G01 X215.3708 Y207.9625
+G0Z0 ; pen up
+G00 X192.0875 Y199.4958
+G0Z6 ; pen down on paper
+G01 X193.6750 Y204.2583
+G0Z0 ; pen up
+G00 X177.8000 Y204.2583
+G0Z6 ; pen down on paper
+G01 X182.0333 Y204.2583
+G0Z0 ; pen up
+G00 X43.3917 Y212.1958
+G0Z6 ; pen down on paper
+G01 X39.6875 Y212.1958
+G0Z0 ; pen up
+G00 X38.6292 Y199.4958
+G0Z6 ; pen down on paper
+G01 X34.3958 Y199.4958
+G0Z0 ; pen up
+G00 X25.9292 Y204.2583
+G0Z6 ; pen down on paper
+G01 X25.9292 Y199.4958
+G0Z0 ; pen up
+G00 X180.9750 Y221.1917
+G0Z6 ; pen down on paper
+G01 X178.8583 Y216.4292
+G0Z0 ; pen up
+G00 X48.6833 Y204.2583
+G0Z6 ; pen down on paper
+G01 X43.9208 Y204.2583
+G0Z0 ; pen up
+G00 X148.1667 Y204.2583
+G0Z6 ; pen down on paper
+G01 X144.4625 Y199.4958
+G0Z0 ; pen up
+G00 X237.5958 Y216.4292
+G0Z6 ; pen down on paper
+G01 X237.5958 Y212.1958
+G0Z0 ; pen up
+G00 X187.8542 Y199.4958
+G0Z6 ; pen down on paper
+G01 X189.9708 Y204.2583
+G0Z0 ; pen up
+G00 X64.5583 Y212.1958
+G0Z6 ; pen down on paper
+G01 X69.3208 Y212.1958
+G0Z0 ; pen up
+G00 X17.9917 Y199.4958
+G0Z6 ; pen down on paper
+G01 X13.2292 Y199.4958
+G0Z0 ; pen up
+G00 X189.9708 Y204.2583
+G0Z6 ; pen down on paper
+G01 X187.8542 Y199.4958
+G0Z0 ; pen up
+G00 X73.5542 Y212.1958
+G0Z6 ; pen down on paper
+G01 X77.7875 Y212.1958
+G0Z0 ; pen up
+G00 X144.4625 Y199.4958
+G0Z6 ; pen down on paper
+G01 X148.1667 Y204.2583
+G0Z0 ; pen up
+G00 X78.3167 Y207.9625
+G0Z6 ; pen down on paper
+G01 X77.7875 Y212.1958
+G0Z0 ; pen up
+G00 X87.8417 Y207.9625
+G0Z6 ; pen down on paper
+G01 X83.0792 Y207.9625
+G0Z0 ; pen up
+G00 X7.9375 Y212.1958
+G0Z6 ; pen down on paper
+G01 X11.6417 Y212.1958
+G0Z0 ; pen up
+G00 X161.9250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X156.6333 Y199.4958
+G0Z0 ; pen up
+G00 X41.8042 Y207.9625
+G0Z6 ; pen down on paper
+G01 X43.9208 Y204.2583
+G0Z0 ; pen up
+G00 X55.5625 Y207.9625
+G0Z6 ; pen down on paper
+G01 X57.6792 Y204.2583
+G0Z0 ; pen up
+G00 X177.2708 Y216.4292
+G0Z6 ; pen down on paper
+G01 X173.5667 Y212.1958
+G0Z0 ; pen up
+G00 X172.5083 Y221.1917
+G0Z6 ; pen down on paper
+G01 X171.4500 Y216.4292
+G0Z0 ; pen up
+G00 X224.3667 Y212.1958
+G0Z6 ; pen down on paper
+G01 X233.3625 Y207.9625
+G0Z0 ; pen up
+G00 X61.3833 Y204.2583
+G0Z6 ; pen down on paper
+G01 X60.3250 Y207.9625
+G0Z0 ; pen up
+G00 X67.7333 Y207.9625
+G0Z6 ; pen down on paper
+G01 X68.7917 Y204.2583
+G0Z0 ; pen up
+G00 X61.3833 Y204.2583
+G0Z6 ; pen down on paper
+G01 X57.6792 Y204.2583
+G0Z0 ; pen up
+G00 X96.3083 Y207.9625
+G0Z6 ; pen down on paper
+G01 X94.1917 Y212.1958
+G0Z0 ; pen up
+G00 X8.9958 Y199.4958
+G0Z6 ; pen down on paper
+G01 X5.2917 Y199.4958
+G0Z0 ; pen up
+G00 X31.2208 Y212.1958
+G0Z6 ; pen down on paper
+G01 X30.1625 Y216.4292
+G0Z0 ; pen up
+G00 X152.9292 Y199.4958
+G0Z6 ; pen down on paper
+G01 X148.6958 Y199.4958
+G0Z0 ; pen up
+G00 X87.8417 Y207.9625
+G0Z6 ; pen down on paper
+G01 X86.2542 Y212.1958
+G0Z0 ; pen up
+G00 X198.4375 Y204.2583
+G0Z6 ; pen down on paper
+G01 X203.2000 Y204.2583
+G0Z0 ; pen up
+G00 X94.1917 Y212.1958
+G0Z6 ; pen down on paper
+G01 X96.3083 Y207.9625
+G0Z0 ; pen up
+G00 X185.7375 Y204.2583
+G0Z6 ; pen down on paper
+G01 X183.0917 Y199.4958
+G0Z0 ; pen up
+G00 X43.3917 Y212.1958
+G0Z6 ; pen down on paper
+G01 X43.3917 Y216.4292
+G0Z0 ; pen up
+G00 X130.7042 Y207.9625
+G0Z6 ; pen down on paper
+G01 X125.9417 Y207.9625
+G0Z0 ; pen up
+G00 X110.5958 Y212.1958
+G0Z6 ; pen down on paper
+G01 X112.7125 Y207.9625
+G0Z0 ; pen up
+G00 X166.6875 Y204.2583
+G0Z6 ; pen down on paper
+G01 X161.3958 Y199.4958
+G0Z0 ; pen up
+G00 X119.0625 Y212.1958
+G0Z6 ; pen down on paper
+G01 X122.7667 Y212.1958
+G0Z0 ; pen up
+G00 X0.5292 Y207.9625
+G0Z6 ; pen down on paper
+G01 X0.5292 Y212.1958
+G0Z0 ; pen up
+G00 X170.3917 Y204.2583
+G0Z6 ; pen down on paper
+G01 X174.0958 Y204.2583
+G0Z0 ; pen up
+G00 X201.0833 Y199.4958
+G0Z6 ; pen down on paper
+G01 X203.2000 Y204.2583
+G0Z0 ; pen up
+G00 X205.8458 Y207.9625
+G0Z6 ; pen down on paper
+G01 X198.9667 Y212.1958
+G0Z0 ; pen up
+G00 X215.9000 Y212.1958
+G0Z6 ; pen down on paper
+G01 X220.6625 Y212.1958
+G0Z0 ; pen up
+G00 X38.6292 Y216.4292
+G0Z6 ; pen down on paper
+G01 X39.6875 Y212.1958
+G0Z0 ; pen up
+G00 X177.2708 Y216.4292
+G0Z6 ; pen down on paper
+G01 X182.0333 Y216.4292
+G0Z0 ; pen up
+G00 X30.1625 Y199.4958
+G0Z6 ; pen down on paper
+G01 X30.1625 Y204.2583
+G0Z0 ; pen up
+G00 X170.3917 Y204.2583
+G0Z6 ; pen down on paper
+G01 X165.6292 Y199.4958
+G0Z0 ; pen up
+G00 X204.7875 Y199.4958
+G0Z6 ; pen down on paper
+G01 X206.9042 Y204.2583
+G0Z0 ; pen up
+G00 X47.0958 Y216.4292
+G0Z6 ; pen down on paper
+G01 X50.8000 Y216.4292
+G0Z0 ; pen up
+G00 X137.5833 Y216.4292
+G0Z6 ; pen down on paper
+G01 X132.8208 Y216.4292
+G0Z0 ; pen up
+G00 X178.3292 Y212.1958
+G0Z6 ; pen down on paper
+G01 X182.0333 Y216.4292
+G0Z0 ; pen up
+G00 X175.1542 Y199.4958
+G0Z6 ; pen down on paper
+G01 X170.3917 Y199.4958
+G0Z0 ; pen up
+G00 X21.1667 Y204.2583
+G0Z6 ; pen down on paper
+G01 X22.2250 Y199.4958
+G0Z0 ; pen up
+G00 X176.7417 Y221.1917
+G0Z6 ; pen down on paper
+G01 X175.1542 Y216.4292
+G0Z0 ; pen up
+G00 X198.4375 Y216.4292
+G0Z6 ; pen down on paper
+G01 X195.2625 Y212.1958
+G0Z0 ; pen up
+G00 X235.4792 Y199.4958
+G0Z6 ; pen down on paper
+G01 X230.7167 Y199.4958
+G0Z0 ; pen up
+G00 X30.1625 Y204.2583
+G0Z6 ; pen down on paper
+G01 X30.1625 Y199.4958
+G0Z0 ; pen up
+G00 X237.5958 Y207.9625
+G0Z6 ; pen down on paper
+G01 X233.3625 Y207.9625
+G0Z0 ; pen up
+G00 X103.7167 Y207.9625
+G0Z6 ; pen down on paper
+G01 X100.0125 Y207.9625
+G0Z0 ; pen up
+G00 X52.3875 Y204.2583
+G0Z6 ; pen down on paper
+G01 X56.6208 Y204.2583
+G0Z0 ; pen up
+G00 X4.7625 Y204.2583
+G0Z6 ; pen down on paper
+G01 X0.5292 Y204.2583
+G0Z0 ; pen up
+G00 X17.9917 Y207.9625
+G0Z6 ; pen down on paper
+G01 X16.4042 Y212.1958
+G0Z0 ; pen up
+G00 X190.5000 Y216.4292
+G0Z6 ; pen down on paper
+G01 X186.2667 Y212.1958
+G0Z0 ; pen up
+G00 X198.9667 Y212.1958
+G0Z6 ; pen down on paper
+G01 X195.2625 Y212.1958
+G0Z0 ; pen up
+G00 X55.5625 Y212.1958
+G0Z6 ; pen down on paper
+G01 X51.3292 Y212.1958
+G0Z0 ; pen up
+G00 X137.5833 Y216.4292
+G0Z6 ; pen down on paper
+G01 X140.2292 Y221.1917
+G0Z0 ; pen up
+G00 X29.6333 Y194.7333
+G0Z6 ; pen down on paper
+G01 X30.1625 Y199.4958
+G0Z0 ; pen up
+G00 X71.9667 Y207.9625
+G0Z6 ; pen down on paper
+G01 X72.4958 Y204.2583
+G0Z0 ; pen up
+G00 X17.9917 Y207.9625
+G0Z6 ; pen down on paper
+G01 X13.7583 Y207.9625
+G0Z0 ; pen up
+G00 X180.9750 Y221.1917
+G0Z6 ; pen down on paper
+G01 X184.6792 Y221.1917
+G0Z0 ; pen up
+G00 X223.3083 Y204.2583
+G0Z6 ; pen down on paper
+G01 X221.7208 Y199.4958
+G0Z0 ; pen up
+G00 X235.4792 Y199.4958
+G0Z6 ; pen down on paper
+G01 X236.5375 Y204.2583
+G0Z0 ; pen up
+G00 X75.6708 Y207.9625
+G0Z6 ; pen down on paper
+G01 X77.2583 Y204.2583
+G0Z0 ; pen up
+G00 X215.3708 Y207.9625
+G0Z6 ; pen down on paper
+G01 X207.4333 Y212.1958
+G0Z0 ; pen up
+G00 X58.7375 Y216.4292
+G0Z6 ; pen down on paper
+G01 X59.7958 Y212.1958
+G0Z0 ; pen up
+G00 X47.6250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X47.0958 Y199.4958
+G0Z0 ; pen up
+G00 X142.3458 Y216.4292
+G0Z6 ; pen down on paper
+G01 X143.9333 Y221.1917
+G0Z0 ; pen up
+G00 X80.4333 Y207.9625
+G0Z6 ; pen down on paper
+G01 X84.6667 Y207.9625
+G0Z0 ; pen up
+G00 X5.2917 Y199.4958
+G0Z6 ; pen down on paper
+G01 X4.7625 Y194.7333
+G0Z0 ; pen up
+G00 X188.3833 Y221.1917
+G0Z6 ; pen down on paper
+G01 X193.1458 Y221.1917
+G0Z0 ; pen up
+G00 X119.0625 Y212.1958
+G0Z6 ; pen down on paper
+G01 X121.7083 Y207.9625
+G0Z0 ; pen up
+G00 X219.6042 Y207.9625
+G0Z6 ; pen down on paper
+G01 X211.1375 Y212.1958
+G0Z0 ; pen up
+G00 X103.1875 Y204.2583
+G0Z6 ; pen down on paper
+G01 X102.6583 Y207.9625
+G0Z0 ; pen up
+G00 X31.7500 Y204.2583
+G0Z6 ; pen down on paper
+G01 X29.6333 Y207.9625
+G0Z0 ; pen up
+G00 X43.9208 Y204.2583
+G0Z6 ; pen down on paper
+G01 X42.8625 Y199.4958
+G0Z0 ; pen up
+G00 X59.7958 Y212.1958
+G0Z6 ; pen down on paper
+G01 X58.7375 Y216.4292
+G0Z0 ; pen up
+G00 X151.3417 Y221.1917
+G0Z6 ; pen down on paper
+G01 X151.3417 Y216.4292
+G0Z0 ; pen up
+G00 X17.4625 Y204.2583
+G0Z6 ; pen down on paper
+G01 X13.7583 Y204.2583
+G0Z0 ; pen up
+G00 X80.9625 Y204.2583
+G0Z6 ; pen down on paper
+G01 X77.2583 Y204.2583
+G0Z0 ; pen up
+G00 X98.4250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X98.4250 Y207.9625
+G0Z0 ; pen up
+G00 X194.7333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X191.0292 Y212.1958
+G0Z0 ; pen up
+G00 X131.2333 Y212.1958
+G0Z6 ; pen down on paper
+G01 X135.4667 Y207.9625
+G0Z0 ; pen up
+G00 X20.6375 Y212.1958
+G0Z6 ; pen down on paper
+G01 X25.4000 Y212.1958
+G0Z0 ; pen up
+G00 X159.2792 Y221.1917
+G0Z6 ; pen down on paper
+G01 X159.2792 Y216.4292
+G0Z0 ; pen up
+G00 X47.6250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X52.3875 Y204.2583
+G0Z0 ; pen up
+G00 X30.1625 Y199.4958
+G0Z6 ; pen down on paper
+G01 X29.6333 Y194.7333
+G0Z0 ; pen up
+G00 X214.3125 Y204.2583
+G0Z6 ; pen down on paper
+G01 X213.2542 Y199.4958
+G0Z0 ; pen up
+G00 X225.9542 Y199.4958
+G0Z6 ; pen down on paper
+G01 X228.0708 Y204.2583
+G0Z0 ; pen up
+G00 X94.7208 Y204.2583
+G0Z6 ; pen down on paper
+G01 X89.9583 Y204.2583
+G0Z0 ; pen up
+G00 X84.6667 Y207.9625
+G0Z6 ; pen down on paper
+G01 X88.9000 Y207.9625
+G0Z0 ; pen up
+G00 X89.4292 Y212.1958
+G0Z6 ; pen down on paper
+G01 X85.1958 Y212.1958
+G0Z0 ; pen up
+G00 X67.7333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X71.4375 Y216.4292
+G0Z0 ; pen up
+G00 X98.4250 Y207.9625
+G0Z6 ; pen down on paper
+G01 X98.4250 Y204.2583
+G0Z0 ; pen up
+G00 X4.7625 Y207.9625
+G0Z6 ; pen down on paper
+G01 X8.4667 Y207.9625
+G0Z0 ; pen up
+G00 X16.4042 Y207.9625
+G0Z6 ; pen down on paper
+G01 X21.1667 Y207.9625
+G0Z0 ; pen up
+G00 X73.5542 Y204.2583
+G0Z6 ; pen down on paper
+G01 X73.0250 Y199.4958
+G0Z0 ; pen up
+G00 X203.7292 Y212.1958
+G0Z6 ; pen down on paper
+G01 X206.3750 Y216.4292
+G0Z0 ; pen up
+G00 X207.4333 Y212.1958
+G0Z6 ; pen down on paper
+G01 X210.0792 Y216.4292
+G0Z0 ; pen up
+G00 X76.2000 Y216.4292
+G0Z6 ; pen down on paper
+G01 X76.7292 Y212.1958
+G0Z0 ; pen up
+G00 X31.2208 Y207.9625
+G0Z6 ; pen down on paper
+G01 X26.4583 Y207.9625
+G0Z0 ; pen up
+G00 X39.1583 Y212.1958
+G0Z6 ; pen down on paper
+G01 X40.7458 Y207.9625
+G0Z0 ; pen up
+G00 X214.3125 Y204.2583
+G0Z6 ; pen down on paper
+G01 X218.5458 Y204.2583
+G0Z0 ; pen up
+G00 X9.5250 Y199.4958
+G0Z6 ; pen down on paper
+G01 X8.9958 Y194.7333
+G0Z0 ; pen up
+G00 X188.3833 Y221.1917
+G0Z6 ; pen down on paper
+G01 X188.3833 Y216.4292
+G0Z0 ; pen up
+G00 X61.3833 Y204.2583
+G0Z6 ; pen down on paper
+G01 X60.3250 Y199.4958
+G0Z0 ; pen up
+G00 X65.0875 Y199.4958
+G0Z6 ; pen down on paper
+G01 X60.3250 Y199.4958
+G0Z0 ; pen up
+G00 X196.8500 Y216.4292
+G0Z6 ; pen down on paper
+G01 X197.3792 Y221.1917
+G0Z0 ; pen up
+G00 X31.7500 Y204.2583
+G0Z6 ; pen down on paper
+G01 X26.9875 Y204.2583
+G0Z0 ; pen up
+G00 X13.2292 Y194.7333
+G0Z6 ; pen down on paper
+G01 X8.9958 Y194.7333
+G0Z0 ; pen up
+G00 X21.6958 Y199.4958
+G0Z6 ; pen down on paper
+G01 X22.2250 Y194.7333
+G0Z0 ; pen up
+G00 X22.2250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X21.1667 Y207.9625
+G0Z0 ; pen up
+G00 X68.7917 Y204.2583
+G0Z6 ; pen down on paper
+G01 X69.3208 Y199.4958
+G0Z0 ; pen up
+G00 X223.3083 Y204.2583
+G0Z6 ; pen down on paper
+G01 X228.0708 Y204.2583
+G0Z0 ; pen up
+G00 X81.4917 Y212.1958
+G0Z6 ; pen down on paper
+G01 X80.4333 Y216.4292
+G0Z0 ; pen up
+G00 X63.5000 Y216.4292
+G0Z6 ; pen down on paper
+G01 X67.7333 Y216.4292
+G0Z0 ; pen up
+G00 X17.9917 Y194.7333
+G0Z6 ; pen down on paper
+G01 X13.2292 Y194.7333
+G0Z0 ; pen up
+G00 X76.7292 Y199.4958
+G0Z6 ; pen down on paper
+G01 X78.3167 Y204.2583
+G0Z0 ; pen up
+G00 X22.2250 Y194.7333
+G0Z6 ; pen down on paper
+G01 X21.6958 Y199.4958
+G0Z0 ; pen up
+G00 X9.5250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X8.4667 Y207.9625
+G0Z0 ; pen up
+G00 X39.1583 Y204.2583
+G0Z6 ; pen down on paper
+G01 X35.4542 Y204.2583
+G0Z0 ; pen up
+G00 X119.5917 Y207.9625
+G0Z6 ; pen down on paper
+G01 X119.0625 Y204.2583
+G0Z0 ; pen up
+G00 X131.2333 Y204.2583
+G0Z6 ; pen down on paper
+G01 X132.2917 Y207.9625
+G0Z0 ; pen up
+G00 X106.8917 Y207.9625
+G0Z6 ; pen down on paper
+G01 X111.1250 Y207.9625
+G0Z0 ; pen up
+G00 X216.4292 Y212.1958
+G0Z6 ; pen down on paper
+G01 X211.6667 Y212.1958
+G0Z0 ; pen up
+G00 X203.7292 Y212.1958
+G0Z6 ; pen down on paper
+G01 X198.9667 Y212.1958
+G0Z0 ; pen up
+G00 X87.3125 Y204.2583
+G0Z6 ; pen down on paper
+G01 X86.2542 Y199.4958
+G0Z0 ; pen up
+G00 X217.4875 Y216.4292
+G0Z6 ; pen down on paper
+G01 X222.2500 Y216.4292
+G0Z0 ; pen up
+G00 X114.8292 Y204.2583
+G0Z6 ; pen down on paper
+G01 X119.5917 Y204.2583
+G0Z0 ; pen up
+G00 X103.1875 Y212.1958
+G0Z6 ; pen down on paper
+G01 X106.8917 Y212.1958
+G0Z0 ; pen up
+G00 X112.7125 Y207.9625
+G0Z6 ; pen down on paper
+G01 X110.5958 Y212.1958
+G0Z0 ; pen up
+G00 X87.3125 Y204.2583
+G0Z6 ; pen down on paper
+G01 X91.5458 Y204.2583
+G0Z0 ; pen up
+G00 X111.1250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X111.1250 Y207.9625
+G0Z0 ; pen up
+G00 X101.0708 Y204.2583
+G0Z6 ; pen down on paper
+G01 X105.3042 Y204.2583
+G0Z0 ; pen up
+G00 X163.5125 Y221.1917
+G0Z6 ; pen down on paper
+G01 X163.5125 Y216.4292
+G0Z0 ; pen up
+G00 X78.3167 Y204.2583
+G0Z6 ; pen down on paper
+G01 X76.7292 Y199.4958
+G0Z0 ; pen up
+G00 X98.4250 Y212.1958
+G0Z6 ; pen down on paper
+G01 X93.6625 Y212.1958
+G0Z0 ; pen up
+G00 X114.8292 Y204.2583
+G0Z6 ; pen down on paper
+G01 X112.1833 Y199.4958
+G0Z0 ; pen up
+G00 X119.5917 Y207.9625
+G0Z6 ; pen down on paper
+G01 X124.3542 Y207.9625
+G0Z0 ; pen up
+G00 X128.0583 Y207.9625
+G0Z6 ; pen down on paper
+G01 X132.2917 Y207.9625
+G0Z0 ; pen up
+G00 X52.9167 Y207.9625
+G0Z6 ; pen down on paper
+G01 X51.8583 Y212.1958
+G0Z0 ; pen up
+G00 X139.7000 Y204.2583
+G0Z6 ; pen down on paper
+G01 X137.0542 Y199.4958
+G0Z0 ; pen up
+G00 X192.0875 Y216.4292
+G0Z6 ; pen down on paper
+G01 X193.1458 Y221.1917
+G0Z0 ; pen up
+G00 X37.5708 Y199.4958
+G0Z6 ; pen down on paper
+G01 X37.5708 Y194.7333
+G0Z0 ; pen up
+G00 X92.0750 Y216.4292
+G0Z6 ; pen down on paper
+G01 X93.6625 Y212.1958
+G0Z0 ; pen up
+G00 X224.8958 Y212.1958
+G0Z6 ; pen down on paper
+G01 X221.1917 Y212.1958
+G0Z0 ; pen up
+G00 X103.7167 Y199.4958
+G0Z6 ; pen down on paper
+G01 X105.3042 Y204.2583
+G0Z0 ; pen up
+G00 X124.3542 Y207.9625
+G0Z6 ; pen down on paper
+G01 X128.0583 Y207.9625
+G0Z0 ; pen up
+G00 X31.2208 Y207.9625
+G0Z6 ; pen down on paper
+G01 X30.1625 Y212.1958
+G0Z0 ; pen up
+G00 X119.5917 Y204.2583
+G0Z6 ; pen down on paper
+G01 X123.8250 Y204.2583
+G0Z0 ; pen up
+G00 X140.2292 Y204.2583
+G0Z6 ; pen down on paper
+G01 X135.9958 Y204.2583
+G0Z0 ; pen up
+G00 X187.8542 Y212.1958
+G0Z6 ; pen down on paper
+G01 X193.6750 Y207.9625
+G0Z0 ; pen up
+G00 X44.4500 Y207.9625
+G0Z6 ; pen down on paper
+G01 X42.8625 Y212.1958
+G0Z0 ; pen up
+G00 X133.3500 Y199.4958
+G0Z6 ; pen down on paper
+G01 X129.6458 Y199.4958
+G0Z0 ; pen up
+G00 X90.4875 Y199.4958
+G0Z6 ; pen down on paper
+G01 X91.5458 Y204.2583
+G0Z0 ; pen up
+G00 X61.9125 Y207.9625
+G0Z6 ; pen down on paper
+G01 X57.1500 Y207.9625
+G0Z0 ; pen up
+G00 X44.4500 Y207.9625
+G0Z6 ; pen down on paper
+G01 X40.7458 Y207.9625
+G0Z0 ; pen up
+G00 X149.2250 Y204.2583
+G0Z6 ; pen down on paper
+G01 X148.1667 Y207.9625
+G0Z0 ; pen up
+G00 X179.3875 Y207.9625
+G0Z6 ; pen down on paper
+G01 X175.1542 Y207.9625
+G0Z0 ; pen up
+G00 X80.4333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X81.4917 Y212.1958
+G0Z0 ; pen up
+G00 X163.5125 Y221.1917
+G0Z6 ; pen down on paper
+G01 X167.7458 Y221.1917
+G0Z0 ; pen up
+G00 X149.7542 Y216.4292
+G0Z6 ; pen down on paper
+G01 X148.1667 Y212.1958
+G0Z0 ; pen up
+G00 X95.2500 Y199.4958
+G0Z6 ; pen down on paper
+G01 X96.3083 Y204.2583
+G0Z0 ; pen up
+G00 X60.3250 Y212.1958
+G0Z6 ; pen down on paper
+G01 X64.5583 Y212.1958
+G0Z0 ; pen up
+G00 X227.0125 Y216.4292
+G0Z6 ; pen down on paper
+G01 X230.7167 Y216.4292
+G0Z0 ; pen up
+G00 X96.8375 Y216.4292
+G0Z6 ; pen down on paper
+G01 X101.6000 Y216.4292
+G0Z0 ; pen up
+G00 X140.2292 Y207.9625
+G0Z6 ; pen down on paper
+G01 X135.9958 Y212.1958
+G0Z0 ; pen up
+G00 X197.9083 Y207.9625
+G0Z6 ; pen down on paper
+G01 X191.5583 Y212.1958
+G0Z0 ; pen up
+G00 X151.3417 Y216.4292
+G0Z6 ; pen down on paper
+G01 X151.3417 Y221.1917
+G0Z0 ; pen up
+G00 X148.1667 Y207.9625
+G0Z6 ; pen down on paper
+G01 X149.2250 Y204.2583
+G0Z0 ; pen up
+G00 X202.1417 Y221.1917
+G0Z6 ; pen down on paper
+G01 X205.8458 Y221.1917
+G0Z0 ; pen up
+G00 X137.0542 Y216.4292
+G0Z6 ; pen down on paper
+G01 X140.7583 Y216.4292
+G0Z0 ; pen up
+G00 X145.5208 Y216.4292
+G0Z6 ; pen down on paper
+G01 X143.4042 Y212.1958
+G0Z0 ; pen up
+G00 X101.6000 Y216.4292
+G0Z6 ; pen down on paper
+G01 X106.3625 Y216.4292
+G0Z0 ; pen up
+G00 X233.3625 Y212.1958
+G0Z6 ; pen down on paper
+G01 X228.6000 Y212.1958
+G0Z0 ; pen up
+G00 X129.6458 Y199.4958
+G0Z6 ; pen down on paper
+G01 X125.9417 Y199.4958
+G0Z0 ; pen up
+G00 X151.8708 Y207.9625
+G0Z6 ; pen down on paper
+G01 X156.1042 Y207.9625
+G0Z0 ; pen up
+G00 X191.5583 Y212.1958
+G0Z6 ; pen down on paper
+G01 X197.9083 Y207.9625
+G0Z0 ; pen up
+G00 X143.9333 Y207.9625
+G0Z6 ; pen down on paper
+G01 X144.4625 Y204.2583
+G0Z0 ; pen up
+G00 X137.0542 Y199.4958
+G0Z6 ; pen down on paper
+G01 X139.7000 Y204.2583
+G0Z0 ; pen up
+G00 X110.0667 Y212.1958
+G0Z6 ; pen down on paper
+G01 X106.3625 Y212.1958
+G0Z0 ; pen up
+G00 X121.7083 Y199.4958
+G0Z6 ; pen down on paper
+G01 X123.8250 Y204.2583
+G0Z0 ; pen up
+G00 X209.0208 Y216.4292
+G0Z6 ; pen down on paper
+G01 X205.3167 Y216.4292
+G0Z0 ; pen up
+G00 X162.4542 Y204.2583
+G0Z6 ; pen down on paper
+G01 X160.3375 Y207.9625
+G0Z0 ; pen up
+G00 X162.4542 Y204.2583
+G0Z6 ; pen down on paper
+G01 X157.6917 Y204.2583
+G0Z0 ; pen up
+G00 X51.8583 Y212.1958
+G0Z6 ; pen down on paper
+G01 X52.9167 Y207.9625
+G0Z0 ; pen up
+G00 X201.6125 Y207.9625
+G0Z6 ; pen down on paper
+G01 X195.2625 Y212.1958
+G0Z0 ; pen up
+G00 X131.2333 Y212.1958
+G0Z6 ; pen down on paper
+G01 X132.2917 Y216.4292
+G0Z0 ; pen up
+G00 X170.3917 Y204.2583
+G0Z6 ; pen down on paper
+G01 X168.2750 Y207.9625
+G0Z0 ; pen up
+G00 X170.3917 Y204.2583
+G0Z6 ; pen down on paper
+G01 X166.1583 Y204.2583
+G0Z0 ; pen up
+G00 X139.7000 Y212.1958
+G0Z6 ; pen down on paper
+G01 X144.4625 Y212.1958
+G0Z0 ; pen up
+G00 X184.6792 Y207.9625
+G0Z6 ; pen down on paper
+G01 X188.3833 Y204.2583
+G0Z0 ; pen up
+G00 X210.6083 Y221.1917
+G0Z6 ; pen down on paper
+G01 X214.3125 Y221.1917
+G0Z0 ; pen up
+G00 X159.2792 Y216.4292
+G0Z6 ; pen down on paper
+G01 X156.6333 Y212.1958
+G0Z0 ; pen up
+G00 X176.7417 Y207.9625
+G0Z6 ; pen down on paper
+G01 X178.8583 Y204.2583
+G0Z0 ; pen up
+G00 X202.6708 Y204.2583
+G0Z6 ; pen down on paper
+G01 X197.9083 Y204.2583
+G0Z0 ; pen up
+G00 X180.4458 Y207.9625
+G0Z6 ; pen down on paper
+G01 X183.6208 Y204.2583
+G0Z0 ; pen up
+G00 X178.8583 Y212.1958
+G0Z6 ; pen down on paper
+G01 X183.0917 Y212.1958
+G0Z0 ; pen up
+G00 X188.3833 Y207.9625
+G0Z6 ; pen down on paper
+G01 X193.1458 Y204.2583
+G0Z0 ; pen up
+G00 X131.2333 Y212.1958
+G0Z6 ; pen down on paper
+G01 X135.9958 Y212.1958
+G0Z0 ; pen up
+G00 X202.6708 Y207.9625
+G0Z6 ; pen down on paper
+G01 X207.4333 Y204.2583
+G0Z0 ; pen up
+G00 X152.9292 Y212.1958
+G0Z6 ; pen down on paper
+G01 X148.1667 Y212.1958
+G0Z0 ; pen up
+G00 X207.4333 Y204.2583
+G0Z6 ; pen down on paper
+G01 X202.6708 Y207.9625
+G0Z0 ; pen up
+G00 X115.8875 Y216.4292
+G0Z6 ; pen down on paper
+G01 X114.8292 Y212.1958
+G0Z0 ; pen up
+G00 X197.9083 Y204.2583
+G0Z6 ; pen down on paper
+G01 X193.1458 Y204.2583
+G0Z0 ; pen up
+G00 X215.3708 Y207.9625
+G0Z6 ; pen down on paper
+G01 X219.6042 Y207.9625
+G0Z0 ; pen up
+G00 X211.6667 Y207.9625
+G0Z6 ; pen down on paper
+G01 X215.3708 Y204.2583
+G0Z0 ; pen up
+G00 X148.1667 Y207.9625
+G0Z6 ; pen down on paper
+G01 X144.4625 Y212.1958
+G0Z0 ; pen up
+G00 X184.1500 Y207.9625
+G0Z6 ; pen down on paper
+G01 X179.3875 Y207.9625
+G0Z0 ; pen up
+G00 X223.8375 Y204.2583
+G0Z6 ; pen down on paper
+G01 X219.6042 Y207.9625
+G0Z0 ; pen up
+G00 X119.5917 Y216.4292
+G0Z6 ; pen down on paper
+G01 X118.5333 Y212.1958
+G0Z0 ; pen up
+G00 X153.9875 Y212.1958
+G0Z6 ; pen down on paper
+G01 X158.2208 Y212.1958
+G0Z0 ; pen up
+G00 X156.1042 Y207.9625
+G0Z6 ; pen down on paper
+G01 X151.8708 Y207.9625
+G0Z0 ; pen up
+G00 X218.0167 Y221.1917
+G0Z6 ; pen down on paper
+G01 X217.4875 Y216.4292
+G0Z0 ; pen up
+G00 X211.6667 Y207.9625
+G0Z6 ; pen down on paper
+G01 X215.3708 Y207.9625
+G0Z0 ; pen up
+G00 X165.1000 Y212.1958
+G0Z6 ; pen down on paper
+G01 X160.8667 Y212.1958
+G0Z0 ; pen up
+G00 X232.3042 Y204.2583
+G0Z6 ; pen down on paper
+G01 X227.5417 Y207.9625
+G0Z0 ; pen up
+G00 X160.8667 Y207.9625
+G0Z6 ; pen down on paper
+G01 X158.2208 Y212.1958
+G0Z0 ; pen up
+G00 X227.5417 Y207.9625
+G0Z6 ; pen down on paper
+G01 X232.3042 Y204.2583
+G0Z0 ; pen up
+G00 X237.5958 Y204.2583
+G0Z6 ; pen down on paper
+G01 X237.0667 Y204.2583
+G0Z0 ; pen up
+G00 X123.8250 Y216.4292
+G0Z6 ; pen down on paper
+G01 X127.5292 Y216.4292
+G0Z0 ; pen up
+G00 X159.2792 Y216.4292
+G0Z6 ; pen down on paper
+G01 X163.5125 Y216.4292
+G0Z0 ; pen up
+G00 X4.7625 Y204.2583
+G0Z6 ; pen down on paper
+G01 X5.2917 Y199.4958
+G0Z0 ; pen up
+G00 X217.4875 Y216.4292
+G0Z6 ; pen down on paper
+G01 X218.0167 Y221.1917
+G0Z0 ; pen up
+G00 X170.9208 Y212.1958
+G0Z6 ; pen down on paper
+G01 X175.1542 Y207.9625
+G0Z0 ; pen up
+G00 X170.3917 Y207.9625
+G0Z6 ; pen down on paper
+G01 X165.6292 Y207.9625
+G0Z0 ; pen up
+G00 X230.7167 Y221.1917
+G0Z6 ; pen down on paper
+G01 X231.2458 Y216.4292
+G0Z0 ; pen up
+G00 X123.8250 Y216.4292
+G0Z6 ; pen down on paper
+G01 X123.2958 Y212.1958
+G0Z0 ; pen up
+G00 X234.9500 Y221.1917
+G0Z6 ; pen down on paper
+G01 X235.4792 Y216.4292
+G0Z0 ; pen up
+G00 X127.0000 Y212.1958
+G0Z6 ; pen down on paper
+G01 X127.5292 Y216.4292
+G0Z0 ; pen up
+G00 X226.4833 Y221.1917
+G0Z6 ; pen down on paper
+G01 X227.0125 Y216.4292
+G0Z0 ; pen up
+G00 X17.4625 Y216.4292
+G0Z6 ; pen down on paper
+G01 X22.2250 Y216.4292
+G0Z0 ; pen up
+G00 X235.4792 Y216.4292
+G0Z6 ; pen down on paper
+G01 X234.9500 Y221.1917
+G0Z0 ; pen up
+G00 X4.2333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X8.9958 Y216.4292
+G0Z0 ; pen up
+G00 X31.2208 Y212.1958
+G0Z6 ; pen down on paper
+G01 X26.9875 Y212.1958
+G0Z0 ; pen up
+G00 X4.2333 Y216.4292
+G0Z6 ; pen down on paper
+G01 X5.2917 Y212.1958
+G0Z0 ; pen up
+G00 X13.2292 Y216.4292
+G0Z6 ; pen down on paper
+G01 X17.4625 Y216.4292
+G0Z0 ; pen up
+G00 X22.7542 Y212.1958
+G0Z6 ; pen down on paper
+G01 X22.2250 Y216.4292
+G0Z0 ; pen up
+G00 X13.2292 Y216.4292
+G0Z6 ; pen down on paper
+G01 X14.2875 Y212.1958
+G0Z0 ; pen up
+G00 X70.9083 Y199.4958
+G0Z6 ; pen down on paper
+G01 X74.6125 Y199.4958
+G0Z0 ; pen up
+G00 X142.8750 Y191.0292
+G0Z6 ; pen down on paper
+G01 X145.5208 Y187.3250
+G0Z0 ; pen up
+G00 X173.0375 Y199.4958
+G0Z6 ; pen down on paper
+G01 X177.2708 Y199.4958
+G0Z0 ; pen up
+G00 X110.0667 Y191.0292
+G0Z6 ; pen down on paper
+G01 X111.6542 Y187.3250
+G0Z0 ; pen up
+G00 X107.4208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X103.1875 Y187.3250
+G0Z0 ; pen up
+G00 X74.6125 Y194.7333
+G0Z6 ; pen down on paper
+G01 X74.6125 Y199.4958
+G0Z0 ; pen up
+G00 X46.0375 Y183.6208
+G0Z6 ; pen down on paper
+G01 X47.6250 Y187.3250
+G0Z0 ; pen up
+G00 X10.0542 Y191.0292
+G0Z6 ; pen down on paper
+G01 X5.2917 Y191.0292
+G0Z0 ; pen up
+G00 X13.2292 Y187.3250
+G0Z6 ; pen down on paper
+G01 X13.2292 Y183.6208
+G0Z0 ; pen up
+G00 X37.0417 Y183.6208
+G0Z6 ; pen down on paper
+G01 X33.3375 Y183.6208
+G0Z0 ; pen up
+G00 X42.8625 Y187.3250
+G0Z6 ; pen down on paper
+G01 X41.2750 Y183.6208
+G0Z0 ; pen up
+G00 X136.5250 Y187.3250
+G0Z6 ; pen down on paper
+G01 X134.9375 Y191.0292
+G0Z0 ; pen up
+G00 X87.8417 Y199.4958
+G0Z6 ; pen down on paper
+G01 X88.3708 Y194.7333
+G0Z0 ; pen up
+G00 X111.6542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X110.0667 Y191.0292
+G0Z0 ; pen up
+G00 X37.5708 Y199.4958
+G0Z6 ; pen down on paper
+G01 X41.2750 Y199.4958
+G0Z0 ; pen up
+G00 X115.3583 Y187.3250
+G0Z6 ; pen down on paper
+G01 X113.7708 Y191.0292
+G0Z0 ; pen up
+G00 X4.7625 Y183.6208
+G0Z6 ; pen down on paper
+G01 X0.5292 Y183.6208
+G0Z0 ; pen up
+G00 X177.8000 Y194.7333
+G0Z6 ; pen down on paper
+G01 X174.0958 Y194.7333
+G0Z0 ; pen up
+G00 X13.2292 Y183.6208
+G0Z6 ; pen down on paper
+G01 X13.2292 Y187.3250
+G0Z0 ; pen up
+G00 X53.9750 Y183.6208
+G0Z6 ; pen down on paper
+G01 X55.5625 Y187.3250
+G0Z0 ; pen up
+G00 X136.5250 Y187.3250
+G0Z6 ; pen down on paper
+G01 X131.7625 Y187.3250
+G0Z0 ; pen up
+G00 X4.7625 Y183.6208
+G0Z6 ; pen down on paper
+G01 X5.2917 Y187.3250
+G0Z0 ; pen up
+G00 X34.9250 Y191.0292
+G0Z6 ; pen down on paper
+G01 X36.5125 Y194.7333
+G0Z0 ; pen up
+G00 X21.6958 Y187.3250
+G0Z6 ; pen down on paper
+G01 X21.1667 Y183.6208
+G0Z0 ; pen up
+G00 X145.5208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X142.8750 Y191.0292
+G0Z0 ; pen up
+G00 X83.6083 Y194.7333
+G0Z6 ; pen down on paper
+G01 X79.3750 Y194.7333
+G0Z0 ; pen up
+G00 X9.5250 Y194.7333
+G0Z6 ; pen down on paper
+G01 X14.2875 Y194.7333
+G0Z0 ; pen up
+G00 X30.1625 Y187.3250
+G0Z6 ; pen down on paper
+G01 X29.1042 Y183.6208
+G0Z0 ; pen up
+G00 X152.4000 Y191.0292
+G0Z6 ; pen down on paper
+G01 X153.9875 Y187.3250
+G0Z0 ; pen up
+G00 X180.9750 Y199.4958
+G0Z6 ; pen down on paper
+G01 X185.7375 Y199.4958
+G0Z0 ; pen up
+G00 X62.9708 Y199.4958
+G0Z6 ; pen down on paper
+G01 X66.6750 Y199.4958
+G0Z0 ; pen up
+G00 X152.4000 Y191.0292
+G0Z6 ; pen down on paper
+G01 X156.1042 Y191.0292
+G0Z0 ; pen up
+G00 X26.4583 Y187.3250
+G0Z6 ; pen down on paper
+G01 X24.8708 Y183.6208
+G0Z0 ; pen up
+G00 X44.9792 Y194.7333
+G0Z6 ; pen down on paper
+G01 X44.4500 Y191.0292
+G0Z0 ; pen up
+G00 X5.2917 Y194.7333
+G0Z6 ; pen down on paper
+G01 X5.2917 Y191.0292
+G0Z0 ; pen up
+G00 X211.6667 Y199.4958
+G0Z6 ; pen down on paper
+G01 X215.9000 Y199.4958
+G0Z0 ; pen up
+G00 X156.1042 Y191.0292
+G0Z6 ; pen down on paper
+G01 X160.3375 Y191.0292
+G0Z0 ; pen up
+G00 X29.1042 Y183.6208
+G0Z6 ; pen down on paper
+G01 X30.1625 Y187.3250
+G0Z0 ; pen up
+G00 X49.7417 Y194.7333
+G0Z6 ; pen down on paper
+G01 X53.9750 Y194.7333
+G0Z0 ; pen up
+G00 X124.3542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X122.2375 Y191.0292
+G0Z0 ; pen up
+G00 X164.5708 Y191.0292
+G0Z6 ; pen down on paper
+G01 X166.1583 Y187.3250
+G0Z0 ; pen up
+G00 X185.7375 Y199.4958
+G0Z6 ; pen down on paper
+G01 X189.9708 Y199.4958
+G0Z0 ; pen up
+G00 X122.2375 Y191.0292
+G0Z6 ; pen down on paper
+G01 X124.3542 Y187.3250
+G0Z0 ; pen up
+G00 X96.3083 Y199.4958
+G0Z6 ; pen down on paper
+G01 X96.3083 Y194.7333
+G0Z0 ; pen up
+G00 X128.0583 Y187.3250
+G0Z6 ; pen down on paper
+G01 X127.0000 Y191.0292
+G0Z0 ; pen up
+G00 X64.5583 Y187.3250
+G0Z6 ; pen down on paper
+G01 X69.3208 Y187.3250
+G0Z0 ; pen up
+G00 X168.8042 Y191.0292
+G0Z6 ; pen down on paper
+G01 X170.9208 Y187.3250
+G0Z0 ; pen up
+G00 X96.3083 Y199.4958
+G0Z6 ; pen down on paper
+G01 X101.0708 Y199.4958
+G0Z0 ; pen up
+G00 X41.2750 Y194.7333
+G0Z6 ; pen down on paper
+G01 X41.2750 Y199.4958
+G0Z0 ; pen up
+G00 X173.5667 Y191.0292
+G0Z6 ; pen down on paper
+G01 X178.3292 Y191.0292
+G0Z0 ; pen up
+G00 X53.9750 Y183.6208
+G0Z6 ; pen down on paper
+G01 X49.7417 Y183.6208
+G0Z0 ; pen up
+G00 X14.2875 Y194.7333
+G0Z6 ; pen down on paper
+G01 X19.0500 Y194.7333
+G0Z0 ; pen up
+G00 X183.6208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X182.5625 Y191.0292
+G0Z0 ; pen up
+G00 X44.9792 Y194.7333
+G0Z6 ; pen down on paper
+G01 X49.7417 Y194.7333
+G0Z0 ; pen up
+G00 X45.5083 Y199.4958
+G0Z6 ; pen down on paper
+G01 X49.7417 Y199.4958
+G0Z0 ; pen up
+G00 X92.0750 Y194.7333
+G0Z6 ; pen down on paper
+G01 X88.3708 Y194.7333
+G0Z0 ; pen up
+G00 X61.9125 Y183.6208
+G0Z6 ; pen down on paper
+G01 X58.2083 Y183.6208
+G0Z0 ; pen up
+G00 X191.0292 Y194.7333
+G0Z6 ; pen down on paper
+G01 X194.2042 Y199.4958
+G0Z0 ; pen up
+G00 X49.7417 Y194.7333
+G0Z6 ; pen down on paper
+G01 X49.7417 Y199.4958
+G0Z0 ; pen up
+G00 X215.9000 Y199.4958
+G0Z6 ; pen down on paper
+G01 X219.6042 Y199.4958
+G0Z0 ; pen up
+G00 X182.5625 Y191.0292
+G0Z6 ; pen down on paper
+G01 X183.6208 Y187.3250
+G0Z0 ; pen up
+G00 X57.6792 Y194.7333
+G0Z6 ; pen down on paper
+G01 X56.6208 Y191.0292
+G0Z0 ; pen up
+G00 X47.6250 Y187.3250
+G0Z6 ; pen down on paper
+G01 X46.0375 Y183.6208
+G0Z0 ; pen up
+G00 X56.6208 Y191.0292
+G0Z6 ; pen down on paper
+G01 X57.6792 Y194.7333
+G0Z0 ; pen up
+G00 X170.9208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X168.8042 Y191.0292
+G0Z0 ; pen up
+G00 X202.6708 Y199.4958
+G0Z6 ; pen down on paper
+G01 X200.0250 Y194.7333
+G0Z0 ; pen up
+G00 X85.7250 Y187.3250
+G0Z6 ; pen down on paper
+G01 X84.1375 Y183.6208
+G0Z0 ; pen up
+G00 X53.4458 Y199.4958
+G0Z6 ; pen down on paper
+G01 X58.2083 Y199.4958
+G0Z0 ; pen up
+G00 X192.0875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X190.5000 Y191.0292
+G0Z0 ; pen up
+G00 X200.5542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X196.8500 Y187.3250
+G0Z0 ; pen up
+G00 X69.3208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X73.0250 Y187.3250
+G0Z0 ; pen up
+G00 X204.7875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X200.5542 Y187.3250
+G0Z0 ; pen up
+G00 X194.2042 Y199.4958
+G0Z6 ; pen down on paper
+G01 X191.0292 Y194.7333
+G0Z0 ; pen up
+G00 X57.6792 Y194.7333
+G0Z6 ; pen down on paper
+G01 X58.2083 Y199.4958
+G0Z0 ; pen up
+G00 X190.5000 Y191.0292
+G0Z6 ; pen down on paper
+G01 X192.0875 Y187.3250
+G0Z0 ; pen up
+G00 X206.9042 Y199.4958
+G0Z6 ; pen down on paper
+G01 X211.6667 Y199.4958
+G0Z0 ; pen up
+G00 X210.0792 Y191.0292
+G0Z6 ; pen down on paper
+G01 X213.2542 Y187.3250
+G0Z0 ; pen up
+G00 X209.0208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X204.7875 Y187.3250
+G0Z0 ; pen up
+G00 X77.7875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X82.0208 Y187.3250
+G0Z0 ; pen up
+G00 X219.6042 Y199.4958
+G0Z6 ; pen down on paper
+G01 X223.8375 Y199.4958
+G0Z0 ; pen up
+G00 X101.0708 Y199.4958
+G0Z6 ; pen down on paper
+G01 X104.7750 Y199.4958
+G0Z0 ; pen up
+G00 X70.3792 Y194.7333
+G0Z6 ; pen down on paper
+G01 X66.1458 Y194.7333
+G0Z0 ; pen up
+G00 X74.6125 Y183.6208
+G0Z6 ; pen down on paper
+G01 X70.3792 Y183.6208
+G0Z0 ; pen up
+G00 X23.2833 Y194.7333
+G0Z6 ; pen down on paper
+G01 X22.7542 Y191.0292
+G0Z0 ; pen up
+G00 X108.4792 Y199.4958
+G0Z6 ; pen down on paper
+G01 X113.2417 Y199.4958
+G0Z0 ; pen up
+G00 X95.2500 Y187.3250
+G0Z6 ; pen down on paper
+G01 X98.9542 Y187.3250
+G0Z0 ; pen up
+G00 X213.2542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X210.0792 Y191.0292
+G0Z0 ; pen up
+G00 X216.9583 Y187.3250
+G0Z6 ; pen down on paper
+G01 X214.3125 Y191.0292
+G0Z0 ; pen up
+G00 X130.1750 Y199.4958
+G0Z6 ; pen down on paper
+G01 X129.6458 Y194.7333
+G0Z0 ; pen up
+G00 X219.0750 Y191.0292
+G0Z6 ; pen down on paper
+G01 X222.7792 Y191.0292
+G0Z0 ; pen up
+G00 X118.0042 Y199.4958
+G0Z6 ; pen down on paper
+G01 X116.9458 Y194.7333
+G0Z0 ; pen up
+G00 X129.6458 Y194.7333
+G0Z6 ; pen down on paper
+G01 X130.1750 Y199.4958
+G0Z0 ; pen up
+G00 X226.4833 Y191.0292
+G0Z6 ; pen down on paper
+G01 X229.1292 Y187.3250
+G0Z0 ; pen up
+G00 X230.7167 Y191.0292
+G0Z6 ; pen down on paper
+G01 X237.5958 Y191.0292
+G0Z0 ; pen up
+G00 X98.9542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X103.7167 Y187.3250
+G0Z0 ; pen up
+G00 X92.6042 Y183.6208
+G0Z6 ; pen down on paper
+G01 X88.3708 Y183.6208
+G0Z0 ; pen up
+G00 X90.4875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X88.3708 Y183.6208
+G0Z0 ; pen up
+G00 X116.4167 Y187.3250
+G0Z6 ; pen down on paper
+G01 X114.3000 Y183.6208
+G0Z0 ; pen up
+G00 X125.4125 Y194.7333
+G0Z6 ; pen down on paper
+G01 X121.7083 Y194.7333
+G0Z0 ; pen up
+G00 X121.7083 Y194.7333
+G0Z6 ; pen down on paper
+G01 X116.9458 Y194.7333
+G0Z0 ; pen up
+G00 X230.7167 Y191.0292
+G0Z6 ; pen down on paper
+G01 X233.8917 Y187.3250
+G0Z0 ; pen up
+G00 X106.3625 Y183.6208
+G0Z6 ; pen down on paper
+G01 X101.6000 Y183.6208
+G0Z0 ; pen up
+G00 X104.7750 Y194.7333
+G0Z6 ; pen down on paper
+G01 X104.7750 Y199.4958
+G0Z0 ; pen up
+G00 X134.4083 Y199.4958
+G0Z6 ; pen down on paper
+G01 X138.6417 Y199.4958
+G0Z0 ; pen up
+G00 X149.7542 Y194.7333
+G0Z6 ; pen down on paper
+G01 X146.0500 Y194.7333
+G0Z0 ; pen up
+G00 X107.9500 Y187.3250
+G0Z6 ; pen down on paper
+G01 X111.6542 Y187.3250
+G0Z0 ; pen up
+G00 X141.2875 Y194.7333
+G0Z6 ; pen down on paper
+G01 X137.5833 Y194.7333
+G0Z0 ; pen up
+G00 X234.9500 Y194.7333
+G0Z6 ; pen down on paper
+G01 X236.5375 Y199.4958
+G0Z0 ; pen up
+G00 X151.8708 Y199.4958
+G0Z6 ; pen down on paper
+G01 X155.5750 Y199.4958
+G0Z0 ; pen up
+G00 X31.2208 Y191.0292
+G0Z6 ; pen down on paper
+G01 X26.4583 Y191.0292
+G0Z0 ; pen up
+G00 X22.7542 Y191.0292
+G0Z6 ; pen down on paper
+G01 X23.2833 Y194.7333
+G0Z0 ; pen up
+G00 X114.3000 Y183.6208
+G0Z6 ; pen down on paper
+G01 X116.4167 Y187.3250
+G0Z0 ; pen up
+G00 X118.0042 Y183.6208
+G0Z6 ; pen down on paper
+G01 X120.1208 Y187.3250
+G0Z0 ; pen up
+G00 X61.9125 Y194.7333
+G0Z6 ; pen down on paper
+G01 X66.6750 Y194.7333
+G0Z0 ; pen up
+G00 X34.9250 Y191.0292
+G0Z6 ; pen down on paper
+G01 X31.2208 Y191.0292
+G0Z0 ; pen up
+G00 X133.3500 Y187.3250
+G0Z6 ; pen down on paper
+G01 X138.1125 Y187.3250
+G0Z0 ; pen up
+G00 X146.0500 Y194.7333
+G0Z6 ; pen down on paper
+G01 X141.2875 Y194.7333
+G0Z0 ; pen up
+G00 X129.6458 Y183.6208
+G0Z6 ; pen down on paper
+G01 X125.9417 Y183.6208
+G0Z0 ; pen up
+G00 X125.9417 Y183.6208
+G0Z6 ; pen down on paper
+G01 X121.7083 Y183.6208
+G0Z0 ; pen up
+G00 X159.2792 Y199.4958
+G0Z6 ; pen down on paper
+G01 X157.6917 Y194.7333
+G0Z0 ; pen up
+G00 X209.5500 Y187.3250
+G0Z6 ; pen down on paper
+G01 X213.2542 Y187.3250
+G0Z0 ; pen up
+G00 X164.0417 Y199.4958
+G0Z6 ; pen down on paper
+G01 X168.8042 Y199.4958
+G0Z0 ; pen up
+G00 X205.3167 Y187.3250
+G0Z6 ; pen down on paper
+G01 X209.5500 Y187.3250
+G0Z0 ; pen up
+G00 X13.7583 Y179.3875
+G0Z6 ; pen down on paper
+G01 X13.7583 Y183.6208
+G0Z0 ; pen up
+G00 X166.1583 Y194.7333
+G0Z6 ; pen down on paper
+G01 X168.8042 Y199.4958
+G0Z0 ; pen up
+G00 X236.5375 Y199.4958
+G0Z6 ; pen down on paper
+G01 X234.9500 Y194.7333
+G0Z0 ; pen up
+G00 X69.3208 Y191.0292
+G0Z6 ; pen down on paper
+G01 X65.0875 Y191.0292
+G0Z0 ; pen up
+G00 X159.2792 Y199.4958
+G0Z6 ; pen down on paper
+G01 X164.0417 Y199.4958
+G0Z0 ; pen up
+G00 X232.3042 Y199.4958
+G0Z6 ; pen down on paper
+G01 X230.7167 Y194.7333
+G0Z0 ; pen up
+G00 X204.2583 Y194.7333
+G0Z6 ; pen down on paper
+G01 X200.0250 Y194.7333
+G0Z0 ; pen up
+G00 X228.0708 Y199.4958
+G0Z6 ; pen down on paper
+G01 X226.4833 Y194.7333
+G0Z0 ; pen up
+G00 X103.7167 Y179.3875
+G0Z6 ; pen down on paper
+G01 X103.7167 Y183.6208
+G0Z0 ; pen up
+G00 X30.1625 Y179.3875
+G0Z6 ; pen down on paper
+G01 X31.2208 Y183.6208
+G0Z0 ; pen up
+G00 X140.2292 Y191.0292
+G0Z6 ; pen down on paper
+G01 X135.9958 Y191.0292
+G0Z0 ; pen up
+G00 X116.4167 Y179.3875
+G0Z6 ; pen down on paper
+G01 X116.4167 Y183.6208
+G0Z0 ; pen up
+G00 X77.2583 Y191.0292
+G0Z6 ; pen down on paper
+G01 X73.5542 Y191.0292
+G0Z0 ; pen up
+G00 X38.6292 Y179.3875
+G0Z6 ; pen down on paper
+G01 X34.9250 Y179.3875
+G0Z0 ; pen up
+G00 X112.7125 Y179.3875
+G0Z6 ; pen down on paper
+G01 X107.9500 Y179.3875
+G0Z0 ; pen up
+G00 X116.4167 Y183.6208
+G0Z6 ; pen down on paper
+G01 X116.4167 Y179.3875
+G0Z0 ; pen up
+G00 X148.1667 Y191.0292
+G0Z6 ; pen down on paper
+G01 X143.9333 Y191.0292
+G0Z0 ; pen up
+G00 X51.3292 Y179.3875
+G0Z6 ; pen down on paper
+G01 X52.3875 Y183.6208
+G0Z0 ; pen up
+G00 X150.2833 Y183.6208
+G0Z6 ; pen down on paper
+G01 X153.9875 Y187.3250
+G0Z0 ; pen up
+G00 X120.6500 Y179.3875
+G0Z6 ; pen down on paper
+G01 X120.6500 Y183.6208
+G0Z0 ; pen up
+G00 X71.4375 Y194.7333
+G0Z6 ; pen down on paper
+G01 X75.6708 Y194.7333
+G0Z0 ; pen up
+G00 X154.5167 Y194.7333
+G0Z6 ; pen down on paper
+G01 X151.8708 Y191.0292
+G0Z0 ; pen up
+G00 X22.2250 Y179.3875
+G0Z6 ; pen down on paper
+G01 X17.9917 Y179.3875
+G0Z0 ; pen up
+G00 X169.3333 Y191.0292
+G0Z6 ; pen down on paper
+G01 X170.9208 Y194.7333
+G0Z0 ; pen up
+G00 X142.3458 Y194.7333
+G0Z6 ; pen down on paper
+G01 X147.1083 Y194.7333
+G0Z0 ; pen up
+G00 X87.3125 Y194.7333
+G0Z6 ; pen down on paper
+G01 X85.7250 Y191.0292
+G0Z0 ; pen up
+G00 X216.9583 Y187.3250
+G0Z6 ; pen down on paper
+G01 X215.3708 Y183.6208
+G0Z0 ; pen up
+G00 X176.7417 Y191.0292
+G0Z6 ; pen down on paper
+G01 X173.0375 Y191.0292
+G0Z0 ; pen up
+G00 X60.8542 Y179.3875
+G0Z6 ; pen down on paper
+G01 X60.3250 Y183.6208
+G0Z0 ; pen up
+G00 X56.6208 Y183.6208
+G0Z6 ; pen down on paper
+G01 X60.3250 Y183.6208
+G0Z0 ; pen up
+G00 X81.4917 Y191.0292
+G0Z6 ; pen down on paper
+G01 X77.2583 Y191.0292
+G0Z0 ; pen up
+G00 X186.7958 Y194.7333
+G0Z6 ; pen down on paper
+G01 X185.2083 Y191.0292
+G0Z0 ; pen up
+G00 X87.3125 Y194.7333
+G0Z6 ; pen down on paper
+G01 X91.5458 Y194.7333
+G0Z0 ; pen up
+G00 X89.4292 Y191.0292
+G0Z6 ; pen down on paper
+G01 X91.5458 Y194.7333
+G0Z0 ; pen up
+G00 X180.9750 Y191.0292
+G0Z6 ; pen down on paper
+G01 X176.7417 Y191.0292
+G0Z0 ; pen up
+G00 X187.3250 Y187.3250
+G0Z6 ; pen down on paper
+G01 X185.2083 Y183.6208
+G0Z0 ; pen up
+G00 X146.0500 Y183.6208
+G0Z6 ; pen down on paper
+G01 X142.3458 Y183.6208
+G0Z0 ; pen up
+G00 X104.2458 Y194.7333
+G0Z6 ; pen down on paper
+G01 X101.6000 Y191.0292
+G0Z0 ; pen up
+G00 X162.9833 Y194.7333
+G0Z6 ; pen down on paper
+G01 X160.3375 Y191.0292
+G0Z0 ; pen up
+G00 X190.5000 Y194.7333
+G0Z6 ; pen down on paper
+G01 X189.4417 Y191.0292
+G0Z0 ; pen up
+G00 X215.3708 Y183.6208
+G0Z6 ; pen down on paper
+G01 X216.9583 Y187.3250
+G0Z0 ; pen up
+G00 X197.3792 Y191.0292
+G0Z6 ; pen down on paper
+G01 X193.1458 Y191.0292
+G0Z0 ; pen up
+G00 X162.4542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X159.8083 Y183.6208
+G0Z0 ; pen up
+G00 X176.7417 Y183.6208
+G0Z6 ; pen down on paper
+G01 X179.3875 Y187.3250
+G0Z0 ; pen up
+G00 X65.6167 Y179.3875
+G0Z6 ; pen down on paper
+G01 X65.0875 Y183.6208
+G0Z0 ; pen up
+G00 X151.8708 Y191.0292
+G0Z6 ; pen down on paper
+G01 X154.5167 Y194.7333
+G0Z0 ; pen up
+G00 X129.1167 Y179.3875
+G0Z6 ; pen down on paper
+G01 X129.1167 Y183.6208
+G0Z0 ; pen up
+G00 X96.3083 Y194.7333
+G0Z6 ; pen down on paper
+G01 X100.0125 Y194.7333
+G0Z0 ; pen up
+G00 X170.9208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X175.1542 Y187.3250
+G0Z0 ; pen up
+G00 X142.3458 Y187.3250
+G0Z6 ; pen down on paper
+G01 X146.0500 Y187.3250
+G0Z0 ; pen up
+G00 X219.0750 Y183.6208
+G0Z6 ; pen down on paper
+G01 X221.7208 Y187.3250
+G0Z0 ; pen up
+G00 X44.4500 Y183.6208
+G0Z6 ; pen down on paper
+G01 X48.6833 Y183.6208
+G0Z0 ; pen up
+G00 X129.1167 Y194.7333
+G0Z6 ; pen down on paper
+G01 X133.8792 Y194.7333
+G0Z0 ; pen up
+G00 X121.1792 Y194.7333
+G0Z6 ; pen down on paper
+G01 X124.8833 Y194.7333
+G0Z0 ; pen up
+G00 X73.5542 Y183.6208
+G0Z6 ; pen down on paper
+G01 X77.7875 Y183.6208
+G0Z0 ; pen up
+G00 X204.7875 Y194.7333
+G0Z6 ; pen down on paper
+G01 X202.1417 Y191.0292
+G0Z0 ; pen up
+G00 X189.4417 Y191.0292
+G0Z6 ; pen down on paper
+G01 X190.5000 Y194.7333
+G0Z0 ; pen up
+G00 X162.9833 Y194.7333
+G0Z6 ; pen down on paper
+G01 X167.2167 Y194.7333
+G0Z0 ; pen up
+G00 X124.8833 Y194.7333
+G0Z6 ; pen down on paper
+G01 X129.1167 Y194.7333
+G0Z0 ; pen up
+G00 X137.5833 Y194.7333
+G0Z6 ; pen down on paper
+G01 X135.9958 Y191.0292
+G0Z0 ; pen up
+G00 X69.3208 Y183.6208
+G0Z6 ; pen down on paper
+G01 X73.5542 Y183.6208
+G0Z0 ; pen up
+G00 X230.1875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X234.4208 Y187.3250
+G0Z0 ; pen up
+G00 X108.4792 Y194.7333
+G0Z6 ; pen down on paper
+G01 X105.3042 Y191.0292
+G0Z0 ; pen up
+G00 X170.9208 Y194.7333
+G0Z6 ; pen down on paper
+G01 X169.3333 Y191.0292
+G0Z0 ; pen up
+G00 X110.0667 Y191.0292
+G0Z6 ; pen down on paper
+G01 X105.3042 Y191.0292
+G0Z0 ; pen up
+G00 X237.5958 Y183.6208
+G0Z6 ; pen down on paper
+G01 X231.7750 Y183.6208
+G0Z0 ; pen up
+G00 X114.8292 Y191.0292
+G0Z6 ; pen down on paper
+G01 X110.0667 Y191.0292
+G0Z0 ; pen up
+G00 X44.4500 Y183.6208
+G0Z6 ; pen down on paper
+G01 X43.3917 Y179.3875
+G0Z0 ; pen up
+G00 X8.9958 Y183.6208
+G0Z6 ; pen down on paper
+G01 X13.7583 Y183.6208
+G0Z0 ; pen up
+G00 X114.8292 Y191.0292
+G0Z6 ; pen down on paper
+G01 X116.9458 Y194.7333
+G0Z0 ; pen up
+G00 X217.4875 Y194.7333
+G0Z6 ; pen down on paper
+G01 X215.3708 Y191.0292
+G0Z0 ; pen up
+G00 X233.8917 Y194.7333
+G0Z6 ; pen down on paper
+G01 X233.8917 Y191.0292
+G0Z0 ; pen up
+G00 X52.3875 Y183.6208
+G0Z6 ; pen down on paper
+G01 X51.3292 Y179.3875
+G0Z0 ; pen up
+G00 X229.1292 Y191.0292
+G0Z6 ; pen down on paper
+G01 X224.3667 Y191.0292
+G0Z0 ; pen up
+G00 X227.0125 Y183.6208
+G0Z6 ; pen down on paper
+G01 X222.7792 Y183.6208
+G0Z0 ; pen up
+G00 X129.1167 Y183.6208
+G0Z6 ; pen down on paper
+G01 X129.1167 Y179.3875
+G0Z0 ; pen up
+G00 X209.5500 Y194.7333
+G0Z6 ; pen down on paper
+G01 X206.3750 Y191.0292
+G0Z0 ; pen up
+G00 X86.2542 Y179.3875
+G0Z6 ; pen down on paper
+G01 X81.4917 Y179.3875
+G0Z0 ; pen up
+G00 X175.1542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X179.3875 Y187.3250
+G0Z0 ; pen up
+G00 X193.1458 Y183.6208
+G0Z6 ; pen down on paper
+G01 X196.3208 Y187.3250
+G0Z0 ; pen up
+G00 X217.4875 Y194.7333
+G0Z6 ; pen down on paper
+G01 X221.7208 Y194.7333
+G0Z0 ; pen up
+G00 X221.7208 Y194.7333
+G0Z6 ; pen down on paper
+G01 X225.9542 Y194.7333
+G0Z0 ; pen up
+G00 X210.6083 Y191.0292
+G0Z6 ; pen down on paper
+G01 X206.3750 Y191.0292
+G0Z0 ; pen up
+G00 X81.4917 Y179.3875
+G0Z6 ; pen down on paper
+G01 X77.7875 Y179.3875
+G0Z0 ; pen up
+G00 X233.8917 Y194.7333
+G0Z6 ; pen down on paper
+G01 X237.5958 Y194.7333
+G0Z0 ; pen up
+G00 X137.0542 Y183.6208
+G0Z6 ; pen down on paper
+G01 X138.1125 Y179.3875
+G0Z0 ; pen up
+G00 X86.7833 Y183.6208
+G0Z6 ; pen down on paper
+G01 X91.0167 Y183.6208
+G0Z0 ; pen up
+G00 X8.4667 Y187.3250
+G0Z6 ; pen down on paper
+G01 X4.7625 Y187.3250
+G0Z0 ; pen up
+G00 X98.9542 Y183.6208
+G0Z6 ; pen down on paper
+G01 X98.9542 Y179.3875
+G0Z0 ; pen up
+G00 X20.6375 Y187.3250
+G0Z6 ; pen down on paper
+G01 X21.1667 Y191.0292
+G0Z0 ; pen up
+G00 X17.4625 Y191.0292
+G0Z6 ; pen down on paper
+G01 X21.1667 Y191.0292
+G0Z0 ; pen up
+G00 X25.4000 Y187.3250
+G0Z6 ; pen down on paper
+G01 X25.9292 Y191.0292
+G0Z0 ; pen up
+G00 X196.3208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X193.1458 Y183.6208
+G0Z0 ; pen up
+G00 X147.6375 Y179.3875
+G0Z6 ; pen down on paper
+G01 X142.8750 Y179.3875
+G0Z0 ; pen up
+G00 X4.7625 Y187.3250
+G0Z6 ; pen down on paper
+G01 X0.5292 Y187.3250
+G0Z0 ; pen up
+G00 X8.9958 Y191.0292
+G0Z6 ; pen down on paper
+G01 X13.7583 Y191.0292
+G0Z0 ; pen up
+G00 X29.6333 Y191.0292
+G0Z6 ; pen down on paper
+G01 X33.3375 Y191.0292
+G0Z0 ; pen up
+G00 X13.7583 Y191.0292
+G0Z6 ; pen down on paper
+G01 X17.4625 Y191.0292
+G0Z0 ; pen up
+G00 X91.5458 Y187.3250
+G0Z6 ; pen down on paper
+G01 X87.8417 Y191.0292
+G0Z0 ; pen up
+G00 X91.5458 Y187.3250
+G0Z6 ; pen down on paper
+G01 X87.3125 Y187.3250
+G0Z0 ; pen up
+G00 X103.1875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X99.4833 Y187.3250
+G0Z0 ; pen up
+G00 X94.7208 Y183.6208
+G0Z6 ; pen down on paper
+G01 X94.7208 Y179.3875
+G0Z0 ; pen up
+G00 X99.4833 Y187.3250
+G0Z6 ; pen down on paper
+G01 X95.2500 Y187.3250
+G0Z0 ; pen up
+G00 X156.6333 Y179.3875
+G0Z6 ; pen down on paper
+G01 X151.8708 Y179.3875
+G0Z0 ; pen up
+G00 X26.9875 Y183.6208
+G0Z6 ; pen down on paper
+G01 X31.2208 Y183.6208
+G0Z0 ; pen up
+G00 X65.0875 Y191.0292
+G0Z6 ; pen down on paper
+G01 X69.8500 Y191.0292
+G0Z0 ; pen up
+G00 X77.7875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X74.0833 Y187.3250
+G0Z0 ; pen up
+G00 X44.9792 Y191.0292
+G0Z6 ; pen down on paper
+G01 X47.0958 Y187.3250
+G0Z0 ; pen up
+G00 X98.9542 Y183.6208
+G0Z6 ; pen down on paper
+G01 X103.7167 Y183.6208
+G0Z0 ; pen up
+G00 X38.1000 Y187.3250
+G0Z6 ; pen down on paper
+G01 X33.3375 Y187.3250
+G0Z0 ; pen up
+G00 X38.1000 Y187.3250
+G0Z6 ; pen down on paper
+G01 X37.0417 Y191.0292
+G0Z0 ; pen up
+G00 X48.6833 Y191.0292
+G0Z6 ; pen down on paper
+G01 X51.8583 Y187.3250
+G0Z0 ; pen up
+G00 X138.1125 Y179.3875
+G0Z6 ; pen down on paper
+G01 X137.0542 Y183.6208
+G0Z0 ; pen up
+G00 X65.0875 Y187.3250
+G0Z6 ; pen down on paper
+G01 X60.8542 Y187.3250
+G0Z0 ; pen up
+G00 X162.4542 Y187.3250
+G0Z6 ; pen down on paper
+G01 X166.6875 Y187.3250
+G0Z0 ; pen up
+G00 X4.7625 Y183.6208
+G0Z6 ; pen down on paper
+G01 X4.7625 Y179.3875
+G0Z0 ; pen up
+G00 X74.6125 Y191.0292
+G0Z6 ; pen down on paper
+G01 X79.3750 Y191.0292
+G0Z0 ; pen up
+G00 X205.3167 Y187.3250
+G0Z6 ; pen down on paper
+G01 X201.6125 Y183.6208
+G0Z0 ; pen up
+G00 X48.6833 Y191.0292
+G0Z6 ; pen down on paper
+G01 X52.9167 Y191.0292
+G0Z0 ; pen up
+G00 X147.6375 Y179.3875
+G0Z6 ; pen down on paper
+G01 X145.5208 Y183.6208
+G0Z0 ; pen up
+G00 X56.6208 Y191.0292
+G0Z6 ; pen down on paper
+G01 X60.8542 Y187.3250
+G0Z0 ; pen up
+G00 X87.3125 Y187.3250
+G0Z6 ; pen down on paper
+G01 X82.5500 Y187.3250
+G0Z0 ; pen up
+G00 X65.0875 Y191.0292
+G0Z6 ; pen down on paper
+G01 X69.3208 Y187.3250
+G0Z0 ; pen up
+G00 X26.9875 Y183.6208
+G0Z6 ; pen down on paper
+G01 X25.9292 Y179.3875
+G0Z0 ; pen up
+G00 X159.2792 Y183.6208
+G0Z6 ; pen down on paper
+G01 X164.0417 Y183.6208
+G0Z0 ; pen up
+G00 X169.3333 Y179.3875
+G0Z6 ; pen down on paper
+G01 X167.7458 Y183.6208
+G0Z0 ; pen up
+G00 X164.0417 Y183.6208
+G0Z6 ; pen down on paper
+G01 X167.7458 Y183.6208
+G0Z0 ; pen up
+G00 X156.6333 Y179.3875
+G0Z6 ; pen down on paper
+G01 X154.5167 Y183.6208
+G0Z0 ; pen up
+G00 X9.5250 Y179.3875
+G0Z6 ; pen down on paper
+G01 X4.7625 Y179.3875
+G0Z0 ; pen up
+G00 X170.9208 Y187.3250
+G0Z6 ; pen down on paper
+G01 X168.2750 Y183.6208
+G0Z0 ; pen up
+G00 X185.2083 Y183.6208
+G0Z6 ; pen down on paper
+G01 X187.3250 Y187.3250
+G0Z0 ; pen up
+G00 X133.8792 Y183.6208
+G0Z6 ; pen down on paper
+G01 X138.1125 Y187.3250
+G0Z0 ; pen up
+G00 X150.2833 Y183.6208
+G0Z6 ; pen down on paper
+G01 X146.0500 Y183.6208
+G0Z0 ; pen up
+G00 X174.0958 Y179.3875
+G0Z6 ; pen down on paper
+G01 X172.5083 Y183.6208
+G0Z0 ; pen up
+G00 X77.7875 Y179.3875
+G0Z6 ; pen down on paper
+G01 X75.1417 Y175.6833
+G0Z0 ; pen up
+G00 X224.8958 Y175.6833
+G0Z6 ; pen down on paper
+G01 X221.1917 Y175.6833
+G0Z0 ; pen up
+G00 X180.4458 Y183.6208
+G0Z6 ; pen down on paper
+G01 X184.6792 Y183.6208
+G0Z0 ; pen up
+G00 X188.9125 Y183.6208
+G0Z6 ; pen down on paper
+G01 X190.5000 Y179.3875
+G0Z0 ; pen up
+G00 X221.7208 Y179.3875
+G0Z6 ; pen down on paper
+G01 X225.4250 Y179.3875
+G0Z0 ; pen up
+G00 X176.7417 Y183.6208
+G0Z6 ; pen down on paper
+G01 X180.4458 Y183.6208
+G0Z0 ; pen up
+G00 X188.3833 Y179.3875
+G0Z6 ; pen down on paper
+G01 X185.2083 Y175.6833
+G0Z0 ; pen up
+G00 X197.9083 Y183.6208
+G0Z6 ; pen down on paper
+G01 X197.9083 Y179.3875
+G0Z0 ; pen up
+G00 X213.2542 Y179.3875
+G0Z6 ; pen down on paper
+G01 X209.0208 Y175.6833
+G0Z0 ; pen up
+G00 X213.2542 Y179.3875
+G0Z6 ; pen down on paper
+G01 X218.0167 Y179.3875
+G0Z0 ; pen up
+G00 X5.2917 Y175.6833
+G0Z6 ; pen down on paper
+G01 X10.0542 Y175.6833
+G0Z0 ; pen up
+G00 X88.3708 Y175.6833
+G0Z6 ; pen down on paper
+G01 X84.1375 Y175.6833
+G0Z0 ; pen up
+G00 X190.5000 Y179.3875
+G0Z6 ; pen down on paper
+G01 X188.9125 Y183.6208
+G0Z0 ; pen up
+G00 X205.3167 Y175.6833
+G0Z6 ; pen down on paper
+G01 X201.0833 Y175.6833
+G0Z0 ; pen up
+G00 X205.8458 Y179.3875
+G0Z6 ; pen down on paper
+G01 X201.6125 Y179.3875
+G0Z0 ; pen up
+G00 X233.8917 Y179.3875
+G0Z6 ; pen down on paper
+G01 X237.5958 Y179.3875
+G0Z0 ; pen up
+G00 X201.0833 Y175.6833
+G0Z6 ; pen down on paper
+G01 X197.3792 Y175.6833
+G0Z0 ; pen up
+G00 X201.6125 Y179.3875
+G0Z6 ; pen down on paper
+G01 X197.9083 Y179.3875
+G0Z0 ; pen up
+G00 X196.3208 Y179.3875
+G0Z6 ; pen down on paper
+G01 X192.6167 Y175.6833
+G0Z0 ; pen up
+G00 X28.0458 Y175.6833
+G0Z6 ; pen down on paper
+G01 X25.4000 Y170.9208
+G0Z0 ; pen up
+G00 X233.8917 Y179.3875
+G0Z6 ; pen down on paper
+G01 X228.6000 Y175.6833
+G0Z0 ; pen up
+G00 X216.9583 Y175.6833
+G0Z6 ; pen down on paper
+G01 X213.2542 Y175.6833
+G0Z0 ; pen up
+G00 X209.5500 Y179.3875
+G0Z6 ; pen down on paper
+G01 X210.6083 Y183.6208
+G0Z0 ; pen up
+G00 X25.4000 Y170.9208
+G0Z6 ; pen down on paper
+G01 X28.0458 Y175.6833
+G0Z0 ; pen up
+G00 X35.9833 Y175.6833
+G0Z6 ; pen down on paper
+G01 X33.8667 Y170.9208
+G0Z0 ; pen up
+G00 X21.1667 Y170.9208
+G0Z6 ; pen down on paper
+G01 X17.4625 Y170.9208
+G0Z0 ; pen up
+G00 X13.2292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X9.5250 Y170.9208
+G0Z0 ; pen up
+G00 X206.3750 Y183.6208
+G0Z6 ; pen down on paper
+G01 X210.6083 Y183.6208
+G0Z0 ; pen up
+G00 X219.0750 Y183.6208
+G0Z6 ; pen down on paper
+G01 X218.5458 Y179.3875
+G0Z0 ; pen up
+G00 X222.7792 Y183.6208
+G0Z6 ; pen down on paper
+G01 X222.7792 Y179.3875
+G0Z0 ; pen up
+G00 X19.5792 Y175.6833
+G0Z6 ; pen down on paper
+G01 X17.4625 Y170.9208
+G0Z0 ; pen up
+G00 X4.7625 Y170.9208
+G0Z6 ; pen down on paper
+G01 X0.5292 Y170.9208
+G0Z0 ; pen up
+G00 X49.2125 Y175.6833
+G0Z6 ; pen down on paper
+G01 X52.9167 Y175.6833
+G0Z0 ; pen up
+G00 X61.9125 Y175.6833
+G0Z6 ; pen down on paper
+G01 X59.7958 Y170.9208
+G0Z0 ; pen up
+G00 X35.9833 Y175.6833
+G0Z6 ; pen down on paper
+G01 X40.2167 Y175.6833
+G0Z0 ; pen up
+G00 X79.9042 Y175.6833
+G0Z6 ; pen down on paper
+G01 X75.1417 Y175.6833
+G0Z0 ; pen up
+G00 X44.9792 Y175.6833
+G0Z6 ; pen down on paper
+G01 X43.3917 Y170.9208
+G0Z0 ; pen up
+G00 X226.4833 Y179.3875
+G0Z6 ; pen down on paper
+G01 X222.7792 Y179.3875
+G0Z0 ; pen up
+G00 X44.9792 Y175.6833
+G0Z6 ; pen down on paper
+G01 X49.2125 Y175.6833
+G0Z0 ; pen up
+G00 X232.3042 Y183.6208
+G0Z6 ; pen down on paper
+G01 X230.7167 Y179.3875
+G0Z0 ; pen up
+G00 X65.6167 Y175.6833
+G0Z6 ; pen down on paper
+G01 X63.5000 Y170.9208
+G0Z0 ; pen up
+G00 X57.1500 Y175.6833
+G0Z6 ; pen down on paper
+G01 X56.0917 Y170.9208
+G0Z0 ; pen up
+G00 X65.6167 Y175.6833
+G0Z6 ; pen down on paper
+G01 X69.8500 Y175.6833
+G0Z0 ; pen up
+G00 X69.3208 Y179.3875
+G0Z6 ; pen down on paper
+G01 X73.0250 Y179.3875
+G0Z0 ; pen up
+G00 X83.6083 Y170.9208
+G0Z6 ; pen down on paper
+G01 X79.3750 Y170.9208
+G0Z0 ; pen up
+G00 X79.9042 Y175.6833
+G0Z6 ; pen down on paper
+G01 X82.0208 Y179.3875
+G0Z0 ; pen up
+G00 X104.2458 Y179.3875
+G0Z6 ; pen down on paper
+G01 X101.0708 Y175.6833
+G0Z0 ; pen up
+G00 X70.9083 Y170.9208
+G0Z6 ; pen down on paper
+G01 X73.5542 Y175.6833
+G0Z0 ; pen up
+G00 X69.8500 Y175.6833
+G0Z6 ; pen down on paper
+G01 X73.5542 Y175.6833
+G0Z0 ; pen up
+G00 X83.0792 Y175.6833
+G0Z6 ; pen down on paper
+G01 X79.3750 Y170.9208
+G0Z0 ; pen up
+G00 X95.2500 Y179.3875
+G0Z6 ; pen down on paper
+G01 X100.0125 Y179.3875
+G0Z0 ; pen up
+G00 X95.7792 Y175.6833
+G0Z6 ; pen down on paper
+G01 X91.0167 Y170.9208
+G0Z0 ; pen up
+G00 X99.4833 Y175.6833
+G0Z6 ; pen down on paper
+G01 X94.7208 Y170.9208
+G0Z0 ; pen up
+G00 X232.3042 Y183.6208
+G0Z6 ; pen down on paper
+G01 X236.5375 Y183.6208
+G0Z0 ; pen up
+G00 X142.8750 Y179.3875
+G0Z6 ; pen down on paper
+G01 X138.6417 Y175.6833
+G0Z0 ; pen up
+G00 X237.5958 Y179.3875
+G0Z6 ; pen down on paper
+G01 X234.9500 Y179.3875
+G0Z0 ; pen up
+G00 X94.7208 Y170.9208
+G0Z6 ; pen down on paper
+G01 X99.4833 Y175.6833
+G0Z0 ; pen up
+G00 X83.6083 Y170.9208
+G0Z6 ; pen down on paper
+G01 X87.8417 Y175.6833
+G0Z0 ; pen up
+G00 X180.4458 Y179.3875
+G0Z6 ; pen down on paper
+G01 X176.2125 Y175.6833
+G0Z0 ; pen up
+G00 X95.2500 Y179.3875
+G0Z6 ; pen down on paper
+G01 X92.6042 Y175.6833
+G0Z0 ; pen up
+G00 X186.7958 Y175.6833
+G0Z6 ; pen down on paper
+G01 X191.5583 Y175.6833
+G0Z0 ; pen up
+G00 X133.3500 Y179.3875
+G0Z6 ; pen down on paper
+G01 X129.6458 Y175.6833
+G0Z0 ; pen up
+G00 X116.4167 Y175.6833
+G0Z6 ; pen down on paper
+G01 X120.6500 Y179.3875
+G0Z0 ; pen up
+G00 X216.9583 Y175.6833
+G0Z6 ; pen down on paper
+G01 X209.5500 Y170.9208
+G0Z0 ; pen up
+G00 X186.7958 Y175.6833
+G0Z6 ; pen down on paper
+G01 X181.5042 Y170.9208
+G0Z0 ; pen up
+G00 X177.8000 Y175.6833
+G0Z6 ; pen down on paper
+G01 X182.0333 Y175.6833
+G0Z0 ; pen up
+G00 X109.0083 Y175.6833
+G0Z6 ; pen down on paper
+G01 X103.7167 Y170.9208
+G0Z0 ; pen up
+G00 X113.2417 Y175.6833
+G0Z6 ; pen down on paper
+G01 X108.4792 Y170.9208
+G0Z0 ; pen up
+G00 X138.6417 Y175.6833
+G0Z6 ; pen down on paper
+G01 X142.8750 Y179.3875
+G0Z0 ; pen up
+G00 X12.1708 Y175.6833
+G0Z6 ; pen down on paper
+G01 X7.9375 Y175.6833
+G0Z0 ; pen up
+G00 X101.0708 Y175.6833
+G0Z6 ; pen down on paper
+G01 X104.2458 Y179.3875
+G0Z0 ; pen up
+G00 X0.5292 Y179.3875
+G0Z6 ; pen down on paper
+G01 X5.2917 Y179.3875
+G0Z0 ; pen up
+G00 X205.3167 Y170.9208
+G0Z6 ; pen down on paper
+G01 X200.5542 Y170.9208
+G0Z0 ; pen up
+G00 X113.2417 Y170.9208
+G0Z6 ; pen down on paper
+G01 X108.4792 Y170.9208
+G0Z0 ; pen up
+G00 X147.6375 Y175.6833
+G0Z6 ; pen down on paper
+G01 X143.4042 Y175.6833
+G0Z0 ; pen up
+G00 X213.7833 Y170.9208
+G0Z6 ; pen down on paper
+G01 X209.5500 Y170.9208
+G0Z0 ; pen up
+G00 X113.2417 Y170.9208
+G0Z6 ; pen down on paper
+G01 X117.4750 Y175.6833
+G0Z0 ; pen up
+G00 X135.4667 Y170.9208
+G0Z6 ; pen down on paper
+G01 X130.7042 Y170.9208
+G0Z0 ; pen up
+G00 X121.1792 Y175.6833
+G0Z6 ; pen down on paper
+G01 X125.4125 Y179.3875
+G0Z0 ; pen up
+G00 X147.6375 Y175.6833
+G0Z6 ; pen down on paper
+G01 X150.2833 Y179.3875
+G0Z0 ; pen up
+G00 X129.6458 Y175.6833
+G0Z6 ; pen down on paper
+G01 X133.3500 Y179.3875
+G0Z0 ; pen up
+G00 X177.8000 Y175.6833
+G0Z6 ; pen down on paper
+G01 X173.5667 Y170.9208
+G0Z0 ; pen up
+G00 X126.4708 Y175.6833
+G0Z6 ; pen down on paper
+G01 X131.2333 Y175.6833
+G0Z0 ; pen up
+G00 X224.8958 Y175.6833
+G0Z6 ; pen down on paper
+G01 X218.5458 Y170.9208
+G0Z0 ; pen up
+G00 X200.5542 Y175.6833
+G0Z6 ; pen down on paper
+G01 X192.6167 Y170.9208
+G0Z0 ; pen up
+G00 X185.2083 Y170.9208
+G0Z6 ; pen down on paper
+G01 X191.5583 Y175.6833
+G0Z0 ; pen up
+G00 X122.2375 Y175.6833
+G0Z6 ; pen down on paper
+G01 X126.4708 Y175.6833
+G0Z0 ; pen up
+G00 X116.4167 Y179.3875
+G0Z6 ; pen down on paper
+G01 X112.7125 Y175.6833
+G0Z0 ; pen up
+G00 X131.2333 Y175.6833
+G0Z6 ; pen down on paper
+G01 X135.4667 Y175.6833
+G0Z0 ; pen up
+G00 X7.9375 Y175.6833
+G0Z6 ; pen down on paper
+G01 X4.2333 Y175.6833
+G0Z0 ; pen up
+G00 X196.8500 Y170.9208
+G0Z6 ; pen down on paper
+G01 X192.6167 Y170.9208
+G0Z0 ; pen up
+G00 X196.8500 Y170.9208
+G0Z6 ; pen down on paper
+G01 X204.7875 Y175.6833
+G0Z0 ; pen up
+G00 X14.2875 Y179.3875
+G0Z6 ; pen down on paper
+G01 X19.0500 Y179.3875
+G0Z0 ; pen up
+G00 X143.4042 Y170.9208
+G0Z6 ; pen down on paper
+G01 X139.1708 Y170.9208
+G0Z0 ; pen up
+G00 X0.5292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X4.7625 Y170.9208
+G0Z0 ; pen up
+G00 X228.6000 Y175.6833
+G0Z6 ; pen down on paper
+G01 X233.3625 Y175.6833
+G0Z0 ; pen up
+G00 X41.8042 Y175.6833
+G0Z6 ; pen down on paper
+G01 X38.1000 Y175.6833
+G0Z0 ; pen up
+G00 X38.1000 Y175.6833
+G0Z6 ; pen down on paper
+G01 X34.3958 Y175.6833
+G0Z0 ; pen up
+G00 X104.7750 Y175.6833
+G0Z6 ; pen down on paper
+G01 X107.9500 Y179.3875
+G0Z0 ; pen up
+G00 X45.5083 Y179.3875
+G0Z6 ; pen down on paper
+G01 X49.2125 Y179.3875
+G0Z0 ; pen up
+G00 X223.3083 Y170.9208
+G0Z6 ; pen down on paper
+G01 X218.5458 Y170.9208
+G0Z0 ; pen up
+G00 X135.4667 Y170.9208
+G0Z6 ; pen down on paper
+G01 X140.2292 Y175.6833
+G0Z0 ; pen up
+G00 X49.2125 Y179.3875
+G0Z6 ; pen down on paper
+G01 X52.9167 Y179.3875
+G0Z0 ; pen up
+G00 X152.9292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X157.6917 Y175.6833
+G0Z0 ; pen up
+G00 X143.4042 Y170.9208
+G0Z6 ; pen down on paper
+G01 X148.6958 Y175.6833
+G0Z0 ; pen up
+G00 X112.7125 Y175.6833
+G0Z6 ; pen down on paper
+G01 X116.4167 Y179.3875
+G0Z0 ; pen up
+G00 X164.0417 Y175.6833
+G0Z6 ; pen down on paper
+G01 X160.3375 Y175.6833
+G0Z0 ; pen up
+G00 X157.1625 Y170.9208
+G0Z6 ; pen down on paper
+G01 X161.3958 Y175.6833
+G0Z0 ; pen up
+G00 X164.5708 Y170.9208
+G0Z6 ; pen down on paper
+G01 X160.8667 Y170.9208
+G0Z0 ; pen up
+G00 X160.3375 Y175.6833
+G0Z6 ; pen down on paper
+G01 X156.6333 Y175.6833
+G0Z0 ; pen up
+G00 X152.9292 Y175.6833
+G0Z6 ; pen down on paper
+G01 X157.6917 Y175.6833
+G0Z0 ; pen up
+G00 X30.1625 Y175.6833
+G0Z6 ; pen down on paper
+G01 X32.2792 Y179.3875
+G0Z0 ; pen up
+G00 X16.4042 Y175.6833
+G0Z6 ; pen down on paper
+G01 X19.0500 Y179.3875
+G0Z0 ; pen up
+G00 X58.7375 Y175.6833
+G0Z6 ; pen down on paper
+G01 X61.3833 Y179.3875
+G0Z0 ; pen up
+G00 X188.3833 Y179.3875
+G0Z6 ; pen down on paper
+G01 X192.0875 Y179.3875
+G0Z0 ; pen up
+G00 X233.3625 Y175.6833
+G0Z6 ; pen down on paper
+G01 X237.5958 Y175.6833
+G0Z0 ; pen up
+G00 X169.3333 Y170.9208
+G0Z6 ; pen down on paper
+G01 X164.5708 Y170.9208
+G0Z0 ; pen up
+G00 X28.5750 Y179.3875
+G0Z6 ; pen down on paper
+G01 X32.2792 Y179.3875
+G0Z0 ; pen up
+G00 X28.5750 Y179.3875
+G0Z6 ; pen down on paper
+G01 X25.4000 Y175.6833
+G0Z0 ; pen up
+G00 X56.6208 Y179.3875
+G0Z6 ; pen down on paper
+G01 X53.9750 Y175.6833
+G0Z0 ; pen up
+G00 X58.7375 Y175.6833
+G0Z6 ; pen down on paper
+G01 X53.9750 Y175.6833
+G0Z0 ; pen up
+G00 X155.0458 Y179.3875
+G0Z6 ; pen down on paper
+G01 X159.8083 Y179.3875
+G0Z0 ; pen up
+G00 X171.9792 Y179.3875
+G0Z6 ; pen down on paper
+G01 X175.6833 Y179.3875
+G0Z0 ; pen up
+G00 X197.3792 Y175.6833
+G0Z6 ; pen down on paper
+G01 X192.6167 Y175.6833
+G0Z0 ; pen up
+G00 X184.6792 Y179.3875
+G0Z6 ; pen down on paper
+G01 X180.4458 Y175.6833
+G0Z0 ; pen up
+G00 X167.7458 Y179.3875
+G0Z6 ; pen down on paper
+G01 X171.9792 Y179.3875
+G0Z0 ; pen up
+G00 X66.1458 Y175.6833
+G0Z6 ; pen down on paper
+G01 X62.4417 Y175.6833
+G0Z0 ; pen up
+G00 X182.0333 Y170.9208
+G0Z6 ; pen down on paper
+G01 X174.6250 Y167.2167
+G0Z0 ; pen up
+G00 X174.6250 Y167.2167
+G0Z6 ; pen down on paper
+G01 X182.0333 Y170.9208
+G0Z0 ; pen up
+G00 X150.8125 Y170.9208
+G0Z6 ; pen down on paper
+G01 X145.5208 Y167.2167
+G0Z0 ; pen up
+G00 X8.4667 Y170.9208
+G0Z6 ; pen down on paper
+G01 X9.5250 Y167.2167
+G0Z0 ; pen up
+G00 X141.8167 Y167.2167
+G0Z6 ; pen down on paper
+G01 X137.5833 Y167.2167
+G0Z0 ; pen up
+G00 X9.5250 Y167.2167
+G0Z6 ; pen down on paper
+G01 X8.4667 Y170.9208
+G0Z0 ; pen up
+G00 X164.5708 Y170.9208
+G0Z6 ; pen down on paper
+G01 X157.6917 Y167.2167
+G0Z0 ; pen up
+G00 X14.2875 Y167.2167
+G0Z6 ; pen down on paper
+G01 X13.2292 Y170.9208
+G0Z0 ; pen up
+G00 X17.4625 Y170.9208
+G0Z6 ; pen down on paper
+G01 X21.6958 Y170.9208
+G0Z0 ; pen up
+G00 X183.0917 Y167.2167
+G0Z6 ; pen down on paper
+G01 X178.8583 Y167.2167
+G0Z0 ; pen up
+G00 X157.6917 Y167.2167
+G0Z6 ; pen down on paper
+G01 X164.5708 Y170.9208
+G0Z0 ; pen up
+G00 X25.9292 Y167.2167
+G0Z6 ; pen down on paper
+G01 X25.9292 Y170.9208
+G0Z0 ; pen up
+G00 X22.2250 Y167.2167
+G0Z6 ; pen down on paper
+G01 X21.6958 Y170.9208
+G0Z0 ; pen up
+G00 X168.8042 Y170.9208
+G0Z6 ; pen down on paper
+G01 X173.5667 Y170.9208
+G0Z0 ; pen up
+G00 X38.6292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X39.1583 Y167.2167
+G0Z0 ; pen up
+G00 X169.8625 Y167.2167
+G0Z6 ; pen down on paper
+G01 X166.1583 Y167.2167
+G0Z0 ; pen up
+G00 X30.6917 Y167.2167
+G0Z6 ; pen down on paper
+G01 X29.6333 Y170.9208
+G0Z0 ; pen up
+G00 X64.0292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X67.7333 Y170.9208
+G0Z0 ; pen up
+G00 X201.6125 Y170.9208
+G0Z6 ; pen down on paper
+G01 X195.7917 Y167.2167
+G0Z0 ; pen up
+G00 X155.0458 Y170.9208
+G0Z6 ; pen down on paper
+G01 X159.8083 Y170.9208
+G0Z0 ; pen up
+G00 X183.0917 Y167.2167
+G0Z6 ; pen down on paper
+G01 X190.5000 Y170.9208
+G0Z0 ; pen up
+G00 X46.5667 Y167.2167
+G0Z6 ; pen down on paper
+G01 X42.8625 Y167.2167
+G0Z0 ; pen up
+G00 X51.3292 Y167.2167
+G0Z6 ; pen down on paper
+G01 X46.5667 Y167.2167
+G0Z0 ; pen up
+G00 X194.2042 Y170.9208
+G0Z6 ; pen down on paper
+G01 X197.9083 Y170.9208
+G0Z0 ; pen up
+G00 X145.5208 Y167.2167
+G0Z6 ; pen down on paper
+G01 X150.8125 Y170.9208
+G0Z0 ; pen up
+G00 X60.3250 Y170.9208
+G0Z6 ; pen down on paper
+G01 X59.7958 Y167.2167
+G0Z0 ; pen up
+G00 X38.6292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X42.8625 Y170.9208
+G0Z0 ; pen up
+G00 X51.8583 Y170.9208
+G0Z6 ; pen down on paper
+G01 X56.6208 Y170.9208
+G0Z0 ; pen up
+G00 X210.6083 Y170.9208
+G0Z6 ; pen down on paper
+G01 X203.2000 Y167.2167
+G0Z0 ; pen up
+G00 X59.7958 Y167.2167
+G0Z6 ; pen down on paper
+G01 X60.3250 Y170.9208
+G0Z0 ; pen up
+G00 X201.6125 Y170.9208
+G0Z6 ; pen down on paper
+G01 X205.8458 Y170.9208
+G0Z0 ; pen up
+G00 X68.2625 Y167.2167
+G0Z6 ; pen down on paper
+G01 X67.7333 Y170.9208
+G0Z0 ; pen up
+G00 X85.1958 Y167.2167
+G0Z6 ; pen down on paper
+G01 X80.9625 Y167.2167
+G0Z0 ; pen up
+G00 X76.2000 Y170.9208
+G0Z6 ; pen down on paper
+G01 X80.4333 Y170.9208
+G0Z0 ; pen up
+G00 X18.5208 Y167.2167
+G0Z6 ; pen down on paper
+G01 X22.2250 Y167.2167
+G0Z0 ; pen up
+G00 X210.6083 Y170.9208
+G0Z6 ; pen down on paper
+G01 X214.3125 Y170.9208
+G0Z0 ; pen up
+G00 X71.4375 Y170.9208
+G0Z6 ; pen down on paper
+G01 X76.2000 Y170.9208
+G0Z0 ; pen up
+G00 X84.6667 Y170.9208
+G0Z6 ; pen down on paper
+G01 X88.9000 Y170.9208
+G0Z0 ; pen up
+G00 X10.0542 Y167.2167
+G0Z6 ; pen down on paper
+G01 X14.8167 Y167.2167
+G0Z0 ; pen up
+G00 X93.6625 Y170.9208
+G0Z6 ; pen down on paper
+G01 X97.3667 Y170.9208
+G0Z0 ; pen up
+G00 X18.5208 Y167.2167
+G0Z6 ; pen down on paper
+G01 X18.5208 Y162.4542
+G0Z0 ; pen up
+G00 X214.3125 Y170.9208
+G0Z6 ; pen down on paper
+G01 X218.0167 Y170.9208
+G0Z0 ; pen up
+G00 X97.3667 Y167.2167
+G0Z6 ; pen down on paper
+G01 X97.3667 Y170.9208
+G0Z0 ; pen up
+G00 X93.6625 Y170.9208
+G0Z6 ; pen down on paper
+G01 X93.1333 Y167.2167
+G0Z0 ; pen up
+G00 X102.1292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X106.3625 Y170.9208
+G0Z0 ; pen up
+G00 X124.3542 Y170.9208
+G0Z6 ; pen down on paper
+G01 X128.0583 Y170.9208
+G0Z0 ; pen up
+G00 X128.5875 Y167.2167
+G0Z6 ; pen down on paper
+G01 X124.8833 Y167.2167
+G0Z0 ; pen up
+G00 X132.2917 Y170.9208
+G0Z6 ; pen down on paper
+G01 X137.0542 Y170.9208
+G0Z0 ; pen up
+G00 X114.8292 Y170.9208
+G0Z6 ; pen down on paper
+G01 X113.7708 Y167.2167
+G0Z0 ; pen up
+G00 X8.9958 Y162.4542
+G0Z6 ; pen down on paper
+G01 X4.7625 Y162.4542
+G0Z0 ; pen up
+G00 X35.4542 Y162.4542
+G0Z6 ; pen down on paper
+G01 X31.2208 Y162.4542
+G0Z0 ; pen up
+G00 X222.7792 Y170.9208
+G0Z6 ; pen down on paper
+G01 X215.9000 Y167.2167
+G0Z0 ; pen up
+G00 X219.6042 Y167.2167
+G0Z6 ; pen down on paper
+G01 X226.4833 Y170.9208
+G0Z0 ; pen up
+G00 X235.4792 Y170.9208
+G0Z6 ; pen down on paper
+G01 X237.5958 Y170.9208
+G0Z0 ; pen up
+G00 X26.4583 Y162.4542
+G0Z6 ; pen down on paper
+G01 X22.2250 Y162.4542
+G0Z0 ; pen up
+G00 X137.0542 Y170.9208
+G0Z6 ; pen down on paper
+G01 X141.8167 Y170.9208
+G0Z0 ; pen up
+G00 X117.4750 Y167.2167
+G0Z6 ; pen down on paper
+G01 X113.7708 Y167.2167
+G0Z0 ; pen up
+G00 X5.2917 Y167.2167
+G0Z6 ; pen down on paper
+G01 X4.7625 Y162.4542
+G0Z0 ; pen up
+G00 X119.5917 Y170.9208
+G0Z6 ; pen down on paper
+G01 X124.3542 Y170.9208
+G0Z0 ; pen up
+G00 X215.9000 Y167.2167
+G0Z6 ; pen down on paper
+G01 X222.7792 Y170.9208
+G0Z0 ; pen up
+G00 X26.4583 Y162.4542
+G0Z6 ; pen down on paper
+G01 X25.9292 Y167.2167
+G0Z0 ; pen up
+G00 X105.8333 Y167.2167
+G0Z6 ; pen down on paper
+G01 X106.3625 Y170.9208
+G0Z0 ; pen up
+G00 X227.5417 Y167.2167
+G0Z6 ; pen down on paper
+G01 X223.3083 Y167.2167
+G0Z0 ; pen up
+G00 X37.0417 Y167.2167
+G0Z6 ; pen down on paper
+G01 X39.6875 Y162.4542
+G0Z0 ; pen up
+G00 X41.2750 Y167.2167
+G0Z6 ; pen down on paper
+G01 X45.5083 Y167.2167
+G0Z0 ; pen up
+G00 X61.3833 Y162.4542
+G0Z6 ; pen down on paper
+G01 X58.2083 Y167.2167
+G0Z0 ; pen up
+G00 X74.0833 Y167.2167
+G0Z6 ; pen down on paper
+G01 X78.3167 Y167.2167
+G0Z0 ; pen up
+G00 X70.3792 Y167.2167
+G0Z6 ; pen down on paper
+G01 X74.0833 Y167.2167
+G0Z0 ; pen up
+G00 X58.2083 Y167.2167
+G0Z6 ; pen down on paper
+G01 X61.3833 Y162.4542
+G0Z0 ; pen up
+G00 X70.3792 Y167.2167
+G0Z6 ; pen down on paper
+G01 X73.0250 Y162.4542
+G0Z0 ; pen up
+G00 X82.0208 Y162.4542
+G0Z6 ; pen down on paper
+G01 X78.3167 Y167.2167
+G0Z0 ; pen up
+G00 X90.4875 Y162.4542
+G0Z6 ; pen down on paper
+G01 X86.2542 Y162.4542
+G0Z0 ; pen up
+G00 X66.1458 Y167.2167
+G0Z6 ; pen down on paper
+G01 X69.3208 Y162.4542
+G0Z0 ; pen up
+G00 X91.0167 Y167.2167
+G0Z6 ; pen down on paper
+G01 X94.7208 Y167.2167
+G0Z0 ; pen up
+G00 X37.0417 Y167.2167
+G0Z6 ; pen down on paper
+G01 X41.2750 Y167.2167
+G0Z0 ; pen up
+G00 X99.4833 Y167.2167
+G0Z6 ; pen down on paper
+G01 X103.7167 Y167.2167
+G0Z0 ; pen up
+G00 X90.4875 Y162.4542
+G0Z6 ; pen down on paper
+G01 X87.3125 Y167.2167
+G0Z0 ; pen up
+G00 X103.1875 Y162.4542
+G0Z6 ; pen down on paper
+G01 X98.9542 Y162.4542
+G0Z0 ; pen up
+G00 X48.1542 Y162.4542
+G0Z6 ; pen down on paper
+G01 X45.5083 Y167.2167
+G0Z0 ; pen up
+G00 X52.3875 Y162.4542
+G0Z6 ; pen down on paper
+G01 X49.2125 Y167.2167
+G0Z0 ; pen up
+G00 X112.7125 Y167.2167
+G0Z6 ; pen down on paper
+G01 X116.4167 Y162.4542
+G0Z0 ; pen up
+G00 X111.6542 Y162.4542
+G0Z6 ; pen down on paper
+G01 X107.9500 Y162.4542
+G0Z0 ; pen up
+G00 X112.7125 Y167.2167
+G0Z6 ; pen down on paper
+G01 X116.9458 Y167.2167
+G0Z0 ; pen up
+G00 X121.1792 Y162.4542
+G0Z6 ; pen down on paper
+G01 X116.9458 Y167.2167
+G0Z0 ; pen up
+G00 X133.8792 Y167.2167
+G0Z6 ; pen down on paper
+G01 X137.5833 Y162.4542
+G0Z0 ; pen up
+G00 X132.8208 Y162.4542
+G0Z6 ; pen down on paper
+G01 X128.5875 Y162.4542
+G0Z0 ; pen up
+G00 X124.8833 Y162.4542
+G0Z6 ; pen down on paper
+G01 X120.6500 Y167.2167
+G0Z0 ; pen up
+G00 X138.1125 Y167.2167
+G0Z6 ; pen down on paper
+G01 X141.8167 Y162.4542
+G0Z0 ; pen up
+G00 X150.8125 Y162.4542
+G0Z6 ; pen down on paper
+G01 X146.0500 Y167.2167
+G0Z0 ; pen up
+G00 X150.2833 Y167.2167
+G0Z6 ; pen down on paper
+G01 X155.0458 Y167.2167
+G0Z0 ; pen up
+G00 X146.5792 Y162.4542
+G0Z6 ; pen down on paper
+G01 X141.8167 Y167.2167
+G0Z0 ; pen up
+G00 X146.5792 Y162.4542
+G0Z6 ; pen down on paper
+G01 X141.8167 Y162.4542
+G0Z0 ; pen up
+G00 X159.2792 Y167.2167
+G0Z6 ; pen down on paper
+G01 X163.5125 Y162.4542
+G0Z0 ; pen up
+G00 X163.5125 Y162.4542
+G0Z6 ; pen down on paper
+G01 X159.2792 Y167.2167
+G0Z0 ; pen up
+G00 X167.7458 Y162.4542
+G0Z6 ; pen down on paper
+G01 X164.0417 Y167.2167
+G0Z0 ; pen up
+G00 X175.6833 Y162.4542
+G0Z6 ; pen down on paper
+G01 X171.4500 Y162.4542
+G0Z0 ; pen up
+G00 X184.6792 Y162.4542
+G0Z6 ; pen down on paper
+G01 X180.4458 Y162.4542
+G0Z0 ; pen up
+G00 X10.0542 Y158.2208
+G0Z6 ; pen down on paper
+G01 X10.0542 Y162.4542
+G0Z0 ; pen up
+G00 X188.3833 Y162.4542
+G0Z6 ; pen down on paper
+G01 X184.6792 Y162.4542
+G0Z0 ; pen up
+G00 X176.2125 Y167.2167
+G0Z6 ; pen down on paper
+G01 X180.4458 Y162.4542
+G0Z0 ; pen up
+G00 X193.1458 Y162.4542
+G0Z6 ; pen down on paper
+G01 X188.3833 Y162.4542
+G0Z0 ; pen up
+G00 X205.3167 Y167.2167
+G0Z6 ; pen down on paper
+G01 X211.1375 Y162.4542
+G0Z0 ; pen up
+G00 X201.6125 Y162.4542
+G0Z6 ; pen down on paper
+G01 X196.8500 Y167.2167
+G0Z0 ; pen up
+G00 X18.5208 Y158.2208
+G0Z6 ; pen down on paper
+G01 X13.7583 Y158.2208
+G0Z0 ; pen up
+G00 X196.8500 Y167.2167
+G0Z6 ; pen down on paper
+G01 X201.6125 Y162.4542
+G0Z0 ; pen up
+G00 X17.9917 Y162.4542
+G0Z6 ; pen down on paper
+G01 X22.2250 Y162.4542
+G0Z0 ; pen up
+G00 X197.3792 Y162.4542
+G0Z6 ; pen down on paper
+G01 X193.1458 Y162.4542
+G0Z0 ; pen up
+G00 X26.9875 Y158.2208
+G0Z6 ; pen down on paper
+G01 X22.7542 Y158.2208
+G0Z0 ; pen up
+G00 X35.4542 Y162.4542
+G0Z6 ; pen down on paper
+G01 X35.4542 Y158.2208
+G0Z0 ; pen up
+G00 X26.9875 Y158.2208
+G0Z6 ; pen down on paper
+G01 X25.9292 Y162.4542
+G0Z0 ; pen up
+G00 X43.9208 Y162.4542
+G0Z6 ; pen down on paper
+G01 X42.8625 Y158.2208
+G0Z0 ; pen up
+G00 X39.1583 Y158.2208
+G0Z6 ; pen down on paper
+G01 X35.4542 Y158.2208
+G0Z0 ; pen up
+G00 X43.9208 Y162.4542
+G0Z6 ; pen down on paper
+G01 X47.6250 Y162.4542
+G0Z0 ; pen up
+G00 X47.0958 Y158.2208
+G0Z6 ; pen down on paper
+G01 X47.6250 Y162.4542
+G0Z0 ; pen up
+G00 X62.4417 Y158.2208
+G0Z6 ; pen down on paper
+G01 X65.0875 Y162.4542
+G0Z0 ; pen up
+G00 X56.6208 Y162.4542
+G0Z6 ; pen down on paper
+G01 X60.3250 Y162.4542
+G0Z0 ; pen up
+G00 X233.3625 Y162.4542
+G0Z6 ; pen down on paper
+G01 X228.6000 Y162.4542
+G0Z0 ; pen up
+G00 X209.0208 Y167.2167
+G0Z6 ; pen down on paper
+G01 X214.8417 Y162.4542
+G0Z0 ; pen up
+G00 X56.6208 Y162.4542
+G0Z6 ; pen down on paper
+G01 X54.5042 Y158.2208
+G0Z0 ; pen up
+G00 X65.0875 Y162.4542
+G0Z6 ; pen down on paper
+G01 X62.4417 Y158.2208
+G0Z0 ; pen up
+G00 X72.4958 Y162.4542
+G0Z6 ; pen down on paper
+G01 X70.3792 Y158.2208
+G0Z0 ; pen up
+G00 X214.8417 Y162.4542
+G0Z6 ; pen down on paper
+G01 X209.0208 Y167.2167
+G0Z0 ; pen up
+G00 X74.6125 Y158.2208
+G0Z6 ; pen down on paper
+G01 X70.3792 Y158.2208
+G0Z0 ; pen up
+G00 X233.3625 Y162.4542
+G0Z6 ; pen down on paper
+G01 X225.9542 Y167.2167
+G0Z0 ; pen up
+G00 X218.0167 Y167.2167
+G0Z6 ; pen down on paper
+G01 X223.8375 Y162.4542
+G0Z0 ; pen up
+G00 X0.5292 Y162.4542
+G0Z6 ; pen down on paper
+G01 X5.2917 Y162.4542
+G0Z0 ; pen up
+G00 X223.8375 Y162.4542
+G0Z6 ; pen down on paper
+G01 X218.0167 Y167.2167
+G0Z0 ; pen up
+G00 X5.2917 Y158.2208
+G0Z6 ; pen down on paper
+G01 X5.2917 Y162.4542
+G0Z0 ; pen up
+G00 X159.8083 Y111.6542
+G0Z6 ; pen down on paper
+G01 X155.0458 Y111.6542
+G0Z0 ; pen up
+G00 X128.0583 Y153.9875
+G0Z6 ; pen down on paper
+G01 X129.1167 Y158.2208
+G0Z0 ; pen up
+G00 X90.4875 Y162.4542
+G0Z6 ; pen down on paper
+G01 X86.7833 Y158.2208
+G0Z0 ; pen up
+G00 X100.0125 Y158.2208
+G0Z6 ; pen down on paper
+G01 X96.3083 Y158.2208
+G0Z0 ; pen up
+G00 X76.2000 Y162.4542
+G0Z6 ; pen down on paper
+G01 X80.9625 Y162.4542
+G0Z0 ; pen up
+G00 X158.2208 Y153.9875
+G0Z6 ; pen down on paper
+G01 X153.4583 Y153.9875
+G0Z0 ; pen up
+G00 X64.0292 Y95.2500
+G0Z6 ; pen down on paper
+G01 X64.0292 Y98.9542
+G0Z0 ; pen up
+G00 X79.3750 Y95.2500
+G0Z6 ; pen down on paper
+G01 X82.0208 Y98.9542
+G0Z0 ; pen up
+G00 X100.0125 Y158.2208
+G0Z6 ; pen down on paper
+G01 X104.2458 Y162.4542
+G0Z0 ; pen up
+G00 X110.5958 Y103.1875
+G0Z6 ; pen down on paper
+G01 X114.8292 Y103.1875
+G0Z0 ; pen up
+G00 X149.7542 Y158.2208
+G0Z6 ; pen down on paper
+G01 X153.4583 Y158.2208
+G0Z0 ; pen up
+G00 X161.9250 Y158.2208
+G0Z6 ; pen down on paper
+G01 X161.9250 Y153.9875
+G0Z0 ; pen up
+G00 X192.6167 Y111.6542
+G0Z6 ; pen down on paper
+G01 X186.7958 Y115.3583
+G0Z0 ; pen up
+G00 X161.9250 Y153.9875
+G0Z6 ; pen down on paper
+G01 X161.9250 Y158.2208
+G0Z0 ; pen up
+G00 X88.9000 Y98.9542
+G0Z6 ; pen down on paper
+G01 X93.1333 Y103.1875
+G0Z0 ; pen up
+G00 X138.1125 Y111.6542
+G0Z6 ; pen down on paper
+G01 X134.4083 Y107.4208
+G0Z0 ; pen up
+G00 X95.2500 Y162.4542
+G0Z6 ; pen down on paper
+G01 X99.4833 Y162.4542
+G0Z0 ; pen up
+G00 X55.5625 Y98.9542
+G0Z6 ; pen down on paper
+G01 X56.0917 Y95.2500
+G0Z0 ; pen up
+G00 X107.9500 Y158.2208
+G0Z6 ; pen down on paper
+G01 X103.7167 Y158.2208
+G0Z0 ; pen up
+G00 X60.3250 Y111.6542
+G0Z6 ; pen down on paper
+G01 X57.1500 Y115.3583
+G0Z0 ; pen up
+G00 X83.0792 Y158.2208
+G0Z6 ; pen down on paper
+G01 X78.3167 Y158.2208
+G0Z0 ; pen up
+G00 X62.4417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X64.0292 Y153.9875
+G0Z0 ; pen up
+G00 X26.9875 Y98.9542
+G0Z6 ; pen down on paper
+G01 X25.9292 Y103.1875
+G0Z0 ; pen up
+G00 X205.8458 Y153.9875
+G0Z6 ; pen down on paper
+G01 X203.7292 Y158.2208
+G0Z0 ; pen up
+G00 X90.4875 Y162.4542
+G0Z6 ; pen down on paper
+G01 X95.2500 Y162.4542
+G0Z0 ; pen up
+G00 X94.1917 Y111.6542
+G0Z6 ; pen down on paper
+G01 X98.9542 Y111.6542
+G0Z0 ; pen up
+G00 X211.6667 Y120.1208
+G0Z6 ; pen down on paper
+G01 X207.4333 Y120.1208
+G0Z0 ; pen up
+G00 X71.4375 Y95.2500
+G0Z6 ; pen down on paper
+G01 X73.0250 Y98.9542
+G0Z0 ; pen up
+G00 X154.5167 Y120.1208
+G0Z6 ; pen down on paper
+G01 X149.7542 Y120.1208
+G0Z0 ; pen up
+G00 X55.0333 Y98.9542
+G0Z6 ; pen down on paper
+G01 X51.3292 Y98.9542
+G0Z0 ; pen up
+G00 X83.6083 Y153.9875
+G0Z6 ; pen down on paper
+G01 X84.1375 Y150.2833
+G0Z0 ; pen up
+G00 X25.4000 Y153.9875
+G0Z6 ; pen down on paper
+G01 X24.8708 Y150.2833
+G0Z0 ; pen up
+G00 X157.1625 Y107.4208
+G0Z6 ; pen down on paper
+G01 X158.2208 Y111.6542
+G0Z0 ; pen up
+G00 X107.9500 Y158.2208
+G0Z6 ; pen down on paper
+G01 X113.2417 Y162.4542
+G0Z0 ; pen up
+G00 X135.9958 Y158.2208
+G0Z6 ; pen down on paper
+G01 X142.8750 Y162.4542
+G0Z0 ; pen up
+G00 X60.3250 Y95.2500
+G0Z6 ; pen down on paper
+G01 X56.0917 Y95.2500
+G0Z0 ; pen up
+G00 X111.6542 Y158.2208
+G0Z6 ; pen down on paper
+G01 X116.9458 Y162.4542
+G0Z0 ; pen up
+G00 X216.4292 Y120.1208
+G0Z6 ; pen down on paper
+G01 X218.5458 Y124.8833
+G0Z0 ; pen up
+G00 X92.6042 Y150.2833
+G0Z6 ; pen down on paper
+G01 X91.5458 Y153.9875
+G0Z0 ; pen up
+G00 X216.4292 Y120.1208
+G0Z6 ; pen down on paper
+G01 X211.6667 Y120.1208
+G0Z0 ; pen up
+G00 X118.5333 Y103.1875
+G0Z6 ; pen down on paper
+G01 X122.2375 Y103.1875
+G0Z0 ; pen up
+G00 X174.6250 Y158.2208
+G0Z6 ; pen down on paper
+G01 X175.6833 Y153.9875
+G0Z0 ; pen up
+G00 X60.3250 Y95.2500
+G0Z6 ; pen down on paper
+G01 X59.7958 Y98.9542
+G0Z0 ; pen up
+G00 X91.0167 Y111.6542
+G0Z6 ; pen down on paper
+G01 X87.3125 Y111.6542
+G0Z0 ; pen up
+G00 X86.7833 Y107.4208
+G0Z6 ; pen down on paper
+G01 X89.4292 Y111.6542
+G0Z0 ; pen up
+G00 X84.1375 Y150.2833
+G0Z6 ; pen down on paper
+G01 X83.6083 Y153.9875
+G0Z0 ; pen up
+G00 X192.6167 Y153.9875
+G0Z6 ; pen down on paper
+G01 X188.3833 Y153.9875
+G0Z0 ; pen up
+G00 X214.3125 Y153.9875
+G0Z6 ; pen down on paper
+G01 X211.6667 Y158.2208
+G0Z0 ; pen up
+G00 X134.9375 Y162.4542
+G0Z6 ; pen down on paper
+G01 X139.1708 Y162.4542
+G0Z0 ; pen up
+G00 X59.7958 Y98.9542
+G0Z6 ; pen down on paper
+G01 X61.9125 Y103.1875
+G0Z0 ; pen up
+G00 X131.7625 Y158.2208
+G0Z6 ; pen down on paper
+G01 X139.1708 Y162.4542
+G0Z0 ; pen up
+G00 X68.2625 Y98.9542
+G0Z6 ; pen down on paper
+G01 X73.0250 Y98.9542
+G0Z0 ; pen up
+G00 X87.8417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X87.3125 Y153.9875
+G0Z0 ; pen up
+G00 X126.4708 Y162.4542
+G0Z6 ; pen down on paper
+G01 X131.2333 Y162.4542
+G0Z0 ; pen up
+G00 X82.0208 Y98.9542
+G0Z6 ; pen down on paper
+G01 X79.3750 Y95.2500
+G0Z0 ; pen up
+G00 X89.9583 Y98.9542
+G0Z6 ; pen down on paper
+G01 X94.1917 Y98.9542
+G0Z0 ; pen up
+G00 X117.4750 Y153.9875
+G0Z6 ; pen down on paper
+G01 X122.2375 Y153.9875
+G0Z0 ; pen up
+G00 X196.3208 Y111.6542
+G0Z6 ; pen down on paper
+G01 X190.5000 Y115.3583
+G0Z0 ; pen up
+G00 X166.6875 Y158.2208
+G0Z6 ; pen down on paper
+G01 X170.3917 Y158.2208
+G0Z0 ; pen up
+G00 X124.3542 Y111.6542
+G0Z6 ; pen down on paper
+G01 X129.1167 Y111.6542
+G0Z0 ; pen up
+G00 X120.1208 Y158.2208
+G0Z6 ; pen down on paper
+G01 X115.8875 Y158.2208
+G0Z0 ; pen up
+G00 X66.6750 Y150.2833
+G0Z6 ; pen down on paper
+G01 X68.2625 Y153.9875
+G0Z0 ; pen up
+G00 X166.1583 Y107.4208
+G0Z6 ; pen down on paper
+G01 X166.1583 Y111.6542
+G0Z0 ; pen up
+G00 X124.3542 Y158.2208
+G0Z6 ; pen down on paper
+G01 X131.2333 Y162.4542
+G0Z0 ; pen up
+G00 X220.1333 Y120.1208
+G0Z6 ; pen down on paper
+G01 X222.2500 Y124.8833
+G0Z0 ; pen up
+G00 X169.8625 Y107.4208
+G0Z6 ; pen down on paper
+G01 X169.8625 Y111.6542
+G0Z0 ; pen up
+G00 X55.0333 Y150.2833
+G0Z6 ; pen down on paper
+G01 X55.5625 Y153.9875
+G0Z0 ; pen up
+G00 X149.7542 Y158.2208
+G0Z6 ; pen down on paper
+G01 X156.1042 Y162.4542
+G0Z0 ; pen up
+G00 X160.8667 Y120.1208
+G0Z6 ; pen down on paper
+G01 X165.1000 Y120.1208
+G0Z0 ; pen up
+G00 X55.0333 Y150.2833
+G0Z6 ; pen down on paper
+G01 X50.2708 Y150.2833
+G0Z0 ; pen up
+G00 X123.2958 Y98.9542
+G0Z6 ; pen down on paper
+G01 X127.0000 Y103.1875
+G0Z0 ; pen up
+G00 X178.3292 Y158.2208
+G0Z6 ; pen down on paper
+G01 X185.7375 Y162.4542
+G0Z0 ; pen up
+G00 X178.3292 Y158.2208
+G0Z6 ; pen down on paper
+G01 X174.0958 Y158.2208
+G0Z0 ; pen up
+G00 X140.7583 Y158.2208
+G0Z6 ; pen down on paper
+G01 X147.6375 Y162.4542
+G0Z0 ; pen up
+G00 X33.3375 Y107.4208
+G0Z6 ; pen down on paper
+G01 X29.6333 Y107.4208
+G0Z0 ; pen up
+G00 X186.7958 Y158.2208
+G0Z6 ; pen down on paper
+G01 X182.0333 Y158.2208
+G0Z0 ; pen up
+G00 X204.7875 Y111.6542
+G0Z6 ; pen down on paper
+G01 X201.0833 Y111.6542
+G0Z0 ; pen up
+G00 X86.2542 Y98.9542
+G0Z6 ; pen down on paper
+G01 X89.9583 Y98.9542
+G0Z0 ; pen up
+G00 X161.9250 Y111.6542
+G0Z6 ; pen down on paper
+G01 X166.1583 Y111.6542
+G0Z0 ; pen up
+G00 X95.2500 Y95.2500
+G0Z6 ; pen down on paper
+G01 X91.5458 Y95.2500
+G0Z0 ; pen up
+G00 X158.2208 Y120.1208
+G0Z6 ; pen down on paper
+G01 X154.5167 Y120.1208
+G0Z0 ; pen up
+G00 X156.1042 Y115.3583
+G0Z6 ; pen down on paper
+G01 X156.1042 Y120.1208
+G0Z0 ; pen up
+G00 X198.9667 Y115.3583
+G0Z6 ; pen down on paper
+G01 X203.2000 Y115.3583
+G0Z0 ; pen up
+G00 X25.4000 Y153.9875
+G0Z6 ; pen down on paper
+G01 X29.6333 Y153.9875
+G0Z0 ; pen up
+G00 X95.2500 Y95.2500
+G0Z6 ; pen down on paper
+G01 X98.9542 Y98.9542
+G0Z0 ; pen up
+G00 X182.5625 Y158.2208
+G0Z6 ; pen down on paper
+G01 X186.7958 Y158.2208
+G0Z0 ; pen up
+G00 X174.6250 Y158.2208
+G0Z6 ; pen down on paper
+G01 X178.3292 Y158.2208
+G0Z0 ; pen up
+G00 X211.1375 Y115.3583
+G0Z6 ; pen down on paper
+G01 X217.4875 Y111.6542
+G0Z0 ; pen up
+G00 X162.9833 Y158.2208
+G0Z6 ; pen down on paper
+G01 X158.2208 Y158.2208
+G0Z0 ; pen up
+G00 X192.6167 Y124.8833
+G0Z6 ; pen down on paper
+G01 X196.8500 Y124.8833
+G0Z0 ; pen up
+G00 X150.2833 Y111.6542
+G0Z6 ; pen down on paper
+G01 X143.9333 Y115.3583
+G0Z0 ; pen up
+G00 X17.4625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X21.6958 Y153.9875
+G0Z0 ; pen up
+G00 X42.8625 Y111.6542
+G0Z6 ; pen down on paper
+G01 X41.8042 Y107.4208
+G0Z0 ; pen up
+G00 X123.8250 Y153.9875
+G0Z6 ; pen down on paper
+G01 X124.3542 Y158.2208
+G0Z0 ; pen up
+G00 X144.9917 Y158.2208
+G0Z6 ; pen down on paper
+G01 X151.8708 Y162.4542
+G0Z0 ; pen up
+G00 X221.7208 Y111.6542
+G0Z6 ; pen down on paper
+G01 X217.4875 Y111.6542
+G0Z0 ; pen up
+G00 X205.8458 Y153.9875
+G0Z6 ; pen down on paper
+G01 X202.1417 Y153.9875
+G0Z0 ; pen up
+G00 X180.9750 Y107.4208
+G0Z6 ; pen down on paper
+G01 X177.2708 Y107.4208
+G0Z0 ; pen up
+G00 X105.8333 Y98.9542
+G0Z6 ; pen down on paper
+G01 X101.6000 Y98.9542
+G0Z0 ; pen up
+G00 X85.1958 Y98.9542
+G0Z6 ; pen down on paper
+G01 X88.3708 Y103.1875
+G0Z0 ; pen up
+G00 X57.6792 Y103.1875
+G0Z6 ; pen down on paper
+G01 X61.9125 Y103.1875
+G0Z0 ; pen up
+G00 X98.9542 Y95.2500
+G0Z6 ; pen down on paper
+G01 X103.1875 Y98.9542
+G0Z0 ; pen up
+G00 X123.2958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X129.1167 Y111.6542
+G0Z0 ; pen up
+G00 X206.9042 Y115.3583
+G0Z6 ; pen down on paper
+G01 X212.7250 Y111.6542
+G0Z0 ; pen up
+G00 X70.9083 Y150.2833
+G0Z6 ; pen down on paper
+G01 X71.9667 Y153.9875
+G0Z0 ; pen up
+G00 X196.8500 Y124.8833
+G0Z6 ; pen down on paper
+G01 X201.0833 Y124.8833
+G0Z0 ; pen up
+G00 X13.7583 Y153.9875
+G0Z6 ; pen down on paper
+G01 X17.4625 Y153.9875
+G0Z0 ; pen up
+G00 X178.3292 Y158.2208
+G0Z6 ; pen down on paper
+G01 X182.5625 Y158.2208
+G0Z0 ; pen up
+G00 X226.4833 Y111.6542
+G0Z6 ; pen down on paper
+G01 X221.7208 Y111.6542
+G0Z0 ; pen up
+G00 X173.5667 Y162.4542
+G0Z6 ; pen down on paper
+G01 X166.6875 Y158.2208
+G0Z0 ; pen up
+G00 X165.6292 Y162.4542
+G0Z6 ; pen down on paper
+G01 X158.2208 Y158.2208
+G0Z0 ; pen up
+G00 X210.6083 Y153.9875
+G0Z6 ; pen down on paper
+G01 X207.4333 Y158.2208
+G0Z0 ; pen up
+G00 X173.5667 Y162.4542
+G0Z6 ; pen down on paper
+G01 X177.2708 Y162.4542
+G0Z0 ; pen up
+G00 X177.2708 Y107.4208
+G0Z6 ; pen down on paper
+G01 X173.5667 Y107.4208
+G0Z0 ; pen up
+G00 X194.7333 Y162.4542
+G0Z6 ; pen down on paper
+G01 X199.4958 Y162.4542
+G0Z0 ; pen up
+G00 X112.7125 Y153.9875
+G0Z6 ; pen down on paper
+G01 X117.4750 Y153.9875
+G0Z0 ; pen up
+G00 X64.5583 Y111.6542
+G0Z6 ; pen down on paper
+G01 X60.8542 Y115.3583
+G0Z0 ; pen up
+G00 X170.3917 Y158.2208
+G0Z6 ; pen down on paper
+G01 X177.2708 Y162.4542
+G0Z0 ; pen up
+G00 X111.6542 Y95.2500
+G0Z6 ; pen down on paper
+G01 X106.8917 Y95.2500
+G0Z0 ; pen up
+G00 X107.4208 Y98.9542
+G0Z6 ; pen down on paper
+G01 X112.1833 Y98.9542
+G0Z0 ; pen up
+G00 X111.6542 Y95.2500
+G0Z6 ; pen down on paper
+G01 X116.9458 Y98.9542
+G0Z0 ; pen up
+G00 X162.9833 Y120.1208
+G0Z6 ; pen down on paper
+G01 X158.2208 Y120.1208
+G0Z0 ; pen up
+G00 X222.7792 Y115.3583
+G0Z6 ; pen down on paper
+G01 X230.1875 Y111.6542
+G0Z0 ; pen up
+G00 X192.6167 Y153.9875
+G0Z6 ; pen down on paper
+G01 X190.5000 Y158.2208
+G0Z0 ; pen up
+G00 X46.0375 Y150.2833
+G0Z6 ; pen down on paper
+G01 X41.2750 Y150.2833
+G0Z0 ; pen up
+G00 X65.0875 Y115.3583
+G0Z6 ; pen down on paper
+G01 X69.3208 Y115.3583
+G0Z0 ; pen up
+G00 X122.2375 Y103.1875
+G0Z6 ; pen down on paper
+G01 X127.0000 Y103.1875
+G0Z0 ; pen up
+G00 X119.5917 Y158.2208
+G0Z6 ; pen down on paper
+G01 X119.0625 Y153.9875
+G0Z0 ; pen up
+G00 X198.4375 Y158.2208
+G0Z6 ; pen down on paper
+G01 X194.7333 Y158.2208
+G0Z0 ; pen up
+G00 X203.7292 Y162.4542
+G0Z6 ; pen down on paper
+G01 X194.7333 Y158.2208
+G0Z0 ; pen up
+G00 X212.1958 Y162.4542
+G0Z6 ; pen down on paper
+G01 X216.9583 Y162.4542
+G0Z0 ; pen up
+G00 X175.1542 Y98.9542
+G0Z6 ; pen down on paper
+G01 X179.3875 Y98.9542
+G0Z0 ; pen up
+G00 X198.4375 Y158.2208
+G0Z6 ; pen down on paper
+G01 X207.4333 Y162.4542
+G0Z0 ; pen up
+G00 X97.3667 Y98.9542
+G0Z6 ; pen down on paper
+G01 X93.1333 Y98.9542
+G0Z0 ; pen up
+G00 X66.1458 Y103.1875
+G0Z6 ; pen down on paper
+G01 X70.9083 Y103.1875
+G0Z0 ; pen up
+G00 X119.0625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X119.5917 Y158.2208
+G0Z0 ; pen up
+G00 X22.2250 Y98.9542
+G0Z6 ; pen down on paper
+G01 X18.5208 Y98.9542
+G0Z0 ; pen up
+G00 X202.1417 Y153.9875
+G0Z6 ; pen down on paper
+G01 X197.3792 Y153.9875
+G0Z0 ; pen up
+G00 X226.4833 Y153.9875
+G0Z6 ; pen down on paper
+G01 X222.7792 Y153.9875
+G0Z0 ; pen up
+G00 X202.6708 Y120.1208
+G0Z6 ; pen down on paper
+G01 X205.3167 Y124.8833
+G0Z0 ; pen up
+G00 X122.2375 Y150.2833
+G0Z6 ; pen down on paper
+G01 X122.2375 Y153.9875
+G0Z0 ; pen up
+G00 X119.5917 Y95.2500
+G0Z6 ; pen down on paper
+G01 X125.9417 Y98.9542
+G0Z0 ; pen up
+G00 X214.8417 Y158.2208
+G0Z6 ; pen down on paper
+G01 X210.0792 Y158.2208
+G0Z0 ; pen up
+G00 X141.8167 Y158.2208
+G0Z6 ; pen down on paper
+G01 X145.5208 Y158.2208
+G0Z0 ; pen up
+G00 X0.5292 Y111.6542
+G0Z6 ; pen down on paper
+G01 X5.2917 Y111.6542
+G0Z0 ; pen up
+G00 X223.3083 Y158.2208
+G0Z6 ; pen down on paper
+G01 X234.4208 Y162.4542
+G0Z0 ; pen up
+G00 X37.0417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X33.3375 Y150.2833
+G0Z0 ; pen up
+G00 X5.2917 Y158.2208
+G0Z6 ; pen down on paper
+G01 X4.7625 Y153.9875
+G0Z0 ; pen up
+G00 X205.8458 Y158.2208
+G0Z6 ; pen down on paper
+G01 X216.9583 Y162.4542
+G0Z0 ; pen up
+G00 X131.7625 Y95.2500
+G0Z6 ; pen down on paper
+G01 X128.0583 Y95.2500
+G0Z0 ; pen up
+G00 X185.2083 Y107.4208
+G0Z6 ; pen down on paper
+G01 X186.7958 Y111.6542
+G0Z0 ; pen up
+G00 X9.5250 Y158.2208
+G0Z6 ; pen down on paper
+G01 X8.4667 Y153.9875
+G0Z0 ; pen up
+G00 X134.9375 Y103.1875
+G0Z6 ; pen down on paper
+G01 X138.6417 Y103.1875
+G0Z0 ; pen up
+G00 X33.3375 Y107.4208
+G0Z6 ; pen down on paper
+G01 X34.3958 Y111.6542
+G0Z0 ; pen up
+G00 X234.4208 Y162.4542
+G0Z6 ; pen down on paper
+G01 X223.3083 Y158.2208
+G0Z0 ; pen up
+G00 X76.2000 Y153.9875
+G0Z6 ; pen down on paper
+G01 X79.9042 Y153.9875
+G0Z0 ; pen up
+G00 X21.1667 Y103.1875
+G0Z6 ; pen down on paper
+G01 X25.9292 Y103.1875
+G0Z0 ; pen up
+G00 X142.8750 Y124.8833
+G0Z6 ; pen down on paper
+G01 X138.1125 Y120.1208
+G0Z0 ; pen up
+G00 X134.4083 Y150.2833
+G0Z6 ; pen down on paper
+G01 X130.1750 Y150.2833
+G0Z0 ; pen up
+G00 X226.4833 Y162.4542
+G0Z6 ; pen down on paper
+G01 X230.7167 Y162.4542
+G0Z0 ; pen up
+G00 X25.4000 Y111.6542
+G0Z6 ; pen down on paper
+G01 X25.9292 Y107.4208
+G0Z0 ; pen up
+G00 X131.7625 Y98.9542
+G0Z6 ; pen down on paper
+G01 X127.5292 Y98.9542
+G0Z0 ; pen up
+G00 X8.4667 Y153.9875
+G0Z6 ; pen down on paper
+G01 X9.5250 Y158.2208
+G0Z0 ; pen up
+G00 X17.9917 Y158.2208
+G0Z6 ; pen down on paper
+G01 X17.4625 Y153.9875
+G0Z0 ; pen up
+G00 X112.7125 Y153.9875
+G0Z6 ; pen down on paper
+G01 X114.8292 Y150.2833
+G0Z0 ; pen up
+G00 X24.8708 Y153.9875
+G0Z6 ; pen down on paper
+G01 X26.4583 Y158.2208
+G0Z0 ; pen up
+G00 X121.1792 Y98.9542
+G0Z6 ; pen down on paper
+G01 X125.9417 Y98.9542
+G0Z0 ; pen up
+G00 X103.1875 Y111.6542
+G0Z6 ; pen down on paper
+G01 X99.4833 Y107.4208
+G0Z0 ; pen up
+G00 X223.8375 Y158.2208
+G0Z6 ; pen down on paper
+G01 X228.0708 Y158.2208
+G0Z0 ; pen up
+G00 X159.2792 Y98.9542
+G0Z6 ; pen down on paper
+G01 X152.4000 Y95.2500
+G0Z0 ; pen up
+G00 X102.6583 Y103.1875
+G0Z6 ; pen down on paper
+G01 X106.3625 Y103.1875
+G0Z0 ; pen up
+G00 X182.5625 Y111.6542
+G0Z6 ; pen down on paper
+G01 X186.7958 Y111.6542
+G0Z0 ; pen up
+G00 X219.0750 Y158.2208
+G0Z6 ; pen down on paper
+G01 X222.7792 Y153.9875
+G0Z0 ; pen up
+G00 X125.9417 Y120.1208
+G0Z6 ; pen down on paper
+G01 X121.7083 Y120.1208
+G0Z0 ; pen up
+G00 X17.4625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X17.9917 Y158.2208
+G0Z0 ; pen up
+G00 X22.2250 Y158.2208
+G0Z6 ; pen down on paper
+G01 X26.4583 Y158.2208
+G0Z0 ; pen up
+G00 X234.4208 Y153.9875
+G0Z6 ; pen down on paper
+G01 X230.1875 Y153.9875
+G0Z0 ; pen up
+G00 X234.4208 Y153.9875
+G0Z6 ; pen down on paper
+G01 X232.3042 Y158.2208
+G0Z0 ; pen up
+G00 X8.4667 Y150.2833
+G0Z6 ; pen down on paper
+G01 X4.7625 Y150.2833
+G0Z0 ; pen up
+G00 X165.1000 Y120.1208
+G0Z6 ; pen down on paper
+G01 X168.8042 Y120.1208
+G0Z0 ; pen up
+G00 X8.9958 Y153.9875
+G0Z6 ; pen down on paper
+G01 X13.7583 Y153.9875
+G0Z0 ; pen up
+G00 X138.1125 Y158.2208
+G0Z6 ; pen down on paper
+G01 X136.5250 Y153.9875
+G0Z0 ; pen up
+G00 X234.4208 Y111.6542
+G0Z6 ; pen down on paper
+G01 X230.1875 Y111.6542
+G0Z0 ; pen up
+G00 X50.2708 Y111.6542
+G0Z6 ; pen down on paper
+G01 X50.2708 Y107.4208
+G0Z0 ; pen up
+G00 X131.2333 Y115.3583
+G0Z6 ; pen down on paper
+G01 X135.9958 Y115.3583
+G0Z0 ; pen up
+G00 X194.2042 Y111.6542
+G0Z6 ; pen down on paper
+G01 X198.4375 Y111.6542
+G0Z0 ; pen up
+G00 X206.9042 Y111.6542
+G0Z6 ; pen down on paper
+G01 X211.1375 Y111.6542
+G0Z0 ; pen up
+G00 X138.1125 Y158.2208
+G0Z6 ; pen down on paper
+G01 X141.8167 Y158.2208
+G0Z0 ; pen up
+G00 X5.2917 Y153.9875
+G0Z6 ; pen down on paper
+G01 X4.7625 Y150.2833
+G0Z0 ; pen up
+G00 X145.5208 Y158.2208
+G0Z6 ; pen down on paper
+G01 X149.7542 Y158.2208
+G0Z0 ; pen up
+G00 X28.5750 Y153.9875
+G0Z6 ; pen down on paper
+G01 X30.1625 Y158.2208
+G0Z0 ; pen up
+G00 X41.2750 Y153.9875
+G0Z6 ; pen down on paper
+G01 X36.5125 Y153.9875
+G0Z0 ; pen up
+G00 X46.0375 Y153.9875
+G0Z6 ; pen down on paper
+G01 X41.2750 Y153.9875
+G0Z0 ; pen up
+G00 X36.5125 Y153.9875
+G0Z6 ; pen down on paper
+G01 X32.2792 Y153.9875
+G0Z0 ; pen up
+G00 X50.8000 Y153.9875
+G0Z6 ; pen down on paper
+G01 X46.0375 Y153.9875
+G0Z0 ; pen up
+G00 X118.5333 Y103.1875
+G0Z6 ; pen down on paper
+G01 X113.7708 Y98.9542
+G0Z0 ; pen up
+G00 X46.0375 Y150.2833
+G0Z6 ; pen down on paper
+G01 X46.5667 Y153.9875
+G0Z0 ; pen up
+G00 X93.6625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X89.4292 Y153.9875
+G0Z0 ; pen up
+G00 X29.6333 Y153.9875
+G0Z6 ; pen down on paper
+G01 X33.8667 Y153.9875
+G0Z0 ; pen up
+G00 X128.0583 Y95.2500
+G0Z6 ; pen down on paper
+G01 X123.8250 Y95.2500
+G0Z0 ; pen up
+G00 X131.7625 Y95.2500
+G0Z6 ; pen down on paper
+G01 X138.6417 Y98.9542
+G0Z0 ; pen up
+G00 X39.1583 Y103.1875
+G0Z6 ; pen down on paper
+G01 X43.9208 Y103.1875
+G0Z0 ; pen up
+G00 X143.4042 Y98.9542
+G0Z6 ; pen down on paper
+G01 X147.6375 Y98.9542
+G0Z0 ; pen up
+G00 X103.7167 Y107.4208
+G0Z6 ; pen down on paper
+G01 X99.4833 Y107.4208
+G0Z0 ; pen up
+G00 X42.8625 Y111.6542
+G0Z6 ; pen down on paper
+G01 X46.5667 Y111.6542
+G0Z0 ; pen up
+G00 X98.4250 Y153.9875
+G0Z6 ; pen down on paper
+G01 X98.9542 Y158.2208
+G0Z0 ; pen up
+G00 X106.3625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X102.1292 Y153.9875
+G0Z0 ; pen up
+G00 X201.0833 Y124.8833
+G0Z6 ; pen down on paper
+G01 X205.3167 Y124.8833
+G0Z0 ; pen up
+G00 X189.4417 Y107.4208
+G0Z6 ; pen down on paper
+G01 X190.5000 Y111.6542
+G0Z0 ; pen up
+G00 X143.9333 Y98.9542
+G0Z6 ; pen down on paper
+G01 X140.2292 Y98.9542
+G0Z0 ; pen up
+G00 X140.2292 Y115.3583
+G0Z6 ; pen down on paper
+G01 X143.9333 Y115.3583
+G0Z0 ; pen up
+G00 X42.8625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X41.2750 Y150.2833
+G0Z0 ; pen up
+G00 X60.3250 Y153.9875
+G0Z6 ; pen down on paper
+G01 X64.0292 Y153.9875
+G0Z0 ; pen up
+G00 X79.9042 Y103.1875
+G0Z6 ; pen down on paper
+G01 X76.2000 Y98.9542
+G0Z0 ; pen up
+G00 X115.8875 Y158.2208
+G0Z6 ; pen down on paper
+G01 X115.3583 Y153.9875
+G0Z0 ; pen up
+G00 X138.1125 Y150.2833
+G0Z6 ; pen down on paper
+G01 X134.4083 Y150.2833
+G0Z0 ; pen up
+G00 X84.6667 Y153.9875
+G0Z6 ; pen down on paper
+G01 X79.9042 Y153.9875
+G0Z0 ; pen up
+G00 X55.5625 Y158.2208
+G0Z6 ; pen down on paper
+G01 X59.7958 Y158.2208
+G0Z0 ; pen up
+G00 X138.1125 Y150.2833
+G0Z6 ; pen down on paper
+G01 X139.7000 Y153.9875
+G0Z0 ; pen up
+G00 X106.3625 Y150.2833
+G0Z6 ; pen down on paper
+G01 X104.2458 Y153.9875
+G0Z0 ; pen up
+G00 X144.4625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X148.6958 Y153.9875
+G0Z0 ; pen up
+G00 X157.1625 Y95.2500
+G0Z6 ; pen down on paper
+G01 X152.4000 Y95.2500
+G0Z0 ; pen up
+G00 X98.4250 Y153.9875
+G0Z6 ; pen down on paper
+G01 X93.6625 Y153.9875
+G0Z0 ; pen up
+G00 X171.4500 Y98.9542
+G0Z6 ; pen down on paper
+G01 X164.5708 Y95.2500
+G0Z0 ; pen up
+G00 X152.9292 Y98.9542
+G0Z6 ; pen down on paper
+G01 X148.6958 Y98.9542
+G0Z0 ; pen up
+G00 X129.1167 Y111.6542
+G0Z6 ; pen down on paper
+G01 X133.3500 Y111.6542
+G0Z0 ; pen up
+G00 X142.3458 Y103.1875
+G0Z6 ; pen down on paper
+G01 X140.2292 Y98.9542
+G0Z0 ; pen up
+G00 X63.5000 Y153.9875
+G0Z6 ; pen down on paper
+G01 X58.7375 Y153.9875
+G0Z0 ; pen up
+G00 X155.0458 Y98.9542
+G0Z6 ; pen down on paper
+G01 X148.1667 Y95.2500
+G0Z0 ; pen up
+G00 X143.9333 Y98.9542
+G0Z6 ; pen down on paper
+G01 X146.0500 Y103.1875
+G0Z0 ; pen up
+G00 X120.6500 Y107.4208
+G0Z6 ; pen down on paper
+G01 X115.8875 Y107.4208
+G0Z0 ; pen up
+G00 X170.9208 Y115.3583
+G0Z6 ; pen down on paper
+G01 X167.2167 Y115.3583
+G0Z0 ; pen up
+G00 X228.0708 Y120.1208
+G0Z6 ; pen down on paper
+G01 X230.7167 Y124.8833
+G0Z0 ; pen up
+G00 X50.8000 Y158.2208
+G0Z6 ; pen down on paper
+G01 X55.5625 Y158.2208
+G0Z0 ; pen up
+G00 X237.5958 Y111.6542
+G0Z6 ; pen down on paper
+G01 X234.4208 Y111.6542
+G0Z0 ; pen up
+G00 X160.8667 Y95.2500
+G0Z6 ; pen down on paper
+G01 X157.1625 Y95.2500
+G0Z0 ; pen up
+G00 X141.8167 Y111.6542
+G0Z6 ; pen down on paper
+G01 X139.1708 Y107.4208
+G0Z0 ; pen up
+G00 X111.6542 Y158.2208
+G0Z6 ; pen down on paper
+G01 X110.5958 Y153.9875
+G0Z0 ; pen up
+G00 X79.9042 Y103.1875
+G0Z6 ; pen down on paper
+G01 X84.6667 Y103.1875
+G0Z0 ; pen up
+G00 X81.4917 Y158.2208
+G0Z6 ; pen down on paper
+G01 X79.9042 Y153.9875
+G0Z0 ; pen up
+G00 X89.4292 Y153.9875
+G0Z6 ; pen down on paper
+G01 X84.6667 Y153.9875
+G0Z0 ; pen up
+G00 X51.3292 Y98.9542
+G0Z6 ; pen down on paper
+G01 X47.6250 Y98.9542
+G0Z0 ; pen up
+G00 X147.6375 Y98.9542
+G0Z6 ; pen down on paper
+G01 X151.3417 Y98.9542
+G0Z0 ; pen up
+G00 X183.0917 Y115.3583
+G0Z6 ; pen down on paper
+G01 X179.3875 Y115.3583
+G0Z0 ; pen up
+G00 X96.8375 Y150.2833
+G0Z6 ; pen down on paper
+G01 X96.3083 Y153.9875
+G0Z0 ; pen up
+G00 X169.3333 Y95.2500
+G0Z6 ; pen down on paper
+G01 X164.5708 Y95.2500
+G0Z0 ; pen up
+G00 X235.4792 Y124.8833
+G0Z6 ; pen down on paper
+G01 X237.5958 Y124.8833
+G0Z0 ; pen up
+G00 X12.1708 Y107.4208
+G0Z6 ; pen down on paper
+G01 X8.4667 Y107.4208
+G0Z0 ; pen up
+G00 X104.2458 Y153.9875
+G0Z6 ; pen down on paper
+G01 X106.3625 Y150.2833
+G0Z0 ; pen up
+G00 X187.3250 Y98.9542
+G0Z6 ; pen down on paper
+G01 X180.9750 Y95.2500
+G0Z0 ; pen up
+G00 X126.4708 Y150.2833
+G0Z6 ; pen down on paper
+G01 X127.0000 Y153.9875
+G0Z0 ; pen up
+G00 X69.3208 Y158.2208
+G0Z6 ; pen down on paper
+G01 X73.0250 Y158.2208
+G0Z0 ; pen up
+G00 X42.8625 Y98.9542
+G0Z6 ; pen down on paper
+G01 X43.9208 Y103.1875
+G0Z0 ; pen up
+G00 X5.2917 Y120.1208
+G0Z6 ; pen down on paper
+G01 X4.7625 Y115.3583
+G0Z0 ; pen up
+G00 X77.7875 Y158.2208
+G0Z6 ; pen down on paper
+G01 X76.2000 Y153.9875
+G0Z0 ; pen up
+G00 X64.5583 Y158.2208
+G0Z6 ; pen down on paper
+G01 X69.3208 Y158.2208
+G0Z0 ; pen up
+G00 X71.4375 Y98.9542
+G0Z6 ; pen down on paper
+G01 X67.7333 Y98.9542
+G0Z0 ; pen up
+G00 X127.5292 Y115.3583
+G0Z6 ; pen down on paper
+G01 X131.2333 Y115.3583
+G0Z0 ; pen up
+G00 X209.0208 Y141.8167
+G0Z6 ; pen down on paper
+G01 X214.8417 Y146.5792
+G0Z0 ; pen up
+G00 X192.0875 Y146.5792
+G0Z6 ; pen down on paper
+G01 X188.3833 Y146.5792
+G0Z0 ; pen up
+G00 X106.8917 Y146.5792
+G0Z6 ; pen down on paper
+G01 X102.6583 Y141.8167
+G0Z0 ; pen up
+G00 X55.5625 Y146.5792
+G0Z6 ; pen down on paper
+G01 X53.9750 Y150.2833
+G0Z0 ; pen up
+G00 X173.5667 Y95.2500
+G0Z6 ; pen down on paper
+G01 X179.3875 Y98.9542
+G0Z0 ; pen up
+G00 X151.3417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X152.4000 Y153.9875
+G0Z0 ; pen up
+G00 X84.6667 Y103.1875
+G0Z6 ; pen down on paper
+G01 X88.3708 Y103.1875
+G0Z0 ; pen up
+G00 X162.4542 Y146.5792
+G0Z6 ; pen down on paper
+G01 X158.7500 Y141.8167
+G0Z0 ; pen up
+G00 X82.5500 Y141.8167
+G0Z6 ; pen down on paper
+G01 X85.7250 Y146.5792
+G0Z0 ; pen up
+G00 X206.3750 Y107.4208
+G0Z6 ; pen down on paper
+G01 X202.1417 Y107.4208
+G0Z0 ; pen up
+G00 X13.7583 Y146.5792
+G0Z6 ; pen down on paper
+G01 X18.5208 Y146.5792
+G0Z0 ; pen up
+G00 X214.8417 Y98.9542
+G0Z6 ; pen down on paper
+G01 X204.2583 Y95.2500
+G0Z0 ; pen up
+G00 X151.3417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X146.5792 Y150.2833
+G0Z0 ; pen up
+G00 X94.1917 Y146.5792
+G0Z6 ; pen down on paper
+G01 X91.0167 Y141.8167
+G0Z0 ; pen up
+G00 X219.6042 Y98.9542
+G0Z6 ; pen down on paper
+G01 X223.8375 Y98.9542
+G0Z0 ; pen up
+G00 X8.9958 Y146.5792
+G0Z6 ; pen down on paper
+G01 X13.7583 Y146.5792
+G0Z0 ; pen up
+G00 X30.6917 Y98.9542
+G0Z6 ; pen down on paper
+G01 X30.6917 Y103.1875
+G0Z0 ; pen up
+G00 X83.0792 Y150.2833
+G0Z6 ; pen down on paper
+G01 X86.7833 Y150.2833
+G0Z0 ; pen up
+G00 X141.8167 Y120.1208
+G0Z6 ; pen down on paper
+G01 X147.1083 Y124.8833
+G0Z0 ; pen up
+G00 X111.1250 Y111.6542
+G0Z6 ; pen down on paper
+G01 X115.3583 Y111.6542
+G0Z0 ; pen up
+G00 X45.5083 Y150.2833
+G0Z6 ; pen down on paper
+G01 X49.7417 Y150.2833
+G0Z0 ; pen up
+G00 X51.8583 Y146.5792
+G0Z6 ; pen down on paper
+G01 X49.7417 Y150.2833
+G0Z0 ; pen up
+G00 X95.2500 Y146.5792
+G0Z6 ; pen down on paper
+G01 X90.4875 Y146.5792
+G0Z0 ; pen up
+G00 X85.7250 Y146.5792
+G0Z6 ; pen down on paper
+G01 X80.9625 Y146.5792
+G0Z0 ; pen up
+G00 X22.2250 Y146.5792
+G0Z6 ; pen down on paper
+G01 X21.1667 Y141.8167
+G0Z0 ; pen up
+G00 X145.5208 Y141.8167
+G0Z6 ; pen down on paper
+G01 X150.2833 Y146.5792
+G0Z0 ; pen up
+G00 X106.8917 Y141.8167
+G0Z6 ; pen down on paper
+G01 X111.6542 Y146.5792
+G0Z0 ; pen up
+G00 X5.2917 Y111.6542
+G0Z6 ; pen down on paper
+G01 X10.0542 Y111.6542
+G0Z0 ; pen up
+G00 X61.9125 Y150.2833
+G0Z6 ; pen down on paper
+G01 X64.0292 Y146.5792
+G0Z0 ; pen up
+G00 X220.6625 Y111.6542
+G0Z6 ; pen down on paper
+G01 X224.8958 Y111.6542
+G0Z0 ; pen up
+G00 X202.1417 Y107.4208
+G0Z6 ; pen down on paper
+G01 X198.4375 Y107.4208
+G0Z0 ; pen up
+G00 X166.6875 Y120.1208
+G0Z6 ; pen down on paper
+G01 X162.9833 Y120.1208
+G0Z0 ; pen up
+G00 X34.3958 Y98.9542
+G0Z6 ; pen down on paper
+G01 X35.4542 Y103.1875
+G0Z0 ; pen up
+G00 X155.5750 Y103.1875
+G0Z6 ; pen down on paper
+G01 X159.2792 Y103.1875
+G0Z0 ; pen up
+G00 X83.0792 Y115.3583
+G0Z6 ; pen down on paper
+G01 X87.3125 Y111.6542
+G0Z0 ; pen up
+G00 X115.3583 Y111.6542
+G0Z6 ; pen down on paper
+G01 X120.1208 Y111.6542
+G0Z0 ; pen up
+G00 X25.9292 Y107.4208
+G0Z6 ; pen down on paper
+G01 X25.4000 Y111.6542
+G0Z0 ; pen up
+G00 X164.0417 Y103.1875
+G0Z6 ; pen down on paper
+G01 X162.4542 Y98.9542
+G0Z0 ; pen up
+G00 X184.1500 Y146.5792
+G0Z6 ; pen down on paper
+G01 X176.2125 Y150.2833
+G0Z0 ; pen up
+G00 X61.9125 Y150.2833
+G0Z6 ; pen down on paper
+G01 X66.1458 Y150.2833
+G0Z0 ; pen up
+G00 X178.3292 Y120.1208
+G0Z6 ; pen down on paper
+G01 X175.1542 Y115.3583
+G0Z0 ; pen up
+G00 X54.5042 Y111.6542
+G0Z6 ; pen down on paper
+G01 X53.9750 Y107.4208
+G0Z0 ; pen up
+G00 X67.7333 Y146.5792
+G0Z6 ; pen down on paper
+G01 X66.1458 Y150.2833
+G0Z0 ; pen up
+G00 X224.3667 Y120.1208
+G0Z6 ; pen down on paper
+G01 X226.4833 Y124.8833
+G0Z0 ; pen up
+G00 X21.6958 Y111.6542
+G0Z6 ; pen down on paper
+G01 X21.1667 Y107.4208
+G0Z0 ; pen up
+G00 X196.8500 Y95.2500
+G0Z6 ; pen down on paper
+G01 X193.1458 Y95.2500
+G0Z0 ; pen up
+G00 X72.4958 Y146.5792
+G0Z6 ; pen down on paper
+G01 X70.3792 Y150.2833
+G0Z0 ; pen up
+G00 X94.7208 Y141.8167
+G0Z6 ; pen down on paper
+G01 X91.0167 Y141.8167
+G0Z0 ; pen up
+G00 X156.6333 Y153.9875
+G0Z6 ; pen down on paper
+G01 X161.3958 Y153.9875
+G0Z0 ; pen up
+G00 X90.4875 Y150.2833
+G0Z6 ; pen down on paper
+G01 X94.7208 Y150.2833
+G0Z0 ; pen up
+G00 X190.5000 Y150.2833
+G0Z6 ; pen down on paper
+G01 X185.7375 Y150.2833
+G0Z0 ; pen up
+G00 X186.7958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X183.0917 Y115.3583
+G0Z0 ; pen up
+G00 X191.0292 Y153.9875
+G0Z6 ; pen down on paper
+G01 X194.7333 Y153.9875
+G0Z0 ; pen up
+G00 X143.4042 Y107.4208
+G0Z6 ; pen down on paper
+G01 X146.0500 Y111.6542
+G0Z0 ; pen up
+G00 X215.9000 Y111.6542
+G0Z6 ; pen down on paper
+G01 X215.3708 Y107.4208
+G0Z0 ; pen up
+G00 X102.1292 Y150.2833
+G0Z6 ; pen down on paper
+G01 X108.4792 Y146.5792
+G0Z0 ; pen up
+G00 X166.1583 Y153.9875
+G0Z6 ; pen down on paper
+G01 X163.5125 Y150.2833
+G0Z0 ; pen up
+G00 X19.0500 Y120.1208
+G0Z6 ; pen down on paper
+G01 X17.9917 Y115.3583
+G0Z0 ; pen up
+G00 X231.7750 Y98.9542
+G0Z6 ; pen down on paper
+G01 X221.7208 Y95.2500
+G0Z0 ; pen up
+G00 X47.0958 Y95.2500
+G0Z6 ; pen down on paper
+G01 X46.5667 Y91.0167
+G0Z0 ; pen up
+G00 X25.4000 Y141.8167
+G0Z6 ; pen down on paper
+G01 X21.1667 Y141.8167
+G0Z0 ; pen up
+G00 X78.8458 Y150.2833
+G0Z6 ; pen down on paper
+G01 X80.9625 Y146.5792
+G0Z0 ; pen up
+G00 X25.4000 Y141.8167
+G0Z6 ; pen down on paper
+G01 X26.4583 Y146.5792
+G0Z0 ; pen up
+G00 X170.3917 Y153.9875
+G0Z6 ; pen down on paper
+G01 X174.0958 Y153.9875
+G0Z0 ; pen up
+G00 X196.3208 Y98.9542
+G0Z6 ; pen down on paper
+G01 X201.0833 Y98.9542
+G0Z0 ; pen up
+G00 X187.8542 Y150.2833
+G0Z6 ; pen down on paper
+G01 X196.8500 Y146.5792
+G0Z0 ; pen up
+G00 X215.3708 Y107.4208
+G0Z6 ; pen down on paper
+G01 X215.9000 Y111.6542
+G0Z0 ; pen up
+G00 X111.6542 Y146.5792
+G0Z6 ; pen down on paper
+G01 X106.8917 Y141.8167
+G0Z0 ; pen up
+G00 X109.5375 Y150.2833
+G0Z6 ; pen down on paper
+G01 X116.9458 Y146.5792
+G0Z0 ; pen up
+G00 X198.9667 Y150.2833
+G0Z6 ; pen down on paper
+G01 X194.7333 Y150.2833
+G0Z0 ; pen up
+G00 X31.2208 Y146.5792
+G0Z6 ; pen down on paper
+G01 X35.9833 Y146.5792
+G0Z0 ; pen up
+G00 X33.8667 Y141.8167
+G0Z6 ; pen down on paper
+G01 X35.9833 Y146.5792
+G0Z0 ; pen up
+G00 X166.1583 Y153.9875
+G0Z6 ; pen down on paper
+G01 X170.3917 Y153.9875
+G0Z0 ; pen up
+G00 X82.0208 Y146.5792
+G0Z6 ; pen down on paper
+G01 X85.7250 Y146.5792
+G0Z0 ; pen up
+G00 X182.5625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X186.2667 Y153.9875
+G0Z0 ; pen up
+G00 X164.0417 Y103.1875
+G0Z6 ; pen down on paper
+G01 X167.7458 Y103.1875
+G0Z0 ; pen up
+G00 X102.1292 Y150.2833
+G0Z6 ; pen down on paper
+G01 X105.8333 Y150.2833
+G0Z0 ; pen up
+G00 X103.1875 Y146.5792
+G0Z6 ; pen down on paper
+G01 X98.4250 Y141.8167
+G0Z0 ; pen up
+G00 X170.3917 Y98.9542
+G0Z6 ; pen down on paper
+G01 X166.6875 Y98.9542
+G0Z0 ; pen up
+G00 X172.5083 Y150.2833
+G0Z6 ; pen down on paper
+G01 X174.0958 Y153.9875
+G0Z0 ; pen up
+G00 X29.6333 Y91.0167
+G0Z6 ; pen down on paper
+G01 X24.8708 Y91.0167
+G0Z0 ; pen up
+G00 X21.1667 Y91.0167
+G0Z6 ; pen down on paper
+G01 X17.4625 Y91.0167
+G0Z0 ; pen up
+G00 X137.5833 Y146.5792
+G0Z6 ; pen down on paper
+G01 X141.2875 Y146.5792
+G0Z0 ; pen up
+G00 X25.9292 Y95.2500
+G0Z6 ; pen down on paper
+G01 X24.8708 Y91.0167
+G0Z0 ; pen up
+G00 X103.7167 Y107.4208
+G0Z6 ; pen down on paper
+G01 X107.4208 Y111.6542
+G0Z0 ; pen up
+G00 X41.2750 Y141.8167
+G0Z6 ; pen down on paper
+G01 X37.5708 Y141.8167
+G0Z0 ; pen up
+G00 X139.1708 Y107.4208
+G0Z6 ; pen down on paper
+G01 X141.8167 Y111.6542
+G0Z0 ; pen up
+G00 X174.6250 Y98.9542
+G0Z6 ; pen down on paper
+G01 X170.3917 Y98.9542
+G0Z0 ; pen up
+G00 X187.8542 Y150.2833
+G0Z6 ; pen down on paper
+G01 X192.0875 Y150.2833
+G0Z0 ; pen up
+G00 X207.4333 Y150.2833
+G0Z6 ; pen down on paper
+G01 X206.9042 Y153.9875
+G0Z0 ; pen up
+G00 X115.3583 Y141.8167
+G0Z6 ; pen down on paper
+G01 X111.6542 Y141.8167
+G0Z0 ; pen up
+G00 X182.5625 Y153.9875
+G0Z6 ; pen down on paper
+G01 X182.0333 Y150.2833
+G0Z0 ; pen up
+G00 X8.9958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X9.5250 Y120.1208
+G0Z0 ; pen up
+G00 X196.3208 Y150.2833
+G0Z6 ; pen down on paper
+G01 X200.0250 Y150.2833
+G0Z0 ; pen up
+G00 X98.9542 Y146.5792
+G0Z6 ; pen down on paper
+G01 X94.7208 Y150.2833
+G0Z0 ; pen up
+G00 X41.2750 Y141.8167
+G0Z6 ; pen down on paper
+G01 X44.4500 Y146.5792
+G0Z0 ; pen up
+G00 X58.2083 Y141.8167
+G0Z6 ; pen down on paper
+G01 X53.9750 Y141.8167
+G0Z0 ; pen up
+G00 X215.9000 Y150.2833
+G0Z6 ; pen down on paper
+G01 X227.0125 Y146.5792
+G0Z0 ; pen up
+G00 X138.6417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X146.5792 Y146.5792
+G0Z0 ; pen up
+G00 X138.6417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X143.4042 Y150.2833
+G0Z0 ; pen up
+G00 X226.4833 Y95.2500
+G0Z6 ; pen down on paper
+G01 X221.7208 Y95.2500
+G0Z0 ; pen up
+G00 X215.9000 Y150.2833
+G0Z6 ; pen down on paper
+G01 X219.6042 Y150.2833
+G0Z0 ; pen up
+G00 X197.9083 Y146.5792
+G0Z6 ; pen down on paper
+G01 X191.0292 Y141.8167
+G0Z0 ; pen up
+G00 X207.4333 Y150.2833
+G0Z6 ; pen down on paper
+G01 X203.7292 Y150.2833
+G0Z0 ; pen up
+G00 X198.9667 Y150.2833
+G0Z6 ; pen down on paper
+G01 X198.4375 Y153.9875
+G0Z0 ; pen up
+G00 X148.1667 Y107.4208
+G0Z6 ; pen down on paper
+G01 X150.2833 Y111.6542
+G0Z0 ; pen up
+G00 X115.3583 Y141.8167
+G0Z6 ; pen down on paper
+G01 X120.6500 Y146.5792
+G0Z0 ; pen up
+G00 X174.6250 Y98.9542
+G0Z6 ; pen down on paper
+G01 X176.2125 Y103.1875
+G0Z0 ; pen up
+G00 X137.5833 Y146.5792
+G0Z6 ; pen down on paper
+G01 X129.6458 Y150.2833
+G0Z0 ; pen up
+G00 X211.6667 Y153.9875
+G0Z6 ; pen down on paper
+G01 X216.4292 Y153.9875
+G0Z0 ; pen up
+G00 X120.1208 Y141.8167
+G0Z6 ; pen down on paper
+G01 X124.8833 Y146.5792
+G0Z0 ; pen up
+G00 X51.3292 Y95.2500
+G0Z6 ; pen down on paper
+G01 X50.2708 Y91.0167
+G0Z0 ; pen up
+G00 X175.1542 Y115.3583
+G0Z6 ; pen down on paper
+G01 X178.3292 Y120.1208
+G0Z0 ; pen up
+G00 X196.8500 Y95.2500
+G0Z6 ; pen down on paper
+G01 X205.3167 Y98.9542
+G0Z0 ; pen up
+G00 X14.2875 Y111.6542
+G0Z6 ; pen down on paper
+G01 X17.9917 Y111.6542
+G0Z0 ; pen up
+G00 X141.2875 Y146.5792
+G0Z6 ; pen down on paper
+G01 X146.0500 Y146.5792
+G0Z0 ; pen up
+G00 X152.4000 Y107.4208
+G0Z6 ; pen down on paper
+G01 X154.5167 Y111.6542
+G0Z0 ; pen up
+G00 X58.2083 Y141.8167
+G0Z6 ; pen down on paper
+G01 X60.8542 Y146.5792
+G0Z0 ; pen up
+G00 X58.2083 Y111.6542
+G0Z6 ; pen down on paper
+G01 X57.6792 Y107.4208
+G0Z0 ; pen up
+G00 X200.5542 Y120.1208
+G0Z6 ; pen down on paper
+G01 X195.2625 Y115.3583
+G0Z0 ; pen up
+G00 X186.7958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X191.5583 Y120.1208
+G0Z0 ; pen up
+G00 X76.2000 Y111.6542
+G0Z6 ; pen down on paper
+G01 X80.4333 Y111.6542
+G0Z0 ; pen up
+G00 X228.6000 Y150.2833
+G0Z6 ; pen down on paper
+G01 X229.6583 Y153.9875
+G0Z0 ; pen up
+G00 X129.1167 Y111.6542
+G0Z6 ; pen down on paper
+G01 X123.2958 Y115.3583
+G0Z0 ; pen up
+G00 X42.3333 Y91.0167
+G0Z6 ; pen down on paper
+G01 X38.1000 Y91.0167
+G0Z0 ; pen up
+G00 X137.5833 Y146.5792
+G0Z6 ; pen down on paper
+G01 X133.8792 Y146.5792
+G0Z0 ; pen up
+G00 X207.9625 Y150.2833
+G0Z6 ; pen down on paper
+G01 X212.1958 Y150.2833
+G0Z0 ; pen up
+G00 X33.3375 Y95.2500
+G0Z6 ; pen down on paper
+G01 X37.5708 Y95.2500
+G0Z0 ; pen up
+G00 X228.6000 Y150.2833
+G0Z6 ; pen down on paper
+G01 X224.8958 Y150.2833
+G0Z0 ; pen up
+G00 X29.6333 Y91.0167
+G0Z6 ; pen down on paper
+G01 X29.6333 Y95.2500
+G0Z0 ; pen up
+G00 X184.1500 Y98.9542
+G0Z6 ; pen down on paper
+G01 X179.3875 Y98.9542
+G0Z0 ; pen up
+G00 X219.6042 Y98.9542
+G0Z6 ; pen down on paper
+G01 X209.0208 Y95.2500
+G0Z0 ; pen up
+G00 X57.6792 Y107.4208
+G0Z6 ; pen down on paper
+G01 X58.2083 Y111.6542
+G0Z0 ; pen up
+G00 X121.7083 Y150.2833
+G0Z6 ; pen down on paper
+G01 X129.6458 Y146.5792
+G0Z0 ; pen up
+G00 X17.9917 Y115.3583
+G0Z6 ; pen down on paper
+G01 X19.0500 Y120.1208
+G0Z0 ; pen up
+G00 X184.1500 Y98.9542
+G0Z6 ; pen down on paper
+G01 X184.6792 Y103.1875
+G0Z0 ; pen up
+G00 X203.7292 Y115.3583
+G0Z6 ; pen down on paper
+G01 X199.4958 Y115.3583
+G0Z0 ; pen up
+G00 X221.1917 Y153.9875
+G0Z6 ; pen down on paper
+G01 X220.1333 Y150.2833
+G0Z0 ; pen up
+G00 X135.9958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X140.2292 Y115.3583
+G0Z0 ; pen up
+G00 X220.1333 Y150.2833
+G0Z6 ; pen down on paper
+G01 X221.1917 Y153.9875
+G0Z0 ; pen up
+G00 X200.5542 Y120.1208
+G0Z6 ; pen down on paper
+G01 X204.7875 Y120.1208
+G0Z0 ; pen up
+G00 X133.8792 Y146.5792
+G0Z6 ; pen down on paper
+G01 X127.5292 Y141.8167
+G0Z0 ; pen up
+G00 X48.6833 Y146.5792
+G0Z6 ; pen down on paper
+G01 X53.4458 Y146.5792
+G0Z0 ; pen up
+G00 X67.7333 Y111.6542
+G0Z6 ; pen down on paper
+G01 X72.4958 Y111.6542
+G0Z0 ; pen up
+G00 X137.5833 Y146.5792
+G0Z6 ; pen down on paper
+G01 X132.2917 Y141.8167
+G0Z0 ; pen up
+G00 X4.7625 Y115.3583
+G0Z6 ; pen down on paper
+G01 X5.2917 Y120.1208
+G0Z0 ; pen up
+G00 X113.2417 Y150.2833
+G0Z6 ; pen down on paper
+G01 X117.4750 Y150.2833
+G0Z0 ; pen up
+G00 X146.0500 Y146.5792
+G0Z6 ; pen down on paper
+G01 X150.2833 Y146.5792
+G0Z0 ; pen up
+G00 X179.9167 Y120.1208
+G0Z6 ; pen down on paper
+G01 X175.6833 Y120.1208
+G0Z0 ; pen up
+G00 X116.9458 Y146.5792
+G0Z6 ; pen down on paper
+G01 X109.5375 Y150.2833
+G0Z0 ; pen up
+G00 X216.4292 Y98.9542
+G0Z6 ; pen down on paper
+G01 X217.4875 Y103.1875
+G0Z0 ; pen up
+G00 X121.7083 Y150.2833
+G0Z6 ; pen down on paper
+G01 X125.4125 Y150.2833
+G0Z0 ; pen up
+G00 X67.7333 Y111.6542
+G0Z6 ; pen down on paper
+G01 X65.6167 Y107.4208
+G0Z0 ; pen up
+G00 X155.0458 Y141.8167
+G0Z6 ; pen down on paper
+G01 X150.2833 Y141.8167
+G0Z0 ; pen up
+G00 X195.2625 Y98.9542
+G0Z6 ; pen down on paper
+G01 X191.5583 Y98.9542
+G0Z0 ; pen up
+G00 X193.6750 Y146.5792
+G0Z6 ; pen down on paper
+G01 X186.2667 Y141.8167
+G0Z0 ; pen up
+G00 X162.4542 Y146.5792
+G0Z6 ; pen down on paper
+G01 X167.2167 Y146.5792
+G0Z0 ; pen up
+G00 X237.5958 Y95.2500
+G0Z6 ; pen down on paper
+G01 X226.4833 Y95.2500
+G0Z0 ; pen up
+G00 X5.2917 Y146.5792
+G0Z6 ; pen down on paper
+G01 X8.9958 Y146.5792
+G0Z0 ; pen up
+G00 X82.0208 Y107.4208
+G0Z6 ; pen down on paper
+G01 X84.6667 Y111.6542
+G0Z0 ; pen up
+G00 X184.6792 Y95.2500
+G0Z6 ; pen down on paper
+G01 X192.0875 Y98.9542
+G0Z0 ; pen up
+G00 X155.0458 Y146.5792
+G0Z6 ; pen down on paper
+G01 X147.1083 Y150.2833
+G0Z0 ; pen up
+G00 X9.5250 Y150.2833
+G0Z6 ; pen down on paper
+G01 X8.4667 Y146.5792
+G0Z0 ; pen up
+G00 X202.1417 Y146.5792
+G0Z6 ; pen down on paper
+G01 X195.2625 Y141.8167
+G0Z0 ; pen up
+G00 X4.7625 Y150.2833
+G0Z6 ; pen down on paper
+G01 X4.2333 Y146.5792
+G0Z0 ; pen up
+G00 X150.8125 Y146.5792
+G0Z6 ; pen down on paper
+G01 X143.4042 Y150.2833
+G0Z0 ; pen up
+G00 X71.9667 Y95.2500
+G0Z6 ; pen down on paper
+G01 X75.6708 Y95.2500
+G0Z0 ; pen up
+G00 X209.0208 Y120.1208
+G0Z6 ; pen down on paper
+G01 X213.2542 Y120.1208
+G0Z0 ; pen up
+G00 X67.7333 Y95.2500
+G0Z6 ; pen down on paper
+G01 X71.9667 Y95.2500
+G0Z0 ; pen up
+G00 X158.7500 Y146.5792
+G0Z6 ; pen down on paper
+G01 X150.8125 Y150.2833
+G0Z0 ; pen up
+G00 X178.8583 Y141.8167
+G0Z6 ; pen down on paper
+G01 X185.2083 Y146.5792
+G0Z0 ; pen up
+G00 X213.2542 Y103.1875
+G0Z6 ; pen down on paper
+G01 X217.4875 Y103.1875
+G0Z0 ; pen up
+G00 X74.6125 Y107.4208
+G0Z6 ; pen down on paper
+G01 X70.3792 Y107.4208
+G0Z0 ; pen up
+G00 X170.9208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X175.1542 Y124.8833
+G0Z0 ; pen up
+G00 X8.4667 Y146.5792
+G0Z6 ; pen down on paper
+G01 X9.5250 Y150.2833
+G0Z0 ; pen up
+G00 X67.7333 Y91.0167
+G0Z6 ; pen down on paper
+G01 X64.0292 Y91.0167
+G0Z0 ; pen up
+G00 X53.9750 Y141.8167
+G0Z6 ; pen down on paper
+G01 X49.2125 Y141.8167
+G0Z0 ; pen up
+G00 X191.5583 Y98.9542
+G0Z6 ; pen down on paper
+G01 X187.8542 Y98.9542
+G0Z0 ; pen up
+G00 X51.3292 Y95.2500
+G0Z6 ; pen down on paper
+G01 X55.0333 Y95.2500
+G0Z0 ; pen up
+G00 X176.7417 Y146.5792
+G0Z6 ; pen down on paper
+G01 X180.4458 Y146.5792
+G0Z0 ; pen up
+G00 X155.0458 Y150.2833
+G0Z6 ; pen down on paper
+G01 X159.2792 Y150.2833
+G0Z0 ; pen up
+G00 X210.6083 Y146.5792
+G0Z6 ; pen down on paper
+G01 X214.8417 Y146.5792
+G0Z0 ; pen up
+G00 X176.7417 Y146.5792
+G0Z6 ; pen down on paper
+G01 X169.8625 Y141.8167
+G0Z0 ; pen up
+G00 X61.9125 Y141.8167
+G0Z6 ; pen down on paper
+G01 X64.5583 Y146.5792
+G0Z0 ; pen up
+G00 X175.6833 Y146.5792
+G0Z6 ; pen down on paper
+G01 X167.7458 Y150.2833
+G0Z0 ; pen up
+G00 X171.9792 Y146.5792
+G0Z6 ; pen down on paper
+G01 X167.7458 Y146.5792
+G0Z0 ; pen up
+G00 X204.2583 Y141.8167
+G0Z6 ; pen down on paper
+G01 X200.0250 Y141.8167
+G0Z0 ; pen up
+G00 X78.3167 Y107.4208
+G0Z6 ; pen down on paper
+G01 X80.4333 Y111.6542
+G0Z0 ; pen up
+G00 X68.7917 Y146.5792
+G0Z6 ; pen down on paper
+G01 X73.5542 Y146.5792
+G0Z0 ; pen up
+G00 X191.5583 Y103.1875
+G0Z6 ; pen down on paper
+G01 X187.8542 Y103.1875
+G0Z0 ; pen up
+G00 X233.8917 Y153.9875
+G0Z6 ; pen down on paper
+G01 X237.5958 Y153.9875
+G0Z0 ; pen up
+G00 X132.8208 Y107.4208
+G0Z6 ; pen down on paper
+G01 X130.7042 Y103.1875
+G0Z0 ; pen up
+G00 X225.9542 Y107.4208
+G0Z6 ; pen down on paper
+G01 X230.7167 Y107.4208
+G0Z0 ; pen up
+G00 X126.4708 Y103.1875
+G0Z6 ; pen down on paper
+G01 X121.7083 Y103.1875
+G0Z0 ; pen up
+G00 X179.9167 Y146.5792
+G0Z6 ; pen down on paper
+G01 X171.4500 Y150.2833
+G0Z0 ; pen up
+G00 X78.3167 Y146.5792
+G0Z6 ; pen down on paper
+G01 X82.0208 Y146.5792
+G0Z0 ; pen up
+G00 X175.6833 Y146.5792
+G0Z6 ; pen down on paper
+G01 X171.9792 Y146.5792
+G0Z0 ; pen up
+G00 X167.2167 Y146.5792
+G0Z6 ; pen down on paper
+G01 X171.9792 Y146.5792
+G0Z0 ; pen up
+G00 X179.9167 Y124.8833
+G0Z6 ; pen down on paper
+G01 X175.6833 Y120.1208
+G0Z0 ; pen up
+G00 X195.2625 Y98.9542
+G0Z6 ; pen down on paper
+G01 X196.8500 Y103.1875
+G0Z0 ; pen up
+G00 X14.2875 Y150.2833
+G0Z6 ; pen down on paper
+G01 X19.0500 Y150.2833
+G0Z0 ; pen up
+G00 X179.9167 Y120.1208
+G0Z6 ; pen down on paper
+G01 X184.1500 Y124.8833
+G0Z0 ; pen up
+G00 X180.9750 Y95.2500
+G0Z6 ; pen down on paper
+G01 X187.3250 Y98.9542
+G0Z0 ; pen up
+G00 X193.6750 Y107.4208
+G0Z6 ; pen down on paper
+G01 X197.3792 Y107.4208
+G0Z0 ; pen up
+G00 X24.8708 Y146.5792
+G0Z6 ; pen down on paper
+G01 X26.4583 Y150.2833
+G0Z0 ; pen up
+G00 X22.7542 Y150.2833
+G0Z6 ; pen down on paper
+G01 X26.4583 Y150.2833
+G0Z0 ; pen up
+G00 X204.7875 Y103.1875
+G0Z6 ; pen down on paper
+G01 X209.5500 Y103.1875
+G0Z0 ; pen up
+G00 X209.5500 Y103.1875
+G0Z6 ; pen down on paper
+G01 X213.2542 Y103.1875
+G0Z0 ; pen up
+G00 X200.0250 Y98.9542
+G0Z6 ; pen down on paper
+G01 X201.0833 Y103.1875
+G0Z0 ; pen up
+G00 X223.8375 Y98.9542
+G0Z6 ; pen down on paper
+G01 X228.0708 Y98.9542
+G0Z0 ; pen up
+G00 X225.9542 Y103.1875
+G0Z6 ; pen down on paper
+G01 X224.3667 Y98.9542
+G0Z0 ; pen up
+G00 X178.8583 Y141.8167
+G0Z6 ; pen down on paper
+G01 X174.0958 Y141.8167
+G0Z0 ; pen up
+G00 X224.3667 Y98.9542
+G0Z6 ; pen down on paper
+G01 X225.9542 Y103.1875
+G0Z0 ; pen up
+G00 X147.1083 Y124.8833
+G0Z6 ; pen down on paper
+G01 X141.8167 Y120.1208
+G0Z0 ; pen up
+G00 X200.0250 Y141.8167
+G0Z6 ; pen down on paper
+G01 X195.2625 Y141.8167
+G0Z0 ; pen up
+G00 X237.5958 Y103.1875
+G0Z6 ; pen down on paper
+G01 X237.5958 Y98.9542
+G0Z0 ; pen up
+G00 X22.7542 Y150.2833
+G0Z6 ; pen down on paper
+G01 X21.1667 Y146.5792
+G0Z0 ; pen up
+G00 X83.6083 Y91.0167
+G0Z6 ; pen down on paper
+G01 X79.9042 Y91.0167
+G0Z0 ; pen up
+G00 X217.4875 Y120.1208
+G0Z6 ; pen down on paper
+G01 X212.1958 Y115.3583
+G0Z0 ; pen up
+G00 X219.6042 Y150.2833
+G0Z6 ; pen down on paper
+G01 X224.3667 Y150.2833
+G0Z0 ; pen up
+G00 X38.6292 Y146.5792
+G0Z6 ; pen down on paper
+G01 X37.5708 Y150.2833
+G0Z0 ; pen up
+G00 X203.7292 Y150.2833
+G0Z6 ; pen down on paper
+G01 X213.2542 Y146.5792
+G0Z0 ; pen up
+G00 X73.5542 Y146.5792
+G0Z6 ; pen down on paper
+G01 X78.3167 Y146.5792
+G0Z0 ; pen up
+G00 X0.5292 Y98.9542
+G0Z6 ; pen down on paper
+G01 X0.5292 Y103.1875
+G0Z0 ; pen up
+G00 X189.4417 Y120.1208
+G0Z6 ; pen down on paper
+G01 X184.6792 Y120.1208
+G0Z0 ; pen up
+G00 X145.5208 Y120.1208
+G0Z6 ; pen down on paper
+G01 X151.3417 Y124.8833
+G0Z0 ; pen up
+G00 X196.3208 Y150.2833
+G0Z6 ; pen down on paper
+G01 X205.3167 Y146.5792
+G0Z0 ; pen up
+G00 X5.2917 Y146.5792
+G0Z6 ; pen down on paper
+G01 X4.2333 Y141.8167
+G0Z0 ; pen up
+G00 X130.7042 Y124.8833
+G0Z6 ; pen down on paper
+G01 X134.9375 Y124.8833
+G0Z0 ; pen up
+G00 X59.2667 Y91.0167
+G0Z6 ; pen down on paper
+G01 X55.0333 Y91.0167
+G0Z0 ; pen up
+G00 X234.4208 Y103.1875
+G0Z6 ; pen down on paper
+G01 X232.8333 Y98.9542
+G0Z0 ; pen up
+G00 X33.8667 Y150.2833
+G0Z6 ; pen down on paper
+G01 X37.5708 Y150.2833
+G0Z0 ; pen up
+G00 X5.2917 Y107.4208
+G0Z6 ; pen down on paper
+G01 X4.2333 Y103.1875
+G0Z0 ; pen up
+G00 X203.7292 Y150.2833
+G0Z6 ; pen down on paper
+G01 X207.9625 Y150.2833
+G0Z0 ; pen up
+G00 X224.3667 Y150.2833
+G0Z6 ; pen down on paper
+G01 X237.5958 Y150.2833
+G0Z0 ; pen up
+G00 X29.1042 Y146.5792
+G0Z6 ; pen down on paper
+G01 X30.1625 Y150.2833
+G0Z0 ; pen up
+G00 X47.6250 Y146.5792
+G0Z6 ; pen down on paper
+G01 X43.3917 Y146.5792
+G0Z0 ; pen up
+G00 X130.7042 Y103.1875
+G0Z6 ; pen down on paper
+G01 X132.8208 Y107.4208
+G0Z0 ; pen up
+G00 X217.4875 Y141.8167
+G0Z6 ; pen down on paper
+G01 X223.8375 Y146.5792
+G0Z0 ; pen up
+G00 X57.6792 Y137.5833
+G0Z6 ; pen down on paper
+G01 X61.3833 Y141.8167
+G0Z0 ; pen up
+G00 X44.9792 Y137.5833
+G0Z6 ; pen down on paper
+G01 X47.6250 Y141.8167
+G0Z0 ; pen up
+G00 X4.7625 Y98.9542
+G0Z6 ; pen down on paper
+G01 X4.7625 Y95.2500
+G0Z0 ; pen up
+G00 X233.3625 Y128.5875
+G0Z6 ; pen down on paper
+G01 X229.1292 Y128.5875
+G0Z0 ; pen up
+G00 X166.6875 Y124.8833
+G0Z6 ; pen down on paper
+G01 X162.4542 Y124.8833
+G0Z0 ; pen up
+G00 X56.6208 Y141.8167
+G0Z6 ; pen down on paper
+G01 X53.4458 Y137.5833
+G0Z0 ; pen up
+G00 X134.4083 Y120.1208
+G0Z6 ; pen down on paper
+G01 X130.7042 Y120.1208
+G0Z0 ; pen up
+G00 X94.7208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X91.5458 Y128.5875
+G0Z0 ; pen up
+G00 X12.7000 Y98.9542
+G0Z6 ; pen down on paper
+G01 X16.9333 Y98.9542
+G0Z0 ; pen up
+G00 X229.6583 Y111.6542
+G0Z6 ; pen down on paper
+G01 X233.3625 Y111.6542
+G0Z0 ; pen up
+G00 X8.4667 Y95.2500
+G0Z6 ; pen down on paper
+G01 X8.9958 Y91.0167
+G0Z0 ; pen up
+G00 X94.7208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X90.4875 Y124.8833
+G0Z0 ; pen up
+G00 X28.0458 Y120.1208
+G0Z6 ; pen down on paper
+G01 X32.8083 Y120.1208
+G0Z0 ; pen up
+G00 X233.3625 Y133.3500
+G0Z6 ; pen down on paper
+G01 X229.1292 Y128.5875
+G0Z0 ; pen up
+G00 X8.4667 Y98.9542
+G0Z6 ; pen down on paper
+G01 X9.5250 Y95.2500
+G0Z0 ; pen up
+G00 X13.2292 Y91.0167
+G0Z6 ; pen down on paper
+G01 X13.2292 Y95.2500
+G0Z0 ; pen up
+G00 X191.5583 Y128.5875
+G0Z6 ; pen down on paper
+G01 X194.2042 Y133.3500
+G0Z0 ; pen up
+G00 X191.5583 Y128.5875
+G0Z6 ; pen down on paper
+G01 X196.3208 Y128.5875
+G0Z0 ; pen up
+G00 X182.0333 Y128.5875
+G0Z6 ; pen down on paper
+G01 X186.7958 Y128.5875
+G0Z0 ; pen up
+G00 X55.5625 Y111.6542
+G0Z6 ; pen down on paper
+G01 X52.9167 Y115.3583
+G0Z0 ; pen up
+G00 X9.5250 Y95.2500
+G0Z6 ; pen down on paper
+G01 X8.4667 Y98.9542
+G0Z0 ; pen up
+G00 X198.4375 Y133.3500
+G0Z6 ; pen down on paper
+G01 X202.6708 Y133.3500
+G0Z0 ; pen up
+G00 X80.4333 Y95.2500
+G0Z6 ; pen down on paper
+G01 X79.9042 Y91.0167
+G0Z0 ; pen up
+G00 X158.2208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X154.5167 Y128.5875
+G0Z0 ; pen up
+G00 X196.8500 Y124.8833
+G0Z6 ; pen down on paper
+G01 X192.6167 Y124.8833
+G0Z0 ; pen up
+G00 X187.8542 Y128.5875
+G0Z6 ; pen down on paper
+G01 X190.5000 Y133.3500
+G0Z0 ; pen up
+G00 X39.6875 Y98.9542
+G0Z6 ; pen down on paper
+G01 X38.6292 Y95.2500
+G0Z0 ; pen up
+G00 X51.3292 Y95.2500
+G0Z6 ; pen down on paper
+G01 X47.6250 Y95.2500
+G0Z0 ; pen up
+G00 X223.8375 Y133.3500
+G0Z6 ; pen down on paper
+G01 X228.6000 Y133.3500
+G0Z0 ; pen up
+G00 X38.6292 Y95.2500
+G0Z6 ; pen down on paper
+G01 X39.6875 Y98.9542
+G0Z0 ; pen up
+G00 X198.9667 Y128.5875
+G0Z6 ; pen down on paper
+G01 X202.6708 Y133.3500
+G0Z0 ; pen up
+G00 X42.8625 Y95.2500
+G0Z6 ; pen down on paper
+G01 X44.4500 Y98.9542
+G0Z0 ; pen up
+G00 X140.2292 Y107.4208
+G0Z6 ; pen down on paper
+G01 X138.1125 Y103.1875
+G0Z0 ; pen up
+G00 X201.6125 Y124.8833
+G0Z6 ; pen down on paper
+G01 X196.3208 Y128.5875
+G0Z0 ; pen up
+G00 X66.6750 Y133.3500
+G0Z6 ; pen down on paper
+G01 X68.7917 Y128.5875
+G0Z0 ; pen up
+G00 X53.4458 Y137.5833
+G0Z6 ; pen down on paper
+G01 X56.6208 Y141.8167
+G0Z0 ; pen up
+G00 X237.0667 Y133.3500
+G0Z6 ; pen down on paper
+G01 X237.5958 Y133.3500
+G0Z0 ; pen up
+G00 X103.7167 Y124.8833
+G0Z6 ; pen down on paper
+G01 X98.9542 Y124.8833
+G0Z0 ; pen up
+G00 X60.3250 Y107.4208
+G0Z6 ; pen down on paper
+G01 X58.7375 Y103.1875
+G0Z0 ; pen up
+G00 X69.8500 Y141.8167
+G0Z6 ; pen down on paper
+G01 X65.6167 Y137.5833
+G0Z0 ; pen up
+G00 X8.9958 Y128.5875
+G0Z6 ; pen down on paper
+G01 X8.9958 Y124.8833
+G0Z0 ; pen up
+G00 X32.8083 Y120.1208
+G0Z6 ; pen down on paper
+G01 X36.5125 Y120.1208
+G0Z0 ; pen up
+G00 X63.5000 Y95.2500
+G0Z6 ; pen down on paper
+G01 X64.0292 Y91.0167
+G0Z0 ; pen up
+G00 X31.2208 Y95.2500
+G0Z6 ; pen down on paper
+G01 X30.6917 Y98.9542
+G0Z0 ; pen up
+G00 X61.3833 Y128.5875
+G0Z6 ; pen down on paper
+G01 X56.6208 Y128.5875
+G0Z0 ; pen up
+G00 X217.4875 Y141.8167
+G0Z6 ; pen down on paper
+G01 X213.7833 Y141.8167
+G0Z0 ; pen up
+G00 X31.2208 Y95.2500
+G0Z6 ; pen down on paper
+G01 X27.5167 Y95.2500
+G0Z0 ; pen up
+G00 X140.2292 Y107.4208
+G0Z6 ; pen down on paper
+G01 X143.9333 Y107.4208
+G0Z0 ; pen up
+G00 X57.6792 Y133.3500
+G0Z6 ; pen down on paper
+G01 X62.4417 Y133.3500
+G0Z0 ; pen up
+G00 X4.2333 Y128.5875
+G0Z6 ; pen down on paper
+G01 X4.7625 Y124.8833
+G0Z0 ; pen up
+G00 X45.5083 Y120.1208
+G0Z6 ; pen down on paper
+G01 X49.7417 Y120.1208
+G0Z0 ; pen up
+G00 X158.2208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X154.5167 Y124.8833
+G0Z0 ; pen up
+G00 X73.5542 Y141.8167
+G0Z6 ; pen down on paper
+G01 X69.8500 Y137.5833
+G0Z0 ; pen up
+G00 X25.4000 Y137.5833
+G0Z6 ; pen down on paper
+G01 X21.6958 Y137.5833
+G0Z0 ; pen up
+G00 X74.0833 Y137.5833
+G0Z6 ; pen down on paper
+G01 X78.3167 Y141.8167
+G0Z0 ; pen up
+G00 X86.7833 Y128.5875
+G0Z6 ; pen down on paper
+G01 X90.4875 Y124.8833
+G0Z0 ; pen up
+G00 X207.4333 Y133.3500
+G0Z6 ; pen down on paper
+G01 X211.6667 Y133.3500
+G0Z0 ; pen up
+G00 X25.9292 Y115.3583
+G0Z6 ; pen down on paper
+G01 X22.2250 Y115.3583
+G0Z0 ; pen up
+G00 X69.8500 Y137.5833
+G0Z6 ; pen down on paper
+G01 X73.5542 Y141.8167
+G0Z0 ; pen up
+G00 X116.4167 Y124.8833
+G0Z6 ; pen down on paper
+G01 X112.7125 Y128.5875
+G0Z0 ; pen up
+G00 X13.2292 Y95.2500
+G0Z6 ; pen down on paper
+G01 X13.2292 Y91.0167
+G0Z0 ; pen up
+G00 X0.5292 Y91.0167
+G0Z6 ; pen down on paper
+G01 X0.5292 Y95.2500
+G0Z0 ; pen up
+G00 X16.9333 Y98.9542
+G0Z6 ; pen down on paper
+G01 X21.6958 Y98.9542
+G0Z0 ; pen up
+G00 X49.7417 Y120.1208
+G0Z6 ; pen down on paper
+G01 X53.9750 Y120.1208
+G0Z0 ; pen up
+G00 X72.4958 Y128.5875
+G0Z6 ; pen down on paper
+G01 X68.7917 Y128.5875
+G0Z0 ; pen up
+G00 X13.7583 Y124.8833
+G0Z6 ; pen down on paper
+G01 X12.7000 Y128.5875
+G0Z0 ; pen up
+G00 X17.4625 Y137.5833
+G0Z6 ; pen down on paper
+G01 X13.7583 Y137.5833
+G0Z0 ; pen up
+G00 X26.4583 Y98.9542
+G0Z6 ; pen down on paper
+G01 X27.5167 Y95.2500
+G0Z0 ; pen up
+G00 X54.5042 Y115.3583
+G0Z6 ; pen down on paper
+G01 X50.2708 Y115.3583
+G0Z0 ; pen up
+G00 X225.4250 Y141.8167
+G0Z6 ; pen down on paper
+G01 X231.7750 Y146.5792
+G0Z0 ; pen up
+G00 X170.9208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X166.6875 Y124.8833
+G0Z0 ; pen up
+G00 X133.8792 Y91.0167
+G0Z6 ; pen down on paper
+G01 X130.7042 Y87.3125
+G0Z0 ; pen up
+G00 X126.4708 Y87.3125
+G0Z6 ; pen down on paper
+G01 X122.2375 Y87.3125
+G0Z0 ; pen up
+G00 X180.4458 Y124.8833
+G0Z6 ; pen down on paper
+G01 X175.6833 Y124.8833
+G0Z0 ; pen up
+G00 X211.6667 Y128.5875
+G0Z6 ; pen down on paper
+G01 X207.9625 Y128.5875
+G0Z0 ; pen up
+G00 X37.0417 Y115.3583
+G0Z6 ; pen down on paper
+G01 X41.2750 Y120.1208
+G0Z0 ; pen up
+G00 X37.0417 Y115.3583
+G0Z6 ; pen down on paper
+G01 X33.3375 Y115.3583
+G0Z0 ; pen up
+G00 X87.3125 Y137.5833
+G0Z6 ; pen down on paper
+G01 X91.5458 Y141.8167
+G0Z0 ; pen up
+G00 X120.1208 Y115.3583
+G0Z6 ; pen down on paper
+G01 X123.2958 Y120.1208
+G0Z0 ; pen up
+G00 X76.2000 Y128.5875
+G0Z6 ; pen down on paper
+G01 X75.1417 Y133.3500
+G0Z0 ; pen up
+G00 X161.3958 Y87.3125
+G0Z6 ; pen down on paper
+G01 X164.5708 Y91.0167
+G0Z0 ; pen up
+G00 X116.4167 Y124.8833
+G0Z6 ; pen down on paper
+G01 X112.1833 Y124.8833
+G0Z0 ; pen up
+G00 X83.0792 Y133.3500
+G0Z6 ; pen down on paper
+G01 X84.1375 Y128.5875
+G0Z0 ; pen up
+G00 X25.4000 Y137.5833
+G0Z6 ; pen down on paper
+G01 X26.9875 Y141.8167
+G0Z0 ; pen up
+G00 X78.3167 Y137.5833
+G0Z6 ; pen down on paper
+G01 X82.0208 Y141.8167
+G0Z0 ; pen up
+G00 X91.5458 Y141.8167
+G0Z6 ; pen down on paper
+G01 X87.3125 Y137.5833
+G0Z0 ; pen up
+G00 X157.1625 Y115.3583
+G0Z6 ; pen down on paper
+G01 X160.8667 Y115.3583
+G0Z0 ; pen up
+G00 X18.5208 Y141.8167
+G0Z6 ; pen down on paper
+G01 X23.2833 Y141.8167
+G0Z0 ; pen up
+G00 X155.0458 Y91.0167
+G0Z6 ; pen down on paper
+G01 X159.8083 Y91.0167
+G0Z0 ; pen up
+G00 X91.0167 Y137.5833
+G0Z6 ; pen down on paper
+G01 X95.2500 Y141.8167
+G0Z0 ; pen up
+G00 X212.1958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X217.4875 Y120.1208
+G0Z0 ; pen up
+G00 X13.7583 Y124.8833
+G0Z6 ; pen down on paper
+G01 X8.9958 Y124.8833
+G0Z0 ; pen up
+G00 X100.0125 Y128.5875
+G0Z6 ; pen down on paper
+G01 X104.2458 Y128.5875
+G0Z0 ; pen up
+G00 X92.0750 Y91.0167
+G0Z6 ; pen down on paper
+G01 X93.1333 Y95.2500
+G0Z0 ; pen up
+G00 X172.5083 Y111.6542
+G0Z6 ; pen down on paper
+G01 X168.2750 Y111.6542
+G0Z0 ; pen up
+G00 X223.8375 Y133.3500
+G0Z6 ; pen down on paper
+G01 X220.6625 Y128.5875
+G0Z0 ; pen up
+G00 X229.6583 Y111.6542
+G0Z6 ; pen down on paper
+G01 X228.6000 Y107.4208
+G0Z0 ; pen up
+G00 X104.2458 Y128.5875
+G0Z6 ; pen down on paper
+G01 X109.0083 Y128.5875
+G0Z0 ; pen up
+G00 X66.6750 Y115.3583
+G0Z6 ; pen down on paper
+G01 X62.9708 Y115.3583
+G0Z0 ; pen up
+G00 X108.4792 Y141.8167
+G0Z6 ; pen down on paper
+G01 X104.2458 Y137.5833
+G0Z0 ; pen up
+G00 X87.8417 Y133.3500
+G0Z6 ; pen down on paper
+G01 X87.8417 Y128.5875
+G0Z0 ; pen up
+G00 X40.7458 Y137.5833
+G0Z6 ; pen down on paper
+G01 X36.5125 Y137.5833
+G0Z0 ; pen up
+G00 X211.6667 Y128.5875
+G0Z6 ; pen down on paper
+G01 X215.3708 Y133.3500
+G0Z0 ; pen up
+G00 X93.1333 Y95.2500
+G0Z6 ; pen down on paper
+G01 X92.0750 Y91.0167
+G0Z0 ; pen up
+G00 X225.4250 Y141.8167
+G0Z6 ; pen down on paper
+G01 X221.7208 Y141.8167
+G0Z0 ; pen up
+G00 X159.8083 Y91.0167
+G0Z6 ; pen down on paper
+G01 X164.5708 Y91.0167
+G0Z0 ; pen up
+G00 X111.6542 Y95.2500
+G0Z6 ; pen down on paper
+G01 X109.0083 Y91.0167
+G0Z0 ; pen up
+G00 X4.2333 Y103.1875
+G0Z6 ; pen down on paper
+G01 X5.2917 Y107.4208
+G0Z0 ; pen up
+G00 X12.1708 Y103.1875
+G0Z6 ; pen down on paper
+G01 X8.4667 Y103.1875
+G0Z0 ; pen up
+G00 X121.1792 Y95.2500
+G0Z6 ; pen down on paper
+G01 X117.4750 Y91.0167
+G0Z0 ; pen up
+G00 X237.5958 Y141.8167
+G0Z6 ; pen down on paper
+G01 X229.6583 Y141.8167
+G0Z0 ; pen up
+G00 X54.5042 Y115.3583
+G0Z6 ; pen down on paper
+G01 X57.6792 Y120.1208
+G0Z0 ; pen up
+G00 X40.7458 Y137.5833
+G0Z6 ; pen down on paper
+G01 X43.9208 Y141.8167
+G0Z0 ; pen up
+G00 X104.7750 Y103.1875
+G0Z6 ; pen down on paper
+G01 X107.4208 Y107.4208
+G0Z0 ; pen up
+G00 X165.1000 Y115.3583
+G0Z6 ; pen down on paper
+G01 X169.3333 Y115.3583
+G0Z0 ; pen up
+G00 X100.0125 Y137.5833
+G0Z6 ; pen down on paper
+G01 X95.2500 Y137.5833
+G0Z0 ; pen up
+G00 X104.2458 Y137.5833
+G0Z6 ; pen down on paper
+G01 X108.4792 Y141.8167
+G0Z0 ; pen up
+G00 X116.9458 Y141.8167
+G0Z6 ; pen down on paper
+G01 X112.7125 Y137.5833
+G0Z0 ; pen up
+G00 X8.9958 Y137.5833
+G0Z6 ; pen down on paper
+G01 X9.5250 Y141.8167
+G0Z0 ; pen up
+G00 X143.9333 Y87.3125
+G0Z6 ; pen down on paper
+G01 X139.1708 Y87.3125
+G0Z0 ; pen up
+G00 X216.9583 Y115.3583
+G0Z6 ; pen down on paper
+G01 X222.2500 Y120.1208
+G0Z0 ; pen up
+G00 X36.5125 Y137.5833
+G0Z6 ; pen down on paper
+G01 X32.8083 Y137.5833
+G0Z0 ; pen up
+G00 X131.2333 Y120.1208
+G0Z6 ; pen down on paper
+G01 X129.6458 Y115.3583
+G0Z0 ; pen up
+G00 X169.3333 Y87.3125
+G0Z6 ; pen down on paper
+G01 X165.1000 Y87.3125
+G0Z0 ; pen up
+G00 X133.3500 Y115.3583
+G0Z6 ; pen down on paper
+G01 X134.9375 Y120.1208
+G0Z0 ; pen up
+G00 X116.4167 Y128.5875
+G0Z6 ; pen down on paper
+G01 X120.6500 Y128.5875
+G0Z0 ; pen up
+G00 X62.9708 Y115.3583
+G0Z6 ; pen down on paper
+G01 X58.7375 Y115.3583
+G0Z0 ; pen up
+G00 X0.5292 Y141.8167
+G0Z6 ; pen down on paper
+G01 X4.7625 Y141.8167
+G0Z0 ; pen up
+G00 X129.1167 Y124.8833
+G0Z6 ; pen down on paper
+G01 X125.4125 Y124.8833
+G0Z0 ; pen up
+G00 X70.9083 Y133.3500
+G0Z6 ; pen down on paper
+G01 X75.1417 Y133.3500
+G0Z0 ; pen up
+G00 X31.7500 Y141.8167
+G0Z6 ; pen down on paper
+G01 X36.5125 Y141.8167
+G0Z0 ; pen up
+G00 X8.9958 Y103.1875
+G0Z6 ; pen down on paper
+G01 X8.9958 Y98.9542
+G0Z0 ; pen up
+G00 X197.3792 Y107.4208
+G0Z6 ; pen down on paper
+G01 X201.0833 Y107.4208
+G0Z0 ; pen up
+G00 X74.0833 Y120.1208
+G0Z6 ; pen down on paper
+G01 X70.3792 Y115.3583
+G0Z0 ; pen up
+G00 X124.3542 Y128.5875
+G0Z6 ; pen down on paper
+G01 X129.1167 Y128.5875
+G0Z0 ; pen up
+G00 X20.6375 Y107.4208
+G0Z6 ; pen down on paper
+G01 X21.1667 Y103.1875
+G0Z0 ; pen up
+G00 X4.2333 Y137.5833
+G0Z6 ; pen down on paper
+G01 X4.7625 Y141.8167
+G0Z0 ; pen up
+G00 X121.1792 Y141.8167
+G0Z6 ; pen down on paper
+G01 X125.9417 Y141.8167
+G0Z0 ; pen up
+G00 X217.4875 Y141.8167
+G0Z6 ; pen down on paper
+G01 X212.1958 Y137.5833
+G0Z0 ; pen up
+G00 X83.6083 Y91.0167
+G0Z6 ; pen down on paper
+G01 X85.1958 Y95.2500
+G0Z0 ; pen up
+G00 X16.4042 Y103.1875
+G0Z6 ; pen down on paper
+G01 X12.1708 Y103.1875
+G0Z0 ; pen up
+G00 X23.2833 Y124.8833
+G0Z6 ; pen down on paper
+G01 X20.6375 Y128.5875
+G0Z0 ; pen up
+G00 X112.7125 Y137.5833
+G0Z6 ; pen down on paper
+G01 X116.9458 Y141.8167
+G0Z0 ; pen up
+G00 X170.9208 Y128.5875
+G0Z6 ; pen down on paper
+G01 X175.6833 Y124.8833
+G0Z0 ; pen up
+G00 X97.3667 Y95.2500
+G0Z6 ; pen down on paper
+G01 X102.1292 Y95.2500
+G0Z0 ; pen up
+G00 X89.9583 Y115.3583
+G0Z6 ; pen down on paper
+G01 X94.1917 Y120.1208
+G0Z0 ; pen up
+G00 X208.4917 Y141.8167
+G0Z6 ; pen down on paper
+G01 X203.2000 Y137.5833
+G0Z0 ; pen up
+G00 X141.8167 Y91.0167
+G0Z6 ; pen down on paper
+G01 X139.1708 Y87.3125
+G0Z0 ; pen up
+G00 X122.2375 Y87.3125
+G0Z6 ; pen down on paper
+G01 X117.4750 Y87.3125
+G0Z0 ; pen up
+G00 X130.1750 Y141.8167
+G0Z6 ; pen down on paper
+G01 X125.4125 Y137.5833
+G0Z0 ; pen up
+G00 X130.1750 Y141.8167
+G0Z6 ; pen down on paper
+G01 X133.8792 Y141.8167
+G0Z0 ; pen up
+G00 X137.0542 Y124.8833
+G0Z6 ; pen down on paper
+G01 X132.8208 Y124.8833
+G0Z0 ; pen up
+G00 X194.2042 Y137.5833
+G0Z6 ; pen down on paper
+G01 X199.4958 Y141.8167
+G0Z0 ; pen up
+G00 X203.2000 Y137.5833
+G0Z6 ; pen down on paper
+G01 X208.4917 Y141.8167
+G0Z0 ; pen up
+G00 X74.0833 Y120.1208
+G0Z6 ; pen down on paper
+G01 X77.7875 Y120.1208
+G0Z0 ; pen up
+G00 X100.5417 Y91.0167
+G0Z6 ; pen down on paper
+G01 X102.1292 Y95.2500
+G0Z0 ; pen up
+G00 X138.6417 Y141.8167
+G0Z6 ; pen down on paper
+G01 X134.4083 Y137.5833
+G0Z0 ; pen up
+G00 X98.4250 Y120.1208
+G0Z6 ; pen down on paper
+G01 X102.6583 Y120.1208
+G0Z0 ; pen up
+G00 X152.9292 Y87.3125
+G0Z6 ; pen down on paper
+G01 X148.1667 Y87.3125
+G0Z0 ; pen up
+G00 X23.2833 Y124.8833
+G0Z6 ; pen down on paper
+G01 X18.5208 Y124.8833
+G0Z0 ; pen up
+G00 X109.0083 Y91.0167
+G0Z6 ; pen down on paper
+G01 X111.6542 Y95.2500
+G0Z0 ; pen up
+G00 X195.2625 Y141.8167
+G0Z6 ; pen down on paper
+G01 X189.9708 Y137.5833
+G0Z0 ; pen up
+G00 X82.5500 Y120.1208
+G0Z6 ; pen down on paper
+G01 X77.7875 Y115.3583
+G0Z0 ; pen up
+G00 X87.8417 Y133.3500
+G0Z6 ; pen down on paper
+G01 X92.6042 Y133.3500
+G0Z0 ; pen up
+G00 X92.6042 Y133.3500
+G0Z6 ; pen down on paper
+G01 X97.3667 Y133.3500
+G0Z0 ; pen up
+G00 X176.2125 Y91.0167
+G0Z6 ; pen down on paper
+G01 X173.5667 Y87.3125
+G0Z0 ; pen up
+G00 X134.4083 Y137.5833
+G0Z6 ; pen down on paper
+G01 X138.6417 Y141.8167
+G0Z0 ; pen up
+G00 X142.3458 Y137.5833
+G0Z6 ; pen down on paper
+G01 X147.6375 Y141.8167
+G0Z0 ; pen up
+G00 X205.3167 Y103.1875
+G0Z6 ; pen down on paper
+G01 X200.5542 Y103.1875
+G0Z0 ; pen up
+G00 X184.1500 Y124.8833
+G0Z6 ; pen down on paper
+G01 X180.4458 Y124.8833
+G0Z0 ; pen up
+G00 X217.4875 Y141.8167
+G0Z6 ; pen down on paper
+G01 X222.2500 Y141.8167
+G0Z0 ; pen up
+G00 X35.9833 Y124.8833
+G0Z6 ; pen down on paper
+G01 X32.2792 Y124.8833
+G0Z0 ; pen up
+G00 X102.1292 Y133.3500
+G0Z6 ; pen down on paper
+G01 X105.8333 Y133.3500
+G0Z0 ; pen up
+G00 X149.7542 Y124.8833
+G0Z6 ; pen down on paper
+G01 X146.0500 Y128.5875
+G0Z0 ; pen up
+G00 X69.3208 Y115.3583
+G0Z6 ; pen down on paper
+G01 X74.0833 Y115.3583
+G0Z0 ; pen up
+G00 X180.9750 Y91.0167
+G0Z6 ; pen down on paper
+G01 X177.2708 Y87.3125
+G0Z0 ; pen up
+G00 X124.8833 Y95.2500
+G0Z6 ; pen down on paper
+G01 X128.5875 Y95.2500
+G0Z0 ; pen up
+G00 X147.6375 Y107.4208
+G0Z6 ; pen down on paper
+G01 X152.4000 Y107.4208
+G0Z0 ; pen up
+G00 X189.9708 Y137.5833
+G0Z6 ; pen down on paper
+G01 X195.2625 Y141.8167
+G0Z0 ; pen up
+G00 X140.2292 Y91.0167
+G0Z6 ; pen down on paper
+G01 X135.4667 Y91.0167
+G0Z0 ; pen up
+G00 X130.7042 Y87.3125
+G0Z6 ; pen down on paper
+G01 X133.8792 Y91.0167
+G0Z0 ; pen up
+G00 X142.8750 Y141.8167
+G0Z6 ; pen down on paper
+G01 X147.6375 Y141.8167
+G0Z0 ; pen up
+G00 X156.1042 Y107.4208
+G0Z6 ; pen down on paper
+G01 X154.5167 Y103.1875
+G0Z0 ; pen up
+G00 X185.7375 Y137.5833
+G0Z6 ; pen down on paper
+G01 X182.0333 Y137.5833
+G0Z0 ; pen up
+G00 X160.8667 Y137.5833
+G0Z6 ; pen down on paper
+G01 X156.1042 Y137.5833
+G0Z0 ; pen up
+G00 X122.7667 Y133.3500
+G0Z6 ; pen down on paper
+G01 X122.2375 Y128.5875
+G0Z0 ; pen up
+G00 X177.2708 Y87.3125
+G0Z6 ; pen down on paper
+G01 X180.9750 Y91.0167
+G0Z0 ; pen up
+G00 X221.7208 Y137.5833
+G0Z6 ; pen down on paper
+G01 X226.4833 Y141.8167
+G0Z0 ; pen up
+G00 X156.1042 Y137.5833
+G0Z6 ; pen down on paper
+G01 X151.3417 Y137.5833
+G0Z0 ; pen up
+G00 X29.1042 Y115.3583
+G0Z6 ; pen down on paper
+G01 X33.3375 Y115.3583
+G0Z0 ; pen up
+G00 X230.7167 Y141.8167
+G0Z6 ; pen down on paper
+G01 X234.4208 Y141.8167
+G0Z0 ; pen up
+G00 X156.1042 Y141.8167
+G0Z6 ; pen down on paper
+G01 X151.3417 Y137.5833
+G0Z0 ; pen up
+G00 X145.5208 Y95.2500
+G0Z6 ; pen down on paper
+G01 X143.9333 Y91.0167
+G0Z0 ; pen up
+G00 X143.9333 Y91.0167
+G0Z6 ; pen down on paper
+G01 X145.5208 Y95.2500
+G0Z0 ; pen up
+G00 X216.9583 Y137.5833
+G0Z6 ; pen down on paper
+G01 X222.2500 Y141.8167
+G0Z0 ; pen up
+G00 X160.8667 Y137.5833
+G0Z6 ; pen down on paper
+G01 X165.1000 Y141.8167
+G0Z0 ; pen up
+G00 X146.5792 Y91.0167
+G0Z6 ; pen down on paper
+G01 X151.3417 Y91.0167
+G0Z0 ; pen up
+G00 X146.5792 Y103.1875
+G0Z6 ; pen down on paper
+G01 X141.8167 Y103.1875
+G0Z0 ; pen up
+G00 X29.1042 Y128.5875
+G0Z6 ; pen down on paper
+G01 X32.2792 Y124.8833
+G0Z0 ; pen up
+G00 X43.3917 Y124.8833
+G0Z6 ; pen down on paper
+G01 X39.6875 Y124.8833
+G0Z0 ; pen up
+G00 X215.3708 Y124.8833
+G0Z6 ; pen down on paper
+G01 X210.6083 Y124.8833
+G0Z0 ; pen up
+G00 X148.6958 Y91.0167
+G0Z6 ; pen down on paper
+G01 X149.7542 Y95.2500
+G0Z0 ; pen up
+G00 X133.3500 Y95.2500
+G0Z6 ; pen down on paper
+G01 X137.5833 Y95.2500
+G0Z0 ; pen up
+G00 X141.8167 Y128.5875
+G0Z6 ; pen down on paper
+G01 X146.0500 Y124.8833
+G0Z0 ; pen up
+G00 X168.8042 Y107.4208
+G0Z6 ; pen down on paper
+G01 X167.2167 Y103.1875
+G0Z0 ; pen up
+G00 X121.1792 Y95.2500
+G0Z6 ; pen down on paper
+G01 X124.8833 Y95.2500
+G0Z0 ; pen up
+G00 X216.9583 Y107.4208
+G0Z6 ; pen down on paper
+G01 X221.7208 Y107.4208
+G0Z0 ; pen up
+G00 X128.5875 Y95.2500
+G0Z6 ; pen down on paper
+G01 X133.3500 Y95.2500
+G0Z0 ; pen up
+G00 X185.7375 Y87.3125
+G0Z6 ; pen down on paper
+G01 X182.0333 Y87.3125
+G0Z0 ; pen up
+G00 X102.6583 Y120.1208
+G0Z6 ; pen down on paper
+G01 X106.3625 Y120.1208
+G0Z0 ; pen up
+G00 X157.1625 Y115.3583
+G0Z6 ; pen down on paper
+G01 X164.0417 Y111.6542
+G0Z0 ; pen up
+G00 X170.3917 Y95.2500
+G0Z6 ; pen down on paper
+G01 X175.1542 Y95.2500
+G0Z0 ; pen up
+G00 X175.6833 Y91.0167
+G0Z6 ; pen down on paper
+G01 X175.1542 Y95.2500
+G0Z0 ; pen up
+G00 X154.5167 Y103.1875
+G0Z6 ; pen down on paper
+G01 X156.1042 Y107.4208
+G0Z0 ; pen up
+G00 X78.8458 Y115.3583
+G0Z6 ; pen down on paper
+G01 X82.5500 Y111.6542
+G0Z0 ; pen up
+G00 X13.7583 Y98.9542
+G0Z6 ; pen down on paper
+G01 X8.9958 Y98.9542
+G0Z0 ; pen up
+G00 X185.2083 Y91.0167
+G0Z6 ; pen down on paper
+G01 X180.4458 Y91.0167
+G0Z0 ; pen up
+G00 X237.5958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X230.1875 Y115.3583
+G0Z0 ; pen up
+G00 X35.9833 Y124.8833
+G0Z6 ; pen down on paper
+G01 X33.8667 Y128.5875
+G0Z0 ; pen up
+G00 X44.4500 Y111.6542
+G0Z6 ; pen down on paper
+G01 X39.6875 Y111.6542
+G0Z0 ; pen up
+G00 X138.1125 Y128.5875
+G0Z6 ; pen down on paper
+G01 X141.8167 Y124.8833
+G0Z0 ; pen up
+G00 X103.7167 Y115.3583
+G0Z6 ; pen down on paper
+G01 X107.9500 Y111.6542
+G0Z0 ; pen up
+G00 X114.3000 Y103.1875
+G0Z6 ; pen down on paper
+G01 X115.3583 Y107.4208
+G0Z0 ; pen up
+G00 X188.3833 Y124.8833
+G0Z6 ; pen down on paper
+G01 X184.1500 Y124.8833
+G0Z0 ; pen up
+G00 X237.5958 Y137.5833
+G0Z6 ; pen down on paper
+G01 X230.1875 Y137.5833
+G0Z0 ; pen up
+G00 X197.3792 Y91.0167
+G0Z6 ; pen down on paper
+G01 X194.7333 Y87.3125
+G0Z0 ; pen up
+G00 X201.0833 Y91.0167
+G0Z6 ; pen down on paper
+G01 X199.4958 Y87.3125
+G0Z0 ; pen up
+G00 X173.0375 Y137.5833
+G0Z6 ; pen down on paper
+G01 X168.8042 Y137.5833
+G0Z0 ; pen up
+G00 X200.5542 Y128.5875
+G0Z6 ; pen down on paper
+G01 X204.2583 Y128.5875
+G0Z0 ; pen up
+G00 X13.2292 Y137.5833
+G0Z6 ; pen down on paper
+G01 X14.8167 Y133.3500
+G0Z0 ; pen up
+G00 X168.8042 Y141.8167
+G0Z6 ; pen down on paper
+G01 X173.0375 Y141.8167
+G0Z0 ; pen up
+G00 X214.3125 Y103.1875
+G0Z6 ; pen down on paper
+G01 X213.2542 Y107.4208
+G0Z0 ; pen up
+G00 X105.8333 Y133.3500
+G0Z6 ; pen down on paper
+G01 X109.5375 Y133.3500
+G0Z0 ; pen up
+G00 X51.8583 Y124.8833
+G0Z6 ; pen down on paper
+G01 X47.6250 Y124.8833
+G0Z0 ; pen up
+G00 X233.3625 Y111.6542
+G0Z6 ; pen down on paper
+G01 X237.5958 Y111.6542
+G0Z0 ; pen up
+G00 X215.3708 Y124.8833
+G0Z6 ; pen down on paper
+G01 X207.9625 Y128.5875
+G0Z0 ; pen up
+G00 X94.1917 Y120.1208
+G0Z6 ; pen down on paper
+G01 X89.9583 Y115.3583
+G0Z0 ; pen up
+G00 X29.6333 Y107.4208
+G0Z6 ; pen down on paper
+G01 X29.6333 Y103.1875
+G0Z0 ; pen up
+G00 X8.9958 Y83.6083
+G0Z6 ; pen down on paper
+G01 X10.0542 Y87.3125
+G0Z0 ; pen up
+G00 X0.5292 Y133.3500
+G0Z6 ; pen down on paper
+G01 X0.5292 Y137.5833
+G0Z0 ; pen up
+G00 X153.4583 Y91.0167
+G0Z6 ; pen down on paper
+G01 X154.5167 Y95.2500
+G0Z0 ; pen up
+G00 X166.1583 Y91.0167
+G0Z6 ; pen down on paper
+G01 X166.6875 Y95.2500
+G0Z0 ; pen up
+G00 X5.2917 Y133.3500
+G0Z6 ; pen down on paper
+G01 X4.7625 Y137.5833
+G0Z0 ; pen up
+G00 X189.9708 Y91.0167
+G0Z6 ; pen down on paper
+G01 X185.2083 Y91.0167
+G0Z0 ; pen up
+G00 X161.3958 Y91.0167
+G0Z6 ; pen down on paper
+G01 X157.6917 Y91.0167
+G0Z0 ; pen up
+G00 X181.5042 Y141.8167
+G0Z6 ; pen down on paper
+G01 X177.2708 Y137.5833
+G0Z0 ; pen up
+G00 X68.2625 Y107.4208
+G0Z6 ; pen down on paper
+G01 X73.0250 Y107.4208
+G0Z0 ; pen up
+G00 X213.7833 Y91.0167
+G0Z6 ; pen down on paper
+G01 X218.5458 Y91.0167
+G0Z0 ; pen up
+G00 X213.2542 Y107.4208
+G0Z6 ; pen down on paper
+G01 X214.3125 Y103.1875
+G0Z0 ; pen up
+G00 X159.2792 Y103.1875
+G0Z6 ; pen down on paper
+G01 X159.8083 Y107.4208
+G0Z0 ; pen up
+G00 X223.8375 Y124.8833
+G0Z6 ; pen down on paper
+G01 X220.1333 Y124.8833
+G0Z0 ; pen up
+G00 X13.2292 Y137.5833
+G0Z6 ; pen down on paper
+G01 X17.9917 Y137.5833
+G0Z0 ; pen up
+G00 X185.7375 Y141.8167
+G0Z6 ; pen down on paper
+G01 X182.0333 Y137.5833
+G0Z0 ; pen up
+G00 X166.6875 Y95.2500
+G0Z6 ; pen down on paper
+G01 X166.1583 Y91.0167
+G0Z0 ; pen up
+G00 X109.5375 Y133.3500
+G0Z6 ; pen down on paper
+G01 X114.3000 Y133.3500
+G0Z0 ; pen up
+G00 X45.5083 Y128.5875
+G0Z6 ; pen down on paper
+G01 X47.6250 Y124.8833
+G0Z0 ; pen up
+G00 X194.2042 Y91.0167
+G0Z6 ; pen down on paper
+G01 X189.9708 Y91.0167
+G0Z0 ; pen up
+G00 X172.5083 Y107.4208
+G0Z6 ; pen down on paper
+G01 X171.4500 Y103.1875
+G0Z0 ; pen up
+G00 X82.5500 Y120.1208
+G0Z6 ; pen down on paper
+G01 X86.7833 Y120.1208
+G0Z0 ; pen up
+G00 X146.0500 Y128.5875
+G0Z6 ; pen down on paper
+G01 X149.7542 Y124.8833
+G0Z0 ; pen up
+G00 X182.5625 Y115.3583
+G0Z6 ; pen down on paper
+G01 X188.3833 Y111.6542
+G0Z0 ; pen up
+G00 X41.2750 Y115.3583
+G0Z6 ; pen down on paper
+G01 X44.9792 Y115.3583
+G0Z0 ; pen up
+G00 X18.5208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X23.2833 Y124.8833
+G0Z0 ; pen up
+G00 X196.8500 Y95.2500
+G0Z6 ; pen down on paper
+G01 X198.4375 Y91.0167
+G0Z0 ; pen up
+G00 X225.9542 Y115.3583
+G0Z6 ; pen down on paper
+G01 X221.7208 Y115.3583
+G0Z0 ; pen up
+G00 X224.8958 Y87.3125
+G0Z6 ; pen down on paper
+G01 X220.1333 Y87.3125
+G0Z0 ; pen up
+G00 X230.7167 Y91.0167
+G0Z6 ; pen down on paper
+G01 X229.6583 Y87.3125
+G0Z0 ; pen up
+G00 X112.7125 Y128.5875
+G0Z6 ; pen down on paper
+G01 X114.3000 Y133.3500
+G0Z0 ; pen up
+G00 X100.5417 Y128.5875
+G0Z6 ; pen down on paper
+G01 X95.7792 Y128.5875
+G0Z0 ; pen up
+G00 X19.0500 Y87.3125
+G0Z6 ; pen down on paper
+G01 X17.4625 Y83.6083
+G0Z0 ; pen up
+G00 X207.4333 Y91.0167
+G0Z6 ; pen down on paper
+G01 X202.6708 Y91.0167
+G0Z0 ; pen up
+G00 X26.4583 Y137.5833
+G0Z6 ; pen down on paper
+G01 X31.2208 Y137.5833
+G0Z0 ; pen up
+G00 X177.8000 Y115.3583
+G0Z6 ; pen down on paper
+G01 X184.6792 Y111.6542
+G0Z0 ; pen up
+G00 X27.5167 Y124.8833
+G0Z6 ; pen down on paper
+G01 X26.4583 Y120.1208
+G0Z0 ; pen up
+G00 X227.5417 Y128.5875
+G0Z6 ; pen down on paper
+G01 X236.0083 Y124.8833
+G0Z0 ; pen up
+G00 X27.5167 Y133.3500
+G0Z6 ; pen down on paper
+G01 X22.7542 Y133.3500
+G0Z0 ; pen up
+G00 X209.5500 Y107.4208
+G0Z6 ; pen down on paper
+G01 X210.0792 Y103.1875
+G0Z0 ; pen up
+G00 X32.2792 Y133.3500
+G0Z6 ; pen down on paper
+G01 X31.2208 Y137.5833
+G0Z0 ; pen up
+G00 X210.6083 Y137.5833
+G0Z6 ; pen down on paper
+G01 X214.3125 Y137.5833
+G0Z0 ; pen up
+G00 X227.5417 Y124.8833
+G0Z6 ; pen down on paper
+G01 X223.8375 Y124.8833
+G0Z0 ; pen up
+G00 X230.7167 Y107.4208
+G0Z6 ; pen down on paper
+G01 X234.4208 Y107.4208
+G0Z0 ; pen up
+G00 X0.5292 Y83.6083
+G0Z6 ; pen down on paper
+G01 X0.5292 Y87.3125
+G0Z0 ; pen up
+G00 X171.4500 Y103.1875
+G0Z6 ; pen down on paper
+G01 X172.5083 Y107.4208
+G0Z0 ; pen up
+G00 X17.9917 Y137.5833
+G0Z6 ; pen down on paper
+G01 X21.6958 Y137.5833
+G0Z0 ; pen up
+G00 X225.4250 Y133.3500
+G0Z6 ; pen down on paper
+G01 X227.5417 Y137.5833
+G0Z0 ; pen up
+G00 X83.0792 Y128.5875
+G0Z6 ; pen down on paper
+G01 X86.2542 Y124.8833
+G0Z0 ; pen up
+G00 X221.7208 Y107.4208
+G0Z6 ; pen down on paper
+G01 X225.9542 Y107.4208
+G0Z0 ; pen up
+G00 X30.6917 Y120.1208
+G0Z6 ; pen down on paper
+G01 X26.4583 Y120.1208
+G0Z0 ; pen up
+G00 X200.5542 Y95.2500
+G0Z6 ; pen down on paper
+G01 X202.6708 Y91.0167
+G0Z0 ; pen up
+G00 X36.5125 Y124.8833
+G0Z6 ; pen down on paper
+G01 X35.4542 Y120.1208
+G0Z0 ; pen up
+G00 X210.0792 Y95.2500
+G0Z6 ; pen down on paper
+G01 X212.1958 Y91.0167
+G0Z0 ; pen up
+G00 X36.5125 Y133.3500
+G0Z6 ; pen down on paper
+G01 X35.4542 Y137.5833
+G0Z0 ; pen up
+G00 X127.5292 Y133.3500
+G0Z6 ; pen down on paper
+G01 X127.0000 Y128.5875
+G0Z0 ; pen up
+G00 X56.0917 Y124.8833
+G0Z6 ; pen down on paper
+G01 X53.4458 Y128.5875
+G0Z0 ; pen up
+G00 X131.7625 Y128.5875
+G0Z6 ; pen down on paper
+G01 X131.2333 Y133.3500
+G0Z0 ; pen up
+G00 X39.6875 Y120.1208
+G0Z6 ; pen down on paper
+G01 X35.4542 Y120.1208
+G0Z0 ; pen up
+G00 X162.4542 Y133.3500
+G0Z6 ; pen down on paper
+G01 X158.7500 Y133.3500
+G0Z0 ; pen up
+G00 X56.0917 Y124.8833
+G0Z6 ; pen down on paper
+G01 X51.8583 Y124.8833
+G0Z0 ; pen up
+G00 X201.0833 Y91.0167
+G0Z6 ; pen down on paper
+G01 X204.7875 Y91.0167
+G0Z0 ; pen up
+G00 X227.5417 Y128.5875
+G0Z6 ; pen down on paper
+G01 X237.5958 Y128.5875
+G0Z0 ; pen up
+G00 X4.2333 Y83.6083
+G0Z6 ; pen down on paper
+G01 X5.2917 Y87.3125
+G0Z0 ; pen up
+G00 X65.0875 Y124.8833
+G0Z6 ; pen down on paper
+G01 X60.8542 Y124.8833
+G0Z0 ; pen up
+G00 X131.2333 Y120.1208
+G0Z6 ; pen down on paper
+G01 X134.9375 Y120.1208
+G0Z0 ; pen up
+G00 X140.7583 Y133.3500
+G0Z6 ; pen down on paper
+G01 X139.7000 Y128.5875
+G0Z0 ; pen up
+G00 X234.4208 Y107.4208
+G0Z6 ; pen down on paper
+G01 X237.5958 Y107.4208
+G0Z0 ; pen up
+G00 X127.0000 Y128.5875
+G0Z6 ; pen down on paper
+G01 X127.5292 Y133.3500
+G0Z0 ; pen up
+G00 X82.5500 Y115.3583
+G0Z6 ; pen down on paper
+G01 X86.7833 Y120.1208
+G0Z0 ; pen up
+G00 X235.4792 Y91.0167
+G0Z6 ; pen down on paper
+G01 X237.5958 Y91.0167
+G0Z0 ; pen up
+G00 X190.5000 Y87.3125
+G0Z6 ; pen down on paper
+G01 X185.7375 Y87.3125
+G0Z0 ; pen up
+G00 X141.8167 Y115.3583
+G0Z6 ; pen down on paper
+G01 X138.1125 Y115.3583
+G0Z0 ; pen up
+G00 X52.9167 Y133.3500
+G0Z6 ; pen down on paper
+G01 X49.2125 Y133.3500
+G0Z0 ; pen up
+G00 X184.1500 Y103.1875
+G0Z6 ; pen down on paper
+G01 X179.9167 Y103.1875
+G0Z0 ; pen up
+G00 X51.8583 Y111.6542
+G0Z6 ; pen down on paper
+G01 X48.1542 Y111.6542
+G0Z0 ; pen up
+G00 X220.1333 Y87.3125
+G0Z6 ; pen down on paper
+G01 X216.4292 Y87.3125
+G0Z0 ; pen up
+G00 X210.0792 Y95.2500
+G0Z6 ; pen down on paper
+G01 X214.3125 Y95.2500
+G0Z0 ; pen up
+G00 X73.0250 Y124.8833
+G0Z6 ; pen down on paper
+G01 X69.3208 Y124.8833
+G0Z0 ; pen up
+G00 X161.9250 Y137.5833
+G0Z6 ; pen down on paper
+G01 X166.1583 Y137.5833
+G0Z0 ; pen up
+G00 X49.2125 Y137.5833
+G0Z6 ; pen down on paper
+G01 X49.2125 Y133.3500
+G0Z0 ; pen up
+G00 X44.4500 Y137.5833
+G0Z6 ; pen down on paper
+G01 X44.9792 Y133.3500
+G0Z0 ; pen up
+G00 X25.4000 Y103.1875
+G0Z6 ; pen down on paper
+G01 X21.1667 Y103.1875
+G0Z0 ; pen up
+G00 X229.6583 Y87.3125
+G0Z6 ; pen down on paper
+G01 X230.7167 Y91.0167
+G0Z0 ; pen up
+G00 X214.3125 Y95.2500
+G0Z6 ; pen down on paper
+G01 X219.0750 Y95.2500
+G0Z0 ; pen up
+G00 X48.6833 Y120.1208
+G0Z6 ; pen down on paper
+G01 X50.8000 Y124.8833
+G0Z0 ; pen up
+G00 X50.8000 Y124.8833
+G0Z6 ; pen down on paper
+G01 X48.6833 Y120.1208
+G0Z0 ; pen up
+G00 X227.5417 Y124.8833
+G0Z6 ; pen down on paper
+G01 X220.1333 Y128.5875
+G0Z0 ; pen up
+G00 X4.7625 Y124.8833
+G0Z6 ; pen down on paper
+G01 X4.2333 Y120.1208
+G0Z0 ; pen up
+G00 X148.1667 Y128.5875
+G0Z6 ; pen down on paper
+G01 X149.7542 Y133.3500
+G0Z0 ; pen up
+G00 X204.2583 Y87.3125
+G0Z6 ; pen down on paper
+G01 X204.7875 Y91.0167
+G0Z0 ; pen up
+G00 X223.8375 Y91.0167
+G0Z6 ; pen down on paper
+G01 X220.1333 Y91.0167
+G0Z0 ; pen up
+G00 X39.6875 Y120.1208
+G0Z6 ; pen down on paper
+G01 X41.2750 Y124.8833
+G0Z0 ; pen up
+G00 X33.8667 Y103.1875
+G0Z6 ; pen down on paper
+G01 X29.6333 Y103.1875
+G0Z0 ; pen up
+G00 X13.7583 Y98.9542
+G0Z6 ; pen down on paper
+G01 X12.7000 Y103.1875
+G0Z0 ; pen up
+G00 X75.6708 Y91.0167
+G0Z6 ; pen down on paper
+G01 X80.4333 Y91.0167
+G0Z0 ; pen up
+G00 X209.0208 Y91.0167
+G0Z6 ; pen down on paper
+G01 X213.7833 Y91.0167
+G0Z0 ; pen up
+G00 X170.3917 Y133.3500
+G0Z6 ; pen down on paper
+G01 X166.1583 Y133.3500
+G0Z0 ; pen up
+G00 X184.1500 Y103.1875
+G0Z6 ; pen down on paper
+G01 X185.2083 Y107.4208
+G0Z0 ; pen up
+G00 X176.2125 Y103.1875
+G0Z6 ; pen down on paper
+G01 X176.2125 Y107.4208
+G0Z0 ; pen up
+G00 X112.1833 Y83.6083
+G0Z6 ; pen down on paper
+G01 X107.9500 Y83.6083
+G0Z0 ; pen up
+G00 X9.5250 Y124.8833
+G0Z6 ; pen down on paper
+G01 X8.9958 Y120.1208
+G0Z0 ; pen up
+G00 X94.7208 Y115.3583
+G0Z6 ; pen down on paper
+G01 X98.9542 Y115.3583
+G0Z0 ; pen up
+G00 X100.0125 Y107.4208
+G0Z6 ; pen down on paper
+G01 X96.8375 Y103.1875
+G0Z0 ; pen up
+G00 X19.0500 Y87.3125
+G0Z6 ; pen down on paper
+G01 X23.8125 Y87.3125
+G0Z0 ; pen up
+G00 X31.7500 Y83.6083
+G0Z6 ; pen down on paper
+G01 X26.9875 Y83.6083
+G0Z0 ; pen up
+G00 X103.7167 Y115.3583
+G0Z6 ; pen down on paper
+G01 X106.3625 Y120.1208
+G0Z0 ; pen up
+G00 X22.2250 Y83.6083
+G0Z6 ; pen down on paper
+G01 X23.8125 Y87.3125
+G0Z0 ; pen up
+G00 X8.9958 Y120.1208
+G0Z6 ; pen down on paper
+G01 X9.5250 Y124.8833
+G0Z0 ; pen up
+G00 X13.7583 Y120.1208
+G0Z6 ; pen down on paper
+G01 X13.7583 Y124.8833
+G0Z0 ; pen up
+G00 X93.1333 Y87.3125
+G0Z6 ; pen down on paper
+G01 X94.1917 Y91.0167
+G0Z0 ; pen up
+G00 X57.1500 Y87.3125
+G0Z6 ; pen down on paper
+G01 X61.9125 Y87.3125
+G0Z0 ; pen up
+G00 X57.1500 Y137.5833
+G0Z6 ; pen down on paper
+G01 X57.6792 Y133.3500
+G0Z0 ; pen up
+G00 X89.9583 Y91.0167
+G0Z6 ; pen down on paper
+G01 X88.3708 Y87.3125
+G0Z0 ; pen up
+G00 X87.3125 Y115.3583
+G0Z6 ; pen down on paper
+G01 X91.0167 Y115.3583
+G0Z0 ; pen up
+G00 X109.5375 Y103.1875
+G0Z6 ; pen down on paper
+G01 X111.1250 Y107.4208
+G0Z0 ; pen up
+G00 X118.5333 Y120.1208
+G0Z6 ; pen down on paper
+G01 X115.8875 Y115.3583
+G0Z0 ; pen up
+G00 X57.1500 Y87.3125
+G0Z6 ; pen down on paper
+G01 X58.7375 Y83.6083
+G0Z0 ; pen up
+G00 X95.7792 Y107.4208
+G0Z6 ; pen down on paper
+G01 X92.0750 Y103.1875
+G0Z0 ; pen up
+G00 X236.5375 Y137.5833
+G0Z6 ; pen down on paper
+G01 X233.8917 Y133.3500
+G0Z0 ; pen up
+G00 X64.0292 Y107.4208
+G0Z6 ; pen down on paper
+G01 X62.9708 Y103.1875
+G0Z0 ; pen up
+G00 X105.8333 Y87.3125
+G0Z6 ; pen down on paper
+G01 X109.5375 Y87.3125
+G0Z0 ; pen up
+G00 X59.7958 Y124.8833
+G0Z6 ; pen down on paper
+G01 X64.5583 Y124.8833
+G0Z0 ; pen up
+G00 X69.3208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X65.0875 Y124.8833
+G0Z0 ; pen up
+G00 X115.8875 Y115.3583
+G0Z6 ; pen down on paper
+G01 X118.5333 Y120.1208
+G0Z0 ; pen up
+G00 X30.6917 Y111.6542
+G0Z6 ; pen down on paper
+G01 X25.9292 Y111.6542
+G0Z0 ; pen up
+G00 X100.0125 Y107.4208
+G0Z6 ; pen down on paper
+G01 X103.7167 Y107.4208
+G0Z0 ; pen up
+G00 X201.6125 Y137.5833
+G0Z6 ; pen down on paper
+G01 X198.9667 Y133.3500
+G0Z0 ; pen up
+G00 X75.6708 Y133.3500
+G0Z6 ; pen down on paper
+G01 X74.0833 Y137.5833
+G0Z0 ; pen up
+G00 X61.9125 Y87.3125
+G0Z6 ; pen down on paper
+G01 X65.6167 Y87.3125
+G0Z0 ; pen up
+G00 X58.7375 Y91.0167
+G0Z6 ; pen down on paper
+G01 X58.7375 Y87.3125
+G0Z0 ; pen up
+G00 X145.5208 Y133.3500
+G0Z6 ; pen down on paper
+G01 X143.4042 Y128.5875
+G0Z0 ; pen up
+G00 X102.1292 Y87.3125
+G0Z6 ; pen down on paper
+G01 X107.9500 Y83.6083
+G0Z0 ; pen up
+G00 X66.6750 Y133.3500
+G0Z6 ; pen down on paper
+G01 X61.9125 Y133.3500
+G0Z0 ; pen up
+G00 X149.7542 Y133.3500
+G0Z6 ; pen down on paper
+G01 X148.1667 Y128.5875
+G0Z0 ; pen up
+G00 X103.1875 Y83.6083
+G0Z6 ; pen down on paper
+G01 X98.9542 Y83.6083
+G0Z0 ; pen up
+G00 X33.8667 Y103.1875
+G0Z6 ; pen down on paper
+G01 X34.3958 Y107.4208
+G0Z0 ; pen up
+G00 X70.9083 Y133.3500
+G0Z6 ; pen down on paper
+G01 X69.3208 Y137.5833
+G0Z0 ; pen up
+G00 X4.7625 Y115.3583
+G0Z6 ; pen down on paper
+G01 X4.7625 Y111.6542
+G0Z0 ; pen up
+G00 X24.3417 Y87.3125
+G0Z6 ; pen down on paper
+G01 X20.6375 Y87.3125
+G0Z0 ; pen up
+G00 X88.3708 Y137.5833
+G0Z6 ; pen down on paper
+G01 X88.9000 Y133.3500
+G0Z0 ; pen up
+G00 X196.8500 Y137.5833
+G0Z6 ; pen down on paper
+G01 X195.2625 Y133.3500
+G0Z0 ; pen up
+G00 X61.9125 Y133.3500
+G0Z6 ; pen down on paper
+G01 X57.6792 Y133.3500
+G0Z0 ; pen up
+G00 X67.2042 Y103.1875
+G0Z6 ; pen down on paper
+G01 X62.9708 Y103.1875
+G0Z0 ; pen up
+G00 X78.8458 Y137.5833
+G0Z6 ; pen down on paper
+G01 X83.6083 Y137.5833
+G0Z0 ; pen up
+G00 X55.5625 Y124.8833
+G0Z6 ; pen down on paper
+G01 X59.7958 Y124.8833
+G0Z0 ; pen up
+G00 X175.1542 Y133.3500
+G0Z6 ; pen down on paper
+G01 X170.3917 Y133.3500
+G0Z0 ; pen up
+G00 X51.8583 Y111.6542
+G0Z6 ; pen down on paper
+G01 X48.6833 Y115.3583
+G0Z0 ; pen up
+G00 X71.4375 Y120.1208
+G0Z6 ; pen down on paper
+G01 X66.6750 Y120.1208
+G0Z0 ; pen up
+G00 X236.5375 Y137.5833
+G0Z6 ; pen down on paper
+G01 X237.5958 Y137.5833
+G0Z0 ; pen up
+G00 X66.6750 Y133.3500
+G0Z6 ; pen down on paper
+G01 X65.6167 Y137.5833
+G0Z0 ; pen up
+G00 X179.3875 Y133.3500
+G0Z6 ; pen down on paper
+G01 X175.1542 Y133.3500
+G0Z0 ; pen up
+G00 X192.6167 Y137.5833
+G0Z6 ; pen down on paper
+G01 X191.5583 Y133.3500
+G0Z0 ; pen up
+G00 X144.9917 Y87.3125
+G0Z6 ; pen down on paper
+G01 X148.6958 Y83.6083
+G0Z0 ; pen up
+G00 X212.1958 Y133.3500
+G0Z6 ; pen down on paper
+G01 X214.3125 Y137.5833
+G0Z0 ; pen up
+G00 X29.1042 Y87.3125
+G0Z6 ; pen down on paper
+G01 X24.3417 Y87.3125
+G0Z0 ; pen up
+G00 X114.3000 Y87.3125
+G0Z6 ; pen down on paper
+G01 X119.0625 Y87.3125
+G0Z0 ; pen up
+G00 X69.3208 Y124.8833
+G0Z6 ; pen down on paper
+G01 X66.6750 Y120.1208
+G0Z0 ; pen up
+G00 X10.0542 Y91.0167
+G0Z6 ; pen down on paper
+G01 X8.4667 Y87.3125
+G0Z0 ; pen up
+G00 X77.7875 Y124.8833
+G0Z6 ; pen down on paper
+G01 X76.2000 Y120.1208
+G0Z0 ; pen up
+G00 X42.8625 Y103.1875
+G0Z6 ; pen down on paper
+G01 X43.3917 Y107.4208
+G0Z0 ; pen up
+G00 X119.5917 Y107.4208
+G0Z6 ; pen down on paper
+G01 X124.3542 Y107.4208
+G0Z0 ; pen up
+G00 X102.6583 Y133.3500
+G0Z6 ; pen down on paper
+G01 X100.0125 Y137.5833
+G0Z0 ; pen up
+G00 X31.7500 Y83.6083
+G0Z6 ; pen down on paper
+G01 X31.7500 Y87.3125
+G0Z0 ; pen up
+G00 X183.6208 Y137.5833
+G0Z6 ; pen down on paper
+G01 X187.8542 Y137.5833
+G0Z0 ; pen up
+G00 X118.0042 Y137.5833
+G0Z6 ; pen down on paper
+G01 X118.5333 Y133.3500
+G0Z0 ; pen up
+G00 X77.7875 Y124.8833
+G0Z6 ; pen down on paper
+G01 X82.0208 Y124.8833
+G0Z0 ; pen up
+G00 X125.9417 Y137.5833
+G0Z6 ; pen down on paper
+G01 X130.7042 Y137.5833
+G0Z0 ; pen up
+G00 X169.3333 Y115.3583
+G0Z6 ; pen down on paper
+G01 X174.0958 Y115.3583
+G0Z0 ; pen up
+G00 X79.3750 Y128.5875
+G0Z6 ; pen down on paper
+G01 X81.4917 Y124.8833
+G0Z0 ; pen up
+G00 X96.3083 Y137.5833
+G0Z6 ; pen down on paper
+G01 X100.0125 Y137.5833
+G0Z0 ; pen up
+G00 X93.1333 Y133.3500
+G0Z6 ; pen down on paper
+G01 X88.9000 Y133.3500
+G0Z0 ; pen up
+G00 X46.5667 Y91.0167
+G0Z6 ; pen down on paper
+G01 X50.8000 Y91.0167
+G0Z0 ; pen up
+G00 X39.1583 Y107.4208
+G0Z6 ; pen down on paper
+G01 X43.3917 Y107.4208
+G0Z0 ; pen up
+G00 X107.9500 Y115.3583
+G0Z6 ; pen down on paper
+G01 X110.0667 Y120.1208
+G0Z0 ; pen up
+G00 X83.6083 Y120.1208
+G0Z6 ; pen down on paper
+G01 X79.9042 Y120.1208
+G0Z0 ; pen up
+G00 X91.0167 Y83.6083
+G0Z6 ; pen down on paper
+G01 X85.7250 Y87.3125
+G0Z0 ; pen up
+G00 X70.3792 Y128.5875
+G0Z6 ; pen down on paper
+G01 X75.1417 Y128.5875
+G0Z0 ; pen up
+G00 X40.2167 Y87.3125
+G0Z6 ; pen down on paper
+G01 X43.9208 Y87.3125
+G0Z0 ; pen up
+G00 X156.6333 Y128.5875
+G0Z6 ; pen down on paper
+G01 X152.9292 Y128.5875
+G0Z0 ; pen up
+G00 X91.5458 Y124.8833
+G0Z6 ; pen down on paper
+G01 X87.8417 Y120.1208
+G0Z0 ; pen up
+G00 X144.4625 Y120.1208
+G0Z6 ; pen down on paper
+G01 X148.1667 Y120.1208
+G0Z0 ; pen up
+G00 X130.7042 Y137.5833
+G0Z6 ; pen down on paper
+G01 X134.9375 Y137.5833
+G0Z0 ; pen up
+G00 X50.8000 Y103.1875
+G0Z6 ; pen down on paper
+G01 X52.3875 Y107.4208
+G0Z0 ; pen up
+G00 X96.3083 Y124.8833
+G0Z6 ; pen down on paper
+G01 X92.0750 Y120.1208
+G0Z0 ; pen up
+G00 X128.0583 Y87.3125
+G0Z6 ; pen down on paper
+G01 X132.2917 Y83.6083
+G0Z0 ; pen up
+G00 X97.8958 Y133.3500
+G0Z6 ; pen down on paper
+G01 X93.1333 Y133.3500
+G0Z0 ; pen up
+G00 X69.3208 Y87.3125
+G0Z6 ; pen down on paper
+G01 X73.0250 Y83.6083
+G0Z0 ; pen up
+G00 X170.9208 Y133.3500
+G0Z6 ; pen down on paper
+G01 X175.1542 Y133.3500
+G0Z0 ; pen up
+G00 X134.9375 Y137.5833
+G0Z6 ; pen down on paper
+G01 X139.1708 Y137.5833
+G0Z0 ; pen up
+G00 X74.6125 Y103.1875
+G0Z6 ; pen down on paper
+G01 X70.9083 Y103.1875
+G0Z0 ; pen up
+G00 X160.3375 Y128.5875
+G0Z6 ; pen down on paper
+G01 X156.6333 Y128.5875
+G0Z0 ; pen up
+G00 X203.7292 Y133.3500
+G0Z6 ; pen down on paper
+G01 X205.8458 Y137.5833
+G0Z0 ; pen up
+G00 X48.1542 Y107.4208
+G0Z6 ; pen down on paper
+G01 X52.3875 Y107.4208
+G0Z0 ; pen up
+G00 X62.9708 Y87.3125
+G0Z6 ; pen down on paper
+G01 X63.5000 Y91.0167
+G0Z0 ; pen up
+G00 X101.0708 Y124.8833
+G0Z6 ; pen down on paper
+G01 X96.8375 Y120.1208
+G0Z0 ; pen up
+G00 X164.0417 Y128.5875
+G0Z6 ; pen down on paper
+G01 X166.1583 Y133.3500
+G0Z0 ; pen up
+G00 X41.8042 Y91.0167
+G0Z6 ; pen down on paper
+G01 X42.3333 Y87.3125
+G0Z0 ; pen up
+G00 X156.1042 Y115.3583
+G0Z6 ; pen down on paper
+G01 X151.3417 Y115.3583
+G0Z0 ; pen up
+G00 X113.2417 Y137.5833
+G0Z6 ; pen down on paper
+G01 X114.8292 Y133.3500
+G0Z0 ; pen up
+G00 X179.3875 Y137.5833
+G0Z6 ; pen down on paper
+G01 X183.6208 Y137.5833
+G0Z0 ; pen up
+G00 X74.6125 Y103.1875
+G0Z6 ; pen down on paper
+G01 X77.7875 Y107.4208
+G0Z0 ; pen up
+G00 X231.7750 Y91.0167
+G0Z6 ; pen down on paper
+G01 X232.3042 Y95.2500
+G0Z0 ; pen up
+G00 X136.5250 Y83.6083
+G0Z6 ; pen down on paper
+G01 X132.2917 Y83.6083
+G0Z0 ; pen up
+G00 X162.4542 Y133.3500
+G0Z6 ; pen down on paper
+G01 X166.1583 Y133.3500
+G0Z0 ; pen up
+G00 X48.1542 Y87.3125
+G0Z6 ; pen down on paper
+G01 X50.2708 Y83.6083
+G0Z0 ; pen up
+G00 X127.0000 Y133.3500
+G0Z6 ; pen down on paper
+G01 X122.2375 Y133.3500
+G0Z0 ; pen up
+G00 X175.1542 Y128.5875
+G0Z6 ; pen down on paper
+G01 X171.4500 Y128.5875
+G0Z0 ; pen up
+G00 X104.7750 Y103.1875
+G0Z6 ; pen down on paper
+G01 X101.0708 Y103.1875
+G0Z0 ; pen up
+G00 X101.6000 Y120.1208
+G0Z6 ; pen down on paper
+G01 X96.8375 Y120.1208
+G0Z0 ; pen up
+G00 X73.0250 Y83.6083
+G0Z6 ; pen down on paper
+G01 X69.3208 Y87.3125
+G0Z0 ; pen up
+G00 X89.9583 Y87.3125
+G0Z6 ; pen down on paper
+G01 X93.6625 Y87.3125
+G0Z0 ; pen up
+G00 X235.4792 Y120.1208
+G0Z6 ; pen down on paper
+G01 X230.1875 Y115.3583
+G0Z0 ; pen up
+G00 X121.1792 Y83.6083
+G0Z6 ; pen down on paper
+G01 X116.9458 Y83.6083
+G0Z0 ; pen up
+G00 X101.6000 Y87.3125
+G0Z6 ; pen down on paper
+G01 X96.8375 Y87.3125
+G0Z0 ; pen up
+G00 X105.3042 Y124.8833
+G0Z6 ; pen down on paper
+G01 X110.0667 Y124.8833
+G0Z0 ; pen up
+G00 X148.1667 Y120.1208
+G0Z6 ; pen down on paper
+G01 X151.8708 Y120.1208
+G0Z0 ; pen up
+G00 X122.2375 Y124.8833
+G0Z6 ; pen down on paper
+G01 X118.0042 Y120.1208
+G0Z0 ; pen up
+G00 X135.9958 Y87.3125
+G0Z6 ; pen down on paper
+G01 X140.7583 Y87.3125
+G0Z0 ; pen up
+G00 X0.5292 Y128.5875
+G0Z6 ; pen down on paper
+G01 X0.5292 Y133.3500
+G0Z0 ; pen up
+G00 X110.0667 Y124.8833
+G0Z6 ; pen down on paper
+G01 X114.3000 Y124.8833
+G0Z0 ; pen up
+G00 X110.0667 Y120.1208
+G0Z6 ; pen down on paper
+G01 X114.3000 Y124.8833
+G0Z0 ; pen up
+G00 X106.8917 Y133.3500
+G0Z6 ; pen down on paper
+G01 X104.7750 Y137.5833
+G0Z0 ; pen up
+G00 X86.2542 Y83.6083
+G0Z6 ; pen down on paper
+G01 X81.4917 Y83.6083
+G0Z0 ; pen up
+G00 X228.6000 Y95.2500
+G0Z6 ; pen down on paper
+G01 X227.5417 Y91.0167
+G0Z0 ; pen up
+G00 X33.3375 Y87.3125
+G0Z6 ; pen down on paper
+G01 X29.1042 Y87.3125
+G0Z0 ; pen up
+G00 X83.6083 Y103.1875
+G0Z6 ; pen down on paper
+G01 X79.3750 Y103.1875
+G0Z0 ; pen up
+G00 X186.7958 Y115.3583
+G0Z6 ; pen down on paper
+G01 X192.6167 Y111.6542
+G0Z0 ; pen up
+G00 X125.9417 Y124.8833
+G0Z6 ; pen down on paper
+G01 X121.7083 Y120.1208
+G0Z0 ; pen up
+G00 X12.1708 Y115.3583
+G0Z6 ; pen down on paper
+G01 X16.9333 Y115.3583
+G0Z0 ; pen up
+G00 X36.5125 Y87.3125
+G0Z6 ; pen down on paper
+G01 X40.2167 Y87.3125
+G0Z0 ; pen up
+G00 X87.3125 Y103.1875
+G0Z6 ; pen down on paper
+G01 X83.6083 Y103.1875
+G0Z0 ; pen up
+G00 X94.7208 Y115.3583
+G0Z6 ; pen down on paper
+G01 X99.4833 Y111.6542
+G0Z0 ; pen up
+G00 X237.5958 Y91.0167
+G0Z6 ; pen down on paper
+G01 X236.5375 Y91.0167
+G0Z0 ; pen up
+G00 X118.0042 Y137.5833
+G0Z6 ; pen down on paper
+G01 X122.2375 Y137.5833
+G0Z0 ; pen up
+G00 X107.4208 Y115.3583
+G0Z6 ; pen down on paper
+G01 X112.1833 Y111.6542
+G0Z0 ; pen up
+G00 X16.9333 Y133.3500
+G0Z6 ; pen down on paper
+G01 X20.6375 Y133.3500
+G0Z0 ; pen up
+G00 X157.6917 Y137.5833
+G0Z6 ; pen down on paper
+G01 X158.7500 Y133.3500
+G0Z0 ; pen up
+G00 X55.0333 Y87.3125
+G0Z6 ; pen down on paper
+G01 X50.8000 Y87.3125
+G0Z0 ; pen up
+G00 X152.9292 Y137.5833
+G0Z6 ; pen down on paper
+G01 X154.5167 Y133.3500
+G0Z0 ; pen up
+G00 X149.2250 Y87.3125
+G0Z6 ; pen down on paper
+G01 X152.9292 Y83.6083
+G0Z0 ; pen up
+G00 X141.2875 Y133.3500
+G0Z6 ; pen down on paper
+G01 X139.1708 Y137.5833
+G0Z0 ; pen up
+G00 X18.5208 Y111.6542
+G0Z6 ; pen down on paper
+G01 X16.9333 Y115.3583
+G0Z0 ; pen up
+G00 X182.5625 Y133.3500
+G0Z6 ; pen down on paper
+G01 X179.9167 Y128.5875
+G0Z0 ; pen up
+G00 X190.5000 Y133.3500
+G0Z6 ; pen down on paper
+G01 X187.8542 Y128.5875
+G0Z0 ; pen up
+G00 X183.6208 Y128.5875
+G0Z6 ; pen down on paper
+G01 X179.9167 Y128.5875
+G0Z0 ; pen up
+G00 X48.1542 Y87.3125
+G0Z6 ; pen down on paper
+G01 X52.3875 Y87.3125
+G0Z0 ; pen up
+G00 X150.8125 Y133.3500
+G0Z6 ; pen down on paper
+G01 X146.0500 Y133.3500
+G0Z0 ; pen up
+G00 X8.9958 Y133.3500
+G0Z6 ; pen down on paper
+G01 X13.2292 Y133.3500
+G0Z0 ; pen up
+G00 X107.4208 Y115.3583
+G0Z6 ; pen down on paper
+G01 X111.6542 Y115.3583
+G0Z0 ; pen up
+G00 X4.2333 Y133.3500
+G0Z6 ; pen down on paper
+G01 X8.9958 Y133.3500
+G0Z0 ; pen up
+G00 X17.9917 Y128.5875
+G0Z6 ; pen down on paper
+G01 X13.2292 Y128.5875
+G0Z0 ; pen up
+G00 X222.7792 Y137.5833
+G0Z6 ; pen down on paper
+G01 X227.5417 Y137.5833
+G0Z0 ; pen up
+G00 X49.2125 Y133.3500
+G0Z6 ; pen down on paper
+G01 X53.4458 Y133.3500
+G0Z0 ; pen up
+G00 X198.9667 Y133.3500
+G0Z6 ; pen down on paper
+G01 X201.6125 Y137.5833
+G0Z0 ; pen up
+G00 X22.2250 Y111.6542
+G0Z6 ; pen down on paper
+G01 X21.1667 Y115.3583
+G0Z0 ; pen up
+G00 X141.2875 Y83.6083
+G0Z6 ; pen down on paper
+G01 X136.5250 Y83.6083
+G0Z0 ; pen up
+G00 X4.7625 Y87.3125
+G0Z6 ; pen down on paper
+G01 X0.5292 Y87.3125
+G0Z0 ; pen up
+G00 X20.6375 Y87.3125
+G0Z6 ; pen down on paper
+G01 X16.4042 Y87.3125
+G0Z0 ; pen up
+G00 X41.2750 Y133.3500
+G0Z6 ; pen down on paper
+G01 X45.5083 Y133.3500
+G0Z0 ; pen up
+G00 X124.3542 Y111.6542
+G0Z6 ; pen down on paper
+G01 X119.5917 Y111.6542
+G0Z0 ; pen up
+G00 X32.2792 Y133.3500
+G0Z6 ; pen down on paper
+G01 X34.9250 Y128.5875
+G0Z0 ; pen up
+G00 X49.2125 Y133.3500
+G0Z6 ; pen down on paper
+G01 X52.3875 Y128.5875
+G0Z0 ; pen up
+G00 X111.6542 Y115.3583
+G0Z6 ; pen down on paper
+G01 X115.3583 Y115.3583
+G0Z0 ; pen up
+G00 X89.9583 Y91.0167
+G0Z6 ; pen down on paper
+G01 X94.1917 Y91.0167
+G0Z0 ; pen up
+G00 X218.0167 Y137.5833
+G0Z6 ; pen down on paper
+G01 X222.7792 Y137.5833
+G0Z0 ; pen up
+G00 X22.2250 Y128.5875
+G0Z6 ; pen down on paper
+G01 X20.6375 Y133.3500
+G0Z0 ; pen up
+G00 X36.5125 Y133.3500
+G0Z6 ; pen down on paper
+G01 X41.2750 Y133.3500
+G0Z0 ; pen up
+G00 X8.4667 Y115.3583
+G0Z6 ; pen down on paper
+G01 X8.9958 Y111.6542
+G0Z0 ; pen up
+G00 X112.1833 Y91.0167
+G0Z6 ; pen down on paper
+G01 X109.5375 Y87.3125
+G0Z0 ; pen up
+G00 X28.5750 Y133.3500
+G0Z6 ; pen down on paper
+G01 X30.6917 Y128.5875
+G0Z0 ; pen up
+G00 X8.9958 Y111.6542
+G0Z6 ; pen down on paper
+G01 X8.4667 Y115.3583
+G0Z0 ; pen up
+G00 X37.5708 Y115.3583
+G0Z6 ; pen down on paper
+G01 X39.6875 Y111.6542
+G0Z0 ; pen up
+G00 X62.9708 Y87.3125
+G0Z6 ; pen down on paper
+G01 X58.7375 Y87.3125
+G0Z0 ; pen up
+G00 X39.6875 Y128.5875
+G0Z6 ; pen down on paper
+G01 X34.9250 Y128.5875
+G0Z0 ; pen up
+G00 X73.0250 Y87.3125
+G0Z6 ; pen down on paper
+G01 X77.2583 Y87.3125
+G0Z0 ; pen up
+G00 X102.6583 Y91.0167
+G0Z6 ; pen down on paper
+G01 X107.4208 Y91.0167
+G0Z0 ; pen up
+G00 X33.3375 Y87.3125
+G0Z6 ; pen down on paper
+G01 X33.8667 Y91.0167
+G0Z0 ; pen up
+G00 X46.5667 Y91.0167
+G0Z6 ; pen down on paper
+G01 X46.5667 Y87.3125
+G0Z0 ; pen up
+G00 X67.2042 Y91.0167
+G0Z6 ; pen down on paper
+G01 X71.4375 Y91.0167
+G0Z0 ; pen up
+G00 X116.9458 Y91.0167
+G0Z6 ; pen down on paper
+G01 X113.7708 Y87.3125
+G0Z0 ; pen up
+G00 X116.9458 Y91.0167
+G0Z6 ; pen down on paper
+G01 X121.7083 Y91.0167
+G0Z0 ; pen up
+G00 X123.8250 Y87.3125
+G0Z6 ; pen down on paper
+G01 X128.5875 Y83.6083
+G0Z0 ; pen up
+G00 X152.9292 Y83.6083
+G0Z6 ; pen down on paper
+G01 X149.2250 Y87.3125
+G0Z0 ; pen up
+G00 X86.2542 Y83.6083
+G0Z6 ; pen down on paper
+G01 X81.4917 Y87.3125
+G0Z0 ; pen up
+G00 X85.1958 Y91.0167
+G0Z6 ; pen down on paper
+G01 X84.6667 Y87.3125
+G0Z0 ; pen up
+G00 X231.7750 Y91.0167
+G0Z6 ; pen down on paper
+G01 X227.5417 Y91.0167
+G0Z0 ; pen up
+G00 X75.6708 Y91.0167
+G0Z6 ; pen down on paper
+G01 X75.1417 Y87.3125
+G0Z0 ; pen up
+G00 X10.0542 Y91.0167
+G0Z6 ; pen down on paper
+G01 X13.7583 Y91.0167
+G0Z0 ; pen up
+G00 X12.1708 Y87.3125
+G0Z6 ; pen down on paper
+G01 X13.7583 Y91.0167
+G0Z0 ; pen up
+G00 X217.4875 Y61.9125
+G0Z6 ; pen down on paper
+G01 X221.1917 Y61.9125
+G0Z0 ; pen up
+G00 X169.8625 Y87.3125
+G0Z6 ; pen down on paper
+G01 X174.6250 Y83.6083
+G0Z0 ; pen up
+G00 X228.0708 Y61.9125
+G0Z6 ; pen down on paper
+G01 X224.3667 Y61.9125
+G0Z0 ; pen up
+G00 X195.2625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X193.1458 Y83.6083
+G0Z0 ; pen up
+G00 X210.6083 Y58.2083
+G0Z6 ; pen down on paper
+G01 X221.1917 Y61.9125
+G0Z0 ; pen up
+G00 X199.4958 Y83.6083
+G0Z6 ; pen down on paper
+G01 X195.7917 Y83.6083
+G0Z0 ; pen up
+G00 X183.6208 Y61.9125
+G0Z6 ; pen down on paper
+G01 X179.3875 Y61.9125
+G0Z0 ; pen up
+G00 X214.3125 Y58.2083
+G0Z6 ; pen down on paper
+G01 X225.4250 Y61.9125
+G0Z0 ; pen up
+G00 X217.4875 Y61.9125
+G0Z6 ; pen down on paper
+G01 X206.9042 Y58.2083
+G0Z0 ; pen up
+G00 X156.6333 Y58.2083
+G0Z6 ; pen down on paper
+G01 X166.1583 Y61.9125
+G0Z0 ; pen up
+G00 X209.0208 Y61.9125
+G0Z6 ; pen down on paper
+G01 X204.2583 Y61.9125
+G0Z0 ; pen up
+G00 X123.8250 Y75.6708
+G0Z6 ; pen down on paper
+G01 X119.5917 Y75.6708
+G0Z0 ; pen up
+G00 X237.5958 Y79.3750
+G0Z6 ; pen down on paper
+G01 X235.4792 Y79.3750
+G0Z0 ; pen up
+G00 X114.3000 Y79.3750
+G0Z6 ; pen down on paper
+G01 X118.5333 Y79.3750
+G0Z0 ; pen up
+G00 X77.7875 Y61.9125
+G0Z6 ; pen down on paper
+G01 X82.5500 Y61.9125
+G0Z0 ; pen up
+G00 X4.7625 Y58.2083
+G0Z6 ; pen down on paper
+G01 X4.2333 Y53.4458
+G0Z0 ; pen up
+G00 X221.7208 Y66.1458
+G0Z6 ; pen down on paper
+G01 X225.9542 Y66.1458
+G0Z0 ; pen up
+G00 X127.5292 Y75.6708
+G0Z6 ; pen down on paper
+G01 X123.8250 Y75.6708
+G0Z0 ; pen up
+G00 X17.4625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X18.5208 Y75.6708
+G0Z0 ; pen up
+G00 X51.8583 Y79.3750
+G0Z6 ; pen down on paper
+G01 X49.7417 Y83.6083
+G0Z0 ; pen up
+G00 X127.5292 Y75.6708
+G0Z6 ; pen down on paper
+G01 X127.0000 Y79.3750
+G0Z0 ; pen up
+G00 X230.1875 Y61.9125
+G0Z6 ; pen down on paper
+G01 X233.8917 Y61.9125
+G0Z0 ; pen up
+G00 X58.2083 Y83.6083
+G0Z6 ; pen down on paper
+G01 X60.3250 Y79.3750
+G0Z0 ; pen up
+G00 X157.6917 Y83.6083
+G0Z6 ; pen down on paper
+G01 X152.9292 Y87.3125
+G0Z0 ; pen up
+G00 X152.4000 Y61.9125
+G0Z6 ; pen down on paper
+G01 X143.9333 Y58.2083
+G0Z0 ; pen up
+G00 X216.9583 Y83.6083
+G0Z6 ; pen down on paper
+G01 X221.1917 Y83.6083
+G0Z0 ; pen up
+G00 X18.5208 Y75.6708
+G0Z6 ; pen down on paper
+G01 X17.4625 Y79.3750
+G0Z0 ; pen up
+G00 X192.6167 Y66.1458
+G0Z6 ; pen down on paper
+G01 X196.8500 Y66.1458
+G0Z0 ; pen up
+G00 X237.5958 Y61.9125
+G0Z6 ; pen down on paper
+G01 X237.5958 Y58.2083
+G0Z0 ; pen up
+G00 X21.6958 Y79.3750
+G0Z6 ; pen down on paper
+G01 X25.4000 Y79.3750
+G0Z0 ; pen up
+G00 X182.0333 Y61.9125
+G0Z6 ; pen down on paper
+G01 X186.7958 Y61.9125
+G0Z0 ; pen up
+G00 X58.2083 Y83.6083
+G0Z6 ; pen down on paper
+G01 X62.4417 Y83.6083
+G0Z0 ; pen up
+G00 X192.6167 Y66.1458
+G0Z6 ; pen down on paper
+G01 X192.0875 Y61.9125
+G0Z0 ; pen up
+G00 X224.8958 Y83.6083
+G0Z6 ; pen down on paper
+G01 X226.4833 Y79.3750
+G0Z0 ; pen up
+G00 X200.0250 Y61.9125
+G0Z6 ; pen down on paper
+G01 X189.9708 Y58.2083
+G0Z0 ; pen up
+G00 X142.8750 Y75.6708
+G0Z6 ; pen down on paper
+G01 X139.1708 Y75.6708
+G0Z0 ; pen up
+G00 X83.0792 Y61.9125
+G0Z6 ; pen down on paper
+G01 X82.5500 Y66.1458
+G0Z0 ; pen up
+G00 X100.0125 Y61.9125
+G0Z6 ; pen down on paper
+G01 X98.9542 Y66.1458
+G0Z0 ; pen up
+G00 X8.4667 Y53.4458
+G0Z6 ; pen down on paper
+G01 X4.2333 Y53.4458
+G0Z0 ; pen up
+G00 X161.3958 Y83.6083
+G0Z6 ; pen down on paper
+G01 X157.1625 Y87.3125
+G0Z0 ; pen up
+G00 X68.2625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X64.0292 Y79.3750
+G0Z0 ; pen up
+G00 X230.7167 Y79.3750
+G0Z6 ; pen down on paper
+G01 X226.4833 Y79.3750
+G0Z0 ; pen up
+G00 X16.9333 Y53.4458
+G0Z6 ; pen down on paper
+G01 X12.1708 Y53.4458
+G0Z0 ; pen up
+G00 X178.8583 Y66.1458
+G0Z6 ; pen down on paper
+G01 X179.3875 Y61.9125
+G0Z0 ; pen up
+G00 X78.3167 Y61.9125
+G0Z6 ; pen down on paper
+G01 X73.5542 Y61.9125
+G0Z0 ; pen up
+G00 X130.1750 Y61.9125
+G0Z6 ; pen down on paper
+G01 X122.7667 Y58.2083
+G0Z0 ; pen up
+G00 X26.9875 Y58.2083
+G0Z6 ; pen down on paper
+G01 X25.4000 Y53.4458
+G0Z0 ; pen up
+G00 X185.7375 Y83.6083
+G0Z6 ; pen down on paper
+G01 X189.4417 Y83.6083
+G0Z0 ; pen up
+G00 X188.3833 Y61.9125
+G0Z6 ; pen down on paper
+G01 X183.6208 Y61.9125
+G0Z0 ; pen up
+G00 X213.2542 Y66.1458
+G0Z6 ; pen down on paper
+G01 X212.7250 Y61.9125
+G0Z0 ; pen up
+G00 X83.0792 Y75.6708
+G0Z6 ; pen down on paper
+G01 X80.4333 Y79.3750
+G0Z0 ; pen up
+G00 X216.4292 Y61.9125
+G0Z6 ; pen down on paper
+G01 X216.9583 Y66.1458
+G0Z0 ; pen up
+G00 X94.1917 Y66.1458
+G0Z6 ; pen down on paper
+G01 X95.2500 Y61.9125
+G0Z0 ; pen up
+G00 X72.4958 Y79.3750
+G0Z6 ; pen down on paper
+G01 X70.3792 Y83.6083
+G0Z0 ; pen up
+G00 X115.8875 Y75.6708
+G0Z6 ; pen down on paper
+G01 X112.1833 Y75.6708
+G0Z0 ; pen up
+G00 X161.3958 Y87.3125
+G0Z6 ; pen down on paper
+G01 X165.6292 Y87.3125
+G0Z0 ; pen up
+G00 X174.6250 Y83.6083
+G0Z6 ; pen down on paper
+G01 X169.8625 Y87.3125
+G0Z0 ; pen up
+G00 X134.9375 Y79.3750
+G0Z6 ; pen down on paper
+G01 X138.6417 Y79.3750
+G0Z0 ; pen up
+G00 X200.5542 Y66.1458
+G0Z6 ; pen down on paper
+G01 X200.0250 Y61.9125
+G0Z0 ; pen up
+G00 X195.2625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X191.5583 Y79.3750
+G0Z0 ; pen up
+G00 X134.9375 Y79.3750
+G0Z6 ; pen down on paper
+G01 X135.4667 Y75.6708
+G0Z0 ; pen up
+G00 X204.2583 Y61.9125
+G0Z6 ; pen down on paper
+G01 X200.0250 Y61.9125
+G0Z0 ; pen up
+G00 X118.5333 Y58.2083
+G0Z6 ; pen down on paper
+G01 X114.8292 Y58.2083
+G0Z0 ; pen up
+G00 X66.1458 Y83.6083
+G0Z6 ; pen down on paper
+G01 X70.3792 Y83.6083
+G0Z0 ; pen up
+G00 X39.1583 Y75.6708
+G0Z6 ; pen down on paper
+G01 X34.3958 Y75.6708
+G0Z0 ; pen up
+G00 X212.7250 Y61.9125
+G0Z6 ; pen down on paper
+G01 X213.2542 Y66.1458
+G0Z0 ; pen up
+G00 X237.5958 Y61.9125
+G0Z6 ; pen down on paper
+G01 X232.8333 Y61.9125
+G0Z0 ; pen up
+G00 X134.9375 Y61.9125
+G0Z6 ; pen down on paper
+G01 X127.0000 Y58.2083
+G0Z0 ; pen up
+G00 X97.3667 Y79.3750
+G0Z6 ; pen down on paper
+G01 X100.0125 Y75.6708
+G0Z0 ; pen up
+G00 X105.8333 Y79.3750
+G0Z6 ; pen down on paper
+G01 X107.9500 Y75.6708
+G0Z0 ; pen up
+G00 X152.4000 Y58.2083
+G0Z6 ; pen down on paper
+G01 X161.3958 Y61.9125
+G0Z0 ; pen up
+G00 X234.4208 Y66.1458
+G0Z6 ; pen down on paper
+G01 X232.8333 Y61.9125
+G0Z0 ; pen up
+G00 X0.5292 Y61.9125
+G0Z6 ; pen down on paper
+G01 X5.2917 Y61.9125
+G0Z0 ; pen up
+G00 X79.3750 Y83.6083
+G0Z6 ; pen down on paper
+G01 X80.4333 Y79.3750
+G0Z0 ; pen up
+G00 X107.9500 Y75.6708
+G0Z6 ; pen down on paper
+G01 X105.8333 Y79.3750
+G0Z0 ; pen up
+G00 X29.1042 Y79.3750
+G0Z6 ; pen down on paper
+G01 X33.3375 Y79.3750
+G0Z0 ; pen up
+G00 X73.5542 Y61.9125
+G0Z6 ; pen down on paper
+G01 X69.8500 Y61.9125
+G0Z0 ; pen up
+G00 X98.9542 Y66.1458
+G0Z6 ; pen down on paper
+G01 X100.0125 Y61.9125
+G0Z0 ; pen up
+G00 X79.3750 Y83.6083
+G0Z6 ; pen down on paper
+G01 X83.6083 Y83.6083
+G0Z0 ; pen up
+G00 X178.3292 Y61.9125
+G0Z6 ; pen down on paper
+G01 X182.0333 Y61.9125
+G0Z0 ; pen up
+G00 X235.4792 Y79.3750
+G0Z6 ; pen down on paper
+G01 X230.7167 Y79.3750
+G0Z0 ; pen up
+G00 X178.8583 Y87.3125
+G0Z6 ; pen down on paper
+G01 X183.6208 Y83.6083
+G0Z0 ; pen up
+G00 X177.8000 Y58.2083
+G0Z6 ; pen down on paper
+G01 X186.7958 Y61.9125
+G0Z0 ; pen up
+G00 X14.2875 Y58.2083
+G0Z6 ; pen down on paper
+G01 X12.1708 Y53.4458
+G0Z0 ; pen up
+G00 X96.8375 Y83.6083
+G0Z6 ; pen down on paper
+G01 X97.8958 Y79.3750
+G0Z0 ; pen up
+G00 X92.6042 Y83.6083
+G0Z6 ; pen down on paper
+G01 X94.1917 Y79.3750
+G0Z0 ; pen up
+G00 X16.9333 Y53.4458
+G0Z6 ; pen down on paper
+G01 X18.5208 Y58.2083
+G0Z0 ; pen up
+G00 X14.2875 Y61.9125
+G0Z6 ; pen down on paper
+G01 X12.7000 Y58.2083
+G0Z0 ; pen up
+G00 X200.0250 Y79.3750
+G0Z6 ; pen down on paper
+G01 X196.8500 Y83.6083
+G0Z0 ; pen up
+G00 X87.8417 Y83.6083
+G0Z6 ; pen down on paper
+G01 X89.4292 Y79.3750
+G0Z0 ; pen up
+G00 X17.4625 Y58.2083
+G0Z6 ; pen down on paper
+G01 X19.0500 Y61.9125
+G0Z0 ; pen up
+G00 X211.1375 Y79.3750
+G0Z6 ; pen down on paper
+G01 X208.4917 Y83.6083
+G0Z0 ; pen up
+G00 X39.1583 Y58.2083
+G0Z6 ; pen down on paper
+G01 X39.6875 Y53.4458
+G0Z0 ; pen up
+G00 X134.9375 Y61.9125
+G0Z6 ; pen down on paper
+G01 X139.1708 Y61.9125
+G0Z0 ; pen up
+G00 X191.5583 Y83.6083
+G0Z6 ; pen down on paper
+G01 X187.3250 Y87.3125
+G0Z0 ; pen up
+G00 X0.5292 Y79.3750
+G0Z6 ; pen down on paper
+G01 X4.7625 Y79.3750
+G0Z0 ; pen up
+G00 X193.6750 Y58.2083
+G0Z6 ; pen down on paper
+G01 X189.9708 Y58.2083
+G0Z0 ; pen up
+G00 X182.5625 Y58.2083
+G0Z6 ; pen down on paper
+G01 X191.5583 Y61.9125
+G0Z0 ; pen up
+G00 X4.7625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X9.5250 Y79.3750
+G0Z0 ; pen up
+G00 X183.0917 Y87.3125
+G0Z6 ; pen down on paper
+G01 X187.3250 Y87.3125
+G0Z0 ; pen up
+G00 X9.5250 Y79.3750
+G0Z6 ; pen down on paper
+G01 X13.7583 Y79.3750
+G0Z0 ; pen up
+G00 X86.2542 Y66.1458
+G0Z6 ; pen down on paper
+G01 X89.9583 Y66.1458
+G0Z0 ; pen up
+G00 X102.1292 Y79.3750
+G0Z6 ; pen down on paper
+G01 X97.8958 Y79.3750
+G0Z0 ; pen up
+G00 X97.3667 Y79.3750
+G0Z6 ; pen down on paper
+G01 X102.1292 Y79.3750
+G0Z0 ; pen up
+G00 X5.2917 Y61.9125
+G0Z6 ; pen down on paper
+G01 X9.5250 Y61.9125
+G0Z0 ; pen up
+G00 X213.2542 Y61.9125
+G0Z6 ; pen down on paper
+G01 X202.6708 Y58.2083
+G0Z0 ; pen up
+G00 X115.8875 Y79.3750
+G0Z6 ; pen down on paper
+G01 X111.1250 Y79.3750
+G0Z0 ; pen up
+G00 X88.9000 Y79.3750
+G0Z6 ; pen down on paper
+G01 X92.0750 Y75.6708
+G0Z0 ; pen up
+G00 X115.8875 Y79.3750
+G0Z6 ; pen down on paper
+G01 X113.2417 Y83.6083
+G0Z0 ; pen up
+G00 X108.4792 Y61.9125
+G0Z6 ; pen down on paper
+G01 X104.2458 Y61.9125
+G0Z0 ; pen up
+G00 X111.1250 Y79.3750
+G0Z6 ; pen down on paper
+G01 X106.8917 Y79.3750
+G0Z0 ; pen up
+G00 X135.4667 Y58.2083
+G0Z6 ; pen down on paper
+G01 X131.2333 Y58.2083
+G0Z0 ; pen up
+G00 X193.6750 Y58.2083
+G0Z6 ; pen down on paper
+G01 X204.2583 Y61.9125
+G0Z0 ; pen up
+G00 X101.0708 Y83.6083
+G0Z6 ; pen down on paper
+G01 X104.7750 Y83.6083
+G0Z0 ; pen up
+G00 X83.0792 Y61.9125
+G0Z6 ; pen down on paper
+G01 X78.3167 Y61.9125
+G0Z0 ; pen up
+G00 X30.1625 Y53.4458
+G0Z6 ; pen down on paper
+G01 X30.6917 Y58.2083
+G0Z0 ; pen up
+G00 X17.4625 Y58.2083
+G0Z6 ; pen down on paper
+G01 X12.7000 Y58.2083
+G0Z0 ; pen up
+G00 X26.9875 Y61.9125
+G0Z6 ; pen down on paper
+G01 X31.7500 Y61.9125
+G0Z0 ; pen up
+G00 X31.7500 Y61.9125
+G0Z6 ; pen down on paper
+G01 X36.5125 Y61.9125
+G0Z0 ; pen up
+G00 X25.9292 Y58.2083
+G0Z6 ; pen down on paper
+G01 X21.6958 Y58.2083
+G0Z0 ; pen up
+G00 X30.1625 Y75.6708
+G0Z6 ; pen down on paper
+G01 X25.9292 Y75.6708
+G0Z0 ; pen up
+G00 X51.8583 Y66.1458
+G0Z6 ; pen down on paper
+G01 X52.9167 Y61.9125
+G0Z0 ; pen up
+G00 X96.3083 Y75.6708
+G0Z6 ; pen down on paper
+G01 X92.0750 Y75.6708
+G0Z0 ; pen up
+G00 X147.6375 Y79.3750
+G0Z6 ; pen down on paper
+G01 X147.1083 Y75.6708
+G0Z0 ; pen up
+G00 X66.1458 Y61.9125
+G0Z6 ; pen down on paper
+G01 X61.9125 Y61.9125
+G0Z0 ; pen up
+G00 X156.1042 Y75.6708
+G0Z6 ; pen down on paper
+G01 X156.1042 Y79.3750
+G0Z0 ; pen up
+G00 X136.5250 Y79.3750
+G0Z6 ; pen down on paper
+G01 X135.9958 Y83.6083
+G0Z0 ; pen up
+G00 X165.1000 Y58.2083
+G0Z6 ; pen down on paper
+G01 X161.3958 Y58.2083
+G0Z0 ; pen up
+G00 X139.7000 Y83.6083
+G0Z6 ; pen down on paper
+G01 X143.4042 Y83.6083
+G0Z0 ; pen up
+G00 X43.3917 Y53.4458
+G0Z6 ; pen down on paper
+G01 X39.6875 Y53.4458
+G0Z0 ; pen up
+G00 X25.4000 Y53.4458
+G0Z6 ; pen down on paper
+G01 X26.9875 Y58.2083
+G0Z0 ; pen up
+G00 X151.8708 Y83.6083
+G0Z6 ; pen down on paper
+G01 X156.1042 Y83.6083
+G0Z0 ; pen up
+G00 X56.0917 Y66.1458
+G0Z6 ; pen down on paper
+G01 X60.3250 Y66.1458
+G0Z0 ; pen up
+G00 X148.6958 Y61.9125
+G0Z6 ; pen down on paper
+G01 X139.1708 Y58.2083
+G0Z0 ; pen up
+G00 X46.5667 Y58.2083
+G0Z6 ; pen down on paper
+G01 X47.6250 Y53.4458
+G0Z0 ; pen up
+G00 X174.0958 Y61.9125
+G0Z6 ; pen down on paper
+G01 X178.3292 Y61.9125
+G0Z0 ; pen up
+G00 X200.5542 Y87.3125
+G0Z6 ; pen down on paper
+G01 X204.7875 Y87.3125
+G0Z0 ; pen up
+G00 X39.1583 Y58.2083
+G0Z6 ; pen down on paper
+G01 X34.9250 Y58.2083
+G0Z0 ; pen up
+G00 X54.5042 Y58.2083
+G0Z6 ; pen down on paper
+G01 X50.8000 Y58.2083
+G0Z0 ; pen up
+G00 X144.9917 Y79.3750
+G0Z6 ; pen down on paper
+G01 X143.4042 Y83.6083
+G0Z0 ; pen up
+G00 X42.8625 Y58.2083
+G0Z6 ; pen down on paper
+G01 X43.9208 Y61.9125
+G0Z0 ; pen up
+G00 X152.9292 Y79.3750
+G0Z6 ; pen down on paper
+G01 X148.6958 Y79.3750
+G0Z0 ; pen up
+G00 X50.2708 Y58.2083
+G0Z6 ; pen down on paper
+G01 X51.8583 Y53.4458
+G0Z0 ; pen up
+G00 X200.5542 Y87.3125
+G0Z6 ; pen down on paper
+G01 X203.7292 Y83.6083
+G0Z0 ; pen up
+G00 X40.2167 Y61.9125
+G0Z6 ; pen down on paper
+G01 X43.9208 Y61.9125
+G0Z0 ; pen up
+G00 X165.1000 Y75.6708
+G0Z6 ; pen down on paper
+G01 X160.3375 Y75.6708
+G0Z0 ; pen up
+G00 X151.3417 Y75.6708
+G0Z6 ; pen down on paper
+G01 X151.3417 Y79.3750
+G0Z0 ; pen up
+G00 X48.1542 Y61.9125
+G0Z6 ; pen down on paper
+G01 X52.3875 Y61.9125
+G0Z0 ; pen up
+G00 X156.6333 Y79.3750
+G0Z6 ; pen down on paper
+G01 X156.1042 Y83.6083
+G0Z0 ; pen up
+G00 X147.6375 Y58.2083
+G0Z6 ; pen down on paper
+G01 X143.9333 Y58.2083
+G0Z0 ; pen up
+G00 X113.7708 Y61.9125
+G0Z6 ; pen down on paper
+G01 X117.4750 Y61.9125
+G0Z0 ; pen up
+G00 X200.5542 Y83.6083
+G0Z6 ; pen down on paper
+G01 X204.2583 Y83.6083
+G0Z0 ; pen up
+G00 X131.7625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X128.0583 Y79.3750
+G0Z0 ; pen up
+G00 X68.2625 Y61.9125
+G0Z6 ; pen down on paper
+G01 X66.1458 Y58.2083
+G0Z0 ; pen up
+G00 X39.6875 Y66.1458
+G0Z6 ; pen down on paper
+G01 X43.3917 Y66.1458
+G0Z0 ; pen up
+G00 X121.7083 Y61.9125
+G0Z6 ; pen down on paper
+G01 X114.8292 Y58.2083
+G0Z0 ; pen up
+G00 X65.0875 Y66.1458
+G0Z6 ; pen down on paper
+G01 X68.7917 Y66.1458
+G0Z0 ; pen up
+G00 X51.8583 Y53.4458
+G0Z6 ; pen down on paper
+G01 X50.2708 Y58.2083
+G0Z0 ; pen up
+G00 X169.8625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X165.1000 Y79.3750
+G0Z0 ; pen up
+G00 X58.7375 Y58.2083
+G0Z6 ; pen down on paper
+G01 X60.3250 Y53.4458
+G0Z0 ; pen up
+G00 X64.0292 Y53.4458
+G0Z6 ; pen down on paper
+G01 X60.3250 Y53.4458
+G0Z0 ; pen up
+G00 X208.4917 Y83.6083
+G0Z6 ; pen down on paper
+G01 X211.1375 Y79.3750
+G0Z0 ; pen up
+G00 X216.9583 Y83.6083
+G0Z6 ; pen down on paper
+G01 X218.5458 Y79.3750
+G0Z0 ; pen up
+G00 X58.7375 Y58.2083
+G0Z6 ; pen down on paper
+G01 X54.5042 Y58.2083
+G0Z0 ; pen up
+G00 X68.2625 Y61.9125
+G0Z6 ; pen down on paper
+G01 X73.0250 Y61.9125
+G0Z0 ; pen up
+G00 X58.7375 Y58.2083
+G0Z6 ; pen down on paper
+G01 X59.7958 Y61.9125
+G0Z0 ; pen up
+G00 X48.1542 Y66.1458
+G0Z6 ; pen down on paper
+G01 X48.6833 Y61.9125
+G0Z0 ; pen up
+G00 X52.9167 Y61.9125
+G0Z6 ; pen down on paper
+G01 X51.8583 Y66.1458
+G0Z0 ; pen up
+G00 X147.6375 Y79.3750
+G0Z6 ; pen down on paper
+G01 X151.3417 Y79.3750
+G0Z0 ; pen up
+G00 X169.3333 Y75.6708
+G0Z6 ; pen down on paper
+G01 X167.7458 Y79.3750
+G0Z0 ; pen up
+G00 X106.8917 Y66.1458
+G0Z6 ; pen down on paper
+G01 X111.1250 Y66.1458
+G0Z0 ; pen up
+G00 X39.1583 Y75.6708
+G0Z6 ; pen down on paper
+G01 X38.1000 Y79.3750
+G0Z0 ; pen up
+G00 X157.1625 Y66.1458
+G0Z6 ; pen down on paper
+G01 X158.7500 Y61.9125
+G0Z0 ; pen up
+G00 X164.0417 Y79.3750
+G0Z6 ; pen down on paper
+G01 X167.7458 Y79.3750
+G0Z0 ; pen up
+G00 X212.1958 Y83.6083
+G0Z6 ; pen down on paper
+G01 X208.4917 Y87.3125
+G0Z0 ; pen up
+G00 X68.2625 Y53.4458
+G0Z6 ; pen down on paper
+G01 X64.0292 Y53.4458
+G0Z0 ; pen up
+G00 X112.1833 Y61.9125
+G0Z6 ; pen down on paper
+G01 X111.1250 Y66.1458
+G0Z0 ; pen up
+G00 X156.6333 Y61.9125
+G0Z6 ; pen down on paper
+G01 X161.3958 Y61.9125
+G0Z0 ; pen up
+G00 X208.4917 Y87.3125
+G0Z6 ; pen down on paper
+G01 X212.1958 Y83.6083
+G0Z0 ; pen up
+G00 X172.5083 Y79.3750
+G0Z6 ; pen down on paper
+G01 X177.2708 Y79.3750
+G0Z0 ; pen up
+G00 X86.7833 Y61.9125
+G0Z6 ; pen down on paper
+G01 X91.0167 Y61.9125
+G0Z0 ; pen up
+G00 X113.7708 Y61.9125
+G0Z6 ; pen down on paper
+G01 X106.3625 Y58.2083
+G0Z0 ; pen up
+G00 X158.7500 Y61.9125
+G0Z6 ; pen down on paper
+G01 X157.1625 Y66.1458
+G0Z0 ; pen up
+G00 X76.2000 Y58.2083
+G0Z6 ; pen down on paper
+G01 X75.6708 Y53.4458
+G0Z0 ; pen up
+G00 X41.8042 Y79.3750
+G0Z6 ; pen down on paper
+G01 X46.0375 Y79.3750
+G0Z0 ; pen up
+G00 X77.7875 Y61.9125
+G0Z6 ; pen down on paper
+G01 X74.6125 Y58.2083
+G0Z0 ; pen up
+G00 X121.7083 Y61.9125
+G0Z6 ; pen down on paper
+G01 X120.1208 Y66.1458
+G0Z0 ; pen up
+G00 X165.1000 Y79.3750
+G0Z6 ; pen down on paper
+G01 X160.3375 Y79.3750
+G0Z0 ; pen up
+G00 X169.3333 Y83.6083
+G0Z6 ; pen down on paper
+G01 X173.0375 Y83.6083
+G0Z0 ; pen up
+G00 X86.7833 Y61.9125
+G0Z6 ; pen down on paper
+G01 X82.0208 Y58.2083
+G0Z0 ; pen up
+G00 X71.4375 Y58.2083
+G0Z6 ; pen down on paper
+G01 X71.9667 Y53.4458
+G0Z0 ; pen up
+G00 X220.6625 Y83.6083
+G0Z6 ; pen down on paper
+G01 X216.9583 Y83.6083
+G0Z0 ; pen up
+G00 X75.6708 Y53.4458
+G0Z6 ; pen down on paper
+G01 X76.2000 Y58.2083
+G0Z0 ; pen up
+G00 X122.7667 Y83.6083
+G0Z6 ; pen down on paper
+G01 X123.2958 Y79.3750
+G0Z0 ; pen up
+G00 X74.6125 Y75.6708
+G0Z6 ; pen down on paper
+G01 X71.4375 Y79.3750
+G0Z0 ; pen up
+G00 X52.3875 Y75.6708
+G0Z6 ; pen down on paper
+G01 X50.2708 Y79.3750
+G0Z0 ; pen up
+G00 X79.3750 Y53.4458
+G0Z6 ; pen down on paper
+G01 X79.9042 Y58.2083
+G0Z0 ; pen up
+G00 X116.9458 Y61.9125
+G0Z6 ; pen down on paper
+G01 X115.8875 Y66.1458
+G0Z0 ; pen up
+G00 X66.6750 Y79.3750
+G0Z6 ; pen down on paper
+G01 X71.4375 Y79.3750
+G0Z0 ; pen up
+G00 X177.2708 Y79.3750
+G0Z6 ; pen down on paper
+G01 X182.0333 Y79.3750
+G0Z0 ; pen up
+G00 X167.2167 Y61.9125
+G0Z6 ; pen down on paper
+G01 X162.9833 Y61.9125
+G0Z0 ; pen up
+G00 X97.8958 Y58.2083
+G0Z6 ; pen down on paper
+G01 X104.2458 Y61.9125
+G0Z0 ; pen up
+G00 X199.4958 Y75.6708
+G0Z6 ; pen down on paper
+G01 X194.7333 Y75.6708
+G0Z0 ; pen up
+G00 X182.0333 Y79.3750
+G0Z6 ; pen down on paper
+G01 X181.5042 Y83.6083
+G0Z0 ; pen up
+G00 X186.7958 Y79.3750
+G0Z6 ; pen down on paper
+G01 X186.2667 Y75.6708
+G0Z0 ; pen up
+G00 X96.3083 Y58.2083
+G0Z6 ; pen down on paper
+G01 X96.8375 Y53.4458
+G0Z0 ; pen up
+G00 X70.3792 Y75.6708
+G0Z6 ; pen down on paper
+G01 X65.6167 Y75.6708
+G0Z0 ; pen up
+G00 X50.2708 Y79.3750
+G0Z6 ; pen down on paper
+G01 X52.3875 Y75.6708
+G0Z0 ; pen up
+G00 X83.6083 Y53.4458
+G0Z6 ; pen down on paper
+G01 X84.1375 Y58.2083
+G0Z0 ; pen up
+G00 X131.7625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X131.7625 Y83.6083
+G0Z0 ; pen up
+G00 X131.7625 Y66.1458
+G0Z6 ; pen down on paper
+G01 X135.4667 Y66.1458
+G0Z0 ; pen up
+G00 X92.0750 Y53.4458
+G0Z6 ; pen down on paper
+G01 X87.8417 Y53.4458
+G0Z0 ; pen up
+G00 X85.7250 Y58.2083
+G0Z6 ; pen down on paper
+G01 X91.0167 Y61.9125
+G0Z0 ; pen up
+G00 X128.0583 Y79.3750
+G0Z6 ; pen down on paper
+G01 X123.2958 Y79.3750
+G0Z0 ; pen up
+G00 X144.4625 Y66.1458
+G0Z6 ; pen down on paper
+G01 X148.1667 Y66.1458
+G0Z0 ; pen up
+G00 X142.8750 Y61.9125
+G0Z6 ; pen down on paper
+G01 X139.7000 Y66.1458
+G0Z0 ; pen up
+G00 X133.8792 Y61.9125
+G0Z6 ; pen down on paper
+G01 X129.1167 Y61.9125
+G0Z0 ; pen up
+G00 X148.1667 Y66.1458
+G0Z6 ; pen down on paper
+G01 X152.4000 Y66.1458
+G0Z0 ; pen up
+G00 X220.6625 Y83.6083
+G0Z6 ; pen down on paper
+G01 X216.9583 Y87.3125
+G0Z0 ; pen up
+G00 X62.9708 Y79.3750
+G0Z6 ; pen down on paper
+G01 X65.6167 Y75.6708
+G0Z0 ; pen up
+G00 X99.4833 Y61.9125
+G0Z6 ; pen down on paper
+G01 X93.6625 Y58.2083
+G0Z0 ; pen up
+G00 X174.0958 Y66.1458
+G0Z6 ; pen down on paper
+G01 X175.1542 Y61.9125
+G0Z0 ; pen up
+G00 X183.0917 Y87.3125
+G0Z6 ; pen down on paper
+G01 X187.3250 Y83.6083
+G0Z0 ; pen up
+G00 X58.2083 Y79.3750
+G0Z6 ; pen down on paper
+G01 X60.8542 Y75.6708
+G0Z0 ; pen up
+G00 X83.0792 Y75.6708
+G0Z6 ; pen down on paper
+G01 X78.8458 Y75.6708
+G0Z0 ; pen up
+G00 X101.0708 Y53.4458
+G0Z6 ; pen down on paper
+G01 X96.8375 Y53.4458
+G0Z0 ; pen up
+G00 X142.8750 Y61.9125
+G0Z6 ; pen down on paper
+G01 X138.6417 Y61.9125
+G0Z0 ; pen up
+G00 X178.3292 Y79.3750
+G0Z6 ; pen down on paper
+G01 X174.6250 Y79.3750
+G0Z0 ; pen up
+G00 X97.8958 Y58.2083
+G0Z6 ; pen down on paper
+G01 X93.6625 Y58.2083
+G0Z0 ; pen up
+G00 X195.2625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X194.7333 Y75.6708
+G0Z0 ; pen up
+G00 X104.7750 Y58.2083
+G0Z6 ; pen down on paper
+G01 X104.7750 Y53.4458
+G0Z0 ; pen up
+G00 X4.7625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X4.2333 Y83.6083
+G0Z0 ; pen up
+G00 X176.7417 Y83.6083
+G0Z6 ; pen down on paper
+G01 X181.5042 Y83.6083
+G0Z0 ; pen up
+G00 X26.9875 Y79.3750
+G0Z6 ; pen down on paper
+G01 X24.3417 Y83.6083
+G0Z0 ; pen up
+G00 X26.9875 Y79.3750
+G0Z6 ; pen down on paper
+G01 X23.2833 Y79.3750
+G0Z0 ; pen up
+G00 X123.8250 Y66.1458
+G0Z6 ; pen down on paper
+G01 X128.0583 Y66.1458
+G0Z0 ; pen up
+G00 X169.3333 Y66.1458
+G0Z6 ; pen down on paper
+G01 X171.4500 Y61.9125
+G0Z0 ; pen up
+G00 X109.0083 Y53.4458
+G0Z6 ; pen down on paper
+G01 X104.7750 Y53.4458
+G0Z0 ; pen up
+G00 X122.2375 Y58.2083
+G0Z6 ; pen down on paper
+G01 X126.4708 Y58.2083
+G0Z0 ; pen up
+G00 X200.0250 Y79.3750
+G0Z6 ; pen down on paper
+G01 X203.7292 Y79.3750
+G0Z0 ; pen up
+G00 X186.2667 Y75.6708
+G0Z6 ; pen down on paper
+G01 X186.7958 Y79.3750
+G0Z0 ; pen up
+G00 X234.4208 Y87.3125
+G0Z6 ; pen down on paper
+G01 X237.5958 Y87.3125
+G0Z0 ; pen up
+G00 X188.3833 Y58.2083
+G0Z6 ; pen down on paper
+G01 X184.6792 Y53.4458
+G0Z0 ; pen up
+G00 X216.4292 Y79.3750
+G0Z6 ; pen down on paper
+G01 X215.3708 Y75.6708
+G0Z0 ; pen up
+G00 X225.9542 Y87.3125
+G0Z6 ; pen down on paper
+G01 X228.0708 Y83.6083
+G0Z0 ; pen up
+G00 X117.4750 Y53.4458
+G0Z6 ; pen down on paper
+G01 X118.5333 Y58.2083
+G0Z0 ; pen up
+G00 X207.4333 Y79.3750
+G0Z6 ; pen down on paper
+G01 X207.4333 Y75.6708
+G0Z0 ; pen up
+G00 X175.1542 Y53.4458
+G0Z6 ; pen down on paper
+G01 X179.3875 Y58.2083
+G0Z0 ; pen up
+G00 X231.7750 Y83.6083
+G0Z6 ; pen down on paper
+G01 X228.0708 Y83.6083
+G0Z0 ; pen up
+G00 X109.0083 Y53.4458
+G0Z6 ; pen down on paper
+G01 X109.5375 Y58.2083
+G0Z0 ; pen up
+G00 X193.1458 Y58.2083
+G0Z6 ; pen down on paper
+G01 X188.9125 Y53.4458
+G0Z0 ; pen up
+G00 X113.2417 Y53.4458
+G0Z6 ; pen down on paper
+G01 X113.7708 Y58.2083
+G0Z0 ; pen up
+G00 X188.9125 Y53.4458
+G0Z6 ; pen down on paper
+G01 X193.1458 Y58.2083
+G0Z0 ; pen up
+G00 X202.1417 Y58.2083
+G0Z6 ; pen down on paper
+G01 X197.3792 Y53.4458
+G0Z0 ; pen up
+G00 X20.1083 Y83.6083
+G0Z6 ; pen down on paper
+G01 X23.2833 Y79.3750
+G0Z0 ; pen up
+G00 X207.4333 Y79.3750
+G0Z6 ; pen down on paper
+G01 X211.6667 Y79.3750
+G0Z0 ; pen up
+G00 X31.7500 Y79.3750
+G0Z6 ; pen down on paper
+G01 X29.1042 Y83.6083
+G0Z0 ; pen up
+G00 X197.3792 Y53.4458
+G0Z6 ; pen down on paper
+G01 X202.1417 Y58.2083
+G0Z0 ; pen up
+G00 X231.7750 Y83.6083
+G0Z6 ; pen down on paper
+G01 X229.6583 Y87.3125
+G0Z0 ; pen up
+G00 X39.1583 Y79.3750
+G0Z6 ; pen down on paper
+G01 X35.4542 Y79.3750
+G0Z0 ; pen up
+G00 X43.3917 Y79.3750
+G0Z6 ; pen down on paper
+G01 X40.7458 Y83.6083
+G0Z0 ; pen up
+G00 X133.8792 Y53.4458
+G0Z6 ; pen down on paper
+G01 X135.9958 Y58.2083
+G0Z0 ; pen up
+G00 X49.7417 Y83.6083
+G0Z6 ; pen down on paper
+G01 X51.8583 Y79.3750
+G0Z0 ; pen up
+G00 X205.8458 Y58.2083
+G0Z6 ; pen down on paper
+G01 X210.0792 Y58.2083
+G0Z0 ; pen up
+G00 X144.4625 Y58.2083
+G0Z6 ; pen down on paper
+G01 X142.3458 Y53.4458
+G0Z0 ; pen up
+G00 X131.2333 Y58.2083
+G0Z6 ; pen down on paper
+G01 X129.6458 Y53.4458
+G0Z0 ; pen up
+G00 X205.3167 Y53.4458
+G0Z6 ; pen down on paper
+G01 X210.0792 Y58.2083
+G0Z0 ; pen up
+G00 X223.3083 Y58.2083
+G0Z6 ; pen down on paper
+G01 X227.5417 Y58.2083
+G0Z0 ; pen up
+G00 X133.8792 Y53.4458
+G0Z6 ; pen down on paper
+G01 X129.6458 Y53.4458
+G0Z0 ; pen up
+G00 X148.1667 Y58.2083
+G0Z6 ; pen down on paper
+G01 X146.5792 Y53.4458
+G0Z0 ; pen up
+G00 X150.2833 Y53.4458
+G0Z6 ; pen down on paper
+G01 X146.5792 Y53.4458
+G0Z0 ; pen up
+G00 X40.7458 Y83.6083
+G0Z6 ; pen down on paper
+G01 X43.3917 Y79.3750
+G0Z0 ; pen up
+G00 X152.4000 Y58.2083
+G0Z6 ; pen down on paper
+G01 X157.1625 Y58.2083
+G0Z0 ; pen up
+G00 X155.0458 Y53.4458
+G0Z6 ; pen down on paper
+G01 X157.1625 Y58.2083
+G0Z0 ; pen up
+G00 X161.9250 Y58.2083
+G0Z6 ; pen down on paper
+G01 X166.1583 Y58.2083
+G0Z0 ; pen up
+G00 X209.5500 Y53.4458
+G0Z6 ; pen down on paper
+G01 X213.7833 Y58.2083
+G0Z0 ; pen up
+G00 X0.5292 Y83.6083
+G0Z6 ; pen down on paper
+G01 X4.2333 Y83.6083
+G0Z0 ; pen up
+G00 X13.7583 Y79.3750
+G0Z6 ; pen down on paper
+G01 X11.6417 Y83.6083
+G0Z0 ; pen up
+G00 X167.7458 Y53.4458
+G0Z6 ; pen down on paper
+G01 X163.5125 Y53.4458
+G0Z0 ; pen up
+G00 X213.7833 Y53.4458
+G0Z6 ; pen down on paper
+G01 X218.5458 Y58.2083
+G0Z0 ; pen up
+G00 X11.6417 Y83.6083
+G0Z6 ; pen down on paper
+G01 X13.7583 Y79.3750
+G0Z0 ; pen up
+G00 X222.2500 Y53.4458
+G0Z6 ; pen down on paper
+G01 X227.5417 Y58.2083
+G0Z0 ; pen up
+G00 X41.2750 Y70.9083
+G0Z6 ; pen down on paper
+G01 X44.9792 Y70.9083
+G0Z0 ; pen up
+G00 X220.6625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X224.3667 Y79.3750
+G0Z0 ; pen up
+G00 X153.9875 Y66.1458
+G0Z6 ; pen down on paper
+G01 X149.2250 Y66.1458
+G0Z0 ; pen up
+G00 X223.8375 Y66.1458
+G0Z6 ; pen down on paper
+G01 X219.0750 Y66.1458
+G0Z0 ; pen up
+G00 X5.2917 Y53.4458
+G0Z6 ; pen down on paper
+G01 X4.2333 Y48.6833
+G0Z0 ; pen up
+G00 X170.9208 Y58.2083
+G0Z6 ; pen down on paper
+G01 X174.6250 Y58.2083
+G0Z0 ; pen up
+G00 X211.1375 Y66.1458
+G0Z6 ; pen down on paper
+G01 X210.6083 Y70.9083
+G0Z0 ; pen up
+G00 X149.2250 Y66.1458
+G0Z6 ; pen down on paper
+G01 X145.5208 Y66.1458
+G0Z0 ; pen up
+G00 X179.3875 Y58.2083
+G0Z6 ; pen down on paper
+G01 X175.1542 Y53.4458
+G0Z0 ; pen up
+G00 X234.4208 Y75.6708
+G0Z6 ; pen down on paper
+G01 X230.7167 Y75.6708
+G0Z0 ; pen up
+G00 X5.2917 Y53.4458
+G0Z6 ; pen down on paper
+G01 X9.5250 Y53.4458
+G0Z0 ; pen up
+G00 X150.8125 Y70.9083
+G0Z6 ; pen down on paper
+G01 X155.0458 Y70.9083
+G0Z0 ; pen up
+G00 X8.9958 Y75.6708
+G0Z6 ; pen down on paper
+G01 X9.5250 Y70.9083
+G0Z0 ; pen up
+G00 X55.0333 Y66.1458
+G0Z6 ; pen down on paper
+G01 X52.3875 Y70.9083
+G0Z0 ; pen up
+G00 X229.6583 Y53.4458
+G0Z6 ; pen down on paper
+G01 X225.9542 Y53.4458
+G0Z0 ; pen up
+G00 X220.6625 Y79.3750
+G0Z6 ; pen down on paper
+G01 X219.0750 Y75.6708
+G0Z0 ; pen up
+G00 X12.1708 Y70.9083
+G0Z6 ; pen down on paper
+G01 X13.7583 Y66.1458
+G0Z0 ; pen up
+G00 X229.6583 Y53.4458
+G0Z6 ; pen down on paper
+G01 X236.0083 Y58.2083
+G0Z0 ; pen up
+G00 X24.8708 Y48.6833
+G0Z6 ; pen down on paper
+G01 X24.8708 Y53.4458
+G0Z0 ; pen up
+G00 X38.6292 Y48.6833
+G0Z6 ; pen down on paper
+G01 X38.1000 Y53.4458
+G0Z0 ; pen up
+G00 X161.9250 Y66.1458
+G0Z6 ; pen down on paper
+G01 X158.2208 Y66.1458
+G0Z0 ; pen up
+G00 X227.0125 Y75.6708
+G0Z6 ; pen down on paper
+G01 X223.3083 Y75.6708
+G0Z0 ; pen up
+G00 X170.9208 Y70.9083
+G0Z6 ; pen down on paper
+G01 X175.6833 Y70.9083
+G0Z0 ; pen up
+G00 X167.2167 Y70.9083
+G0Z6 ; pen down on paper
+G01 X170.3917 Y66.1458
+G0Z0 ; pen up
+G00 X214.8417 Y70.9083
+G0Z6 ; pen down on paper
+G01 X219.6042 Y70.9083
+G0Z0 ; pen up
+G00 X223.8375 Y70.9083
+G0Z6 ; pen down on paper
+G01 X228.6000 Y70.9083
+G0Z0 ; pen up
+G00 X237.0667 Y79.3750
+G0Z6 ; pen down on paper
+G01 X237.5958 Y79.3750
+G0Z0 ; pen up
+G00 X0.5292 Y70.9083
+G0Z6 ; pen down on paper
+G01 X0.5292 Y75.6708
+G0Z0 ; pen up
+G00 X34.3958 Y48.6833
+G0Z6 ; pen down on paper
+G01 X29.6333 Y48.6833
+G0Z0 ; pen up
+G00 X33.8667 Y53.4458
+G0Z6 ; pen down on paper
+G01 X38.1000 Y53.4458
+G0Z0 ; pen up
+G00 X228.0708 Y66.1458
+G0Z6 ; pen down on paper
+G01 X228.6000 Y70.9083
+G0Z0 ; pen up
+G00 X13.7583 Y66.1458
+G0Z6 ; pen down on paper
+G01 X12.1708 Y70.9083
+G0Z0 ; pen up
+G00 X161.9250 Y66.1458
+G0Z6 ; pen down on paper
+G01 X159.2792 Y70.9083
+G0Z0 ; pen up
+G00 X232.3042 Y66.1458
+G0Z6 ; pen down on paper
+G01 X232.3042 Y70.9083
+G0Z0 ; pen up
+G00 X13.2292 Y48.6833
+G0Z6 ; pen down on paper
+G01 X8.9958 Y48.6833
+G0Z0 ; pen up
+G00 X228.6000 Y79.3750
+G0Z6 ; pen down on paper
+G01 X232.3042 Y79.3750
+G0Z0 ; pen up
+G00 X167.2167 Y70.9083
+G0Z6 ; pen down on paper
+G01 X170.9208 Y70.9083
+G0Z0 ; pen up
+G00 X48.6833 Y70.9083
+G0Z6 ; pen down on paper
+G01 X51.3292 Y66.1458
+G0Z0 ; pen up
+G00 X22.7542 Y66.1458
+G0Z6 ; pen down on paper
+G01 X18.5208 Y66.1458
+G0Z0 ; pen up
+G00 X21.1667 Y70.9083
+G0Z6 ; pen down on paper
+G01 X25.4000 Y70.9083
+G0Z0 ; pen up
+G00 X13.7583 Y70.9083
+G0Z6 ; pen down on paper
+G01 X12.7000 Y75.6708
+G0Z0 ; pen up
+G00 X18.5208 Y70.9083
+G0Z6 ; pen down on paper
+G01 X16.4042 Y75.6708
+G0Z0 ; pen up
+G00 X18.5208 Y66.1458
+G0Z6 ; pen down on paper
+G01 X19.5792 Y61.9125
+G0Z0 ; pen up
+G00 X48.6833 Y70.9083
+G0Z6 ; pen down on paper
+G01 X52.3875 Y70.9083
+G0Z0 ; pen up
+G00 X127.5292 Y48.6833
+G0Z6 ; pen down on paper
+G01 X125.9417 Y53.4458
+G0Z0 ; pen up
+G00 X195.2625 Y66.1458
+G0Z6 ; pen down on paper
+G01 X190.5000 Y66.1458
+G0Z0 ; pen up
+G00 X56.0917 Y70.9083
+G0Z6 ; pen down on paper
+G01 X60.8542 Y70.9083
+G0Z0 ; pen up
+G00 X184.1500 Y70.9083
+G0Z6 ; pen down on paper
+G01 X188.3833 Y70.9083
+G0Z0 ; pen up
+G00 X21.1667 Y48.6833
+G0Z6 ; pen down on paper
+G01 X16.9333 Y48.6833
+G0Z0 ; pen up
+G00 X13.7583 Y70.9083
+G0Z6 ; pen down on paper
+G01 X9.5250 Y70.9083
+G0Z0 ; pen up
+G00 X175.6833 Y70.9083
+G0Z6 ; pen down on paper
+G01 X179.9167 Y70.9083
+G0Z0 ; pen up
+G00 X184.1500 Y70.9083
+G0Z6 ; pen down on paper
+G01 X186.7958 Y66.1458
+G0Z0 ; pen up
+G00 X78.8458 Y48.6833
+G0Z6 ; pen down on paper
+G01 X77.2583 Y53.4458
+G0Z0 ; pen up
+G00 X16.9333 Y48.6833
+G0Z6 ; pen down on paper
+G01 X13.2292 Y48.6833
+G0Z0 ; pen up
+G00 X24.8708 Y53.4458
+G0Z6 ; pen down on paper
+G01 X24.8708 Y48.6833
+G0Z0 ; pen up
+G00 X20.1083 Y75.6708
+G0Z6 ; pen down on paper
+G01 X24.8708 Y75.6708
+G0Z0 ; pen up
+G00 X31.2208 Y70.9083
+G0Z6 ; pen down on paper
+G01 X27.5167 Y70.9083
+G0Z0 ; pen up
+G00 X29.6333 Y75.6708
+G0Z6 ; pen down on paper
+G01 X33.8667 Y75.6708
+G0Z0 ; pen up
+G00 X81.4917 Y53.4458
+G0Z6 ; pen down on paper
+G01 X85.7250 Y53.4458
+G0Z0 ; pen up
+G00 X29.6333 Y70.9083
+G0Z6 ; pen down on paper
+G01 X31.2208 Y66.1458
+G0Z0 ; pen up
+G00 X91.0167 Y48.6833
+G0Z6 ; pen down on paper
+G01 X87.3125 Y48.6833
+G0Z0 ; pen up
+G00 X65.6167 Y70.9083
+G0Z6 ; pen down on paper
+G01 X69.8500 Y70.9083
+G0Z0 ; pen up
+G00 X33.8667 Y70.9083
+G0Z6 ; pen down on paper
+G01 X34.9250 Y66.1458
+G0Z0 ; pen up
+G00 X64.0292 Y66.1458
+G0Z6 ; pen down on paper
+G01 X60.8542 Y70.9083
+G0Z0 ; pen up
+G00 X94.7208 Y48.6833
+G0Z6 ; pen down on paper
+G01 X91.0167 Y48.6833
+G0Z0 ; pen up
+G00 X33.8667 Y75.6708
+G0Z6 ; pen down on paper
+G01 X37.5708 Y75.6708
+G0Z0 ; pen up
+G00 X193.1458 Y70.9083
+G0Z6 ; pen down on paper
+G01 X196.8500 Y70.9083
+G0Z0 ; pen up
+G00 X236.0083 Y66.1458
+G0Z6 ; pen down on paper
+G01 X236.0083 Y70.9083
+G0Z0 ; pen up
+G00 X52.3875 Y53.4458
+G0Z6 ; pen down on paper
+G01 X56.6208 Y53.4458
+G0Z0 ; pen up
+G00 X99.4833 Y48.6833
+G0Z6 ; pen down on paper
+G01 X97.8958 Y53.4458
+G0Z0 ; pen up
+G00 X33.8667 Y70.9083
+G0Z6 ; pen down on paper
+G01 X37.5708 Y70.9083
+G0Z0 ; pen up
+G00 X42.8625 Y53.4458
+G0Z6 ; pen down on paper
+G01 X47.6250 Y53.4458
+G0Z0 ; pen up
+G00 X46.5667 Y48.6833
+G0Z6 ; pen down on paper
+G01 X47.6250 Y53.4458
+G0Z0 ; pen up
+G00 X41.2750 Y75.6708
+G0Z6 ; pen down on paper
+G01 X42.8625 Y70.9083
+G0Z0 ; pen up
+G00 X109.5375 Y53.4458
+G0Z6 ; pen down on paper
+G01 X112.7125 Y48.6833
+G0Z0 ; pen up
+G00 X99.4833 Y48.6833
+G0Z6 ; pen down on paper
+G01 X94.7208 Y48.6833
+G0Z0 ; pen up
+G00 X60.8542 Y48.6833
+G0Z6 ; pen down on paper
+G01 X56.0917 Y48.6833
+G0Z0 ; pen up
+G00 X65.0875 Y48.6833
+G0Z6 ; pen down on paper
+G01 X64.5583 Y53.4458
+G0Z0 ; pen up
+G00 X60.8542 Y48.6833
+G0Z6 ; pen down on paper
+G01 X60.8542 Y53.4458
+G0Z0 ; pen up
+G00 X202.6708 Y66.1458
+G0Z6 ; pen down on paper
+G01 X201.6125 Y70.9083
+G0Z0 ; pen up
+G00 X57.1500 Y75.6708
+G0Z6 ; pen down on paper
+G01 X61.3833 Y75.6708
+G0Z0 ; pen up
+G00 X101.6000 Y53.4458
+G0Z6 ; pen down on paper
+G01 X105.8333 Y53.4458
+G0Z0 ; pen up
+G00 X47.6250 Y70.9083
+G0Z6 ; pen down on paper
+G01 X42.8625 Y70.9083
+G0Z0 ; pen up
+G00 X57.1500 Y75.6708
+G0Z6 ; pen down on paper
+G01 X59.7958 Y70.9083
+G0Z0 ; pen up
+G00 X72.4958 Y53.4458
+G0Z6 ; pen down on paper
+G01 X74.0833 Y48.6833
+G0Z0 ; pen up
+G00 X112.7125 Y48.6833
+G0Z6 ; pen down on paper
+G01 X109.5375 Y53.4458
+G0Z0 ; pen up
+G00 X72.4958 Y53.4458
+G0Z6 ; pen down on paper
+G01 X77.2583 Y53.4458
+G0Z0 ; pen up
+G00 X49.7417 Y75.6708
+G0Z6 ; pen down on paper
+G01 X53.4458 Y75.6708
+G0Z0 ; pen up
+G00 X68.7917 Y70.9083
+G0Z6 ; pen down on paper
+G01 X65.6167 Y75.6708
+G0Z0 ; pen up
+G00 X198.9667 Y66.1458
+G0Z6 ; pen down on paper
+G01 X196.8500 Y70.9083
+G0Z0 ; pen up
+G00 X143.9333 Y53.4458
+G0Z6 ; pen down on paper
+G01 X143.4042 Y48.6833
+G0Z0 ; pen up
+G00 X135.9958 Y48.6833
+G0Z6 ; pen down on paper
+G01 X132.2917 Y48.6833
+G0Z0 ; pen up
+G00 X139.7000 Y48.6833
+G0Z6 ; pen down on paper
+G01 X135.9958 Y48.6833
+G0Z0 ; pen up
+G00 X51.8583 Y70.9083
+G0Z6 ; pen down on paper
+G01 X47.6250 Y70.9083
+G0Z0 ; pen up
+G00 X118.0042 Y53.4458
+G0Z6 ; pen down on paper
+G01 X120.1208 Y48.6833
+G0Z0 ; pen up
+G00 X68.7917 Y70.9083
+G0Z6 ; pen down on paper
+G01 X64.5583 Y70.9083
+G0Z0 ; pen up
+G00 X125.9417 Y53.4458
+G0Z6 ; pen down on paper
+G01 X127.5292 Y48.6833
+G0Z0 ; pen up
+G00 X0.5292 Y61.9125
+G0Z6 ; pen down on paper
+G01 X0.5292 Y66.1458
+G0Z0 ; pen up
+G00 X118.0042 Y53.4458
+G0Z6 ; pen down on paper
+G01 X122.2375 Y53.4458
+G0Z0 ; pen up
+G00 X206.9042 Y66.1458
+G0Z6 ; pen down on paper
+G01 X206.3750 Y70.9083
+G0Z0 ; pen up
+G00 X76.2000 Y70.9083
+G0Z6 ; pen down on paper
+G01 X72.4958 Y70.9083
+G0Z0 ; pen up
+G00 X148.1667 Y48.6833
+G0Z6 ; pen down on paper
+G01 X147.6375 Y53.4458
+G0Z0 ; pen up
+G00 X41.2750 Y70.9083
+G0Z6 ; pen down on paper
+G01 X42.8625 Y66.1458
+G0Z0 ; pen up
+G00 X148.1667 Y48.6833
+G0Z6 ; pen down on paper
+G01 X143.4042 Y48.6833
+G0Z0 ; pen up
+G00 X79.3750 Y75.6708
+G0Z6 ; pen down on paper
+G01 X83.0792 Y75.6708
+G0Z0 ; pen up
+G00 X76.2000 Y70.9083
+G0Z6 ; pen down on paper
+G01 X75.1417 Y75.6708
+G0Z0 ; pen up
+G00 X152.4000 Y53.4458
+G0Z6 ; pen down on paper
+G01 X156.6333 Y53.4458
+G0Z0 ; pen up
+G00 X77.2583 Y66.1458
+G0Z6 ; pen down on paper
+G01 X73.0250 Y66.1458
+G0Z0 ; pen up
+G00 X5.2917 Y61.9125
+G0Z6 ; pen down on paper
+G01 X5.2917 Y66.1458
+G0Z0 ; pen up
+G00 X162.4542 Y48.6833
+G0Z6 ; pen down on paper
+G01 X157.6917 Y48.6833
+G0Z0 ; pen up
+G00 X93.6625 Y70.9083
+G0Z6 ; pen down on paper
+G01 X89.4292 Y70.9083
+G0Z0 ; pen up
+G00 X214.8417 Y53.4458
+G0Z6 ; pen down on paper
+G01 X219.6042 Y53.4458
+G0Z0 ; pen up
+G00 X169.8625 Y48.6833
+G0Z6 ; pen down on paper
+G01 X166.1583 Y48.6833
+G0Z0 ; pen up
+G00 X170.3917 Y53.4458
+G0Z6 ; pen down on paper
+G01 X175.1542 Y53.4458
+G0Z0 ; pen up
+G00 X175.1542 Y53.4458
+G0Z6 ; pen down on paper
+G01 X179.9167 Y53.4458
+G0Z0 ; pen up
+G00 X82.5500 Y70.9083
+G0Z6 ; pen down on paper
+G01 X87.3125 Y70.9083
+G0Z0 ; pen up
+G00 X14.8167 Y66.1458
+G0Z6 ; pen down on paper
+G01 X14.8167 Y61.9125
+G0Z0 ; pen up
+G00 X223.8375 Y53.4458
+G0Z6 ; pen down on paper
+G01 X220.1333 Y48.6833
+G0Z0 ; pen up
+G00 X84.6667 Y70.9083
+G0Z6 ; pen down on paper
+G01 X83.0792 Y75.6708
+G0Z0 ; pen up
+G00 X162.4542 Y48.6833
+G0Z6 ; pen down on paper
+G01 X160.8667 Y53.4458
+G0Z0 ; pen up
+G00 X23.8125 Y61.9125
+G0Z6 ; pen down on paper
+G01 X19.5792 Y61.9125
+G0Z0 ; pen up
+G00 X187.3250 Y48.6833
+G0Z6 ; pen down on paper
+G01 X188.3833 Y53.4458
+G0Z0 ; pen up
+G00 X23.2833 Y66.1458
+G0Z6 ; pen down on paper
+G01 X26.9875 Y66.1458
+G0Z0 ; pen up
+G00 X199.4958 Y48.6833
+G0Z6 ; pen down on paper
+G01 X195.2625 Y48.6833
+G0Z0 ; pen up
+G00 X206.3750 Y53.4458
+G0Z6 ; pen down on paper
+G01 X203.7292 Y48.6833
+G0Z0 ; pen up
+G00 X228.6000 Y48.6833
+G0Z6 ; pen down on paper
+G01 X224.8958 Y48.6833
+G0Z0 ; pen up
+G00 X214.8417 Y53.4458
+G0Z6 ; pen down on paper
+G01 X212.1958 Y48.6833
+G0Z0 ; pen up
+G00 X223.8375 Y53.4458
+G0Z6 ; pen down on paper
+G01 X228.6000 Y53.4458
+G0Z0 ; pen up
+G00 X207.9625 Y48.6833
+G0Z6 ; pen down on paper
+G01 X203.7292 Y48.6833
+G0Z0 ; pen up
+G00 X128.0583 Y66.1458
+G0Z6 ; pen down on paper
+G01 X125.9417 Y70.9083
+G0Z0 ; pen up
+G00 X188.3833 Y53.4458
+G0Z6 ; pen down on paper
+G01 X187.3250 Y48.6833
+G0Z0 ; pen up
+G00 X26.9875 Y66.1458
+G0Z6 ; pen down on paper
+G01 X31.2208 Y66.1458
+G0Z0 ; pen up
+G00 X78.3167 Y70.9083
+G0Z6 ; pen down on paper
+G01 X82.5500 Y70.9083
+G0Z0 ; pen up
+G00 X130.7042 Y70.9083
+G0Z6 ; pen down on paper
+G01 X135.4667 Y70.9083
+G0Z0 ; pen up
+G00 X0.5292 Y44.9792
+G0Z6 ; pen down on paper
+G01 X0.5292 Y48.6833
+G0Z0 ; pen up
+G00 X32.2792 Y61.9125
+G0Z6 ; pen down on paper
+G01 X31.2208 Y66.1458
+G0Z0 ; pen up
+G00 X183.0917 Y48.6833
+G0Z6 ; pen down on paper
+G01 X178.3292 Y48.6833
+G0Z0 ; pen up
+G00 X77.2583 Y66.1458
+G0Z6 ; pen down on paper
+G01 X73.5542 Y70.9083
+G0Z0 ; pen up
+G00 X102.1292 Y70.9083
+G0Z6 ; pen down on paper
+G01 X100.0125 Y75.6708
+G0Z0 ; pen up
+G00 X228.6000 Y48.6833
+G0Z6 ; pen down on paper
+G01 X233.3625 Y53.4458
+G0Z0 ; pen up
+G00 X97.3667 Y70.9083
+G0Z6 ; pen down on paper
+G01 X95.7792 Y75.6708
+G0Z0 ; pen up
+G00 X95.7792 Y75.6708
+G0Z6 ; pen down on paper
+G01 X97.3667 Y70.9083
+G0Z0 ; pen up
+G00 X104.7750 Y75.6708
+G0Z6 ; pen down on paper
+G01 X109.0083 Y75.6708
+G0Z0 ; pen up
+G00 X195.2625 Y48.6833
+G0Z6 ; pen down on paper
+G01 X191.0292 Y48.6833
+G0Z0 ; pen up
+G00 X4.2333 Y44.9792
+G0Z6 ; pen down on paper
+G01 X5.2917 Y48.6833
+G0Z0 ; pen up
+G00 X39.6875 Y66.1458
+G0Z6 ; pen down on paper
+G01 X40.2167 Y61.9125
+G0Z0 ; pen up
+G00 X115.8875 Y70.9083
+G0Z6 ; pen down on paper
+G01 X111.1250 Y70.9083
+G0Z0 ; pen up
+G00 X132.8208 Y70.9083
+G0Z6 ; pen down on paper
+G01 X128.0583 Y70.9083
+G0Z0 ; pen up
+G00 X87.3125 Y70.9083
+G0Z6 ; pen down on paper
+G01 X91.0167 Y70.9083
+G0Z0 ; pen up
+G00 X8.9958 Y44.9792
+G0Z6 ; pen down on paper
+G01 X8.9958 Y48.6833
+G0Z0 ; pen up
+G00 X134.9375 Y75.6708
+G0Z6 ; pen down on paper
+G01 X137.5833 Y70.9083
+G0Z0 ; pen up
+G00 X42.3333 Y48.6833
+G0Z6 ; pen down on paper
+G01 X43.3917 Y44.9792
+G0Z0 ; pen up
+G00 X30.1625 Y44.9792
+G0Z6 ; pen down on paper
+G01 X30.1625 Y48.6833
+G0Z0 ; pen up
+G00 X30.1625 Y44.9792
+G0Z6 ; pen down on paper
+G01 X26.4583 Y44.9792
+G0Z0 ; pen up
+G00 X34.3958 Y48.6833
+G0Z6 ; pen down on paper
+G01 X38.6292 Y48.6833
+G0Z0 ; pen up
+G00 X47.6250 Y44.9792
+G0Z6 ; pen down on paper
+G01 X43.3917 Y44.9792
+G0Z0 ; pen up
+G00 X17.4625 Y48.6833
+G0Z6 ; pen down on paper
+G01 X21.6958 Y48.6833
+G0Z0 ; pen up
+G00 X17.9917 Y44.9792
+G0Z6 ; pen down on paper
+G01 X13.7583 Y44.9792
+G0Z0 ; pen up
+G00 X26.4583 Y44.9792
+G0Z6 ; pen down on paper
+G01 X21.6958 Y44.9792
+G0Z0 ; pen up
+G00 X87.8417 Y48.6833
+G0Z6 ; pen down on paper
+G01 X89.9583 Y44.9792
+G0Z0 ; pen up
+G00 X79.3750 Y48.6833
+G0Z6 ; pen down on paper
+G01 X83.6083 Y48.6833
+G0Z0 ; pen up
+G00 X47.6250 Y44.9792
+G0Z6 ; pen down on paper
+G01 X47.0958 Y48.6833
+G0Z0 ; pen up
+G00 X98.9542 Y70.9083
+G0Z6 ; pen down on paper
+G01 X102.1292 Y66.1458
+G0Z0 ; pen up
+G00 X113.2417 Y75.6708
+G0Z6 ; pen down on paper
+G01 X117.4750 Y75.6708
+G0Z0 ; pen up
+G00 X91.5458 Y48.6833
+G0Z6 ; pen down on paper
+G01 X93.6625 Y44.9792
+G0Z0 ; pen up
+G00 X66.1458 Y44.9792
+G0Z6 ; pen down on paper
+G01 X64.0292 Y48.6833
+G0Z0 ; pen up
+G00 X93.6625 Y44.9792
+G0Z6 ; pen down on paper
+G01 X91.5458 Y48.6833
+G0Z0 ; pen up
+G00 X134.9375 Y75.6708
+G0Z6 ; pen down on paper
+G01 X138.6417 Y75.6708
+G0Z0 ; pen up
+G00 X69.8500 Y44.9792
+G0Z6 ; pen down on paper
+G01 X68.2625 Y48.6833
+G0Z0 ; pen up
+G00 X56.6208 Y44.9792
+G0Z6 ; pen down on paper
+G01 X51.8583 Y44.9792
+G0Z0 ; pen up
+G00 X104.2458 Y48.6833
+G0Z6 ; pen down on paper
+G01 X106.3625 Y44.9792
+G0Z0 ; pen up
+G00 X135.4667 Y70.9083
+G0Z6 ; pen down on paper
+G01 X139.1708 Y70.9083
+G0Z0 ; pen up
+G00 X110.5958 Y44.9792
+G0Z6 ; pen down on paper
+G01 X108.4792 Y48.6833
+G0Z0 ; pen up
+G00 X108.4792 Y48.6833
+G0Z6 ; pen down on paper
+G01 X110.5958 Y44.9792
+G0Z0 ; pen up
+G00 X142.3458 Y75.6708
+G0Z6 ; pen down on paper
+G01 X145.5208 Y70.9083
+G0Z0 ; pen up
+G00 X123.8250 Y70.9083
+G0Z6 ; pen down on paper
+G01 X121.7083 Y75.6708
+G0Z0 ; pen up
+G00 X121.7083 Y75.6708
+G0Z6 ; pen down on paper
+G01 X123.8250 Y70.9083
+G0Z0 ; pen up
+G00 X55.5625 Y48.6833
+G0Z6 ; pen down on paper
+G01 X59.2667 Y48.6833
+G0Z0 ; pen up
+G00 X171.4500 Y70.9083
+G0Z6 ; pen down on paper
+G01 X169.3333 Y75.6708
+G0Z0 ; pen up
+G00 X112.7125 Y70.9083
+G0Z6 ; pen down on paper
+G01 X113.7708 Y66.1458
+G0Z0 ; pen up
+G00 X103.1875 Y70.9083
+G0Z6 ; pen down on paper
+G01 X107.9500 Y70.9083
+G0Z0 ; pen up
+G00 X75.6708 Y48.6833
+G0Z6 ; pen down on paper
+G01 X79.3750 Y48.6833
+G0Z0 ; pen up
+G00 X100.0125 Y48.6833
+G0Z6 ; pen down on paper
+G01 X101.6000 Y44.9792
+G0Z0 ; pen up
+G00 X95.2500 Y70.9083
+G0Z6 ; pen down on paper
+G01 X97.8958 Y66.1458
+G0Z0 ; pen up
+G00 X98.9542 Y70.9083
+G0Z6 ; pen down on paper
+G01 X103.1875 Y70.9083
+G0Z0 ; pen up
+G00 X64.0292 Y48.6833
+G0Z6 ; pen down on paper
+G01 X66.1458 Y44.9792
+G0Z0 ; pen up
+G00 X150.2833 Y70.9083
+G0Z6 ; pen down on paper
+G01 X146.5792 Y75.6708
+G0Z0 ; pen up
+G00 X77.7875 Y44.9792
+G0Z6 ; pen down on paper
+G01 X74.0833 Y44.9792
+G0Z0 ; pen up
+G00 X139.1708 Y48.6833
+G0Z6 ; pen down on paper
+G01 X139.7000 Y44.9792
+G0Z0 ; pen up
+G00 X146.5792 Y75.6708
+G0Z6 ; pen down on paper
+G01 X150.2833 Y70.9083
+G0Z0 ; pen up
+G00 X143.9333 Y44.9792
+G0Z6 ; pen down on paper
+G01 X143.9333 Y48.6833
+G0Z0 ; pen up
+G00 X122.2375 Y44.9792
+G0Z6 ; pen down on paper
+G01 X118.0042 Y44.9792
+G0Z0 ; pen up
+G00 X155.0458 Y75.6708
+G0Z6 ; pen down on paper
+G01 X158.7500 Y70.9083
+G0Z0 ; pen up
+G00 X118.0042 Y44.9792
+G0Z6 ; pen down on paper
+G01 X114.3000 Y44.9792
+G0Z0 ; pen up
+G00 X158.7500 Y70.9083
+G0Z6 ; pen down on paper
+G01 X155.0458 Y75.6708
+G0Z0 ; pen up
+G00 X162.9833 Y70.9083
+G0Z6 ; pen down on paper
+G01 X159.8083 Y75.6708
+G0Z0 ; pen up
+G00 X135.4667 Y48.6833
+G0Z6 ; pen down on paper
+G01 X134.9375 Y44.9792
+G0Z0 ; pen up
+G00 X121.1792 Y70.9083
+G0Z6 ; pen down on paper
+G01 X125.9417 Y70.9083
+G0Z0 ; pen up
+G00 X141.2875 Y66.1458
+G0Z6 ; pen down on paper
+G01 X139.1708 Y70.9083
+G0Z0 ; pen up
+G00 X164.5708 Y75.6708
+G0Z6 ; pen down on paper
+G01 X169.3333 Y75.6708
+G0Z0 ; pen up
+G00 X125.9417 Y44.9792
+G0Z6 ; pen down on paper
+G01 X126.4708 Y48.6833
+G0Z0 ; pen up
+G00 X121.7083 Y48.6833
+G0Z6 ; pen down on paper
+G01 X126.4708 Y48.6833
+G0Z0 ; pen up
+G00 X143.9333 Y48.6833
+G0Z6 ; pen down on paper
+G01 X143.9333 Y44.9792
+G0Z0 ; pen up
+G00 X175.6833 Y70.9083
+G0Z6 ; pen down on paper
+G01 X174.0958 Y75.6708
+G0Z0 ; pen up
+G00 X169.3333 Y44.9792
+G0Z6 ; pen down on paper
+G01 X168.8042 Y48.6833
+G0Z0 ; pen up
+G00 X165.1000 Y48.6833
+G0Z6 ; pen down on paper
+G01 X168.8042 Y48.6833
+G0Z0 ; pen up
+G00 X183.0917 Y75.6708
+G0Z6 ; pen down on paper
+G01 X187.8542 Y75.6708
+G0Z0 ; pen up
+G00 X155.5750 Y48.6833
+G0Z6 ; pen down on paper
+G01 X156.6333 Y44.9792
+G0Z0 ; pen up
+G00 X112.7125 Y70.9083
+G0Z6 ; pen down on paper
+G01 X116.9458 Y70.9083
+G0Z0 ; pen up
+G00 X118.5333 Y66.1458
+G0Z6 ; pen down on paper
+G01 X116.9458 Y70.9083
+G0Z0 ; pen up
+G00 X193.1458 Y70.9083
+G0Z6 ; pen down on paper
+G01 X192.0875 Y75.6708
+G0Z0 ; pen up
+G00 X183.0917 Y75.6708
+G0Z6 ; pen down on paper
+G01 X184.1500 Y70.9083
+G0Z0 ; pen up
+G00 X187.8542 Y75.6708
+G0Z6 ; pen down on paper
+G01 X192.0875 Y75.6708
+G0Z0 ; pen up
+G00 X181.5042 Y44.9792
+G0Z6 ; pen down on paper
+G01 X177.8000 Y44.9792
+G0Z0 ; pen up
+G00 X214.8417 Y75.6708
+G0Z6 ; pen down on paper
+G01 X213.2542 Y70.9083
+G0Z0 ; pen up
+G00 X205.8458 Y75.6708
+G0Z6 ; pen down on paper
+G01 X210.0792 Y75.6708
+G0Z0 ; pen up
+G00 X201.6125 Y75.6708
+G0Z6 ; pen down on paper
+G01 X205.8458 Y75.6708
+G0Z0 ; pen up
+G00 X201.0833 Y70.9083
+G0Z6 ; pen down on paper
+G01 X196.8500 Y70.9083
+G0Z0 ; pen up
+G00 X7.9375 Y70.9083
+G0Z6 ; pen down on paper
+G01 X10.0542 Y66.1458
+G0Z0 ; pen up
+G00 X173.0375 Y48.6833
+G0Z6 ; pen down on paper
+G01 X177.8000 Y48.6833
+G0Z0 ; pen up
+G00 X237.5958 Y75.6708
+G0Z6 ; pen down on paper
+G01 X237.5958 Y70.9083
+G0Z0 ; pen up
+G00 X151.8708 Y48.6833
+G0Z6 ; pen down on paper
+G01 X152.4000 Y44.9792
+G0Z0 ; pen up
+G00 X160.8667 Y44.9792
+G0Z6 ; pen down on paper
+G01 X156.6333 Y44.9792
+G0Z0 ; pen up
+G00 X4.2333 Y70.9083
+G0Z6 ; pen down on paper
+G01 X5.2917 Y66.1458
+G0Z0 ; pen up
+G00 X160.3375 Y48.6833
+G0Z6 ; pen down on paper
+G01 X165.1000 Y48.6833
+G0Z0 ; pen up
+G00 X229.6583 Y70.9083
+G0Z6 ; pen down on paper
+G01 X225.4250 Y70.9083
+G0Z0 ; pen up
+G00 X213.2542 Y70.9083
+G0Z6 ; pen down on paper
+G01 X214.8417 Y75.6708
+G0Z0 ; pen up
+G00 X219.0750 Y75.6708
+G0Z6 ; pen down on paper
+G01 X223.3083 Y75.6708
+G0Z0 ; pen up
+G00 X229.6583 Y70.9083
+G0Z6 ; pen down on paper
+G01 X232.8333 Y75.6708
+G0Z0 ; pen up
+G00 X223.3083 Y75.6708
+G0Z6 ; pen down on paper
+G01 X228.0708 Y75.6708
+G0Z0 ; pen up
+G00 X186.2667 Y48.6833
+G0Z6 ; pen down on paper
+G01 X189.9708 Y48.6833
+G0Z0 ; pen up
+G00 X157.1625 Y35.9833
+G0Z6 ; pen down on paper
+G01 X155.5750 Y32.2792
+G0Z0 ; pen up
+G00 X181.5042 Y44.9792
+G0Z6 ; pen down on paper
+G01 X182.0333 Y48.6833
+G0Z0 ; pen up
+G00 X15.3458 Y35.9833
+G0Z6 ; pen down on paper
+G01 X16.9333 Y32.2792
+G0Z0 ; pen up
+G00 X194.7333 Y48.6833
+G0Z6 ; pen down on paper
+G01 X195.2625 Y44.9792
+G0Z0 ; pen up
+G00 X198.4375 Y48.6833
+G0Z6 ; pen down on paper
+G01 X198.9667 Y44.9792
+G0Z0 ; pen up
+G00 X20.6375 Y32.2792
+G0Z6 ; pen down on paper
+G01 X16.9333 Y32.2792
+G0Z0 ; pen up
+G00 X153.4583 Y35.9833
+G0Z6 ; pen down on paper
+G01 X151.3417 Y32.2792
+G0Z0 ; pen up
+G00 X211.1375 Y48.6833
+G0Z6 ; pen down on paper
+G01 X210.6083 Y44.9792
+G0Z0 ; pen up
+G00 X145.5208 Y35.9833
+G0Z6 ; pen down on paper
+G01 X149.2250 Y35.9833
+G0Z0 ; pen up
+G00 X206.3750 Y44.9792
+G0Z6 ; pen down on paper
+G01 X202.6708 Y44.9792
+G0Z0 ; pen up
+G00 X211.1375 Y48.6833
+G0Z6 ; pen down on paper
+G01 X215.9000 Y48.6833
+G0Z0 ; pen up
+G00 X160.3375 Y32.2792
+G0Z6 ; pen down on paper
+G01 X155.5750 Y32.2792
+G0Z0 ; pen up
+G00 X198.9667 Y44.9792
+G0Z6 ; pen down on paper
+G01 X198.4375 Y48.6833
+G0Z0 ; pen up
+G00 X219.0750 Y44.9792
+G0Z6 ; pen down on paper
+G01 X215.3708 Y44.9792
+G0Z0 ; pen up
+G00 X224.8958 Y48.6833
+G0Z6 ; pen down on paper
+G01 X222.7792 Y44.9792
+G0Z0 ; pen up
+G00 X237.5958 Y48.6833
+G0Z6 ; pen down on paper
+G01 X237.5958 Y44.9792
+G0Z0 ; pen up
+G00 X0.5292 Y44.9792
+G0Z6 ; pen down on paper
+G01 X5.2917 Y44.9792
+G0Z0 ; pen up
+G00 X7.9375 Y40.7458
+G0Z6 ; pen down on paper
+G01 X4.2333 Y40.7458
+G0Z0 ; pen up
+G00 X9.5250 Y44.9792
+G0Z6 ; pen down on paper
+G01 X14.2875 Y44.9792
+G0Z0 ; pen up
+G00 X25.4000 Y32.2792
+G0Z6 ; pen down on paper
+G01 X20.6375 Y32.2792
+G0Z0 ; pen up
+G00 X228.6000 Y48.6833
+G0Z6 ; pen down on paper
+G01 X227.5417 Y44.9792
+G0Z0 ; pen up
+G00 X172.5083 Y35.9833
+G0Z6 ; pen down on paper
+G01 X173.5667 Y32.2792
+G0Z0 ; pen up
+G00 X169.3333 Y32.2792
+G0Z6 ; pen down on paper
+G01 X164.5708 Y32.2792
+G0Z0 ; pen up
+G00 X30.1625 Y32.2792
+G0Z6 ; pen down on paper
+G01 X25.4000 Y32.2792
+G0Z0 ; pen up
+G00 X232.3042 Y44.9792
+G0Z6 ; pen down on paper
+G01 X227.5417 Y44.9792
+G0Z0 ; pen up
+G00 X30.6917 Y44.9792
+G0Z6 ; pen down on paper
+G01 X28.5750 Y40.7458
+G0Z0 ; pen up
+G00 X40.7458 Y35.9833
+G0Z6 ; pen down on paper
+G01 X44.9792 Y35.9833
+G0Z0 ; pen up
+G00 X33.8667 Y32.2792
+G0Z6 ; pen down on paper
+G01 X32.8083 Y35.9833
+G0Z0 ; pen up
+G00 X177.2708 Y32.2792
+G0Z6 ; pen down on paper
+G01 X173.5667 Y32.2792
+G0Z0 ; pen up
+G00 X12.1708 Y40.7458
+G0Z6 ; pen down on paper
+G01 X14.2875 Y44.9792
+G0Z0 ; pen up
+G00 X18.5208 Y44.9792
+G0Z6 ; pen down on paper
+G01 X22.2250 Y44.9792
+G0Z0 ; pen up
+G00 X24.3417 Y40.7458
+G0Z6 ; pen down on paper
+G01 X20.6375 Y40.7458
+G0Z0 ; pen up
+G00 X40.7458 Y35.9833
+G0Z6 ; pen down on paper
+G01 X41.2750 Y32.2792
+G0Z0 ; pen up
+G00 X42.8625 Y44.9792
+G0Z6 ; pen down on paper
+G01 X47.6250 Y44.9792
+G0Z0 ; pen up
+G00 X34.3958 Y44.9792
+G0Z6 ; pen down on paper
+G01 X39.1583 Y44.9792
+G0Z0 ; pen up
+G00 X28.5750 Y40.7458
+G0Z6 ; pen down on paper
+G01 X30.6917 Y44.9792
+G0Z0 ; pen up
+G00 X33.8667 Y32.2792
+G0Z6 ; pen down on paper
+G01 X30.1625 Y32.2792
+G0Z0 ; pen up
+G00 X39.1583 Y44.9792
+G0Z6 ; pen down on paper
+G01 X42.8625 Y44.9792
+G0Z0 ; pen up
+G00 X56.0917 Y44.9792
+G0Z6 ; pen down on paper
+G01 X59.7958 Y44.9792
+G0Z0 ; pen up
+G00 X77.2583 Y40.7458
+G0Z6 ; pen down on paper
+G01 X73.5542 Y40.7458
+G0Z0 ; pen up
+G00 X58.2083 Y35.9833
+G0Z6 ; pen down on paper
+G01 X58.7375 Y32.2792
+G0Z0 ; pen up
+G00 X49.2125 Y40.7458
+G0Z6 ; pen down on paper
+G01 X51.3292 Y44.9792
+G0Z0 ; pen up
+G00 X45.5083 Y40.7458
+G0Z6 ; pen down on paper
+G01 X47.6250 Y44.9792
+G0Z0 ; pen up
+G00 X61.9125 Y40.7458
+G0Z6 ; pen down on paper
+G01 X58.2083 Y40.7458
+G0Z0 ; pen up
+G00 X164.5708 Y35.9833
+G0Z6 ; pen down on paper
+G01 X164.5708 Y32.2792
+G0Z0 ; pen up
+G00 X53.9750 Y35.9833
+G0Z6 ; pen down on paper
+G01 X53.9750 Y32.2792
+G0Z0 ; pen up
+G00 X67.7333 Y44.9792
+G0Z6 ; pen down on paper
+G01 X72.4958 Y44.9792
+G0Z0 ; pen up
+G00 X61.9125 Y40.7458
+G0Z6 ; pen down on paper
+G01 X64.0292 Y44.9792
+G0Z0 ; pen up
+G00 X184.6792 Y32.2792
+G0Z6 ; pen down on paper
+G01 X185.2083 Y35.9833
+G0Z0 ; pen up
+G00 X177.2708 Y32.2792
+G0Z6 ; pen down on paper
+G01 X176.7417 Y35.9833
+G0Z0 ; pen up
+G00 X73.5542 Y40.7458
+G0Z6 ; pen down on paper
+G01 X69.3208 Y40.7458
+G0Z0 ; pen up
+G00 X80.9625 Y40.7458
+G0Z6 ; pen down on paper
+G01 X85.7250 Y44.9792
+G0Z0 ; pen up
+G00 X80.9625 Y40.7458
+G0Z6 ; pen down on paper
+G01 X77.2583 Y40.7458
+G0Z0 ; pen up
+G00 X95.2500 Y44.9792
+G0Z6 ; pen down on paper
+G01 X88.9000 Y40.7458
+G0Z0 ; pen up
+G00 X62.9708 Y32.2792
+G0Z6 ; pen down on paper
+G01 X58.7375 Y32.2792
+G0Z0 ; pen up
+G00 X180.9750 Y32.2792
+G0Z6 ; pen down on paper
+G01 X180.4458 Y35.9833
+G0Z0 ; pen up
+G00 X45.5083 Y32.2792
+G0Z6 ; pen down on paper
+G01 X44.9792 Y35.9833
+G0Z0 ; pen up
+G00 X99.4833 Y44.9792
+G0Z6 ; pen down on paper
+G01 X92.6042 Y40.7458
+G0Z0 ; pen up
+G00 X113.2417 Y44.9792
+G0Z6 ; pen down on paper
+G01 X105.3042 Y40.7458
+G0Z0 ; pen up
+G00 X70.9083 Y32.2792
+G0Z6 ; pen down on paper
+G01 X70.3792 Y35.9833
+G0Z0 ; pen up
+G00 X92.6042 Y40.7458
+G0Z6 ; pen down on paper
+G01 X99.4833 Y44.9792
+G0Z0 ; pen up
+G00 X66.6750 Y35.9833
+G0Z6 ; pen down on paper
+G01 X70.3792 Y35.9833
+G0Z0 ; pen up
+G00 X118.0042 Y44.9792
+G0Z6 ; pen down on paper
+G01 X109.0083 Y40.7458
+G0Z0 ; pen up
+G00 X101.0708 Y40.7458
+G0Z6 ; pen down on paper
+G01 X96.8375 Y40.7458
+G0Z0 ; pen up
+G00 X130.1750 Y44.9792
+G0Z6 ; pen down on paper
+G01 X133.8792 Y44.9792
+G0Z0 ; pen up
+G00 X118.0042 Y44.9792
+G0Z6 ; pen down on paper
+G01 X122.2375 Y44.9792
+G0Z0 ; pen up
+G00 X113.2417 Y40.7458
+G0Z6 ; pen down on paper
+G01 X122.2375 Y44.9792
+G0Z0 ; pen up
+G00 X192.0875 Y32.2792
+G0Z6 ; pen down on paper
+G01 X188.3833 Y32.2792
+G0Z0 ; pen up
+G00 X79.3750 Y32.2792
+G0Z6 ; pen down on paper
+G01 X74.6125 Y32.2792
+G0Z0 ; pen up
+G00 X126.4708 Y44.9792
+G0Z6 ; pen down on paper
+G01 X130.1750 Y44.9792
+G0Z0 ; pen up
+G00 X205.8458 Y32.2792
+G0Z6 ; pen down on paper
+G01 X201.0833 Y32.2792
+G0Z0 ; pen up
+G00 X137.5833 Y44.9792
+G0Z6 ; pen down on paper
+G01 X129.1167 Y40.7458
+G0Z0 ; pen up
+G00 X129.1167 Y40.7458
+G0Z6 ; pen down on paper
+G01 X137.5833 Y44.9792
+G0Z0 ; pen up
+G00 X141.2875 Y44.9792
+G0Z6 ; pen down on paper
+G01 X144.9917 Y44.9792
+G0Z0 ; pen up
+G00 X66.6750 Y32.2792
+G0Z6 ; pen down on paper
+G01 X62.9708 Y32.2792
+G0Z0 ; pen up
+G00 X149.2250 Y44.9792
+G0Z6 ; pen down on paper
+G01 X140.7583 Y40.7458
+G0Z0 ; pen up
+G00 X196.3208 Y32.2792
+G0Z6 ; pen down on paper
+G01 X192.0875 Y32.2792
+G0Z0 ; pen up
+G00 X210.0792 Y35.9833
+G0Z6 ; pen down on paper
+G01 X210.0792 Y32.2792
+G0Z0 ; pen up
+G00 X197.9083 Y35.9833
+G0Z6 ; pen down on paper
+G01 X201.6125 Y35.9833
+G0Z0 ; pen up
+G00 X157.6917 Y44.9792
+G0Z6 ; pen down on paper
+G01 X161.9250 Y44.9792
+G0Z0 ; pen up
+G00 X214.3125 Y32.2792
+G0Z6 ; pen down on paper
+G01 X214.8417 Y35.9833
+G0Z0 ; pen up
+G00 X214.3125 Y32.2792
+G0Z6 ; pen down on paper
+G01 X210.0792 Y32.2792
+G0Z0 ; pen up
+G00 X218.0167 Y32.2792
+G0Z6 ; pen down on paper
+G01 X219.6042 Y35.9833
+G0Z0 ; pen up
+G00 X115.3583 Y32.2792
+G0Z6 ; pen down on paper
+G01 X111.1250 Y32.2792
+G0Z0 ; pen up
+G00 X222.7792 Y32.2792
+G0Z6 ; pen down on paper
+G01 X224.3667 Y35.9833
+G0Z0 ; pen up
+G00 X140.7583 Y40.7458
+G0Z6 ; pen down on paper
+G01 X149.2250 Y44.9792
+G0Z0 ; pen up
+G00 X86.7833 Y35.9833
+G0Z6 ; pen down on paper
+G01 X87.3125 Y32.2792
+G0Z0 ; pen up
+G00 X230.7167 Y32.2792
+G0Z6 ; pen down on paper
+G01 X232.3042 Y35.9833
+G0Z0 ; pen up
+G00 X107.4208 Y32.2792
+G0Z6 ; pen down on paper
+G01 X103.1875 Y32.2792
+G0Z0 ; pen up
+G00 X120.1208 Y32.2792
+G0Z6 ; pen down on paper
+G01 X120.1208 Y35.9833
+G0Z0 ; pen up
+G00 X149.7542 Y40.7458
+G0Z6 ; pen down on paper
+G01 X144.9917 Y40.7458
+G0Z0 ; pen up
+G00 X161.9250 Y44.9792
+G0Z6 ; pen down on paper
+G01 X166.6875 Y44.9792
+G0Z0 ; pen up
+G00 X103.1875 Y32.2792
+G0Z6 ; pen down on paper
+G01 X99.4833 Y32.2792
+G0Z0 ; pen up
+G00 X232.3042 Y35.9833
+G0Z6 ; pen down on paper
+G01 X230.7167 Y32.2792
+G0Z0 ; pen up
+G00 X179.9167 Y44.9792
+G0Z6 ; pen down on paper
+G01 X170.3917 Y40.7458
+G0Z0 ; pen up
+G00 X234.9500 Y32.2792
+G0Z6 ; pen down on paper
+G01 X236.0083 Y35.9833
+G0Z0 ; pen up
+G00 X4.2333 Y32.2792
+G0Z6 ; pen down on paper
+G01 X4.2333 Y28.5750
+G0Z0 ; pen up
+G00 X38.1000 Y32.2792
+G0Z6 ; pen down on paper
+G01 X36.5125 Y28.5750
+G0Z0 ; pen up
+G00 X175.6833 Y44.9792
+G0Z6 ; pen down on paper
+G01 X166.6875 Y40.7458
+G0Z0 ; pen up
+G00 X128.5875 Y35.9833
+G0Z6 ; pen down on paper
+G01 X127.5292 Y32.2792
+G0Z0 ; pen up
+G00 X116.4167 Y35.9833
+G0Z6 ; pen down on paper
+G01 X120.1208 Y35.9833
+G0Z0 ; pen up
+G00 X170.9208 Y44.9792
+G0Z6 ; pen down on paper
+G01 X161.9250 Y40.7458
+G0Z0 ; pen up
+G00 X8.9958 Y32.2792
+G0Z6 ; pen down on paper
+G01 X12.7000 Y32.2792
+G0Z0 ; pen up
+G00 X179.9167 Y44.9792
+G0Z6 ; pen down on paper
+G01 X183.6208 Y44.9792
+G0Z0 ; pen up
+G00 X203.2000 Y44.9792
+G0Z6 ; pen down on paper
+G01 X206.9042 Y44.9792
+G0Z0 ; pen up
+G00 X4.2333 Y28.5750
+G0Z6 ; pen down on paper
+G01 X4.2333 Y32.2792
+G0Z0 ; pen up
+G00 X83.0792 Y32.2792
+G0Z6 ; pen down on paper
+G01 X79.3750 Y32.2792
+G0Z0 ; pen up
+G00 X197.3792 Y40.7458
+G0Z6 ; pen down on paper
+G01 X192.6167 Y40.7458
+G0Z0 ; pen up
+G00 X183.0917 Y40.7458
+G0Z6 ; pen down on paper
+G01 X191.0292 Y44.9792
+G0Z0 ; pen up
+G00 X29.6333 Y32.2792
+G0Z6 ; pen down on paper
+G01 X29.1042 Y28.5750
+G0Z0 ; pen up
+G00 X145.5208 Y35.9833
+G0Z6 ; pen down on paper
+G01 X143.9333 Y32.2792
+G0Z0 ; pen up
+G00 X191.0292 Y44.9792
+G0Z6 ; pen down on paper
+G01 X183.0917 Y40.7458
+G0Z0 ; pen up
+G00 X29.1042 Y28.5750
+G0Z6 ; pen down on paper
+G01 X29.6333 Y32.2792
+G0Z0 ; pen up
+G00 X175.1542 Y40.7458
+G0Z6 ; pen down on paper
+G01 X183.6208 Y44.9792
+G0Z0 ; pen up
+G00 X99.4833 Y32.2792
+G0Z6 ; pen down on paper
+G01 X95.7792 Y32.2792
+G0Z0 ; pen up
+G00 X192.6167 Y40.7458
+G0Z6 ; pen down on paper
+G01 X187.8542 Y40.7458
+G0Z0 ; pen up
+G00 X132.2917 Y35.9833
+G0Z6 ; pen down on paper
+G01 X131.7625 Y32.2792
+G0Z0 ; pen up
+G00 X202.1417 Y40.7458
+G0Z6 ; pen down on paper
+G01 X206.9042 Y44.9792
+G0Z0 ; pen up
+G00 X216.4292 Y44.9792
+G0Z6 ; pen down on paper
+G01 X209.5500 Y40.7458
+G0Z0 ; pen up
+G00 X221.7208 Y40.7458
+G0Z6 ; pen down on paper
+G01 X218.0167 Y40.7458
+G0Z0 ; pen up
+G00 X86.7833 Y35.9833
+G0Z6 ; pen down on paper
+G01 X91.0167 Y35.9833
+G0Z0 ; pen up
+G00 X22.2250 Y32.2792
+G0Z6 ; pen down on paper
+G01 X25.9292 Y32.2792
+G0Z0 ; pen up
+G00 X221.1917 Y44.9792
+G0Z6 ; pen down on paper
+G01 X213.7833 Y40.7458
+G0Z0 ; pen up
+G00 X94.7208 Y35.9833
+G0Z6 ; pen down on paper
+G01 X95.7792 Y32.2792
+G0Z0 ; pen up
+G00 X107.9500 Y35.9833
+G0Z6 ; pen down on paper
+G01 X112.7125 Y35.9833
+G0Z0 ; pen up
+G00 X135.4667 Y32.2792
+G0Z6 ; pen down on paper
+G01 X131.7625 Y32.2792
+G0Z0 ; pen up
+G00 X20.6375 Y28.5750
+G0Z6 ; pen down on paper
+G01 X15.8750 Y28.5750
+G0Z0 ; pen up
+G00 X14.8167 Y35.9833
+G0Z6 ; pen down on paper
+G01 X13.7583 Y40.7458
+G0Z0 ; pen up
+G00 X22.2250 Y35.9833
+G0Z6 ; pen down on paper
+G01 X21.1667 Y40.7458
+G0Z0 ; pen up
+G00 X218.0167 Y40.7458
+G0Z6 ; pen down on paper
+G01 X213.7833 Y40.7458
+G0Z0 ; pen up
+G00 X17.4625 Y40.7458
+G0Z6 ; pen down on paper
+G01 X21.1667 Y40.7458
+G0Z0 ; pen up
+G00 X229.6583 Y44.9792
+G0Z6 ; pen down on paper
+G01 X234.4208 Y44.9792
+G0Z0 ; pen up
+G00 X25.4000 Y40.7458
+G0Z6 ; pen down on paper
+G01 X29.6333 Y40.7458
+G0Z0 ; pen up
+G00 X43.3917 Y35.9833
+G0Z6 ; pen down on paper
+G01 X39.6875 Y35.9833
+G0Z0 ; pen up
+G00 X11.6417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X12.7000 Y32.2792
+G0Z0 ; pen up
+G00 X137.0542 Y35.9833
+G0Z6 ; pen down on paper
+G01 X140.7583 Y35.9833
+G0Z0 ; pen up
+G00 X237.5958 Y40.7458
+G0Z6 ; pen down on paper
+G01 X225.9542 Y40.7458
+G0Z0 ; pen up
+G00 X42.8625 Y40.7458
+G0Z6 ; pen down on paper
+G01 X47.6250 Y40.7458
+G0Z0 ; pen up
+G00 X0.5292 Y35.9833
+G0Z6 ; pen down on paper
+G01 X0.5292 Y40.7458
+G0Z0 ; pen up
+G00 X8.9958 Y40.7458
+G0Z6 ; pen down on paper
+G01 X10.0542 Y35.9833
+G0Z0 ; pen up
+G00 X53.9750 Y28.5750
+G0Z6 ; pen down on paper
+G01 X49.2125 Y28.5750
+G0Z0 ; pen up
+G00 X44.4500 Y28.5750
+G0Z6 ; pen down on paper
+G01 X40.2167 Y28.5750
+G0Z0 ; pen up
+G00 X13.7583 Y40.7458
+G0Z6 ; pen down on paper
+G01 X14.8167 Y35.9833
+G0Z0 ; pen up
+G00 X34.3958 Y40.7458
+G0Z6 ; pen down on paper
+G01 X35.9833 Y35.9833
+G0Z0 ; pen up
+G00 X39.1583 Y40.7458
+G0Z6 ; pen down on paper
+G01 X39.6875 Y35.9833
+G0Z0 ; pen up
+G00 X104.2458 Y35.9833
+G0Z6 ; pen down on paper
+G01 X104.7750 Y40.7458
+G0Z0 ; pen up
+G00 X40.2167 Y28.5750
+G0Z6 ; pen down on paper
+G01 X36.5125 Y28.5750
+G0Z0 ; pen up
+G00 X87.8417 Y40.7458
+G0Z6 ; pen down on paper
+G01 X91.5458 Y40.7458
+G0Z0 ; pen up
+G00 X49.2125 Y28.5750
+G0Z6 ; pen down on paper
+G01 X44.4500 Y28.5750
+G0Z0 ; pen up
+G00 X53.9750 Y28.5750
+G0Z6 ; pen down on paper
+G01 X56.0917 Y32.2792
+G0Z0 ; pen up
+G00 X115.3583 Y35.9833
+G0Z6 ; pen down on paper
+G01 X111.6542 Y35.9833
+G0Z0 ; pen up
+G00 X104.7750 Y40.7458
+G0Z6 ; pen down on paper
+G01 X104.2458 Y35.9833
+G0Z0 ; pen up
+G00 X109.5375 Y40.7458
+G0Z6 ; pen down on paper
+G01 X113.7708 Y40.7458
+G0Z0 ; pen up
+G00 X52.9167 Y35.9833
+G0Z6 ; pen down on paper
+G01 X48.1542 Y35.9833
+G0Z0 ; pen up
+G00 X82.5500 Y35.9833
+G0Z6 ; pen down on paper
+G01 X83.6083 Y40.7458
+G0Z0 ; pen up
+G00 X62.4417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X63.5000 Y32.2792
+G0Z0 ; pen up
+G00 X66.1458 Y40.7458
+G0Z6 ; pen down on paper
+G01 X70.9083 Y40.7458
+G0Z0 ; pen up
+G00 X57.1500 Y35.9833
+G0Z6 ; pen down on paper
+G01 X57.1500 Y40.7458
+G0Z0 ; pen up
+G00 X63.5000 Y32.2792
+G0Z6 ; pen down on paper
+G01 X62.4417 Y28.5750
+G0Z0 ; pen up
+G00 X67.2042 Y28.5750
+G0Z6 ; pen down on paper
+G01 X68.2625 Y32.2792
+G0Z0 ; pen up
+G00 X88.3708 Y28.5750
+G0Z6 ; pen down on paper
+G01 X90.4875 Y32.2792
+G0Z0 ; pen up
+G00 X94.1917 Y32.2792
+G0Z6 ; pen down on paper
+G01 X98.9542 Y32.2792
+G0Z0 ; pen up
+G00 X57.1500 Y40.7458
+G0Z6 ; pen down on paper
+G01 X57.1500 Y35.9833
+G0Z0 ; pen up
+G00 X95.2500 Y35.9833
+G0Z6 ; pen down on paper
+G01 X90.4875 Y35.9833
+G0Z0 ; pen up
+G00 X75.6708 Y40.7458
+G0Z6 ; pen down on paper
+G01 X74.0833 Y35.9833
+G0Z0 ; pen up
+G00 X85.7250 Y32.2792
+G0Z6 ; pen down on paper
+G01 X83.6083 Y28.5750
+G0Z0 ; pen up
+G00 X61.3833 Y40.7458
+G0Z6 ; pen down on paper
+G01 X66.1458 Y40.7458
+G0Z0 ; pen up
+G00 X70.9083 Y28.5750
+G0Z6 ; pen down on paper
+G01 X71.9667 Y32.2792
+G0Z0 ; pen up
+G00 X100.0125 Y40.7458
+G0Z6 ; pen down on paper
+G01 X100.0125 Y35.9833
+G0Z0 ; pen up
+G00 X79.3750 Y40.7458
+G0Z6 ; pen down on paper
+G01 X78.8458 Y35.9833
+G0Z0 ; pen up
+G00 X82.5500 Y35.9833
+G0Z6 ; pen down on paper
+G01 X78.8458 Y35.9833
+G0Z0 ; pen up
+G00 X225.9542 Y40.7458
+G0Z6 ; pen down on paper
+G01 X229.6583 Y40.7458
+G0Z0 ; pen up
+G00 X100.5417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X102.6583 Y32.2792
+G0Z0 ; pen up
+G00 X98.9542 Y32.2792
+G0Z6 ; pen down on paper
+G01 X102.6583 Y32.2792
+G0Z0 ; pen up
+G00 X193.1458 Y35.9833
+G0Z6 ; pen down on paper
+G01 X196.3208 Y40.7458
+G0Z0 ; pen up
+G00 X224.8958 Y35.9833
+G0Z6 ; pen down on paper
+G01 X229.6583 Y40.7458
+G0Z0 ; pen up
+G00 X88.3708 Y28.5750
+G0Z6 ; pen down on paper
+G01 X83.6083 Y28.5750
+G0Z0 ; pen up
+G00 X138.1125 Y35.9833
+G0Z6 ; pen down on paper
+G01 X142.3458 Y40.7458
+G0Z0 ; pen up
+G00 X75.6708 Y28.5750
+G0Z6 ; pen down on paper
+G01 X76.2000 Y32.2792
+G0Z0 ; pen up
+G00 X225.9542 Y40.7458
+G0Z6 ; pen down on paper
+G01 X220.1333 Y35.9833
+G0Z0 ; pen up
+G00 X119.0625 Y35.9833
+G0Z6 ; pen down on paper
+G01 X121.7083 Y40.7458
+G0Z0 ; pen up
+G00 X138.6417 Y40.7458
+G0Z6 ; pen down on paper
+G01 X142.3458 Y40.7458
+G0Z0 ; pen up
+G00 X148.1667 Y32.2792
+G0Z6 ; pen down on paper
+G01 X144.9917 Y28.5750
+G0Z0 ; pen up
+G00 X188.3833 Y35.9833
+G0Z6 ; pen down on paper
+G01 X184.1500 Y35.9833
+G0Z0 ; pen up
+G00 X118.0042 Y40.7458
+G0Z6 ; pen down on paper
+G01 X121.7083 Y40.7458
+G0Z0 ; pen up
+G00 X135.4667 Y32.2792
+G0Z6 ; pen down on paper
+G01 X139.7000 Y32.2792
+G0Z0 ; pen up
+G00 X148.1667 Y32.2792
+G0Z6 ; pen down on paper
+G01 X152.4000 Y32.2792
+G0Z0 ; pen up
+G00 X134.4083 Y35.9833
+G0Z6 ; pen down on paper
+G01 X130.1750 Y35.9833
+G0Z0 ; pen up
+G00 X144.4625 Y32.2792
+G0Z6 ; pen down on paper
+G01 X141.2875 Y28.5750
+G0Z0 ; pen up
+G00 X184.1500 Y40.7458
+G0Z6 ; pen down on paper
+G01 X188.3833 Y40.7458
+G0Z0 ; pen up
+G00 X165.6292 Y32.2792
+G0Z6 ; pen down on paper
+G01 X160.3375 Y28.5750
+G0Z0 ; pen up
+G00 X142.8750 Y35.9833
+G0Z6 ; pen down on paper
+G01 X146.0500 Y40.7458
+G0Z0 ; pen up
+G00 X130.1750 Y35.9833
+G0Z6 ; pen down on paper
+G01 X126.4708 Y35.9833
+G0Z0 ; pen up
+G00 X112.7125 Y28.5750
+G0Z6 ; pen down on paper
+G01 X109.0083 Y28.5750
+G0Z0 ; pen up
+G00 X222.2500 Y40.7458
+G0Z6 ; pen down on paper
+G01 X216.4292 Y35.9833
+G0Z0 ; pen up
+G00 X165.6292 Y32.2792
+G0Z6 ; pen down on paper
+G01 X170.3917 Y32.2792
+G0Z0 ; pen up
+G00 X122.7667 Y35.9833
+G0Z6 ; pen down on paper
+G01 X125.9417 Y40.7458
+G0Z0 ; pen up
+G00 X131.2333 Y32.2792
+G0Z6 ; pen down on paper
+G01 X135.4667 Y32.2792
+G0Z0 ; pen up
+G00 X4.2333 Y35.9833
+G0Z6 ; pen down on paper
+G01 X7.9375 Y35.9833
+G0Z0 ; pen up
+G00 X124.8833 Y28.5750
+G0Z6 ; pen down on paper
+G01 X127.5292 Y32.2792
+G0Z0 ; pen up
+G00 X109.0083 Y28.5750
+G0Z6 ; pen down on paper
+G01 X104.2458 Y28.5750
+G0Z0 ; pen up
+G00 X196.3208 Y40.7458
+G0Z6 ; pen down on paper
+G01 X193.1458 Y35.9833
+G0Z0 ; pen up
+G00 X119.0625 Y32.2792
+G0Z6 ; pen down on paper
+G01 X116.4167 Y28.5750
+G0Z0 ; pen up
+G00 X175.6833 Y40.7458
+G0Z6 ; pen down on paper
+G01 X180.4458 Y40.7458
+G0Z0 ; pen up
+G00 X163.5125 Y35.9833
+G0Z6 ; pen down on paper
+G01 X167.2167 Y40.7458
+G0Z0 ; pen up
+G00 X150.2833 Y40.7458
+G0Z6 ; pen down on paper
+G01 X154.5167 Y40.7458
+G0Z0 ; pen up
+G00 X152.4000 Y32.2792
+G0Z6 ; pen down on paper
+G01 X157.1625 Y32.2792
+G0Z0 ; pen up
+G00 X152.9292 Y28.5750
+G0Z6 ; pen down on paper
+G01 X157.1625 Y32.2792
+G0Z0 ; pen up
+G00 X116.4167 Y28.5750
+G0Z6 ; pen down on paper
+G01 X119.0625 Y32.2792
+G0Z0 ; pen up
+G00 X209.0208 Y35.9833
+G0Z6 ; pen down on paper
+G01 X205.3167 Y35.9833
+G0Z0 ; pen up
+G00 X171.9792 Y35.9833
+G0Z6 ; pen down on paper
+G01 X167.2167 Y35.9833
+G0Z0 ; pen up
+G00 X200.5542 Y35.9833
+G0Z6 ; pen down on paper
+G01 X196.8500 Y35.9833
+G0Z0 ; pen up
+G00 X123.8250 Y32.2792
+G0Z6 ; pen down on paper
+G01 X127.5292 Y32.2792
+G0Z0 ; pen up
+G00 X174.6250 Y32.2792
+G0Z6 ; pen down on paper
+G01 X168.8042 Y28.5750
+G0Z0 ; pen up
+G00 X4.7625 Y28.5750
+G0Z6 ; pen down on paper
+G01 X8.4667 Y28.5750
+G0Z0 ; pen up
+G00 X180.9750 Y28.5750
+G0Z6 ; pen down on paper
+G01 X187.3250 Y32.2792
+G0Z0 ; pen up
+G00 X184.1500 Y40.7458
+G0Z6 ; pen down on paper
+G01 X179.3875 Y35.9833
+G0Z0 ; pen up
+G00 X183.0917 Y32.2792
+G0Z6 ; pen down on paper
+G01 X176.7417 Y28.5750
+G0Z0 ; pen up
+G00 X155.0458 Y35.9833
+G0Z6 ; pen down on paper
+G01 X150.8125 Y35.9833
+G0Z0 ; pen up
+G00 X155.0458 Y35.9833
+G0Z6 ; pen down on paper
+G01 X159.2792 Y40.7458
+G0Z0 ; pen up
+G00 X163.5125 Y35.9833
+G0Z6 ; pen down on paper
+G01 X158.7500 Y35.9833
+G0Z0 ; pen up
+G00 X176.7417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X183.0917 Y32.2792
+G0Z0 ; pen up
+G00 X173.0375 Y28.5750
+G0Z6 ; pen down on paper
+G01 X168.8042 Y28.5750
+G0Z0 ; pen up
+G00 X4.2333 Y32.2792
+G0Z6 ; pen down on paper
+G01 X0.5292 Y32.2792
+G0Z0 ; pen up
+G00 X237.5958 Y40.7458
+G0Z6 ; pen down on paper
+G01 X237.5958 Y35.9833
+G0Z0 ; pen up
+G00 X11.6417 Y35.9833
+G0Z6 ; pen down on paper
+G01 X12.7000 Y32.2792
+G0Z0 ; pen up
+G00 X205.3167 Y35.9833
+G0Z6 ; pen down on paper
+G01 X200.5542 Y35.9833
+G0Z0 ; pen up
+G00 X14.8167 Y24.3417
+G0Z6 ; pen down on paper
+G01 X12.7000 Y28.5750
+G0Z0 ; pen up
+G00 X23.8125 Y24.3417
+G0Z6 ; pen down on paper
+G01 X19.5792 Y24.3417
+G0Z0 ; pen up
+G00 X8.4667 Y28.5750
+G0Z6 ; pen down on paper
+G01 X12.7000 Y28.5750
+G0Z0 ; pen up
+G00 X214.3125 Y40.7458
+G0Z6 ; pen down on paper
+G01 X218.0167 Y40.7458
+G0Z0 ; pen up
+G00 X189.4417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X185.2083 Y28.5750
+G0Z0 ; pen up
+G00 X189.4417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X196.3208 Y32.2792
+G0Z0 ; pen up
+G00 X197.9083 Y28.5750
+G0Z6 ; pen down on paper
+G01 X205.3167 Y32.2792
+G0Z0 ; pen up
+G00 X35.9833 Y24.3417
+G0Z6 ; pen down on paper
+G01 X32.2792 Y24.3417
+G0Z0 ; pen up
+G00 X20.6375 Y28.5750
+G0Z6 ; pen down on paper
+G01 X25.4000 Y28.5750
+G0Z0 ; pen up
+G00 X34.3958 Y28.5750
+G0Z6 ; pen down on paper
+G01 X38.1000 Y28.5750
+G0Z0 ; pen up
+G00 X205.3167 Y32.2792
+G0Z6 ; pen down on paper
+G01 X197.9083 Y28.5750
+G0Z0 ; pen up
+G00 X213.2542 Y32.2792
+G0Z6 ; pen down on paper
+G01 X216.9583 Y32.2792
+G0Z0 ; pen up
+G00 X25.4000 Y28.5750
+G0Z6 ; pen down on paper
+G01 X29.6333 Y28.5750
+G0Z0 ; pen up
+G00 X42.8625 Y28.5750
+G0Z6 ; pen down on paper
+G01 X44.4500 Y24.3417
+G0Z0 ; pen up
+G00 X213.2542 Y32.2792
+G0Z6 ; pen down on paper
+G01 X206.9042 Y28.5750
+G0Z0 ; pen up
+G00 X42.8625 Y28.5750
+G0Z6 ; pen down on paper
+G01 X46.5667 Y28.5750
+G0Z0 ; pen up
+G00 X214.8417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X220.6625 Y32.2792
+G0Z0 ; pen up
+G00 X52.9167 Y24.3417
+G0Z6 ; pen down on paper
+G01 X51.3292 Y28.5750
+G0Z0 ; pen up
+G00 X214.8417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X211.1375 Y28.5750
+G0Z0 ; pen up
+G00 X46.5667 Y28.5750
+G0Z6 ; pen down on paper
+G01 X51.3292 Y28.5750
+G0Z0 ; pen up
+G00 X57.1500 Y24.3417
+G0Z6 ; pen down on paper
+G01 X55.0333 Y28.5750
+G0Z0 ; pen up
+G00 X0.5292 Y24.3417
+G0Z6 ; pen down on paper
+G01 X0.5292 Y28.5750
+G0Z0 ; pen up
+G00 X223.3083 Y28.5750
+G0Z6 ; pen down on paper
+G01 X230.1875 Y32.2792
+G0Z0 ; pen up
+G00 X233.8917 Y32.2792
+G0Z6 ; pen down on paper
+G01 X237.5958 Y32.2792
+G0Z0 ; pen up
+G00 X218.5458 Y28.5750
+G0Z6 ; pen down on paper
+G01 X225.4250 Y32.2792
+G0Z0 ; pen up
+G00 X66.1458 Y24.3417
+G0Z6 ; pen down on paper
+G01 X63.5000 Y28.5750
+G0Z0 ; pen up
+G00 X66.1458 Y24.3417
+G0Z6 ; pen down on paper
+G01 X61.3833 Y24.3417
+G0Z0 ; pen up
+G00 X67.7333 Y28.5750
+G0Z6 ; pen down on paper
+G01 X72.4958 Y28.5750
+G0Z0 ; pen up
+G00 X101.6000 Y28.5750
+G0Z6 ; pen down on paper
+G01 X104.2458 Y24.3417
+G0Z0 ; pen up
+G00 X146.5792 Y20.6375
+G0Z6 ; pen down on paper
+G01 X150.8125 Y20.6375
+G0Z0 ; pen up
+G00 X178.3292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X180.9750 Y20.6375
+G0Z0 ; pen up
+G00 X144.4625 Y16.9333
+G0Z6 ; pen down on paper
+G01 X139.7000 Y16.9333
+G0Z0 ; pen up
+G00 X222.7792 Y24.3417
+G0Z6 ; pen down on paper
+G01 X218.5458 Y28.5750
+G0Z0 ; pen up
+G00 X218.5458 Y28.5750
+G0Z6 ; pen down on paper
+G01 X222.7792 Y24.3417
+G0Z0 ; pen up
+G00 X148.1667 Y16.9333
+G0Z6 ; pen down on paper
+G01 X145.5208 Y12.7000
+G0Z0 ; pen up
+G00 X88.9000 Y28.5750
+G0Z6 ; pen down on paper
+G01 X92.0750 Y24.3417
+G0Z0 ; pen up
+G00 X148.1667 Y16.9333
+G0Z6 ; pen down on paper
+G01 X151.8708 Y16.9333
+G0Z0 ; pen up
+G00 X205.8458 Y28.5750
+G0Z6 ; pen down on paper
+G01 X210.0792 Y28.5750
+G0Z0 ; pen up
+G00 X116.9458 Y12.7000
+G0Z6 ; pen down on paper
+G01 X112.1833 Y12.7000
+G0Z0 ; pen up
+G00 X214.3125 Y28.5750
+G0Z6 ; pen down on paper
+G01 X218.5458 Y24.3417
+G0Z0 ; pen up
+G00 X185.2083 Y20.6375
+G0Z6 ; pen down on paper
+G01 X188.9125 Y20.6375
+G0Z0 ; pen up
+G00 X43.3917 Y16.9333
+G0Z6 ; pen down on paper
+G01 X44.9792 Y12.7000
+G0Z0 ; pen up
+G00 X230.1875 Y24.3417
+G0Z6 ; pen down on paper
+G01 X226.4833 Y24.3417
+G0Z0 ; pen up
+G00 X139.7000 Y16.9333
+G0Z6 ; pen down on paper
+G01 X135.4667 Y16.9333
+G0Z0 ; pen up
+G00 X152.9292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X149.2250 Y16.9333
+G0Z0 ; pen up
+G00 X95.7792 Y24.3417
+G0Z6 ; pen down on paper
+G01 X92.0750 Y24.3417
+G0Z0 ; pen up
+G00 X177.2708 Y20.6375
+G0Z6 ; pen down on paper
+G01 X174.0958 Y16.9333
+G0Z0 ; pen up
+G00 X237.5958 Y24.3417
+G0Z6 ; pen down on paper
+G01 X234.4208 Y24.3417
+G0Z0 ; pen up
+G00 X158.7500 Y12.7000
+G0Z6 ; pen down on paper
+G01 X153.9875 Y12.7000
+G0Z0 ; pen up
+G00 X4.2333 Y24.3417
+G0Z6 ; pen down on paper
+G01 X4.7625 Y20.6375
+G0Z0 ; pen up
+G00 X234.4208 Y24.3417
+G0Z6 ; pen down on paper
+G01 X230.1875 Y24.3417
+G0Z0 ; pen up
+G00 X178.3292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X174.0958 Y16.9333
+G0Z0 ; pen up
+G00 X165.6292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X160.8667 Y16.9333
+G0Z0 ; pen up
+G00 X21.1667 Y20.6375
+G0Z6 ; pen down on paper
+G01 X16.4042 Y20.6375
+G0Z0 ; pen up
+G00 X12.7000 Y24.3417
+G0Z6 ; pen down on paper
+G01 X17.4625 Y24.3417
+G0Z0 ; pen up
+G00 X48.1542 Y16.9333
+G0Z6 ; pen down on paper
+G01 X52.9167 Y16.9333
+G0Z0 ; pen up
+G00 X152.9292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X155.5750 Y20.6375
+G0Z0 ; pen up
+G00 X12.7000 Y20.6375
+G0Z6 ; pen down on paper
+G01 X8.4667 Y20.6375
+G0Z0 ; pen up
+G00 X4.7625 Y20.6375
+G0Z6 ; pen down on paper
+G01 X4.2333 Y24.3417
+G0Z0 ; pen up
+G00 X169.3333 Y16.9333
+G0Z6 ; pen down on paper
+G01 X165.6292 Y16.9333
+G0Z0 ; pen up
+G00 X99.4833 Y24.3417
+G0Z6 ; pen down on paper
+G01 X95.7792 Y24.3417
+G0Z0 ; pen up
+G00 X30.1625 Y24.3417
+G0Z6 ; pen down on paper
+G01 X33.8667 Y24.3417
+G0Z0 ; pen up
+G00 X76.2000 Y28.5750
+G0Z6 ; pen down on paper
+G01 X80.9625 Y28.5750
+G0Z0 ; pen up
+G00 X29.1042 Y20.6375
+G0Z6 ; pen down on paper
+G01 X25.4000 Y20.6375
+G0Z0 ; pen up
+G00 X109.0083 Y24.3417
+G0Z6 ; pen down on paper
+G01 X104.2458 Y24.3417
+G0Z0 ; pen up
+G00 X74.0833 Y24.3417
+G0Z6 ; pen down on paper
+G01 X72.4958 Y28.5750
+G0Z0 ; pen up
+G00 X61.3833 Y12.7000
+G0Z6 ; pen down on paper
+G01 X57.6792 Y12.7000
+G0Z0 ; pen up
+G00 X156.6333 Y16.9333
+G0Z6 ; pen down on paper
+G01 X160.3375 Y20.6375
+G0Z0 ; pen up
+G00 X87.8417 Y24.3417
+G0Z6 ; pen down on paper
+G01 X83.6083 Y24.3417
+G0Z0 ; pen up
+G00 X128.5875 Y24.3417
+G0Z6 ; pen down on paper
+G01 X126.4708 Y28.5750
+G0Z0 ; pen up
+G00 X61.3833 Y12.7000
+G0Z6 ; pen down on paper
+G01 X61.3833 Y16.9333
+G0Z0 ; pen up
+G00 X108.4792 Y16.9333
+G0Z6 ; pen down on paper
+G01 X113.2417 Y16.9333
+G0Z0 ; pen up
+G00 X155.5750 Y16.9333
+G0Z6 ; pen down on paper
+G01 X153.9875 Y12.7000
+G0Z0 ; pen up
+G00 X113.2417 Y24.3417
+G0Z6 ; pen down on paper
+G01 X109.0083 Y24.3417
+G0Z0 ; pen up
+G00 X134.4083 Y28.5750
+G0Z6 ; pen down on paper
+G01 X137.0542 Y24.3417
+G0Z0 ; pen up
+G00 X37.5708 Y20.6375
+G0Z6 ; pen down on paper
+G01 X33.8667 Y20.6375
+G0Z0 ; pen up
+G00 X74.6125 Y16.9333
+G0Z6 ; pen down on paper
+G01 X73.0250 Y12.7000
+G0Z0 ; pen up
+G00 X43.3917 Y16.9333
+G0Z6 ; pen down on paper
+G01 X48.1542 Y16.9333
+G0Z0 ; pen up
+G00 X164.0417 Y16.9333
+G0Z6 ; pen down on paper
+G01 X167.7458 Y16.9333
+G0Z0 ; pen up
+G00 X200.5542 Y16.9333
+G0Z6 ; pen down on paper
+G01 X196.3208 Y16.9333
+G0Z0 ; pen up
+G00 X193.6750 Y20.6375
+G0Z6 ; pen down on paper
+G01 X192.0875 Y16.9333
+G0Z0 ; pen up
+G00 X21.1667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X25.4000 Y24.3417
+G0Z0 ; pen up
+G00 X93.1333 Y20.6375
+G0Z6 ; pen down on paper
+G01 X92.0750 Y24.3417
+G0Z0 ; pen up
+G00 X122.2375 Y28.5750
+G0Z6 ; pen down on paper
+G01 X126.4708 Y28.5750
+G0Z0 ; pen up
+G00 X101.6000 Y24.3417
+G0Z6 ; pen down on paper
+G01 X105.8333 Y24.3417
+G0Z0 ; pen up
+G00 X200.5542 Y16.9333
+G0Z6 ; pen down on paper
+G01 X202.6708 Y20.6375
+G0Z0 ; pen up
+G00 X193.6750 Y20.6375
+G0Z6 ; pen down on paper
+G01 X197.9083 Y20.6375
+G0Z0 ; pen up
+G00 X122.2375 Y28.5750
+G0Z6 ; pen down on paper
+G01 X124.8833 Y24.3417
+G0Z0 ; pen up
+G00 X216.4292 Y20.6375
+G0Z6 ; pen down on paper
+G01 X213.7833 Y16.9333
+G0Z0 ; pen up
+G00 X37.5708 Y20.6375
+G0Z6 ; pen down on paper
+G01 X38.1000 Y24.3417
+G0Z0 ; pen up
+G00 X125.9417 Y12.7000
+G0Z6 ; pen down on paper
+G01 X121.1792 Y12.7000
+G0Z0 ; pen up
+G00 X116.9458 Y24.3417
+G0Z6 ; pen down on paper
+G01 X114.3000 Y28.5750
+G0Z0 ; pen up
+G00 X57.6792 Y12.7000
+G0Z6 ; pen down on paper
+G01 X52.9167 Y12.7000
+G0Z0 ; pen up
+G00 X69.8500 Y16.9333
+G0Z6 ; pen down on paper
+G01 X68.7917 Y12.7000
+G0Z0 ; pen up
+G00 X87.8417 Y16.9333
+G0Z6 ; pen down on paper
+G01 X85.7250 Y12.7000
+G0Z0 ; pen up
+G00 X110.0667 Y28.5750
+G0Z6 ; pen down on paper
+G01 X114.3000 Y28.5750
+G0Z0 ; pen up
+G00 X139.1708 Y28.5750
+G0Z6 ; pen down on paper
+G01 X141.2875 Y24.3417
+G0Z0 ; pen up
+G00 X88.3708 Y20.6375
+G0Z6 ; pen down on paper
+G01 X87.8417 Y24.3417
+G0Z0 ; pen up
+G00 X75.1417 Y20.6375
+G0Z6 ; pen down on paper
+G01 X75.6708 Y24.3417
+G0Z0 ; pen up
+G00 X70.9083 Y24.3417
+G0Z6 ; pen down on paper
+G01 X75.6708 Y24.3417
+G0Z0 ; pen up
+G00 X84.1375 Y20.6375
+G0Z6 ; pen down on paper
+G01 X79.9042 Y20.6375
+G0Z0 ; pen up
+G00 X211.6667 Y20.6375
+G0Z6 ; pen down on paper
+G01 X210.0792 Y16.9333
+G0Z0 ; pen up
+G00 X83.6083 Y24.3417
+G0Z6 ; pen down on paper
+G01 X87.8417 Y24.3417
+G0Z0 ; pen up
+G00 X96.8375 Y24.3417
+G0Z6 ; pen down on paper
+G01 X101.6000 Y24.3417
+G0Z0 ; pen up
+G00 X182.5625 Y24.3417
+G0Z6 ; pen down on paper
+G01 X177.8000 Y24.3417
+G0Z0 ; pen up
+G00 X205.8458 Y28.5750
+G0Z6 ; pen down on paper
+G01 X210.0792 Y24.3417
+G0Z0 ; pen up
+G00 X80.9625 Y12.7000
+G0Z6 ; pen down on paper
+G01 X76.7292 Y12.7000
+G0Z0 ; pen up
+G00 X46.5667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X44.9792 Y20.6375
+G0Z0 ; pen up
+G00 X220.1333 Y20.6375
+G0Z6 ; pen down on paper
+G01 X217.4875 Y16.9333
+G0Z0 ; pen up
+G00 X49.7417 Y20.6375
+G0Z6 ; pen down on paper
+G01 X44.9792 Y20.6375
+G0Z0 ; pen up
+G00 X187.3250 Y24.3417
+G0Z6 ; pen down on paper
+G01 X182.5625 Y24.3417
+G0Z0 ; pen up
+G00 X54.5042 Y20.6375
+G0Z6 ; pen down on paper
+G01 X49.7417 Y20.6375
+G0Z0 ; pen up
+G00 X67.2042 Y20.6375
+G0Z6 ; pen down on paper
+G01 X62.9708 Y20.6375
+G0Z0 ; pen up
+G00 X73.0250 Y12.7000
+G0Z6 ; pen down on paper
+G01 X74.6125 Y16.9333
+G0Z0 ; pen up
+G00 X17.9917 Y12.7000
+G0Z6 ; pen down on paper
+G01 X13.2292 Y12.7000
+G0Z0 ; pen up
+G00 X58.2083 Y20.6375
+G0Z6 ; pen down on paper
+G01 X59.2667 Y24.3417
+G0Z0 ; pen up
+G00 X151.3417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X153.4583 Y24.3417
+G0Z0 ; pen up
+G00 X55.0333 Y24.3417
+G0Z6 ; pen down on paper
+G01 X59.2667 Y24.3417
+G0Z0 ; pen up
+G00 X70.9083 Y24.3417
+G0Z6 ; pen down on paper
+G01 X71.4375 Y20.6375
+G0Z0 ; pen up
+G00 X144.9917 Y24.3417
+G0Z6 ; pen down on paper
+G01 X141.2875 Y24.3417
+G0Z0 ; pen up
+G00 X202.1417 Y28.5750
+G0Z6 ; pen down on paper
+G01 X205.3167 Y24.3417
+G0Z0 ; pen up
+G00 X159.2792 Y16.9333
+G0Z6 ; pen down on paper
+G01 X164.0417 Y16.9333
+G0Z0 ; pen up
+G00 X167.2167 Y12.7000
+G0Z6 ; pen down on paper
+G01 X167.7458 Y16.9333
+G0Z0 ; pen up
+G00 X177.2708 Y28.5750
+G0Z6 ; pen down on paper
+G01 X177.8000 Y24.3417
+G0Z0 ; pen up
+G00 X221.7208 Y16.9333
+G0Z6 ; pen down on paper
+G01 X217.4875 Y16.9333
+G0Z0 ; pen up
+G00 X195.7917 Y24.3417
+G0Z6 ; pen down on paper
+G01 X193.1458 Y28.5750
+G0Z0 ; pen up
+G00 X87.8417 Y16.9333
+G0Z6 ; pen down on paper
+G01 X92.0750 Y16.9333
+G0Z0 ; pen up
+G00 X4.7625 Y12.7000
+G0Z6 ; pen down on paper
+G01 X4.7625 Y16.9333
+G0Z0 ; pen up
+G00 X187.3250 Y24.3417
+G0Z6 ; pen down on paper
+G01 X184.6792 Y28.5750
+G0Z0 ; pen up
+G00 X99.4833 Y12.7000
+G0Z6 ; pen down on paper
+G01 X94.7208 Y12.7000
+G0Z0 ; pen up
+G00 X195.7917 Y24.3417
+G0Z6 ; pen down on paper
+G01 X191.0292 Y24.3417
+G0Z0 ; pen up
+G00 X153.4583 Y24.3417
+G0Z6 ; pen down on paper
+G01 X151.3417 Y28.5750
+G0Z0 ; pen up
+G00 X144.9917 Y24.3417
+G0Z6 ; pen down on paper
+G01 X142.8750 Y28.5750
+G0Z0 ; pen up
+G00 X168.8042 Y24.3417
+G0Z6 ; pen down on paper
+G01 X165.1000 Y24.3417
+G0Z0 ; pen up
+G00 X160.8667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X157.1625 Y24.3417
+G0Z0 ; pen up
+G00 X160.8667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X159.8083 Y28.5750
+G0Z0 ; pen up
+G00 X173.0375 Y24.3417
+G0Z6 ; pen down on paper
+G01 X168.8042 Y24.3417
+G0Z0 ; pen up
+G00 X90.4875 Y12.7000
+G0Z6 ; pen down on paper
+G01 X92.0750 Y16.9333
+G0Z0 ; pen up
+G00 X229.1292 Y20.6375
+G0Z6 ; pen down on paper
+G01 X233.3625 Y20.6375
+G0Z0 ; pen up
+G00 X104.2458 Y12.7000
+G0Z6 ; pen down on paper
+G01 X99.4833 Y12.7000
+G0Z0 ; pen up
+G00 X114.3000 Y24.3417
+G0Z6 ; pen down on paper
+G01 X118.5333 Y24.3417
+G0Z0 ; pen up
+G00 X110.0667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X110.5958 Y20.6375
+G0Z0 ; pen up
+G00 X122.7667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X123.8250 Y20.6375
+G0Z0 ; pen up
+G00 X118.0042 Y16.9333
+G0Z6 ; pen down on paper
+G01 X122.7667 Y16.9333
+G0Z0 ; pen up
+G00 X131.2333 Y16.9333
+G0Z6 ; pen down on paper
+G01 X134.9375 Y16.9333
+G0Z0 ; pen up
+G00 X110.5958 Y20.6375
+G0Z6 ; pen down on paper
+G01 X110.0667 Y24.3417
+G0Z0 ; pen up
+G00 X140.7583 Y24.3417
+G0Z6 ; pen down on paper
+G01 X141.2875 Y20.6375
+G0Z0 ; pen up
+G00 X224.3667 Y20.6375
+G0Z6 ; pen down on paper
+G01 X229.1292 Y20.6375
+G0Z0 ; pen up
+G00 X128.0583 Y20.6375
+G0Z6 ; pen down on paper
+G01 X123.8250 Y20.6375
+G0Z0 ; pen up
+G00 X132.2917 Y24.3417
+G0Z6 ; pen down on paper
+G01 X132.2917 Y20.6375
+G0Z0 ; pen up
+G00 X132.2917 Y24.3417
+G0Z6 ; pen down on paper
+G01 X135.9958 Y24.3417
+G0Z0 ; pen up
+G00 X146.0500 Y20.6375
+G0Z6 ; pen down on paper
+G01 X141.2875 Y20.6375
+G0Z0 ; pen up
+G00 X160.8667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X161.9250 Y20.6375
+G0Z0 ; pen up
+G00 X169.8625 Y24.3417
+G0Z6 ; pen down on paper
+G01 X170.3917 Y20.6375
+G0Z0 ; pen up
+G00 X166.6875 Y20.6375
+G0Z6 ; pen down on paper
+G01 X161.9250 Y20.6375
+G0Z0 ; pen up
+G00 X169.8625 Y24.3417
+G0Z6 ; pen down on paper
+G01 X173.5667 Y24.3417
+G0Z0 ; pen up
+G00 X146.0500 Y20.6375
+G0Z6 ; pen down on paper
+G01 X144.4625 Y24.3417
+G0Z0 ; pen up
+G00 X153.9875 Y20.6375
+G0Z6 ; pen down on paper
+G01 X152.4000 Y24.3417
+G0Z0 ; pen up
+G00 X13.2292 Y12.7000
+G0Z6 ; pen down on paper
+G01 X8.9958 Y12.7000
+G0Z0 ; pen up
+G00 X149.7542 Y20.6375
+G0Z6 ; pen down on paper
+G01 X148.1667 Y24.3417
+G0Z0 ; pen up
+G00 X198.4375 Y20.6375
+G0Z6 ; pen down on paper
+G01 X194.7333 Y20.6375
+G0Z0 ; pen up
+G00 X173.5667 Y24.3417
+G0Z6 ; pen down on paper
+G01 X177.8000 Y24.3417
+G0Z0 ; pen up
+G00 X129.6458 Y12.7000
+G0Z6 ; pen down on paper
+G01 X125.9417 Y12.7000
+G0Z0 ; pen up
+G00 X22.2250 Y16.9333
+G0Z6 ; pen down on paper
+G01 X22.2250 Y12.7000
+G0Z0 ; pen up
+G00 X237.5958 Y16.9333
+G0Z6 ; pen down on paper
+G01 X230.7167 Y16.9333
+G0Z0 ; pen up
+G00 X31.2208 Y16.9333
+G0Z6 ; pen down on paper
+G01 X31.7500 Y12.7000
+G0Z0 ; pen up
+G00 X194.7333 Y24.3417
+G0Z6 ; pen down on paper
+G01 X194.7333 Y20.6375
+G0Z0 ; pen up
+G00 X171.4500 Y16.9333
+G0Z6 ; pen down on paper
+G01 X175.1542 Y16.9333
+G0Z0 ; pen up
+G00 X26.9875 Y16.9333
+G0Z6 ; pen down on paper
+G01 X26.9875 Y12.7000
+G0Z0 ; pen up
+G00 X203.2000 Y24.3417
+G0Z6 ; pen down on paper
+G01 X202.1417 Y20.6375
+G0Z0 ; pen up
+G00 X40.7458 Y12.7000
+G0Z6 ; pen down on paper
+G01 X36.5125 Y12.7000
+G0Z0 ; pen up
+G00 X104.2458 Y12.7000
+G0Z6 ; pen down on paper
+G01 X104.7750 Y16.9333
+G0Z0 ; pen up
+G00 X206.3750 Y20.6375
+G0Z6 ; pen down on paper
+G01 X202.1417 Y20.6375
+G0Z0 ; pen up
+G00 X185.7375 Y24.3417
+G0Z6 ; pen down on paper
+G01 X190.5000 Y24.3417
+G0Z0 ; pen up
+G00 X186.2667 Y20.6375
+G0Z6 ; pen down on paper
+G01 X182.5625 Y20.6375
+G0Z0 ; pen up
+G00 X0.5292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X4.7625 Y16.9333
+G0Z0 ; pen up
+G00 X178.3292 Y20.6375
+G0Z6 ; pen down on paper
+G01 X177.8000 Y24.3417
+G0Z0 ; pen up
+G00 X138.6417 Y16.9333
+G0Z6 ; pen down on paper
+G01 X137.5833 Y12.7000
+G0Z0 ; pen up
+G00 X137.5833 Y12.7000
+G0Z6 ; pen down on paper
+G01 X138.6417 Y16.9333
+G0Z0 ; pen up
+G00 X215.9000 Y20.6375
+G0Z6 ; pen down on paper
+G01 X214.3125 Y24.3417
+G0Z0 ; pen up
+G00 X206.9042 Y24.3417
+G0Z6 ; pen down on paper
+G01 X210.6083 Y24.3417
+G0Z0 ; pen up
+G00 X215.9000 Y20.6375
+G0Z6 ; pen down on paper
+G01 X211.1375 Y20.6375
+G0Z0 ; pen up
+G00 X36.5125 Y12.7000
+G0Z6 ; pen down on paper
+G01 X31.7500 Y12.7000
+G0Z0 ; pen up
+G00 X178.8583 Y16.9333
+G0Z6 ; pen down on paper
+G01 X183.0917 Y16.9333
+G0Z0 ; pen up
+G00 X220.6625 Y20.6375
+G0Z6 ; pen down on paper
+G01 X219.0750 Y24.3417
+G0Z0 ; pen up
+G00 X178.8583 Y12.7000
+G0Z6 ; pen down on paper
+G01 X175.1542 Y12.7000
+G0Z0 ; pen up
+G00 X187.3250 Y16.9333
+G0Z6 ; pen down on paper
+G01 X186.2667 Y12.7000
+G0Z0 ; pen up
+G00 X234.9500 Y24.3417
+G0Z6 ; pen down on paper
+G01 X237.5958 Y24.3417
+G0Z0 ; pen up
+G00 X233.3625 Y20.6375
+G0Z6 ; pen down on paper
+G01 X231.2458 Y24.3417
+G0Z0 ; pen up
+G00 X190.5000 Y12.7000
+G0Z6 ; pen down on paper
+G01 X186.2667 Y12.7000
+G0Z0 ; pen up
+G00 X203.2000 Y12.7000
+G0Z6 ; pen down on paper
+G01 X204.2583 Y16.9333
+G0Z0 ; pen up
+G00 X192.0875 Y16.9333
+G0Z6 ; pen down on paper
+G01 X196.3208 Y16.9333
+G0Z0 ; pen up
+G00 X196.3208 Y16.9333
+G0Z6 ; pen down on paper
+G01 X200.0250 Y16.9333
+G0Z0 ; pen up
+G00 X203.2000 Y12.7000
+G0Z6 ; pen down on paper
+G01 X198.4375 Y12.7000
+G0Z0 ; pen up
+G00 X233.3625 Y16.9333
+G0Z6 ; pen down on paper
+G01 X232.8333 Y12.7000
+G0Z0 ; pen up
+G00 X226.4833 Y24.3417
+G0Z6 ; pen down on paper
+G01 X231.2458 Y24.3417
+G0Z0 ; pen up
+G00 X216.4292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X215.3708 Y12.7000
+G0Z0 ; pen up
+G00 X229.1292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X228.0708 Y12.7000
+G0Z0 ; pen up
+G00 X237.0667 Y12.7000
+G0Z6 ; pen down on paper
+G01 X232.8333 Y12.7000
+G0Z0 ; pen up
+G00 X212.7250 Y16.9333
+G0Z6 ; pen down on paper
+G01 X211.1375 Y12.7000
+G0Z0 ; pen up
+G00 X237.0667 Y16.9333
+G0Z6 ; pen down on paper
+G01 X237.5958 Y16.9333
+G0Z0 ; pen up
+G00 X219.0750 Y12.7000
+G0Z6 ; pen down on paper
+G01 X220.1333 Y16.9333
+G0Z0 ; pen up
+G00 X226.4833 Y24.3417
+G0Z6 ; pen down on paper
+G01 X229.1292 Y20.6375
+G0Z0 ; pen up
+G00 X216.4292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X220.1333 Y16.9333
+G0Z0 ; pen up
+G00 X5.2917 Y8.4667
+G0Z6 ; pen down on paper
+G01 X5.2917 Y12.7000
+G0Z0 ; pen up
+G00 X47.6250 Y12.7000
+G0Z6 ; pen down on paper
+G01 X46.5667 Y8.4667
+G0Z0 ; pen up
+G00 X5.2917 Y16.9333
+G0Z6 ; pen down on paper
+G01 X4.7625 Y20.6375
+G0Z0 ; pen up
+G00 X55.0333 Y8.4667
+G0Z6 ; pen down on paper
+G01 X51.3292 Y8.4667
+G0Z0 ; pen up
+G00 X55.0333 Y8.4667
+G0Z6 ; pen down on paper
+G01 X56.6208 Y12.7000
+G0Z0 ; pen up
+G00 X16.4042 Y20.6375
+G0Z6 ; pen down on paper
+G01 X18.5208 Y16.9333
+G0Z0 ; pen up
+G00 X0.5292 Y12.7000
+G0Z6 ; pen down on paper
+G01 X5.2917 Y12.7000
+G0Z0 ; pen up
+G00 X12.1708 Y20.6375
+G0Z6 ; pen down on paper
+G01 X14.8167 Y16.9333
+G0Z0 ; pen up
+G00 X34.9250 Y16.9333
+G0Z6 ; pen down on paper
+G01 X34.3958 Y20.6375
+G0Z0 ; pen up
+G00 X41.8042 Y8.4667
+G0Z6 ; pen down on paper
+G01 X38.1000 Y8.4667
+G0Z0 ; pen up
+G00 X8.9958 Y8.4667
+G0Z6 ; pen down on paper
+G01 X9.5250 Y12.7000
+G0Z0 ; pen up
+G00 X0.5292 Y20.6375
+G0Z6 ; pen down on paper
+G01 X4.7625 Y20.6375
+G0Z0 ; pen up
+G00 X47.6250 Y12.7000
+G0Z6 ; pen down on paper
+G01 X52.3875 Y12.7000
+G0Z0 ; pen up
+G00 X25.9292 Y20.6375
+G0Z6 ; pen down on paper
+G01 X26.4583 Y16.9333
+G0Z0 ; pen up
+G00 X30.6917 Y16.9333
+G0Z6 ; pen down on paper
+G01 X26.4583 Y16.9333
+G0Z0 ; pen up
+G00 X34.3958 Y8.4667
+G0Z6 ; pen down on paper
+G01 X34.3958 Y12.7000
+G0Z0 ; pen up
+G00 X21.1667 Y20.6375
+G0Z6 ; pen down on paper
+G01 X22.7542 Y16.9333
+G0Z0 ; pen up
+G00 X13.7583 Y8.4667
+G0Z6 ; pen down on paper
+G01 X13.2292 Y12.7000
+G0Z0 ; pen up
+G00 X64.5583 Y12.7000
+G0Z6 ; pen down on paper
+G01 X69.3208 Y12.7000
+G0Z0 ; pen up
+G00 X30.6917 Y12.7000
+G0Z6 ; pen down on paper
+G01 X30.6917 Y8.4667
+G0Z0 ; pen up
+G00 X17.4625 Y12.7000
+G0Z6 ; pen down on paper
+G01 X21.6958 Y12.7000
+G0Z0 ; pen up
+G00 X29.6333 Y20.6375
+G0Z6 ; pen down on paper
+G01 X34.3958 Y20.6375
+G0Z0 ; pen up
+G00 X51.8583 Y20.6375
+G0Z6 ; pen down on paper
+G01 X56.0917 Y20.6375
+G0Z0 ; pen up
+G00 X64.0292 Y8.4667
+G0Z6 ; pen down on paper
+G01 X59.7958 Y8.4667
+G0Z0 ; pen up
+G00 X25.9292 Y12.7000
+G0Z6 ; pen down on paper
+G01 X26.9875 Y8.4667
+G0Z0 ; pen up
+G00 X38.6292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X38.6292 Y20.6375
+G0Z0 ; pen up
+G00 X30.6917 Y12.7000
+G0Z6 ; pen down on paper
+G01 X34.3958 Y12.7000
+G0Z0 ; pen up
+G00 X73.0250 Y12.7000
+G0Z6 ; pen down on paper
+G01 X72.4958 Y8.4667
+G0Z0 ; pen up
+G00 X81.4917 Y12.7000
+G0Z6 ; pen down on paper
+G01 X85.1958 Y12.7000
+G0Z0 ; pen up
+G00 X72.4958 Y8.4667
+G0Z6 ; pen down on paper
+G01 X73.0250 Y12.7000
+G0Z0 ; pen up
+G00 X77.7875 Y12.7000
+G0Z6 ; pen down on paper
+G01 X81.4917 Y12.7000
+G0Z0 ; pen up
+G00 X97.3667 Y12.7000
+G0Z6 ; pen down on paper
+G01 X98.9542 Y8.4667
+G0Z0 ; pen up
+G00 X86.7833 Y8.4667
+G0Z6 ; pen down on paper
+G01 X85.1958 Y12.7000
+G0Z0 ; pen up
+G00 X89.4292 Y12.7000
+G0Z6 ; pen down on paper
+G01 X93.6625 Y12.7000
+G0Z0 ; pen up
+G00 X65.0875 Y20.6375
+G0Z6 ; pen down on paper
+G01 X69.3208 Y20.6375
+G0Z0 ; pen up
+G00 X56.0917 Y20.6375
+G0Z6 ; pen down on paper
+G01 X60.8542 Y20.6375
+G0Z0 ; pen up
+G00 X42.8625 Y20.6375
+G0Z6 ; pen down on paper
+G01 X47.0958 Y20.6375
+G0Z0 ; pen up
+G00 X65.0875 Y20.6375
+G0Z6 ; pen down on paper
+G01 X63.5000 Y16.9333
+G0Z0 ; pen up
+G00 X97.3667 Y12.7000
+G0Z6 ; pen down on paper
+G01 X102.1292 Y12.7000
+G0Z0 ; pen up
+G00 X106.8917 Y12.7000
+G0Z6 ; pen down on paper
+G01 X106.8917 Y8.4667
+G0Z0 ; pen up
+G00 X51.3292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X46.5667 Y16.9333
+G0Z0 ; pen up
+G00 X124.3542 Y8.4667
+G0Z6 ; pen down on paper
+G01 X124.3542 Y12.7000
+G0Z0 ; pen up
+G00 X102.1292 Y16.9333
+G0Z6 ; pen down on paper
+G01 X104.2458 Y20.6375
+G0Z0 ; pen up
+G00 X120.6500 Y8.4667
+G0Z6 ; pen down on paper
+G01 X115.8875 Y8.4667
+G0Z0 ; pen up
+G00 X111.1250 Y12.7000
+G0Z6 ; pen down on paper
+G01 X114.8292 Y12.7000
+G0Z0 ; pen up
+G00 X110.5958 Y16.9333
+G0Z6 ; pen down on paper
+G01 X105.8333 Y16.9333
+G0Z0 ; pen up
+G00 X106.8917 Y8.4667
+G0Z6 ; pen down on paper
+G01 X106.8917 Y12.7000
+G0Z0 ; pen up
+G00 X137.0542 Y12.7000
+G0Z6 ; pen down on paper
+G01 X135.9958 Y8.4667
+G0Z0 ; pen up
+G00 X114.3000 Y16.9333
+G0Z6 ; pen down on paper
+G01 X116.9458 Y20.6375
+G0Z0 ; pen up
+G00 X114.3000 Y16.9333
+G0Z6 ; pen down on paper
+G01 X110.5958 Y16.9333
+G0Z0 ; pen up
+G00 X133.3500 Y12.7000
+G0Z6 ; pen down on paper
+G01 X131.7625 Y8.4667
+G0Z0 ; pen up
+G00 X71.9667 Y16.9333
+G0Z6 ; pen down on paper
+G01 X67.2042 Y16.9333
+G0Z0 ; pen up
+G00 X119.5917 Y12.7000
+G0Z6 ; pen down on paper
+G01 X124.3542 Y12.7000
+G0Z0 ; pen up
+G00 X97.3667 Y16.9333
+G0Z6 ; pen down on paper
+G01 X100.0125 Y20.6375
+G0Z0 ; pen up
+G00 X74.0833 Y20.6375
+G0Z6 ; pen down on paper
+G01 X78.3167 Y20.6375
+G0Z0 ; pen up
+G00 X91.0167 Y20.6375
+G0Z6 ; pen down on paper
+G01 X89.4292 Y16.9333
+G0Z0 ; pen up
+G00 X91.0167 Y20.6375
+G0Z6 ; pen down on paper
+G01 X95.2500 Y20.6375
+G0Z0 ; pen up
+G00 X121.1792 Y20.6375
+G0Z6 ; pen down on paper
+G01 X125.9417 Y20.6375
+G0Z0 ; pen up
+G00 X80.4333 Y16.9333
+G0Z6 ; pen down on paper
+G01 X82.5500 Y20.6375
+G0Z0 ; pen up
+G00 X152.9292 Y12.7000
+G0Z6 ; pen down on paper
+G01 X152.4000 Y8.4667
+G0Z0 ; pen up
+G00 X93.6625 Y16.9333
+G0Z6 ; pen down on paper
+G01 X95.2500 Y20.6375
+G0Z0 ; pen up
+G00 X145.5208 Y12.7000
+G0Z6 ; pen down on paper
+G01 X149.2250 Y12.7000
+G0Z0 ; pen up
+G00 X139.7000 Y8.4667
+G0Z6 ; pen down on paper
+G01 X135.9958 Y8.4667
+G0Z0 ; pen up
+G00 X82.5500 Y20.6375
+G0Z6 ; pen down on paper
+G01 X80.4333 Y16.9333
+G0Z0 ; pen up
+G00 X127.0000 Y16.9333
+G0Z6 ; pen down on paper
+G01 X130.7042 Y20.6375
+G0Z0 ; pen up
+G00 X130.7042 Y20.6375
+G0Z6 ; pen down on paper
+G01 X127.0000 Y16.9333
+G0Z0 ; pen up
+G00 X145.5208 Y12.7000
+G0Z6 ; pen down on paper
+G01 X143.9333 Y8.4667
+G0Z0 ; pen up
+G00 X135.4667 Y16.9333
+G0Z6 ; pen down on paper
+G01 X131.7625 Y16.9333
+G0Z0 ; pen up
+G00 X157.1625 Y12.7000
+G0Z6 ; pen down on paper
+G01 X161.3958 Y12.7000
+G0Z0 ; pen up
+G00 X161.3958 Y12.7000
+G0Z6 ; pen down on paper
+G01 X165.1000 Y12.7000
+G0Z0 ; pen up
+G00 X152.9292 Y12.7000
+G0Z6 ; pen down on paper
+G01 X157.1625 Y12.7000
+G0Z0 ; pen up
+G00 X164.0417 Y8.4667
+G0Z6 ; pen down on paper
+G01 X165.1000 Y12.7000
+G0Z0 ; pen up
+G00 X168.8042 Y12.7000
+G0Z6 ; pen down on paper
+G01 X172.5083 Y12.7000
+G0Z0 ; pen up
+G00 X175.1542 Y8.4667
+G0Z6 ; pen down on paper
+G01 X177.2708 Y12.7000
+G0Z0 ; pen up
+G00 X182.0333 Y12.7000
+G0Z6 ; pen down on paper
+G01 X186.7958 Y12.7000
+G0Z0 ; pen up
+G00 X205.3167 Y12.7000
+G0Z6 ; pen down on paper
+G01 X198.9667 Y8.4667
+G0Z0 ; pen up
+G00 X171.4500 Y8.4667
+G0Z6 ; pen down on paper
+G01 X172.5083 Y12.7000
+G0Z0 ; pen up
+G00 X195.2625 Y8.4667
+G0Z6 ; pen down on paper
+G01 X191.5583 Y8.4667
+G0Z0 ; pen up
+G00 X184.1500 Y8.4667
+G0Z6 ; pen down on paper
+G01 X186.7958 Y12.7000
+G0Z0 ; pen up
+G00 X196.3208 Y12.7000
+G0Z6 ; pen down on paper
+G01 X191.5583 Y8.4667
+G0Z0 ; pen up
+G00 X12.7000 Y4.7625
+G0Z6 ; pen down on paper
+G01 X13.2292 Y0.5292
+G0Z0 ; pen up
+G00 X45.5083 Y0.5292
+G0Z6 ; pen down on paper
+G01 X40.7458 Y0.5292
+G0Z0 ; pen up
+G00 X5.2917 Y0.5292
+G0Z6 ; pen down on paper
+G01 X4.7625 Y4.7625
+G0Z0 ; pen up
+G00 X153.4583 Y4.7625
+G0Z6 ; pen down on paper
+G01 X149.7542 Y4.7625
+G0Z0 ; pen up
+G00 X0.5292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X4.7625 Y4.7625
+G0Z0 ; pen up
+G00 X16.9333 Y4.7625
+G0Z6 ; pen down on paper
+G01 X17.9917 Y0.5292
+G0Z0 ; pen up
+G00 X220.6625 Y12.7000
+G0Z6 ; pen down on paper
+G01 X225.4250 Y12.7000
+G0Z0 ; pen up
+G00 X22.7542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X17.9917 Y0.5292
+G0Z0 ; pen up
+G00 X205.3167 Y12.7000
+G0Z6 ; pen down on paper
+G01 X209.0208 Y12.7000
+G0Z0 ; pen up
+G00 X31.7500 Y0.5292
+G0Z6 ; pen down on paper
+G01 X27.5167 Y0.5292
+G0Z0 ; pen up
+G00 X22.7542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X21.1667 Y4.7625
+G0Z0 ; pen up
+G00 X29.1042 Y4.7625
+G0Z6 ; pen down on paper
+G01 X33.3375 Y4.7625
+G0Z0 ; pen up
+G00 X47.0958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X49.2125 Y0.5292
+G0Z0 ; pen up
+G00 X145.5208 Y4.7625
+G0Z6 ; pen down on paper
+G01 X140.7583 Y4.7625
+G0Z0 ; pen up
+G00 X233.8917 Y12.7000
+G0Z6 ; pen down on paper
+G01 X228.0708 Y8.4667
+G0Z0 ; pen up
+G00 X50.8000 Y4.7625
+G0Z6 ; pen down on paper
+G01 X53.9750 Y0.5292
+G0Z0 ; pen up
+G00 X140.7583 Y4.7625
+G0Z6 ; pen down on paper
+G01 X135.9958 Y4.7625
+G0Z0 ; pen up
+G00 X237.5958 Y8.4667
+G0Z6 ; pen down on paper
+G01 X228.0708 Y8.4667
+G0Z0 ; pen up
+G00 X35.9833 Y0.5292
+G0Z6 ; pen down on paper
+G01 X33.3375 Y4.7625
+G0Z0 ; pen up
+G00 X54.5042 Y4.7625
+G0Z6 ; pen down on paper
+G01 X57.6792 Y0.5292
+G0Z0 ; pen up
+G00 X59.2667 Y4.7625
+G0Z6 ; pen down on paper
+G01 X63.5000 Y4.7625
+G0Z0 ; pen up
+G00 X106.8917 Y4.7625
+G0Z6 ; pen down on paper
+G01 X106.3625 Y8.4667
+G0Z0 ; pen up
+G00 X63.5000 Y4.7625
+G0Z6 ; pen down on paper
+G01 X67.2042 Y4.7625
+G0Z0 ; pen up
+G00 X59.2667 Y4.7625
+G0Z6 ; pen down on paper
+G01 X62.4417 Y0.5292
+G0Z0 ; pen up
+G00 X108.4792 Y0.5292
+G0Z6 ; pen down on paper
+G01 X105.8333 Y4.7625
+G0Z0 ; pen up
+G00 X216.9583 Y12.7000
+G0Z6 ; pen down on paper
+G01 X210.6083 Y8.4667
+G0Z0 ; pen up
+G00 X145.5208 Y4.7625
+G0Z6 ; pen down on paper
+G01 X144.4625 Y8.4667
+G0Z0 ; pen up
+G00 X88.3708 Y4.7625
+G0Z6 ; pen down on paper
+G01 X92.6042 Y4.7625
+G0Z0 ; pen up
+G00 X84.1375 Y4.7625
+G0Z6 ; pen down on paper
+G01 X87.8417 Y0.5292
+G0Z0 ; pen up
+G00 X162.4542 Y4.7625
+G0Z6 ; pen down on paper
+G01 X161.9250 Y8.4667
+G0Z0 ; pen up
+G00 X157.1625 Y8.4667
+G0Z6 ; pen down on paper
+G01 X161.9250 Y8.4667
+G0Z0 ; pen up
+G00 X74.6125 Y0.5292
+G0Z6 ; pen down on paper
+G01 X70.3792 Y0.5292
+G0Z0 ; pen up
+G00 X119.0625 Y4.7625
+G0Z6 ; pen down on paper
+G01 X115.3583 Y4.7625
+G0Z0 ; pen up
+G00 X153.4583 Y8.4667
+G0Z6 ; pen down on paper
+G01 X157.1625 Y8.4667
+G0Z0 ; pen up
+G00 X169.8625 Y4.7625
+G0Z6 ; pen down on paper
+G01 X166.1583 Y4.7625
+G0Z0 ; pen up
+G00 X110.5958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X114.3000 Y4.7625
+G0Z0 ; pen up
+G00 X219.6042 Y8.4667
+G0Z6 ; pen down on paper
+G01 X225.4250 Y12.7000
+G0Z0 ; pen up
+G00 X92.6042 Y0.5292
+G0Z6 ; pen down on paper
+G01 X87.8417 Y0.5292
+G0Z0 ; pen up
+G00 X76.7292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X78.8458 Y0.5292
+G0Z0 ; pen up
+G00 X101.6000 Y8.4667
+G0Z6 ; pen down on paper
+G01 X106.3625 Y8.4667
+G0Z0 ; pen up
+G00 X97.3667 Y4.7625
+G0Z6 ; pen down on paper
+G01 X100.0125 Y0.5292
+G0Z0 ; pen up
+G00 X212.7250 Y12.7000
+G0Z6 ; pen down on paper
+G01 X206.3750 Y8.4667
+G0Z0 ; pen up
+G00 X100.0125 Y0.5292
+G0Z6 ; pen down on paper
+G01 X97.3667 Y4.7625
+G0Z0 ; pen up
+G00 X116.4167 Y0.5292
+G0Z6 ; pen down on paper
+G01 X114.3000 Y4.7625
+G0Z0 ; pen up
+G00 X76.7292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X80.4333 Y4.7625
+G0Z0 ; pen up
+G00 X108.4792 Y0.5292
+G0Z6 ; pen down on paper
+G01 X104.7750 Y0.5292
+G0Z0 ; pen up
+G00 X124.3542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X121.7083 Y4.7625
+G0Z0 ; pen up
+G00 X120.6500 Y0.5292
+G0Z6 ; pen down on paper
+G01 X118.0042 Y4.7625
+G0Z0 ; pen up
+G00 X220.6625 Y12.7000
+G0Z6 ; pen down on paper
+G01 X215.3708 Y8.4667
+G0Z0 ; pen up
+G00 X133.3500 Y0.5292
+G0Z6 ; pen down on paper
+G01 X129.1167 Y0.5292
+G0Z0 ; pen up
+G00 X137.0542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X133.3500 Y0.5292
+G0Z0 ; pen up
+G00 X111.1250 Y4.7625
+G0Z6 ; pen down on paper
+G01 X110.0667 Y8.4667
+G0Z0 ; pen up
+G00 X143.4042 Y4.7625
+G0Z6 ; pen down on paper
+G01 X148.1667 Y4.7625
+G0Z0 ; pen up
+G00 X138.6417 Y4.7625
+G0Z6 ; pen down on paper
+G01 X141.8167 Y0.5292
+G0Z0 ; pen up
+G00 X143.4042 Y4.7625
+G0Z6 ; pen down on paper
+G01 X145.5208 Y0.5292
+G0Z0 ; pen up
+G00 X152.9292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X153.9875 Y0.5292
+G0Z0 ; pen up
+G00 X127.5292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X127.5292 Y8.4667
+G0Z0 ; pen up
+G00 X123.8250 Y4.7625
+G0Z6 ; pen down on paper
+G01 X123.2958 Y8.4667
+G0Z0 ; pen up
+G00 X119.0625 Y8.4667
+G0Z6 ; pen down on paper
+G01 X123.2958 Y8.4667
+G0Z0 ; pen up
+G00 X170.9208 Y0.5292
+G0Z6 ; pen down on paper
+G01 X166.1583 Y0.5292
+G0Z0 ; pen up
+G00 X162.4542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X157.6917 Y0.5292
+G0Z0 ; pen up
+G00 X152.9292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X157.1625 Y4.7625
+G0Z0 ; pen up
+G00 X165.1000 Y4.7625
+G0Z6 ; pen down on paper
+G01 X166.1583 Y0.5292
+G0Z0 ; pen up
+G00 X175.1542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X172.5083 Y4.7625
+G0Z0 ; pen up
+G00 X4.2333 Y8.4667
+G0Z6 ; pen down on paper
+G01 X5.2917 Y4.7625
+G0Z0 ; pen up
+G00 X135.9958 Y8.4667
+G0Z6 ; pen down on paper
+G01 X135.9958 Y4.7625
+G0Z0 ; pen up
+G00 X4.2333 Y8.4667
+G0Z6 ; pen down on paper
+G01 X8.4667 Y8.4667
+G0Z0 ; pen up
+G00 X175.1542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X170.9208 Y0.5292
+G0Z0 ; pen up
+G00 X229.6583 Y8.4667
+G0Z6 ; pen down on paper
+G01 X234.4208 Y8.4667
+G0Z0 ; pen up
+G00 X184.1500 Y0.5292
+G0Z6 ; pen down on paper
+G01 X179.9167 Y0.5292
+G0Z0 ; pen up
+G00 X8.9958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X8.4667 Y8.4667
+G0Z0 ; pen up
+G00 X188.3833 Y0.5292
+G0Z6 ; pen down on paper
+G01 X184.1500 Y0.5292
+G0Z0 ; pen up
+G00 X186.2667 Y4.7625
+G0Z6 ; pen down on paper
+G01 X191.0292 Y4.7625
+G0Z0 ; pen up
+G00 X224.8958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X225.4250 Y8.4667
+G0Z0 ; pen up
+G00 X192.0875 Y0.5292
+G0Z6 ; pen down on paper
+G01 X191.0292 Y4.7625
+G0Z0 ; pen up
+G00 X12.7000 Y8.4667
+G0Z6 ; pen down on paper
+G01 X16.4042 Y8.4667
+G0Z0 ; pen up
+G00 X199.4958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X200.5542 Y0.5292
+G0Z0 ; pen up
+G00 X199.4958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X203.2000 Y4.7625
+G0Z0 ; pen up
+G00 X209.5500 Y0.5292
+G0Z6 ; pen down on paper
+G01 X205.3167 Y0.5292
+G0Z0 ; pen up
+G00 X179.3875 Y8.4667
+G0Z6 ; pen down on paper
+G01 X178.3292 Y4.7625
+G0Z0 ; pen up
+G00 X230.1875 Y0.5292
+G0Z6 ; pen down on paper
+G01 X225.9542 Y0.5292
+G0Z0 ; pen up
+G00 X30.6917 Y4.7625
+G0Z6 ; pen down on paper
+G01 X30.1625 Y8.4667
+G0Z0 ; pen up
+G00 X237.5958 Y0.5292
+G0Z6 ; pen down on paper
+G01 X233.8917 Y0.5292
+G0Z0 ; pen up
+G00 X218.0167 Y0.5292
+G0Z6 ; pen down on paper
+G01 X213.2542 Y0.5292
+G0Z0 ; pen up
+G00 X26.4583 Y4.7625
+G0Z6 ; pen down on paper
+G01 X25.9292 Y8.4667
+G0Z0 ; pen up
+G00 X26.4583 Y4.7625
+G0Z6 ; pen down on paper
+G01 X22.7542 Y4.7625
+G0Z0 ; pen up
+G00 X230.1875 Y0.5292
+G0Z6 ; pen down on paper
+G01 X228.0708 Y4.7625
+G0Z0 ; pen up
+G00 X22.7542 Y4.7625
+G0Z6 ; pen down on paper
+G01 X17.9917 Y4.7625
+G0Z0 ; pen up
+G00 X222.2500 Y0.5292
+G0Z6 ; pen down on paper
+G01 X218.0167 Y0.5292
+G0Z0 ; pen up
+G00 X225.9542 Y0.5292
+G0Z6 ; pen down on paper
+G01 X222.2500 Y0.5292
+G0Z0 ; pen up
+G00 X209.5500 Y0.5292
+G0Z6 ; pen down on paper
+G01 X207.9625 Y4.7625
+G0Z0 ; pen up
+G00 X191.0292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X192.0875 Y8.4667
+G0Z0 ; pen up
+G00 X56.0917 Y4.7625
+G0Z6 ; pen down on paper
+G01 X55.5625 Y8.4667
+G0Z0 ; pen up
+G00 X33.8667 Y8.4667
+G0Z6 ; pen down on paper
+G01 X38.1000 Y8.4667
+G0Z0 ; pen up
+G00 X38.1000 Y8.4667
+G0Z6 ; pen down on paper
+G01 X42.3333 Y8.4667
+G0Z0 ; pen up
+G00 X225.4250 Y8.4667
+G0Z6 ; pen down on paper
+G01 X224.8958 Y4.7625
+G0Z0 ; pen up
+G00 X221.7208 Y8.4667
+G0Z6 ; pen down on paper
+G01 X221.1917 Y4.7625
+G0Z0 ; pen up
+G00 X174.6250 Y8.4667
+G0Z6 ; pen down on paper
+G01 X174.0958 Y4.7625
+G0Z0 ; pen up
+G00 X59.7958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X59.7958 Y8.4667
+G0Z0 ; pen up
+G00 X186.7958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X187.8542 Y8.4667
+G0Z0 ; pen up
+G00 X212.7250 Y4.7625
+G0Z6 ; pen down on paper
+G01 X213.2542 Y8.4667
+G0Z0 ; pen up
+G00 X209.0208 Y4.7625
+G0Z6 ; pen down on paper
+G01 X208.4917 Y8.4667
+G0Z0 ; pen up
+G00 X183.0917 Y8.4667
+G0Z6 ; pen down on paper
+G01 X187.8542 Y8.4667
+G0Z0 ; pen up
+G00 X233.8917 Y4.7625
+G0Z6 ; pen down on paper
+G01 X234.4208 Y8.4667
+G0Z0 ; pen up
+G00 X178.3292 Y4.7625
+G0Z6 ; pen down on paper
+G01 X179.3875 Y8.4667
+G0Z0 ; pen up
+G00 X55.5625 Y8.4667
+G0Z6 ; pen down on paper
+G01 X56.0917 Y4.7625
+G0Z0 ; pen up
+G00 X68.7917 Y8.4667
+G0Z6 ; pen down on paper
+G01 X68.7917 Y4.7625
+G0Z0 ; pen up
+G00 X200.5542 Y8.4667
+G0Z6 ; pen down on paper
+G01 X200.0250 Y4.7625
+G0Z0 ; pen up
+G00 X204.7875 Y8.4667
+G0Z6 ; pen down on paper
+G01 X204.2583 Y4.7625
+G0Z0 ; pen up
+G00 X43.3917 Y4.7625
+G0Z6 ; pen down on paper
+G01 X42.3333 Y8.4667
+G0Z0 ; pen up
+G00 X51.3292 Y8.4667
+G0Z6 ; pen down on paper
+G01 X51.3292 Y4.7625
+G0Z0 ; pen up
+G00 X89.4292 Y8.4667
+G0Z6 ; pen down on paper
+G01 X94.1917 Y8.4667
+G0Z0 ; pen up
+G00 X77.2583 Y4.7625
+G0Z6 ; pen down on paper
+G01 X77.2583 Y8.4667
+G0Z0 ; pen up
+G00 X204.7875 Y8.4667
+G0Z6 ; pen down on paper
+G01 X208.4917 Y8.4667
+G0Z0 ; pen up
+G00 X85.1958 Y4.7625
+G0Z6 ; pen down on paper
+G01 X85.7250 Y8.4667
+G0Z0 ; pen up
+G00 X73.5542 Y4.7625
+G0Z6 ; pen down on paper
+G01 X73.0250 Y8.4667
+G0Z0 ; pen up
+G00 X68.7917 Y8.4667
+G0Z6 ; pen down on paper
+G01 X73.0250 Y8.4667
+G0Z0 ; pen up
+G00 X81.4917 Y4.7625
+G0Z6 ; pen down on paper
+G01 X81.4917 Y8.4667
+G0Z0 ; pen up
+G00 X97.8958 Y8.4667
+G0Z6 ; pen down on paper
+G01 X98.4250 Y4.7625
+G0Z0 ; pen up
+G00 X97.8958 Y8.4667
+G0Z6 ; pen down on paper
+G01 X101.6000 Y8.4667
+G0Z0 ; pen up
+G00 X0 Y0 Z0
