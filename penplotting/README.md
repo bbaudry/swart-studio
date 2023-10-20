@@ -107,11 +107,11 @@ and use the 'SVG' argument when creating the p5 canvas
 ```
             createCanvas(w, h, SVG);
 ```
-More documentation at [https://github.com/zenozeng/p5.js-svg](https://github.com/zenozeng/p5.js-svg). For example, see [plottable001](https://github.com/bbaudry/swart-studio/blob/main/penplotting/plottable001.html)
+The sketch in [plottable001.html](https://github.com/bbaudry/swart-studio/blob/main/penplotting/plottable001.html) illustrates the usafe of [p5.js-svg](https://github.com/zenozeng/p5.js-svg), and you can find more documentation at [https://github.com/zenozeng/p5.js-svg](https://github.com/zenozeng/p5.js-svg). 
 
-Once you are happy with your sketch, save it as an svg.
-* Transform the svg to gcode with [Juicy-GCode](https://github.com/domoszlai/juicy-gcode). Check out the flavor.txt configuration file to fine-tune the generation of the gcode. Put the generated gcode in a file, for example sketch.gcode
-* Use [gcode-cli](https://github.com/hzeller/gcode-cli) to draw the sketch on the pen plotter, for example ```g-code-cli sketch.gcode```
+Once you are happy with your sketch, save it as an svg, for example [```pointille.svg```](https://github.com/bbaudry/swart-studio/blob/main/penplotting/pointille.svg).
+* Transform the svg to gcode with [Juicy-GCode](https://github.com/domoszlai/juicy-gcode). Check out the flavor.txt configuration file to fine-tune the generation of the gcode. Put the generated gcode in a file, for example pointille.gcode
+* Use [gcode-cli](https://github.com/hzeller/gcode-cli) to draw the sketch on the pen plotter, for example ```g-code-cli pointille.gcode```
     
  
 ##   Notes
