@@ -112,7 +112,14 @@ The sketch in [plottable001.html](https://github.com/bbaudry/swart-studio/blob/m
 Once you are happy with your sketch, save it as an svg, for example [```pointille.svg```](https://github.com/bbaudry/swart-studio/blob/main/penplotting/pointille.svg).
 * Transform the svg to gcode with [Juicy-GCode](https://github.com/domoszlai/juicy-gcode). Check out the flavor.txt configuration file to fine-tune the generation of the gcode. Put the generated gcode in a file, for example [```pointille.gcode```](https://github.com/bbaudry/swart-studio/blob/main/penplotting/pointille.gcode)
 * Use [gcode-cli](https://github.com/hzeller/gcode-cli) to draw the sketch on the pen plotter, for example ```g-code-cli pointille.gcode```
-    
+
+### With turtle LOGO 
+
+turtle LOGO as high level API to generate gcode (not yet tried):
+* <https://github.com/313ctric/turtle_gcode>
+* <https://github.com/Hand-and-Machine/extruder-turtle-Rhino>
+
+
 
  
 ##  Tools 
@@ -140,6 +147,7 @@ One can change the size of the artwork by setting the density with `-d 32` (defa
 One has to use line fonts, starting with EMS and Hershey fonts.
 * [oskay/svg-fonts](https://gitlab.com/oskay/svg-fonts) contains the SVG code for EMS and Hershey fonts
 * [Andy1978/hf2gcode](https://github.com/Andy1978/hf2gcode) is an end-to-end tool from text to gcode
+
 
 ##   Misc
 
