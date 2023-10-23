@@ -19,8 +19,8 @@
         var w// = 900 
         var h// = 900 
         var cnv
-        var x,y
-        var xoff
+        var x, y
+        var xoff,yoff
         var step, stepx, stepy
 
         function setup() {
@@ -32,12 +32,13 @@
             noFill();
             background(0, 0, 100)
             stroke(0, 0, 100);
-            x=0
-            y=0
-            xoff=random()*100
-            step=w/42   
-            stepx=w/step
-            stepy=h/step
+            x = 0
+            y = 0
+            xoff = random() * 100
+            yoff = random() * 100
+            step = w / 84
+            stepx = w / step
+            stepy = h / step
         }
 
         function centerCanvas() {
@@ -47,35 +48,37 @@
         }
 
         function draw() {
-//            drawregular()
-drawrandom()
+            //            drawregular()
+            drawrandom()
         }
 
-        var noisestep=1.9
-        function drawrandom(){
-            let x=Math.floor(noise(xoff)*stepx)*step
-            xoff+=noisestep
-            let y=Math.floor(noise(xoff)*stepy)*step
-            xoff+=noisestep
-            stroke(0,0,0);noFill()
-                if(random()<0.1){noStroke();fill(0,100,100)}
-                rect(x,y,step,step)
+        var noisestep = 1.9
+        function drawrandom() {
+            let x = Math.floor(noise(xoff) * stepx) * step
+            xoff += noisestep
+            let y = Math.floor(noise(yoff) * stepy) * step
+            yoff += noisestep
+                //stroke(0, 0, 0); noFill()
+                noStroke(); fill(0, 0, 0)
+            if (random() < 0.1) { noStroke(); fill(0, 100, 100) }
+            rect(x, y, step, step)
 
 
         }
 
-        function drawregular(){
-            if(x>w){
-                x=0;y+=step
+        function drawregular() {
+            if (x > w) {
+                x = 0; y += step
             }
-            else{
-                x+=step
-                if(y>h){noLoop()}
+            else {
+                x += step
+                if (y > h) { noLoop() }
             }
-            if(noise(xoff)<0.42){
-                stroke(0,0,0);noFill()
-                if(random()<0.1){noStroke();fill(0,100,100)}
-                rect(x,y,step,step)
+            if (noise(xoff) < 0.42) {
+                //stroke(0, 0, 0); noFill()
+                noStroke(); fill(0, 0, 0)
+                if (random() < 0.1) { noStroke(); fill(0, 100, 100) }
+                rect(x, y, step, step)
             }
             xoff++
 
