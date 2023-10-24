@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/h264-mp4-encoder/embuild/dist/h264-mp4-encoder.web.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //based on https://tylerxhobbs.com/essays/2020/flow-fields
+        var w = 800
+        var h = 800
+        var res = 10
+        var cnv, xoff
+
+        function setup() {
+            cnv = createCanvas(w, h);
+            centerCanvas();
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            btn = createButton("generate new artwork");
+            placebtn();
+            btn.mouseClicked(draw);
+            xoff = 0.0
+            initfield()
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+        function placebtn() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            btn.position(x - 200, y + h / 2)
+        }
+
+        var field = []
+        var nbcols=w/res
+            var nbrows=h/res
+        function initfield() {
+            let angle, row
+            for (let y = 0; y < nbrows; y ++) {
+                row = []
+                angle = (y / nbrows) * PI
+                console.log("y: "+y+" angle : "+angle+"nb cols "+nbcols)
+                for (let x = 0; x < nbcols; x ++) {
+                    row.push(angle)
+                }
+                field.push(row)
+            }
+        }
+
+        function draw() {      
+                  stroke(0,0,0)
+            //line(0,140,w,140)
+
+            drawfieldangles()
+            noLoop()
+
+        }
+
+        function drawfieldcolor() {
+            let x1,y1
+            for (let y = 0; y < nbrows; y++) {
+                for (let x = 0; x < nbcols; x++) {
+                    let angle = field[y][x]
+                    let hu = map(angle, 0, PI, 0, 360)
+                    x1 = x*res
+                    y1 = y*res
+                    fill(hu, 100, 100)
+                    rect(x1, y1, res, res)
+                }
+            }
+        }
+        function drawfieldangles() {
+            let x1,y1,x2,y2
+            stroke(0,0,0)
+            for (let y = 0; y < nbrows; y++) {
+                y1 = y*res
+                for (let x = 0; x < nbcols; x++) {
+                    let angle = field[y][x]
+                    x1 = x*res
+                    x2=x1+(res*0.5)*cos(angle)
+                    y2=y1+(res*0.5)*sin(angle)
+                    line(x1,y1,x2,y2)
+                    console.log(" x1 "+x1+" y1 "+y1+" x2 "+x2+" y2 "+y2+ " angle "+angle)
+                    //fill(0,100,100)
+                    //ellipse(x1,y1,17,17)
+                }
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>
