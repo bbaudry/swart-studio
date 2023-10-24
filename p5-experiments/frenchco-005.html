@@ -64,12 +64,54 @@
         }
 
         function draw() {      
-                  stroke(0,0,0)
-            //line(0,140,w,140)
-
+            console.log("nb rows: "+nbrows+"; nb columns: "+nbcols)
             drawfieldangles()
+            drawcurveinfield()
             noLoop()
+        }
 
+        function drawcurveinfield(){
+            stroke(0,100,100)
+            noFill()
+            let rowindex = 72
+            let colindex = 7
+            let x1,y1,x2,y2,angle
+            x1=colindex*res
+            y1=rowindex*res    
+            beginShape();
+            curveVertex(x1,y1)
+            curveVertex(x1,y1)
+            for(let i=0; i<60; i++){
+                angle=field[rowindex][colindex];console.log(angle)
+                x2=x1+res*cos(angle)
+                y2=y1+res*sin(angle)
+                curveVertex(x2,y2)
+                rowindex--
+                colindex++
+                x1=colindex*res
+                y1=rowindex*res                
+            }
+            angle=field[rowindex][colindex]
+                x2=x1+res*cos(angle)
+                y2=y1+res*sin(angle)
+                curveVertex(x2,y2)
+                curveVertex(x2,y2)
+            endShape();
+        }
+
+        function drawfieldangles() {
+            let x1,y1,x2,y2
+            stroke(0,0,0)
+            for (let y = 0; y < nbrows; y++) {
+                y1 = y*res
+                for (let x = 0; x < nbcols; x++) {
+                    let angle = field[y][x]
+                    x1 = x*res
+                    x2=x1+(res*0.8)*cos(angle)
+                    y2=y1+(res*0.8)*sin(angle)
+                    line(x1,y1,x2,y2)
+                }
+            }
         }
 
         function drawfieldcolor() {
@@ -84,24 +126,6 @@
                     rect(x1, y1, res, res)
                 }
             }
-        }
-        function drawfieldangles() {
-            let x1,y1,x2,y2
-            stroke(0,0,0)
-            for (let y = 0; y < nbrows; y++) {
-                y1 = y*res
-                for (let x = 0; x < nbcols; x++) {
-                    let angle = field[y][x]
-                    x1 = x*res
-                    x2=x1+(res*0.5)*cos(angle)
-                    y2=y1+(res*0.5)*sin(angle)
-                    line(x1,y1,x2,y2)
-                    console.log(" x1 "+x1+" y1 "+y1+" x2 "+x2+" y2 "+y2+ " angle "+angle)
-                    //fill(0,100,100)
-                    //ellipse(x1,y1,17,17)
-                }
-            }
-
         }
 
 
