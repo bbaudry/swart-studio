@@ -45,7 +45,7 @@
             var y = (windowHeight - h) / 2;
             btn.position(x - 200, y + h / 2)
         }
-        var res = 100
+        var res = 20
         var field = []
         var nbcols = w / res
         var nbrows = h / res
@@ -65,55 +65,80 @@
 
         function draw() {
             console.log("nb rows: " + nbrows + "; nb columns: " + nbcols)
-            drawfieldangles()
+            //drawfieldangles()
             let initrow = 4//Math.floor(random(nbrows-1))
             //drawcurveinfield(initrow, Math.floor(random(nbcols-1)))
-            drawcurveinfieldtest()
-            if(frameCount==1){noLoop()}
+            //drawcurveinfieldtest2(3, 7, 1, 11);console.log("1")
+            drawcurveinfieldtest2(Math.floor(random(32)), Math.floor(random(42)), 1, Math.floor(random(5,11)))
+            if (frameCount == 582) { noLoop() }
         }
 
-        function drawcurveinfieldtest(){
-            stroke(0,100,100)
+        function drawcurveinfieldtest2(rowinit, colinit, offset, len) {
+            stroke(0, 0, 0);noFill()
             beginShape()
-            x1=3*res
-            y1=3*res
+            x1 = colinit * res
+            y1 = rowinit * res
             curveVertex(x1, y1)
             curveVertex(x1, y1)
-            fill(50,100,100); ellipse(x1,y1,21);noFill()
-            angle=field[3][4]//PI*0.5
+            //fill(50, 100, 100); ellipse(x1, y1, 21); noFill()
+            for (let i = 0; i < len; i++) {
+                angle = field[rowinit + i * offset][colinit]//PI*0.5
+                x2 = x1 + res * cos(angle)
+                y2 = y1 + res * sin(angle)
+                curveVertex(x2, y2)
+                //fill(100, 100, 100); ellipse(x2, y2, 21); noFill()
+                x1 = x2
+                y1 = y2
+            }
+            //curveVertex(x2, y2)
+            curveVertex(x2, y2)
+            //fill(300, 100, 100); ellipse(x2, y2, 21); noFill()
+            endShape()
+        }
+
+
+        function drawcurveinfieldtest() {
+            stroke(0, 100, 100)
+            beginShape()
+            x1 = 3 * res
+            y1 = 3 * res
+            curveVertex(x1, y1)
+            curveVertex(x1, y1)
+            fill(50, 100, 100); ellipse(x1, y1, 21); noFill()
+            angle = field[3][4]//PI*0.5
             x2 = x1 + res * cos(angle)
             y2 = y1 + res * sin(angle)
             curveVertex(x2, y2)
-            fill(100,100,100); ellipse(x2,y2,21);noFill()
-            x1=x2
-            y1=y2
-            angle=field[4][4]//PI*0.5
+            fill(100, 100, 100); ellipse(x2, y2, 21); noFill()
+            x1 = x2
+            y1 = y2
+            angle = field[5][4]//PI*0.5
             x2 = x1 + res * cos(angle)
             y2 = y1 + res * sin(angle)
             curveVertex(x2, y2)
-            fill(150,100,100); ellipse(x2,y2,21);noFill()
-            x1=x2
-            y1=y2
-            angle=field[5][4]//PI*0.6
+            fill(150, 100, 100); ellipse(x2, y2, 21); noFill()
+            x1 = x2
+            y1 = y2
+            angle = field[7][4]//PI*0.6
             x2 = x1 + res * cos(angle)
             y2 = y1 + res * sin(angle)
             curveVertex(x2, y2)
-            fill(200,100,100); ellipse(x2,y2,21);noFill()
-            x1=x2
-            y1=y2
-            angle=field[6][4]//PI*0.7
+            fill(200, 100, 100); ellipse(x2, y2, 21); noFill()
+            x1 = x2
+            y1 = y2
+            angle = field[9][4]//PI*0.7
             x2 = x1 + res * cos(angle)
             y2 = y1 + res * sin(angle)
             curveVertex(x2, y2)
-            fill(250,100,100); ellipse(x2,y2,21);noFill()
-            x1=x2
-            y1=y2
-            angle=field[7][4]//PI*0.7
+            fill(250, 100, 100); ellipse(x2, y2, 21); noFill()
+            x1 = x2
+            y1 = y2
+            angle = field[11][4]//PI*0.7
             x2 = x1 + res * cos(angle)
             y2 = y1 + res * sin(angle)
             curveVertex(x2, y2)
             curveVertex(x2, y2)
-            fill(300,100,100); ellipse(x2,y2,21);noFill()
+            fill(300, 100, 100); ellipse(x2, y2, 21); noFill()
             endShape()
         }
 
@@ -124,35 +149,35 @@
             let colindex = c
             let x1, y1, x2, y2, angle
             x1 = colindex * res
-            y1 = (rowindex+1) * res
-            fill(50,100,100); ellipse(x1,y1,21);noFill()
+            y1 = (rowindex + 1) * res
+            fill(50, 100, 100); ellipse(x1, y1, 21); noFill()
             beginShape();
             curveVertex(x1, y1)
             curveVertex(x1, y1)
             for (let i = 0; i < 2; i++) {
                 console.log("row " + rowindex + " col " + colindex)
                 angle = field[rowindex][colindex]; console.log("angle " + angle)
-                x2 = x1 - steplength/2 * cos(angle)
-                y2 = (y1+res) - steplength/2 * sin(angle)
-                fill(i*100,100,100); ellipse(x2,y2,11);noFill()
+                x2 = x1 - steplength / 2 * cos(angle)
+                y2 = (y1 + res) - steplength / 2 * sin(angle)
+                fill(i * 100, 100, 100); ellipse(x2, y2, 11); noFill()
                 curveVertex(x2, y2)
-                let ri = Math.floor(y2/res)//y1-2
-                let ci = Math.floor(x2/res)//colindex + Math.floor(noise(xoff) * 2 - 1); xoff += 1
+                let ri = Math.floor(y2 / res)//y1-2
+                let ci = Math.floor(x2 / res)//colindex + Math.floor(noise(xoff) * 2 - 1); xoff += 1
                 if (ri >= 0 && ri < nbrows && ci >= 0 && ci < nbcols) {
-                    colindex=ci
-                    rowindex=ri
+                    colindex = ci
+                    rowindex = ri
                     x1 = rowindex * res
                     y1 = colindex * res
                 }
-                else{
-                    i=10
+                else {
+                    i = 10
                 }
             }
             angle = field[rowindex][colindex]
             x2 = x1 - res * cos(angle)
             y2 = y1 - res * sin(angle)
-            fill(250,100,100); ellipse(x1,y1,11);noFill()
-            
+            fill(250, 100, 100); ellipse(x1, y1, 11); noFill()
+
             curveVertex(x2, y2)
             curveVertex(x2, y2)
             endShape();
@@ -165,10 +190,10 @@
                 y1 = y * res
                 for (let x = 0; x < nbcols; x++) {
                     let angle = field[y][x]
-                    x1 = x * res; fill(0,0,0); ellipse(x1,y1,7,7)
+                    x1 = x * res; fill(0, 0, 0); ellipse(x1, y1, 3, 3)
                     x2 = x1 + (res * 0.8) * cos(angle)
                     y2 = y1 + (res * 0.8) * sin(angle)
-                    line(x1, y1, x2, y2); noFill(); ellipse(x2,y2,7,7);rect(x1,y1,res,res)
+                    line(x1, y1, x2, y2); noFill(); ellipse(x2, y2, 3, 3); rect(x1, y1, res, res)
                 }
             }
         }
