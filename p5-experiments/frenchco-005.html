@@ -45,7 +45,7 @@
             var y = (windowHeight - h) / 2;
             btn.position(x - 200, y + h / 2)
         }
-        var res = 20
+        var res = 10
         var field = []
         var nbcols = w / res
         var nbrows = h / res
@@ -69,12 +69,12 @@
             let initrow = 4//Math.floor(random(nbrows-1))
             //drawcurveinfield(initrow, Math.floor(random(nbcols-1)))
             //drawcurveinfieldtest2(3, 7, 1, 11);console.log("1")
-            drawcurveinfieldtest2(Math.floor(random(32)), Math.floor(random(42)), 1, Math.floor(random(5,11)))
-            if (frameCount == 582) { noLoop() }
+            drawcurveinfieldtest2(Math.floor(random(nbrows)), Math.floor(random(nbcols)), 1, Math.floor(random(5, 11)))
+            if (frameCount == 4242) { noLoop() }
         }
 
         function drawcurveinfieldtest2(rowinit, colinit, offset, len) {
-            stroke(0, 0, 0);noFill()
+            stroke(0, 0, 0); noFill()
             beginShape()
             x1 = colinit * res
             y1 = rowinit * res
@@ -82,13 +82,20 @@
             curveVertex(x1, y1)
             //fill(50, 100, 100); ellipse(x1, y1, 21); noFill()
             for (let i = 0; i < len; i++) {
-                angle = field[rowinit + i * offset][colinit]//PI*0.5
-                x2 = x1 + res * cos(angle)
-                y2 = y1 + res * sin(angle)
-                curveVertex(x2, y2)
-                //fill(100, 100, 100); ellipse(x2, y2, 21); noFill()
-                x1 = x2
-                y1 = y2
+                if (rowinit + i * offset >= 0 && rowinit + i * offset < nbrows) {
+                    let t=rowinit + i * offset;console.log(t)
+                    angle = field[rowinit + i * offset][colinit]//PI*0.5
+                    x2 = x1 + res * cos(angle)
+                    y2 = y1 + res * sin(angle)
+                    curveVertex(x2, y2)
+                    //fill(100, 100, 100); ellipse(x2, y2, 21); noFill()
+                    x1 = x2
+                    y1 = y2
+                }
+                else {
+                    i = len
+
+                }
             }
             //curveVertex(x2, y2)
             curveVertex(x2, y2)
