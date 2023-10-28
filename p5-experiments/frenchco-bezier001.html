@@ -14,35 +14,52 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:#000000;">
     <script>
         //global vars for the whole piece
         var w// = 900 
         var h// = 900 
         var cnv
         // the frame rate (frames per second)
-        var fps = 30;
+        var fps = 60;
         // the canvas capturer instance
         var capturer = new CCapture({ format: 'png', framerate: fps });
         // duration in milliseconds
-        var duration = 3000;
+        var videolen = 6000;
         var startMillis;
+        var bowie
+
+
+        function preload(){
+            bowie=loadFont("./fonts/InconsolataSemiExpanded-Light.ttf");
+        }
+
 
         function setup() {
-            w = windowHeight
-            h = windowHeight
-            cnv = createCanvas(w, h);
+            w = windowHeight*0.9
+            h = windowHeight*0.9
+            cnv = createCanvas(windowHeight, windowHeight);
             frameRate(fps)
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             background(0, 0, 0)
             initCoords()
+            credits()
         }
 
         function centerCanvas() {
-            var x = (windowWidth - w) / 2;
-            var y = (windowHeight - h) / 2;
+            var x = (windowWidth - windowHeight) / 2;
+            var y = (windowHeight - windowHeight) / 2;
             cnv.position(x, y);
+        }
+
+        function credits(){
+            textFont(bowie)
+            textSize(21)
+            stroke(0,0,100);            noFill()
+            noStroke(); fill(0,0,100)
+//            strokeWeight(2)
+            text("@al.my.re; p5.js; bezier",0.3*w,windowHeight*0.96)
         }
 
         function initCoords() {
@@ -59,14 +76,16 @@
         }
 
         function draw() {
-            if (frameCount === 1) {
+            /*if (frameCount === 222) {
                 capturer.start();
-            }
-            if (startMillis == null) {
+                console.log('start capturing frame '+frameCount+"; "+millis());
+
+                if (startMillis == null) {
                 startMillis = millis();
             }
+            }
             var elapsed = millis() - startMillis;
-            var t = map(elapsed, 0, duration, 0, 1);
+            var t = map(elapsed, 0, videolen, 0, 1);
 
             // if we have passed t=1 then end the animation.
             if (t > 1) {
@@ -75,7 +94,7 @@
                 capturer.stop();
                 capturer.save();
                 return;
-            }
+            }*/
 
 
             if (frameCount < 3600) {
@@ -88,11 +107,11 @@
                 }
             }
             else {
+                console.log("stop anumating at "+frameCount)
                 noLoop();
                 //            save("summer003.png");
             }
             // handle saving the frame
-            console.log('capturing frame');
             capturer.capture(document.getElementById('defaultCanvas0'));
 
         }
