@@ -13,7 +13,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:#000000;">
     <script>
         //global vars for the whole piece
         var w// = 900 
@@ -32,24 +32,41 @@
         var nbVertices = 63;
         var wid = w / 10;
         var vertices=[];
+        var bowie
+
+
+function preload(){
+    bowie=loadFont("./fonts/InconsolataSemiExpanded-Light.ttf");
+}
+
 
 
         function setup() {
-            w = windowHeight
-            h = windowHeight
-            cnv = createCanvas(w, h);
+            w = windowHeight*0.9
+            h = windowHeight*0.9
+            cnv = createCanvas(windowHeight, windowHeight);
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             background(0, 0, 0)
             setVertices();
-            noFill();
-            stroke(0, 0, 100);
+            credits()
+
         }
 
         function centerCanvas() {
-            var x = (windowWidth - w) / 2;
-            var y = (windowHeight - h) / 2;
+            var x = (windowWidth - windowHeight) / 2;
+            var y = (windowHeight - windowHeight) / 2;
             cnv.position(x, y);
+        }
+
+        function credits(){
+            console.log("credits")
+            textFont(bowie)
+            textSize(21)
+            //stroke(0,0,100);            noFill()
+            noStroke(); fill(0,0,100)
+//            strokeWeight(2)
+            text("@al.my.re; p5.js; bezier",0.3*w,windowHeight*0.96)
         }
 
         function initCoords() {
@@ -83,6 +100,9 @@
     }
 
     function draw() {
+        noFill();
+            stroke(0, 0, 100);
+
         if (vertices[vertices.length - 1][1][1] > 0 && grow) {
             background(0, 0, 0);
             wave();
@@ -134,6 +154,8 @@
             background(0, 0, 0);
             noLoop();
         }
+        credits()
+
     }
 
     function updateVerticesUp() {
