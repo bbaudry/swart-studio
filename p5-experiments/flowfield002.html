@@ -42,7 +42,7 @@
         var field = []
         var nbcols = w / res
         var nbrows = h / res
-        var steplength = res
+        var steplength = res *5
         function initfield() {
             let angle, row
             for (let y = 0; y < nbrows; y++) {
@@ -60,14 +60,12 @@
         function draw() {
 //            drawfieldangles()
 //            drawcurveinfield(Math.floor(noise(xoff)*nbrows), Math.floor(noise(yoff)*nbcols), 1, Math.floor(random(42,84)))
-            drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 1, Math.floor(random(12,42)))
+            drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 1, Math.floor(random(42,184)))
             xoff+=0.1; yoff+=0.1
             if (frameCount == 4242) { noLoop() }
         }
 
         function drawcurveinfield(rowinit, colinit, offset, len) {
-            if(rowinit>nbrows*0.2&&rowinit<nbrows*0.6){stroke(0,100,100)}
-            else{stroke(0, 0, 0)} 
             strokeWeight(3)
             noFill()
             beginShape()
@@ -77,11 +75,13 @@
             curveVertex(x1, y1)
             //fill(50, 100, 100); ellipse(x1, y1, 21); noFill()
             for (let i = 0; i < len; i++) {
+                if(x1>nbrows*0.2&&x1<nbrows*0.6){stroke(0,100,100,42)}
+                    else{stroke(0, 0, 0, 42)} 
                 if (rowinit + i * offset >= 0 && rowinit + i * offset < nbrows) {
                     let t=rowinit + i * offset;console.log(t)
                     angle = field[rowinit + i * offset][colinit]//PI*0.5
-                    x2 = x1 + res * cos(angle)
-                    y2 = y1 + res * sin(angle)
+                    x2 = x1 + steplength * cos(angle)
+                    y2 = y1 + steplength * sin(angle)
                     curveVertex(x2, y2)
                     //fill(100, 100, 100); ellipse(x2, y2, 21); noFill()
                     x1 = x2
