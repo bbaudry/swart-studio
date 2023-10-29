@@ -29,6 +29,7 @@
             strokeCap(SQUARE)
             xoff = 0.0; yoff=3.0
             initfield()
+            background(0,0,0)
         }
 
         function centerCanvas() {
@@ -62,11 +63,11 @@
 //            drawcurveinfield(Math.floor(noise(xoff)*nbrows), Math.floor(noise(yoff)*nbcols), 1, Math.floor(random(42,84)))
             drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 1, Math.floor(random(42,184)))
             xoff+=0.1; yoff+=0.1
-            if (frameCount == 4242) { noLoop() }
+            //if (frameCount == 4242) { noLoop() }
         }
 
         function drawcurveinfield(rowinit, colinit, offset, len) {
-            strokeWeight(3)
+            strokeWeight(0.5)
             noFill()
             beginShape()
             x1 = colinit * res
@@ -76,7 +77,7 @@
             //fill(50, 100, 100); ellipse(x1, y1, 21); noFill()
             for (let i = 0; i < len; i++) {
                 if(x1>nbrows*0.2&&x1<nbrows*0.6){stroke(0,100,100,42)}
-                    else{stroke(0, 0, 0, 42)} 
+                    else{stroke(0, 0, 100, 42)} 
                 if (rowinit + i * offset >= 0 && rowinit + i * offset < nbrows) {
                     let t=rowinit + i * offset;console.log(t)
                     angle = field[rowinit + i * offset][colinit]//PI*0.5
