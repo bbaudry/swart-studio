@@ -18,6 +18,8 @@
 <body>
     <script>
         //based on https://tylerxhobbs.com/essays/2020/flow-fields
+        //https://www.gorillasun.de/blog/perlin-noise-flow-fields-in-processing-part-i/
+        //https://charlottedann.com/article/magical-vector-fields
         var w = 800
         var h = 800
         var cnv, xoff,yoff
@@ -28,8 +30,8 @@
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
             xoff = 0.0; yoff=3.0
-            initfield()
             background(0,0,0)
+            initfield()
         }
 
         function centerCanvas() {
@@ -44,24 +46,29 @@
         var nbcols = w / res
         var nbrows = h / res
         var steplength = res *5
+
         function initfield() {
             let angle, row
             for (let y = 0; y < nbrows; y++) {
                 row = []
+                yoff+=noiseres
                 for (let x = 0; x < nbcols; x++) {
+                    xoff+=noiseres
                     angle = map(noise(xoff,yoff), 0.0,1.0,0,2*PI)
                     row.push(angle)
-                    xoff+=noiseres
+                    let sat = map(noise(xoff,yoff), 0.0,1.0,0,100)
+                    fill(230,sat,100);noStroke();console.log("angle"+x)
+                    rect(x*res, y*res, res, res)
                 }
-                yoff+=noiseres
                 field.push(row)
             }
         }
 
         function draw() {
+            //drawfielblue()
 //            drawfieldangles()
 //            drawcurveinfield(Math.floor(noise(xoff)*nbrows), Math.floor(noise(yoff)*nbcols), 1, Math.floor(random(42,84)))
-            drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 1, Math.floor(random(42,184)))
+            //drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 1, Math.floor(random(42,184)))
             xoff+=0.1; yoff+=0.1
             //if (frameCount == 4242) { noLoop() }
         }
@@ -108,6 +115,22 @@
                     x2 = x1 + (res * 0.8) * cos(angle)
                     y2 = y1 + (res * 0.8) * sin(angle)
                     line(x1, y1, x2, y2); noFill(); ellipse(x2, y2, 3, 3); rect(x1, y1, res, res)
+                }
+            }
+        }
+
+
+        function drawfielblue() {
+            let x1, y1, x2, y2
+            noStroke()
+            for (let y = 0; y < nbrows; y++) {
+                y1 = y * res
+                for (let x = 0; x < nbcols; x++) {
+                    let angle = field[y][x]
+                    let sat = map(angle,0,2*PI,0,100)
+                    fill(230,sat,100)
+                    x1 = x * res; 
+                    rect(x1, y1, res, res)
                 }
             }
         }
