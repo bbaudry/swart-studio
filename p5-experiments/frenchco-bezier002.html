@@ -69,7 +69,7 @@
         function setVertices() {
         vertices = [];
         for (let i = 1; i < nbVertices; i++) {
-            let speed = i * 0.03;
+            let speed = i * random(0.03,0.05);
             let v=[];
             let one=[0,0.5 * h, speed, 180,0.125 * w, 0.125 * w]
             v.push(one);
@@ -86,7 +86,6 @@
     function draw() {
         noFill();
             stroke(0, 0, 100);
-
         if (vertices[vertices.length - 1][1][1] > 0 && grow) {
             background(0, 0, 0);
             wave();
