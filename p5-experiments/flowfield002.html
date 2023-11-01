@@ -22,15 +22,15 @@
         //https://charlottedann.com/article/magical-vector-fields
         var w = 800
         var h = 800
-        var cnv, xoff,yoff
+        var cnv, xoff,yoff,zoff
 
         function setup() {
             cnv = createCanvas(w, h);
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            
-            background(0,0,0)
+            yoff=3.0;zoff=0
+            //background(0,0,0)
             initfield()
         }
 
@@ -40,45 +40,43 @@
             cnv.position(x, y);
         }
 
-        var res = 2
-        var noiseres = 0.01
+        var res = 35
+        var noiseres = 0.1
+        var steplength = res/2 
         var field = []
         var nbcols = w / res
         var nbrows = h / res
-        var steplength = res 
 
         function initfield() {
             let angle, row
-             yoff=3.0
+             
             for (let y = 0; y < nbrows; y++) {
                 row = []
                 yoff+=noiseres
                 xoff = 0.0;
                 for (let x = 0; x < nbcols; x++) {
                     xoff+=noiseres
-                    let ikeda=noise(xoff,yoff)
-                    angle = map(noise(yoff,xoff), 0.0,1.0,0,2*PI)
+                    let ikeda=noise(xoff,yoff,zoff)
+                    angle = map(ikeda, 0.0,1.0,0,2*PI)
                     row.push(angle)
-                    let sat = map(ikeda, 0.0,1.0,0,100)
-                    console.log(ikeda)
-                    fill(230,sat,100);noStroke();
-                    //rect(x*res, y*res, res, res)
                 }
                 field.push(row)
             }
         }
 
         function draw() {
-            //drawfielblue()
+            //background(0,0,100)
+            //initfield()
             //drawfieldangles()
-//            drawcurveinfield(Math.floor(noise(xoff)*nbrows), Math.floor(noise(yoff)*nbcols), 1, Math.floor(random(42,84)))
-            drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 1, Math.floor(random(34,56)))
-            xoff+=0.1; yoff+=0.1
-            //if (frameCount == 4242) { noLoop() }
+            zoff+=0.1
+            //drawcurveinfield(Math.floor(0.5*nbrows), Math.floor(0.9*nbcols), 1, 42)
+            drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 3, 21)
+            //noLoop()
         }
 
         function drawcurveinfield(rowinit, colinit, offset, len) {
-            strokeWeight(0.5)
+            strokeWeight(1.5)
+            stroke(0,100,100,42)
             noFill()
             beginShape()
             x1 = colinit * res
@@ -87,24 +85,21 @@
             curveVertex(x1, y1)
             //fill(50, 100, 100); ellipse(x1, y1, 21); noFill()
             for (let i = 0; i < len; i++) {
-                if(x1>nbrows*0.2&&x1<nbrows*0.6){stroke(0,100,100)}
-                    else{stroke(0, 0, 100)} 
-                if (rowinit + i * offset >= 0 && rowinit + i * offset < nbrows) {
+                if (x1>0 && x1<w && y1>0 && y1<h && rowinit + i * offset>=0 && rowinit + i * offset<nbrows) {
                     let t=rowinit + i * offset;
                     angle = field[rowinit + i * offset][colinit]//PI*0.5
                     x2 = x1 + steplength * cos(angle)
                     y2 = y1 + steplength * sin(angle)
                     curveVertex(x2, y2)
-                    //fill(100, 100, 100); ellipse(x2, y2, 21); noFill()
                     x1 = x2
                     y1 = y2
+                    console.log("x2: "+x2+"; y2: "+y2+"; i: "+i);
                 }
                 else {
                     i = len
                 }
             }
             curveVertex(x2, y2)
-            //fill(300, 100, 100); ellipse(x2, y2, 21); noFill()
             endShape()
         }
 
