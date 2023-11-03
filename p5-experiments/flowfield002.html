@@ -83,17 +83,17 @@
         }
 
         function draw() {
-            drawfieldangles()
+            //drawfieldangles()
             zoff+=0.1
             //drawcurveinfield(Math.floor(0.5*nbrows), Math.floor(0.9*nbcols), 1, 42)
             drawcurveinfield(Math.floor(random()*nbrows), Math.floor(random()*nbcols), 3, 42)
             //noLoop()
-            if(frameCount==300){noLoop()}
+            if(frameCount==7000){noLoop()}
         }
 
         function drawcurveinfield(row, col, offset, len) {
             strokeWeight(1.5)
-            stroke(0,0,0)
+            stroke(0,0,0,42)
             noFill()
             beginShape()
             x1 = col * res

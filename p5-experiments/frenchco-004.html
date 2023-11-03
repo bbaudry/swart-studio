@@ -11,23 +11,67 @@
             margin: 0;
         }
     </style>
-            <style type ="text/css" >
-                .credits{ 
-                    position: absolute;     
-                    text-align: left;    
-                    bottom: 8px; 
-                    width: 100%;
-                    color:#000000;
-                    font-family:monospace;
-                    margin-left: 12px;
-                    font-size:14px
-                }  
-             </style>
-    
+    <style type="text/css">
+        .credits {
+            position: absolute;
+            text-align: left;
+            bottom: 8px;
+            width: 100%;
+            color: #000000;
+            font-family: monospace;
+            margin-left: 12px;
+            font-size: 21px
+        }
+
+        code {
+            font-family: monospace;
+            color: rgb(0, 0, 0);
+            padding: 2px;
+            font-size: 105%;
+        }
+    </style>
+
 </head>
 
 <body>
-    <div class="credits">credits:<br>@al.my.re; p5.js; perlin; vera</div>
+    <div class="credits">
+
+    <code>
+        <pre>
+
+
+function draw() {
+    drawrandom()
+}
+        
+var noisestep = 0.05
+function drawrandom() {
+    let x = Math.floor(noise(xoff) * stepx) * step
+    xoff += noisestep
+    let y = Math.floor(noise(yoff) * stepy) * step
+    yoff += noisestep
+    stroke(0, 0, 0); noFill()
+    if (random() < 0.05) { 
+        noStroke(); fill(0, 100, 100) 
+    }
+    block(x, y, step, step)
+}
+        
+function block(x, y, step, step){
+    let size = random()*step
+    let m = step-size
+    x+=m/2
+    y+=m/2
+    rect(x,y,size,size)
+}
+
+
+
+
+    </pre>
+    </code>
+        credits:<br>@al.my.re; p5.js; perlin; vera
+    </div>
 
     <script>
         //global vars for the whole piece
@@ -35,7 +79,7 @@
         var h// = 900 
         var cnv
         var x, y
-        var xoff,yoff
+        var xoff, yoff
         var step, stepx, stepy
 
         function setup() {
@@ -54,7 +98,7 @@
             step = w / 11
             stepx = w / step
             stepy = h / step
-            for(let i=0;i<1111;i++){
+            for (let i = 0; i < 1111; i++) {
                 drawrandom()
             }
             frameRate(2)
@@ -68,8 +112,6 @@
 
         function draw() {
             drawrandom()
-            save("frenchco004.png")
-            noLoop()
         }
 
         var noisestep = 0.05
@@ -78,19 +120,18 @@
             xoff += noisestep
             let y = Math.floor(noise(yoff) * stepy) * step
             yoff += noisestep
-                stroke(0, 0, 0); noFill()
-                //noStroke(); fill(0, 0, 0)
+            stroke(0, 0, 0); noFill()
+            //noStroke(); fill(0, 0, 0)
             if (random() < 0.05) { noStroke(); fill(0, 100, 100) }
             block(x, y, step, step)
         }
 
-        function block(x, y, step, step){
-            let size = random()*step
-            let m = step-size
-            x+=m/2
-            y+=m/2
-            rect(x,y,size,size)
-
+        function block(x, y, step, step) {
+            let size = random() * step
+            let m = step - size
+            x += m / 2
+            y += m / 2
+            rect(x, y, size, size)
         }
 
     </script>
