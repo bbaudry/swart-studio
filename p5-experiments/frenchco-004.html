@@ -35,45 +35,23 @@
 
 <body>
     <div class="credits">
-
-    <code>
-        <pre>
-
-
-function draw() {
-    drawrandom()
-}
-        
-var noisestep = 0.05
-function drawrandom() {
-    let x = Math.floor(noise(xoff) * stepx) * step
-    xoff += noisestep
-    let y = Math.floor(noise(yoff) * stepy) * step
-    yoff += noisestep
-    stroke(0, 0, 0); noFill()
-    if (random() < 0.05) { 
-        noStroke(); fill(0, 100, 100) 
-    }
-    block(x, y, step, step)
-}
-        
-function block(x, y, step, step){
-    let size = random()*step
-    let m = step-size
-    x+=m/2
-    y+=m/2
-    rect(x,y,size,size)
-}
-
-
-
-
+        <pre id="fileDisplayArea">
     </pre>
-    </code>
         credits:<br>@al.my.re; p5.js; perlin; vera
     </div>
 
     <script>
+
+        window.onload = function () {
+            var fileDisplayArea = document.getElementById('fileDisplayArea');
+            fetch("frenchco-004.html")
+                .then((res) => res.text())
+                .then((text) => {
+                    fileDisplayArea.innerText = text;
+                })
+                .catch((e) => console.error(e));
+        }
+
         //global vars for the whole piece
         var w// = 900 
         var h// = 900 
