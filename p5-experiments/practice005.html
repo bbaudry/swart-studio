@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>File API</title>
+    <link rel="stylesheet" href="practice005-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="libraries/StartAudioContext.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-wrapper">
+        <pre id="fileDisplayArea"></pre>
+    </div>
+
+    <script>
+        //based on https://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api
+        window.onload = function () {
+            var fileDisplayArea = document.getElementById('fileDisplayArea');
+            fetch("practice005.html")
+                .then((res) => res.text())
+                .then((text) => {
+                    fileDisplayArea.innerText = text;
+                })
+                .catch((e) => console.error(e));
+        }
+    </script>
+</body>
+
+</html>
