@@ -29,16 +29,16 @@
         var cnv, xoff, yoff, zoff, svgbtn
 
         function setup() {
-            cnv = createCanvas(w, h, SVG);
+            cnv = createCanvas(w, h);
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            svgbtn = createButton("save svg");
-            placebtn();
-            svgbtn.mouseClicked(savesvg);
+            //svgbtn = createButton("save svg");
+            //placebtn();
+            //svgbtn.mouseClicked(savesvg);
 
             yoff = 3.0; zoff = 0
-            background(30, 100, 100)
+            background(230, 100, 100)
             initfield()
         }
 
@@ -58,8 +58,8 @@
             save("plottablefield001.svg");
         }
 
-        var res = 50
-        var noiseres = 0.9
+        var res = 10
+        var noiseres = 0.09
         var steplength = res
         var field = []
         var nbcols = Math.floor(w / res) + 1
@@ -75,7 +75,7 @@
                 for (let x = 0; x < nbcols; x++) {
                     xoff += noiseres
                     let ikeda = noise(xoff, yoff, zoff)
-                    angle = map(ikeda, 0.0, 1.0, 0.5 * PI, 1.5 * PI)
+                    angle = map(ikeda, 0.0, 1.0, 0, PI)
                     row.push(angle)
                 }
                 field.push(row)
@@ -93,7 +93,7 @@
 
         function drawcurveinfield(row, col, offset, len) {
             strokeWeight(0.5)
-            stroke(230, 100, 100, 42)
+            stroke(30, 100, 100, 42)
             noFill()
             beginShape()
             x1 = col * res
