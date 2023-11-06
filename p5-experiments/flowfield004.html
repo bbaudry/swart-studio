@@ -15,7 +15,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:#000000;">
     <script>
         //   <script src="https://unpkg.com/p5.js-svg@1.5.1">
         //            <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js">
@@ -27,6 +27,7 @@
         var w = 890
         var h = 890
         var cnv, xoff, yoff, zoff, svgbtn
+        var hues = [230,50,30,100,340]
 
         function setup() {
             cnv = createCanvas(w, h);
@@ -38,7 +39,7 @@
             //svgbtn.mouseClicked(savesvg);
 
             yoff = 3.0; zoff = 0
-            background(230, 100, 100)
+            background(230, 10, 30)
             initfield()
         }
 
@@ -58,9 +59,10 @@
             save("plottablefield001.svg");
         }
 
-        var res = 50
-        var noiseres = 0.09
-        var steplength = 2*res
+        var res = 11 //knob: density of the field
+        var noiseres = 0.09//knob: speed to navigate noise. smallest, smoother angle changes
+        var steplength = 2*res//knob: length of each curve 
+        var strw = 2 //knob: weight of each curve
         var field = []
         var nbcols = Math.floor(w / res) + 1
         var nbrows = Math.floor(h / res) + 1
@@ -92,8 +94,9 @@
         }
 
         function drawcurveinfield(row, col, offset, len) {
-            strokeWeight(0.5)
-            stroke(30, 100, 100, 42)
+            strokeWeight(strw)
+            var hu = hues[Math.floor(random(hues.length))]
+            stroke(hu, 100, 100, 42)
             noFill()
             beginShape()
             x1 = col * res
