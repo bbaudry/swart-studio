@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="libraries/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
     <style>
         body {
             padding: 0;
@@ -32,7 +32,7 @@
             color: #FFFFFF;
             font-family: monospace;
             margin-left: 12px;
-            font-size: 12px
+            font-size: 10px
         }
     </style>
 
@@ -45,17 +45,17 @@
     </div>
 
     <div class="credits">
-        credits:<br>@al.my.re; p5.js; bezier
     </div>
 
     <script>
+//        credits:<br>@al.my.re; p5.js
 
         window.onload = function () {
             var fileDisplayArea = document.getElementById('fileDisplayArea');
             fetch("frenchcodemo.js")
                 .then((res) => res.text())
                 .then((text) => {
-                    fileDisplayArea.innerText = text;
+//                    fileDisplayArea.innerText = text;
                 })
                 .catch((e) => console.error(e));
         }
