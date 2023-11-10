@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body style="background-color:#000000;">
+    <script>
+        var w = 890
+        var h = 890
+        var cnv, xoff, yoff, zoff, svgbtn
+        var hues = [230,50,30,100,340]
+
+        function setup() {
+            cnv = createCanvas(w, h);
+            centerCanvas();
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            //svgbtn = createButton("save svg");
+            //placebtn();
+            //svgbtn.mouseClicked(savesvg);
+
+            yoff = 3.0; zoff = 0
+            background(0, 0, 100)
+            initfield()
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+        function placebtn() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            svgbtn.position(x - 200, y + h / 2 + 42)
+        }
+
+        function savesvg() {
+            save("plottablefield001.svg");
+        }
+
+        var res = 7 //knob: density of the field
+        var noiseres = 0.09//knob: speed to navigate noise. smallest, smoother angle changes
+        var steplength = res//knob: length of each curve 
+        var strw = 2 //knob: weight of each curve
+        var field = []
+        var nbcols = Math.floor(w / res) + 1
+        var nbrows = Math.floor(h / res) + 1
+
+        function initfield() {
+            let angle, row
+            for (let y = 0; y < nbrows; y++) {
+                row = []
+                yoff += noiseres
+                xoff = 0.0;
+                for (let x = 0; x < nbcols; x++) {
+                    xoff += noiseres
+                    let ikeda = noise(xoff, yoff, zoff)
+                    angle = map(ikeda, 0.0, 1.0, 0.75*PI, 1.75*PI)
+                    row.push(angle)
+                }
+                field.push(row)
+            }
+        }
+
+        function draw() {
+            //drawfieldangles()
+            zoff += 0.1
+            //drawcurveinfield(Math.floor(0.5*nbrows), Math.floor(0.9*nbcols), 1, 42)
+            drawcurveinfield(nbrows-1, Math.floor(random(nbcols)), 3, 184)
+            //noLoop()
+            if (frameCount == 21) { noLoop() }
+        }
+
+        function drawcurveinfield(row, col, offset, len) {
+            strokeWeight(0.5)
+            var hu 
+            noFill()
+            x1 = col * res
+            y1 = row * res
+            for (let i = 0; i < len; i++) {
+                hu = hues[Math.floor(random(hues.length))]
+                stroke(0,0,0)
+                ellipse(x1,y1,steplength,steplength)
+                angle = field[row][col]
+                x2 = x1 + steplength * cos(angle)
+                y2 = y1 + steplength * sin(angle)
+                if (x2 > w || x2<0) { i = len }
+                if (y2 > h || y2<0) { i = len }
+                col = Math.floor(x2 / res)
+                row = Math.floor(y2 / res)
+                x1 = x2
+                y1 = y2
+            }
+        }
+
+        function drawfieldangles() {
+            let x1, y1, x2, y2
+            stroke(0, 0, 0)
+            for (let y = 0; y < nbrows; y++) {
+                y1 = y * res
+                for (let x = 0; x < nbcols; x++) {
+                    let angle = field[y][x]
+                    x1 = x * res; fill(0, 0, 0); ellipse(x1, y1, 3, 3)
+                    x2 = x1 + (res * 0.8) * cos(angle)
+                    y2 = y1 + (res * 0.8) * sin(angle)
+                    line(x1, y1, x2, y2); noFill(); ellipse(x2, y2, 3, 3); rect(x1, y1, res, res)
+                }
+            }
+        }
+
+
+        function drawfielblue() {
+            let x1, y1, x2, y2
+            noStroke()
+            for (let y = 0; y < nbrows; y++) {
+                y1 = y * res
+                for (let x = 0; x < nbcols; x++) {
+                    let angle = field[y][x]
+                    let sat = map(angle, 0, 2 * PI, 0, 100)
+                    fill(230, sat, 100)
+                    x1 = x * res;
+                    rect(x1, y1, res, res)
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
