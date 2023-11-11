@@ -7,7 +7,6 @@ We have a pen plotter UUNA TEK ([uunatek.com](https://uunatek.com/)), iDraw 2 A3
 The pen plotter is connected to the Linux machine via USB, with a serial protocol.
 The pen plotter motherboard is called DrawCore, the firmware is based on [grbl](https://github.com/grbl/grbl).
 It uses a language called [g-code](https://en.wikipedia.org/wiki/G-code).
-The spec of the gcode language is documented at <https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md>
 The X-axis is the sort side, Y-axis the long side.
 
 ## Configuration
@@ -35,15 +34,15 @@ Grbl 1.1h DrawCore V2.09 ['$' for help]
 
 ### GCODE cheat sheet
 
-* `G21`  Set Units to  millimeter
-* `G20`  Set Units to Inches
-* `F50` super slow, `F2500` maximum, super fast, speed only for `G01` (not for `G00`)
+* `G21`  Set Units to  millimeter (`G20`  Set Units to Inches)
+* `G17` Set Plane Selection to XY, Circular motion with the operator looking down on the XY table from above. [ref](https://www.haascnc.com/service/codes-settings.type=gcode.machine=mill.value=G19.html)
+* `F50` super slow, `F2500` maximum, super fast, speed applies only for `G01` (not for `G00`)
 * `G90` Set to absolute coordinate mode
-* `G91` Set to relative coordinate mode (from its where now)
+* `G91` Set to relative coordinate mode (from where it is now)
 * `G92 X0Y0Z0` save the current location of the head as (0,0,0)
 * `G02/G03` instructs the CNC machine to move along a Circular Arc from its current position to a new coordinate. The new coordinate can be absolute or relative, depending on the effective mode (G90 or G91). In G02, the movement will be in a clockwise (CW) direction. in G03 the movement will ve in counter-clockwise (CCW). ([source](https://www.machiningdoctor.com/gcodes/g2-3-circular/))
   * Version 1 – “R” Syntax: `G02/G03 X12.5 Y14.7 R2.0`; X, Y – The target coordinates at the end of the movement. R – The arc’s radius.
-  * Version 2 – “Ijk” Syntax: `G02/G03 X12.5 Y14.7 I1.0 J2.0 F0.2`; X, Y – The target coordinates at the end of the movement. I, J – The arc’s center point relative to X, Y.
+  * Version 2 – “Ijk” Syntax: `G02/G03 X12.5 Y14.7 I1.0 J2.0`; X, Y – The target coordinates at the end of the movement. I, J – The arc’s center point relative to X, Y.
 * precision: hundredth of millimeter
 `G00 X0.1 Y0.1`, `G00 X0.01 Y0.01`
 
@@ -120,7 +119,15 @@ turtle LOGO as high level API to generate gcode (not yet tried):
 * <https://github.com/Hand-and-Machine/extruder-turtle-Rhino>
 
 
+### With laser
 
+* `M2` Program End, turn off laser and stops the machine.
+* `M3` In Laser mode sets Constant power, eg `M3 S1000`
+* `M4` In Laser Mode sets Dynamic power.
+* `M5` Stop the laser
+* `S` Set Laser Power, maybe `S10`
+
+Ref: <https://www.sainsmart.com/blogs/news/grbl-v1-1-quick-reference>
  
 ##  Tools 
 
@@ -128,7 +135,7 @@ turtle LOGO as high level API to generate gcode (not yet tried):
 
 **vpype** works out-of-the-box to do two things:
 - post-process and optimize SVG files, see doc
-- generate Gcode with vpype-gcode `vpype read input.svg gwrite --profile gcode output.gcode` [doc](https://pypi.org/project/vpype-gcode/)
+- generate Gcode with vpype-gcode `vpype --config vpype-flavor.toml read input.svg gwrite --profile idrawv2 output.gcode` [doc](https://pypi.org/project/vpype-gcode/)
 
 **juicy-gcode** works to transform SVG to gcode
  `./juicy-gcode ~/input.svg -f flavor.txt`
