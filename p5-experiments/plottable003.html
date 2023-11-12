@@ -57,33 +57,37 @@
 
         function draw() {
             strokeWeight(1)
+            stroke(0, 0, 100)
             for (var x = leftmargin; x < w - righttmargin; x += resolution) {
                 for (var y = topmargin; y < h - bottommargin; y += resolution) {
                     ikeda(x, y)
+                    //rect(x,y,resolution,resolution)
                 }
             }
             noLoop()
         }
 
         function ikeda(x, y) {
-            stroke(y % 360, 100, 100)
-            //rect(x,y,resolution,resolution)
-            var density, x1, x2, y1, y2
-            density = 20
-            for (var i = 0; i < resolution / 2; i += density) {
-                x1 = x + i; x2 = x + resolution ; 
-                y1 = y + 2*i; y2 = y + resolution -2* i;
-                quad(x1, y1, x2, y1, x2, y2, x1, y2)
-            }
-            /*var density = 4// Math.floor(random(2, 9))
-            for (var i = x; i < (x + resolution) / 2; i += density) {
-                for (var j = y; j < (y + resolution) / 2; j += density) {
-                    quad(i, j,
-                        x + resolution - i, j,
-                        x + resolution - i, y + resolution - j,
-                        i, y + resolution - j)
+            var density, offset, r, x1, x2, x3, y1, y2
+            density = Math.floor(random(2, 9))
+            offset = random(1, 2)
+            r=Math.floor(random(2))
+            switch(r){
+                case 0:
+                for (var i = 0; i < resolution / 2; i += density) {
+                    x1 = x + i; x2 = x + resolution - i; x3 = x + resolution;
+                    y1 = y + offset * i; y2 = y + resolution - offset * i;
+                    quad(x1, y1, x2, y1, x3, y2, x1, y2)
                 }
-            }*/
+                    break;
+                case 1:
+                for (var i = 0; i < resolution / 2; i += density) {
+                    x1 = x + i; x2 = x + resolution - i; x3 = x;
+                    y1 = y + offset * i; y2 = y + resolution - offset * i;
+                    quad(x1, y1, x2, y1, x2, y2, x3, y2)
+                }
+                    break;
+            }
         }
     </script>
 </body>
