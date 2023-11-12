@@ -69,7 +69,7 @@
 
         function ikeda(x, y) {
             var density, offset, r, x1, x2, x3, y1, y2, y3
-            density = Math.floor(random(2, 9))
+            density = Math.floor(random(2, 21))
             offset = random(1, 2)
             r = Math.floor(random(3))
             switch (r) {
@@ -91,7 +91,7 @@
                     for (var i = 0; i < resolution / 2; i += density) {
                         x1 = x + i; x2 = x + resolution - i; 
                         y1 = y + offset * i; y2 = y + resolution - offset * i; y3 = y+resolution
-                        quad(x1, y1, x2, y1, x2, y3, x2, y2)
+                        quad(x1, y1, x2, y1, x2, y3, x1, y2)
                     }
                     break;
             }
