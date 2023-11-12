@@ -22,13 +22,13 @@
         var cnv, svgbtn
 
         function setup() {
-            cnv = createCanvas(w, h);
+            cnv = createCanvas(w, h, SVG);
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            //svgbtn = createButton("save svg");
-            //placebtn();
-            //svgbtn.mouseClicked(savesvg);
+            svgbtn = createButton("save svg");
+            placebtn();
+            svgbtn.mouseClicked(savesvg);
             background(0, 0, 0)
             noFill()
         }
@@ -65,7 +65,6 @@
                 }
             }
             noLoop()
-            save("plottable003.png")
         }
 
         function ikeda(x, y) {
