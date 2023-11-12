@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var w = 900
+        var h = 900
+        var cnv, svgbtn
+
+        function setup() {
+            cnv = createCanvas(w, h);
+            centerCanvas();
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            //svgbtn = createButton("save svg");
+            //placebtn();
+            //svgbtn.mouseClicked(savesvg);
+            background(0, 0, 0)
+            noFill()
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+        function placebtn() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            svgbtn.position(x - 200, y + h / 2 + 42)
+        }
+
+        function savesvg() {
+            save("plottablefield001.svg");
+        }
+
+        var leftmargin = 50
+        var righttmargin = 50
+        var topmargin = 50
+        var bottommargin = 50
+        var resolution = 400
+
+        function draw() {
+            strokeWeight(1)
+            for (var x = leftmargin; x < w - righttmargin; x += resolution) {
+                for (var y = topmargin; y < h - bottommargin; y += resolution) {
+                    ikeda(x, y)
+                }
+            }
+            noLoop()
+        }
+
+        function ikeda(x, y) {
+            stroke(y % 360, 100, 100)
+            //rect(x,y,resolution,resolution)
+            var density, x1, x2, y1, y2
+            density = 20
+            for (var i = 0; i < resolution / 2; i += density) {
+                x1 = x + i; x2 = x + resolution ; 
+                y1 = y + 2*i; y2 = y + resolution -2* i;
+                quad(x1, y1, x2, y1, x2, y2, x1, y2)
+            }
+            /*var density = 4// Math.floor(random(2, 9))
+            for (var i = x; i < (x + resolution) / 2; i += density) {
+                for (var j = y; j < (y + resolution) / 2; j += density) {
+                    quad(i, j,
+                        x + resolution - i, j,
+                        x + resolution - i, y + resolution - j,
+                        i, y + resolution - j)
+                }
+            }*/
+        }
+    </script>
+</body>
+
+</html>
