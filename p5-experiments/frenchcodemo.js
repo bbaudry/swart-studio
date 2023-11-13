@@ -21,19 +21,16 @@ function centerCanvas() {
 function draw() {
     var cx=w/2
     var cy=h/2
-    var vera 
-    var density = 25
     fill(50,100,100)
-    stroke(0,0,0)
-    var molnar=20
+    var vera
+    var molnar = 25
+    var density =40
+    
     for(vera=w/2;vera>0;vera-=density){
         if(vera%(density*2)==0){fill(50,100,100)}
         else{fill(0,0,0)}
-    quad(
-        cx-random(vera-molnar,vera+molnar),cy-random(vera-molnar,vera+molnar),
+    quad(cx-random(vera-molnar,vera+molnar),cy-random(vera-molnar,vera+molnar),
         cx+random(vera-molnar,vera+molnar),cy-random(vera-molnar,vera+molnar),
         cx+random(vera-molnar,vera+molnar),cy+random(vera-molnar,vera+molnar),
-        cx-random(vera-molnar,vera+molnar),cy+random(vera-molnar,vera+molnar)
-    )
-    }
-}
+        cx-random(vera-molnar,vera+molnar),cy+random(vera-molnar,vera+molnar))
+}}
