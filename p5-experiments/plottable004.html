@@ -4,7 +4,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
     <style>
         body {
             padding: 0;
@@ -15,11 +17,13 @@
 
 <body>
     <script>
-//    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js">
-//    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js">
-//    <script src="https://unpkg.com/p5.js-svg@1.5.1">
-        var w = 900
-        var h = 900
+        //297mm × 420mm
+        //pixel = dpi * mm / 25.4 mm
+        //w=300*297/25.4=3507.9
+        //h=300*420/25.4=4960.2
+
+        var w = 3507
+        var h = 4960
         var cnv, svgbtn
 
         function setup() {
@@ -51,19 +55,19 @@
             save("plottable004.svg");
         }
 
-        var leftmargin = 100
-        var righttmargin = 50
-        var topmargin = 100
-        var bottommargin = 50
-        var resolution = 100
+        var leftmargin = 250
+        var righttmargin = 257
+        var topmargin = 300
+        var bottommargin = 960
+        var resolution = 300
         var field = []
 
         function initfield() {
             var x1, x2, y1, y2, miny, wid, hei
             x1 = leftmargin
             y1 = topmargin
-            x2 = x1 + Math.floor(random(1, 4)) * resolution
-            y2 = y1 + Math.floor(random(1, 4)) * resolution
+            x2 = x1 + Math.floor(random(3, 9)) * resolution
+            y2 = y1 + Math.floor(random(3, 9)) * resolution
             miny = y2
             while (y1 < h - bottommargin) {
                 while (x1 < w - righttmargin) {
@@ -93,57 +97,68 @@
         }
 
         function draw() {
-            drawplainfield()
+            drawfield()
             noLoop()
         }
 
-        function drawplainfield(){
-            stroke(0,0,100)
-            fill(0,0,100,42)
+        function drawplainfield() {
+            stroke(0, 0, 100)
+            fill(0, 0, 100, 42)
             console.log(field.length)
-            for(var i=0;i<field.length;i++){
-                var cell=field[i]
-                rect(cell.x,cell.y,cell.wid,cell.hei)
+            for (var i = 0; i < field.length; i++) {
+                var cell = field[i]
+                rect(cell.x, cell.y, cell.wid, cell.hei)
             }
         }
 
-        function drawfield(){
+        function drawfield() {
             strokeWeight(1)
             stroke(0, 0, 100)
-            for (var x = leftmargin; x < w - righttmargin; x += resolution) {
-                for (var y = topmargin; y < h - bottommargin; y += resolution) {
-                    ikeda(x, y)
-                }
+            shuffleArray(field)
+            for (var i = 0; i < field.length; i++) {
+                var cell = field[i]
+                ikeda(cell.x, cell.y, cell.wid, cell.hei)
             }
         }
 
-        function ikeda(x, y) {
+        function ikeda(x, y, wid, hei) {
+            fill(0,0,0);noStroke();rect(x,y,wid,hei);noFill();stroke(0,0,100)
             var density, offset, r, x1, x2, x3, y1, y2, y3
-            density = Math.floor(random(2, 21))
+            density = Math.floor(random(2,7))
             offset = random(1, 2)
             r = Math.floor(random(3))
             switch (r) {
                 case 0:
-                    for (var i = 0; i < resolution / 2; i += density) {
-                        x1 = x + i; x2 = x + resolution - i; x3 = x + resolution;
-                        y1 = y + offset * i; y2 = y + resolution - offset * i;
+                    for (var i = 0; i < wid / 2; i += density) {
+                        x1 = x + i; x2 = x + wid - i; x3 = x + wid;
+                        y1 = y + offset * i; y2 = y + hei - offset * i;
                         quad(x1, y1, x2, y1, x3, y2, x1, y2)
                     }
                     break;
                 case 1:
-                    for (var i = 0; i < resolution / 2; i += density) {
-                        x1 = x + i; x2 = x + resolution - i; x3 = x;
-                        y1 = y + offset * i; y2 = y + resolution - offset * i;
+                    for (var i = 0; i < wid / 2; i += density) {
+                        x1 = x + i; x2 = x + wid - i; x3 = x;
+                        y1 = y + offset * i; y2 = y + hei - offset * i;
                         quad(x1, y1, x2, y1, x2, y2, x3, y2)
                     }
                     break;
                 case 2:
-                    for (var i = 0; i < resolution / 2; i += density) {
-                        x1 = x + i; x2 = x + resolution - i;
-                        y1 = y + offset * i; y2 = y + resolution - offset * i; y3 = y + resolution
+                    for (var i = 0; i < wid / 2; i += density) {
+                        x1 = x + i; x2 = x + wid - i;
+                        y1 = y + offset * i; y2 = y + hei - offset * i; y3 = y + hei
                         quad(x1, y1, x2, y1, x2, y3, x1, y2)
                     }
                     break;
+            }
+        }
+
+        /* Randomize array in-place using Durstenfeld shuffle algorithm */
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
     </script>
