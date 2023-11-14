@@ -59,7 +59,7 @@
         var righttmargin = 257
         var topmargin = 300
         var bottommargin = 960
-        var resolution = 300
+        var resolution = 200
         var field = []
 
         function initfield() {
@@ -82,31 +82,36 @@
                     x1 = x2
                     x2 = x1 + Math.floor(random(1, 4)) * resolution
                     if (x2 > w - righttmargin) { x2 = w - righttmargin }
-                    if (y2 < miny) { miny = y2 }
-                    y2 = y1 + Math.floor(random(1, 4)) * resolution
-                    if (y2 > h - righttmargin) { y2 = h - righttmargin }
+                    if (miny!=y2) {//y2 != h - bottommargin
+                        y2 = y1 + Math.floor(random(1, 4)) * resolution
+                        if (y2 >= h - righttmargin) { y2 = h - righttmargin }
+                        if (y2 < miny) { miny = y2 }
+                    }
+                    
                 }
                 x1 = leftmargin
                 y1 = miny
-                x2 = x1 + Math.floor(random(1, 7)) * resolution
-                y2 = y1 + Math.floor(random(1, 7)) * resolution
-                if (y2 > h - righttmargin) { y2 = h - righttmargin }
+                x2 = x1 + Math.floor(random(2, 5)) * resolution
+                y2 = y1 + Math.floor(random(2, 5)) * resolution
+                if (y2 >= h - righttmargin) { y2 = h - righttmargin }
                 miny = y2
             }
         }
 
         function draw() {
             drawfield()
-            drawplainfield()
+            //drawplainfield()
             noLoop()
         }
 
         function drawplainfield() {
-            stroke(180, 100, 100)
+
             strokeWeight(15)
-//            fill(0, 0, 100, 42)
-//            console.log(field.length)
+            //            fill(0, 0, 100, 42)
+            //            console.log(field.length)
             for (var i = 0; i < field.length; i++) {
+                if (i % 2 == 0) { stroke(0, 100, 100) }
+                else[stroke(180, 100, 100)]
                 var cell = field[i]
                 rect(cell.x, cell.y, cell.wid, cell.hei)
             }
@@ -123,9 +128,9 @@
         }
 
         function ikeda(x, y, wid, hei) {
-            fill(0,0,0);stroke(0,100,100); strokeWeight(35);rect(x,y,wid,hei);noFill();strokeWeight(1);stroke(0,0,100)
+            //fill(0, 0, 0); stroke(0, 100, 100); strokeWeight(35); rect(x, y, wid, hei); noFill(); strokeWeight(1); stroke(0, 0, 100)
             var density, offset, r, x1, x2, x3, y1, y2, y3
-            density = Math.floor(random(2,7))
+            density = Math.floor(random(2, 7))
             offset = random(1, 2)
             r = Math.floor(random(3))
             switch (r) {
