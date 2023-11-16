@@ -2,10 +2,10 @@ class Balle {
     constructor(x) {
         this.cx = random(offset, w - offset)
         this.cy = 0//random(offset)
-        this.vitesse = 1//random(3, 7)
-        this.diam = 150//Math.floor(random(50, 290))
+        this.vitesse = random(3, 7)
+        this.diam = Math.floor(random(50, 290))
         this.down = true
-        this.hu = 50//Math.floor(random(0, 230))
+        this.hu = Math.floor(random(0, 230))
     }
 
     bouge() {
@@ -19,9 +19,12 @@ class Balle {
     }
 
     rebondi(){
-        
         if(this.cy>h-this.diam/2 && this.down){this.down=false;console.log("hi at "+this.cy+"; h is "+h)}
-        if(this.cy<0 && !this.down){this.down=true;console.log("bye at "+this.cy+"; h is "+h)}
+        if(this.cy-this.diam/2<0 && !this.down){this.down=true;console.log("bye at "+this.cy+"; h is "+h)}
+    }
+
+    joue(){
+        this.vitesse+=movedY/10
     }
 
 }

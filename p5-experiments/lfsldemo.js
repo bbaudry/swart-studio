@@ -25,12 +25,13 @@ var offset=90
 
 function draw() {
     background(0, 0, 0)
-    if(frameCount==1){ajouter_des_balles(3)}
+    if(frameCount==1){ajouter_des_balles(7)}
     for(var i=0;i<balles.length;i++){
         var balle=balles[i]
     balle.bouge()
     balle.dessine()
     balle.rebondi()
+    balle.joue()
     }
     sol()
     plafond()
