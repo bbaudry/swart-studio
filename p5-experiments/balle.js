@@ -24,7 +24,9 @@ class Balle {
     }
 
     joue(){
-        this.vitesse+=movedY/10
+        if(this.vitesse>1){this.vitesse+=movedY/10}
+        else{this.vitesse=1.1}
+        console.log("moved: "+movedY+"; speed: "+this.vitesse)
     }
 
 }
