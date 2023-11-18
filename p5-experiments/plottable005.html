@@ -19,11 +19,15 @@
     <script>
         //297mm × 420mm
         //pixel = dpi * mm / 25.4 mm
-        //h=300*297/25.4=3507.9
-        //w=300*210/25.4=2480.1
+        //w=96*297/25.4=1122.5
+        //h=96*420/25.4=1587.4
 
-        var h = 1053
-        var w = 744
+        var h = 1587
+        var w = 1122
+        var leftmargin = 36
+        var righttmargin = 36
+        var topmargin = 45
+        var bottommargin = 48
         var cnv, svgbtn
 
         function setup() {
@@ -54,10 +58,6 @@
             save("plottable004.svg");
         }
 
-        var leftmargin = 47
-        var righttmargin = 47
-        var topmargin = 48
-        var bottommargin = 55
         var resolution = 50
         var field = []
 

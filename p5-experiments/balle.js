@@ -1,11 +1,11 @@
 class Balle {
-    constructor(x) {
+    constructor() {
         this.cx = random(offset, w - offset)
-        this.cy = 0//random(offset)
-        this.vitesse = random(3, 7)
-        this.diam = Math.floor(random(50, 290))
+        this.cy = 90//random(offset)
+        this.vitesse = random(3, 9)
+        this.diam = Math.floor(random(50, 210))
         this.down = true
-        this.hu = Math.floor(random(0, 230))
+        this.hu = Math.floor(random(30, 230))
     }
 
     bouge() {
