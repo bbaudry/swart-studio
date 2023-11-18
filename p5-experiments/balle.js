@@ -19,8 +19,8 @@ class Balle {
     }
 
     rebondi(){
-        if(this.cy>h-this.diam/2 && this.down){this.down=false;console.log("hi at "+this.cy+"; h is "+h)}
-        if(this.cy-this.diam/2<0 && !this.down){this.down=true;console.log("bye at "+this.cy+"; h is "+h)}
+        if(this.cy>h-this.diam/2 && this.down){this.down=false}
+        if(this.cy-this.diam/2<0 && !this.down){this.down=true}
     }
 
     joue(){
