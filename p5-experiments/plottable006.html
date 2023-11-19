@@ -73,24 +73,37 @@
 
         function moon(x1,y1,x2,y2){
             var diam = x2-x1
-            var rad = diam/2
             var cx = righttmargin+diam/2
             var cy = topmargin+(y2-y1)/2
             //ellipse(cx,cy,diam,diam)
+            moonPartOne(cx,cy,diam)
+            moonPartTwo(cx,cy,diam)
+        }
+
+        function moonPartOne(cx,cy,diam){
+            var rad = diam/2
             var density = 5
-            var a = 95
-            while(a<180){
-                var angle1 = radians(a)
-                var angle2 = radians(90-(a-90))
+            var angle_min=95
+            var angle_max=180
+            var angle = angle_min
+            while(angle<angle_max){
+                var angle1 = radians(angle)
+                var angle2 = radians(90-(angle-90))//symmetric angle, wrt vertical axis
                 var px1 = cx+rad*cos(angle1)
                 var py1 = cy+rad*sin(angle1)
                 var px2 = cx+rad*cos(angle2)
                 var py2 = cy+rad*sin(angle2)
                 line(px1,py1,px2,py2)
-                a+=density
+                angle+=density
             }
-            var angle2 = radians(random(275,355))
-            density=random(7,15)
+        }
+
+        function moonPartTwo(cx,cy,diam){
+            var rad = diam/2
+            var angle_min=275
+            var angle_max=315
+            var angle2 = radians(random(angle_min,angle_max))
+            var density=random(7,15)
             while(rad > 7){
                 var angle1 = radians(180)
                 var px1 = cx+rad*cos(angle1)
@@ -101,7 +114,6 @@
                 rad-=11
             }
         }
-
     </script>
 </body>
 
