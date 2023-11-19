@@ -76,19 +76,29 @@
             var cx = righttmargin+diam/2
             var cy = topmargin+(y2-y1)/2
             //ellipse(cx,cy,diam,diam)
-            moonPartOne(cx,cy,diam)
-            moonPartTwo(cx,cy,diam)
+            var angle_min,angle_max, start_angle
+            angle_min=95
+            angle_max=142
+            moonPartOne(cx,cy,diam,angle_min,angle_max)
+            angle_min=275
+            angle_max=315
+            moonPartTwo(cx,cy,diam,angle_min,angle_max)
+            angle_min=162
+            angle_max=275
+            moonPartThree(cx,cy,diam,angle_min,angle_max)
+            angle_min=295
+            angle_max=360
+            moonPartFour(cx,cy,diam,angle_min,angle_max)
         }
 
-        function moonPartOne(cx,cy,diam){
+        function moonPartOne(cx,cy,diam,angle_min,angle_max){
             var rad = diam/2
-            var density = 5
-            var angle_min=95
-            var angle_max=180
+            var density = 4
+            var tilt = random(42,90)
             var angle = angle_min
             while(angle<angle_max){
                 var angle1 = radians(angle)
-                var angle2 = radians(90-(angle-90))//symmetric angle, wrt vertical axis
+                var angle2 = radians(90-(angle-tilt))//symmetric angle
                 var px1 = cx+rad*cos(angle1)
                 var py1 = cy+rad*sin(angle1)
                 var px2 = cx+rad*cos(angle2)
@@ -98,14 +108,12 @@
             }
         }
 
-        function moonPartTwo(cx,cy,diam){
+        function moonPartTwo(cx,cy,diam,angle_min,angle_max){
             var rad = diam/2
-            var angle_min=275
-            var angle_max=315
             var angle2 = radians(random(angle_min,angle_max))
             var density=random(7,15)
             while(rad > 7){
-                var angle1 = radians(180)
+                var angle1 = radians(160)
                 var px1 = cx+rad*cos(angle1)
                 var py1 = cy+rad*sin(angle1)
                 var px2 = cx+rad*cos(angle2)
@@ -113,6 +121,39 @@
                 line(px1,py1,px2,py2)
                 rad-=11
             }
+        }
+
+        function moonPartThree(cx,cy,diam,angle_min,angle_max){
+            var rad = diam/2
+            var dist = angle_max-angle_min
+            start_angle=random(angle_min+0.2*dist,angle_min+0.7*dist)
+            var px = cx+rad*cos(radians(start_angle))
+            var py = cy+rad*sin(radians(start_angle))
+            var px1 = cx+rad*cos(radians(angle_min))
+            var py1 = cy+rad*sin(radians(angle_min))
+            var px2 = cx+rad*cos(radians(angle_max))
+            var py2 = cy+rad*sin(radians(angle_max))
+            var ipx,ipy
+            for(var t=0;t<1;t+=0.03){
+                ipx = (1 - t) * px1 + (t * px2);
+                ipy = (1 - t) * py1 + (t * py2);
+                line(px,py,ipx,ipy)
+            }
+        }
+        function moonPartFour(cx,cy,diam,angle_min,angle_max){
+            var rad = diam/2
+            //cx+=random(0.3*rad)
+            //cy+=random(0.3*rad)
+            var px1 = cx+rad*cos(radians(angle_min))
+            var py1 = cy+rad*sin(radians(angle_min))
+            var px2 = cx+rad*cos(radians(angle_max))
+            var py2 = cy+rad*sin(radians(angle_max))
+            //line(cx,cy,px1,py1)
+            //line(cx,cy,px2,py2)
+            var density=random(9,17)
+            for(var d=diam;d>density;d-=density){
+            arc(cx,cy,d,d,radians(angle_min),radians(angle_max))
+        }
         }
     </script>
 </body>
