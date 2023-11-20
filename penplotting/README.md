@@ -133,14 +133,16 @@ Ref: <https://www.sainsmart.com/blogs/news/grbl-v1-1-quick-reference>
 
 ### SVG to Gcode
 
-**vpype** works out-of-the-box to do two things:
+**vpype** (python) works out-of-the-box to do two things:
 - post-process and optimize SVG files, see doc
 - generate Gcode with vpype-gcode `vpype --config vpype-flavor.toml read input.svg gwrite --profile idrawv2 output.gcode` [doc](https://pypi.org/project/vpype-gcode/). note that it does not support G02/G03 curve commands
 
-**juicy-gcode** works to transform SVG to gcode
+**juicy-gcode** (haskell ) works to transform SVG to gcode
  `./juicy-gcode ~/input.svg -f flavor.txt`
 One can change the size of the artwork by setting the density with `-d 32` (default is 96). Warning: a lower value means a bigger artwork , potentially outside the frame. With 1000 it's already very small. It synthesizes G02/G03 curve commands.
  
+**[svg2gcode](https://github.com/sameer/svg2gcode/)** (rust) is a third option.
+
 ### P5->SVG->GCDODE from the browser
 
 
