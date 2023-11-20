@@ -85,13 +85,13 @@
             angle_min1 = 0
             angle_min2 = 90 - (angle_max - tilt)
             angle_max1 = 142
-            angle_max2 = 160
+            angle_max2 = 190
             moonPartOne2(cx, cy, diam, angle_min1, angle_min1, angle_max1, angle_max2)
-            angle_min = 275
+            angle_min = 295
             angle_max = 315
             moonPartTwo(cx, cy, diam, angle_min, angle_max)
-            angle_min = 162
-            angle_max = 275
+            angle_min = 192
+            angle_max = 295
             moonPartThree(cx, cy, diam, angle_min, angle_max)
             angle_min = 295
             angle_max = 360
@@ -134,7 +134,7 @@
                 line(ox, oy, dx, dy)
             }
             var dist = angle_max2 - angle_max1
-            var ratio = 0.1
+            var ratio = 0.04
             var off = dist * ratio
             var t =0
             for(var a = angle_max1; a<angle_max2;a+=2*off){
@@ -150,7 +150,6 @@
             var dy1 = cy + (diam / 2) * sin(radians(angle3))
             var dx2 = cx + (diam / 2) * cos(radians(angle4))
             var dy2 = cy + (diam / 2) * sin(radians(angle4))
-            stroke(45, 100, 100)
             arc(cx, cy, diam, diam, radians(angle3), radians(angle4))
             line(ox1, oy1, dx1, dy1)
             line(ox2, oy2, dx2, dy2)
@@ -162,7 +161,7 @@
             var angle2 = radians(random(angle_min, angle_max))
             var density = random(7, 15)
             while (rad > 7) {
-                var angle1 = radians(160)
+                var angle1 = radians(190)
                 var px1 = cx + rad * cos(angle1)
                 var py1 = cy + rad * sin(angle1)
                 var px2 = cx + rad * cos(angle2)
