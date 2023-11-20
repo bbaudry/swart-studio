@@ -68,7 +68,7 @@
             var y1 = topmargin
             var y2 = h - bottommargin
             stroke(0, 0, 100)
-            moon(x1,y1,x2,y2)
+            moon(x1, y1, x2, y2)
             //test(x1, y1, x2, y2)
         }
 
@@ -87,6 +87,7 @@
             angle_max1 = 142
             angle_max2 = 190
             moonPartOne2(cx, cy, diam, angle_min1, angle_min1, angle_max1, angle_max2)
+            moonPartOne3(cx, cy, diam, angle_min1, angle_min1, angle_max1, angle_max2)
             angle_min = 295
             angle_max = 315
             moonPartTwo(cx, cy, diam, angle_min, angle_max)
@@ -113,10 +114,8 @@
                 angle += density
             }
         }
-
         function moonPartOne2(cx, cy, diam, angle_min1, angle_min1, angle_max1, angle_max2) {
             var rad = diam / 2
-
             var px1 = cx + rad * cos(radians(angle_min1))
             var py1 = cy + rad * sin(radians(angle_min1))
             var px2 = cx + rad * cos(radians(angle_min2))
@@ -133,27 +132,32 @@
                 dy = (1 - t) * cy + (t * py2);
                 line(ox, oy, dx, dy)
             }
-            var dist = angle_max2 - angle_max1
-            var ratio = 0.04
-            var off = dist * ratio
-            var t =0
-            for(var a = angle_max1; a<angle_max2;a+=2*off){
-            var angle3 = a 
-            var angle4 = a + off
-            var ox1 = (1 - t) * cx + (t * px4);
-            var oy1 = (1 - t) * cy + (t * py4);
-            t +=  ratio
-            var ox2 = (1 - t) * cx + (t * px4);
-            var oy2 = (1 - t) * cy + (t * py4);
-            t += ratio
-            var dx1 = cx + (diam / 2) * cos(radians(angle3))
-            var dy1 = cy + (diam / 2) * sin(radians(angle3))
-            var dx2 = cx + (diam / 2) * cos(radians(angle4))
-            var dy2 = cy + (diam / 2) * sin(radians(angle4))
-            arc(cx, cy, diam, diam, radians(angle3), radians(angle4))
-            line(ox1, oy1, dx1, dy1)
-            line(ox2, oy2, dx2, dy2)
         }
+        function moonPartOne3(cx, cy, diam, angle_min1, angle_min1, angle_max1, angle_max2) {
+            var rad = diam / 2
+            var px = cx + rad * cos(radians(angle_max2))
+            var py = cy + rad * sin(radians(angle_max2))
+            var dist = angle_max2 - angle_max1
+            var ratio = 0.09
+            var off = dist * ratio
+            var t = 0
+            for (var a = angle_max1; a < angle_max2; a += 2 * off) {
+                var angle3 = a
+                var angle4 = a + off
+                var ox1 = (1 - t) * cx + (t * px);
+                var oy1 = (1 - t) * cy + (t * py);
+                t += ratio
+                var ox2 = (1 - t) * cx + (t * px);
+                var oy2 = (1 - t) * cy + (t * py);
+                t += ratio
+                var dx1 = cx + (diam / 2) * cos(radians(angle3))
+                var dy1 = cy + (diam / 2) * sin(radians(angle3))
+                var dx2 = cx + (diam / 2) * cos(radians(angle4))
+                var dy2 = cy + (diam / 2) * sin(radians(angle4))
+                arc(cx, cy, diam, diam, radians(angle3), radians(angle4))
+                line(ox1, oy1, dx1, dy1)
+                line(ox2, oy2, dx2, dy2)
+            }
         }
 
         function moonPartTwo(cx, cy, diam, angle_min, angle_max) {
