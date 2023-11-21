@@ -78,8 +78,8 @@
             var cy = topmargin + (y2 - y1) / 2
             //ellipse(cx,cy,diam,diam)
             var angle_min, angle_max, start_angle
-            angle_min = 95
-            angle_max = 142
+            angle_min = random(42,96)
+            angle_max = random(121,177)
             var tilt = random(30, 90)
             moonPartOne(cx, cy, diam, angle_min, angle_max, tilt)
             angle_min1 = 0
@@ -91,7 +91,7 @@
             angle_min = angle_max2
             angle_max = random(295,315)
             moonPartTwo(cx, cy, diam, angle_min, angle_max)
-            angle_min = angle_max2+random(7)
+            angle_min = angle_max2+random(3,11)
             moonPartThree(cx, cy, diam, angle_min, angle_max)
             angle_min = angle_max
             angle_max = tilt
