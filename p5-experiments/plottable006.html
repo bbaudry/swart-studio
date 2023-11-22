@@ -192,7 +192,8 @@
             var px1 = cx + rad * cos(radians(angle_min))
             var py1 = cy + rad * sin(radians(angle_min))
             var px2, py2;
-            for (var angle = angle_min; angle < angle_max; angle += 3) {
+            var density = random(2,9)
+            for (var angle = angle_min; angle < angle_max; angle += density) {
                 px2 = cx + rad * cos(radians(angle))
                 py2 = cy + rad * sin(radians(angle))
                 line(px1, py1, px2, py2)
