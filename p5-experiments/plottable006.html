@@ -17,13 +17,13 @@
 
 <body>
     <script>
-        //297mm × 420mm
         //pixel = dpi * mm / 25.4 mm
+        //A3: 297mm × 420mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var res = 2
-        var h = 1587 / 2
-        var w = 1122 / 2
+        var res = 1
+        var h = 1587 / res
+        var w = 1122 / res
         var leftmargin = 36
         var righttmargin = 36
         var topmargin = 45
@@ -89,7 +89,7 @@
             moonPartOne2(cx, cy, diam, angle_min1, angle_min1, angle_max1, angle_max2)
             moonPartOne3(cx, cy, diam, angle_min1, angle_min1, angle_max1, angle_max2)
             angle_min = angle_max2
-            angle_max = random(295,315)
+            angle_max = angle_min + random(126, 168)
             moonPartTwo(cx, cy, diam, angle_min, angle_max)
             angle_min = angle_max2+random(3,11)
             moonPartThree(cx, cy, diam, angle_min, angle_max)
@@ -140,12 +140,13 @@
             var px = cx + rad * cos(radians(angle_max2))
             var py = cy + rad * sin(radians(angle_max2))
             var dist = angle_max2 - angle_max1
-            var ratio = 0.09
+            var ratio = random(0.04,0.09)
             var off = dist * ratio
             var t = 0
             for (var a = angle_max1; a < angle_max2; a += 2 * off) {
                 var angle3 = a
                 var angle4 = a + off
+                if(angle4<=angle_max2){
                 var ox1 = (1 - t) * cx + (t * px);
                 var oy1 = (1 - t) * cy + (t * py);
                 t += ratio
@@ -158,7 +159,7 @@
                 var dy2 = cy + (diam / 2) * sin(radians(angle4))
                 arc(cx, cy, diam, diam, radians(angle3), radians(angle4))
                 line(ox1, oy1, dx1, dy1)
-                line(ox2, oy2, dx2, dy2)
+                line(ox2, oy2, dx2, dy2)}
             }
         }
 
