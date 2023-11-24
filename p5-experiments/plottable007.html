@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //pixel = dpi * mm / 25.4 mm
+        //A3: 297mm × 420mm
+        //96dpi is for plotting on the UUNA TEK iDraw
+        //w=96*297/25.4=1122.5
+        //h=96*420/25.4=1587.4
+        var scale = 1
+        var w = 1122 * scale
+        var h = 1587 * scale
+        var leftmargin = 36
+        var righttmargin = 36
+        var topmargin = 45
+        var bottommargin = 48
+        var cnv, svgbtn
+
+        function setup() {
+            cnv = createCanvas(w, h, SVG);
+            centerCanvas();
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            svgbtn = createButton("save svg");
+            placebtn();
+            svgbtn.mouseClicked(savesvg);
+            background(0, 0, 0)
+            noFill()
+            noLoop()
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+        function placebtn() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            svgbtn.position(x - 200, y + h / 2 + 42)
+        }
+
+        function savesvg() {
+            save("plottable006.svg");
+        }
+
+        var resolution = 50
+        var field = []
+
+        function draw() {
+            var x1 = righttmargin
+            var x2 = w - leftmargin
+            var largeur = x2 - x1
+            var y1 = (h - largeur) / 2
+            var y2 = h - (h - largeur) / 2
+            //whitelayer(x1,x2,y1,y2)
+            yellowlayer(x1,x2,y1,y2)
+        }
+        function whitelayer(x1,x2,y1,y2) {
+            stroke(0, 0, 100)
+            moon(x1, y1, x1 + (x2 - x1) / 2, y1 + (y2 - y1) / 2)
+            moon(x1 + (x2 - x1) / 2, y1, x2, y1 + (y2 - y1) / 2)
+            moon(x1, y1 + (y2 - y1) / 2, x1 + (x2 - x1) / 2, y2)
+            moon(x1 + (x2 - x1) / 2, y1 + (y2 - y1) / 2, x2, y2)
+        }
+        function yellowlayer(x1,x2,y1,y2) {
+            stroke(50, 100, 100)
+            moon(x1, y1, x1 + (x2 - x1) / 2, y1 + (y2 - y1) / 2)
+            moon(x1 + (x2 - x1) / 2, y1, x2, y1 + (y2 - y1) / 2)
+            moon(x1, y1 + (y2 - y1) / 2, x1 + (x2 - x1) / 2, y2)
+            moon(x1 + (x2 - x1) / 2, y1 + (y2 - y1) / 2, x2, y2)
+        }
+        function moon(x1, y1, x2, y2) {
+            var diam = x2 - x1
+            var cx = x1 + diam / 2
+            var cy = y1 + (y2 - y1) / 2
+            //ellipse(cx,cy,diam,diam)
+            var angle_min, angle_max, start_angle
+            angle_min = random(42, 96)
+            start_angle = angle_min
+            angle_max = random(121, 177)
+            moonPartOne(cx, cy, diam, angle_min, angle_max)
+            angle_min = angle_max
+            angle_max = angle_max + random(42, 126)
+            moonPartOne3(cx, cy, diam, angle_min, angle_max)
+            angle_min = angle_max
+            angle_max = angle_min + random(126, 168)
+            moonPartTwo(cx, cy, diam, angle_min, angle_max)
+            angle_min = angle_min + random(3, 11)
+            moonPartThree(cx, cy, diam, angle_min, angle_max)
+            angle_min = angle_max
+            angle_max = start_angle + random(42, 63)
+            moonPartFour(cx, cy, diam, angle_min, angle_max)
+        }
+
+
+        function moonPartOne(cx, cy, diam, angle_min, angle_max) {
+            var density = random(7.01, 11)
+            var angle1, angle2, px1, py1, px2, py2
+            for (var rad = diam / 2; rad > 0; rad -= density) {
+                px1 = cx + rad * cos(radians(angle_min))
+                py1 = cy + rad * sin(radians(angle_min))
+                px2 = cx + rad * cos(radians(angle_max))
+                py2 = cy + rad * sin(radians(angle_max))
+                line(px1, py1, px2, py2)
+            }
+            density = random(0.42, 3.84)
+            var rad = diam / 2
+            while (angle_max - angle_min > 0) {
+                px1 = cx + rad * cos(radians(angle_min))
+                py1 = cy + rad * sin(radians(angle_min))
+                px2 = cx + rad * cos(radians(angle_max))
+                py2 = cy + rad * sin(radians(angle_max))
+                line(px1, py1, px2, py2)
+                angle_max -= density
+                angle_min += density
+            }
+        }
+
+
+
+        function moonPartOne3(cx, cy, diam, angle_min, angle_max) {
+            var rad = diam / 2
+            var px = cx + rad * cos(radians(angle_max))
+            var py = cy + rad * sin(radians(angle_max))
+            var dist = angle_max - angle_min
+            var ratio = random(0.01, 0.07)
+            var density = dist * ratio
+            var t = 0
+            for (var a = angle_min; a < angle_max; a += 2 * density) {
+                var angle3 = a
+                var angle4 = a + density
+                if (angle4 <= angle_max) {
+                    var ox1 = (1 - t) * cx + (t * px);
+                    var oy1 = (1 - t) * cy + (t * py);
+                    t += ratio
+                    var ox2 = (1 - t) * cx + (t * px);
+                    var oy2 = (1 - t) * cy + (t * py);
+                    t += ratio
+                    var dx1 = cx + (diam / 2) * cos(radians(angle3))
+                    var dy1 = cy + (diam / 2) * sin(radians(angle3))
+                    var dx2 = cx + (diam / 2) * cos(radians(angle4))
+                    var dy2 = cy + (diam / 2) * sin(radians(angle4))
+                    arc(cx, cy, diam, diam, radians(angle3), radians(angle4))
+                    line(ox1, oy1, dx1, dy1)
+                    line(ox2, oy2, dx2, dy2)
+                }
+            }
+        }
+
+        function moonPartTwo(cx, cy, diam, angle_min, angle_max) {
+            var rad = diam / 2
+            var angle1 = radians(angle_min)
+            var angle2 = radians(angle_max)
+            var density = random(7, 15)
+            while (rad > 7) {
+                var px1 = cx + rad * cos(angle1)
+                var py1 = cy + rad * sin(angle1)
+                var px2 = cx + rad * cos(angle2)
+                var py2 = cy + rad * sin(angle2)
+                line(px1, py1, px2, py2)
+                rad -= 11
+            }
+        }
+
+        function moonPartThree(cx, cy, diam, angle_min, angle_max) {
+            var rad = diam / 2
+            var px1 = cx + rad * cos(radians(angle_min))
+            var py1 = cy + rad * sin(radians(angle_min))
+            var px2, py2;
+            var density = random(2, 9)
+            for (var angle = angle_min; angle < angle_max; angle += density) {
+                px2 = cx + rad * cos(radians(angle))
+                py2 = cy + rad * sin(radians(angle))
+                line(px1, py1, px2, py2)
+            }
+        }
+
+        function moonPartFour(cx, cy, diam, angle_min, angle_max) {
+            var rad = diam / 2
+            var px1 = cx + rad * cos(radians(angle_min))
+            var py1 = cy + rad * sin(radians(angle_min))
+            var px2 = cx + rad * cos(radians(angle_max))
+            var py2 = cy + rad * sin(radians(angle_max))
+            var density = random(17, 25)
+            for (var d = diam; d > density; d -= density) {
+                arc(cx, cy, d, d, radians(angle_min), radians(angle_max))
+            }
+        }
+    </script>
+</body>
+
+</html>
