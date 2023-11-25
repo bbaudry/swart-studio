@@ -1,138 +1,183 @@
-
-var w, h 
-var cnv
-var ang = 180;
-var grow = true;
-var bend = true;
-var fold = true;
-var secondPhase = false;
-var closing = false;
-var startSecond = 0;
-var startClosing = 0;
-var nbVertices;
-var wid = w / 10;
-var vertices = [];
-
-function setup() {
-    w = windowHeight
-    h = windowHeight
-    cnv = createCanvas(windowHeight, windowHeight);
-    centerCanvas();
-    colorMode(HSB, 360, 100, 100, 250);
+var petals
+var nbPetals
+var count
+function setupdarkflowers() {
     background(0, 0, 0)
-    nbVertices = Math.floor(random(16, 84))
-    setVertices();
+    count=0
+    nbPetals = 63//Math.floor(random(16, 84))
+    setPetals();
 }
 
-function centerCanvas() {
-    var x = (windowWidth - windowHeight) / 2;
-    var y = (windowHeight - windowHeight) / 2;
-    cnv.position(x, y);
-}
-
-function setVertices() {
-    vertices = [];
-    for (let i = 1; i < nbVertices; i++) {
-        let speed = i * random(0.03, 0.05);
-        let v = [];
-        let one = [0, 0.5 * h, speed, 180, 0.125 * w, 0.125 * w]
-        v.push(one);
-        let two = [0.25 * w, 0.5 * h, speed, 180, 0.125 * w, 0.125 * w]
-        v.push(two);
-        let three = [0.75 * w, 0.5 * h, speed, 180, 0.125 * w, 0.125 * w]
-        v.push(three);
-        let four = [w, 0.5 * h, speed, 180, 0.125 * w, 0.125 * w]
-        v.push(four);
-        vertices.push(v);
-    }
-}
-
-function draw() {
-    noFill();
-    stroke(0, 0, 100);
-    if (vertices[vertices.length - 1][1][1] > 0 && grow) {
-        background(0, 0, 0);
-        wave();
-        updateVerticesUp();
-    } else {
-        grow = false;
-        if (vertices[vertices.length - 1][1][4] > -0.25 * w && bend) {
-            background(0, 0, 0);
-            wave();
-            updateVerticesCenter();
-        } else {
-            bend = false;
-            if (vertices[vertices.length - 1][1][1] < 0.5 * h && fold) {
-                background(0, 0, 0);
-                wave();
-                updateVerticesCenter();
-                updateVerticesDown();
-            } else {
-                fold = false;
-                if (!secondPhase) {
-                    secondPhase = true;
-                    startSecond = frameCount;
-                }
-                if (secondPhase && frameCount - startSecond < 168) {
-                    updateVerticesUp();
-                }
-                if (secondPhase && frameCount - startSecond < startSecond + 168) {
-                    background(0, 0, 0);
-                    wave();
-                    spinVertices();
-                } else {
-                    if (!closing) {
-                        closing = true;
-                        startClosing = frameCount;
-                    }
-                }
-            }
+function setPetals() {
+    petals = [];
+    for (let i = 1; i < nbPetals; i++) {
+        var petal = {
+            root1: {
+                x: 0.42 * w,
+                y: 0.9 * h,
+                angle: 180,
+                leftrad: 0.2 * w,
+                rightrad: 0.2 * w,
+                speed: i * 0.01
+            },
+            root2: {
+                x: 0.58 * w,
+                y: 0.9 * h,
+                angle: 180,
+                leftrad: 0.2 * w,
+                rightrad: 0.2 * w,
+                speed: i * 0.01
+            },
+            canopy: {
+                x: 0.5* w,
+                y: 0.01 * h,
+                angle: 180,
+                leftrad: 0.05 * w,
+                rightrad: 0.05 * w,
+                speed: i * 0.01
+            },
+            elbow1: {
+                x: 0.58 * w,
+                y: 0.35 * h+i*2,
+                angle: 90,
+                leftrad: 0.2 * w,
+                rightrad: 0.1 * w,
+                speed: i * 0.01
+            },
+            elbow2: {
+                x: 0.42 * w,
+                y: 0.35 * h +i*2,
+                angle: 270,
+                leftrad: 0.1 * w,
+                rightrad: 0.2 * w,
+                speed: i * 0.01
+            },
+            hu:0,
+            sa:0,
+            br:100
         }
+        petals.push(petal)
     }
-    if (closing) {
-        background(0, 0, 0);
-        wave(); trimVertices(); spinVertices();
+}
+function drawdarkflowers() {
+    noFill(); stroke(0, 0, 100); strokeWeight(1); rect(0, 0, w, h)
+    background(0, 0, 0)
+    count++
+    flower()
+    if(count<1000){rightpetal()}
+    if(count>=1000&&count<1500){foldpetal()}
+    if(count>=1500&&count<2000){downpetal()}
+    if(count>=2000&&count<2500){unfoldpetal()}
+    if(count>=2500&&count<4000){leftpetal()}
+    if(count>=4000&&count<4500){bendpetal();rightpetal()}
+    if(count>=4500&&count<5500){bendpetal()}
+    //test()
+}
+
+function rightpetal() {
+    for (var i = 0; i < petals.length; i++) {
+        var petal = petals[i]
+        petal.elbow1.x += petal.elbow1.speed
+        petal.elbow2.x += petal.elbow2.speed
+        petal.sa+=0.05
     }
-    if (vertices.length === 0) {
-        background(0, 0, 0);
-        noLoop();
+}
+function foldpetal() {
+    for (var i = 0; i < petals.length; i++) {
+        var petal = petals[i]
+        petal.elbow1.x -= petal.elbow1.speed
+        petal.elbow2.x += petal.elbow2.speed
+        petal.hu+=0.1
+    }
+}
+function downpetal() {
+    for (var i = 0; i < petals.length; i++) {
+        var petal = petals[i]
+        petal.elbow1.rightrad += petal.elbow1.speed
+        petal.elbow2.leftrad += petal.elbow2.speed
+        petal.hu+=0.01
+    }
+}
+function unfoldpetal() {
+    for (var i = 0; i < petals.length; i++) {
+        var petal = petals[i]
+        petal.elbow1.x += petal.elbow1.speed
+        petal.elbow2.x -= petal.elbow2.speed
+        petal.hu+=0.1
+    }
+}
+function leftpetal() {
+    for (var i = 0; i < petals.length; i++) {
+        var petal = petals[i]
+        petal.elbow1.x -= petal.elbow1.speed
+        petal.elbow2.x -= petal.elbow2.speed
+    }
+}
+function bendpetal() {
+    for (var i = 0; i < petals.length; i++) {
+        var petal = petals[i]
+        petal.elbow1.angle -= petal.elbow1.speed
+        petal.elbow2.angle -= petal.elbow2.speed
+        petal.hu-=0.1
     }
 }
 
-function updateVerticesUp() {
-    for (let i = 0; i < vertices.length; i++) {
-        vertices[i][1][1] -= vertices[i][1][2]
-        vertices[i][2][1] += vertices[i][2][2]
+function flower() {
+    let cx, cy, cpx1, cpy1, cpx2, cpy2;
+    controls = [];
+    for (var i = 0; i < petals.length; i++) {
+        var petal = petals[i]
+        stroke(petal.hu, petal.sa, petal.br);
+        beginShape();
+        cx = petal.root1.x;
+        cy = petal.root1.y;
+        vertex(cx, cy);
+        var angle = 180//0.1*frameCount
+        controls = drawTang(cx, cy, petal.root1.angle, petal.root1.leftrad, petal.root1.rightrad);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+
+        cx = petal.elbow1.x;
+        cy = petal.elbow1.y;
+        controls = drawTang(cx, cy, petal.elbow1.angle, petal.elbow1.leftrad, petal.elbow1.rightrad);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx, cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+
+        cx = petal.canopy.x;
+        cy = petal.canopy.y;
+        controls = drawTang(cx, cy, petal.canopy.angle,petal.canopy.leftrad,petal.canopy.rightrad);
+        cpx1 = controls[2];
+        cpy1 = controls[3];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx, cy);
+        cpx2 = controls[0];
+        cpy2 = controls[1];
+
+        cx = petal.elbow2.x;
+        cy = petal.elbow2.y;
+        controls = drawTang(cx, cy, petal.elbow2.angle, petal.elbow2.leftrad, petal.elbow2.rightrad);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx, cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+
+        cx = petal.root2.x;
+        cy = petal.root2.y;
+        controls = drawTang(cx, cy, petal.root2.angle, petal.root2.leftrad, petal.root2.rightrad);
+        cpx1 = controls[0];
+        cpy1 = controls[1];
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, cx, cy);
+        cpx2 = controls[2];
+        cpy2 = controls[3];
+
+        endShape();
     }
 }
 
-function updateVerticesDown() {
-    for (let i = 0; i < vertices.length; i++) {
-        vertices[i][1][1] += vertices[i][1][2]
-        vertices[i][2][1] -= vertices[i][2][2]
-    }
-}
 
-function updateVerticesCenter() {
-    for (let i = 0; i < vertices.length; i++) {
-        vertices[i][1][4] -= vertices[i][1][2]
-        vertices[i][1][5] += vertices[i][1][2]
-        vertices[i][2][4] += vertices[i][2][2]
-        vertices[i][2][5] -= vertices[i][2][2]
-    }
-}
-
-function spinVertices() {
-    for (let i = 0; i < vertices.length; i++) {
-        vertices[i][1][3] -= vertices[i][1][2]
-        vertices[i][2][3] += vertices[i][2][2]
-    }
-}
-
-function trimVertices() {
-    let i = Math.floor(random(vertices.size()));
-    vertices.remove(i);
-}
 
 function wave() {
     let cx, cy, cpx1, cpy1, cpx2, cpy2;
@@ -167,5 +212,6 @@ function drawTang(cx, cy, angle, radleft, radright) {
     let dx2 = cx + radright * cos(radians(ang + 180));
     let dy2 = cy + radright * sin(radians(ang + 180));
     res = [dx1, dy1, dx2, dy2];
+    //line(dx1, dy1, dx2, dy2)
     return res;
 }

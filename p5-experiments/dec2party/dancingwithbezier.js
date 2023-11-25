@@ -14,17 +14,15 @@ var vertices = [];
 function setupdancingwithbezier() {
     background(0, 0, 0)
     nbVertices = Math.floor(random(16, 84))
+    console.log("hey")
     setVertices();
+    console.log(vertices.length)
+
 }
 
-function centerCanvas() {
-    var x = (windowWidth - windowHeight) / 2;
-    var y = (windowHeight - windowHeight) / 2;
-    cnv.position(x, y);
-}
 
 function setVertices() {
-    vertices = [];
+    vertices = [];  
     for (let i = 1; i < nbVertices; i++) {
         let speed = i * random(0.03, 0.05);
         let v = [];
@@ -38,6 +36,7 @@ function setVertices() {
         v.push(four);
         vertices.push(v);
     }
+
 }
 
 function drawdancingwithbezier() {

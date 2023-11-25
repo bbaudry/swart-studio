@@ -5,7 +5,7 @@ var step, stepx, stepy
 
 function setupveraone() {
     noFill();
-    background(0, 0, 100)
+    background(0, 0, 0)
     stroke(0, 0, 100);
     x = 0
     y = 0
@@ -14,17 +14,9 @@ function setupveraone() {
     step = w / 11
     stepx = w / step
     stepy = h / step
-    for (let i = 0; i < 1111; i++) {
-        drawrandom()
-    }
     frameRate(2)
 }
 
-function centerCanvas() {
-    var x = (windowWidth - w) / 2;
-    var y = (windowHeight - h) / 2;
-    cnv.position(x, y);
-}
 
 function drawveraone() {
     drawrandom()
@@ -36,7 +28,7 @@ function drawrandom() {
     xoff += noisestep
     let y = Math.floor(noise(yoff) * stepy) * step
     yoff += noisestep
-    stroke(0, 0, 0); noFill()
+    stroke(0, 0, 100); noFill()
     if (random() < 0.05) { noStroke(); fill(0, 100, 100) }
     block(x, y, step, step)
 }
