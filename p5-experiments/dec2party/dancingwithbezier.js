@@ -138,13 +138,13 @@ function wave() {
         cx = vertices[i][0][0];
         cy = vertices[i][0][1];
         vertex(cx, cy);
-        controls = drawTang(cx, cy, vertices[i][0][3], vertices[i][0][4], vertices[i][0][5]);
+        controls = drawTangdark(cx, cy, vertices[i][0][3], vertices[i][0][4], vertices[i][0][5]);
         cpx2 = controls[2];
         cpy2 = controls[3];
         for (let j = 1; j < vertices[i].length; j++) {
             cx = vertices[i][j][0];
             cy = vertices[i][j][1];
-            controls = drawTang(cx, cy, vertices[i][j][3], vertices[i][j][4], vertices[i][j][5]);
+            controls = drawTangdark(cx, cy, vertices[i][j][3], vertices[i][j][4], vertices[i][j][5]);
             cpx1 = controls[0];
             cpy1 = controls[1];
             bezierVertex(cpx2, cpy2, cpx1, cpy1, cx, cy);
@@ -155,7 +155,7 @@ function wave() {
     }
 }
 
-function drawTang(cx, cy, angle, radleft, radright) {
+function drawTangdark(cx, cy, angle, radleft, radright) {
     ang = angle;
     wid = w / 8;
     let dx1 = cx + radleft * cos(radians(ang));

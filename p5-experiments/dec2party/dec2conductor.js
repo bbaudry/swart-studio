@@ -12,11 +12,11 @@ function setup(){
 /*TODO: 
 translate Sand020.java, Sand022.java, SL013,SL014,SL015
 translate Ribbons003.java (possible conclusion)
-include frenchco-bezier001.html (possible intro)
+create one conclusion piece with credits
 */
 function draw(){
-    if(frameCount==1){setupdarkflowers()}
-    drawdarkflowers()
+    if(frameCount==1){setupneonflower()}
+    drawneonflower()
     /*if(frameCount==1){party=1}
     if(frameCount>1&&frameCount<1000){party=2}
     if(frameCount==1000){party=3}
