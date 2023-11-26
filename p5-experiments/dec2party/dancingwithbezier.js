@@ -3,6 +3,7 @@ var ang = 180;
 var grow = true;
 var bend = true;
 var fold = true;
+var finished = false;
 var secondPhase = false;
 var closing = false;
 var startSecond = 0;
@@ -13,7 +14,7 @@ var vertices = [];
 
 function setupdancingwithbezier() {
     background(0, 0, 0)
-    nbVertices = Math.floor(random(16, 84))
+    nbVertices = Math.floor(random(42, 84))
     console.log("hey")
     setVertices();
     console.log(vertices.length)
@@ -24,7 +25,7 @@ function setupdancingwithbezier() {
 function setVertices() {
     vertices = [];  
     for (let i = 1; i < nbVertices; i++) {
-        let speed = i * random(0.03, 0.05);
+        let speed = i * 0.05;
         let v = [];
         let one = [0, 0.5 * h, speed, 180, 0.125 * w, 0.125 * w]
         v.push(one);
@@ -42,6 +43,7 @@ function setVertices() {
 function drawdancingwithbezier() {
     noFill();
     stroke(0, 0, 100);
+    if(!finished){
     if (vertices[vertices.length - 1][1][1] > 0 && grow) {
         background(0, 0, 0);
         wave();
@@ -83,12 +85,14 @@ function drawdancingwithbezier() {
     }
     if (closing) {
         background(0, 0, 0);
-        wave(); trimVertices(); spinVertices();
+        wave(); spinVertices();trimVertices(); 
+        
     }
     if (vertices.length === 0) {
         background(0, 0, 0);
-        noLoop();
-    }
+        finished=true
+        //noLoop();
+    }}else{fill(0,0,100);rect(0,0,w,h)}
 }
 
 function updateVerticesUp() {
@@ -122,8 +126,8 @@ function spinVertices() {
 }
 
 function trimVertices() {
-    let i = Math.floor(random(vertices.size()));
-    vertices.remove(i);
+    let i = Math.floor(random(vertices.length));
+    vertices.splice(i, 1);
 }
 
 function wave() {

@@ -11,8 +11,9 @@ function setup(){
 
 
 function draw(){
-    if(frameCount==1){setupdarkflowers()}
-    drawdarkflowers()
+    if(frameCount==1){setupdancingwithbezier()}
+    if(frameCount>1&&frameCount<1600){drawdancingwithbezier()}
+    if(frameCount>=1600){console.log("done");fill(0,50,100);rect(0,0,w,h)}
     /*if(frameCount==1){party=1}
     if(frameCount>1&&frameCount<1000){party=2}
     if(frameCount==1000){party=3}
