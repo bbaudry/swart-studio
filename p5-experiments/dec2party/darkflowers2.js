@@ -58,6 +58,54 @@ function setPetals() {
         }
         petals.push(petal)
     }
+    for (let i = 1; i < nbPetals; i++) {
+        var petal = {
+            root1: {
+                x: 0.02 * w,
+                y: 0.45 * h,
+                angle: 270,
+                leftrad: 0.2 * w,
+                rightrad: 0.2 * w,
+                speed: i * 0.01
+            },
+            root2: {
+                x: 0.02 * w,
+                y: 0.55 * h,
+                angle: 270,
+                leftrad: 0.2 * w,
+                rightrad: 0.2 * w,
+                speed: i * 0.01
+            },
+            canopy: {
+                x: 0.95* w,
+                y: 0.5 * h,
+                angle: 180,
+                leftrad: 0.0 * w,
+                rightrad: 0.0 * w,
+                speed: i * 0.01
+            },
+            elbow1: {
+                x: 0.75 * w,
+                y: 0.5 * h,
+                angle: 270,
+                leftrad: 0 * w,
+                rightrad: 0* w,
+                speed: i * 0.01
+            },
+            elbow2: {
+                x: 0.75 * w,
+                y: 0.5 * h,
+                angle: 90,
+                leftrad: 0 * w,
+                rightrad: 0 * w,
+                speed: i * 0.01
+            },
+            hu:0,
+            sa:0,
+            br:100
+        }
+        petals.push(petal)
+    }
 }
 function drawdarkflowers2() {
     noFill(); stroke(0, 0, 100); strokeWeight(1); rect(0, 0, w, h)

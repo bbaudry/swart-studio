@@ -15,8 +15,8 @@ translate Ribbons003.java (possible conclusion)
 create one conclusion piece with credits
 */
 function draw(){
-    if(frameCount==1){setupneonflower()}
-    drawneonflower()
+    if(frameCount==1){setupdarkflowers2()}
+    drawdarkflowers2()
     /*if(frameCount==1){party=1}
     if(frameCount>1&&frameCount<1000){party=2}
     if(frameCount==1000){party=3}
