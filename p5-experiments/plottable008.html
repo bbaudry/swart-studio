@@ -121,10 +121,11 @@
         }
 
         function showline(odd,lineA){
+            console.log(odd+" "+lineA.length)
             odd?stroke(230,100,100) : stroke(30,100,100);
-            stroke(30,100,100)
+            strokeWeight(3)
             for(var i=0;i<lineA.length;i++){
-                ellipse(lineA[i].t, lineA[i].y, 7,7)
+                ellipse(lineA[i].t, lineA[i].y, 17,17)
             }
         }
     </script>
