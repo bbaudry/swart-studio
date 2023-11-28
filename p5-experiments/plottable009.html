@@ -63,44 +63,39 @@
         var leftmargin = 42
         var topmargin = 42
         var bottommargin = h - 42
-        var step = 4
+        var step = 6
         var offset = 2
+        var x, y
+        var goingright, atthetop
+
         function draw() {
             singleline()
         }
-
-        var x, y
-        var right
-        var atthetop
+        
         function singleline() {
             stroke(0, 0, 100)
             y = topmargin
             x = leftmargin + step
             atthetop = true
-            right = true
+            goingright = true
             while (y < bottommargin - step) {
-                if (right) {
+                if (goingright) {
                     while (x < rightmargin - step) {
-                        var newcoords = oneline()
-                        //x = newcoords[0]
-                        //y = newcoords[1]
+                        oneline()
                     }
                     y1 = y + 2 * step + offset
                     line(x, y, x, y1)
                     y = y1
-                    right = false
+                    goingright = false
                 }
-                if (!right) {
+                if (!goingright) {
                     while (x > leftmargin + step) {
-                        var newcoords = oneline()
-                        //x = newcoords[0]
-                        //y = newcoords[1]
-                        //top = newcoords[2]
+                        oneline()
                     }
                     y1 = y + 2 * step + offset
                     if (y1 < bottommargin - step) { line(x, y, x, y1) }
                     y = y1
-                    right = true
+                    goingright = true
                 }
             }
         }
@@ -120,13 +115,13 @@
                     if (atthetop) { y1 = y + step }
                     else { y1 = y - step }
                     atthetop = !atthetop
-                    if (right) { x1 = x + step }
+                    if (goingright) { x1 = x + step }
                     else { x1 = x - step }
                     line(x, y, x1, y1)
                     break;
                 case 2:
                     y1 = y
-                    if (right) { x1 = x + step }
+                    if (goingright) { x1 = x + step }
                     else { x1 = x - step }
                     line(x, y, x1, y1)
                     break;
@@ -138,9 +133,16 @@
                 case 4:
                     if (atthetop) { y1 = y + step }
                     else { y1 = y - step }
-                    line(x,y,x+step/2,y1)
-                    line(x+step/2,y1,x+step,y)
-                    x1=x+step
+                    if(goingright){
+                        line(x,y,x+step/2,y1)
+                        line(x+step/2,y1,x+step,y)
+                        x1=x+step
+                    }
+                    else{
+                        line(x,y,x-step/2,y1)
+                        line(x-step/2,y1,x-step,y)
+                        x1=x-step
+                    }
                     y1=y
                     break;
             }
