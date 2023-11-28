@@ -25,10 +25,14 @@
         var echelle = 0.5
         var w = 1122 * echelle
         var h = 1587 * echelle
-        var leftmargin = 36
-        var righttmargin = 36
-        var topmargin = 45
-        var bottommargin = 48
+        var rightmargin = w - 42
+        var leftmargin = 42
+        var topmargin = 42
+        var bottommargin = h - 42
+        var step = 6
+        var offset = 2
+        var x, y
+        var goingright, atthetop
         var cnv, svgbtn
 
         function setup() {
@@ -40,8 +44,11 @@
             placebtn();
             svgbtn.mouseClicked(savesvg);
             background(0, 0, 0)
-            noFill()
-            noLoop()
+            stroke(0, 0, 100)
+            y = topmargin
+            x = leftmargin + step
+            atthetop = true
+            goingright = true
         }
 
         function centerCanvas() {
@@ -59,25 +66,39 @@
         function savesvg() {
             save("plottable009-single-line.svg");
         }
-        var rightmargin = w - 42
-        var leftmargin = 42
-        var topmargin = 42
-        var bottommargin = h - 42
-        var step = 6
-        var offset = 2
-        var x, y
-        var goingright, atthetop
 
         function draw() {
-            singleline()
+            //singlelineinoneshot()
+            singlelineinmotion()
         }
-        
-        function singleline() {
-            stroke(0, 0, 100)
-            y = topmargin
-            x = leftmargin + step
-            atthetop = true
-            goingright = true
+        function singlelineinmotion() {
+            if (y < bottommargin - step) {
+                if (goingright) {
+                    if (x < rightmargin - step) {
+                        oneline()
+                    }
+                    else {
+                        y1 = y + 2 * step + offset
+                        line(x, y, x, y1)
+                        y = y1
+                        goingright = false
+                    }
+                }
+                else {
+                    if (x > leftmargin + step) {
+                        oneline()
+                    }
+                    else {
+                        y1 = y + 2 * step + offset
+                        if (y1 < bottommargin - step) { line(x, y, x, y1) }
+                        y = y1
+                        goingright = true
+                    }
+                }
+            }
+
+        }
+        function singlelineinoneshot() {
             while (y < bottommargin - step) {
                 if (goingright) {
                     while (x < rightmargin - step) {
@@ -133,17 +154,17 @@
                 case 4:
                     if (atthetop) { y1 = y + step }
                     else { y1 = y - step }
-                    if(goingright){
-                        line(x,y,x+step/2,y1)
-                        line(x+step/2,y1,x+step,y)
-                        x1=x+step
+                    if (goingright) {
+                        line(x, y, x + step / 2, y1)
+                        line(x + step / 2, y1, x + step, y)
+                        x1 = x + step
                     }
-                    else{
-                        line(x,y,x-step/2,y1)
-                        line(x-step/2,y1,x-step,y)
-                        x1=x-step
+                    else {
+                        line(x, y, x - step / 2, y1)
+                        line(x - step / 2, y1, x - step, y)
+                        x1 = x - step
                     }
-                    y1=y
+                    y1 = y
                     break;
             }
             x = x1
