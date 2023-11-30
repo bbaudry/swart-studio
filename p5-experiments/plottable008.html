@@ -98,7 +98,7 @@
                         y: y + (Math.random() * .4 - .4) * gap
                     });
                 }
-                showline(odd,lineA)
+                //showline(odd,lineA)
                 lines.push(lineA)
             }
             var dotLine;
@@ -130,7 +130,7 @@
         function drawtriangles2(){
             var odd=true
             var triangles=[]
-            var offset = 17
+            var offset = 7
             for (var y = 0; y < lines.length - 1; y++) {
                 odd = !odd;
                 dotLine = [];
@@ -155,6 +155,15 @@
                             y3:lines[y][i+1].y
                         })
                     }
+                    var molnar =lines[y].length-2
+                    triangles.push({
+                            x1:lines[y+1][molnar].t,
+                            y1:lines[y+1][molnar].y-offset,
+                            x2:lines[y][molnar].t+offset,
+                            y2:lines[y][molnar].y,
+                            x3:lines[y][molnar+1].t-offset,
+                            y3:lines[y][molnar+1].y
+                        })
                 }
                 else{
                     for (var i = 0; i < lines[y].length-1; i++) {
