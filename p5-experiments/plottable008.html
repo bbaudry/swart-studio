@@ -41,17 +41,19 @@
             placebtn();
             svgbtn.mouseClicked(savesvg);
             noFill()
-            background(0, 0, 0)
-            noLoop()
+            background(0, 0, 0)            
+            settrianglecoords()
+
+//            noLoop()
         }
 
-        function getsvg(){
+        function getsvg() {
             cnv = createCanvas(w, h, SVG);
             imgbtn = createButton("save svg");
             placebtn();
             imgbtn.mouseClicked(savesvg);
         }
-        function getpng(){
+        function getpng() {
             cnv = createCanvas(w, h);
             imgbtn = createButton("save png");
             placebtn();
@@ -77,17 +79,23 @@
             save("plottable008.png");
         }
 
-        var step = 100
-        var offset = 20
+
+        var gap = 100;
+        var offset = 17;
+        var lines;
+        var triangles = []
+
         function draw() {
-            
-            driftingtriangles()
+            //background(0,0,0)
+            buildtriangles()
+            drawtriangles()
+            console.log(frameCount)
+            offset += frameCount*0.1
+            if (frameCount>42){noLoop()}
         }
 
-        var gap = 100;   
-        var offset = 10; 
-        var lines = [];
-        function driftingtriangles() {
+        function settrianglecoords() {
+            lines=[]
             var odd = false;
             for (var y = gap / 2; y <= h; y += gap) {
                 odd = !odd;
@@ -104,118 +112,98 @@
             var dotLine;
             odd = true;
             stroke(0, 0, 100);
-            strokeWeight(2);
-            drawtriangles2()
+            strokeWeight(1);
         }
-
-        function drawtriangles(){
-            var odd=true
-            for (var y = 0; y < lines.length - 1; y++) {
-                odd = !odd;
-                dotLine = [];
-                for (var i = 0; i < lines[y].length; i++) {
-                    if(odd){
-                        dotLine.push(lines[y][i])
-                    }
-                    else{
-                        dotLine.push(lines[y+1][i])
-                    }
-                    dotLine.push(odd ? lines[y + 1][i] : lines[y][i]);
-                }
-                for (var i = 0; i < dotLine.length - 2; i++) {
-                    triangle(dotLine[i].t, dotLine[i].y, dotLine[i + 1].t, dotLine[i + 1].y, dotLine[i + 2].t, dotLine[i + 2].y);
-                }
+        function drawtriangles() {
+            for (var i = 0; i < triangles.length; i++) {
+                var vera = triangles[i]
+                triangle(
+                    vera.x1,
+                    vera.y1,
+                    vera.x2,
+                    vera.y2,
+                    vera.x3,
+                    vera.y3
+                );
             }
         }
-        function drawtriangles2(){
-            var odd=true
-            var triangles=[]
-            var offset = 7
+        function buildtriangles() {
+            triangles=[]
+            var odd = true
             for (var y = 0; y < lines.length - 1; y++) {
                 odd = !odd;
                 dotLine = [];
-                if(odd){
-                    for (var i = 0; i < lines[y].length-1; i++) {
+                if (odd) {
+                    for (var i = 0; i < lines[y].length - 1; i++) {
                         triangles.push({
-                            x1:lines[y+1][i+1].t-offset,
-                            y1:lines[y+1][i+1].y-offset,
-                            x2:lines[y+1][i].t+offset,
-                            y2:lines[y+1][i].y-offset,
-                            x3:lines[y][i+1].t,
-                            y3:lines[y][i+1].y
+                            x1: lines[y + 1][i + 1].t - offset,
+                            y1: lines[y + 1][i + 1].y - offset,
+                            x2: lines[y + 1][i].t + offset,
+                            y2: lines[y + 1][i].y - offset,
+                            x3: lines[y][i + 1].t,
+                            y3: lines[y][i + 1].y
                         })
                     }
-                    for (var i = 0; i < lines[y].length-2; i++) {
+                    for (var i = 0; i < lines[y].length - 2; i++) {
                         triangles.push({
-                            x1:lines[y+1][i].t,
-                            y1:lines[y+1][i].y-offset,
-                            x2:lines[y][i].t+offset,
-                            y2:lines[y][i].y,
-                            x3:lines[y][i+1].t-offset,
-                            y3:lines[y][i+1].y
+                            x1: lines[y + 1][i].t,
+                            y1: lines[y + 1][i].y - offset,
+                            x2: lines[y][i].t + offset,
+                            y2: lines[y][i].y,
+                            x3: lines[y][i + 1].t - offset,
+                            y3: lines[y][i + 1].y
                         })
                     }
-                    var molnar =lines[y].length-2
+                    var molnar = lines[y].length - 2
                     triangles.push({
-                            x1:lines[y+1][molnar].t,
-                            y1:lines[y+1][molnar].y-offset,
-                            x2:lines[y][molnar].t+offset,
-                            y2:lines[y][molnar].y,
-                            x3:lines[y][molnar+1].t-offset,
-                            y3:lines[y][molnar+1].y
-                        })
+                        x1: lines[y + 1][molnar].t,
+                        y1: lines[y + 1][molnar].y - offset,
+                        x2: lines[y][molnar].t + offset,
+                        y2: lines[y][molnar].y,
+                        x3: lines[y][molnar + 1].t - offset,
+                        y3: lines[y][molnar + 1].y
+                    })
                 }
-                else{
-                    for (var i = 0; i < lines[y].length-1; i++) {
+                else {
+                    for (var i = 0; i < lines[y].length - 1; i++) {
                         triangles.push({
-                            x1:lines[y+1][i].t+offset,
-                            y1:lines[y+1][i].y-offset,
-                            x2:lines[y+1][i+1].t-offset,
-                            y2:lines[y+1][i+1].y-offset,
-                            x3:lines[y][i].t,
-                            y3:lines[y][i].y
+                            x1: lines[y + 1][i].t + offset,
+                            y1: lines[y + 1][i].y - offset,
+                            x2: lines[y + 1][i + 1].t - offset,
+                            y2: lines[y + 1][i + 1].y - offset,
+                            x3: lines[y][i].t,
+                            y3: lines[y][i].y
                         })
                     }
-                    for (var i = 0; i < lines[y].length-2; i++) {
+                    for (var i = 0; i < lines[y].length - 2; i++) {
                         triangles.push({
-                            x1:lines[y][i].t+offset,
-                            y1:lines[y][i].y,
-                            x2:lines[y][i+1].t-offset,
-                            y2:lines[y][i+1].y,
-                            x3:lines[y+1][i+1].t,
-                            y3:lines[y+1][i+1].y-offset
+                            x1: lines[y][i].t + offset,
+                            y1: lines[y][i].y,
+                            x2: lines[y][i + 1].t - offset,
+                            y2: lines[y][i + 1].y,
+                            x3: lines[y + 1][i + 1].t,
+                            y3: lines[y + 1][i + 1].y - offset
                         })
                     }
-                    var molnar =lines[y].length-2
+                    var molnar = lines[y].length - 2
                     triangles.push({
-                            x1:lines[y+1][molnar+1].t,
-                            y1:lines[y+1][molnar+1].y-offset,
-                            x2:lines[y][molnar+1].t,
-                            y2:lines[y][molnar+1].y,
-                            x3:lines[y][molnar].t+offset,
-                            y3:lines[y][molnar].y
-                        })
-                }
-                for (var i = 0; i < triangles.length; i++) {//triangles.length
-                    var vera=triangles[i]
-                    triangle(
-                        vera.x1,
-                        vera.y1,
-                        vera.x2,
-                        vera.y2,
-                        vera.x3,
-                        vera.y3
-                    );
+                        x1: lines[y + 1][molnar + 1].t,
+                        y1: lines[y + 1][molnar + 1].y - offset,
+                        x2: lines[y][molnar + 1].t,
+                        y2: lines[y][molnar + 1].y,
+                        x3: lines[y][molnar].t + offset,
+                        y3: lines[y][molnar].y
+                    })
                 }
             }
         }
 
-        function showline(odd,lineA){
-            console.log(odd+" "+lineA.length)
-            odd?stroke(230,100,100) : stroke(30,100,100);
+        function showline(odd, lineA) {
+            console.log(odd + " " + lineA.length)
+            odd ? stroke(230, 100, 100) : stroke(30, 100, 100);
             strokeWeight(3)
-            for(var i=0;i<lineA.length;i++){
-                ellipse(lineA[i].t, lineA[i].y, 17,17)
+            for (var i = 0; i < lineA.length; i++) {
+                ellipse(lineA[i].t, lineA[i].y, 17, 17)
             }
         }
     </script>
