@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 0.5
+        var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
         var leftmargin = 36
@@ -80,13 +80,16 @@
         }
 
 
-        var gap = 100;
+        var gap = 0.2*w;
         var offset = 17;
-        var lines;
-        var triangles = []
+        var leftmargin=0.1*w
+        var rightmargin=w-0.1*w
+        var topmargin=0.1*h
+        var bottommargin=h-0.1*h
+        var lines
+        var triangles
 
         function draw() {
-            //background(0,0,0)
             buildtriangles()
             drawtriangles()
             console.log(frameCount)
@@ -97,16 +100,15 @@
         function settrianglecoords() {
             lines=[]
             var odd = false;
-            for (var y = gap / 2; y <= h; y += gap) {
+            for (var y = topmargin+gap / 2; y <= bottommargin; y += gap) {
                 odd = !odd;
                 lineA = [];
-                for (var x = gap / 4; x <= w; x += gap) {
+                for (var x = leftmargin+gap / 4; x <= rightmargin; x += gap) {
                     lineA.push({
                         t: x + (Math.random() * .4 - .4) * gap + (odd ? gap / 2 : 0),
                         y: y + (Math.random() * .4 - .4) * gap
                     });
                 }
-                //showline(odd,lineA)
                 lines.push(lineA)
             }
             var dotLine;
@@ -195,15 +197,6 @@
                         y3: lines[y][molnar].y
                     })
                 }
-            }
-        }
-
-        function showline(odd, lineA) {
-            console.log(odd + " " + lineA.length)
-            odd ? stroke(230, 100, 100) : stroke(30, 100, 100);
-            strokeWeight(3)
-            for (var i = 0; i < lineA.length; i++) {
-                ellipse(lineA[i].t, lineA[i].y, 17, 17)
             }
         }
     </script>
