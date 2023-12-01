@@ -12,7 +12,7 @@ function setup(){
 /*TODO: 
 translate Sand020.java, Sand022.java, SL013,SL014,SL015
 translate Ribbons003.java (possible conclusion)
-create one conclusion piece with credits
+
 */
 
 /*
@@ -25,8 +25,10 @@ var durationDarkFlowers2 = 7000
 var durationNeonFLower = 2400
 var durationCredits = 4000
 function draw(){
-    if(frameCount==1){setupcredits()}
-    if(frameCount>1&&frameCount<4000){drawcredits()}
+    if(frameCount==1){setupradar()}
+    if(frameCount>1&&frameCount<3600){drawradar()}
+    if(frameCount==3600){setupcredits()}
+    if(frameCount>3600&&frameCount<7600){drawcredits()}
 /*    if(frameCount==1){setupdancingwithbezier()}
     if(frameCount>1&&frameCount<1600){drawdancingwithbezier()}
     if(frameCount==1600){setupdarkflowers2()}

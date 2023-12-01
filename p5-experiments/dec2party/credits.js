@@ -18,6 +18,7 @@ function setupcredits() {
     x = random(w)
     offx=0.0
     inc=0.1
+    background(0,0,0)
 }
 
 function drawcredits() {
