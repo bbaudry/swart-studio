@@ -14,7 +14,6 @@ function setupveraone() {
     step = w / 11
     stepx = w / step
     stepy = h / step
-    frameRate(2)
 }
 
 
@@ -28,12 +27,16 @@ function drawrandom() {
     xoff += noisestep
     let y = Math.floor(noise(yoff) * stepy) * step
     yoff += noisestep
-    stroke(0, 0, 100); noFill()
-    if (random() < 0.05) { noStroke(); fill(0, 100, 100) }
-    block(x, y, step, step)
+    stroke(0, 0, 100,42); noFill()
+    if (random() < 0.2) { stroke(180, 100, 100, 42) }
+    else {
+    if (random() < 0.2) { stroke(330, 100, 100, 42) }}
+    verablock(x, y, step, step)
+
 }
 
-function block(x, y, step, step) {
+function verablock(x, y, step, step) {
+    console.log(frameCount+" vera block")
     let size = random() * step
     let m = step - size
     x += m / 2

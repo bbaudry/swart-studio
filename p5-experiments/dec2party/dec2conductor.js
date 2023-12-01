@@ -10,7 +10,7 @@ function setup(){
 }
 
 /*TODO: 
-translate Sand020.java, Sand022.java, SL013,SL014,SL015
+translate Sand022.java, SL013,SL014,SL015
 translate Ribbons003.java (possible conclusion)
 
 */
@@ -24,9 +24,11 @@ var durationDancingWithBezier = 1600
 var durationDarkFlowers2 = 7000
 var durationNeonFLower = 2400
 var durationCredits = 4000
+var durationVeraOne = 3600
+var durationRadar = 3600
 function draw(){
-    if(frameCount==1){setupradar()}
-    if(frameCount>1&&frameCount<3600){drawradar()}
+    if(frameCount==1){setupikedaone()}
+    if(frameCount>1&&frameCount<3600){drawikedaone()}
     if(frameCount==3600){setupcredits()}
     if(frameCount>3600&&frameCount<7600){drawcredits()}
 /*    if(frameCount==1){setupdancingwithbezier()}
