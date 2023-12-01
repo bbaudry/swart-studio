@@ -14,27 +14,27 @@ translate Sand020.java, Sand022.java, SL013,SL014,SL015
 translate Ribbons003.java (possible conclusion)
 create one conclusion piece with credits
 */
+
+/*
+dancingwithbezier 1600 frames
+dakflowers2 7000 frames
+*/
+
+var durationDancingWithBezier = 1600
+var durationDarkFlowers2 = 7000
+var durationNeonFLower = 2400
 function draw(){
-    if(frameCount==1){setupdarkflowers2()}
-    drawdarkflowers2()
-    /*if(frameCount==1){party=1}
-    if(frameCount>1&&frameCount<1000){party=2}
-    if(frameCount==1000){party=3}
-    if(frameCount>1000&&frameCount<2000){party=4}    
-    paint()*/
+    if(frameCount==1){setupcredits()}
+    if(frameCount>1&&frameCount<2400){drawcredits()}
+/*    if(frameCount==1){setupdancingwithbezier()}
+    if(frameCount>1&&frameCount<1600){drawdancingwithbezier()}
+    if(frameCount==1600){setupdarkflowers2()}
+    if(frameCount>1600&&frameCount<8600){drawdarkflowers2()}
+    if(frameCount==8600){setupneonflower()}
+    if(frameCount>8600&&frameCount<11000){drawneonflower()}*/
 }
-function paint(){
-    switch(party){
-        case 1: setupdancingwithbezier()
-            break;
-        case 2: drawdancingwithbezier()
-            break;
-        case 3: setupveraone()
-            break;
-        case 4: drawveraone()
-            break;
-    }
-}
+
+
 function windowResized() {
     w = document.documentElement.clientWidth;//width of window that is available for drawing
     h = document.documentElement.clientHeight;//width of window that is available for drawing

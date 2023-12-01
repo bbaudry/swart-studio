@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 1
+        var echelle = 0.5
         var w = 1122 * echelle
         var h = 1587 * echelle
         var leftmargin = 36
@@ -93,8 +93,8 @@
             buildtriangles()
             drawtriangles()
             console.log(frameCount)
-            offset += frameCount*0.1
-            if (frameCount>42){noLoop()}
+            offset += frameCount*0.2
+            if (frameCount>27){noLoop()}
         }
 
         function settrianglecoords() {
@@ -116,19 +116,6 @@
             stroke(0, 0, 100);
             strokeWeight(1);
         }
-        function drawtriangles() {
-            for (var i = 0; i < triangles.length; i++) {
-                var vera = triangles[i]
-                triangle(
-                    vera.x1,
-                    vera.y1,
-                    vera.x2,
-                    vera.y2,
-                    vera.x3,
-                    vera.y3
-                );
-            }
-        }
         function buildtriangles() {
             triangles=[]
             var odd = true
@@ -146,7 +133,7 @@
                             y3: lines[y][i + 1].y
                         })
                     }
-                    for (var i = 0; i < lines[y].length - 2; i++) {
+                    for (var i = 0; i <= lines[y].length - 2; i++) {
                         triangles.push({
                             x1: lines[y + 1][i].t,
                             y1: lines[y + 1][i].y - offset,
@@ -156,15 +143,6 @@
                             y3: lines[y][i + 1].y
                         })
                     }
-                    var molnar = lines[y].length - 2
-                    triangles.push({
-                        x1: lines[y + 1][molnar].t,
-                        y1: lines[y + 1][molnar].y - offset,
-                        x2: lines[y][molnar].t + offset,
-                        y2: lines[y][molnar].y,
-                        x3: lines[y][molnar + 1].t - offset,
-                        y3: lines[y][molnar + 1].y
-                    })
                 }
                 else {
                     for (var i = 0; i < lines[y].length - 1; i++) {
@@ -177,7 +155,7 @@
                             y3: lines[y][i].y
                         })
                     }
-                    for (var i = 0; i < lines[y].length - 2; i++) {
+                    for (var i = 0; i <= lines[y].length - 2; i++) {
                         triangles.push({
                             x1: lines[y][i].t + offset,
                             y1: lines[y][i].y,
@@ -187,18 +165,23 @@
                             y3: lines[y + 1][i + 1].y - offset
                         })
                     }
-                    var molnar = lines[y].length - 2
-                    triangles.push({
-                        x1: lines[y + 1][molnar + 1].t,
-                        y1: lines[y + 1][molnar + 1].y - offset,
-                        x2: lines[y][molnar + 1].t,
-                        y2: lines[y][molnar + 1].y,
-                        x3: lines[y][molnar].t + offset,
-                        y3: lines[y][molnar].y
-                    })
                 }
             }
         }
+
+        function drawtriangles() {
+            for (var i = 0; i < triangles.length; i++) {
+                var vera = triangles[i]
+                triangle(
+                    vera.x1,
+                    vera.y1,
+                    vera.x2,
+                    vera.y2,
+                    vera.x3,
+                    vera.y3
+                );}
+        }
+
     </script>
 </body>
 
