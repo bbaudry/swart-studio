@@ -23,9 +23,10 @@ dakflowers2 7000 frames
 var durationDancingWithBezier = 1600
 var durationDarkFlowers2 = 7000
 var durationNeonFLower = 2400
+var durationCredits = 4000
 function draw(){
     if(frameCount==1){setupcredits()}
-    if(frameCount>1&&frameCount<2400){drawcredits()}
+    if(frameCount>1&&frameCount<4000){drawcredits()}
 /*    if(frameCount==1){setupdancingwithbezier()}
     if(frameCount>1&&frameCount<1600){drawdancingwithbezier()}
     if(frameCount==1600){setupdarkflowers2()}

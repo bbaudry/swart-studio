@@ -1,28 +1,91 @@
 var invites
 var creditsCounter
-
+var speed
+var vera
+var x, y, offx, inc
 function preload() {
     invites = loadStrings('guests.txt');
-    bowie=loadFont("../fonts/ChunkFive-Regular.otf");
+    bowie = loadFont("../fonts/ChunkFive-Regular.otf");
 }
 
-function setupcredits(){
+function setupcredits() {
     textFont(bowie)
-    textSize(168)
-    creditsCounter=0
+    vera = 168
+    textSize(vera)
+    creditsCounter = 0
+    speed = 2
+    y = h / 2 + random(h / 2)
+    x = random(w)
+    offx=0.0
+    inc=0.1
 }
 
-function drawcredits(){
-    dec2credits()
-    creditsCounter++
-}
-
-function dec2credits(){
-    if (creditsCounter%4==0 ){
-        background(0,0,0)
-        fill(1,0,100);
-        var friend = Math.floor(random(invites.length))
-        console.log("friend :"+invites[friend])
-        text(invites[friend], w/2-32*4, h/2);
+function drawcredits() {
+    if (creditsCounter < 36) {
+        dec2credits()
     }
+    if(creditsCounter==36) {
+        console.log("why almyre")
+        almyre()
+    }
+    creditsCounter++; 
+}
+
+function dec2credits() {
+    if (creditsCounter % speed == 0) {
+        fill(0, 0, 0)
+        noStroke()
+        rect(0, 0.28*h, w, 0.22*h)
+        fill(1, 0, 100);
+        var friend = invites[Math.floor(random(invites.length))]
+        var tw = textWidth(friend)
+        var left = w / 2 - tw / 2
+        var bottom = h / 2 - 42
+        text(friend, left, bottom);
+        block(tw,left)
+        if (speed < 21 && random() < 0.21) { speed++ }
+
+    }
+}
+
+function block(len,left){
+    fill(0, 0, 0)
+    noStroke();
+    rect(0, 0.5*h, w, 0.5*h)
+    var x1 = left
+    var y1 = h/2+noise(offx)*h/2
+    offx+=inc
+    var blockh = random(h/4)
+    fill(0,0,100)
+    rect(x1,y1,len,blockh)
+}
+
+
+function almyre() {
+    background(0,0,0)
+    textSize(111)
+    var texth=textAscent("d")
+    var x1=0
+    var y1=textAscent("d")
+    var x2,y2
+    for(var i=0;i<invites.length;i++){
+        friend=invites[i]
+        if(textWidth(friend)>w-x1){
+            x1=0
+            y1+=texth
+            text(friend, x1, y1);
+            x1+=textWidth(friend)
+        }
+        else{
+            text(friend, x1, y1);
+            x1+=textWidth(friend)
+        }
+    }
+    fill(1, 0, 100);
+    textSize(vera)
+    var txt = "al.my.re"
+    var tw = textWidth(txt)
+    var left = w / 2 - tw / 2
+    var bottom = h  - 42
+    text(txt, left, bottom);
 }
