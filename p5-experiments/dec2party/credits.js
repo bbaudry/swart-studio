@@ -21,10 +21,10 @@ function setupcredits() {
 }
 
 function drawcredits() {
-    if (creditsCounter < 36) {
+    if (creditsCounter < 3600) {
         dec2credits()
     }
-    if(creditsCounter==36) {
+    if(creditsCounter==3600) {
         console.log("why almyre")
         almyre()
     }
