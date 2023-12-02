@@ -26,6 +26,7 @@ var durationNeonFLower = 2400
 var durationCredits = 4000
 var durationVeraOne = 3600
 var durationRadar = 3600
+var durationIkedaOne = 3000
 function draw(){
     if(frameCount==1){setupikedaone()}
     if(frameCount>1&&frameCount<3600){drawikedaone()}

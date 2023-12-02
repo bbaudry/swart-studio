@@ -6,7 +6,9 @@ var endtwo = starttwo + 42 * 8
 var startthree = endtwo + 42
 var endthree = startthree + 42 * 12
 var startfour = endthree + 42
-var endfour = startfour + 42 * 42
+var endfour = startfour + 42 * 30
+var startfive = endfour + 42
+var endfive = startfive + 42 * 12
 var column = []
 var manycols = []
 
@@ -29,6 +31,9 @@ function drawikedaone() {
     if (ikedacounter == startfour) { initmulti() }
     if (ikedacounter >= startfour && ikedacounter < endfour) {
         multicolumn()
+    }
+    if (ikedacounter >= startfive && ikedacounter < endtfive) {
+        ikedamoon()
     }
 
 
