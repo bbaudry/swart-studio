@@ -9,12 +9,14 @@ var startfour = endthree + 42
 var endfour = startfour + 42 * 30
 var startfive = endfour + 42
 var endfive = startfive + 42 * 12
-var column = []
-var manycols = []
+var column
+var manycols
+var xmoon
+var largeurs
 
 function setupikedaone() {
+    column = []
     ikedacounter = 0
-
 }
 
 function drawikedaone() {
@@ -25,6 +27,7 @@ function drawikedaone() {
     if (ikedacounter >= starttwo && ikedacounter < endtwo) {
         onecolumn()
     }
+    if (ikedacounter == startthree) { xmoon = 0 }
     if (ikedacounter >= startthree && ikedacounter < endthree) {
         ikedamoon()
     }
@@ -32,7 +35,7 @@ function drawikedaone() {
     if (ikedacounter >= startfour && ikedacounter < endfour) {
         multicolumn()
     }
-    if (ikedacounter >= startfive && ikedacounter < endtfive) {
+    if (ikedacounter >= startfive && ikedacounter < endfive) {
         ikedamoon()
     }
 
@@ -60,7 +63,6 @@ function onecolumn() {
     }
 }
 
-var xmoon = 0
 function ikedamoon() {
     fill(0, 0, 100)
     stroke(0, 0, 100)
@@ -69,8 +71,10 @@ function ikedamoon() {
     xmoon += 3
 }
 
-var largeurs = []
+
 function initmulti() {
+    manycols = []
+    largeurs = []
     largeurs.push(0)
     largeurs.push(0.1 * w)
     largeurs.push(0.15 * w)

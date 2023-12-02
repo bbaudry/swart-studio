@@ -1,29 +1,34 @@
 
 var ang = 180;
-var grow = true;
-var bend = true;
-var fold = true;
-var finished = false;
-var secondPhase = false;
-var closing = false;
-var startSecond = 0;
-var startClosing = 0;
+var grow
+var bend
+var fold
+var finished
+var secondPhase
+var closing
+var startSecond
+var startClosing
 var nbVertices;
 var wid = w / 10;
-var vertices = [];
+var vertices
 
 function setupdancingwithbezier() {
     background(0, 0, 0)
     nbVertices = Math.floor(random(42, 84))
-    console.log("hey")
     setVertices();
-    console.log(vertices.length)
-
+    grow = true; if(!grow){console.log("grow should be true")}
+    bend = true; if(!bend){console.log("bend should be true")}
+    fold = true; if(!fold){console.log("fold should be true")}
+    finished = false; if(finished){console.log("finished should be false")}
+    secondPhase = false; if(secondPhase){console.log("secondPhase should be false")}
+    closing = false; if(closing){console.log("closing should be false")}
+    startSecond = 0; if(startSecond!=0){console.log("startsection should be 0")}
+    startClosing = 0; if(startClosing!=0){console.log("startclosing should be 0")}
 }
 
 
 function setVertices() {
-    vertices = [];  
+    vertices = [];
     for (let i = 1; i < nbVertices; i++) {
         let speed = i * 0.05;
         let v = [];
@@ -37,18 +42,21 @@ function setVertices() {
         v.push(four);
         vertices.push(v);
     }
-
+    console.log("dancing with bezier is all set with "+vertices.length+" vertices")
 }
 
 function drawdancingwithbezier() {
     noFill();
     stroke(0, 0, 100);
-    if(!finished){
-    if (vertices[vertices.length - 1][1][1] > 0 && grow) {
-        background(0, 0, 0);
-        wave();
-        updateVerticesUp();
-    } else {
+    if (!finished) {
+        console.log("dancing with bezier is running")
+        if (vertices[vertices.length - 1][1][1] > 0 && grow) {
+            background(0, 0, 0);
+            wave();
+            updateVerticesUp();
+            console.log("dancing with bezier is going up")
+        }
+     else {
         grow = false;
         if (vertices[vertices.length - 1][1][4] > -0.25 * w && bend) {
             background(0, 0, 0);
@@ -85,14 +93,15 @@ function drawdancingwithbezier() {
     }
     if (closing) {
         background(0, 0, 0);
-        wave(); spinVertices();trimVertices(); 
-        
+        wave(); spinVertices(); trimVertices();
+
     }
     if (vertices.length === 0) {
         background(0, 0, 0);
-        finished=true
+        finished = true
         //noLoop();
-    }}else{fill(0,0,100);rect(0,0,w,h)}
+    }
+} else { fill(0, 0, 100); rect(0, 0, w, h) }
 }
 
 function updateVerticesUp() {

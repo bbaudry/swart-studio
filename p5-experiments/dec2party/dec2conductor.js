@@ -1,8 +1,8 @@
-var w, h 
+var w, h
 var cnv
 var party
 
-function setup(){
+function setup() {
     w = windowWidth
     h = windowHeight
     cnv = createCanvas(w, h);
@@ -20,24 +20,57 @@ dancingwithbezier 1600 frames
 dakflowers2 7000 frames
 */
 
-var durationDancingWithBezier = 1600
+var counter = 1
+var durationDancingWithBezier = 1000
 var durationDarkFlowers2 = 7000
 var durationNeonFLower = 2400
-var durationCredits = 4000
-var durationVeraOne = 3600
-var durationRadar = 3600
+var durationVeraOne = 4200
+var durationRadar = 4200
 var durationIkedaOne = 3000
-function draw(){
-    if(frameCount==1){setupikedaone()}
-    if(frameCount>1&&frameCount<3600){drawikedaone()}
-    if(frameCount==3600){setupcredits()}
-    if(frameCount>3600&&frameCount<7600){drawcredits()}
-/*    if(frameCount==1){setupdancingwithbezier()}
-    if(frameCount>1&&frameCount<1600){drawdancingwithbezier()}
-    if(frameCount==1600){setupdarkflowers2()}
-    if(frameCount>1600&&frameCount<8600){drawdarkflowers2()}
-    if(frameCount==8600){setupneonflower()}
-    if(frameCount>8600&&frameCount<11000){drawneonflower()}*/
+var durationCredits = 4000
+var startDancingWithBezier = 1
+var endDancingWithBezier = startDancingWithBezier + durationDancingWithBezier
+var startDarkFlowers2 = endDancingWithBezier
+var endDarkFlowers2 = startDarkFlowers2 + durationDarkFlowers2
+var startNeonFlower = endDarkFlowers2
+var endNeonFlower = startNeonFlower + durationNeonFLower
+var startVeraOne = endNeonFlower
+var endVeraOne = startVeraOne + durationVeraOne
+var startRadar = endVeraOne
+var endRadar = startRadar + durationRadar
+var startIkedaOne = endRadar
+var endIkedaOne = startIkedaOne + durationIkedaOne
+var startCredits = endIkedaOne
+var endCredits = startCredits + durationCredits
+var startEnd = endCredits
+var endEnd = startEnd + 84
+
+function draw() {
+    if (counter == startDancingWithBezier) { setupdancingwithbezier(); console.log(counter) }
+    if (counter > startDancingWithBezier && counter < endDancingWithBezier) { drawdancingwithbezier() }
+
+    if (counter == startDarkFlowers2) { setupdarkflowers2() }
+    if (counter > startDarkFlowers2 && counter < endDarkFlowers2) { drawdarkflowers2() }
+
+    if (counter == startNeonFlower) { setupneonflower() }
+    if (counter > startNeonFlower && counter < endNeonFlower) { drawneonflower() }
+
+    if (counter == startVeraOne) { setupveraone() }
+    if (counter > startVeraOne && counter < endVeraOne) { drawveraone() }
+
+    if (counter == startRadar) { setupradar() }
+    if (counter > startRadar && counter < endRadar) { drawradar() }
+
+    if (counter == startIkedaOne) { setupikedaone() }
+    if (counter > startIkedaOne && counter < endIkedaOne) { drawikedaone() }
+
+    if (counter == startCredits) { setupcredits() }
+    if (counter > startCredits && counter < endCredits) { drawcredits() }
+
+    if (counter >= startEnd && counter < endEnd) { merci() }
+    if (counter == endEnd) {counter = 0;}
+
+    counter++
 }
 
 

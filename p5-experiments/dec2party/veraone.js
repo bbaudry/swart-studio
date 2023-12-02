@@ -27,10 +27,10 @@ function drawrandom() {
     xoff += noisestep
     let y = Math.floor(noise(yoff) * stepy) * step
     yoff += noisestep
-    stroke(0, 0, 100,42); noFill()
-    if (random() < 0.2) { stroke(180, 100, 100, 42) }
+    stroke(0, 0, 100,84); noFill()
+    if (random() < 0.2) { stroke(180, 100, 100, 84) }
     else {
-    if (random() < 0.2) { stroke(330, 100, 100, 42) }}
+    if (random() < 0.2) { stroke(330, 100, 100, 84) }}
     verablock(x, y, step, step)
 
 }

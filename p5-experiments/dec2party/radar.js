@@ -7,6 +7,7 @@ function setupradar() {
     grain = 0.1 * w
     offx = 0
     inc = 0.01
+    background(0,0,0)
 }
 
 function drawradar() {
@@ -24,7 +25,7 @@ function drawradar() {
 }
 
 function shape() {
-    fill(230, 100, 100, 4)
+    fill(230, 100, 100, 7)
     noStroke()
     var s = Math.floor(random(7))
     switch (s) {
@@ -36,28 +37,28 @@ function shape() {
             break;
         case 2:
             noFill()
-            stroke(230, 100, 100, 4)
+            stroke(230, 100, 100, 21)
             for (var i = 0; i < 44; i += 4) {
                 quad(x + i, y + i, x + grain - i, y + i, x + grain - i, y + grain - i, x + i, y + grain - i)
             }
             break;
         case 3:
             noFill()
-            stroke(230, 100, 100, 4)
+            stroke(230, 100, 100, 21)
             for (var i = 0; i < 44; i += 4) {
                 triangle(x + i, y + i, x + grain - i, y + i, x + grain - i, y + grain - i)
             }
             break;
         case 4:
             noFill()
-            stroke(230, 100, 100, 4)
+            stroke(230, 100, 100, 21)
             for (var i = 0; i < 44; i += 4) {
                 triangle(x + i, y + i, x + grain - i, y + i, x + i, y + grain - i)
             }
             break;
         case 5:
             noFill()
-            stroke(230, 0, 100, 18)
+            stroke(230, 0, 100, 42)
             var cx = x + grain / 2
             var cy = y + grain / 2
             ellipse(cx, cy, grain, grain)
@@ -70,7 +71,7 @@ function shape() {
             }
         case 6:
             noFill()
-            stroke(330, 100, 100, 18)
+            stroke(330, 100, 100, 42)
             var cx = x + grain / 2
             var cy = y + grain / 2
             ellipse(cx, cy, grain, grain)

@@ -1,9 +1,11 @@
 var coords
+var neoncounter
 
 function setupneonflower() {
     colorMode(HSB, 360, 100, 100, 250);
     background(0, 0, 0)
     initCoords()
+    neoncounter = 0
 }
 
 
@@ -28,6 +30,7 @@ function drawneonflower() {
         let black = Math.floor(coords[i][4]);
         oneLayerCompact(black, coords[i][1], coords[i][2], coords[i][3]);
     }
+    neoncounter++
 }
 
 
@@ -61,8 +64,8 @@ function oneLayerCompact(nbRays, cx, cy, rad) {
 function drawTang(deg, cx, cy, rad) {
     let tx = cx + rad * cos(radians(deg));
     let ty = cy + rad * sin(radians(deg));
-    let wid = (float)(168 + frameCount * 0.1);
-    let ang = 90 - frameCount / 10;
+    let wid = (float)(168 + neoncounter * 0.1);
+    let ang = 90 - neoncounter / 10;
     let dx1 = tx + wid * cos(radians(deg - ang));
     let dy1 = ty + wid * sin(radians(deg - ang));
     let dx2 = tx + wid * cos(radians(deg - ang + 180));
