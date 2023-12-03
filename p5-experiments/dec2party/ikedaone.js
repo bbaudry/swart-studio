@@ -35,6 +35,7 @@ function drawikedaone() {
     if (ikedacounter >= startfour && ikedacounter < endfour) {
         multicolumn()
     }
+    if (ikedacounter == startfive) { xmoon = 0 }
     if (ikedacounter >= startfive && ikedacounter < endfive) {
         ikedamoon()
     }

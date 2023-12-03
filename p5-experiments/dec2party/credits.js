@@ -5,7 +5,7 @@ var vera
 var x, y, offx, inc
 function preload() {
     invites = loadStrings('guests.txt');
-    bowie = loadFont("../fonts/ChunkFive-Regular.otf");
+    bowie = loadFont("./ChunkFive-Regular.otf");
 }
 
 function setupcredits() {
