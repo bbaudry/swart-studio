@@ -29,7 +29,7 @@
         var leftmargin = 42
         var topmargin = 42
         var bottommargin = h - 42
-        var cnv, imgbtn
+        var cnv, imgbtn, maxcount
 
         function setup() {
             //getsvg()
@@ -40,6 +40,7 @@
             background(0, 0, 100)
             noFill()
             stroke(330, 100, 100)
+            maxcount = random(39, 45)
         }
 
         function getsvg() {
@@ -75,34 +76,44 @@
         }
 
         var off = 4
-        var neoncounter = 0
+        var neoncounter
         function draw() {
             stroke(0, 0, 0)
             rect(0, 0, w, h)
-            var cx = w / 2
-            var cy = h / 2.6
-            var diam = w / 3
-            stroke(330, 100, 100)
-            oneLayerCompact(9, cx, cy, diam / 2)
-            stroke(180, 100, 100)
-            oneLayerCompact(7, cx, cy, diam / 2)
-            diam = w / 1.55
-            stroke(330, 100, 100)
-            oneLayerCompact(9, cx, cy, diam / 2)
-            neoncounter++
-            if (neoncounter > 45) {
-                for (var i = 0; i < 84; i += 2) {
-                    cy = h / 3.4 + i
-                    diam = h / 40 + i * 2
-                    stroke(180, 100, 100)
-                    ellipse(cx, cy, diam, diam)
-                    cx = w / 2 + 13
-                    diam = h / 38 + i * 2
-                    stroke(330, 100, 100)
-                    ellipse(cx, cy, diam, diam)
-                }
-                noLoop()
+            var cx, cy, diam
+            for (neoncounter = 0; neoncounter < maxcount; neoncounter++) {
+                console.log("pink")
+                cx = w / 2
+                cy = h / 2.6
+                diam = w / 3
+                stroke(330, 100, 100)
+                oneLayerCompact(9, cx, cy, diam / 2)
+                diam = w / 1.55
+                stroke(330, 100, 100)
+                oneLayerCompact(9, cx, cy, diam / 2)
             }
+            for (neoncounter = 0; neoncounter < maxcount; neoncounter++) {
+                cx = w / 2
+                cy = h / 2.6
+                diam = w / 3
+                stroke(180, 100, 100)
+                oneLayerCompact(7, cx, cy, diam / 2)
+            }
+            for (var i = 0; i < 84; i += 1) {
+                cy = h / 3.4 + i
+                diam = h / 40 + i * 2
+                stroke(180, 100, 100)
+                ellipse(cx, cy, diam, diam)
+            }
+            for (var i = 0; i < 84; i += 1) {
+                cy = h / 3.4 + i
+                cx = w / 2 + 13
+                diam = h / 38 + i * 2
+                stroke(330, 100, 100)
+                ellipse(cx, cy, diam, diam)
+            }
+            noLoop()
+
         }
 
         function oneLayerCompact(nbRays, cx, cy, rad) {
