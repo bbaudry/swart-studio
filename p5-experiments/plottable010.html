@@ -81,18 +81,28 @@
             rect(0, 0, w, h)
             var cx = w / 2
             var cy = h / 2.6
-            var diam = w / 3.5
+            var diam = w / 3
             stroke(330, 100, 100)
-            oneLayerCompact(9, cx, cy, diam/2)
+            oneLayerCompact(9, cx, cy, diam / 2)
             stroke(180, 100, 100)
-            oneLayerCompact(7, cx, cy, diam/2)
+            oneLayerCompact(7, cx, cy, diam / 2)
             diam = w / 1.55
             stroke(330, 100, 100)
-            oneLayerCompact(7, cx, cy, diam/2)
-            stroke(330, 100, 100)
-            oneLayerCompact(9, cx, cy, diam/2)
+            oneLayerCompact(9, cx, cy, diam / 2)
             neoncounter++
-            if(neoncounter>47){noLoop()}
+            if (neoncounter > 45) {
+                for (var i = 0; i < 84; i += 2) {
+                    cy = h / 3.4 + i
+                    diam = h / 40 + i * 2
+                    stroke(180, 100, 100)
+                    ellipse(cx, cy, diam, diam)
+                    cx = w / 2 + 13
+                    diam = h / 38 + i * 2
+                    stroke(330, 100, 100)
+                    ellipse(cx, cy, diam, diam)
+                }
+                noLoop()
+            }
         }
 
         function oneLayerCompact(nbRays, cx, cy, rad) {
@@ -100,15 +110,17 @@
             let px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
             controls = [];
             beginShape();
-            px = cx + rad * cos(radians(0));
-            py = cy + rad * sin(radians(0));
+            var offset = 0//random(-0.05*rad,0.05*rad)
+            px = cx + (rad + offset) * cos(radians(0));
+            py = cy + (rad + offset) * sin(radians(0));
             vertex(px, py);
             controls = drawTang(0, cx, cy, rad);
             cpx2 = controls[2];
             cpy2 = controls[3];
             for (let i = 1; i <= nbRays; i++) {
-                px1 = cx + rad * cos(radians(angle * i));
-                py1 = cy + rad * sin(radians(angle * i));
+                offset = 0//random(-0.05*rad,0.05*rad)
+                px1 = cx + (rad + offset) * cos(radians(angle * i));
+                py1 = cy + (rad + offset) * sin(radians(angle * i));
                 controls = drawTang(angle * i, cx, cy, rad);
                 cpx1 = controls[0];
                 cpy1 = controls[1];
@@ -125,7 +137,7 @@
         function drawTang(deg, cx, cy, rad) {
             let tx = cx + rad * cos(radians(deg));
             let ty = cy + rad * sin(radians(deg));
-            let wid = neoncounter*7;
+            let wid = neoncounter * 7;
             let ang = 90 * neoncounter / 30;
             let dx1 = tx + wid * cos(radians(deg - ang));
             let dy1 = ty + wid * sin(radians(deg - ang));
