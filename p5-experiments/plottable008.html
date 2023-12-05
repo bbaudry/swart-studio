@@ -41,7 +41,7 @@
             placebtn();
             svgbtn.mouseClicked(savesvg);
             noFill()
-            background(0, 0, 0,100)
+            background(0, 0, 100)
 
             //            noLoop()
         }
@@ -97,6 +97,7 @@
                 offset += i * 0.2
             }
             settrianglecoords()
+            offset = 17;
             stroke(0, 0, 100);
             for (var i = 0; i < 42; i++) {
                 buildtriangles()
