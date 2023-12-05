@@ -24,24 +24,34 @@ var offset=90
 var balle
 
 function draw() {
-    background(0, 0, 0)
-    /*if(frameCount==1){ajouter_des_balles(11)}
+    background(0,0,0)
+    if(frameCount==1){ajouter_des_balles(11)}
     for(var i=0;i<balles.length;i++){
-        var balle=balles[i]
+        balle=balles[i]
+    balle.dessine()
     balle.bouge()
-    balle.dessine()
     balle.rebondi()
-    balle.joue()
-    }*/
-    balle.dessine()
-
+}
     sol()
     plafond()
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 function sol(){
     stroke(330,100,100)
     line(0,h,w,h)
+    strokeWeight(7)
     noStroke()
 }
 
