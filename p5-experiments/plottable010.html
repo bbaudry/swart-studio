@@ -25,10 +25,10 @@
         var echelle = 0.5
         var w = 1122 * echelle
         var h = 1587 * echelle
-        var rightmargin = w - 42
-        var leftmargin = 42
-        var topmargin = 42
-        var bottommargin = h - 42
+        var rightmargin = 0.95 * w
+        var leftmargin = 0.05 * w
+        var topmargin = 0.05 * h
+        var bottommargin = 0.95 * h
         var cnv, imgbtn, maxcount
 
         function setup() {
@@ -78,6 +78,49 @@
         var off = 4
         var neoncounter
         function draw() {
+            stroke(0, 0, 0); rect(0, 0, w, h)
+            stroke(0, 0, 0); rect(leftmargin, topmargin, rightmargin - leftmargin, bottommargin - topmargin)
+            stroke(330, 100, 100); drawlinesnotstraight()
+            noLoop()
+        }
+
+        var hauteur = 0.12 * w
+        var interligne = 0.005 * w
+        function drawlinesnotstraight() {
+            for (var y = topmargin; y < bottommargin - hauteur; y += hauteur) {
+                var startoffset = Math.floor(random(-11,11))*interligne
+                for (var x = leftmargin; x < rightmargin - hauteur; x += hauteur) {
+                    var dice = Math.floor(random(4))
+                    var endoffset =0// Math.floor(random(-3,3))
+                    switch (dice) {
+                        case 0:
+                            for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                                line(x, y1, x + hauteur, y1)
+                            }
+                            break
+                        case 1:
+                            for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                                line(x, y1, x + hauteur / 2, y1)
+                                line(x + hauteur / 2, y1, x + hauteur, y+startoffset)
+                            }
+                            break
+                        case 2:
+                            for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                                line(x, y, x + hauteur / 2, y1)
+                                line(x + hauteur / 2, y1, x + hauteur, y1)
+                            }
+                            break
+                        case 3:
+                        for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                                line(x, y, x + hauteur, y1)
+                            }
+                            break
+                    }
+                }
+            }
+        }
+
+        function drawflower() {
             stroke(0, 0, 0)
             rect(0, 0, w, h)
             var cx, cy, diam
@@ -113,7 +156,6 @@
                 ellipse(cx, cy, diam, diam)
             }
             noLoop()
-
         }
 
         function oneLayerCompact(nbRays, cx, cy, rad) {
