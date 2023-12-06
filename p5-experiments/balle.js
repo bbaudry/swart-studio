@@ -2,8 +2,8 @@ class Balle {
     constructor() {
         this.cx = random(offset,w-offset)
         this.cy = 50//offset//random(offset)
-        this.vitesse = random(9, 10)
-        this.diam = Math.floor(random(21, 84))
+        this.vitesse = random(3, 9)
+        this.diam = Math.floor(random(42, 168))
         this.down = true
         this.hu = Math.floor(random(30, 230))
     }
@@ -26,13 +26,14 @@ class Balle {
     }
 
     rebondi(){
-        if(this.cy>h-this.diam/2){this.down=false
-            this.hu = Math.floor(random(50, 280))
-            
+        if(this.cy>h-this.diam/2){
+            this.down=false
+            this.hu= Math.floor(random(30, 230))
+
         }
-        if(this.cy<this.diam/2){this.down=true
-            this.hu = Math.floor(random(50, 280))
-            
+        if(this.cy<this.diam/2){
+            this.down=true
+            this.hu= Math.floor(random(30, 230))
         }
      }
 
