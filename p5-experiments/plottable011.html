@@ -76,86 +76,46 @@
         }
 
         var xoff = 0
-        var xinc = 21
+        var xinc = 0.03
         var counter = 0
         function draw() {
             stroke(0, 0, 0)
             rect(0, 0, w, h)
-            wave(3)
+            stroke(330, 100, 100)
+            wave()
+            stroke(230, 100, 100)
+            wave()
             counter++
             if (counter == 1) { noLoop() }
         }
 
-        function wave(ratio) {
+        function wave() {
             var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
-            var controls = []
-            var rad = 200
-            stroke(330, 100, 100)
-            for (var y = 100; y < h - 200; y += 5) {
+            var wavewidth = rightmargin - leftmargin
+            var ratio = 0.25
+            var c = 0
+            for (var y = 100; y < h - 200; y += 3) {
                 console.log(y)
                 beginShape();
                 px = leftmargin
                 py = y
                 vertex(px, py);
-                for (var x = 0; x < 1; x += 0.2) {
+                for (var x = ratio; x <= 1; x += ratio) {
 
-                    cpx2 = px + 20 + counter * ratio
-                    cpy2 = y - noise(xoff) * 0.5 * h; xoff += xinc
-                    px = leftmargin + (rightmargin - leftmargin) * x
+                    cpx2 = px + wavewidth * (ratio*0.5) * y * 0.003
+                    cpy2 = y + 0.2 * h * y * 0.0008 - c*2//- noise(xoff) * 0.1 * h; xoff += xinc
+                    px = leftmargin + wavewidth * x
                     py = y
-                    cpx1 = px - 30 + counter * ratio
-                    cpy1 = y + noise(xoff) * 0.5 * h; xoff += xinc
-                    stroke(330, 100, 100); bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                    cpx1 = px - wavewidth * (ratio*0.5) * y * 0.003
+                    cpy1 = y - 0.1 * h * y * 0.001 +noise(xoff)*c;xoff+=xinc//+ noise(xoff) * 0.1 * h; xoff += xinc
+                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
 
 
                 }
+                c+=1
                 endShape()
             }
         }
-
-        function oneLayerCompact(nbRays, cx, cy, rad) {
-            let px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
-            controls = [];
-            beginShape();
-            var offset = 0//random(-0.05*rad,0.05*rad)
-            px = cx + (rad + offset) * cos(radians(0));
-            py = cy + (rad + offset) * sin(radians(0));
-            vertex(px, py);
-            controls = drawTang(0, cx, cy, rad);
-            cpx2 = controls[2];
-            cpy2 = controls[3];
-            for (let i = 1; i <= nbRays; i++) {
-                offset = 0//random(-0.05*rad,0.05*rad)
-                px1 = cx + (rad + offset) * cos(radians(angle * i));
-                py1 = cy + (rad + offset) * sin(radians(angle * i));
-                controls = drawTang(angle * i, cx, cy, rad);
-                cpx1 = controls[0];
-                cpy1 = controls[1];
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-                cpx2 = controls[2];
-                cpy2 = controls[3];
-            }
-            controls = drawTang(0, cx, cy, rad);
-            cpx1 = controls[0];
-            cpy1 = controls[1];
-            endShape();
-
-        }
-
-        function drawTang(deg, cx, cy, rad) {
-            let tx = cx + rad * cos(radians(deg));
-            let ty = cy + rad * sin(radians(deg));
-            let wid = counter * 7;
-            let ang = 90 * counter / 30;
-            let dx1 = tx + wid * cos(radians(deg - ang));
-            let dy1 = ty + wid * sin(radians(deg - ang));
-            let dx2 = tx + wid * cos(radians(deg - ang + 180));
-            let dy2 = ty + wid * sin(radians(deg - ang + 180));
-            res = [dx1, dy1, dx2, dy2];
-            return res;
-        }
-
-
 
 
     </script>
