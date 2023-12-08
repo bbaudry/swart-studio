@@ -99,18 +99,15 @@
                 beginShape();
                 px = leftmargin
                 py = y
-                vertex(px, py);
+                vertex(px, py);//y * 0.0001
                 for (var x = ratio; x <= 1; x += ratio) {
-
-                    cpx2 = px + wavewidth * (ratio*0.5) * y * 0.003
-                    cpy2 = y + 0.2 * h * y * 0.001 - c*2//- noise(xoff) * 0.1 * h; xoff += xinc
+                    cpx2 = px + wavewidth * (ratio*0.5) * y * 0.003 *x*2
+                    cpy2 = y + 0.2 * h * c * 0.0001 - c*2//- noise(xoff) * 0.1 * h; xoff += xinc
                     px = leftmargin + wavewidth * x
                     py = y
-                    cpx1 = px - wavewidth * (ratio*0.5) * y * 0.003
-                    cpy1 = y - 0.1 * h * y * 0.0001 +noise(xoff)*c;xoff+=xinc//+ noise(xoff) * 0.1 * h; xoff += xinc
+                    cpx1 = px - wavewidth * (ratio*0.5) * y * 0.003*x*2
+                    cpy1 = y - 0.1 * h * c*0.0001 +noise(xoff)*c;xoff+=xinc//+ noise(xoff) * 0.1 * h; xoff += xinc
                      bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-
                 }
                 c+=1
                 endShape()
