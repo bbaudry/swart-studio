@@ -5,7 +5,9 @@
     <title>CheerpJ applet test</title>
     <script src="https://cjrtnc.leaningtech.com/3.0rc2/cj3loader.js"></script>
   </head>
-  <body>
+  <body style="background-color:#000000;">
+    <h1 style="color:#FFFFFF;">WARNING: this web page can consume significant resources. If you are ok with it, then click</h1>
+    <button id="open">open the art work</button>
     <applet
       archive="CodeProfiles.jar"
       code="com.didi.codeProfiles.CodeProfiles.class"
@@ -15,7 +17,9 @@
     <param name="fileName" value="src/main/java/com/didi/codeProfiles/CodeProfiles.java">
     </applet>
     <script>
-      cheerpjInit();
+      document.getElementById("open").onclick=function(event){
+        cheerpjInit();
+      }
     </script>
   </body>
 </html>
