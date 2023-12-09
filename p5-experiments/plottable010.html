@@ -22,13 +22,15 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 0.5
+        var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.95 * w
         var leftmargin = 0.05 * w
         var topmargin = 0.05 * h
         var bottommargin = 0.95 * h
+        var actualwidth = rightmargin - leftmargin
+        var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
 
         function setup() {
@@ -79,39 +81,72 @@
         var neoncounter
         function draw() {
             stroke(0, 0, 0); rect(0, 0, w, h)
-            stroke(180, 100, 100); drawlinesnotstraight()
-            stroke(330, 100, 100); drawlinesnotstraight()
+            drawonerow()
+            //            stroke(180, 100, 100); drawlinesnotstraight()
+            //            stroke(330, 100, 100); drawlinesnotstraight()
             noLoop()
         }
+
+        function drawonerow() {
+            var xoff=0
+            var inc=11
+            var stepx = 0.05 * actualwidth
+            var stepy = 0.07 * (bottommargin - topmargin)
+            var nblines = 27
+            var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
+            for (var y = topmargin; y < bottommargin-stepy; y += stepy ) {
+                x = leftmargin
+                topyleft = y + noise(xoff)*21;xoff+=inc//random(21)
+                bottomyleft = y + stepy + 42-noise(xoff)*84;xoff+=inc//random(-42,42)
+                topyright = y + noise(xoff)*21;xoff+=inc//random(21)
+                bottomyright = y + stepy + 48-noise(xoff)*96;xoff+=inc//random(-42,42)
+                for (x = leftmargin; x <= rightmargin; x += stepx) {
+                    leftstep = (bottomyleft - topyleft) / nblines
+                    rightstep = (bottomyright - topyright) / nblines
+                    for (var i = 0; i < nblines; i++) {
+                        yleft = topyleft+leftstep * i
+                        yright = topyright+rightstep * i
+                        console.log(yleft + " " + yright)
+                        line(x, yleft, x + stepx, yright)
+                    }
+                    topyleft = topyright
+                    bottomyleft = bottomyright
+                    topyright = y + noise(xoff)*21;xoff+=inc//random(21)
+                    bottomyright = y + stepy + 48-noise(xoff)*96;xoff+=inc//random(-42,42)
+                }
+
+            }
+        }
+
 
         var hauteur = 0.15 * w
         var interligne = 0.005 * w
         function drawlinesnotstraight() {
             for (var y = topmargin; y < bottommargin - hauteur; y += hauteur) {
-                var startoffset = Math.floor(random(-11,11))*interligne
+                var startoffset = Math.floor(random(-11, 11)) * interligne
                 for (var x = leftmargin; x < rightmargin - hauteur; x += hauteur) {
                     var dice = Math.floor(random(4))
-                    var endoffset =0// Math.floor(random(-3,3))
+                    var endoffset = 0// Math.floor(random(-3,3))
                     switch (dice) {
                         case 0:
-                            for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
                                 line(x, y1, x + hauteur, y1)
                             }
                             break
                         case 1:
-                            for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
                                 line(x, y1, x + hauteur / 2, y1)
-                                line(x + hauteur / 2, y1, x + hauteur, y+startoffset)
+                                line(x + hauteur / 2, y1, x + hauteur, y + startoffset)
                             }
                             break
                         case 2:
-                            for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
                                 line(x, y, x + hauteur / 2, y1)
                                 line(x + hauteur / 2, y1, x + hauteur, y1)
                             }
                             break
                         case 3:
-                        for (var y1 = y+startoffset; y1 < y + hauteur; y1 += interligne+endoffset*interligne) {
+                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
                                 line(x, y, x + hauteur, y1)
                             }
                             break
@@ -212,24 +247,7 @@
                 cx = w / 2 + 4
                 ellipse(cx, cy, diam, diam)
             }
-            cx = w / 2
-            cy = h / 7 + 210
-            diam = h / 10 + 420
-            var rad = diam / 2
-            var angle = 42
-            var x1 = cx + rad * cos(radians(angle))
-            var y1 = cy + rad * sin(radians(angle))
-            var x2 = x1 + rad * cos(radians(angle + 90))
-            var y2 = y1 + rad * sin(radians(angle + 90))
-            var x3 = x1 + rad / 2 * cos(radians(angle - 90))
-            var y3 = y1 + rad / 2 * sin(radians(angle - 90))
-            line(x3, y3, x2, y2)
-            for (var i = 0; i < 84; i += 2) {
-                x2 += 4
-                y2 += 0.03 * i
-                line(x3, y3, x2, y2)
 
-            }
             noLoop()
         }
         function test2() {
