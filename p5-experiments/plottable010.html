@@ -34,8 +34,8 @@
         var cnv, imgbtn, maxcount
 
         function setup() {
-            //getsvg()
-            getpng()
+            getsvg()
+            //getpng()
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
@@ -89,17 +89,17 @@
 
         function drawonerow() {
             var xoff=0
-            var inc=11
-            var stepx = 0.05 * actualwidth
-            var stepy = 0.07 * (bottommargin - topmargin)
-            var nblines = 27
+            var inc=21
+            var stepx = 0.1 * actualwidth
+            var stepy = 0.1 * (bottommargin - topmargin)
+            var nblines = 37
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
             for (var y = topmargin; y < bottommargin-stepy; y += stepy ) {
                 x = leftmargin
-                topyleft = y + noise(xoff)*21;xoff+=inc//random(21)
-                bottomyleft = y + stepy + 42-noise(xoff)*84;xoff+=inc//random(-42,42)
-                topyright = y + noise(xoff)*21;xoff+=inc//random(21)
-                bottomyright = y + stepy + 48-noise(xoff)*96;xoff+=inc//random(-42,42)
+                topyleft = y + random(42)
+                bottomyleft = y + stepy + 100-noise(xoff)*100;xoff+=inc//random(-42,42)
+                topyright = y + random(42)
+                bottomyright = y + stepy + 100-noise(xoff)*100;xoff+=inc//random(-42,42)
                 for (x = leftmargin; x <= rightmargin; x += stepx) {
                     leftstep = (bottomyleft - topyleft) / nblines
                     rightstep = (bottomyright - topyright) / nblines
@@ -111,8 +111,8 @@
                     }
                     topyleft = topyright
                     bottomyleft = bottomyright
-                    topyright = y + noise(xoff)*21;xoff+=inc//random(21)
-                    bottomyright = y + stepy + 48-noise(xoff)*96;xoff+=inc//random(-42,42)
+                    topyright = y + random(42)
+                    bottomyright = y + stepy + 50-noise(xoff)*100;xoff+=inc//random(-42,42)
                 }
 
             }

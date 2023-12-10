@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 0.5
+        var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.95 * w
@@ -84,12 +84,12 @@
             noLoop()
         }
 
-        var thick = 0.0084*w
+        var thick = 0.042*w
         var offset = 0.042*w
         function forvera(){
             strokeWeight(2.1)
             var cx1, cy1, cx2, cy2, cx3, cy3, cx4, cy4,decale
-            for(var i=0;i<84;i++){
+            for(var i=0;i<21;i++){
             cx1=w/2-i*thick/2
             cy1=h/2-i*thick/2
             cx2=w/2+i*thick/2
@@ -98,7 +98,8 @@
             cy3=h/2+i*thick/2
             cx4=w/2-i*thick/2
             cy4=h/2+i*thick/2
-            stroke(random(10,60),100,100,42)
+            //stroke(random(10,60),100,100,42)
+            stroke(230,100,100)
             decale=random(offset)
             //left section
             quad(cx1-thick/2+decale,cy1-thick/2+decale,
