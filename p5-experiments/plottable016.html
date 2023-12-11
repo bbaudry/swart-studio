@@ -24,10 +24,10 @@
         var scale=0.5
         var h = 1587*scale
         var w = 1122*scale
-        var leftmargin = 36
-        var righttmargin = 36
-        var topmargin = 45
-        var bottommargin = 48
+        var leftmargin = 0.05*w
+        var righttmargin = 0.95*w
+        var topmargin = 0.15*h
+        var bottommargin = 0.8*h
         var cnv, svgbtn
 
         function setup() {
@@ -64,16 +64,18 @@
 
 
         function draw() {
-            var widunit = (w-leftmargin-righttmargin)/resolution
-            var heiunit = (h-topmargin-bottommargin)/resolution
-            var vera = Math.floor(random(3,widunit-2))*resolution
+            var widunit = (righttmargin-leftmargin)/resolution
+            var heiunit = (bottommargin-topmargin)/resolution
+            var vera = Math.floor(random(1,widunit))*resolution
             var molnar = Math.floor(random(3,heiunit-2))*resolution
             noFill()
-            stroke(0,0,100)
+            stroke(0,100,100)
+            rect(0,0,w,h)
+            rect(leftmargin,topmargin,righttmargin-leftmargin,bottommargin-topmargin)
             ikeda(leftmargin,topmargin,vera,molnar)
-            ikeda(leftmargin+vera,topmargin,w-righttmargin-vera-leftmargin,molnar)
-            ikeda(leftmargin+vera,topmargin+molnar,w-righttmargin-vera-leftmargin,h-bottommargin-molnar-topmargin)
-            ikeda(leftmargin,topmargin+molnar,vera,h-bottommargin-molnar-topmargin)
+            ikeda(leftmargin+vera,topmargin,(righttmargin-leftmargin)-vera,molnar)
+            ikeda(leftmargin+vera,topmargin+molnar,(righttmargin-leftmargin)-vera,(bottommargin-topmargin)-molnar)
+            ikeda(leftmargin,topmargin+molnar,vera,(bottommargin-topmargin)-molnar)
             noLoop()
         }
 
@@ -103,7 +105,7 @@
         function ikeda(x, y, wid, hei) {
             //fill(0, 0, 0); stroke(0, 100, 100); strokeWeight(35); rect(x, y, wid, hei); noFill(); strokeWeight(1); stroke(0, 0, 100)
             var density, offset, r, x1, x2, x3, y1, y2, y3
-            density = Math.floor(random(9,11))
+            density = Math.floor(random(3,7))
             offset = random(1, 2)
             r = Math.floor(random(3))
             switch (r) {
