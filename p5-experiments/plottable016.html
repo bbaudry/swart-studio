@@ -70,12 +70,17 @@
             var molnar = Math.floor(random(3,heiunit-2))*resolution
             noFill()
             stroke(0,100,100)
-            rect(0,0,w,h)
-            rect(leftmargin,topmargin,righttmargin-leftmargin,bottommargin-topmargin)
+            //rect(0,0,w,h)
+            //rect(leftmargin,topmargin,righttmargin-leftmargin,bottommargin-topmargin)
             ikeda(leftmargin,topmargin,vera,molnar)
             ikeda(leftmargin+vera,topmargin,(righttmargin-leftmargin)-vera,molnar)
+            var s = random()
+            ikeda(leftmargin+vera*s,topmargin,vera,molnar)
+            
             ikeda(leftmargin+vera,topmargin+molnar,(righttmargin-leftmargin)-vera,(bottommargin-topmargin)-molnar)
             ikeda(leftmargin,topmargin+molnar,vera,(bottommargin-topmargin)-molnar)
+            s = random()
+            ikeda(leftmargin+vera*s,topmargin+molnar,vera,(bottommargin-topmargin)-molnar)
             noLoop()
         }
 
