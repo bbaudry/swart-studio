@@ -34,10 +34,11 @@
         var x, y
         var goingright, atthetop
         var cnv, imgbtn
+        var xoff, inc
 
         function setup() {
-            //getsvg()
-            getpng()
+            getsvg()
+            //getpng()
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
@@ -47,6 +48,8 @@
             x = leftmargin + step
             atthetop = true
             goingright = true
+            xoff=0
+            inc=1
         }
 
         function getsvg(){
@@ -141,7 +144,8 @@
 
         function oneline() {
             var y1, x1, config
-            config = Math.floor(random(5))
+            config = Math.floor(noise(xoff)*5);xoff+=inc
+                //Math.floor(random(5))
             switch (config) {
                 case 0:
                     if (atthetop) { y1 = y + step }
