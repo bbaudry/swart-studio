@@ -88,8 +88,8 @@
             counter++
             if (counter == 1) { noLoop() }
         }
-        function hebert(){
-            stroke(330,100,100)
+        function hebert() {
+            stroke(330, 100, 100)
             onepetalshift()
             /*translate(w/2,h/2)
             onepetal()
@@ -97,291 +97,234 @@
             onepetal()*/
 
         }
-        function onepetalshift(){
-            var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1, cx,cy, rad
+        function onepetalshift() {
+            var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1, cx, cy, rad, molnar, vera
             var wavewidth = rightmargin - leftmargin
             var ratio = 0.1
-            var y = 0 
-            cx=w/2
-            cy=h/2
-            rad=0.3*w
-            push();stroke(50,100,100);arc(cx,cy,rad*2,rad*2,radians(0),radians(60));pop()
-            
-            beginShape();
-                px = cx+rad*cos(radians(0))
-                py = cy+rad*sin(radians(0))
-                push();stroke(50,100,100);ellipse(px,py,17,17);pop()
-                vertex(px, py);//y * 0.0001
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = cx+rad*cos(radians(10))
-                py = cy+rad*sin(radians(10))
-                push();stroke(50,100,100);ellipse(px,py,17,17);pop()
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.05*w
-                cpy2 = y -63 
-                px = cx+rad*cos(radians(50))
-                py = cy+rad*sin(radians(50))
-                push();stroke(50,100,100);ellipse(px,py,17,17);pop()
-                cpx1 = px - 0.05*w
-                cpy1 = y -63
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = cx+rad*cos(radians(60))
-                py = cy+rad*sin(radians(60))
-                push();stroke(50,100,100);ellipse(px,py,17,17);pop()
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                endShape()
-
-                /*y+=10
-                beginShape();
-                px = leftmargin
-                py = y
-                vertex(px, py);//y * 0.0001
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.05*w
-                cpy2 = y -73 
-                px = px + 0.15*w
-                py = y
-                cpx1 = px - 0.05*w
-                cpy1 = y -73
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                endShape()
-
-                y+=10
-                beginShape();
-                px = leftmargin
-                py = y
-                vertex(px, py);//y * 0.0001
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.05*w
-                cpy2 = y -83 
-                px = px + 0.15*w
-                py = y
-                cpx1 = px - 0.05*w
-                cpy1 = y -83
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);*/
-                endShape()
-        
+            var y = 0
+            cx = w / 2
+            cy = h / 2
+            rad = 0.3 * w
+            for (rad = 0.42 * w; rad > 0.01 * w; rad -= 0.01 * w) {
+                molnar=random(1,3)
+            vera=random(31,38)
+                for (var i = 0; i < 360; i += 60) {
+                    beginShape();
+                    px = cx + rad * cos(radians(i))
+                    py = cy + rad * sin(radians(i))
+                    vertex(px, py);
+                    cpx2 = cx + (rad - 10) * cos(radians(i + molnar))
+                    cpy2 = cy + (rad - 10) * sin(radians(i + molnar))
+                    px = cx + rad * cos(radians(i + 10))
+                    py = cy + rad * sin(radians(i + 10))
+                    cpx1 = cx + (rad - 10) * cos(radians(i + 7))
+                    cpy1 = cy + (rad - 10) * sin(radians(i + 7))
+                    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                    cpx2 = cx + (rad + 40) * cos(radians(i + 22))
+                    cpy2 = cy + (rad + 40) * sin(radians(i + 22))
+                    px = cx + rad * cos(radians(i+50))
+                    py = cy + rad * sin(radians(i+50))
+                    cpx1 = cx + (rad + 40) * cos(radians(i + vera))
+                    cpy1 = cy + (rad + 40) * sin(radians(i + vera))
+                    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                    cpx2 = cx + (rad - 10) * cos(radians(i + 53));
+                    cpy2 = cy + (rad - 10) * sin(radians(i + 53))
+                    px = cx + rad * cos(radians(i+60))
+                    py = cy + rad * sin(radians(i+60))
+                    cpx1 = cx + (rad - 10) * cos(radians(i + 57));
+                    cpy1 = cy + (rad - 10) * sin(radians(i + 57));
+                    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                    endShape()
+                }
+            }
         }
 
-        function onepetal(){
+        function onepetal() {
             var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
             var wavewidth = rightmargin - leftmargin
             var ratio = 0.1
-            var y = 0 
+            var y = 0
             beginShape();
-                px = leftmargin
-                py = y
-                vertex(px, py);//y * 0.0001
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.05*w
-                cpy2 = y -63 
-                px = px + 0.15*w
-                py = y
-                cpx1 = px - 0.05*w
-                cpy1 = y -63
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                endShape()
+            px = leftmargin
+            py = y
+            vertex(px, py);//y * 0.0001
+            cpx2 = px + 0.01 * w
+            cpy2 = y + 10
+            px = px + 0.03 * w
+            py = y
+            cpx1 = px - 0.01 * w
+            cpy1 = y + 10
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            cpx2 = px + 0.05 * w
+            cpy2 = y - 63
+            px = px + 0.15 * w
+            py = y
+            cpx1 = px - 0.05 * w
+            cpy1 = y - 63
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            cpx2 = px + 0.01 * w
+            cpy2 = y + 10
+            px = px + 0.03 * w
+            py = y
+            cpx1 = px - 0.01 * w
+            cpy1 = y + 10
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            endShape()
 
-                y+=10
-                beginShape();
-                px = leftmargin
-                py = y
-                vertex(px, py);//y * 0.0001
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.05*w
-                cpy2 = y -73 
-                px = px + 0.15*w
-                py = y
-                cpx1 = px - 0.05*w
-                cpy1 = y -73
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                endShape()
+            y += 10
+            beginShape();
+            px = leftmargin
+            py = y
+            vertex(px, py);//y * 0.0001
+            cpx2 = px + 0.01 * w
+            cpy2 = y + 10
+            px = px + 0.03 * w
+            py = y
+            cpx1 = px - 0.01 * w
+            cpy1 = y + 10
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            cpx2 = px + 0.05 * w
+            cpy2 = y - 73
+            px = px + 0.15 * w
+            py = y
+            cpx1 = px - 0.05 * w
+            cpy1 = y - 73
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            cpx2 = px + 0.01 * w
+            cpy2 = y + 10
+            px = px + 0.03 * w
+            py = y
+            cpx1 = px - 0.01 * w
+            cpy1 = y + 10
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            endShape()
 
-                y+=10
-                beginShape();
-                px = leftmargin
-                py = y
-                vertex(px, py);//y * 0.0001
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.05*w
-                cpy2 = y -83 
-                px = px + 0.15*w
-                py = y
-                cpx1 = px - 0.05*w
-                cpy1 = y -83
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                cpx2 = px + 0.01*w
-                cpy2 = y + 10 
-                px = px + 0.03*w
-                py = y
-                cpx1 = px - 0.01*w
-                cpy1 = y +10
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                endShape()
+            y += 10
+            beginShape();
+            px = leftmargin
+            py = y
+            vertex(px, py);//y * 0.0001
+            cpx2 = px + 0.01 * w
+            cpy2 = y + 10
+            px = px + 0.03 * w
+            py = y
+            cpx1 = px - 0.01 * w
+            cpy1 = y + 10
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            cpx2 = px + 0.05 * w
+            cpy2 = y - 83
+            px = px + 0.15 * w
+            py = y
+            cpx1 = px - 0.05 * w
+            cpy1 = y - 83
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            cpx2 = px + 0.01 * w
+            cpy2 = y + 10
+            px = px + 0.03 * w
+            py = y
+            cpx1 = px - 0.01 * w
+            cpy1 = y + 10
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            endShape()
         }
         function wave() {
             var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
             var wavewidth = rightmargin - leftmargin
             var ratio = 0.1
             var y = w / 2
-            var r=random(0.21)
-            var r1=random(84,106)
-            var r2=random(21,42)
+            var r = random(0.21)
+            var r1 = random(84, 106)
+            var r2 = random(21, 42)
             for (var i = 0; i < 17; i++) {
                 beginShape();
                 px = leftmargin
                 py = y
                 vertex(px, py);//y * 0.0001
                 cpx2 = px + wavewidth * (ratio * 0.5)
-                cpy2 = y + r * h 
+                cpy2 = y + r * h
                 px = leftmargin + wavewidth * 0.2
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = y +42
+                cpy1 = y + 42
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio * 0.5)
-                cpy2 = w/2 + 0.2 * h 
+                cpy2 = w / 2 + 0.2 * h
                 px = leftmargin + wavewidth * 0.4
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = w/2 - 0.2 * h 
+                cpy1 = w / 2 - 0.2 * h
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio * 0.5)
-                cpy2 = y + 0.2 * ( h-i*57) 
+                cpy2 = y + 0.2 * (h - i * 57)
                 px = leftmargin + wavewidth * 0.6
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = y - 0.2 * ( h-i*47) 
+                cpy1 = y - 0.2 * (h - i * 47)
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio)
-                cpy2 = y + 0.2 * ( h-i*57) 
+                cpy2 = y + 0.2 * (h - i * 57)
                 px = leftmargin + wavewidth * 0.8
                 py = y
-                cpx1 = px - wavewidth * (ratio * i *0.1)
-                cpy1 = y - 0.2 * ( h-i*r2) 
+                cpx1 = px - wavewidth * (ratio * i * 0.1)
+                cpy1 = y - 0.2 * (h - i * r2)
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio * i * 0.02)
-                cpy2 = y + 0.2 * ( h-i*97) 
+                cpy2 = y + 0.2 * (h - i * 97)
                 px = leftmargin + wavewidth
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = y - 0.2 * ( h-i*r1) 
+                cpy1 = y - 0.2 * (h - i * r1)
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 endShape()
-                y+=11
+                y += 11
             }
-            var ratio = random(0.1,0.3)
-             y = w *0.8
-             r=random(0.21)
-             r1=random(84,106)
-             r2=random(21,42)
+            var ratio = random(0.1, 0.3)
+            y = w * 0.8
+            r = random(0.21)
+            r1 = random(84, 106)
+            r2 = random(21, 42)
             for (var i = 0; i < 17; i++) {
                 beginShape();
                 px = leftmargin
                 py = y
                 vertex(px, py);//y * 0.0001
                 cpx2 = px + wavewidth * (ratio * 0.5)
-                cpy2 = y + r * h 
+                cpy2 = y + r * h
                 px = leftmargin + wavewidth * 0.2
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = y +42
+                cpy1 = y + 42
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio * 0.5)
-                cpy2 = w/2 + 0.2 * h 
+                cpy2 = w / 2 + 0.2 * h
                 px = leftmargin + wavewidth * 0.4
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = w/2 - 0.2 * h 
+                cpy1 = w / 2 - 0.2 * h
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio * 0.5)
-                cpy2 = y + 0.2 * ( h-i*57) 
+                cpy2 = y + 0.2 * (h - i * 57)
                 px = leftmargin + wavewidth * 0.6
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = y - 0.2 * ( h-i*47) 
+                cpy1 = y - 0.2 * (h - i * 47)
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio)
-                cpy2 = y + 0.2 * ( h-i*57) 
+                cpy2 = y + 0.2 * (h - i * 57)
                 px = leftmargin + wavewidth * 0.8
                 py = y
-                cpx1 = px - wavewidth * (ratio * i *0.1)
-                cpy1 = y - 0.2 * ( h-i*r2) 
+                cpx1 = px - wavewidth * (ratio * i * 0.1)
+                cpy1 = y - 0.2 * (h - i * r2)
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 cpx2 = px + wavewidth * (ratio * i * 0.02)
-                cpy2 = y + 0.2 * ( h-i*97) 
+                cpy2 = y + 0.2 * (h - i * 97)
                 px = leftmargin + wavewidth
                 py = y
                 cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = y - 0.2 * ( h-i*r1) 
+                cpy1 = y - 0.2 * (h - i * r1)
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                 endShape()
-                y+=11
+                y += 11
             }
         }
 
