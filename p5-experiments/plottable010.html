@@ -25,10 +25,10 @@
         var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
-        var rightmargin = 0.95 * w
-        var leftmargin = 0.05 * w
-        var topmargin = 0.05 * h
-        var bottommargin = 0.95 * h
+        var rightmargin = 0.8 * w
+        var leftmargin = 0.2 * w
+        var topmargin = 0.2 * h
+        var bottommargin = 0.8 * h
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
@@ -80,8 +80,8 @@
         var off = 4
         var neoncounter
         function draw() {
-            stroke(0, 0, 0); rect(0, 0, w, h)
-            stroke(230,100,100);drawonerow()
+            //vinyl()
+            //stroke(180,100,100);drawonerow()
             stroke(330,100,100);drawonerow()
             //            stroke(180, 100, 100); drawlinesnotstraight()
             //            stroke(330, 100, 100); drawlinesnotstraight()
@@ -91,8 +91,8 @@
         function drawonerow() {
             var xoff=0
             var inc=21
-            var stepx = 0.1 * actualwidth
-            var stepy = 0.1 * (bottommargin - topmargin)
+            var stepx = 0.18 * actualwidth
+            var stepy = 0.18 * (bottommargin - topmargin)
             var nblines = 37
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
             for (var y = topmargin; y < bottommargin-stepy; y += stepy ) {
@@ -236,20 +236,30 @@
             return res;
         }
 
-        function test3() {
+        function vinyl(){
+            stroke(180,100,100)
+            diskcenter()
+            stroke(330,100,100)
+            diskshift()
+            noLoop()
+        }
+        function diskcenter() {
             var cx, cy, diam
             for (var i = 0; i < 210; i += 2) {
                 cx = w / 2
                 cy = h / 7 + i
                 diam = h / 10 + i * 2
-                stroke(230, 100, 100)
-                ellipse(cx, cy, diam, diam)
-                stroke(330, 100, 100)
-                cx = w / 2 + 4
                 ellipse(cx, cy, diam, diam)
             }
-
-            noLoop()
+        }
+        function diskshift() {
+            var cx, cy, diam
+            for (var i = 0; i < 210; i += 2) {
+                cx = w / 2 + 4
+                cy = h / 7 + i
+                diam = h / 10 + i * 2
+                ellipse(cx, cy, diam, diam)
+            }
         }
         function test2() {
             for (var i = 0; i < 42; i++) {

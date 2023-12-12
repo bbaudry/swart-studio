@@ -21,7 +21,7 @@
         //pixel = dpi * mm / 25.4 mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var scale=0.5
+        var scale=1
         var h = 1587*scale
         var w = 1122*scale
         var leftmargin = 0.05*w
@@ -69,7 +69,7 @@
             var vera = Math.floor(random(1,widunit))*resolution
             var molnar = Math.floor(random(3,heiunit-2))*resolution
             noFill()
-            stroke(0,100,100)
+            stroke(0,0,100)
             //rect(0,0,w,h)
             //rect(leftmargin,topmargin,righttmargin-leftmargin,bottommargin-topmargin)
             ikeda(leftmargin,topmargin,vera,molnar)
@@ -110,7 +110,7 @@
         function ikeda(x, y, wid, hei) {
             //fill(0, 0, 0); stroke(0, 100, 100); strokeWeight(35); rect(x, y, wid, hei); noFill(); strokeWeight(1); stroke(0, 0, 100)
             var density, offset, r, x1, x2, x3, y1, y2, y3
-            density = Math.floor(random(3,7))
+            density = Math.floor(random(5,9))
             offset = random(1, 2)
             r = Math.floor(random(3))
             switch (r) {
