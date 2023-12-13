@@ -138,7 +138,7 @@
 
 
         function ekensbergfixedangles() {
-            var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1, cx, cy, rad, molnar, vera, ryoji, ikeda
+            var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1, cx, cy, rad, molnar, vera, ryoji, ikeda, baldessari
             var wavewidth = rightmargin - leftmargin
             var ratio = 0.1
             var y = 0
@@ -147,11 +147,12 @@
             rad = 0.3 * w
             for (var angle = 0; angle < 360; angle += 60) {//60
                 molnar = random(1, 3)
-                vera = random(27, 42)
+                vera = random(21, 63)
                 ryoji = random(1, 3)
-                ikeda = random(45,59)
+                ikeda = random(42,63)
+                baldessari = random(1,42)
 
-                for (rad = 0.42 * w; rad > 0.01 * w; rad -= 0.007 * w) {
+                for (rad = 0.42 * w; rad > 0.001 * w; rad -= 0.007 * w) {
                     beginShape();
                     px = cx + rad * cos(radians(angle))
                     py = cy + rad * sin(radians(angle))
@@ -163,8 +164,8 @@
                     cpx1 = cx + (rad - 10) * cos(radians(angle + ryoji))//10
                     cpy1 = cy + (rad - 10) * sin(radians(angle + ryoji))
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                    cpx2 = cx + (rad + 40) * cos(radians(angle + 22))//22
-                    cpy2 = cy + (rad + 40) * sin(radians(angle + 22))
+                    cpx2 = cx + (rad + 40) * cos(radians(angle + baldessari))//22
+                    cpy2 = cy + (rad + 40) * sin(radians(angle + 2))
                     px = cx + rad * cos(radians(angle + 50))//50
                     py = cy + rad * sin(radians(angle + 50))
                     cpx1 = cx + (rad + 40) * cos(radians(angle + vera))
