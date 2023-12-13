@@ -79,9 +79,6 @@
         var xinc = 0.03
         var counter = 0
         function draw() {
-            //background(0,0,100,42)
-            stroke(0, 0, 0)
-            rect(0, 0, w, h)
             stroke(230, 100, 100)
             //wave()
             hebert()
@@ -90,51 +87,49 @@
         }
         function hebert() {
             stroke(330, 100, 100)
-            onepetalshift()
+            ekensberg()
             stroke(180, 100, 100)
-            onepetalshift()
-            /*translate(w/2,h/2)
-            onepetal()
-            rotate(radians(45))
-            onepetal()*/
-
+            //            onepetalshift()
         }
-        function onepetalshift() {
-            var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1, cx, cy, rad, molnar, vera
+        function ekensberg() {
+            var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1, cx, cy, rad, anglerange, molnar, vera
             var wavewidth = rightmargin - leftmargin
             var ratio = 0.1
             var y = 0
             cx = w / 2
             cy = h / 2
             rad = 0.3 * w
-            for (var i = 0; i < 360; i += 60) {
-                molnar=random(1,3)
-            vera=random(27,42)
-            for (rad = 0.42 * w; rad > 0.01 * w; rad -= 0.007 * w) {
+            anglerange=360/(Math.floor(random(2,7)))
+            for (var angle = 0; angle < 360; angle += anglerange) {//60
+                molnar = random(1, 3)
+                vera = random(27, 42)
+                var smallstep =anglerange/Math.floor(2,8)
+                var bigstep=anglerange-(2*smallstep)
+                for (rad = 0.42 * w; rad > 0.01 * w; rad -= 0.007 * w) {
                     beginShape();
-                    px = cx + rad * cos(radians(i))
-                    py = cy + rad * sin(radians(i))
+                    px = cx + rad * cos(radians(angle))
+                    py = cy + rad * sin(radians(angle))
                     vertex(px, py);
-                    cpx2 = cx + (rad - 10) * cos(radians(i + molnar))
-                    cpy2 = cy + (rad - 10) * sin(radians(i + molnar))
-                    px = cx + rad * cos(radians(i + 10))
-                    py = cy + rad * sin(radians(i + 10))
-                    cpx1 = cx + (rad - 10) * cos(radians(i + 7))
-                    cpy1 = cy + (rad - 10) * sin(radians(i + 7))
+                    cpx2 = cx + (rad - 10) * cos(radians(angle + molnar))
+                    cpy2 = cy + (rad - 10) * sin(radians(angle + molnar))
+                    px = cx + rad * cos(radians(angle + smallstep))//10
+                    py = cy + rad * sin(radians(angle + smallstep))
+                    cpx1 = cx + (rad - 10) * cos(radians(angle + smallstep*0.7))//10
+                    cpy1 = cy + (rad - 10) * sin(radians(angle + smallstep*0.7))
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                    cpx2 = cx + (rad + 40) * cos(radians(i + 22))
-                    cpy2 = cy + (rad + 40) * sin(radians(i + 22))
-                    px = cx + rad * cos(radians(i+50))
-                    py = cy + rad * sin(radians(i+50))
-                    cpx1 = cx + (rad + 40) * cos(radians(i + vera))
-                    cpy1 = cy + (rad + 40) * sin(radians(i + vera))
+                    cpx2 = cx + (rad + 40) * cos(radians(angle + 0.25*anglerange))//22
+                    cpy2 = cy + (rad + 40) * sin(radians(angle + 0.25*anglerange))
+                    px = cx + rad * cos(radians(angle + bigstep))//50
+                    py = cy + rad * sin(radians(angle + bigstep))
+                    cpx1 = cx + (rad + 40) * cos(radians(angle + vera))
+                    cpy1 = cy + (rad + 40) * sin(radians(angle + vera))
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                    cpx2 = cx + (rad - 10) * cos(radians(i + 53));
-                    cpy2 = cy + (rad - 10) * sin(radians(i + 53))
-                    px = cx + rad * cos(radians(i+60))
-                    py = cy + rad * sin(radians(i+60))
-                    cpx1 = cx + (rad - 10) * cos(radians(i + 57));
-                    cpy1 = cy + (rad - 10) * sin(radians(i + 57));
+                    cpx2 = cx + (rad - 10) * cos(radians(angle + 1.1*bigstep))//53
+                    cpy2 = cy + (rad - 10) * sin(radians(angle + 1.1*bigstep))
+                    px = cx + rad * cos(radians(angle + smallstep))//60
+                    py = cy + rad * sin(radians(angle + smallstep))
+                    cpx1 = cx + (rad - 10) * cos(radians(angle + 1.3*bigstep));//57
+                    cpy1 = cy + (rad - 10) * sin(radians(angle + 1.3*bigstep));
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                     endShape()
                 }
