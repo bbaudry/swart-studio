@@ -26,18 +26,19 @@
         //w=96*210/25.4=793.7
         //h=96*297/25.4=1122.5
         var echelle = 1
-        var w = 793 * echelle
-        var h = 1122     * echelle
-        var rightmargin = w - 42
-        var leftmargin = 42
-        var topmargin = 42
-        var bottommargin = h - 42
+        var w = 1122 * echelle
+        var h = 1587     * echelle
+        var rightmargin = 0.85*w
+        var leftmargin = 0.15*w
+        var topmargin = 0.2*h
+        var bottommargin = 0.7*h
         var step = 6
-        var offset = 2
+        var offset = 7
         var x, y
         var goingright, atthetop
         var cnv, imgbtn
         var xoff, inc
+        var linecounter
 
         function setup() {
             getsvg()
@@ -53,6 +54,7 @@
             goingright = true
             xoff=0
             inc=1
+            linecounter=1
         }
 
         function getsvg(){
@@ -93,6 +95,8 @@
         */
         function draw() {
             singlelineinoneshot()
+            console.log(linecounter)
+            noLoop()
             //singlelineinmotion()
         }
         function singlelineinmotion() {
@@ -102,6 +106,7 @@
                         oneline()
                     }
                     else {
+                        linecounter++
                         y1 = y + 2 * step + offset
                         line(x, y, x, y1)
                         y = y1
@@ -113,6 +118,7 @@
                         oneline()
                     }
                     else {
+                        linecounter++
                         y1 = y + 2 * step + offset
                         if (y1 < bottommargin - step) { line(x, y, x, y1) }
                         y = y1
@@ -128,8 +134,9 @@
                     while (x < rightmargin - step) {
                         oneline()
                     }
+                    linecounter++
                     y1 = y + 2 * step + offset
-                    line(x, y, x, y1)
+                    if(linecounter<=42){line(x, y, x, y1)}
                     y = y1
                     goingright = false
                 }
@@ -137,11 +144,13 @@
                     while (x > leftmargin + step) {
                         oneline()
                     }
+                    linecounter++
                     y1 = y + 2 * step + offset
-                    if (y1 < bottommargin - step) { line(x, y, x, y1) }
+                    if (y1 < bottommargin - step && linecounter<=42) { line(x, y, x, y1) }
                     y = y1
                     goingright = true
                 }
+                if(linecounter>42){break;}
             }
         }
 

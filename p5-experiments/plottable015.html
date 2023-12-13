@@ -152,7 +152,7 @@
                 ikeda = random(42,63)
                 baldessari = random(1,42)
 
-                for (rad = 0.42 * w; rad > 0.001 * w; rad -= 0.007 * w) {
+                for (rad = 0.42 * w; rad > 0.051*w; rad -= 0.007 * w) {
                     beginShape();
                     px = cx + rad * cos(radians(angle))
                     py = cy + rad * sin(radians(angle))
@@ -171,8 +171,8 @@
                     cpx1 = cx + (rad + 40) * cos(radians(angle + vera))
                     cpy1 = cy + (rad + 40) * sin(radians(angle + vera))
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                    cpx2 = cx + (rad - 10) * cos(radians(angle + 53))//53
-                    cpy2 = cy + (rad - 10) * sin(radians(angle + 53))
+                    cpx2 = cx + (rad - 10) * cos(radians(angle + ikeda))//53
+                    cpy2 = cy + (rad - 10) * sin(radians(angle + ikeda))
                     px = cx + rad * cos(radians(angle + 60))//60
                     py = cy + rad * sin(radians(angle + 60))
                     cpx1 = cx + (rad - 10) * cos(radians(angle + ikeda));//57
