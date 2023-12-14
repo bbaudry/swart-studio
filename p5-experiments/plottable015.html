@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 0.5
+        var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.95 * w
@@ -146,13 +146,13 @@
             cy = h / 2
             rad = 0.3 * w
             for (var angle = 0; angle < 360; angle += 60) {//60
-                molnar = random(1, 3)
-                vera = random(21, 63)
-                ryoji = random(1, 3)
-                ikeda = random(42,63)
+                molnar = random(1, 7)
+                vera = random(21, 84)
+                ryoji = random(1, 7)
+                ikeda = random(42,84)
                 baldessari = random(1,42)
 
-                for (rad = 0.42 * w; rad > 0.051*w; rad -= 0.007 * w) {
+                for (rad = 0.35 * w; rad > 0.021*w; rad -= 0.007 * w) {
                     beginShape();
                     px = cx + rad * cos(radians(angle))
                     py = cy + rad * sin(radians(angle))
