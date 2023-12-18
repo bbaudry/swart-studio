@@ -67,9 +67,9 @@
         function draw() {
             stroke(0,0,0);
             rect(0,0,w,h)
-            testfills()
+//            testfills()
 
-//            cubism()
+            cubism()
             noLoop()
         }
 
@@ -113,7 +113,7 @@
                     px3 = (1 - xt) * ox + (xt * dx);
                     py2 = (1 - xt) * y1 + (xt * y2);
                     py3 = (1 - xt) * oy + (xt * dy);
-                    quad(px1,py1,px2,py2,px3,py3,px4,py4)
+                    slicewithweave(px1,py1,px2,py2,px3,py3,px4,py4)
                     xt+=offset
                     px1 = (1 - xt) * x1 + (xt * x2);
                     px4 = (1 - xt) * ox + (xt * dx);
@@ -142,7 +142,7 @@
             ellipse(vx,vy,7,7)
         }
 
-        function slicewithweave(x1,x2,x3,x4,y1,y2,y3,y4){
+        function slicewithweave(x1,y1,x2,y2,x3,y3,x4,y4){
             stroke(330,100,100)
             quad(x1,y1,x2,y2,x3,y3,x4,y4)
             var density,ox,oy,dx,dy
