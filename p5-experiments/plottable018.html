@@ -21,7 +21,7 @@
         //pixel = dpi * mm / 25.4 mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var scale=1
+        var scale=0.5
         var h = 1587*scale
         var w = 1122*scale
         var leftmargin = 0.15*w
@@ -67,20 +67,31 @@
         function draw() {
             stroke(0,0,0);
             rect(0,0,w,h)
+            testfills()
+
+//            cubism()
+            noLoop()
+        }
+
+        function testfills(){
+            slicewithweave(leftmargin,leftmargin+200,leftmargin+200,leftmargin,
+            0.3*h,0.35*h,0.55*h, 0.5*h)
+        }
+
+        function cubism(){
             section(leftmargin,leftmargin+(rightmargin-leftmargin)/2,leftmargin+(rightmargin-leftmargin)/2,leftmargin,
             0.3*h,0.4*h,bottommargin,bottommargin-(0.1*h))
             section(leftmargin+(rightmargin-leftmargin)/2,rightmargin,rightmargin,leftmargin+(rightmargin-leftmargin)/2,
             0.4*h,0.3*h,bottommargin-(0.1*h),bottommargin)
             section(leftmargin+(rightmargin-leftmargin)/2,rightmargin,leftmargin+(rightmargin-leftmargin)/2,leftmargin,
             topmargin,0.3*h,0.4*h,0.3*h)
-            noLoop()
         }
 
         function section(x1,x2,x3,x4,y1,y2,y3,y4){
             stroke(230,100,100)
             var offset,py,px,py1,py2,py3,py4,px1,px2,px3,px4,oy,dy,ox,dy,xt,yt
             offset=0.03
-            yt=offset
+            yt=0
             while( yt<1){
                 var incy=random()
                 if(yt+incy>=1){yt=1}
@@ -93,7 +104,7 @@
                 px1 = x1
                 px4 = ox
                 py4 = oy
-                xt=offset
+                xt=0
                 while(xt<1){
                     var incx=random()
                     if(xt+incx>=1){xt=1}
@@ -117,6 +128,40 @@
             }
         }
 
+        function slicewitharcs(x1,x2,x3,x4,y1,y2,y3,y4){
+            stroke(330,100,100)
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            var cx,cy,rad,angle,vx,vy,hx,hy
+            cx=x1
+            cy=y1
+            vx = (1 - 0.5) * x1 + (0.5 * x4)
+            vy = (1 - 0.5) * y1 + (0.5 * y4)
+            hx = (1 - 0.5) * x1 + (0.5 * x2)
+            hy = (1 - 0.5) * y1 + (0.5 * y2)
+            ellipse(hx,hy,7,7)
+            ellipse(vx,vy,7,7)
+        }
+
+        function slicewithweave(x1,x2,x3,x4,y1,y2,y3,y4){
+            stroke(330,100,100)
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            var density,ox,oy,dx,dy
+            density=0.03
+            for(var t=0;t<1-density;t+=density){
+                ox = (1 - t) * x1 + (t * x2)
+                oy = (1 - t) * y1 + (t * y2)
+                dx = (1 - (t+density)) * x4 + ((t+density) * x3)
+                dy = (1 - (t+density)) * y4 + ((t+density) * y3)
+                line(ox,oy,dx,dy)
+            }
+            for(var t=0;t<1-density;t+=density){
+                ox = (1 - (t+density)) * x1 + ((t+density) * x2)
+                oy = (1 - (t+density)) * y1 + ((t+density) * y2)
+                dx = (1 - t) * x4 + (t * x3)
+                dy = (1 - t) * y4 + (t * y3)
+                line(ox,oy,dx,dy)
+            }
+        }
     </script>
 </body>
 
