@@ -67,27 +67,37 @@
         function draw() {
             stroke(0,0,0);
             rect(0,0,w,h)
-//            testfills()
-
-            cubism()
+            testfills()
+//            cubism()
             noLoop()
         }
 
         function testfills(){
-            slicewithweave(leftmargin,leftmargin+200,leftmargin+200,leftmargin,
-            0.3*h,0.35*h,0.55*h, 0.5*h)
+            slicewithweave(leftmargin,0.3*h,
+            leftmargin+200,0.35*h,
+            leftmargin+200,0.55*h,
+            leftmargin, 0.5*h)
         }
 
         function cubism(){
-            section(leftmargin,leftmargin+(rightmargin-leftmargin)/2,leftmargin+(rightmargin-leftmargin)/2,leftmargin,
-            0.3*h,0.4*h,bottommargin,bottommargin-(0.1*h))
-            section(leftmargin+(rightmargin-leftmargin)/2,rightmargin,rightmargin,leftmargin+(rightmargin-leftmargin)/2,
-            0.4*h,0.3*h,bottommargin-(0.1*h),bottommargin)
-            section(leftmargin+(rightmargin-leftmargin)/2,rightmargin,leftmargin+(rightmargin-leftmargin)/2,leftmargin,
-            topmargin,0.3*h,0.4*h,0.3*h)
+            section(leftmargin,0.3*h,
+            leftmargin+(rightmargin-leftmargin)/2,0.4*h,
+            leftmargin+(rightmargin-leftmargin)/2,bottommargin,
+            leftmargin,bottommargin-(0.1*h)
+            )
+            section(leftmargin+(rightmargin-leftmargin)/2,0.4*h,
+            rightmargin,0.3*h,
+            rightmargin,bottommargin-(0.1*h),
+            leftmargin+(rightmargin-leftmargin)/2,bottommargin
+            )
+            section(leftmargin+(rightmargin-leftmargin)/2,topmargin,
+            rightmargin,0.3*h,
+            leftmargin+(rightmargin-leftmargin)/2,0.4*h,
+            leftmargin,0.3*h
+            )
         }
 
-        function section(x1,x2,x3,x4,y1,y2,y3,y4){
+        function section(x1,y1,x2,y2,x3,y3,x4,y4){
             stroke(230,100,100)
             var offset,py,px,py1,py2,py3,py4,px1,px2,px3,px4,oy,dy,ox,dy,xt,yt
             offset=0.03
@@ -126,20 +136,6 @@
                 x2 = (1 - yt) * x2 + (yt * x3)
                 y2 = (1 - yt) * y2 + (yt * y3);
             }
-        }
-
-        function slicewitharcs(x1,x2,x3,x4,y1,y2,y3,y4){
-            stroke(330,100,100)
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            var cx,cy,rad,angle,vx,vy,hx,hy
-            cx=x1
-            cy=y1
-            vx = (1 - 0.5) * x1 + (0.5 * x4)
-            vy = (1 - 0.5) * y1 + (0.5 * y4)
-            hx = (1 - 0.5) * x1 + (0.5 * x2)
-            hy = (1 - 0.5) * y1 + (0.5 * y2)
-            ellipse(hx,hy,7,7)
-            ellipse(vx,vy,7,7)
         }
 
         function slicewithweave(x1,y1,x2,y2,x3,y3,x4,y4){
