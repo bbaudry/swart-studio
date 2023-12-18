@@ -21,7 +21,7 @@
         //pixel = dpi * mm / 25.4 mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var scale=0.5
+        var scale=1
         var h = 1587*scale
         var w = 1122*scale
         var leftmargin = 0.15*w
@@ -79,9 +79,8 @@
         function section(x1,x2,x3,x4,y1,y2,y3,y4){
             stroke(230,100,100)
             var offset,py,px,py1,py2,py3,py4,px1,px2,px3,px4,oy,dy,ox,dy,xt,yt
-            offset=7
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            yt=0
+            offset=0.03
+            yt=offset
             while( yt<1){
                 var incy=random()
                 if(yt+incy>=1){yt=1}
@@ -94,7 +93,7 @@
                 px1 = x1
                 px4 = ox
                 py4 = oy
-                xt=0
+                xt=offset
                 while(xt<1){
                     var incx=random()
                     if(xt+incx>=1){xt=1}
@@ -104,11 +103,17 @@
                     py2 = (1 - xt) * y1 + (xt * y2);
                     py3 = (1 - xt) * oy + (xt * dy);
                     quad(px1,py1,px2,py2,px3,py3,px4,py4)
-                    px1=px2;px4=px3
-                    py1=py2;py4=py3
-                }                
-                y1=oy;y2=dy;x1=ox;x2=dx
-
+                    xt+=offset
+                    px1 = (1 - xt) * x1 + (xt * x2);
+                    px4 = (1 - xt) * ox + (xt * dx);
+                    py1 = (1 - xt) * y1 + (xt * y2);
+                    py4 = (1 - xt) * oy + (xt * dy);
+                } 
+                yt+=offset               
+                x1 = (1 - yt) * x1 + (yt * x4)
+                y1 = (1 - yt) * y1 + (yt * y4);
+                x2 = (1 - yt) * x2 + (yt * x3)
+                y2 = (1 - yt) * y2 + (yt * y3);
             }
         }
 
