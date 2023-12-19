@@ -67,13 +67,13 @@
         function draw() {
             stroke(0,0,0);
             rect(0,0,w,h)
-            testfills()
-//            cubism()
+//            testfills()
+            cubism()
             noLoop()
         }
 
         function testfills(){
-            slicewithweave(leftmargin,0.3*h,
+            slicewithlines(leftmargin,0.3*h,
             leftmargin+200,0.35*h,
             leftmargin+200,0.55*h,
             leftmargin, 0.5*h)
@@ -123,7 +123,7 @@
                     px3 = (1 - xt) * ox + (xt * dx);
                     py2 = (1 - xt) * y1 + (xt * y2);
                     py3 = (1 - xt) * oy + (xt * dy);
-                    slicewithweave(px1,py1,px2,py2,px3,py3,px4,py4)
+                    drawoneportion(px1,py1,px2,py2,px3,py3,px4,py4)
                     xt+=offset
                     px1 = (1 - xt) * x1 + (xt * x2);
                     px4 = (1 - xt) * ox + (xt * dx);
@@ -136,6 +136,52 @@
                 x2 = (1 - yt) * x2 + (yt * x3)
                 y2 = (1 - yt) * y2 + (yt * y3);
             }
+        }
+
+        function drawoneportion(x1,y1,x2,y2,x3,y3,x4,y4){
+            var what = Math.floor(random(2))
+            switch(what){
+                case 0: slicewithlines(x1,y1,x2,y2,x3,y3,x4,y4); break;
+                case 1: slicewithweave(x1,y1,x2,y2,x3,y3,x4,y4); break;
+            }
+
+        }
+
+        function slicewithlines(x1,y1,x2,y2,x3,y3,x4,y4){
+            stroke(330,100,100)
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)            
+            var density,ox,oy,dx,dy
+            density=random(0.03,0.07)
+            if(random()<0.5){
+            for(var t=0;t<1-density;t+=density){
+                ox = (1 - t) * x1 + (t * x2)
+                oy = (1 - t) * y1 + (t * y2)
+                dx = (1 - t) * x2 + (t * x3)
+                dy = (1 - t) * y2 + (t * y3)
+                line(ox,oy,dx,dy)
+            }
+            for(var t=0;t<1-density;t+=density){
+                ox = (1 - t) * x3 + (t * x4)
+                oy = (1 - t) * y3 + (t * y4)
+                dx = (1 - t) * x4 + (t * x1)
+                dy = (1 - t) * y4 + (t * y1)
+                line(ox,oy,dx,dy)
+            }}
+            else{
+            for(var t=0;t<1-density;t+=density){
+                ox = (1 - t) * x2 + (t * x3)
+                oy = (1 - t) * y2 + (t * y3)
+                dx = (1 - t) * x3 + (t * x4)
+                dy = (1 - t) * y3 + (t * y4)
+                line(ox,oy,dx,dy)
+            }
+            for(var t=0;t<1-density;t+=density){
+                ox = (1 - t) * x4 + (t * x1)
+                oy = (1 - t) * y4 + (t * y1)
+                dx = (1 - t) * x1 + (t * x2)
+                dy = (1 - t) * y1 + (t * y2)
+                line(ox,oy,dx,dy)
+            }}
         }
 
         function slicewithweave(x1,y1,x2,y2,x3,y3,x4,y4){
