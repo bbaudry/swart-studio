@@ -21,7 +21,7 @@
         //pixel = dpi * mm / 25.4 mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var scale=0.5
+        var scale=1
         var h = 1587*scale
         var w = 1122*scale
         var leftmargin = 0.15*w
@@ -34,15 +34,26 @@
         var maxsizesection = 0.015*w;
 
         function setup() {
-            cnv = createCanvas(w, h, SVG);
+            //getsvg()
+            getpng()
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            svgbtn = createButton("save svg");
-            placebtn();
-            svgbtn.mouseClicked(savesvg);
             background(0, 0, 100)
             noFill()
+        }
+
+        function getsvg() {
+            cnv = createCanvas(w, h, SVG);
+            imgbtn = createButton("save svg");
+            placebtn();
+            imgbtn.mouseClicked(savesvg);
+        }
+        function getpng() {
+            cnv = createCanvas(w, h);
+            imgbtn = createButton("save png");
+            placebtn();
+            imgbtn.mouseClicked(savepng);
         }
 
         function centerCanvas() {
@@ -54,11 +65,14 @@
         function placebtn() {
             var x = (windowWidth - w) / 2;
             var y = (windowHeight - h) / 2;
-            svgbtn.position(x - 200, y + h / 2 + 42)
+            imgbtn.position(x - 200, y + h / 2 + 42)
         }
 
         function savesvg() {
-            save("plottable004.svg");
+            save("vera.svg");
+        }
+        function savepng() {
+            save("vera.png");
         }
 
         var resolution = 50
@@ -67,6 +81,8 @@
         function draw() {
             stroke(0,0,0);
             rect(0,0,w,h)
+            stroke(200,100,100)
+
 //            testfills()
             cubism()
             noLoop()
@@ -98,7 +114,6 @@
         }
 
         function section(x1,y1,x2,y2,x3,y3,x4,y4){
-            stroke(230,100,100)
             var offset,py,px,py1,py2,py3,py4,px1,px2,px3,px4,oy,dy,ox,dy,xt,yt
             offset=0.03
             yt=0
@@ -148,7 +163,6 @@
         }
 
         function slicewithlines(x1,y1,x2,y2,x3,y3,x4,y4){
-            stroke(330,100,100)
             quad(x1,y1,x2,y2,x3,y3,x4,y4)            
             var density,ox,oy,dx,dy
             density=random(0.03,0.07)
@@ -185,7 +199,6 @@
         }
 
         function slicewithweave(x1,y1,x2,y2,x3,y3,x4,y4){
-            stroke(330,100,100)
             quad(x1,y1,x2,y2,x3,y3,x4,y4)
             var density,ox,oy,dx,dy
             density=0.03
