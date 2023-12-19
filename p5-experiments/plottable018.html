@@ -21,17 +21,17 @@
         //pixel = dpi * mm / 25.4 mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var scale=1
-        var h = 1587*scale
-        var w = 1122*scale
-        var leftmargin = 0.15*w
-        var rightmargin = 0.85*w
-        var topmargin = 0.2*h
-        var bottommargin = 0.7*h
+        var scale = 1
+        var h = 1587 * scale
+        var w = 1122 * scale
+        var leftmargin = 0.15 * w
+        var rightmargin = 0.85 * w
+        var topmargin = 0.2 * h
+        var bottommargin = 0.7 * h
         var cnv, svgbtn
         var sections = []
-        var sectionresolution = 0.025*w;
-        var maxsizesection = 0.015*w;
+        var sectionresolution = 0.025 * w;
+        var maxsizesection = 0.015 * w;
 
         function setup() {
             //getsvg()
@@ -79,48 +79,47 @@
         var field = []
 
         function draw() {
-            stroke(0,0,0);
-            rect(0,0,w,h)
-            stroke(200,100,100)
-
-//            testfills()
-            cubism()
+            stroke(0, 0, 0);
+            rect(0, 0, w, h)
+            stroke(200, 100, 100)
+            //testfills()
+                        cubism()
             noLoop()
         }
 
-        function testfills(){
-            slicewithlines(leftmargin,0.3*h,
-            leftmargin+200,0.35*h,
-            leftmargin+200,0.55*h,
-            leftmargin, 0.5*h)
+        function testfills() {
+            slicewithzoom(leftmargin, 0.3 * h,
+                leftmargin + 200, 0.35 * h,
+                leftmargin + 200, 0.55 * h,
+                leftmargin, 0.5 * h)
         }
 
-        function cubism(){
-            section(leftmargin,0.3*h,
-            leftmargin+(rightmargin-leftmargin)/2,0.4*h,
-            leftmargin+(rightmargin-leftmargin)/2,bottommargin,
-            leftmargin,bottommargin-(0.1*h)
+        function cubism() {
+            section(leftmargin, 0.3 * h,
+                leftmargin + (rightmargin - leftmargin) / 2, 0.4 * h,
+                leftmargin + (rightmargin - leftmargin) / 2, bottommargin,
+                leftmargin, bottommargin - (0.1 * h)
             )
-            section(leftmargin+(rightmargin-leftmargin)/2,0.4*h,
-            rightmargin,0.3*h,
-            rightmargin,bottommargin-(0.1*h),
-            leftmargin+(rightmargin-leftmargin)/2,bottommargin
+            section(leftmargin + (rightmargin - leftmargin) / 2, 0.4 * h,
+                rightmargin, 0.3 * h,
+                rightmargin, bottommargin - (0.1 * h),
+                leftmargin + (rightmargin - leftmargin) / 2, bottommargin
             )
-            section(leftmargin+(rightmargin-leftmargin)/2,topmargin,
-            rightmargin,0.3*h,
-            leftmargin+(rightmargin-leftmargin)/2,0.4*h,
-            leftmargin,0.3*h
+            section(leftmargin + (rightmargin - leftmargin) / 2, topmargin,
+                rightmargin, 0.3 * h,
+                leftmargin + (rightmargin - leftmargin) / 2, 0.4 * h,
+                leftmargin, 0.3 * h
             )
         }
 
-        function section(x1,y1,x2,y2,x3,y3,x4,y4){
-            var offset,py,px,py1,py2,py3,py4,px1,px2,px3,px4,oy,dy,ox,dy,xt,yt
-            offset=0.03
-            yt=0
-            while( yt<1){
-                var incy=random()
-                if(yt+incy>=1){yt=1}
-                else{yt+=incy}
+        function section(x1, y1, x2, y2, x3, y3, x4, y4) {
+            var offset, py, px, py1, py2, py3, py4, px1, px2, px3, px4, oy, dy, ox, dy, xt, yt
+            offset = 0.03
+            yt = 0
+            while (yt < 1) {
+                var incy = random()
+                if (yt + incy >= 1) { yt = 1 }
+                else { yt += incy }
                 ox = (1 - yt) * x1 + (yt * x4)
                 oy = (1 - yt) * y1 + (yt * y4);
                 dx = (1 - yt) * x2 + (yt * x3)
@@ -129,23 +128,23 @@
                 px1 = x1
                 px4 = ox
                 py4 = oy
-                xt=0
-                while(xt<1){
-                    var incx=random()
-                    if(xt+incx>=1){xt=1}
-                    else{xt+=incx}
+                xt = 0
+                while (xt < 1) {
+                    var incx = random()
+                    if (xt + incx >= 1) { xt = 1 }
+                    else { xt += incx }
                     px2 = (1 - xt) * x1 + (xt * x2);
                     px3 = (1 - xt) * ox + (xt * dx);
                     py2 = (1 - xt) * y1 + (xt * y2);
                     py3 = (1 - xt) * oy + (xt * dy);
-                    drawoneportion(px1,py1,px2,py2,px3,py3,px4,py4)
-                    xt+=offset
+                    drawoneportion(px1, py1, px2, py2, px3, py3, px4, py4)
+                    xt += offset
                     px1 = (1 - xt) * x1 + (xt * x2);
                     px4 = (1 - xt) * ox + (xt * dx);
                     py1 = (1 - xt) * y1 + (xt * y2);
                     py4 = (1 - xt) * oy + (xt * dy);
-                } 
-                yt+=offset               
+                }
+                yt += offset
                 x1 = (1 - yt) * x1 + (yt * x4)
                 y1 = (1 - yt) * y1 + (yt * y4);
                 x2 = (1 - yt) * x2 + (yt * x3)
@@ -153,68 +152,118 @@
             }
         }
 
-        function drawoneportion(x1,y1,x2,y2,x3,y3,x4,y4){
-            var what = Math.floor(random(2))
-            switch(what){
-                case 0: slicewithlines(x1,y1,x2,y2,x3,y3,x4,y4); break;
-                case 1: slicewithweave(x1,y1,x2,y2,x3,y3,x4,y4); break;
+        function drawoneportion(x1, y1, x2, y2, x3, y3, x4, y4) {
+            var what = Math.floor(random(3))
+            switch (what) {
+                case 0: slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4); break;
+                case 1: slicewithweave(x1, y1, x2, y2, x3, y3, x4, y4); break;
+                case 2: slicewithzoom(x1, y1, x2, y2, x3, y3, x4, y4); break;
             }
 
         }
 
-        function slicewithlines(x1,y1,x2,y2,x3,y3,x4,y4){
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)            
-            var density,ox,oy,dx,dy
-            density=random(0.03,0.07)
-            if(random()<0.5){
-            for(var t=0;t<1-density;t+=density){
+        function slicewithzoom(x1, y1, x2, y2, x3, y3, x4, y4) {
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var ox, oy, dx, dy, xoff, inc, t, cx, cy
+            xoff = 0.0
+            inc = 0.01
+            t = noise(xoff)
+            ox = (1 - t) * x1 + (t * x4)
+            oy = (1 - t) * y1 + (t * y4);
+            dx = (1 - t) * x2 + (t * x3)
+            dy = (1 - t) * y2 + (t * y3);
+            cx = (1 - t) * ox + (t * dx)
+            cy = (1 - t) * oy + (t * dy);
+            ellipse(cx, cy, 7, 7)
+            density = random(0.03, 0.07)
+            for (var t = 0; t < 1 - density; t += density) {
                 ox = (1 - t) * x1 + (t * x2)
                 oy = (1 - t) * y1 + (t * y2)
-                dx = (1 - t) * x2 + (t * x3)
-                dy = (1 - t) * y2 + (t * y3)
-                line(ox,oy,dx,dy)
-            }
-            for(var t=0;t<1-density;t+=density){
-                ox = (1 - t) * x3 + (t * x4)
-                oy = (1 - t) * y3 + (t * y4)
-                dx = (1 - t) * x4 + (t * x1)
-                dy = (1 - t) * y4 + (t * y1)
-                line(ox,oy,dx,dy)
-            }}
-            else{
-            for(var t=0;t<1-density;t+=density){
+                line(ox, oy, cx, cy)
                 ox = (1 - t) * x2 + (t * x3)
                 oy = (1 - t) * y2 + (t * y3)
-                dx = (1 - t) * x3 + (t * x4)
-                dy = (1 - t) * y3 + (t * y4)
-                line(ox,oy,dx,dy)
-            }
-            for(var t=0;t<1-density;t+=density){
+                line(ox, oy, cx, cy)
+                ox = (1 - t) * x3 + (t * x4)
+                oy = (1 - t) * y3 + (t * y4)
+                line(ox, oy, cx, cy)
                 ox = (1 - t) * x4 + (t * x1)
                 oy = (1 - t) * y4 + (t * y1)
-                dx = (1 - t) * x1 + (t * x2)
-                dy = (1 - t) * y1 + (t * y2)
-                line(ox,oy,dx,dy)
-            }}
+                line(ox, oy, cx, cy)
+            }
+
+        }
+        function slicewithnoisylines(x1, y1, x2, y2, x3, y3, x4, y4) {
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var ox, oy, dx, dy, xoff, inc, t
+            xoff = 0.0
+            inc = 0.01
+            t = 0
+            while (t < 1) {
+                ox = (1 - t) * x1 + (t * x4)
+                oy = (1 - t) * y1 + (t * y4);
+                dx = (1 - t) * x2 + (t * x3)
+                dy = (1 - t) * y2 + (t * y3);
+                line(ox, oy, dx, dy)
+                t += random() * 0.03
+                xoff += inc
+            }
+
+        }
+        function slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4) {
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var density, ox, oy, dx, dy
+            density = random(0.03, 0.07)
+            if (random() < 0.5) {
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x1 + (t * x2)
+                    oy = (1 - t) * y1 + (t * y2)
+                    dx = (1 - t) * x2 + (t * x3)
+                    dy = (1 - t) * y2 + (t * y3)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x3 + (t * x4)
+                    oy = (1 - t) * y3 + (t * y4)
+                    dx = (1 - t) * x4 + (t * x1)
+                    dy = (1 - t) * y4 + (t * y1)
+                    line(ox, oy, dx, dy)
+                }
+            }
+            else {
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x2 + (t * x3)
+                    oy = (1 - t) * y2 + (t * y3)
+                    dx = (1 - t) * x3 + (t * x4)
+                    dy = (1 - t) * y3 + (t * y4)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x4 + (t * x1)
+                    oy = (1 - t) * y4 + (t * y1)
+                    dx = (1 - t) * x1 + (t * x2)
+                    dy = (1 - t) * y1 + (t * y2)
+                    line(ox, oy, dx, dy)
+                }
+            }
         }
 
-        function slicewithweave(x1,y1,x2,y2,x3,y3,x4,y4){
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            var density,ox,oy,dx,dy
-            density=0.03
-            for(var t=0;t<1-density;t+=density){
+        function slicewithweave(x1, y1, x2, y2, x3, y3, x4, y4) {
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var density, ox, oy, dx, dy
+            density = random(0.03, 0.07)
+            for (var t = 0; t < 1 - density; t += density) {
                 ox = (1 - t) * x1 + (t * x2)
                 oy = (1 - t) * y1 + (t * y2)
-                dx = (1 - (t+density)) * x4 + ((t+density) * x3)
-                dy = (1 - (t+density)) * y4 + ((t+density) * y3)
-                line(ox,oy,dx,dy)
+                dx = (1 - (t + density)) * x4 + ((t + density) * x3)
+                dy = (1 - (t + density)) * y4 + ((t + density) * y3)
+                line(ox, oy, dx, dy)
             }
-            for(var t=0;t<1-density;t+=density){
-                ox = (1 - (t+density)) * x1 + ((t+density) * x2)
-                oy = (1 - (t+density)) * y1 + ((t+density) * y2)
+            for (var t = 0; t < 1 - density; t += density) {
+                ox = (1 - (t + density)) * x1 + ((t + density) * x2)
+                oy = (1 - (t + density)) * y1 + ((t + density) * y2)
                 dx = (1 - t) * x4 + (t * x3)
                 dy = (1 - t) * y4 + (t * y3)
-                line(ox,oy,dx,dy)
+                line(ox, oy, dx, dy)
             }
         }
     </script>
