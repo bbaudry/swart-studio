@@ -21,7 +21,7 @@
         //pixel = dpi * mm / 25.4 mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var scale = 1
+        var scale = 0.5
         var h = 1587 * scale
         var w = 1122 * scale
         var leftmargin = 0.15 * w
@@ -88,7 +88,7 @@
         }
 
         function testfills() {
-            slicewithzoom(leftmargin, 0.3 * h,
+            slicewithangles(leftmargin, 0.3 * h,
                 leftmargin + 200, 0.35 * h,
                 leftmargin + 200, 0.55 * h,
                 leftmargin, 0.5 * h)
@@ -153,13 +153,30 @@
         }
 
         function drawoneportion(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var what = Math.floor(random(3))
+            var what = Math.floor(random(4))
             switch (what) {
                 case 0: slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4); break;
                 case 1: slicewithweave(x1, y1, x2, y2, x3, y3, x4, y4); break;
                 case 2: slicewithzoom(x1, y1, x2, y2, x3, y3, x4, y4); break;
+                case 3: slicewithangles(x1, y1, x2, y2, x3, y3, x4, y4); break;
             }
 
+        }
+
+        function slicewithangles(x1, y1, x2, y2, x3, y3, x4, y4){
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var ox1, oy1, ox2, oy2, ox3, oy3
+            density=0.1
+            for (var t = 0; t < 1 - density; t += density) {
+                ox1 = (1 - t) * x1 + (t * x2)
+                oy1 = (1 - t) * y1 + (t * y2)
+                ox2 = (1 - t) * x1 + (t * x4)
+                oy2 = (1 - t) * y1 + (t * y4)
+                ox3 = (1 - t) * x3 + (t * x4)
+                oy3 = (1 - t) * y3 + (t * y4)
+                line(ox1,oy1,ox2,oy2)
+                line(ox3,oy3,ox2,oy2)
+            }
         }
 
         function slicewithzoom(x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -174,7 +191,6 @@
             dy = (1 - t) * y2 + (t * y3);
             cx = (1 - t) * ox + (t * dx)
             cy = (1 - t) * oy + (t * dy);
-            ellipse(cx, cy, 7, 7)
             density = random(0.03, 0.07)
             for (var t = 0; t < 1 - density; t += density) {
                 ox = (1 - t) * x1 + (t * x2)
