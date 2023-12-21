@@ -82,8 +82,8 @@
             stroke(0, 0, 0);
             rect(0, 0, w, h)
             stroke(200, 100, 100)
-            //testfills()
-                        cubism()
+            testfills()
+            //            cubism()
             noLoop()
         }
 
@@ -165,17 +165,23 @@
 
         function slicewithangles(x1, y1, x2, y2, x3, y3, x4, y4){
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            var ox1, oy1, ox2, oy2, ox3, oy3
+            var ox1, oy1, ox2, oy2, ox3, oy3, ox4, oy4, ox5, oy5
             density=0.1
             for (var t = 0; t < 1 - density; t += density) {
                 ox1 = (1 - t) * x1 + (t * x2)
                 oy1 = (1 - t) * y1 + (t * y2)
+
                 ox2 = (1 - t) * x1 + (t * x4)
                 oy2 = (1 - t) * y1 + (t * y4)
-                ox3 = (1 - t) * x3 + (t * x4)
-                oy3 = (1 - t) * y3 + (t * y4)
-                line(ox1,oy1,ox2,oy2)
-                line(ox3,oy3,ox2,oy2)
+                
+                ox3 = (1 - t) * x2 + (t * x3)
+                oy3 = (1 - t) * y2 + (t * y3)
+                
+                ox4 = (1 - t) * ox2 + (t * ox3)
+                oy4 = (1 - t) * ox2 + (t * ox3)
+                line(ox1,oy1,ox4,oy4)
+                line(ox3,oy3,ox4,oy4)
+                ellipse(ox4,oy4,7,7)
             }
         }
 
