@@ -170,18 +170,19 @@
             for (var t = 0; t < 1 - density; t += density) {
                 ox1 = (1 - t) * x1 + (t * x2)
                 oy1 = (1 - t) * y1 + (t * y2)
-
+                //ellipse(ox1,oy1,7,7)
                 ox2 = (1 - t) * x1 + (t * x4)
                 oy2 = (1 - t) * y1 + (t * y4)
+                ellipse(ox2,oy2,70*t,70*t)
                 
                 ox3 = (1 - t) * x2 + (t * x3)
                 oy3 = (1 - t) * y2 + (t * y3)
-                
+                ellipse(ox3,oy3,70*t,70*t)
                 ox4 = (1 - t) * ox2 + (t * ox3)
-                oy4 = (1 - t) * ox2 + (t * ox3)
+                oy4 = (1 - t) * oy2 + (t * oy3)
                 line(ox1,oy1,ox4,oy4)
                 line(ox3,oy3,ox4,oy4)
-                ellipse(ox4,oy4,7,7)
+                //ellipse(ox4,oy4,7,7)
             }
         }
 
