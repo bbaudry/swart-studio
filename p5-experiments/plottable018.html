@@ -21,7 +21,7 @@
         //pixel = dpi * mm / 25.4 mm
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var scale = 0.5
+        var scale = 1
         var h = 1587 * scale
         var w = 1122 * scale
         var leftmargin = 0.15 * w
@@ -79,11 +79,12 @@
         var field = []
 
         function draw() {
-            stroke(0, 0, 0);
+            background(0,0,0)
+            stroke(0, 0, 100);
             rect(0, 0, w, h)
-            stroke(200, 100, 100)
-            testfills()
-            //            cubism()
+            stroke(42, 100, 100)
+            //testfills()
+                        cubism()
             noLoop()
         }
 
@@ -117,7 +118,7 @@
             offset = 0.03
             yt = 0
             while (yt < 1) {
-                var incy = random()
+                var incy = random(0.2,0.4)
                 if (yt + incy >= 1) { yt = 1 }
                 else { yt += incy }
                 ox = (1 - yt) * x1 + (yt * x4)
@@ -130,7 +131,7 @@
                 py4 = oy
                 xt = 0
                 while (xt < 1) {
-                    var incx = random()
+                    var incx = random(0.2,0.4)
                     if (xt + incx >= 1) { xt = 1 }
                     else { xt += incx }
                     px2 = (1 - xt) * x1 + (xt * x2);
@@ -153,12 +154,12 @@
         }
 
         function drawoneportion(x1, y1, x2, y2, x3, y3, x4, y4) {
-            var what = Math.floor(random(4))
+            var what = Math.floor(random(3))
             switch (what) {
                 case 0: slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4); break;
                 case 1: slicewithweave(x1, y1, x2, y2, x3, y3, x4, y4); break;
-                case 2: slicewithzoom(x1, y1, x2, y2, x3, y3, x4, y4); break;
-                case 3: slicewithangles(x1, y1, x2, y2, x3, y3, x4, y4); break;
+                case 2: slicewithangles(x1, y1, x2, y2, x3, y3, x4, y4); break;
+                case 3: slicewithzoom(x1, y1, x2, y2, x3, y3, x4, y4); break;
             }
 
         }
@@ -168,7 +169,7 @@
             var ox1, oy1, ox2, oy2, ox3, oy3, ox4, oy4, ox5, oy5, right, down
             if(random()<0.5){right=true}else{right=false}
             if(random()<0.5){down=true}else{down=false}
-            density=0.1
+            density=random(0.05, 0.09)
             for (var t = 0; t < 1 - density; t += density) {
                 if(right){
                     ox1 = (1 - t) * x1 + (t * x2)
