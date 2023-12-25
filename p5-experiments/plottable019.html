@@ -40,6 +40,7 @@
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
             background(0, 0, 100)
+            frameRate(1)
             noFill()
         }
 
@@ -79,24 +80,25 @@
         var field = []
 
         function draw() {
-            background(0,0,100)
+            background(0, 0, 100)
             stroke(0, 0, 0);
             rect(0, 0, w, h)
-            hu1=180
-            hu2=330
+            hu1 = 180
+            hu2 = 330
             grid()
             noLoop()
         }
 
-        function grid(){
-            var step=(rightmargin-leftmargin)/6
-            for(var x=leftmargin;x<rightmargin;x+=2*step){
-                for(var y=topmargin+(step/2); y<bottommargin; y+=2*step){
-                    drawoneportion(x,y,x+step,y+0.5*step,x+step,y+1.5*step,x,y+step)
-                    drawoneportion(x+step,y+0.5*step,x+2*step,y,x+2*step,y+step,x+step,y+1.5*step)
-                    drawoneportion(x,y,x+step,y-0.5*step,x+2*step,y,x+step,y+0.5*step)
+        function grid() {
+            var offset = 0.003*w
+            var step = (rightmargin - leftmargin) / 12 - offset
+            for (var x = leftmargin; x < rightmargin; x += 2 * (step+offset)) {
+                for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step+offset)) {
+                    drawoneportion(x, y, x + step, y + 0.5 * step, x + step, y + 1.5 * step, x, y + step)
+                    drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
+                    drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
                 }
-            }            
+            }
         }
 
 
@@ -110,39 +112,38 @@
 
         }
 
-        function slicewithangles(x1, y1, x2, y2, x3, y3, x4, y4){
+        function slicewithangles(x1, y1, x2, y2, x3, y3, x4, y4) {
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             var ox1, oy1, ox2, oy2, ox3, oy3, ox4, oy4, ox5, oy5, right, down
-            if(random()<0.5){right=true}else{right=false}
-            if(random()<0.5){down=true}else{down=false}
-            density=random(0.05, 0.09)
+            if (random() < 0.5) { right = true } else { right = false }
+            if (random() < 0.5) { down = true } else { down = false }
+            density = random(0.05, 0.09)
             for (var t = 0; t < 1 - density; t += density) {
-                if(right){
+                if (right) {
                     ox1 = (1 - t) * x1 + (t * x2)
                     oy1 = (1 - t) * y1 + (t * y2)
                 }
-                else{
+                else {
                     ox1 = (1 - t) * x2 + (t * x1)
                     oy1 = (1 - t) * y2 + (t * y1)
                 }
-                if(down){
-                ox2 = (1 - t) * x1 + (t * x4)
-                oy2 = (1 - t) * y1 + (t * y4)               
-                ox3 = (1 - t) * x2 + (t * x3)
-                oy3 = (1 - t) * y2 + (t * y3)
+                if (down) {
+                    ox2 = (1 - t) * x1 + (t * x4)
+                    oy2 = (1 - t) * y1 + (t * y4)
+                    ox3 = (1 - t) * x2 + (t * x3)
+                    oy3 = (1 - t) * y2 + (t * y3)
                 }
-                else{
+                else {
                     ox2 = (1 - t) * x4 + (t * x1)
-                oy2 = (1 - t) * y4 + (t * y1)               
-                ox3 = (1 - t) * x3 + (t * x2)
-                oy3 = (1 - t) * y3 + (t * y2)
+                    oy2 = (1 - t) * y4 + (t * y1)
+                    ox3 = (1 - t) * x3 + (t * x2)
+                    oy3 = (1 - t) * y3 + (t * y2)
 
                 }
-
                 ox4 = (1 - t) * ox2 + (t * ox3)
                 oy4 = (1 - t) * oy2 + (t * oy3)
-                line(ox1,oy1,ox4,oy4)
-                line(ox3,oy3,ox4,oy4)
+                line(ox1, oy1, ox4, oy4)
+                line(ox3, oy3, ox4, oy4)
             }
         }
 
