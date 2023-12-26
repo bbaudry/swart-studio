@@ -30,14 +30,14 @@
             noStroke()
             background(0,0,0)
             sety()
-            frameRate(1)
+            frameRate(42)
         }
 
         var ycoords
         function sety(){
             ycoords=[]
             var y1,y2,ystep
-            ystep=0.42*h
+            ystep=0.2*h
             y1=0
             while(y1<h){
                 y2=y1+noise(xoff)*ystep; xoff+=inc
@@ -50,11 +50,11 @@
             //background(0,0,0)
             var x1, xstep
             x1 = 0
-            xstep = 0.17*w
+            xstep = 0.01*w
             for(var i=0;i<ycoords.length;i++){
                 while(x1<w){
                     x2=x1+noise(xoff)*xstep; xoff+=inc
-                    if(random()<0.57){fill(0,0,100)}
+                    if(random()<0.84){fill(0,0,100)}
                     else{fill(0,0,0)}
                     if(random()<0.02){fill(220,100,100)}
                     quad(x1,ycoords[i].y1,x2,ycoords[i].y1,x2,ycoords[i].y2,x1,ycoords[i].y2)
@@ -62,7 +62,7 @@
                 }
                 x1=0
             }
-            if(frameCount==1){noLoop();save("ikeda001.png")}
+            //if(frameCount==1){noLoop();save("ikeda001.png")}
         }
 
 
