@@ -118,25 +118,36 @@
             var stepy = 0.18 * (bottommargin - topmargin)
             var nblines = 37
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
-            //for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
-            y = 500
-            x = leftmargin
-            topyleft = y + random(42)
-            bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
-            topyright = y + random(42)
-            bottomyright = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
-            for (x = leftmargin; x <= rightmargin; x += stepx) {
-                leftstep = (bottomyleft - topyleft) / nblines
-                rightstep = (bottomyright - topyright) / nblines
-                yleft = topyleft + leftstep
-                yright = topyright + rightstep
-                line(x, yleft, x + stepx, yright)
-                topyleft = topyright
-                bottomyleft = bottomyright
+            for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
+                topyleft = y + random(42)
+                bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
                 topyright = y + random(42)
-                bottomyright = y + stepy + 50 - noise(xoff) * 100; xoff += inc//random(-42,42)
+                bottomyright = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
+                beginShape();
+                px = leftmargin
+                py = topyleft
+                vertex(px, py);//y * 0.0001
+                for (x = leftmargin; x <= rightmargin; x += stepx) {
+                    leftstep = (bottomyleft - topyleft) / nblines
+                    rightstep = (bottomyright - topyright) / nblines
+                    yleft = topyleft + leftstep
+                    yright = topyright + rightstep
+                    cpx2 = px + stepx * 0.3
+                    cpy2 = yleft + 0.1 * h
+                    px = x + stepx
+                    py = yright
+                    cpx1 = px - stepx * 0.3
+                    cpy1 = yright - 0.1 * h;
+                    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                    line(x, yleft, x + stepx, yright)
+                    topyleft = topyright
+                    bottomyleft = bottomyright
+                    topyright = y + random(42)
+                    bottomyright = y + stepy + 50 - noise(xoff) * 100; xoff += inc//random(-42,42)
+                }
+                endShape()
+
             }
-            //}
         }
 
 
