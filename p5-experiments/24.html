@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //pixel = dpi * mm / 25.4 mm
+        //A3: 297mm × 420mm
+        //96dpi is for plotting on the UUNA TEK iDraw
+        //w=96*297/25.4=1122.5
+        //h=96*420/25.4=1587.4
+        var w, h, two, four, deux, mille, bowie
+        var letters = []
+        function preload() {
+            bowie = loadFont("./fonts/ChunkFive-Regular.otf");
+        }
+
+        function setup() {
+            colorMode(HSB, 360, 100, 100, 250)
+            w = 800
+            h = 800
+            createCanvas(w, h)
+            setTypo()
+            stroke(0, 0, 100); strokeWeight(7); rect(0, 0, w, h)
+            background(0,0,0)
+            strokeWeight(0.7);
+        }
+
+        function setTypo() {
+            //            alpha = 10
+            fSize = 0.53 * w
+            initialPixelDensity = 0.42
+            deux = bowie.textToPoints('2', 0.1 * w, 0.45 * h, fSize, {
+                sampleFactor: initialPixelDensity,
+                simplifyThreshold: 0
+            })
+            letters.push(deux)
+            mille = bowie.textToPoints('0', 0.56 * w, 0.45 * h, fSize, {
+                sampleFactor: initialPixelDensity,
+                simplifyThreshold: 0
+            })
+            letters.push(mille)
+            two = bowie.textToPoints('2', 0.1 * w, 0.9 * h, fSize, {
+                sampleFactor: initialPixelDensity,
+                simplifyThreshold: 0
+            })
+            letters.push(two)
+            four = bowie.textToPoints('4', 0.56 * w, 0.9 * h, fSize, {
+                sampleFactor: initialPixelDensity,
+                simplifyThreshold: 0
+            })
+            letters.push(four)
+        }
+
+        function draw() {
+            let p = pickpoint()
+            drawlettersinblack(p)
+            if(frameCount==11111){noLoop();save("2024.png")}
+
+        }
+
+
+        function pickpoint() {
+            let j = Math.floor(random() * letters.length);
+            let pts = letters[j]
+            let i = Math.floor(random() * pts.length);
+            let p = pts[i];
+            return p
+        }
+
+        function drawlettersinblack(p) {
+            let pix_diam = random() * 3 + 1;
+            let half_diam = pix_diam / 2
+            noStroke();
+            if (random() < 0.05) {
+                fill(330, 100, 100)
+            }
+            else {
+                fill(0, 0, 100);
+            }
+            var rad, angle, x1, y1, x2, y2
+            rad = Math.exp(random() * 5)
+            angle = radians(p.alpha + 90 - (random() * 180))
+            x1 = p.x + rad * cos(angle)
+            y1 = p.y + rad * sin(angle)
+            rect(x1 - half_diam, y1 - half_diam, pix_diam, pix_diam)
+            if (random() < 0.1) {
+                rad = Math.exp(random() * 5)
+                angle = radians(p.alpha + 90 - (random() * 180))
+                x2 = p.x + rad * cos(angle)
+                y2 = p.y + rad * sin(angle)
+                //rect(x2 - half_diam, y2 - half_diam, pix_diam, pix_diam)
+                if (random() < 0.05) {
+                stroke(330, 100, 100)
+            }
+            else {
+                stroke(0, 0, 100);
+            }
+                
+                line(x1,y1, x2, y2)
+            }
+            //            ellipse(x1, y1, pix_diam, pix_diam);
+        }
+    </script>
+</body>
+
+</html>
