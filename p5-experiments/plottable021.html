@@ -81,7 +81,9 @@
         var neoncounter
         function draw() {
             drawonerow()
-            //initcoordsy(500,37);drawwithcoords()
+            /*var stepx = 0.18 * actualwidth
+            var stepy = 0.18 * (bottommargin - topmargin)
+            initcoordsy(500,37,stepx,stepy);drawwithcoords()*/
             noLoop()
         }
 
@@ -130,6 +132,7 @@
                     cpx1 = px - stepx * 0.3
                     cpy1 = yright - 0.01 * h;
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                    console.log(cpx2+" "+ cpy2+" "+ cpx1+" "+ cpy1+" "+ px+" "+ py);
                 }
                 endShape()
             }
