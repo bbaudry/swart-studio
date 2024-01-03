@@ -32,15 +32,15 @@
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
-        var coordsforonerow = []
+        var dataforonerow = []
 
         function setup() {
-            getsvg()
-            //getpng()
+            //getsvg()
+            getpng()
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            background(0, 0, 100)
+            background(0, 0, 0)
             noFill()
             maxcount = random(39, 45)
         }
@@ -80,33 +80,34 @@
         var off = 4
         var neoncounter
         function draw() {
-            stroke(0, 0, 0)//stroke(30, 100, 100)//stroke(330, 100, 100)
-            drawonerow()
+            stroke(0, 0, 100)//stroke(30, 100, 100)//stroke(330, 100, 100)
+            hebertwaves()
+            stroke(0, 0, 100)
+            hebertwaves()
             stroke(50, 100, 100)//stroke(180, 100, 100)
-            //drawonerow()
+            //hebertwaves()
             noLoop()
         }
 
-        function drawonerow() {
+        function hebertwaves() {
             var stepx = 0.18 * actualwidth
             var stepy = 0.18 * (bottommargin - topmargin)
             var nblines = 37
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
             for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
-                initcoordsy(y, nblines, stepx, stepy)
-                var xratio = random(0.21,0.42)
+                initdataforonerow(y, nblines, stepx, stepy)
                 for (var j = 0; j < nblines; j++) {
                     beginShape();
                     px = leftmargin
-                    py = coordsforonerow[0][j].left
+                    py = dataforonerow[0][j].left
                     vertex(px, py);
-                    for (i = 0; i < coordsforonerow.length; i++) {
-                        cpx2 = px + stepx * xratio
-                        cpy2 = coordsforonerow[i][j].left + 0.01 * h
+                    for (i = 0; i < dataforonerow.length; i++) {
+                        cpx2 = px + stepx * dataforonerow[i][j].xratio
+                        cpy2 = dataforonerow[i][j].left + dataforonerow[i][j].yratio * h
                         px = leftmargin + i * stepx + stepx
-                        py = coordsforonerow[i][j].right
-                        cpx1 = px - stepx * xratio
-                        cpy1 = coordsforonerow[i][j].right - 0.01 * h;
+                        py = dataforonerow[i][j].right
+                        cpx1 = px - stepx * dataforonerow[i][j].xratio
+                        cpy1 = dataforonerow[i][j].right - dataforonerow[i][j].yratio * h;
                         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
                     }
                     endShape()
@@ -114,17 +115,18 @@
             }
         }
 
-        function initcoordsy(y, nblines, stepx, stepy) {
+        function initdataforonerow(y, nblines, stepx, stepy) {
             var coordsforonex
-            coordsforonerow = []
+            dataforonerow = []
             var xoff = random() * 1000
             var inc = 21
-            var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
-            x = leftmargin
+            var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x, xratio, yratio
             topyleft = y + random(42)
             bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
             topyright = y + random(42)
             bottomyright = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
+            xratio = random(0.21,0.42)
+            yratio = random(0.01,0.05)
             for (x = leftmargin; x <= rightmargin; x += stepx) {
                 coordsforonex = []
                 leftstep = (bottomyleft - topyleft) / nblines
@@ -132,9 +134,9 @@
                 for (var i = 0; i < nblines; i++) {
                     yleft = topyleft + leftstep * i
                     yright = topyright + rightstep * i
-                    coordsforonex.push({ left: yleft, right: yright })
+                    coordsforonex.push({ left: yleft, right: yright, xratio: xratio, yratio: yratio })
                 }
-                coordsforonerow.push(coordsforonex)
+                dataforonerow.push(coordsforonex)
                 topyleft = topyright
                 bottomyleft = bottomyright
                 topyright = y + random(42)
@@ -143,18 +145,18 @@
         }
 
         function drawwithcoords() {
-            console.log("draw with " + coordsforonerow.length + " coords")
+            console.log("draw with " + dataforonerow.length + " coords")
             var xleft, yleft, xright, yright, hu
             var nblines = 37
             var stepx = 0.18 * actualwidth
             for (j = 0; j < nblines; j++) {
                 hu = j * 10
-                for (i = 0; i < coordsforonerow.length; i++) {
+                for (i = 0; i < dataforonerow.length; i++) {
                     stroke(hu, 100, 100)
                     xleft = leftmargin + i * stepx
-                    yleft = coordsforonerow[i][j].left
+                    yleft = dataforonerow[i][j].left
                     xright = xleft + stepx
-                    yright = coordsforonerow[i][j].right
+                    yright = dataforonerow[i][j].right
                     line(xleft, yleft, xright, yright)
                 }
             }
