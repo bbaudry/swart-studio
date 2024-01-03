@@ -116,8 +116,8 @@
             var stepy = 0.18 * (bottommargin - topmargin)
             var nblines = 37
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
-            //for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
-                y=500
+            for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
+            //    y=500
             initcoordsy(y,nblines,stepx,stepy)
             for (var j = 0; j < nblines; j++) {
                 beginShape();
@@ -126,17 +126,17 @@
                 vertex(px, py);//y * 0.0001
                 for (i = 0; i < coordsforonerow.length; i++) {
                     cpx2 = px + stepx * 0.3
-                    cpy2 = yleft + 0.01 * h
+                    cpy2 = coordsforonerow[i][j].left + 0.01 * h
                     px = leftmargin + i * stepx + stepx
                     py = coordsforonerow[i][j].right
                     cpx1 = px - stepx * 0.3
-                    cpy1 = yright - 0.01 * h;
+                    cpy1 = coordsforonerow[i][j].right - 0.01 * h;
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                    console.log(cpx2+" "+ cpy2+" "+ cpx1+" "+ cpy1+" "+ px+" "+ py);
+                    console.log("cpx2: "+cpx2+"; cpy2: "+ cpy2+"; cpx1: "+ cpx1+"; cpy1: "+ cpy1+"; px: "+ px+"; py: "+ py);
                 }
                 endShape()
             }
-            //}
+            }
         }
 
         var coordsforonerow=[]
@@ -147,7 +147,6 @@
             var inc = 21
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
                 x = leftmargin
-                y=500
                 topyleft = y + random(42)
                 bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
                 topyright = y + random(42)
