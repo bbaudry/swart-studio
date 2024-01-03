@@ -81,108 +81,80 @@
         var neoncounter
         function draw() {
             drawonerow()
-            /*var stepx = 0.18 * actualwidth
-            var stepy = 0.18 * (bottommargin - topmargin)
-            initcoordsy(500,37,stepx,stepy);drawwithcoords()*/
             noLoop()
         }
 
-        function wave() {
-            var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
-            var wavewidth = rightmargin - leftmargin
-            var ratio = 0.25
-            var c = 0
-            var y = 500
-            stroke(0, 0, 0)
-            beginShape();
-            px = leftmargin
-            py = y
-            vertex(px, py);//y * 0.0001
-            for (var x = ratio; x <= 1; x += ratio) {
-                cpx2 = px + wavewidth * (ratio * 0.5)
-                cpy2 = y + 0.2 * h //- noise(xoff) * 0.1 * h; xoff += xinc
-                px = leftmargin + wavewidth * x
-                py = y
-                cpx1 = px - wavewidth * (ratio * 0.5)
-                cpy1 = y - 0.1 * h;//+ noise(xoff) * 0.1 * h; xoff += xinc
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-            }
-            endShape()
-
-
-        }
         function drawonerow() {
             var stepx = 0.18 * actualwidth
             var stepy = 0.18 * (bottommargin - topmargin)
             var nblines = 37
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
             for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
-            //    y=500
-            initcoordsy(y,nblines,stepx,stepy)
-            for (var j = 0; j < nblines; j++) {
-                beginShape();
-                px = leftmargin
-                py = coordsforonerow[0][j].left
-                vertex(px, py);//y * 0.0001
-                for (i = 0; i < coordsforonerow.length; i++) {
-                    cpx2 = px + stepx * 0.3
-                    cpy2 = coordsforonerow[i][j].left + 0.01 * h
-                    px = leftmargin + i * stepx + stepx
-                    py = coordsforonerow[i][j].right
-                    cpx1 = px - stepx * 0.3
-                    cpy1 = coordsforonerow[i][j].right - 0.01 * h;
-                    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                    console.log("cpx2: "+cpx2+"; cpy2: "+ cpy2+"; cpx1: "+ cpx1+"; cpy1: "+ cpy1+"; px: "+ px+"; py: "+ py);
+                initcoordsy(y, nblines, stepx, stepy)
+                for (var j = 0; j < nblines; j++) {
+                    beginShape();
+                    px = leftmargin
+                    py = coordsforonerow[0][j].left
+                    vertex(px, py);//y * 0.0001
+                    for (i = 0; i < coordsforonerow.length; i++) {
+                        cpx2 = px + stepx * 0.3
+                        cpy2 = coordsforonerow[i][j].left + 0.01 * h
+                        px = leftmargin + i * stepx + stepx
+                        py = coordsforonerow[i][j].right
+                        cpx1 = px - stepx * 0.3
+                        cpy1 = coordsforonerow[i][j].right - 0.01 * h;
+                        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                        console.log("cpx2: " + cpx2 + "; cpy2: " + cpy2 + "; cpx1: " + cpx1 + "; cpy1: " + cpy1 + "; px: " + px + "; py: " + py);
+                    }
+                    endShape()
                 }
-                endShape()
-            }
             }
         }
 
-        var coordsforonerow=[]
-        function initcoordsy(y,nblines,stepx,stepy) {
+        var coordsforonerow = []
+        function initcoordsy(y, nblines, stepx, stepy) {
             var coordsforonex
             coordsforonerow = []
             var xoff = random() * 1000
             var inc = 21
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
-                x = leftmargin
-                topyleft = y + random(42)
-                bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
-                topyright = y + random(42)
-                bottomyright = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
-                for (x = leftmargin; x <= rightmargin; x += stepx) {
-                    coordsforonex = []
-                    leftstep = (bottomyleft - topyleft) / nblines
-                    rightstep = (bottomyright - topyright) / nblines
-                    for (var i = 0; i < nblines; i++) {
-                        yleft = topyleft + leftstep * i
-                        yright = topyright + rightstep * i
-                        coordsforonex.push({left:yleft, right:yright})
-                    }
-                    coordsforonerow.push(coordsforonex)
-                    topyleft = topyright
-                    bottomyleft = bottomyright
-                    topyright = y + random(42)
-                    bottomyright = y + stepy + 50 - noise(xoff) * 100; xoff += inc//random(-42,42)
+            x = leftmargin
+            topyleft = y + random(42)
+            bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
+            topyright = y + random(42)
+            bottomyright = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
+            for (x = leftmargin; x <= rightmargin; x += stepx) {
+                coordsforonex = []
+                leftstep = (bottomyleft - topyleft) / nblines
+                rightstep = (bottomyright - topyright) / nblines
+                for (var i = 0; i < nblines; i++) {
+                    yleft = topyleft + leftstep * i
+                    yright = topyright + rightstep * i
+                    coordsforonex.push({ left: yleft, right: yright })
                 }
+                coordsforonerow.push(coordsforonex)
+                topyleft = topyright
+                bottomyleft = bottomyright
+                topyright = y + random(42)
+                bottomyright = y + stepy + 50 - noise(xoff) * 100; xoff += inc//random(-42,42)
+            }
             //}
         }
 
         function drawwithcoords() {
-            console.log("draw with "+coordsforonerow.length +" coords")
-            var xleft, yleft, xright, yright,hu
+            console.log("draw with " + coordsforonerow.length + " coords")
+            var xleft, yleft, xright, yright, hu
             var nblines = 37
             var stepx = 0.18 * actualwidth
             for (j = 0; j < nblines; j++) {
-                hu=j*10
+                hu = j * 10
                 for (i = 0; i < coordsforonerow.length; i++) {
                     stroke(hu, 100, 100)
                     xleft = leftmargin + i * stepx
                     yleft = coordsforonerow[i][j].left
                     xright = xleft + stepx
                     yright = coordsforonerow[i][j].right
-                    line(xleft,yleft,xright,yright)
+                    line(xleft, yleft, xright, yright)
                 }
             }
         }
@@ -199,8 +171,8 @@
             var nblines = 37
             var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
             //for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
-                y=500
-            initcoordsy(y,nblines)
+            y = 500
+            initcoordsy(y, nblines)
             topyleft = y + random(42)
             bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
             topyright = y + random(42)
