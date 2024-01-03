@@ -32,6 +32,7 @@
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
+        var coordsforonerow = []
 
         function setup() {
             getsvg()
@@ -41,7 +42,6 @@
             strokeCap(SQUARE)
             background(0, 0, 100)
             noFill()
-            stroke(330, 100, 100)
             maxcount = random(39, 45)
         }
 
@@ -80,6 +80,9 @@
         var off = 4
         var neoncounter
         function draw() {
+            stroke(330, 100, 100)
+            drawonerow()
+            stroke(180, 100, 100)
             drawonerow()
             noLoop()
         }
@@ -95,7 +98,7 @@
                     beginShape();
                     px = leftmargin
                     py = coordsforonerow[0][j].left
-                    vertex(px, py);//y * 0.0001
+                    vertex(px, py);
                     for (i = 0; i < coordsforonerow.length; i++) {
                         cpx2 = px + stepx * 0.3
                         cpy2 = coordsforonerow[i][j].left + 0.01 * h
@@ -104,14 +107,12 @@
                         cpx1 = px - stepx * 0.3
                         cpy1 = coordsforonerow[i][j].right - 0.01 * h;
                         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                        console.log("cpx2: " + cpx2 + "; cpy2: " + cpy2 + "; cpx1: " + cpx1 + "; cpy1: " + cpy1 + "; px: " + px + "; py: " + py);
                     }
                     endShape()
                 }
             }
         }
 
-        var coordsforonerow = []
         function initcoordsy(y, nblines, stepx, stepy) {
             var coordsforonex
             coordsforonerow = []
@@ -138,7 +139,6 @@
                 topyright = y + random(42)
                 bottomyright = y + stepy + 50 - noise(xoff) * 100; xoff += inc//random(-42,42)
             }
-            //}
         }
 
         function drawwithcoords() {
@@ -160,223 +160,6 @@
         }
 
 
-
-
-
-        function drawonerowsav() {
-            var xoff = 0
-            var inc = 21
-            var stepx = 0.18 * actualwidth
-            var stepy = 0.18 * (bottommargin - topmargin)
-            var nblines = 37
-            var topyleft, bottomyleft, topyright, bottomyright, leftstep, rightstep, yleft, yright, x
-            //for (var y = topmargin; y < bottommargin - stepy; y += stepy) {
-            y = 500
-            initcoordsy(y, nblines)
-            topyleft = y + random(42)
-            bottomyleft = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
-            topyright = y + random(42)
-            bottomyright = y + stepy + 100 - noise(xoff) * 100; xoff += inc//random(-42,42)
-            leftstep = (bottomyleft - topyleft) / nblines
-            rightstep = (bottomyright - topyright) / nblines
-            for (var i = 0; i < nblines; i++) {
-                beginShape();
-                px = leftmargin
-                py = topyleft + leftstep * i
-                vertex(px, py);//y * 0.0001
-                for (x = leftmargin; x <= rightmargin; x += stepx) {
-                    yleft = topyleft + leftstep * i
-                    yright = topyright + rightstep * i
-                    cpx2 = px + stepx * 0.3
-                    cpy2 = yleft + 0.01 * h
-                    px = x + stepx
-                    py = yright
-                    cpx1 = px - stepx * 0.3
-                    cpy1 = yright - 0.01 * h;
-                    //bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                    line(x, yleft, x + stepx, yright)
-                    topyleft = topyright
-                    bottomyleft = bottomyright
-                    topyright = y + random(42)
-                    bottomyright = y + stepy + 50 - noise(xoff) * 100; xoff += inc//random(-42,42)
-                }
-                endShape()
-            }
-            //}
-        }
-
-
-
-
-        var hauteur = 0.15 * w
-        var interligne = 0.005 * w
-        function drawlinesnotstraight() {
-            for (var y = topmargin; y < bottommargin - hauteur; y += hauteur) {
-                var startoffset = Math.floor(random(-11, 11)) * interligne
-                for (var x = leftmargin; x < rightmargin - hauteur; x += hauteur) {
-                    var dice = Math.floor(random(4))
-                    var endoffset = 0// Math.floor(random(-3,3))
-                    switch (dice) {
-                        case 0:
-                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
-                                line(x, y1, x + hauteur, y1)
-                            }
-                            break
-                        case 1:
-                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
-                                line(x, y1, x + hauteur / 2, y1)
-                                line(x + hauteur / 2, y1, x + hauteur, y + startoffset)
-                            }
-                            break
-                        case 2:
-                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
-                                line(x, y, x + hauteur / 2, y1)
-                                line(x + hauteur / 2, y1, x + hauteur, y1)
-                            }
-                            break
-                        case 3:
-                            for (var y1 = y + startoffset; y1 < y + hauteur; y1 += interligne + endoffset * interligne) {
-                                line(x, y, x + hauteur, y1)
-                            }
-                            break
-                    }
-                }
-            }
-        }
-
-        function drawflower() {
-            stroke(0, 0, 0)
-            rect(0, 0, w, h)
-            var cx, cy, diam
-            for (neoncounter = 0; neoncounter < maxcount; neoncounter++) {
-                console.log("pink")
-                cx = w / 2
-                cy = h / 2.6
-                diam = w / 3
-                stroke(330, 100, 100)
-                oneLayerCompact(9, cx, cy, diam / 2)
-                diam = w / 1.55
-                stroke(330, 100, 100)
-                oneLayerCompact(9, cx, cy, diam / 2)
-            }
-            for (neoncounter = 0; neoncounter < maxcount; neoncounter++) {
-                cx = w / 2
-                cy = h / 2.6
-                diam = w / 3
-                stroke(180, 100, 100)
-                oneLayerCompact(7, cx, cy, diam / 2)
-            }
-            for (var i = 0; i < 84; i += 1) {
-                cy = h / 3.4 + i
-                diam = h / 40 + i * 2
-                stroke(180, 100, 100)
-                ellipse(cx, cy, diam, diam)
-            }
-            for (var i = 0; i < 84; i += 1) {
-                cy = h / 3.4 + i
-                cx = w / 2 + 13
-                diam = h / 38 + i * 2
-                stroke(330, 100, 100)
-                ellipse(cx, cy, diam, diam)
-            }
-            noLoop()
-        }
-
-        function oneLayerCompact(nbRays, cx, cy, rad) {
-            let angle = 360 / nbRays;
-            let px, py, px1, py1, cpx1, cpy1, cpx2, cpy2;
-            controls = [];
-            beginShape();
-            var offset = 0//random(-0.05*rad,0.05*rad)
-            px = cx + (rad + offset) * cos(radians(0));
-            py = cy + (rad + offset) * sin(radians(0));
-            vertex(px, py);
-            controls = drawTang(0, cx, cy, rad);
-            cpx2 = controls[2];
-            cpy2 = controls[3];
-            for (let i = 1; i <= nbRays; i++) {
-                offset = 0//random(-0.05*rad,0.05*rad)
-                px1 = cx + (rad + offset) * cos(radians(angle * i));
-                py1 = cy + (rad + offset) * sin(radians(angle * i));
-                controls = drawTang(angle * i, cx, cy, rad);
-                cpx1 = controls[0];
-                cpy1 = controls[1];
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px1, py1);
-                cpx2 = controls[2];
-                cpy2 = controls[3];
-            }
-            controls = drawTang(0, cx, cy, rad);
-            cpx1 = controls[0];
-            cpy1 = controls[1];
-            endShape();
-        }
-
-        function drawTang(deg, cx, cy, rad) {
-            let tx = cx + rad * cos(radians(deg));
-            let ty = cy + rad * sin(radians(deg));
-            let wid = neoncounter * 7;
-            let ang = 90 * neoncounter / 30;
-            let dx1 = tx + wid * cos(radians(deg - ang));
-            let dy1 = ty + wid * sin(radians(deg - ang));
-            let dx2 = tx + wid * cos(radians(deg - ang + 180));
-            let dy2 = ty + wid * sin(radians(deg - ang + 180));
-            res = [dx1, dy1, dx2, dy2];
-            return res;
-        }
-
-        function vinyl() {
-            stroke(180, 100, 100)
-            diskcenter()
-            stroke(330, 100, 100)
-            diskshift()
-            noLoop()
-        }
-        function diskcenter() {
-            var cx, cy, diam
-            for (var i = 0; i < 210; i += 2) {
-                cx = w / 2
-                cy = h / 7 + i
-                diam = h / 10 + i * 2
-                ellipse(cx, cy, diam, diam)
-            }
-        }
-        function diskshift() {
-            var cx, cy, diam
-            for (var i = 0; i < 210; i += 2) {
-                cx = w / 2 + 4
-                cy = h / 7 + i
-                diam = h / 10 + i * 2
-                ellipse(cx, cy, diam, diam)
-            }
-        }
-        function test2() {
-            for (var i = 0; i < 42; i++) {
-                quad(leftmargin + i * off, topmargin + i * off,
-                    500, topmargin + i * off,
-                    500 - i * off, 400 - i * off,
-                    leftmargin + i * off, 400 - i * off)
-                quad(500 + i * off, topmargin + i * off,
-                    rightmargin, topmargin + i * off,
-                    rightmargin - i * off, 600 - i * off,
-                    500 + i * off, 600 - i * off)
-                quad(leftmargin, 400 + i * off,
-                    400 - i * off, 400 + i * off,
-                    400 - i * off, bottommargin - i * off,
-                    leftmargin + i * off, bottommargin - i * off)
-                quad(400 + i * off, 600 + i * off,
-                    rightmargin - i * off, 600 + i * off,
-                    rightmargin - i * off, bottommargin - i * off,
-                    400, bottommargin - i * off)
-            }
-        }
-        function test1() {
-            for (var i = 0; i < 42; i++) [
-                quad(leftmargin, topmargin + 200,
-                    500 - i * 5, 500 - i * 10,
-                    500, topmargin + 200,
-                    leftmargin, 500 - i * 10)
-            ]
-        }
     </script>
 </body>
 
