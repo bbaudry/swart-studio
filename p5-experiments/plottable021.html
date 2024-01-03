@@ -77,15 +77,11 @@
             save("plottable010.png");
         }
 
-        var off = 4
-        var neoncounter
         function draw() {
             stroke(0, 0, 100)//stroke(30, 100, 100)//stroke(330, 100, 100)
             hebertwaves()
-            stroke(0, 0, 100)
+            stroke(0, 0, 100)//stroke(50, 100, 100)//stroke(180, 100, 100)
             hebertwaves()
-            stroke(50, 100, 100)//stroke(180, 100, 100)
-            //hebertwaves()
             noLoop()
         }
 
@@ -144,6 +140,7 @@
             }
         }
 
+        //for testing initdataforonerow
         function drawwithcoords() {
             console.log("draw with " + dataforonerow.length + " coords")
             var xleft, yleft, xright, yright, hu
@@ -161,7 +158,6 @@
                 }
             }
         }
-
 
     </script>
 </body>
