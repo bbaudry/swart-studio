@@ -87,17 +87,21 @@
         }
 
         function partcircle2(){
-            var cx,cy,rad,angle1,angle2
+            var cx,cy,cx2,cy2,diam,rad,angle1,angle2
             cx=w*0.5
             cy=h*0.5
-            rad=w*0.2
-            angle1=60
+            diam=w*0.2
+            rad=diam/2
+            angle1=0
             angle2=300
-            arc(cx,cy,rad,rad,radians(angle1),radians(angle2))
-            cx=w*0.6
+            ellipse(cx,cy,8,8)
+            arc(cx,cy,diam,diam,radians(angle1),radians(angle2))
+            cx2=cx+diam*cos(radians(330))
+            cy2=cy+diam*sin(radians(330))
             angle1=120
             angle2=240
-            arc(cx,cy,rad,rad,radians(angle1),radians(angle2))
+            ellipse(cx2,cy2,8,8)
+            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
         }
 
         function manycircles(){
