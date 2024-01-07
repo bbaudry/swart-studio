@@ -82,8 +82,22 @@
             rect(0,0,w,h)
             //var c = onecircle()
             //partcircle(c)
-            manycircles()
+            partcircle2()
             noLoop()
+        }
+
+        function partcircle2(){
+            var cx,cy,rad,angle1,angle2
+            cx=w*0.5
+            cy=h*0.5
+            rad=w*0.2
+            angle1=60
+            angle2=300
+            arc(cx,cy,rad,rad,radians(angle1),radians(angle2))
+            cx=w*0.6
+            angle1=120
+            angle2=240
+            arc(cx,cy,rad,rad,radians(angle1),radians(angle2))
         }
 
         function manycircles(){
