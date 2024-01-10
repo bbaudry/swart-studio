@@ -8,7 +8,6 @@ function setup() {
     cnv = createCanvas(w, h);
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
-    background(0, 0, 0)
     noLoop()
 }
  
@@ -19,11 +18,13 @@ function centerCanvas() {
 }
 
 function draw() {
+    background(0, 0, 0)
+
     var cx=w/2
     var cy=h/2
     fill(50,100,100)
     var vera
-    var molnar = 25
+    var molnar = 42
     var density =40
     
     for(vera=w/2;vera>0;vera-=density){

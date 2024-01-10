@@ -82,10 +82,24 @@
             rect(0,0,w,h)
             //var c = onecircle()
             //partcircle(c)
-            partcircle2()
+            partcircle3()
             noLoop()
         }
-
+        function partcircle3(){
+            var cx,cy,cx2,cy2,diam,rad,angle1,angle2
+            cx=w*0.9
+            cy=h*0.5
+            diam=w*0.2
+            rad=diam/2
+            for(i=0;i<5;i++){
+                angle1=0
+                angle2=random(100,240)
+               // ellipse(cx,cy,18,18)
+            arc(cx,cy,diam,diam,radians(angle1),radians(angle2))
+                cx=cx+rad*cos(radians(angle2))-rad
+            cy=cy+rad*sin(radians(angle2))
+            }
+        }
         function partcircle2(){
             var cx,cy,cx2,cy2,diam,rad,angle1,angle2
             cx=w*0.5
@@ -96,8 +110,40 @@
             angle2=300
             ellipse(cx,cy,8,8)
             arc(cx,cy,diam,diam,radians(angle1),radians(angle2))
+            cx2=cx+rad*cos(radians(300))+rad
+            cy2=cy+rad*sin(radians(300))
+            angle1=180
+            angle2=240
+            ellipse(cx2,cy2,8,8)
+            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
+            cx2=cx2+rad*cos(radians(240))-rad
+            cy2=cy2+rad*sin(radians(240))
+            angle1=0
+            angle2=240
+            ellipse(cx2,cy2,8,8)
+            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
+            cx2=cx2+rad*cos(radians(240))-rad
+            cy2=cy2+rad*sin(radians(240))
+            angle1=0
+            angle2=240
+            ellipse(cx2,cy2,8,8)
+            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
+
+
             cx2=cx+diam*cos(radians(330))
             cy2=cy+diam*sin(radians(330))
+            angle1=120
+            angle2=240
+            ellipse(cx2,cy2,8,8)
+            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
+            cx2=cx+diam*cos(radians(30))
+            cy2=cy+diam*sin(radians(30))
+            angle1=120
+            angle2=240
+            ellipse(cx2,cy2,8,8)
+            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
+            cx2=cx+diam*cos(radians(0))
+            cy2=cy+diam*sin(radians(0))
             angle1=120
             angle2=240
             ellipse(cx2,cy2,8,8)
