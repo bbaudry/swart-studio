@@ -78,108 +78,126 @@
 
         function draw() {
             background(0, 0, 100)
-            stroke(0,0,0)
-            rect(0,0,w,h)
+            stroke(0, 0, 0)
+            rect(0, 0, w, h)
             //var c = onecircle()
             //partcircle(c)
-            partcircle3()
+            partcircle4()
             noLoop()
         }
-        function partcircle3(){
-            var cx,cy,cx2,cy2,diam,rad,angle1,angle2
-            cx=w*0.9
-            cy=h*0.5
-            diam=w*0.2
-            rad=diam/2
-            for(i=0;i<5;i++){
-                angle1=0
-                angle2=random(100,240)
-               // ellipse(cx,cy,18,18)
-            arc(cx,cy,diam,diam,radians(angle1),radians(angle2))
-                cx=cx+rad*cos(radians(angle2))-rad
-            cy=cy+rad*sin(radians(angle2))
+        function partcircle4() {
+            var cx, cy, cx2, cy2, diam, rad, angle1, angle2
+            cx = w * 0.5
+            cy = h * 0.5
+            for (cx = w * 0.1; cx < w * 0.9; cx += w * 0.2) {
+                for (cy = h * 0.1; cy < h * 0.9; cy += w * 0.2) {
+                for (diam = w * 0.05; diam < w * 0.2; diam += w * 0.007) {
+                    rad = diam / 2
+                    angle1 = random(0, 42)
+                    angle2 = random(100, 340)
+                    // ellipse(cx,cy,18,18)
+                    arc(cx, cy, diam, diam, radians(angle1), radians(angle2))
+                    //                cx = cx + rad * cos(radians(angle2)) - rad
+                    //                cy = cy + rad * sin(radians(angle2))
+                }
             }
         }
-        function partcircle2(){
-            var cx,cy,cx2,cy2,diam,rad,angle1,angle2
-            cx=w*0.5
-            cy=h*0.5
-            diam=w*0.2
-            rad=diam/2
-            angle1=0
-            angle2=300
-            ellipse(cx,cy,8,8)
-            arc(cx,cy,diam,diam,radians(angle1),radians(angle2))
-            cx2=cx+rad*cos(radians(300))+rad
-            cy2=cy+rad*sin(radians(300))
-            angle1=180
-            angle2=240
-            ellipse(cx2,cy2,8,8)
-            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
-            cx2=cx2+rad*cos(radians(240))-rad
-            cy2=cy2+rad*sin(radians(240))
-            angle1=0
-            angle2=240
-            ellipse(cx2,cy2,8,8)
-            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
-            cx2=cx2+rad*cos(radians(240))-rad
-            cy2=cy2+rad*sin(radians(240))
-            angle1=0
-            angle2=240
-            ellipse(cx2,cy2,8,8)
-            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
+        }
+        function partcircle3() {
+            var cx, cy, cx2, cy2, diam, rad, angle1, angle2
+            cx = w * 0.9
+            cy = h * 0.5
+            diam = w * 0.2
+            rad = diam / 2
+            for (i = 0; i < 5; i++) {
+                angle1 = 0
+                angle2 = random(100, 240)
+                // ellipse(cx,cy,18,18)
+                arc(cx, cy, diam, diam, radians(angle1), radians(angle2))
+                cx = cx + rad * cos(radians(angle2)) - rad
+                cy = cy + rad * sin(radians(angle2))
+            }
+        }
+        function partcircle2() {
+            var cx, cy, cx2, cy2, diam, rad, angle1, angle2
+            cx = w * 0.5
+            cy = h * 0.5
+            diam = w * 0.2
+            rad = diam / 2
+            angle1 = 0
+            angle2 = 300
+            ellipse(cx, cy, 8, 8)
+            arc(cx, cy, diam, diam, radians(angle1), radians(angle2))
+            cx2 = cx + rad * cos(radians(300)) + rad
+            cy2 = cy + rad * sin(radians(300))
+            angle1 = 180
+            angle2 = 240
+            ellipse(cx2, cy2, 8, 8)
+            arc(cx2, cy2, diam, diam, radians(angle1), radians(angle2))
+            cx2 = cx2 + rad * cos(radians(240)) - rad
+            cy2 = cy2 + rad * sin(radians(240))
+            angle1 = 0
+            angle2 = 240
+            ellipse(cx2, cy2, 8, 8)
+            arc(cx2, cy2, diam, diam, radians(angle1), radians(angle2))
+            cx2 = cx2 + rad * cos(radians(240)) - rad
+            cy2 = cy2 + rad * sin(radians(240))
+            angle1 = 0
+            angle2 = 240
+            ellipse(cx2, cy2, 8, 8)
+            arc(cx2, cy2, diam, diam, radians(angle1), radians(angle2))
 
 
-            cx2=cx+diam*cos(radians(330))
-            cy2=cy+diam*sin(radians(330))
-            angle1=120
-            angle2=240
-            ellipse(cx2,cy2,8,8)
-            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
-            cx2=cx+diam*cos(radians(30))
-            cy2=cy+diam*sin(radians(30))
-            angle1=120
-            angle2=240
-            ellipse(cx2,cy2,8,8)
-            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
-            cx2=cx+diam*cos(radians(0))
-            cy2=cy+diam*sin(radians(0))
-            angle1=120
-            angle2=240
-            ellipse(cx2,cy2,8,8)
-            arc(cx2,cy2,diam,diam,radians(angle1),radians(angle2))
+            cx2 = cx + diam * cos(radians(330))
+            cy2 = cy + diam * sin(radians(330))
+            angle1 = 120
+            angle2 = 240
+            ellipse(cx2, cy2, 8, 8)
+            arc(cx2, cy2, diam, diam, radians(angle1), radians(angle2))
+            cx2 = cx + diam * cos(radians(30))
+            cy2 = cy + diam * sin(radians(30))
+            angle1 = 120
+            angle2 = 240
+            ellipse(cx2, cy2, 8, 8)
+            arc(cx2, cy2, diam, diam, radians(angle1), radians(angle2))
+            cx2 = cx + diam * cos(radians(0))
+            cy2 = cy + diam * sin(radians(0))
+            angle1 = 120
+            angle2 = 240
+            ellipse(cx2, cy2, 8, 8)
+            arc(cx2, cy2, diam, diam, radians(angle1), radians(angle2))
         }
 
-        function manycircles(){
-            var cx,cy,x,y,crad,rad,angle
-            cx=w*0.5
-            cy=h*0.5
-            crad=0.3*w
-            for(angle=0;angle<360;angle+=2){
-                x=cx+crad*cos(radians(angle))
-                y=cy+crad*sin(radians(angle))
-                rad=random(0.01*w,0.2*w)
-                ellipse(x,y,rad,rad)
+        function manycircles() {
+            var cx, cy, x, y, crad, rad, angle
+            cx = w * 0.5
+            cy = h * 0.5
+            crad = 0.3 * w
+            for (angle = 0; angle < 360; angle += 2) {
+                x = cx + crad * cos(radians(angle))
+                y = cy + crad * sin(radians(angle))
+                rad = random(0.01 * w, 0.2 * w)
+                ellipse(x, y, rad, rad)
                 //crad=random()*crad
             }
         }
 
-        function partcircle(c){
-            var cx,cy,rad
+        function partcircle(c) {
+            var cx, cy, rad
             rad = c.rad
-            cx = c.cx+rad*random()
+            cx = c.cx + rad * random()
             cy = c.cy
-            stroke(330,100,100)
-            ellipse(cx,cy,rad,rad)
+            stroke(330, 100, 100)
+            ellipse(cx, cy, rad, rad)
         }
 
-        function onecircle(){
-            var cx,cy,rad
-            cx=leftmargin+random()*actualwidth
-            cy=topmargin+random()*actualheight
-            rad=0.2*w
-            ellipse(cx,cy,rad,rad)
-            return {cx:cx,cy:cy,rad:rad}
+        function onecircle() {
+            var cx, cy, rad
+            cx = leftmargin + random() * actualwidth
+            cy = topmargin + random() * actualheight
+            rad = 0.2 * w
+            ellipse(cx, cy, rad, rad)
+            return { cx: cx, cy: cy, rad: rad }
         }
 
     </script>

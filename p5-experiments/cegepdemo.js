@@ -41,5 +41,8 @@ function ikeda() {
         }
         cy += random(speed)
     }
+    else{
+        cy=0
+    }
 
 }
