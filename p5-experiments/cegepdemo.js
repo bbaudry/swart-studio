@@ -23,10 +23,24 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 0)
-    ikeda()
+    onecolumn()
 }
 
 var cy = 0
+var column = []
+function onecolumn() {
+    noStroke()
+    column.push({ x1: 0.4 * w, x2: 0.6 * w, hblock: random(0.01) * h })
+    var y = 0
+    for (var i = 0; i < column.length; i++) {
+        var b = column[i]
+        if (random() < 0.5) { fill(0, 0, 100) }
+        else { fill(0, 0, 0) }
+        quad(b.x1, y, b.x2, y, b.x2, y + b.hblock, b.x1, y + b.hblock)
+        if (y < h) { y += b.hblock }
+        else { break; }
+    }
+}
 
 function ikeda() {
     fill(0, 0, 100)
