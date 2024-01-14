@@ -18,22 +18,19 @@ function centerCanvas() {
 }
 
 function draw() {
-    background(0, 0, 0)
-
-    var cx=w/2
-    var cy=h/2
-    fill(50,100,100)
-    var vera
-    var molnar = 42
-    var density =40
-
-    vera = w/4
-    for(vera=w/2;vera>0;vera-=density){
-        if(vera%(density*2)==0){fill(0,0,0)}
-        else{fill(50,100,100)}
+    var cx,cy,vera, molnar, density,couleur
+    cx=w*0.5
+    cy=h*0.5
+    vera=w*0.2
+    molnar=21
+    couleur=true
+    density=63
+    for(vera=w*0.5;vera>0;vera-=density){
+        if(couleur){fill(50,100,100);couleur=false}
+    else{fill(0,0,0);couleur=true}
     quad(cx-random(vera-molnar,vera+molnar),cy-random(vera-molnar,vera+molnar),
         cx+random(vera-molnar,vera+molnar),cy-random(vera-molnar,vera+molnar),
         cx+random(vera-molnar,vera+molnar),cy+random(vera-molnar,vera+molnar),
         cx-random(vera-molnar,vera+molnar),cy+random(vera-molnar,vera+molnar))
     }
-    }
+}

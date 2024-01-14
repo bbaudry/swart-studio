@@ -32,6 +32,7 @@
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
+        var grandeborne, petiteborne
         var dataforonerow = []
 
         function setup() {
@@ -41,6 +42,11 @@
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
             noFill()
+            background(0, 0, 100)
+            setx()
+            sety()
+            grandeborne=0.5
+            petiteborne=0.02
             maxcount = random(39, 45)
         }
 
@@ -77,21 +83,61 @@
         }
 
         function draw() {
-            background(0, 0, 100)
-            stroke(0, 0, 0)
             rect(0, 0, w, h)
-            //var c = onecircle()
-            //partcircle(c)
-            partcircle4()
-            noLoop()
+            stroke(0,100,100)
+            if(random()<0.2){grandsaut()}
+            else{petitsaut()}
+            ajuste()
+            forme()
+            if(frameCount==420){noLoop()}
         }
+
+
+        var x,y
+        function grandsaut(){
+            x+=random(-grandeborne,grandeborne)*w
+            y+=random(-grandeborne,grandeborne)*h
+
+        }
+        
+        function petitsaut(){
+            console.log(x)
+            x+=random(-petiteborne,petiteborne)*w
+            y+=random(-petiteborne,petiteborne)*h
+        }
+        
+        function ajuste(){
+            if(x<leftmargin||x>rightmargin){setx()}
+            if(y<topmargin||y>bottommargin){sety()}
+        }
+
+        function setx(){
+            if(random()<0.5){x=leftmargin}
+            else{x=rightmargin}
+            x=leftmargin+random()*actualwidth
+        }
+
+        
+        function sety(){
+            if(random()<0.5){y=topmargin}
+            else{y=bottommargin}
+            y=topmargin+random()*actualheight
+        }
+        
+        function forme(){
+            var xoff = random(0.005,0.008)*w
+            var yoff = random(0.005,0.008)*h
+            rect(x-xoff,y-yoff,2*xoff,2*yoff)
+        }
+        
+        
         function partcircle4() {
             var cx, cy, cx2, cy2, diam, rad, angle1, angle2
             cx = w * 0.5
             cy = h * 0.5
             for (cx = w * 0.1; cx < w * 0.9; cx += w * 0.2) {
                 for (cy = h * 0.1; cy < h * 0.9; cy += w * 0.2) {
-                for (diam = w * 0.05; diam < w * 0.2; diam += w * 0.07) {
+                for (diam = w * 0.05; diam < w * 0.2; diam += w * 0.006) {
                     rad = diam / 2
                     angle1 = random(0, 42)
                     angle2 = random(100, 340)

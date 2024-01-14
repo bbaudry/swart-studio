@@ -6,13 +6,15 @@ var xoff, yoff
 var step, stepx, stepy
 
 function setup() {
-    w = windowHeight
+    w = windowWidth
     h = windowHeight
     cnv = createCanvas(w, h);
-    centerCanvas();
+    //centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
     noFill();
     background(0, 0, 0)
+    init(left,w*0.25)
+    init(right,w*0.75)
 }
 
 function centerCanvas() {
@@ -21,42 +23,57 @@ function centerCanvas() {
     cnv.position(x, y);
 }
 
-function draw() {
-    background(0, 0, 0)
-    onecolumn()
+var right = []
+var left = []
+function init(side,cx){
+    var sidew, sideh,y
+    sidew=w*0.5
+    sideh=random(0.01,0.07)*h
+    y=sideh*0.5
+    while(y<h){
+        side.push({x1:cx-sidew*0.5,y1:y-sideh*0.5,
+            x2:cx+sidew*0.5,y2:y-sideh*0.5,
+            x3:cx+sidew*0.5,y3:y+sideh*0.5,
+            x4:cx-sidew*0.5,y4:y+sideh*0.5,
+        })
+        y+=sideh*0.5
+        sideh=random(0.01,0.07)*h
+        y+=sideh*0.5
+    }   
 }
 
-var cy = 0
-var column = []
-function onecolumn() {
+function drawside(side){
     noStroke()
-    column.push({ x1: 0.4 * w, x2: 0.6 * w, hblock: random(0.01) * h })
-    var y = 0
-    for (var i = 0; i < column.length; i++) {
-        var b = column[i]
-        if (random() < 0.5) { fill(0, 0, 100) }
-        else { fill(0, 0, 0) }
-        quad(b.x1, y, b.x2, y, b.x2, y + b.hblock, b.x1, y + b.hblock)
-        if (y < h) { y += b.hblock }
-        else { break; }
+    for(i=0;i<side.length;i++){
+        var cur=side[i]
+        if(random()<0.5){fill(0,0,0)}
+        else{fill(0,0,100)}
+        quad(cur.x1,cur.y1,cur.x2,cur.y2,cur.x3,cur.y3,cur.x4,cur.y4)
     }
 }
 
-function ikeda() {
-    fill(0, 0, 100)
-    var cx = w / 2
-    var freq = 0.5
-    var speed = 2
-    console.log("rect" + cy)
-    if (cy < h) {
-        if (random() < freq) {
+function draw() {
+    console.log(left.length)
+    background(0, 0, 0)
+    //drawside(left)
+    //drawside(right)
+    column(w*0.75)
+    //noLoop()
 
-            rect(cx - (100 + frameCount * speed), cy - 50, 200 + 2 * frameCount * speed, 100)
-        }
-        cy += random(speed)
-    }
-    else{
-        cy=0
-    }
-
+//    ikeda(w*0.25,h*0.5)
+//    ikeda(w*0.75,h*0.5)
 }
+
+
+
+function ikeda(cx,cy){
+    var cx,cy,xoff,yoff,ikedawidth,ikedaheight
+    xoff=w*0.25
+    yoff=h*random(0.001,0.1)
+    ikedawidth=2*xoff
+    ikedaheight=2*yoff
+    fill(0,0,100)
+    if(random()<0.1){fill(0,0,0)}
+    rect(cx-xoff,cy-yoff,ikedawidth,ikedaheight)
+}
+
