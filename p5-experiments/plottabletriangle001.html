@@ -33,7 +33,7 @@
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
         var dataforonerow = []
-        var x,y,radius, x1,y1,x2,y2, angle
+        var cx1,cy1,cx2,cy2,radius, x1,y1,x2,y2, x3,y3,x4,y4, angle
 
         function setup() {
             //getsvg()
@@ -43,12 +43,16 @@
             strokeCap(SQUARE)
             noFill()
             background(0, 0, 100)
-            x=w*0.5
-            y=h*0.5
-            radius=w*0.5
-            angle=0
-            x1=x+radius*cos(angle)
-            y1=y+radius*sin(angle)
+            cx1=w*0.4
+            cy1=h*0.5
+            cx2=w*0.6
+            cy2=h*0.6
+            radius=w*0.4
+            angle=random(142)
+            x1=cx1+radius*cos(radians(angle))
+            y1=cy1+radius*sin(radians(angle))
+            x3=cx2+radius*cos(radians(angle))
+            y3=cy2+radius*sin(radians(angle))
         }
 
         function getsvg() {
@@ -85,15 +89,22 @@
 
         function draw() {
             rect(0, 0, w, h)
-            stroke(0,100,100)
-            if(radius>4){radius-=random(0.3,1.8)}
+            if(radius>4){radius-=random(1,2.8)}
             else{noLoop()}
-            angle+=120.1
-            x2=x+radius*cos(radians(angle))
-            y2=y+radius*sin(radians(angle))
+            angle+=120.3
+            x2=cx1+radius*cos(radians(angle))
+            y2=cy1+radius*sin(radians(angle))
+            stroke(330,100,100)
             line(x1,y1,x2,y2)
             x1=x2
             y1=y2
+            
+            x4=cx2+radius*cos(radians(angle))
+            y4=cy2+radius*sin(radians(angle))
+            stroke(180,100,100)
+            line(x3,y3,x4,y4)
+            x3=x4
+            y3=y4
         }
 
 
