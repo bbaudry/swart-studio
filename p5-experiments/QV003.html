@@ -25,7 +25,7 @@
         var res = 0.6
         var w = 826*res;
         var h = 1299*res;
-        var cnv, bowie, xoff
+        var cnv1, bowie, xoff, btngenrough, btngensmooth, btnimg, smooth
         var QV = {
             "glucose": 0.57, //g/L
             "alcool" : 15.57, //%vol
@@ -52,33 +52,53 @@
         }
         
         function setup() {
-            cnv = createCanvas(w, h);
+            cnv1 = createCanvas(w, h);
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            btn = createButton("generate new artwork");
-            placebtn();
-            btn.mouseClicked(draw);
+            btngenrough = createButton("generate new artwork (rough)");
+            btngensmooth = createButton("generate new artwork (smooth)");
+            btnimg = createButton("save the artwork (png)");
+            placebtns();
+            btngenrough.mouseClicked(drawrough);
+            btngensmooth.mouseClicked(drawsmooth)
+            btnimg.mouseClicked(savepng);
             xoff=0.0
+            smooth=true
         }
 
         function centerCanvas() {
             var x = (windowWidth - w) / 2;
             var y = (windowHeight - h) / 2;
-            cnv.position(x, y);
+            cnv1.position(x, y);
         }
 
-        function placebtn() {
-            var x = (windowWidth - w) / 2;
+        function placebtns() {
+            var x = (windowWidth - w)  *0.5 - 242 ;
             var y = (windowHeight - h) / 2;
-            btn.position(x-200, y+h/2)
+            btngenrough.position(x, y+h*0.4)
+            btngensmooth.position(x, y+h*0.45)
+            btnimg.position(x, y+h*0.5)
         }
 
+        function savepng() {
+            save("QV"+millis()+".png");
+        }
+
+        function drawrough(){
+            smooth=false
+            draw()
+        }
+
+        function drawsmooth(){
+            smooth=true
+            draw()
+        }
 
         function draw() {
             noisefield()
-            solar_spiral_2()
-            //qv()
+            if(smooth){solar_spiral_smooth()}
+            else{solar_spiral_2()}
             noLoop()
         }
 
@@ -122,6 +142,34 @@
             text("QV",0.4*w,0.9*h)
         }
 
+        //Penses tu qu'il soit possible d'avoir un rendu plus fluide? 
+        function solar_spiral_smooth(){
+            let cx=0.5*w
+            let cy=0.42*h
+            let rad=0.5*w
+            let surf = PI*rad*rad*2.5
+            let x1,y1,angle,i,r,n, hu
+            hu=(palette.first.hue+random(50))%360
+            fill(hu,50+random()*50,palette.first.bri)
+//            noFill(); strokeWeight(1)
+            r=0
+            angle=random()*360
+            for(i=0;i<surf;i++){
+                if(r>=rad){
+                    r=0
+                    angle=Math.floor(random(72))*5   
+                }
+                if (noise(xoff)<QV.volatile*QV.glucose){
+                    x1=cx+r*cos(radians(angle))
+                    y1=cy+r*sin(radians(angle))
+                    ellipse(x1,y1,2.42,2.42)                   
+                }
+                xoff+=0.1 
+                angle += 0.4
+                r+=0.5
+            }
+        }
+
         function solar_spiral_2(){
             let cx=0.5*w
             let cy=0.42*h
@@ -148,6 +196,7 @@
                 r+=0.5
             }
         }
+
 
         function solar_spiral_1(){
             let cx=w/2

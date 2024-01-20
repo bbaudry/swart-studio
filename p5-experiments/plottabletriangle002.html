@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //pixel = dpi * mm / 25.4 mm
+        //A3: 297mm × 420mm
+        //96dpi is for plotting on the UUNA TEK iDraw
+        //w=96*297/25.4=1122.5
+        //h=96*420/25.4=1587.4
+        var echelle = 0.5
+        var w = 1122 * echelle
+        var h = 1587 * echelle
+        var rightmargin = 0.8 * w
+        var leftmargin = 0.2 * w
+        var topmargin = 0.2 * h
+        var bottommargin = 0.8 * h
+        var actualwidth = rightmargin - leftmargin
+        var actualheight = bottommargin - topmargin
+        var cnv, imgbtn, maxcount
+
+        function setup() {
+            //getsvg()
+            getpng()
+            centerCanvas();
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            noFill()
+            background(0, 0, 100)
+        }
+
+        function getsvg() {
+            cnv = createCanvas(w, h, SVG);
+            imgbtn = createButton("save svg");
+            placebtn();
+            imgbtn.mouseClicked(savesvg);
+        }
+        function getpng() {
+            cnv = createCanvas(w, h);
+            imgbtn = createButton("save png");
+            placebtn();
+            imgbtn.mouseClicked(savepng);
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+        function placebtn() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            imgbtn.position(x - 200, y + h / 2 + 42)
+        }
+
+        function savesvg() {
+            save("plottable010.svg");
+        }
+        function savepng() {
+            save("plottable010.png");
+        }
+
+        //two triangular spirals, with one single line for each
+        function draw() {
+            stroke(0,0,0)
+            rect(0,0,w,h)
+            grid()
+            drawtri()
+            noLoop()
+        }
+
+        function drawtri() {
+            var left, sec
+            var x1, y1, x2, y2, x3, y3
+            left = true
+            for (i = 0; i < sections.length; i++) {
+                sec = sections[i]
+                if (left) {
+                    x1 = sec.x
+                    y1 = sec.y + sec.hei * 0.5
+                    x2 = sec.x + sec.wid
+                    y2 = sec.y
+                    x3 = sec.x + sec.wid
+                    y3 = sec.y + sec.hei
+                }
+                else {
+                    x1 = sec.x
+                    y1 = sec.y
+                    x2 = sec.x + sec.wid
+                    y2 = sec.y + sec.hei * 0.5
+                    x3 = sec.x 
+                    y3 = sec.y + sec.hei
+                }
+                left = !left
+                triangle(x1, y1, x2, y2, x3, y3)
+            }
+        }
+
+        var sections = []
+        function grid() {
+            var step = w / 100
+            var x, y, sectionwid, sectionhei
+            y = topmargin
+            sectionhei = Math.floor(random(3, 7)) * step
+            while (y < bottommargin) {
+                x = leftmargin
+                if ((y + sectionhei > bottommargin)) { sectionhei = bottommargin - y }
+                while (x < rightmargin) {
+                    sectionwid = Math.floor(random(5, 15)) * step
+                    if ((x + sectionwid > rightmargin)) { sectionwid = rightmargin - x }
+                    sections.push({ x: x, y: y, wid: sectionwid, hei: sectionhei })
+                    x += sectionwid
+                }
+                y += sectionhei
+            }
+        }
+
+        function drawsections() {
+            for (i = 0; i < sections.length; i++) {
+                fill(random(360), 100, 100)
+                var s = sections[i]
+                rect(s.x, s.y, s.wid, s.hei)
+            }
+        }
+    </script>
+</body>
+
+</html>
