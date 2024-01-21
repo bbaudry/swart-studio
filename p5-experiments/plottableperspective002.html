@@ -144,9 +144,10 @@
 
         function somethingelse(x1, y1, x2, y2, x3, y3, x4, y4) {
             //elsewithellipses(x1, y1, x2, y2, x3, y3, x4, y4)
-            //if(random()>0.5){elsewithsquares(x1, y1, x2, y2, x3, y3, x4, y4)}
-            //else{elsewithbezier(x1, y1, x2, y2, x3, y3, x4, y4)}
-            elsewithlines(x1, y1, x2, y2, x3, y3, x4, y4)
+            //elsewithsquares(x1, y1, x2, y2, x3, y3, x4, y4)
+            if(random()>0.5){elsewithlines(x1, y1, x2, y2, x3, y3, x4, y4)}
+            else{elsewithbezier(x1, y1, x2, y2, x3, y3, x4, y4)}
+            
         }
         function elsewithlines(x1, y1, x2, y2, x3, y3, x4, y4){
             var xmid=x1+(x2-x1)*0.5
