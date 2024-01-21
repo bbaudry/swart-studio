@@ -78,10 +78,10 @@
 
         function draw() {
             background(0, 0, 100)
-            stroke(30, 100, 100)
+            stroke(0,0,0)//stroke(30, 100, 100)
             rect(0, 0, w, h)
             eye()
-            stroke(230, 100, 100)
+            stroke(0,0,0)//stroke(230, 100, 100)
             eye()
             noLoop()
         }
@@ -144,14 +144,33 @@
 
         function somethingelse(x1, y1, x2, y2, x3, y3, x4, y4) {
             //elsewithellipses(x1, y1, x2, y2, x3, y3, x4, y4)
-            //elsewithsquares(x1, y1, x2, y2, x3, y3, x4, y4)
-            elsewithbezier(x1, y1, x2, y2, x3, y3, x4, y4)
+            //if(random()>0.5){elsewithsquares(x1, y1, x2, y2, x3, y3, x4, y4)}
+            //else{elsewithbezier(x1, y1, x2, y2, x3, y3, x4, y4)}
+            elsewithlines(x1, y1, x2, y2, x3, y3, x4, y4)
         }
-
+        function elsewithlines(x1, y1, x2, y2, x3, y3, x4, y4){
+            var xmid=x1+(x2-x1)*0.5
+            var y=y1
+            var step=1
+            var stepinc=random(1.02,1.07)
+            while(y<y4){
+                line(x1,y,xmid,y)
+                y+=step
+                step=step*stepinc
+            }
+            y=y4
+            step=1
+            stepinc=random(1.02,1.07)
+            while(y>y1){
+                line(xmid,y,x2,y)
+                y-=step
+                step=step*stepinc
+            }
+        }
         function elsewithbezier(x1, y1, x2, y2, x3, y3, x4, y4){
             var t=0
             var elsehei = y4-y1
-            var yoff=random(elsehei)
+            var yoff=random(elsehei*0.5)
             while(t<(x2-x1)*1.9){
                 bezier(x2,y2,x1-t,y1+yoff,x3+t,y3-yoff,x4,y4)
                 t+=random(9,13)
