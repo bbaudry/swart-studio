@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 0.5
+        var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.8 * w
@@ -148,7 +148,7 @@
             noFill()
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             var density, ox, oy, dx, dy
-            density = random(0.03, 0.07)
+            density = random(0.01, 0.05)
             if (random() < 0.5) {
                 for (var t = 0; t < 1 - density*4; t += density*4) {
                     ox = (1 - t) * x1 + (t * x2)
