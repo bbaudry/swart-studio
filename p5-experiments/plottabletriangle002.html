@@ -32,6 +32,7 @@
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
+        var xoff,xinc
 
         function setup() {
             //getsvg()
@@ -41,6 +42,8 @@
             strokeCap(SQUARE)
             noFill()
             background(0, 0, 100)
+            xoff=0
+            xinc=1
         }
 
         function getsvg() {
@@ -77,11 +80,34 @@
 
         //two triangular spirals, with one single line for each
         function draw() {
-            stroke(0,0,0)
-            rect(0,0,w,h)
+            stroke(0, 0, 0)
+            rect(0, 0, w, h)
             grid()
-            drawtri()
+            drawtri2()
             noLoop()
+        }
+
+        function drawtri2() {
+            var left, sec
+            var x1, y1, x2, y2, x3, y3
+            left = true
+            for (i = 0; i < sections.length; i++) {
+                sec = sections[i]
+                x1 = sec.x
+                y1 = sec.y + sec.hei * 0.5
+                x2 = sec.x + sec.wid * 0.5
+                y2 = sec.y
+                x3 = sec.x + sec.wid * 0.5
+                y3 = sec.y + sec.hei
+                triangle(x1, y1, x2, y2, x3, y3)
+                x1 = sec.x + sec.wid * 0.5
+                y1 = sec.y
+                x2 = sec.x + sec.wid * 0.5
+                y2 = sec.y + sec.hei
+                x3 = sec.x + sec.wid
+                y3 = sec.y + sec.hei * 0.5
+                triangle(x1, y1, x2, y2, x3, y3)
+            }
         }
 
         function drawtri() {
@@ -103,7 +129,7 @@
                     y1 = sec.y
                     x2 = sec.x + sec.wid
                     y2 = sec.y + sec.hei * 0.5
-                    x3 = sec.x 
+                    x3 = sec.x
                     y3 = sec.y + sec.hei
                 }
                 left = !left
@@ -121,7 +147,8 @@
                 x = leftmargin
                 if ((y + sectionhei > bottommargin)) { sectionhei = bottommargin - y }
                 while (x < rightmargin) {
-                    sectionwid = Math.floor(random(5, 15)) * step
+//                    sectionwid = Math.floor(random(5, 15)) * step
+                    sectionwid = Math.floor(5+noise(xoff)*10) * step;xoff+=xinc
                     if ((x + sectionwid > rightmargin)) { sectionwid = rightmargin - x }
                     sections.push({ x: x, y: y, wid: sectionwid, hei: sectionhei })
                     x += sectionwid
