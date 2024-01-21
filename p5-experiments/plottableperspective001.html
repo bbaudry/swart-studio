@@ -23,8 +23,8 @@
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
         var echelle = 1
-        var w = 1122 * echelle
-        var h = 1587 * echelle
+        var w = 900//1122 * echelle
+        var h = 900//1587 * echelle
         var rightmargin = 0.8 * w
         var leftmargin = 0.2 * w
         var topmargin = 0.2 * h
@@ -78,8 +78,10 @@
 
         function draw() {
             background(0, 0, 100)
-            stroke(0, 0, 0)
+            stroke(30, 100, 100)
             rect(0, 0, w, h)
+            eye()
+            stroke(230, 100, 100)
             eye()
             noLoop()
         }
