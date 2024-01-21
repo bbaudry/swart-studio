@@ -86,17 +86,17 @@
 
         function eye() {
             var cx, cy, xoff, yoff
-            cx = w * 0.42
-            cy = h * 0.52
-            xoff = random(w * 0.01) + w * 0.01
-            yoff = random(h * 0.01) + h * 0.01
+            cx = w * random(0.4,0.6)
+            cy = h * random(0.4,0.6)
+            xoff = random(w * 0.01) + w * 0.05
+            yoff = random(h * 0.01) + h * 0.05
             fill(0, 0, 0)
             //quad(cx - xoff, cy - yoff, cx + xoff, cy - yoff, cx + xoff, cy + yoff, cx - xoff, cy + yoff)
-            section(leftmargin, bottommargin, cx - xoff, cy + yoff, cx - xoff, cy - yoff, leftmargin, topmargin)
+            slicewithlines(leftmargin, bottommargin, cx - xoff, cy + yoff, cx - xoff, cy - yoff, leftmargin, topmargin)
             //            section(leftmargin, topmargin, rightmargin, topmargin, cx + xoff, cy - yoff, cx - xoff, cy - yoff)
-            section(leftmargin, topmargin, cx - xoff, cy - yoff, cx + xoff, cy - yoff, rightmargin, topmargin)
-            section(rightmargin, topmargin, cx + xoff, cy - yoff, cx + xoff, cy + yoff, rightmargin, bottommargin)
-            section(rightmargin, bottommargin, cx + xoff, cy + yoff, cx - xoff, cy + yoff, leftmargin, bottommargin)
+            slicewithlines(leftmargin, topmargin, cx - xoff, cy - yoff, cx + xoff, cy - yoff, rightmargin, topmargin)
+            slicewithlines(rightmargin, topmargin, cx + xoff, cy - yoff, cx + xoff, cy + yoff, rightmargin, bottommargin)
+            slicewithlines(rightmargin, bottommargin, cx + xoff, cy + yoff, cx - xoff, cy + yoff, leftmargin, bottommargin)
         }
 
         function section(x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -143,6 +143,46 @@
                 line(ox, oy, dx, dy)
             }
         }
+
+        function slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4) {
+            noFill()
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var density, ox, oy, dx, dy
+            density = random(0.03, 0.07)
+            if (random() < 0.5) {
+                for (var t = 0; t < 1 - density*4; t += density*4) {
+                    ox = (1 - t) * x1 + (t * x2)
+                    oy = (1 - t) * y1 + (t * y2)
+                    dx = (1 - t) * x2 + (t * x3)
+                    dy = (1 - t) * y2 + (t * y3)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x3 + (t * x4)
+                    oy = (1 - t) * y3 + (t * y4)
+                    dx = (1 - t) * x4 + (t * x1)
+                    dy = (1 - t) * y4 + (t * y1)
+                    line(ox, oy, dx, dy)
+                }
+            }
+            else {
+                for (var t = 0; t < 1 - density*4; t += density*4) {
+                    ox = (1 - t) * x2 + (t * x3)
+                    oy = (1 - t) * y2 + (t * y3)
+                    dx = (1 - t) * x3 + (t * x4)
+                    dy = (1 - t) * y3 + (t * y4)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x4 + (t * x1)
+                    oy = (1 - t) * y4 + (t * y1)
+                    dx = (1 - t) * x1 + (t * x2)
+                    dy = (1 - t) * y1 + (t * y2)
+                    line(ox, oy, dx, dy)
+                }
+            }
+        }
+
 
 
     </script>
