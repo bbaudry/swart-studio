@@ -25,7 +25,7 @@
         var res = 0.6
         var w = 826*res;
         var h = 1299*res;
-        var cnv1, bowie, xoff, btngenrough, btngensmooth, btnimg, smooth
+        var cnv1, xoff, btngenrough, btngensmooth, btnimg, smooth
         var QV = {
             "glucose": 0.57, //g/L
             "alcool" : 15.57, //%vol
@@ -45,10 +45,6 @@
                 "sat" : 100,
                 "bri" : 80
             }
-        }
-
-        function preload(){
-            bowie=loadFont("./fonts/InconsolataSemiExpanded-Light.ttf");
         }
         
         function setup() {
@@ -131,15 +127,6 @@
                 }
                 yoff+=QV.pH
             }
-        }
-
-        function qv(){
-            textFont(bowie)
-            textSize(168)
-            stroke(palette.second.hue,palette.second.bri,42)
-            strokeWeight(QV.acidite)
-            noFill()
-            text("QV",0.4*w,0.9*h)
         }
 
         //Penses tu qu'il soit possible d'avoir un rendu plus fluide? 
