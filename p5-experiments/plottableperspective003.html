@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 0.5
+        var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.8 * w
@@ -78,67 +78,151 @@
 
         function draw() {
             background(0, 0, 100)
-            stroke(0,0,0)
+            stroke(0, 0, 0)
             eye()
             noLoop()
         }
 
-        function eye(){
-            var cx,cy,offset,leftoff,rightoff
-            offset=Math.floor(random(7,11))
-            cx=w*0.5
-            cy=topmargin+offset+actualheight*random(0.1,0.4)
-            leftoff=offset+actualwidth*random(0.1,0.4)
-            rightoff=offset+actualwidth*random(0.1,0.4)
-            section2(leftmargin+offset,bottommargin,
-            cx-leftoff+offset,cy+offset,
-            cx+rightoff-offset,cy+offset,
-            rightmargin-offset,bottommargin,true,0)
-            section2(leftmargin,topmargin,
-            cx-leftoff,cy-offset,
-            cx-leftoff,cy+offset,
-            leftmargin,bottommargin,false,0)
-            section2(rightmargin-offset,topmargin,
-            cx+rightoff-offset,cy-offset,
-            cx-leftoff+offset,cy-offset,
-            leftmargin+offset,topmargin,true,0)
-            section2(rightmargin,bottommargin,
-            cx+rightoff,cy+offset,
-            cx+rightoff,cy-offset,
-            rightmargin,topmargin,false,0)
+        function eye() {
+            var cx, cy, offset, leftoff, rightoff
+            offset = Math.floor(random(7, 11))
+            cx = w * 0.5
+            cy = topmargin + offset + actualheight * random(0.1, 0.4)
+            leftoff = offset + actualwidth * random(0.1, 0.4)
+            rightoff = offset + actualwidth * random(0.1, 0.4)
+            section2(leftmargin + offset, bottommargin,
+                cx - leftoff + offset, cy + offset,
+                cx + rightoff - offset, cy + offset,
+                rightmargin - offset, bottommargin, true, 0)
+            section2(leftmargin, topmargin,
+                cx - leftoff, cy - offset,
+                cx - leftoff, cy + offset,
+                leftmargin, bottommargin, false, 0)
+            section2(rightmargin - offset, topmargin,
+                cx + rightoff - offset, cy - offset,
+                cx - leftoff + offset, cy - offset,
+                leftmargin + offset, topmargin, true, 0)
+            section2(rightmargin, bottommargin,
+                cx + rightoff, cy + offset,
+                cx + rightoff, cy - offset,
+                rightmargin, topmargin, false, 0)
         }
 
-        function section2(x1,y1,x2,y2,x3,y3,x4,y4,horizon,iter){
-            if(iter<3){
-                if(random()>0.2){
+        function section2(x1, y1, x2, y2, x3, y3, x4, y4, horizon, iter) {
+            if (iter < 3) {
+                if (random() > 0.2) {
                     console.log("dive")
-                    var ox,oy,dx,dy,t
-                    t=random()
-                    ox = (1 - t) * x4 + (t * x1)
-                    oy = (1 - t) * y4 + (t * y1)
-                    dx = (1 - t) * x3 + (t * x2)
-                    dy = (1 - t) * y3 + (t * y2)
-                    iter++
-                    section2(x1,y1,x2,y2,dx,dy,ox,oy,horizon,iter)
-                    section2(ox,oy,dx,dy,x3,y3,x4,y4,horizon,iter)
+                    var ox, oy, dx, dy, t
+                    t = random()
+                    if (random() > 0.5) {
+                        ox = (1 - t) * x4 + (t * x1)
+                        oy = (1 - t) * y4 + (t * y1)
+                        dx = (1 - t) * x3 + (t * x2)
+                        dy = (1 - t) * y3 + (t * y2)
+                        iter++
+                        section2(x1, y1, x2, y2, dx, dy, ox, oy, horizon, iter)
+                        section2(ox, oy, dx, dy, x3, y3, x4, y4, horizon, iter)
+                    }
+                    else {
+                        ox = (1 - t) * x2 + (t * x1)
+                        oy = (1 - t) * y2 + (t * y1)
+                        dx = (1 - t) * x3 + (t * x4)
+                        dy = (1 - t) * y3 + (t * y4)
+                        iter++
+                        section2(x1, y1, ox, oy, dx, dy, x4, y4, horizon, iter)
+                        section2(ox, oy, x2, y2, x3, y3, dx, dy, horizon, iter)
+                    }
                 }
-                else{
-                    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+                else {
+                    play(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+                }
+            }
+            else {
+                play(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+            }
+        }
+
+        function play(x1, y1, x2, y2, x3, y3, x4, y4, horizon) {
+            var coin = Math.floor(random(2))
+            switch (coin) {
+                case 0: slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4)
+                    break;
+                case 1: sectionwithhive(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+                    break;
+            }
+        }
+        function sectionwithhive(x1, y1, x2, y2, x3, y3, x4, y4,horizon) {
+            var ox, oy, dx, dy, t, d
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            if (horizon) {
+                d=1/Math.abs(x2-x3)*3
+                for (t = 0; t < 1; t += d) {
+                    ox = (1 - t) * x2 + (t * x3)
+                    oy = (1 - t) * y2 + (t * y3)
+                    dx = (1 - t) * x1 + (t * x4)
+                    dy = (1 - t) * y1 + (t * y4)
+                    line(ox,oy,dx,dy)
                 }
             }
             else{
-                    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+                d=1/Math.abs(y1-y4)*7
+                for (t = 0; t < 1; t += d) {
+                    ox = (1 - t) * x1 + (t * x4)
+                    oy = (1 - t) * y1 + (t * y4)
+                    dx = (1 - t) * x2 + (t * x3)
+                    dy = (1 - t) * y2 + (t * y3)
+                    line(ox,oy,dx,dy)
                 }
+            }
+        }
+        function slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4) {
+            noFill()
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var density, ox, oy, dx, dy
+            density = random(0.01, 0.05)
+            if (random() < 0.5) {
+                for (var t = 0; t < 1 - density * 4; t += density * 4) {
+                    ox = (1 - t) * x1 + (t * x2)
+                    oy = (1 - t) * y1 + (t * y2)
+                    dx = (1 - t) * x2 + (t * x3)
+                    dy = (1 - t) * y2 + (t * y3)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x3 + (t * x4)
+                    oy = (1 - t) * y3 + (t * y4)
+                    dx = (1 - t) * x4 + (t * x1)
+                    dy = (1 - t) * y4 + (t * y1)
+                    line(ox, oy, dx, dy)
+                }
+            }
+            else {
+                for (var t = 0; t < 1 - density * 4; t += density * 4) {
+                    ox = (1 - t) * x2 + (t * x3)
+                    oy = (1 - t) * y2 + (t * y3)
+                    dx = (1 - t) * x3 + (t * x4)
+                    dy = (1 - t) * y3 + (t * y4)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x4 + (t * x1)
+                    oy = (1 - t) * y4 + (t * y1)
+                    dx = (1 - t) * x1 + (t * x2)
+                    dy = (1 - t) * y1 + (t * y2)
+                    line(ox, oy, dx, dy)
+                }
+            }
         }
 
-        function section1(x1,y1,x2,y2,x3,y3,x4,y4,horizon){
+
+        function section1(x1, y1, x2, y2, x3, y3, x4, y4, horizon) {
             var vera
-            if(horizon){vera=x3-x2}
-            else{vera=y3-y2}
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            for(i=0;i<vera*0.5;i+=5){
-                if(horizon){quad(x1,y1,x2+i,y2+i,x3,y3+i,x4,y4)}
-                else{quad(x1,y1,x2-i,y2,x3-i,y3,x4,y4)}
+            if (horizon) { vera = x3 - x2 }
+            else { vera = y3 - y2 }
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            for (i = 0; i < vera * 0.5; i += 5) {
+                if (horizon) { quad(x1, y1, x2 + i, y2 + i, x3, y3 + i, x4, y4) }
+                else { quad(x1, y1, x2 - i, y2, x3 - i, y3, x4, y4) }
             }
         }
 
