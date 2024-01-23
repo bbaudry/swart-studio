@@ -90,24 +90,48 @@
             cy=topmargin+offset+actualheight*random(0.1,0.4)
             leftoff=offset+actualwidth*random(0.1,0.4)
             rightoff=offset+actualwidth*random(0.1,0.4)
-            section(leftmargin+offset,bottommargin,
+            section2(leftmargin+offset,bottommargin,
             cx-leftoff+offset,cy+offset,
             cx+rightoff-offset,cy+offset,
-            rightmargin-offset,bottommargin,true)
-            section(leftmargin,topmargin,
+            rightmargin-offset,bottommargin,true,0)
+            section2(leftmargin,topmargin,
             cx-leftoff,cy-offset,
             cx-leftoff,cy+offset,
-            leftmargin,bottommargin,false)
-            section(rightmargin-offset,topmargin,
+            leftmargin,bottommargin,false,0)
+            section2(rightmargin-offset,topmargin,
             cx+rightoff-offset,cy-offset,
             cx-leftoff+offset,cy-offset,
-            leftmargin+offset,topmargin,true)
-            section(rightmargin,bottommargin,
+            leftmargin+offset,topmargin,true,0)
+            section2(rightmargin,bottommargin,
             cx+rightoff,cy+offset,
             cx+rightoff,cy-offset,
-            rightmargin,topmargin,false)
+            rightmargin,topmargin,false,0)
         }
-        function section(x1,y1,x2,y2,x3,y3,x4,y4,horizon){
+
+        function section2(x1,y1,x2,y2,x3,y3,x4,y4,horizon,iter){
+            if(iter<3){
+                if(random()>0.2){
+                    console.log("dive")
+                    var ox,oy,dx,dy,t
+                    t=random()
+                    ox = (1 - t) * x4 + (t * x1)
+                    oy = (1 - t) * y4 + (t * y1)
+                    dx = (1 - t) * x3 + (t * x2)
+                    dy = (1 - t) * y3 + (t * y2)
+                    iter++
+                    section2(x1,y1,x2,y2,dx,dy,ox,oy,horizon,iter)
+                    section2(ox,oy,dx,dy,x3,y3,x4,y4,horizon,iter)
+                }
+                else{
+                    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+                }
+            }
+            else{
+                    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+                }
+        }
+
+        function section1(x1,y1,x2,y2,x3,y3,x4,y4,horizon){
             var vera
             if(horizon){vera=x3-x2}
             else{vera=y3-y2}
@@ -116,8 +140,6 @@
                 if(horizon){quad(x1,y1,x2+i,y2+i,x3,y3+i,x4,y4)}
                 else{quad(x1,y1,x2-i,y2,x3-i,y3,x4,y4)}
             }
-            
-
         }
 
     </script>
