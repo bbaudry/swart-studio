@@ -94,18 +94,20 @@
             Either the piece prints in one shot on the screen, or it is animated
         */
         function draw() {
-            singlelineinoneshot()
+            //singlelineinoneshot()
             console.log(linecounter)
-            noLoop()
-            //singlelineinmotion()
-        }
+            singlelineinmotion()
+            //noLoop()
+            }
         function singlelineinmotion() {
+            
             if (y < bottommargin - step) {
                 if (goingright) {
                     if (x < rightmargin - step) {
                         oneline()
                     }
                     else {
+
                         linecounter++
                         y1 = y + 2 * step + offset
                         line(x, y, x, y1)
@@ -154,10 +156,9 @@
             }
         }
 
-        function oneline() {
+        function oneline() {                
             var y1, x1, config
             config = Math.floor(noise(xoff)*5);xoff+=inc
-                //Math.floor(random(5))
             switch (config) {
                 case 0:
                     if (atthetop) { y1 = y + step }
@@ -201,7 +202,7 @@
                     y1 = y
                     break;
             }
-            x = x1
+                x = x1
             y = y1
             //            return [x1,y1]
         }
