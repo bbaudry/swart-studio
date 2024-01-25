@@ -109,7 +109,7 @@
         }
 
         function section2(x1, y1, x2, y2, x3, y3, x4, y4, horizon, iter) {
-            if (iter < 3) {
+            if (iter < 0) {
                 if (random() > 0.2) {
                     console.log("dive")
                     var ox, oy, dx, dy, t
@@ -151,14 +151,31 @@
             var ox, oy, dx, dy, mx, my, off, density, t
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
             density = 0.02
+            step = 0.05
             if(horizon){
-                for (t = 0; t < 1; t += density) {
+                var ix1 = getpointonline(x2, x1, step)
+                var ix2 = getpointonline(x3, x4, step)
+                var iy1 = getpointonline(y2, y1, step)
+                var iy2 = getpointonline(y3, y4, step)
+                //line(ix1,iy1,ix2,iy2)
+                for (t = 0; t < 1+density; t += density) {
                     ox = getpointonline(x2, x3, t)
                     oy = getpointonline(y2, y3, t)
                     dx = ox
-                    dy = oy + 42
+                    dy = iy1
                     line(ox,oy,dx,dy)
-
+                }
+                var ix3 = getpointonline(x2, x1, step*2)
+                var ix4 = getpointonline(x3, x4, step*2)
+                var iy3 = getpointonline(y2, y1, step*2)
+                var iy4 = getpointonline(y3, y4, step*2)
+                //line(ix3,iy3,ix4,iy4)
+                for (t = 0; t < 1+density; t += density) {
+                    ox = getpointonline(x2, x3, t)
+                    oy = getpointonline(iy1, iy2, t)
+                    dx = getpointonline(ix3, ix4, t)
+                    dy = getpointonline(iy3, iy4, t)
+                    line(ox,oy,dx,dy)
                 }
             }
         }
