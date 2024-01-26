@@ -152,7 +152,12 @@
             ratio = 5
             step = 1/ratio//0.05
             density = 0.01
-            if (horizon) {
+            if (true) {
+                stroke(0,0,0)
+                ellipse(x1,y1,7,7)
+                ellipse(x2,y2,7,7)
+                ellipse(x3,y3,7,7)
+                ellipse(x4,y4,7,7)
                 for (i = 0; i < ratio-2; i += 2) {
                     ix01 = getpointonline(x2, x1, step * i)
                     iy01 = getpointonline(y2, y1, step * i)
