@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //pixel = dpi * mm / 25.4 mm
+        //A3: 297mm × 420mm
+        //96dpi is for plotting on the UUNA TEK iDraw
+        //w=96*297/25.4=1122.5
+        //h=96*420/25.4=1587.4
+        var echelle = 1
+        var w = 1122 * echelle
+        var h = 1587 * echelle
+        var rightmargin = 0.8 * w
+        var leftmargin = 0.2 * w
+        var topmargin = 0.2 * h
+        var bottommargin = 0.8 * h
+        var actualwidth = rightmargin - leftmargin
+        var actualheight = bottommargin - topmargin
+        var cnv, imgbtn, maxcount
+        var dataforonerow = []
+
+        function setup() {
+            //getsvg()
+            getpng()
+            centerCanvas();
+            colorMode(HSB, 360, 100, 100, 250);
+            strokeCap(SQUARE)
+            noFill()
+            maxcount = random(39, 45)
+        }
+
+        function getsvg() {
+            cnv = createCanvas(w, h, SVG);
+            imgbtn = createButton("save svg");
+            placebtn();
+            imgbtn.mouseClicked(savesvg);
+        }
+        function getpng() {
+            cnv = createCanvas(w, h);
+            imgbtn = createButton("save png");
+            placebtn();
+            imgbtn.mouseClicked(savepng);
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+        function placebtn() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            imgbtn.position(x - 200, y + h / 2 + 42)
+        }
+
+        function savesvg() {
+            save("plottableperspective001.svg");
+        }
+        function savepng() {
+            save("plottableperspective001.png");
+        }
+
+        function draw() {
+            background(0, 0, 100)
+            stroke(0, 0, 0)
+            eye()
+            noLoop()
+        }
+
+        function eye() {
+            var cx, cy, offset, leftoff, rightoff
+            offset = Math.floor(random(7, 11))
+            cx = w * 0.5
+            cy = topmargin + offset + actualheight * random(0.1, 0.4)
+            leftoff = offset + actualwidth * random(0.1, 0.4)
+            rightoff = offset + actualwidth * random(0.1, 0.4)
+            section2(leftmargin + offset, bottommargin,
+                cx - leftoff + offset, cy + offset,
+                cx + rightoff - offset, cy + offset,
+                rightmargin - offset, bottommargin, true, 0)
+            section2(leftmargin, topmargin,
+                cx - leftoff, cy - offset,
+                cx - leftoff, cy + offset,
+                leftmargin, bottommargin, false, 0)
+            section2(rightmargin - offset, topmargin,
+                cx + rightoff - offset, cy - offset,
+                cx - leftoff + offset, cy - offset,
+                leftmargin + offset, topmargin, true, 0)
+            section2(rightmargin, bottommargin,
+                cx + rightoff, cy + offset,
+                cx + rightoff, cy - offset,
+                rightmargin, topmargin, false, 0)
+        }
+
+        function section2(x1, y1, x2, y2, x3, y3, x4, y4, horizon, iter) {
+            if (iter < 1) {
+                if (random() > 0.2) {
+                    console.log("dive")
+                    var ox, oy, dx, dy, t
+                    t = random()
+                    if (random() > 0.5) {
+                        ox = (1 - t) * x4 + (t * x1)
+                        oy = (1 - t) * y4 + (t * y1)
+                        dx = (1 - t) * x3 + (t * x2)
+                        dy = (1 - t) * y3 + (t * y2)
+                        iter++
+                        section2(x1, y1, x2, y2, dx, dy, ox, oy, horizon, iter)
+                        section2(ox, oy, dx, dy, x3, y3, x4, y4, horizon, iter)
+                    }
+                    else {
+                        ox = (1 - t) * x2 + (t * x1)
+                        oy = (1 - t) * y2 + (t * y1)
+                        dx = (1 - t) * x3 + (t * x4)
+                        dy = (1 - t) * y3 + (t * y4)
+                        iter++
+                        section2(x1, y1, ox, oy, dx, dy, x4, y4, horizon, iter)
+                        section2(ox, oy, x2, y2, x3, y3, dx, dy, horizon, iter)
+                    }
+                }
+                else {
+                    play(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+                }
+            }
+            else {
+                play(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+            }
+        }
+
+        function play(x1, y1, x2, y2, x3, y3, x4, y4, horizon) {
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+        }
+
+        function deep(x1, y1, x2, y2, x3, y3, x4, y4, horizon) {
+            var ox, oy, dx, dy, ix01, iy01, ix02, iy02, ix1, ix2, ix3, ix4, iy1, iy2, iy3, iy4, ratio, step, density, t
+            //stroke(0,0,0);quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            if (horizon) {
+                ratio = 5
+                step = 1/ratio//0.05
+                density = 0.01
+                for (i = 0; i < ratio-2; i += 2) {
+                    ix01 = getpointonline(x2, x1, step * i)
+                    iy01 = getpointonline(y2, y1, step * i)
+                    ix02 = getpointonline(x3, x4, step * i)
+                    iy02 = getpointonline(y3, y4, step * i)
+                    ix1 = getpointonline(x2, x1, step * (i+1))
+                    ix2 = getpointonline(x3, x4, step * (i+1))
+                    iy1 = getpointonline(y2, y1, step * (i+1))
+                    iy2 = getpointonline(y3, y4, step * (i+1))
+                    for (t = 0; t < 1 + density; t += density) {
+                        ox = getpointonline(ix01, ix02, t)
+                        oy = getpointonline(iy01, iy02, t)
+                        dx = ox
+                        dy = iy1
+                        line(ox, oy, dx, dy)
+                    }
+                    ix3 = getpointonline(x2, x1, step * (i + 2))
+                    ix4 = getpointonline(x3, x4, step * (i + 2))
+                    iy3 = getpointonline(y2, y1, step * (i + 2))
+                    iy4 = getpointonline(y3, y4, step * (i + 2))
+                    for (t = 0; t < 1 + density; t += density) {
+                        ox = getpointonline(ix01, ix02, t)
+                        oy = getpointonline(iy1, iy2, t)
+                        dx = getpointonline(ix3, ix4, t)
+                        dy = getpointonline(iy3, iy4, t)
+                        line(ox, oy, dx, dy)
+                    }
+                }
+            }
+            else{
+                ratio = 40
+                step = 1/ratio//0.05
+                density = 0.01
+                for (i = 0; i < ratio-2; i += 2) {
+                    ix01 = getpointonline(x2, x1, step * i)
+                    iy01 = getpointonline(y2, y1, step * i)
+                    ix02 = getpointonline(x3, x4, step * i)
+                    iy02 = getpointonline(y3, y4, step * i)
+                    ix1 = getpointonline(x2, x1, step * (i+1))
+                    ix2 = getpointonline(x3, x4, step * (i+1))
+                    iy1 = getpointonline(y2, y1, step * (i+1))
+                    iy2 = getpointonline(y3, y4, step * (i+1))
+                    for (t = 0; t < 1 + density; t += density) {
+                        ox = getpointonline(ix01, ix02, t)
+                        oy = getpointonline(iy01, iy02, t)
+                        dx = ix1
+                        dy = oy
+                        line(ox, oy, dx, dy)
+                    }
+                    ix3 = getpointonline(x2, x1, step * (i + 2))
+                    ix4 = getpointonline(x3, x4, step * (i + 2))
+                    iy3 = getpointonline(y2, y1, step * (i + 2))
+                    iy4 = getpointonline(y3, y4, step * (i + 2))
+                    for (t = 0; t < 1 + density; t += density) {
+                        ox = getpointonline(ix1, ix2, t)
+                        oy = getpointonline(iy01, iy02, t)
+                        dx = getpointonline(ix3, ix4, t)
+                        dy = getpointonline(iy3, iy4, t)
+                        line(ox, oy, dx, dy)
+                    }
+                }
+            }
+        }
+
+        function getpointonline(origin, destination, t) {
+            return ((1 - t) * origin + (t * destination))
+
+        }
+
+    </script>
+</body>
+
+</html>
