@@ -77,8 +77,37 @@
         }
 
         function draw() {
+            var cx, cy, offset, leftoff, rightoff
             background(0, 0, 100)
             stroke(0, 0, 0)
+            /*offset = Math.floor(random(7, 11))
+            cx = w * 0.5
+            cy = topmargin + offset + actualheight * random(0.1, 0.4)
+            leftoff = offset + actualwidth * random(0.1, 0.4)
+            rightoff = offset + actualwidth * random(0.1, 0.4)
+            stroke(330,100,100)
+            section(leftmargin + offset, bottommargin,
+                cx - leftoff + offset, cy + offset,
+                cx + rightoff - offset, cy + offset,
+                rightmargin - offset, bottommargin, true, 0)
+            stroke(330,100,100)
+            section(leftmargin, topmargin,
+                cx - leftoff, cy - offset,
+                cx - leftoff, cy + offset,
+                leftmargin, bottommargin, false, 0)
+            stroke(330,100,100)
+            section(rightmargin - offset, topmargin,
+                cx + rightoff - offset, cy - offset,
+                cx - leftoff + offset, cy - offset,
+                leftmargin + offset, topmargin, true, 0)
+            stroke(330,100,100)
+            section(rightmargin, bottommargin,
+                cx + rightoff, cy + offset,
+                cx + rightoff, cy - offset,
+                rightmargin, topmargin, false, 0)*/
+                stroke(230,100,100)
+            eye()
+            stroke(230,100,100)
             eye()
             noLoop()
         }
@@ -90,25 +119,25 @@
             cy = topmargin + offset + actualheight * random(0.1, 0.4)
             leftoff = offset + actualwidth * random(0.1, 0.4)
             rightoff = offset + actualwidth * random(0.1, 0.4)
-            section2(leftmargin + offset, bottommargin,
+            section(leftmargin + offset, bottommargin,
                 cx - leftoff + offset, cy + offset,
                 cx + rightoff - offset, cy + offset,
                 rightmargin - offset, bottommargin, true, 0)
-            section2(leftmargin, topmargin,
+            section(leftmargin, topmargin,
                 cx - leftoff, cy - offset,
                 cx - leftoff, cy + offset,
                 leftmargin, bottommargin, false, 0)
-            section2(rightmargin - offset, topmargin,
+            section(rightmargin - offset, topmargin,
                 cx + rightoff - offset, cy - offset,
                 cx - leftoff + offset, cy - offset,
                 leftmargin + offset, topmargin, true, 0)
-            section2(rightmargin, bottommargin,
+            section(rightmargin, bottommargin,
                 cx + rightoff, cy + offset,
                 cx + rightoff, cy - offset,
                 rightmargin, topmargin, false, 0)
         }
 
-        function section2(x1, y1, x2, y2, x3, y3, x4, y4, horizon, iter) {
+        function section(x1, y1, x2, y2, x3, y3, x4, y4, horizon, iter) {
             if (iter < 1) {
                 if (random() > 0.2) {
                     console.log("dive")
@@ -120,8 +149,8 @@
                         dx = (1 - t) * x3 + (t * x2)
                         dy = (1 - t) * y3 + (t * y2)
                         iter++
-                        section2(x1, y1, x2, y2, dx, dy, ox, oy, horizon, iter)
-                        section2(ox, oy, dx, dy, x3, y3, x4, y4, horizon, iter)
+                        section(x1, y1, x2, y2, dx, dy, ox, oy, horizon, iter)
+                        section(ox, oy, dx, dy, x3, y3, x4, y4, horizon, iter)
                     }
                     else {
                         ox = (1 - t) * x2 + (t * x1)
@@ -129,92 +158,87 @@
                         dx = (1 - t) * x3 + (t * x4)
                         dy = (1 - t) * y3 + (t * y4)
                         iter++
-                        section2(x1, y1, ox, oy, dx, dy, x4, y4, horizon, iter)
-                        section2(ox, oy, x2, y2, x3, y3, dx, dy, horizon, iter)
+                        section(x1, y1, ox, oy, dx, dy, x4, y4, horizon, iter)
+                        section(ox, oy, x2, y2, x3, y3, dx, dy, horizon, iter)
                     }
                 }
                 else {
-                    play(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+                    deep(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
                 }
             }
             else {
-                play(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
+                deep(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
             }
         }
 
-        function play(x1, y1, x2, y2, x3, y3, x4, y4, horizon) {
-            deep(x1, y1, x2, y2, x3, y3, x4, y4, horizon)
-        }
-
         function deep(x1, y1, x2, y2, x3, y3, x4, y4, horizon) {
-            var ox, oy, dx, dy, ix01, iy01, ix02, iy02, ix1, ix2, ix3, ix4, iy1, iy2, iy3, iy4, ratio, step, density, t
-            //stroke(0,0,0);quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var ox, oy, dx, dy, ix01, iy01, ix02, iy02, ix11, ix12, ix13, ix14, iy21, iy22, iy23, iy24, ratio, step, density, t
             if (horizon) {
                 ratio = 5
-                step = 1/ratio//0.05
+                step = 1/ratio
                 density = 0.01
                 for (i = 0; i < ratio-2; i += 2) {
                     ix01 = getpointonline(x2, x1, step * i)
                     iy01 = getpointonline(y2, y1, step * i)
                     ix02 = getpointonline(x3, x4, step * i)
                     iy02 = getpointonline(y3, y4, step * i)
-                    ix1 = getpointonline(x2, x1, step * (i+1))
-                    ix2 = getpointonline(x3, x4, step * (i+1))
-                    iy1 = getpointonline(y2, y1, step * (i+1))
-                    iy2 = getpointonline(y3, y4, step * (i+1))
+                    ix11 = getpointonline(x2, x1, step * (i+1))
+                    ix12 = getpointonline(x3, x4, step * (i+1))
+                    iy21 = getpointonline(y2, y1, step * (i+1))
+                    iy22 = getpointonline(y3, y4, step * (i+1))
                     for (t = 0; t < 1 + density; t += density) {
                         ox = getpointonline(ix01, ix02, t)
                         oy = getpointonline(iy01, iy02, t)
                         dx = ox
-                        dy = iy1
+                        dy = iy21
                         line(ox, oy, dx, dy)
                     }
-                    ix3 = getpointonline(x2, x1, step * (i + 2))
-                    ix4 = getpointonline(x3, x4, step * (i + 2))
-                    iy3 = getpointonline(y2, y1, step * (i + 2))
-                    iy4 = getpointonline(y3, y4, step * (i + 2))
+                    ix13 = getpointonline(x2, x1, step * (i + 2))
+                    ix14 = getpointonline(x3, x4, step * (i + 2))
+                    iy23 = getpointonline(y2, y1, step * (i + 2))
+                    iy24 = getpointonline(y3, y4, step * (i + 2))
                     for (t = 0; t < 1 + density; t += density) {
                         ox = getpointonline(ix01, ix02, t)
-                        oy = getpointonline(iy1, iy2, t)
-                        dx = getpointonline(ix3, ix4, t)
-                        dy = getpointonline(iy3, iy4, t)
+                        oy = getpointonline(iy21, iy22, t)
+                        dx = getpointonline(ix13, ix14, t)
+                        dy = getpointonline(iy23, iy24, t)
                         line(ox, oy, dx, dy)
                     }
                 }
             }
-            else{
+/*            else{
                 ratio = 40
-                step = 1/ratio//0.05
+                step = 1/ratio
                 density = 0.01
                 for (i = 0; i < ratio-2; i += 2) {
                     ix01 = getpointonline(x2, x1, step * i)
                     iy01 = getpointonline(y2, y1, step * i)
                     ix02 = getpointonline(x3, x4, step * i)
                     iy02 = getpointonline(y3, y4, step * i)
-                    ix1 = getpointonline(x2, x1, step * (i+1))
-                    ix2 = getpointonline(x3, x4, step * (i+1))
-                    iy1 = getpointonline(y2, y1, step * (i+1))
-                    iy2 = getpointonline(y3, y4, step * (i+1))
+                    ix11 = getpointonline(x2, x1, step * (i+1))
+                    ix12 = getpointonline(x3, x4, step * (i+1))
+                    iy21 = getpointonline(y2, y1, step * (i+1))
+                    iy22 = getpointonline(y3, y4, step * (i+1))
                     for (t = 0; t < 1 + density; t += density) {
                         ox = getpointonline(ix01, ix02, t)
                         oy = getpointonline(iy01, iy02, t)
-                        dx = ix1
+                        dx = ix11
                         dy = oy
                         line(ox, oy, dx, dy)
                     }
-                    ix3 = getpointonline(x2, x1, step * (i + 2))
-                    ix4 = getpointonline(x3, x4, step * (i + 2))
-                    iy3 = getpointonline(y2, y1, step * (i + 2))
-                    iy4 = getpointonline(y3, y4, step * (i + 2))
+                    ix13 = getpointonline(x2, x1, step * (i + 2))
+                    ix14 = getpointonline(x3, x4, step * (i + 2))
+                    iy23 = getpointonline(y2, y1, step * (i + 2))
+                    iy24 = getpointonline(y3, y4, step * (i + 2))
                     for (t = 0; t < 1 + density; t += density) {
-                        ox = getpointonline(ix1, ix2, t)
+                        ox = getpointonline(ix11, ix12, t)
                         oy = getpointonline(iy01, iy02, t)
-                        dx = getpointonline(ix3, ix4, t)
-                        dy = getpointonline(iy3, iy4, t)
+                        dx = getpointonline(ix13, ix14, t)
+                        dy = getpointonline(iy23, iy24, t)
                         line(ox, oy, dx, dy)
                     }
                 }
-            }
+            }*/
         }
 
         function getpointonline(origin, destination, t) {
