@@ -80,31 +80,8 @@
             var cx, cy, offset, leftoff, rightoff
             background(0, 0, 100)
             stroke(0, 0, 0)
-            /*offset = Math.floor(random(7, 11))
-            cx = w * 0.5
-            cy = topmargin + offset + actualheight * random(0.1, 0.4)
-            leftoff = offset + actualwidth * random(0.1, 0.4)
-            rightoff = offset + actualwidth * random(0.1, 0.4)
-            stroke(330,100,100)
-            section(leftmargin + offset, bottommargin,
-                cx - leftoff + offset, cy + offset,
-                cx + rightoff - offset, cy + offset,
-                rightmargin - offset, bottommargin, true, 0)
-            stroke(330,100,100)
-            section(leftmargin, topmargin,
-                cx - leftoff, cy - offset,
-                cx - leftoff, cy + offset,
-                leftmargin, bottommargin, false, 0)
-            stroke(330,100,100)
-            section(rightmargin - offset, topmargin,
-                cx + rightoff - offset, cy - offset,
-                cx - leftoff + offset, cy - offset,
-                leftmargin + offset, topmargin, true, 0)
-            stroke(330,100,100)
-            section(rightmargin, bottommargin,
-                cx + rightoff, cy + offset,
-                cx + rightoff, cy - offset,
-                rightmargin, topmargin, false, 0)*/
+            rect(0,0,w,h)
+
                 stroke(230,100,100)
             eye(0.02*w,0.48*w,0.05*h,0.49*h)
             eye(0.52*w,0.98*w,0.05*h,0.49*h)
@@ -118,7 +95,7 @@
             sectionwid = rm-lm
             sectionhei = bm-tm
             offset = Math.floor(random(7, 11))
-            cx = (rm-tm) * 0.5
+            cx = lm+(rm-lm) * 0.5
             cy = tm + offset + sectionhei * random(0.1, 0.4)
             leftoff = offset + sectionwid * random(0.1, 0.2)
             rightoff = offset + sectionwid * random(0.1, 0.2)
