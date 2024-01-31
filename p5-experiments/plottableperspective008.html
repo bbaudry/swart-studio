@@ -82,11 +82,11 @@
             stroke(0, 0, 0)
             rect(0,0,w,h)
 
-                stroke(230,100,100)
-            //eye(0.02*w,0.48*w,0.05*h,0.49*h)
-            //eye(0.52*w,0.98*w,0.05*h,0.49*h)
-            //eye(0.02*w,0.48*w,0.51*h,0.95*h)
-            eye(0.52*w,0.98*w,0.51*h,0.95*h)
+                stroke(200,100,100)
+            eye(0.01*w,0.49*w,0.05*h,0.49*h)
+            eye(0.51*w,0.99*w,0.05*h,0.49*h)
+            eye(0.01*w,0.49*w,0.51*h,0.95*h)
+            eye(0.51*w,0.99*w,0.51*h,0.95*h)
             noLoop()
         }
 
@@ -95,11 +95,11 @@
             sectionwid = rm-lm
             sectionhei = bm-tm
             totalradius = sectionwid*0.5
-            partradius = totalradius*0.1
+            partradius = totalradius*random(0.01,0.2)
             offset = Math.floor(random(7, 11))
             cx = lm + sectionwid * 0.5
             cy = tm + sectionhei * 0.5
-            ellipse(cx,cy,totalradius*2,totalradius*2)
+
             x1 = cx + totalradius*cos(radians(135))
             y1 = cy + totalradius*sin(radians(135))
             x2 = cx + partradius*cos(radians(135))
@@ -108,7 +108,7 @@
             y3 = cy + partradius*sin(radians(45))
             x4 = cx + totalradius*cos(radians(45))
             y4 = cy + totalradius*sin(radians(45))
-            deep(x1, y1, x2, y2, x3, y3, x4, y4, true, )
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, true)
             x1 = cx + totalradius*cos(radians(95))
             y1 = cy + totalradius*sin(radians(95))
             x2 = cx + totalradius*cos(radians(135))
@@ -117,7 +117,27 @@
             y3 = cy + totalradius*sin(radians(45))
             x4 = cx + totalradius*cos(radians(85))
             y4 = cy + totalradius*sin(radians(85))
-            deep(x1, y1, x2, y2, x3, y3, x4, y4, true, )
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, true)
+
+            x1 = cx + totalradius*cos(radians(225))
+            y1 = cy + totalradius*sin(radians(225))
+            x2 = cx + partradius*cos(radians(225))
+            y2 = cy + partradius*sin(radians(225))
+            x3 = cx + partradius*cos(radians(135))
+            y3 = cy + partradius*sin(radians(135))
+            x4 = cx + totalradius*cos(radians(135))
+            y4 = cy + totalradius*sin(radians(135))
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, false)
+            x1 = cx + totalradius*cos(radians(185))
+            y1 = cy + totalradius*sin(radians(185))
+            x2 = cx + totalradius*cos(radians(225))
+            y2 = cy + totalradius*sin(radians(225))
+            x3 = cx + totalradius*cos(radians(135))
+            y3 = cy + totalradius*sin(radians(135))
+            x4 = cx + totalradius*cos(radians(175))
+            y4 = cy + totalradius*sin(radians(175))
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, false)
+
             x1 = cx + totalradius*cos(radians(315))
             y1 = cy + totalradius*sin(radians(315))
             x2 = cx + partradius*cos(radians(315))
@@ -126,7 +146,7 @@
             y3 = cy + partradius*sin(radians(225))
             x4 = cx + totalradius*cos(radians(225))
             y4 = cy + totalradius*sin(radians(225))
-            deep(x1, y1, x2, y2, x3, y3, x4, y4, true, )
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, true)
             x1 = cx + totalradius*cos(radians(275))
             y1 = cy + totalradius*sin(radians(275))
             x2 = cx + totalradius*cos(radians(315))
@@ -135,10 +155,26 @@
             y3 = cy + totalradius*sin(radians(225))
             x4 = cx + totalradius*cos(radians(265))
             y4 = cy + totalradius*sin(radians(265))
-            deep(x1, y1, x2, y2, x3, y3, x4, y4, true, )
-            //section(x1, y1, x2, y2, x3, y3, x4, y4, false, 0)
-            //section(x1, y1, x2, y2, x3, y3, x4, y4, true, 0)
-            //section(x1, y1, x2, y2, x3, y3, x4, y4, false, 0)
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, true)
+
+            x1 = cx + totalradius*cos(radians(45))
+            y1 = cy + totalradius*sin(radians(45))
+            x2 = cx + partradius*cos(radians(45))
+            y2 = cy + partradius*sin(radians(45))
+            x3 = cx + partradius*cos(radians(315))
+            y3 = cy + partradius*sin(radians(315))
+            x4 = cx + totalradius*cos(radians(315))
+            y4 = cy + totalradius*sin(radians(315))
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, false)
+            x1 = cx + totalradius*cos(radians(5))
+            y1 = cy + totalradius*sin(radians(5))
+            x2 = cx + totalradius*cos(radians(45))
+            y2 = cy + totalradius*sin(radians(45))
+            x3 = cx + totalradius*cos(radians(315))
+            y3 = cy + totalradius*sin(radians(315))
+            x4 = cx + totalradius*cos(radians(355))
+            y4 = cy + totalradius*sin(radians(355))
+            deep(x1, y1, x2, y2, x3, y3, x4, y4, false)
         }
 
         function section(x1, y1, x2, y2, x3, y3, x4, y4, horizon, iter) {
@@ -214,7 +250,7 @@
                 ratio = 40
                 step = 1/ratio
                 density = 0.01
-                for (i = 0; i < ratio-2; i += 2) {
+                for (i = 0; i < ratio; i += 2) {
                     ix01 = getpointonline(x2, x1, step * i)
                     iy01 = getpointonline(y2, y1, step * i)
                     ix02 = getpointonline(x3, x4, step * i)
