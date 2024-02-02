@@ -33,8 +33,7 @@
             w = windowWidth * echelle
             h = windowHeight * echelle
             cnv = createCanvas(w, h);
-            background(0, 0, 0)
-            noFill()
+            initinstallation()
         }
 
         function centerCanvas() {
@@ -45,18 +44,33 @@
 
         var oldest=2024
         var newest = 0
+        var rowhei;
+        var installations=[]
         function draw() {
+            background(0, 0, 0)
+            drawinstallation()
+        }
+
+        function drawinstallation(){
+            var i = Math.floor(random(installations.length))
+            var install = installations[i]
+            var year = install["dateAcquisition"]
+            var pos = (newest-year)*rowhei
+            rect(0,pos,w,rowhei)
+        }
+        
+        function initinstallation(){
             console.log(oeuvres.length+" oeuvres au MAC.")
             fill(200,100,100)
             for(i=0;i<oeuvres.length;i++){
                 if (oeuvres[i]["categorie"]=="Installation"){
-                    ellipse(random(w),random(h),7,7)
+                    installations.push(oeuvres[i])
                     if(oeuvres[i]["dateAcquisition"]<oldest){oldest=oeuvres[i]["dateAcquisition"]}
                     if(oeuvres[i]["dateAcquisition"]>newest){newest=oeuvres[i]["dateAcquisition"]}
                 }
             }
+            rowhei=newest-oldest
             console.log(oeuvres.length+" oeuvres au MAC. Oldest acquisition: "+oldest+"; most recent acquisition: "+newest)
-            noLoop()
         }
 
     </script>
