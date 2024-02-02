@@ -8,9 +8,9 @@ import processing.core.PApplet;
 //Draugr is an exoplanet https://en.wikipedia.org/wiki/PSR_B1257%2B12_A
 //the Draugr series is about circular shapes and random black lines
 public class Draugr001  extends PApplet {
-    int vis_w = 3000;
-    int txt_w = 3000;
-    int h = 3000;
+    int vis_w = 1000;
+    int txt_w = 1000;
+    int h = 1000;
     int w = vis_w+txt_w;
     float x;
     float y;
@@ -42,7 +42,7 @@ public class Draugr001  extends PApplet {
         cx=vis_w/2; add_knob(Float.toString(cx),false); //knobs.add(new Knob(Float.toString(cx),random(vis_w,w),txt_y));// print
         cy=h/2; add_knob(Float.toString(cy),false); //knobs.add(new Knob(Float.toString(cy),random(vis_w,w),7));// print
         radius = (float)(vis_w*0.9); add_knob(Float.toString(radius),false); //knobs.add(new Knob(Float.toString(radius),random(vis_w,w),txt_y));// print
-        nb_iterations = 17; add_knob(Integer.toString(nb_iterations),false); //knobs.add(new Knob(Integer.toString(nb_iterations),random(vis_w,w),txt_y));// print
+        nb_iterations = 7; add_knob(Integer.toString(nb_iterations),false); //knobs.add(new Knob(Integer.toString(nb_iterations),random(vis_w,w),txt_y));// print
         iteration = 0;
         background(242,242,217);
         fill(233,233,211);

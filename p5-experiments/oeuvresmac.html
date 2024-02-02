@@ -43,14 +43,19 @@
             cnv.position(x, y);
         }
 
+        var oldest=2024
+        var newest = 0
         function draw() {
             console.log(oeuvres.length+" oeuvres au MAC.")
             fill(200,100,100)
             for(i=0;i<oeuvres.length;i++){
                 if (oeuvres[i]["categorie"]=="Installation"){
                     ellipse(random(w),random(h),7,7)
+                    if(oeuvres[i]["dateAcquisition"]<oldest){oldest=oeuvres[i]["dateAcquisition"]}
+                    if(oeuvres[i]["dateAcquisition"]>newest){newest=oeuvres[i]["dateAcquisition"]}
                 }
             }
+            console.log(oeuvres.length+" oeuvres au MAC. Oldest acquisition: "+oldest+"; most recent acquisition: "+newest)
             noLoop()
         }
 
