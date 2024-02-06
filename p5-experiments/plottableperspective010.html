@@ -32,7 +32,7 @@
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
-        var dataforonerow = []
+        var nbiter,initangle
 
         function setup() {
             //getsvg()
@@ -42,7 +42,8 @@
             strokeCap(SQUARE)
             background(0,0,0)
             noFill()
-            maxcount = random(39, 45)
+            nbiter = Math.floor(random(7, 17))
+            initangle = Math.floor(random(0,90))
         }
 
         function getsvg() {
@@ -81,20 +82,21 @@
             var cx, cy, offset, leftoff, rightoff
             //background(0, 0, 0)
             stroke(0,0,100)
+            if(frameCount<nbiter){
             eye()
-            //noLoop()
+        }else{noLoop()}
         }
 
         function eye(){
             var cx, cy, rad1, rad2, rad3, angle1, angle2, angle3
             var x1,y1,x2,y2,x3,y3,x4,y4
-            cx=w*0.5
-            cy=h*0.5
-            rad1=0.1*w
-            rad2=0.4*w
+            cx=leftmargin+actualwidth*0.5
+            cy=topmargin+actualheight*0.5
+            rad1=0.2*actualwidth
+            rad2=0.6*actualwidth
             rad3=rad1+0.5*(rad2-rad1)
-            angle1=radians(random(0,180))
-            angle2=angle1+radians(random(0,180))
+            angle1=radians(20*random(0,9))
+            angle2=angle1+radians(10*random(0,18))
             angle3=angle1+0.5*(angle2-angle1)
             x1=cx
             y1=cy
@@ -104,12 +106,48 @@
             y3=cy+rad2*sin(angle3)
             x4=cx+rad3*cos(angle2)
             y4=cy+rad3*sin(angle2)
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            stroke(0,100,100);ellipse(x1,y1,7,7)
-            stroke(90,100,100);ellipse(x2,y2,7,7)
-            stroke(180,100,100);ellipse(x3,y3,7,7)
-            stroke(270,100,100);ellipse(x4,y4,7,7)
+            slicewithlines(x1,y1,x2,y2,x3,y3,x4,y4)
         }
+
+        function slicewithlines(x1, y1, x2, y2, x3, y3, x4, y4) {
+            noFill()
+            //quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            var density, ox, oy, dx, dy
+            density = random(0.01, 0.05)
+            if (random() < 0.5) {
+                for (var t = 0; t < 1 - density * 4; t += density * 4) {
+                    ox = (1 - t) * x1 + (t * x2)
+                    oy = (1 - t) * y1 + (t * y2)
+                    dx = (1 - t) * x2 + (t * x3)
+                    dy = (1 - t) * y2 + (t * y3)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x3 + (t * x4)
+                    oy = (1 - t) * y3 + (t * y4)
+                    dx = (1 - t) * x4 + (t * x1)
+                    dy = (1 - t) * y4 + (t * y1)
+                    line(ox, oy, dx, dy)
+                }
+            }
+            else {
+                for (var t = 0; t < 1 - density * 4; t += density * 4) {
+                    ox = (1 - t) * x2 + (t * x3)
+                    oy = (1 - t) * y2 + (t * y3)
+                    dx = (1 - t) * x3 + (t * x4)
+                    dy = (1 - t) * y3 + (t * y4)
+                    line(ox, oy, dx, dy)
+                }
+                for (var t = 0; t < 1 - density; t += density) {
+                    ox = (1 - t) * x4 + (t * x1)
+                    oy = (1 - t) * y4 + (t * y1)
+                    dx = (1 - t) * x1 + (t * x2)
+                    dy = (1 - t) * y1 + (t * y2)
+                    line(ox, oy, dx, dy)
+                }
+            }
+        }
+
 
 
         function getpointonline(origin, destination, t) {
