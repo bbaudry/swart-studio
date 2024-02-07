@@ -98,7 +98,9 @@
             cy = tm + sectionhei * 0.5
 
             ellipse(cx,cy,totalradius,totalradius)
-            while(partrad<totalradius-(side*0.5)){}
+            while(partradius<totalradius){
+                ellipse(cx,cy,partradius,partradius);partradius+=15
+            }
         }
 
 
