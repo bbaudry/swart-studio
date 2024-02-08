@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 1
+        var echelle = 0.5
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.8 * w
@@ -83,7 +83,7 @@
             stroke(200, 100, 100)
             fleurirreguliere()
             stroke(230, 100, 100)
-            fleurirreguliere()
+            //fleurirreguliere()
             //fleurreguliere()
             //simplewave()
             noLoop()
@@ -92,7 +92,7 @@
             var cx, cy, px, py, cpx2, cpy2, cpx1, cpy1, angles, angle1, angle2, molnar, ryoji, lewitt, angleinc, radoffset, rad
             cx = w * random(0.3,0.7)
             cy = h * random(0.3,0.7)
-            radoffset = random(90, 130)
+            radoffset =   random(90, 130)
             angles = []
             angle1 = 0
             while (angle1 < 360) {
@@ -108,7 +108,7 @@
                 })
                 angle1=angle2
             }
-            for (rad = 0.45 * w; rad > 21; rad -= 3) {
+            for (rad = 0.45 * w; rad > 21; rad -= 2) {
                 beginShape();
                 angle = 0;
                 px = cx + rad * cos(radians(angle))
