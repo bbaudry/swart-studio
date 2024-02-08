@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 0.5
+        var echelle = 1
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.8 * w
@@ -32,7 +32,6 @@
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
-        var dataforonerow = []
 
         function setup() {
             //getsvg()
@@ -83,20 +82,22 @@
             rect(0, 0, w, h)
             stroke(200, 100, 100)
             fleurirreguliere()
+            stroke(230, 100, 100)
+            fleurirreguliere()
             //fleurreguliere()
             //simplewave()
             noLoop()
         }
         function fleurirreguliere() {
             var cx, cy, px, py, cpx2, cpy2, cpx1, cpy1, angles, angle1, angle2, molnar, ryoji, lewitt, angleinc, radoffset, rad
-            cx = w * 0.5
-            cy = h * 0.5
-            radoffset = random(90,130)
+            cx = w * random(0.3,0.7)
+            cy = h * random(0.3,0.7)
+            radoffset = random(90, 130)
             angles = []
             angle1 = 0
             while (angle1 < 360) {
-                angle2 = angle1 + Math.floor(random(50, 70))
-                if(angle1>300||angle2>360){angle2=360}
+                angle2 = angle1 + Math.floor(random(10, 80))
+                if (angle1 > 300 || angle2 > 360) { angle2 = 360 }
                 angleinc = angle2 - angle1
                 molnar = 0.25 * angleinc + random(0.5 * angleinc);
                 ryoji = 0.5 * angleinc + random(0.5 * angleinc);
@@ -105,34 +106,25 @@
                     anglecontrol2: angle1 + ryoji,
                     angle: angle2
                 })
-                push()
-                px = cx + rad * cos(radians(angle1))
-                py = cy + rad * sin(radians(angle1))
-                stroke(0,100,100)
-                ellipse(px,py,11,11)
-                pop()
-                angle1 = angle2
-                
+                angle1=angle2
             }
-            rad = 0.45 * w
-        
-                        for (rad = 0.45 * w; rad > 21; rad -= 7) {
-            beginShape();
-            angle = 0;
-            px = cx + rad * cos(radians(angle))
-            py = cy + rad * sin(radians(angle))
-            vertex(px, py);
-            for (i = 0; i < angles.length; i += 1) {
-                cpx2 = cx + (rad + radoffset) * cos(radians(angles[i].anglecontrol1))
-                cpy2 = cy + (rad + radoffset) * sin(radians(angles[i].anglecontrol1))
-                px = cx + rad * cos(radians(angles[i].angle))
-                py = cy + rad * sin(radians(angles[i].angle))
-                cpx1 = cx + (rad - radoffset) * cos(radians(angles[i].anglecontrol2))
-                cpy1 = cy + (rad - radoffset) * sin(radians(angles[i].anglecontrol2))
-                bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-            }
-            endShape()
-            
+            for (rad = 0.45 * w; rad > 21; rad -= 3) {
+                beginShape();
+                angle = 0;
+                px = cx + rad * cos(radians(angle))
+                py = cy + rad * sin(radians(angle))
+                vertex(px, py);
+                for (i = 0; i < angles.length; i += 1) {
+                    cpx2 = cx + (rad + radoffset) * cos(radians(angles[i].anglecontrol1))
+                    cpy2 = cy + (rad + radoffset) * sin(radians(angles[i].anglecontrol1))
+                    px = cx + rad * cos(radians(angles[i].angle))
+                    py = cy + rad * sin(radians(angles[i].angle))
+                    cpx1 = cx + (rad - radoffset) * cos(radians(angles[i].anglecontrol2))
+                    cpy1 = cy + (rad - radoffset) * sin(radians(angles[i].anglecontrol2))
+                    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                }
+                endShape()
+
             }
         }
 
