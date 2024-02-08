@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 1
+        var echelle = 0.5
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.8 * w
@@ -80,27 +80,55 @@
             var cx, cy, offset, leftoff, rightoff
             background(0, 0, 100)
             stroke(0, 0, 0)
-            rect(0,0,w,h)
+            rect(0, 0, w, h)
 
-                stroke(200,100,100)
-            eye(0.05*w,0.95*w,0.05*h,0.95*h)
+            stroke(200, 100, 100)
+            eye(0.05 * w, 0.95 * w, 0.05 * h, 0.95 * h)
             noLoop()
         }
 
-        function eye(lm,rm,tm,bm) {
-            var sectionwid, sectionhei, cx, cy, totalradius, partradius, x1,y1,x2,y2,x3,y3,x4,y4, side
-            sectionwid = rm-lm
-            sectionhei = bm-tm
+        function eye(lm, rm, tm, bm) {
+            var sectionwid, sectionhei, cx, cy, totalradius, partradius, x1, y1, x2, y2, x3, y3, x4, y4, side
+            sectionwid = rm - lm
+            sectionhei = bm - tm
             totalradius = sectionwid
-            partradius = totalradius*random(0.01,0.2)
+            partradius = totalradius * random(0.01, 0.2)
             offset = Math.floor(random(7, 11))
             cx = lm + sectionwid * 0.5
             cy = tm + sectionhei * 0.5
 
-            ellipse(cx,cy,totalradius,totalradius)
-            while(partradius<totalradius){
-                ellipse(cx,cy,partradius,partradius);partradius+=15
+            ellipse(cx, cy, totalradius, totalradius)
+            while (partradius < totalradius) {
+                //ellipse(cx, cy, partradius, partradius); 
+                partradius += 15
             }
+
+            beginShape();
+            angle=0;molnar=20;angleinc1=40;ryoji=60;rad=w*0.4
+            px = cx + rad * cos(radians(angle))
+            py = cy + rad * sin(radians(angle))
+            push();stroke(0,100,100);ellipse(px,py,7,7);pop()
+            vertex(px, py);
+            cpx2 = cx + (rad - 90) * cos(radians(angle + molnar))
+            cpy2 = cy + (rad - 90) * sin(radians(angle + molnar))
+            push();stroke(50,100,100);ellipse(cpx2,cpy2,7,7);pop()
+            px = cx + rad * cos(radians(angle + angleinc1))//10
+            py = cy + rad * sin(radians(angle + angleinc1))
+            push();stroke(100,100,100);ellipse(px,py,7,7);pop()
+            cpx1 = cx + (rad - 90) * cos(radians(angle + ryoji))//10
+            cpy1 = cy + (rad - 90) * sin(radians(angle + ryoji))
+            push();stroke(150,100,100);ellipse(cpx1,cpy1,7,7);pop()
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            angle=80
+            cpx2 = cx + (rad - 10) * cos(radians(angle + molnar))
+            cpy2 = cy + (rad - 10) * sin(radians(angle + molnar))
+            px = cx + rad * cos(radians(angle + angleinc1))//10
+            py = cy + rad * sin(radians(angle + angleinc1))
+            cpx1 = cx + (rad - 10) * cos(radians(angle + ryoji))//10
+            cpy1 = cy + (rad - 10) * sin(radians(angle + ryoji))
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            endshape()
+
         }
 
 
