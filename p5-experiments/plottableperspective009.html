@@ -94,8 +94,9 @@
             radoffset = random(90,130)
             angles = []
             angle1 = 0
-            while (angle1 < 280) {
+            while (angle1 < 360) {
                 angle2 = angle1 + Math.floor(random(50, 70))
+                if(angle1>300||angle2>360){angle2=360}
                 angleinc = angle2 - angle1
                 molnar = 0.25 * angleinc + random(0.5 * angleinc);
                 ryoji = 0.5 * angleinc + random(0.5 * angleinc);
@@ -104,12 +105,18 @@
                     anglecontrol2: angle1 + ryoji,
                     angle: angle2
                 })
+                push()
+                px = cx + rad * cos(radians(angle1))
+                py = cy + rad * sin(radians(angle1))
+                stroke(0,100,100)
+                ellipse(px,py,11,11)
+                pop()
                 angle1 = angle2
-
+                
             }
             rad = 0.45 * w
-            /*
-                        for (rad = 0.45 * w; rad > 21; rad -= 7) {*/
+        
+                        for (rad = 0.45 * w; rad > 21; rad -= 7) {
             beginShape();
             angle = 0;
             px = cx + rad * cos(radians(angle))
@@ -124,25 +131,9 @@
                 cpy1 = cy + (rad - radoffset) * sin(radians(angles[i].anglecontrol2))
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
             }
-            angle1 = angles[angles.length-1].angle
-            angle2 = 360
-            angleinc = angle2 - angle1
-            molnar = 0.25 * angleinc + random(0.5 * angleinc);
-            ryoji = 0.5 * angleinc + random(0.5 * angleinc);
-            cpx2 = cx + (rad + radoffset) * cos(radians(angle1 + molnar))
-            cpy2 = cy + (rad + radoffset) * sin(radians(angle1 + molnar))
-            px = cx + rad * cos(radians(angle2))
-            py = cy + rad * sin(radians(angle2))
-            cpx1 = cx + (rad - radoffset) * cos(angle1 + ryoji)
-            cpy1 = cy + (rad - radoffset) * sin(angle1 + ryoji)
-            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
             endShape()
-            stroke(0,100,100);ellipse(px,py,11,11)
-            px = cx + rad * cos(radians(angle1))
-            py = cy + rad * sin(radians(angle1))
-            stroke(230,100,100);ellipse(px,py,11,11)
-
-            /*}*/
+            
+            }
         }
 
         function fleurreguliere() {
