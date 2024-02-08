@@ -83,9 +83,62 @@
             rect(0, 0, w, h)
 
             stroke(200, 100, 100)
-            eye(0.05 * w, 0.95 * w, 0.05 * h, 0.95 * h)
+            //eye(0.05 * w, 0.95 * w, 0.05 * h, 0.95 * h)
+            drap()
+            //simplewave()
             noLoop()
         }
+
+        function simplewave() {
+            stroke(0, 0, 0)
+            beginShape();
+            px = 0//cx + rad * cos(radians(angle))
+            py = 100//cy + rad * sin(radians(angle))
+            push(); stroke(0, 100, 100); ellipse(px, py, 7, 7); pop()
+            vertex(px, py);
+            cpx2 = 20//cx + (rad - 90) * cos(radians(angle + molnar))
+            cpy2 = 50//cy + (rad - 90) * sin(radians(angle + molnar))
+            push(); stroke(100, 100, 100); ellipse(cpx2, cpy2, 7, 7); pop()
+            px = 60//cx + rad * cos(radians(angle + angleinc1))//10
+            py = 100//cy + rad * sin(radians(angle + angleinc1))
+            push(); stroke(0, 100, 100); ellipse(px, py, 7, 7); pop()
+            cpx1 = 40//cx + (rad - 90) * cos(radians(angle + ryoji))//10
+            cpy1 = 150//cy + (rad - 90) * sin(radians(angle + ryoji))
+            push(); stroke(100, 100, 100); ellipse(cpx1, cpy1, 7, 7); pop()
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            endShape()
+
+        }
+
+        function drap() {
+            var cx, cy, px, py, cpx2, cpy2, cpx1, cpy1, angle, molnar, ryoji, lewitt, angleinc, radoffset, rad
+            cx = w * 0.5
+            cy = h * 0.5
+            angleinc = 30
+            radoffset = 90
+            molnar = 0.25*angleinc + random(0.25*angleinc); 
+            lewitt = angleinc; 
+            ryoji = molnar + random(0.25*angleinc);
+            for (rad = 0.45 * w; rad > 21; rad -= 7) {
+                beginShape();
+                angle = 0;
+                px = cx + rad * cos(radians(angle))
+                py = cy + rad * sin(radians(angle))
+                vertex(px, py);
+                for (angle = 0; angle < 360; angle += angleinc) {
+                    cpx2 = cx + (rad + radoffset) * cos(radians(angle + molnar))
+                    cpy2 = cy + (rad + radoffset) * sin(radians(angle + molnar))
+                    px = cx + rad * cos(radians(angle + lewitt))//10
+                    py = cy + rad * sin(radians(angle + lewitt))
+                    cpx1 = cx + (rad - radoffset) * cos(radians(angle + ryoji))//10
+                    cpy1 = cy + (rad - radoffset) * sin(radians(angle + ryoji))
+                    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+                }
+                endShape()
+            }
+        }
+
+
 
         function eye(lm, rm, tm, bm) {
             var sectionwid, sectionhei, cx, cy, totalradius, partradius, x1, y1, x2, y2, x3, y3, x4, y4, side
@@ -99,35 +152,10 @@
 
             ellipse(cx, cy, totalradius, totalradius)
             while (partradius < totalradius) {
-                //ellipse(cx, cy, partradius, partradius); 
+                ellipse(cx, cy, partradius, partradius);
                 partradius += 15
             }
 
-            beginShape();
-            angle=0;molnar=20;angleinc1=40;ryoji=60;rad=w*0.4
-            px = cx + rad * cos(radians(angle))
-            py = cy + rad * sin(radians(angle))
-            push();stroke(0,100,100);ellipse(px,py,7,7);pop()
-            vertex(px, py);
-            cpx2 = cx + (rad - 90) * cos(radians(angle + molnar))
-            cpy2 = cy + (rad - 90) * sin(radians(angle + molnar))
-            push();stroke(50,100,100);ellipse(cpx2,cpy2,7,7);pop()
-            px = cx + rad * cos(radians(angle + angleinc1))//10
-            py = cy + rad * sin(radians(angle + angleinc1))
-            push();stroke(100,100,100);ellipse(px,py,7,7);pop()
-            cpx1 = cx + (rad - 90) * cos(radians(angle + ryoji))//10
-            cpy1 = cy + (rad - 90) * sin(radians(angle + ryoji))
-            push();stroke(150,100,100);ellipse(cpx1,cpy1,7,7);pop()
-            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-            angle=80
-            cpx2 = cx + (rad - 10) * cos(radians(angle + molnar))
-            cpy2 = cy + (rad - 10) * sin(radians(angle + molnar))
-            px = cx + rad * cos(radians(angle + angleinc1))//10
-            py = cy + rad * sin(radians(angle + angleinc1))
-            cpx1 = cx + (rad - 10) * cos(radians(angle + ryoji))//10
-            cpy1 = cy + (rad - 10) * sin(radians(angle + ryoji))
-            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-            endshape()
 
         }
 
