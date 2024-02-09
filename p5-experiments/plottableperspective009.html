@@ -77,10 +77,10 @@
 
         function draw() {
             var cx, cy, offset, leftoff, rightoff
-            background(0, 0, 100)
+            background(0, 0, 0)
             stroke(0, 0, 0)
             rect(0, 0, w, h)
-            stroke(200, 100, 100)
+            stroke(0, 0, 100)
             fleurirreguliere()
             stroke(230, 100, 100)
             //fleurirreguliere()
@@ -90,13 +90,13 @@
         }
         function fleurirreguliere() {
             var cx, cy, px, py, cpx2, cpy2, cpx1, cpy1, angles, angle1, angle2, molnar, ryoji, lewitt, angleinc, radoffset, rad
-            cx = w * random(0.3,0.7)
-            cy = h * random(0.3,0.7)
+            cx = w * random(0.4,0.6)
+            cy = h * random(0.4,0.6)
             radoffset =   random(90, 130)
             angles = []
             angle1 = 0
             while (angle1 < 360) {
-                angle2 = angle1 + Math.floor(random(10, 80))
+                angle2 = angle1 + Math.floor(random(40, 60))
                 if (angle1 > 300 || angle2 > 360) { angle2 = 360 }
                 angleinc = angle2 - angle1
                 molnar = 0.25 * angleinc + random(0.5 * angleinc);
@@ -104,11 +104,12 @@
                 angles.push({
                     anglecontrol1: angle1 + molnar,
                     anglecontrol2: angle1 + ryoji,
-                    angle: angle2
+                    angle: angle2,
+                    offset: random(-142,142)
                 })
                 angle1=angle2
             }
-            for (rad = 0.45 * w; rad > 21; rad -= 2) {
+            for (rad = 0.35 * w; rad > 21; rad -= 2) {
                 beginShape();
                 angle = 0;
                 px = cx + rad * cos(radians(angle))
@@ -117,8 +118,8 @@
                 for (i = 0; i < angles.length; i += 1) {
                     cpx2 = cx + (rad + radoffset) * cos(radians(angles[i].anglecontrol1))
                     cpy2 = cy + (rad + radoffset) * sin(radians(angles[i].anglecontrol1))
-                    px = cx + rad * cos(radians(angles[i].angle))
-                    py = cy + rad * sin(radians(angles[i].angle))
+                    px = cx + (rad+angles[i].offset) * cos(radians(angles[i].angle))
+                    py = cy + (rad+angles[i].offset) * sin(radians(angles[i].angle))
                     cpx1 = cx + (rad - radoffset) * cos(radians(angles[i].anglecontrol2))
                     cpy1 = cy + (rad - radoffset) * sin(radians(angles[i].anglecontrol2))
                     bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);

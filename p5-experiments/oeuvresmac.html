@@ -65,6 +65,7 @@
             for(i=0;i<oeuvres.length;i++){
                 if (oeuvres[i]["categorie"]=="Installation"){
                     installations.push(oeuvres[i])
+                    /*replace by push by date, e.g. {1978:[oeuvre1, oeuvre2],1979:[oeuvre3, oeuvre7 ]}*/
                     if(oeuvres[i]["dateAcquisition"]<oldest){oldest=oeuvres[i]["dateAcquisition"]}
                     if(oeuvres[i]["dateAcquisition"]>newest){newest=oeuvres[i]["dateAcquisition"]}
                 }
