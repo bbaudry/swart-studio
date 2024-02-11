@@ -41,8 +41,9 @@
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
+            initgrid()
+
             noFill()
-            background(0, 0, 100)
         }
 
         function getsvg() {
@@ -78,14 +79,15 @@
         }
 
         function draw() {
+            background(0, 0, 100)
+
             stroke(0,0,0)
             strokeWeight(1)
             rect(0,0,w,h)
 //            quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
-            initgrid()
 //            drawgrid()
-            space()
-            noLoop()
+            spacedeux()
+            //noLoop()
         }
 
         var grid=[]
@@ -95,20 +97,24 @@
         function initgrid(){
             for(var y=0;y<nbrows;y+=1){
                 for(var x=0;x<nbcols;x+=1){
-                    grid.push({x:leftmargin+x*resolution,y:topmargin+y*resolution})
-                }
+                    if(random()<0.7){
+
+                    grid.push({
+                        x:leftmargin+x*resolution,
+                        y:topmargin+y*resolution,
+                        angle:0,
+                        speed:random(0.5,1)
+                    })
+                }}
             }
         }
 
-        function space(){
-            for(var j=0;j<nbrows;j+=1){
-                for(var i=0;i<nbcols;i+=1){
-                    var index=i+j*nbcols
-                    var coords=grid[index]
-                    if(random()<0.7){
+        function spacedeux(){
+            for(var j=0;j<grid.length;j++){
+                var coords=grid[j]
                         push()
                         translate(coords.x+resolution*0.5,coords.y+resolution*0.5)
-                        var angle= random(84)
+                        var angle=coords.angle
                         rotate(radians(angle))
                         ellipse(0,0,resolution,resolution*0.3)
                         angle+=20
@@ -117,8 +123,32 @@
                         angle+=20
                         rotate(radians(angle))
                         ellipse(0,0,resolution,resolution*0.1)
+                        coords.angle+=coords.speed
                         pop()
-                    }
+                    
+                
+            }
+        }
+
+        function space(){
+            for(var j=0;j<nbrows;j+=1){
+                for(var i=0;i<nbcols;i+=1){
+                    var index=i+j*nbcols
+                    var coords=grid[index]
+                        push()
+                        translate(coords.x+resolution*0.5,coords.y+resolution*0.5)
+                        var angle=coords.angle
+                        rotate(radians(angle))
+                        ellipse(0,0,resolution,resolution*0.3)
+                        angle+=20
+                        rotate(radians(angle))
+                        ellipse(0,0,resolution,resolution*0.2)
+                        angle+=20
+                        rotate(radians(angle))
+                        ellipse(0,0,resolution,resolution*0.1)
+                        coords.angle+=coords.speed
+                        pop()
+                    
                 }
             }
         }
