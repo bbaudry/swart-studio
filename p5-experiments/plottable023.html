@@ -81,30 +81,55 @@
             stroke(0,0,0)
             strokeWeight(1)
             rect(0,0,w,h)
-            quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
+//            quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
             initgrid()
-            drawgrid()
+//            drawgrid()
+            space()
             noLoop()
         }
 
         var grid=[]
-        var resolution=Math.floor((rightmargin-leftmargin)*0.1)
+        var resolution=Math.floor((rightmargin-leftmargin)*0.2)
         var nbcols=Math.floor((rightmargin-leftmargin)/resolution)
         var nbrows=Math.floor((bottommargin-topmargin)/resolution)
         function initgrid(){
             for(var y=0;y<nbrows;y+=1){
                 for(var x=0;x<nbcols;x+=1){
-                    grid.push({x:x*resolution,y:y*resolution})
+                    grid.push({x:leftmargin+x*resolution,y:topmargin+y*resolution})
                 }
             }
         }
+
+        function space(){
+            for(var j=0;j<nbrows;j+=1){
+                for(var i=0;i<nbcols;i+=1){
+                    var index=i+j*nbcols
+                    var coords=grid[index]
+                    if(random()<0.7){
+                        push()
+                        translate(coords.x+resolution*0.5,coords.y+resolution*0.5)
+                        var angle= random(84)
+                        rotate(radians(angle))
+                        ellipse(0,0,resolution,resolution*0.3)
+                        angle+=20
+                        rotate(radians(angle))
+                        ellipse(0,0,resolution,resolution*0.2)
+                        angle+=20
+                        rotate(radians(angle))
+                        ellipse(0,0,resolution,resolution*0.1)
+                        pop()
+                    }
+                }
+            }
+        }
+
         function drawgrid(){
             console.log("resolution: "+resolution+"; nbcols: "+nbcols+"; nbrows: "+nbrows)  
             for(var j=0;j<nbrows;j+=1){
                 for(var i=0;i<nbcols;i+=1){
                     var index=i+j*nbcols
                     var coords=grid[index]
-                    rect(leftmargin+coords.x,topmargin+coords.y,resolution,resolution)
+                    rect(coords.x,coords.y,resolution,resolution)
                 }
             }
         }
