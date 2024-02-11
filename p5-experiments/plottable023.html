@@ -92,24 +92,23 @@
         var nbcols=Math.floor((rightmargin-leftmargin)/resolution)
         var nbrows=Math.floor((bottommargin-topmargin)/resolution)
         function initgrid(){
-            for(y=0;y<nbrows;y+=resolution){
-                for(x=0;x<nbcols;x+=resolution){
-                    console.log("resolution: "+resolution+"; nbcols: "+nbcols+"; nbrows: "+nbrows)
-                    grid.push({x:x,y:y})
+            for(var y=0;y<nbrows;y+=1){
+                for(var x=0;x<nbcols;x+=1){
+                    grid.push({x:x*resolution,y:y*resolution})
                 }
             }
         }
         function drawgrid(){
-            for(y=0;y<nbrows;y+=resolution){
-                for(x=0;x<nbcols;x+=resolution){
-                    var index=x+y*nbcols
+            console.log("resolution: "+resolution+"; nbcols: "+nbcols+"; nbrows: "+nbrows)  
+            for(var j=0;j<nbrows;j+=1){
+                for(var i=0;i<nbcols;i+=1){
+                    var index=i+j*nbcols
                     var coords=grid[index]
-                    console.log(index)
-                    rect(coords.x,coords.y,resolution,resolution)
+                    rect(leftmargin+coords.x,topmargin+coords.y,resolution,resolution)
                 }
             }
         }
-
+        
     </script>
 </body>
 
