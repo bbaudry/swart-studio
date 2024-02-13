@@ -79,91 +79,89 @@
         }
 
         function draw() {
-            background(0, 0, 100)
-
-            stroke(0,0,0)
+            background(0, 0, 100,42)
+            stroke(0, 0, 0)
             strokeWeight(1)
-            rect(0,0,w,h)
-//            quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
-//            drawgrid()
+            rect(0, 0, w, h)
+            //            quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
+            //            drawgrid()
             spacedeux()
             //noLoop()
         }
 
-        var grid=[]
-        var resolution=Math.floor((rightmargin-leftmargin)*0.2)
-        var nbcols=Math.floor((rightmargin-leftmargin)/resolution)
-        var nbrows=Math.floor((bottommargin-topmargin)/resolution)
-        function initgrid(){
-            for(var y=0;y<nbrows;y+=1){
-                for(var x=0;x<nbcols;x+=1){
-                    if(random()<0.7){
-
-                    grid.push({
-                        x:leftmargin+x*resolution,
-                        y:topmargin+y*resolution,
-                        angle:0,
-                        speed:random(0.5,1)
-                    })
-                }}
-            }
-        }
-
-        function spacedeux(){
-            for(var j=0;j<grid.length;j++){
-                var coords=grid[j]
-                        push()
-                        translate(coords.x+resolution*0.5,coords.y+resolution*0.5)
-                        var angle=coords.angle
-                        rotate(radians(angle))
-                        ellipse(0,0,resolution,resolution*0.3)
-                        angle+=20
-                        rotate(radians(angle))
-                        ellipse(0,0,resolution,resolution*0.2)
-                        angle+=20
-                        rotate(radians(angle))
-                        ellipse(0,0,resolution,resolution*0.1)
-                        coords.angle+=coords.speed
-                        pop()
-                    
-                
-            }
-        }
-
-        function space(){
-            for(var j=0;j<nbrows;j+=1){
-                for(var i=0;i<nbcols;i+=1){
-                    var index=i+j*nbcols
-                    var coords=grid[index]
-                        push()
-                        translate(coords.x+resolution*0.5,coords.y+resolution*0.5)
-                        var angle=coords.angle
-                        rotate(radians(angle))
-                        ellipse(0,0,resolution,resolution*0.3)
-                        angle+=20
-                        rotate(radians(angle))
-                        ellipse(0,0,resolution,resolution*0.2)
-                        angle+=20
-                        rotate(radians(angle))
-                        ellipse(0,0,resolution,resolution*0.1)
-                        coords.angle+=coords.speed
-                        pop()
-                    
+        var grid = []
+        var resolution = Math.floor((rightmargin - leftmargin) * 0.2)
+        var nbcols = Math.floor((rightmargin - leftmargin) / resolution)
+        var nbrows = Math.floor((bottommargin - topmargin) / resolution)
+        function initgrid() {
+            for (var y = 0; y < nbrows; y += 1) {
+                for (var x = 0; x < nbcols; x += 1) {
+                    if (random() < 0.6) {
+                        grid.push({
+                            x: leftmargin + x * resolution,
+                            y: topmargin + y * resolution,
+                            angle: 0,
+                            speed: random(0.1, 0.7),
+                            angleoffset: Math.floor(random(21,42)),
+                            occurences:Math.floor(random(2,7))
+                        })
+                    }
                 }
             }
         }
 
-        function drawgrid(){
-            console.log("resolution: "+resolution+"; nbcols: "+nbcols+"; nbrows: "+nbrows)  
-            for(var j=0;j<nbrows;j+=1){
-                for(var i=0;i<nbcols;i+=1){
-                    var index=i+j*nbcols
-                    var coords=grid[index]
-                    rect(coords.x,coords.y,resolution,resolution)
+        function spacedeux() {
+            for (var j = 0; j < grid.length; j++) {
+                var coords = grid[j]
+                push()
+                translate(coords.x + resolution * 0.5, coords.y + resolution * 0.5)
+                var angle = coords.angle
+                for(i=0;i<coords.occurences;i++){
+                    angle+=i*coords.angleoffset
+                    rotate(radians(angle))
+                    ellipse(0, 0, resolution, resolution * 0.3)
+                }
+                coords.angle += coords.speed
+                pop()
+
+
+            }
+        }
+
+        function space() {
+            for (var j = 0; j < nbrows; j += 1) {
+                for (var i = 0; i < nbcols; i += 1) {
+                    var index = i + j * nbcols
+                    var coords = grid[index]
+                    push()
+                    translate(coords.x + resolution * 0.5, coords.y + resolution * 0.5)
+                    var angle = coords.angle
+                    rotate(radians(angle))
+                    ellipse(0, 0, resolution, resolution * 0.3)
+                    angle += 20
+                    rotate(radians(angle))
+                    ellipse(0, 0, resolution, resolution * 0.2)
+                    angle += 20
+                    rotate(radians(angle))
+                    ellipse(0, 0, resolution, resolution * 0.1)
+                    coords.angle += coords.speed
+                    pop()
+
                 }
             }
         }
-        
+
+        function drawgrid() {
+            console.log("resolution: " + resolution + "; nbcols: " + nbcols + "; nbrows: " + nbrows)
+            for (var j = 0; j < nbrows; j += 1) {
+                for (var i = 0; i < nbcols; i += 1) {
+                    var index = i + j * nbcols
+                    var coords = grid[index]
+                    rect(coords.x, coords.y, resolution, resolution)
+                }
+            }
+        }
+
     </script>
 </body>
 
