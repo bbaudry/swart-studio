@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 //practice shades
 public class Summer003  extends PApplet {
-    int w = 1000;
-    int h = 1000;
+    int w = 700;
+    int h = 700;
     Random alea;
     ArrayList<ArrayList<Float>> coords;
 

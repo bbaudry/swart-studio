@@ -79,14 +79,14 @@
         }
 
         function draw() {
-            background(0, 0, 100,42)
+            background(0, 0, 100,12)
             stroke(0, 0, 0)
             strokeWeight(1)
             rect(0, 0, w, h)
             //            quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
             //            drawgrid()
             spacedeux()
-            //noLoop()
+            if(frameCount==168){noLoop()}
         }
 
         var grid = []
@@ -101,7 +101,7 @@
                             x: leftmargin + x * resolution,
                             y: topmargin + y * resolution,
                             angle: 0,
-                            speed: random(0.1, 0.7),
+                            speed: random(0.01, 0.1),
                             angleoffset: Math.floor(random(21,42)),
                             occurences:Math.floor(random(2,7))
                         })
@@ -123,8 +123,6 @@
                 }
                 coords.angle += coords.speed
                 pop()
-
-
             }
         }
 
