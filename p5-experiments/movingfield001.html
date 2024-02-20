@@ -36,7 +36,7 @@
         var dataforonerow = []
         var bowie
         function preload() {
-            bowie = loadFont("./fonts/CNCHero-TallandHandsome-Regular.otf");
+            bowie = loadFont("./fonts/Montepetrumregular.ttf");
 
         }
         function setup() {
@@ -51,13 +51,9 @@
         }
         function title() {
             textFont(bowie);
-            textSize(42)
+            textSize(84)
             stroke(0, 0, 0)
-            text('T', 400, h-100)
-            text('A', 420, h-100)
-            text('L', 440, h-100)
-            text('L', 450, h-100)
-            text('o', 460, h-100)
+            text('TALL', 400, h-100)
         }
         function getsvg() {
             cnv = createCanvas(w, h, SVG);
