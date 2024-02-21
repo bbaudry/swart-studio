@@ -82,11 +82,11 @@
                             // Pad with leading zeros to ensure 8-bit representation
                             binary += charBinary.padStart(8, '0');
                         }
-                        hu = parseInt(binary, 2) % 360
+                        hu = parseInt(binary, 2) % 100
                         console.log(binary + " " + hu)
                     }
                     else{hu=0}
-                    fill(hu, 100, 100)
+                    fill(0, 0, hu)
                     rect(x + j * xinc, y + i * yinc, xinc*random(0.9,0.98), yinc*0.95)
                 }
             }
@@ -105,7 +105,7 @@
             console.log(oeuvres.length + " oeuvres au MAC.")
             fill(200, 100, 100)
             for (i = 0; i < oeuvres.length; i++) {
-                if (oeuvres[i]["categorie"] == "Installation") {
+                if (oeuvres[i]["categorie"] == "Installation" || oeuvres[i]["categorie"] == "Peinture") {
                     var date = oeuvres[i]["dateAcquisition"]
                     //installations.push(oeuvres[i])
                     if (installations.hasOwnProperty(oeuvres[i]["dateAcquisition"])) {
