@@ -58,9 +58,6 @@
 
         function drawinstallation2() {
             noStroke()
-            console.log(installations)
-            console.log(Object.keys(installations));
-            console.log(Object.values(installations));
             var vera = Object.values(installations)
             var yinc = h / vera.length
             var y = 0
@@ -69,28 +66,29 @@
                 var x = 0
                 var xinc = w / oneyear.length
                 for (var j = 0; j < oneyear.length; j++) {
-                    var hu;
-                    var SHA1 = new Hashes.SHA1().hex(vera[i][j]["cultures"][0])
-                    console.log(vera[i][j] + " + " + vera[i][j]["cultures"][0] + " SHA1: " + SHA1 + "; number : " + Number(SHA1))
-
-                    let binary = '';
-                    let str = vera[i][j]["cultures"][0]
-                    if (str) {
-                        for (let a = 0; a < str.length; a++) {
-                            const charBinary = str[a].charCodeAt().toString(2);
-                            var b = parseInt(a, 2);
-                            // Pad with leading zeros to ensure 8-bit representation
-                            binary += charBinary.padStart(8, '0');
-                        }
-                        hu = parseInt(binary, 2) % 100
-                        console.log(binary + " " + hu)
-                    }
-                    else{hu=0}
-                    fill(0, 0, hu)
-                    rect(x + j * xinc, y + i * yinc, xinc*random(0.9,0.98), yinc*0.95)
+                    var bl=str2nb(vera[i][j]["cultures"][0],100);
+                    fill(0, 0, bl)
+                    rect(x + j * xinc, y + i * yinc, xinc * random(0.9, 0.98), yinc * 0.45)
                 }
             }
+        }
 
+        //takes a string as input, hashes it, turns the hash to binary and the binary that's in the range [0,bound]
+        function str2nb(str, bound) {
+            var nb
+//            var SHA1 = new Hashes.SHA1().hex(str)
+            let binary = '';
+            if (str) {
+                for (let a = 0; a < str.length; a++) {
+                    const charBinary = str[a].charCodeAt().toString(2);
+                    var b = parseInt(a, 2);
+                    // Pad with leading zeros to ensure 8-bit representation
+                    binary += charBinary.padStart(8, '0');
+                }
+                nb = parseInt(binary, 2) % bound
+            }
+            else { nb = 0 }
+            return nb
         }
 
         function drawinstallation() {
