@@ -52,9 +52,37 @@
         var installations = {}
         function draw() {
             background(0, 0, 0)
-            drawinstallation2()
+            //            drawinstallation2()
+            initoeuvres()
             noLoop()
         }
+
+        var collection = []
+        function initoeuvres() {
+            var vera = Object.values(installations)
+            var yinc = h / vera.length
+            var y = 0
+            for (var i = 0; i < vera.length; i++) {
+                var oneyear = vera[i]
+                var x = 0
+                var xinc = w / oneyear.length
+                var oeuvres = []
+                for (var j = 0; j < oneyear.length; j++) {
+                    oeuvres.push({
+                        x: x + j * xinc,
+                        y: y + i * yinc,
+                        cultures: vera[i][j]["cultures"]
+                    })
+                }
+                collection.push({
+                    xinc: xinc,
+                    yinc: yinc,
+                    year: vera[i],
+                    oeuvres: oeuvres
+                })
+            }
+        }
+
 
         function drawinstallation2() {
             noStroke()
@@ -66,17 +94,17 @@
                 var x = 0
                 var xinc = w / oneyear.length
                 for (var j = 0; j < oneyear.length; j++) {
-                    var bl=str2nb(vera[i][j]["cultures"][0],100);
+                    var bl = str2nb(vera[i][j]["cultures"][0], 100);
                     fill(0, 100, bl)
-                    rect(x + j * xinc, y + i * yinc + yinc*0.25, xinc * random(0.9, 0.98), yinc * 0.25)
+                    rect(x + j * xinc, y + i * yinc + yinc * 0.25, xinc * random(0.9, 0.98), yinc * 0.25)
                 }
             }
         }
 
-        //takes a string as input, hashes it, turns the hash to binary and the binary that's in the range [0,bound]
+        //takes a string as input, hashes it, turns the hash to binary and the binary into an integer in the range [0,bound]
         function str2nb(str, bound) {
             var nb
-//            var SHA1 = new Hashes.SHA1().hex(str)
+            //            var SHA1 = new Hashes.SHA1().hex(str)
             let binary = '';
             if (str) {
                 for (let a = 0; a < str.length; a++) {

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jshashes/1.0.8/hashes.min.js"></script>
+
+
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // with data from MAC, found here https://www.donneesquebec.ca/recherche/dataset/macrepertoire
+        // <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.min.js">
+        // 
+        var echelle = 1
+        var w, h, cnv
+        var oeuvres = []
+
+
+        function preload() {
+            let url = 'oeuvresmac.json'//'oeuvresmac.json';
+            oeuvres = loadJSON('oeuvresmac.json');
+        }
+
+        function setup() {
+            w = windowWidth * echelle
+            h = windowHeight * echelle
+            cnv = createCanvas(w, h);
+            colorMode(HSB, 360, 100, 100, 250);
+            initblocks()
+        }
+
+        var blocks=[]
+
+        function initblocks(){
+            blocks.push({
+                x:w,
+                y:h/2,
+                wid:42,
+                hei:14,
+                speed:31,
+                hu:0,
+                left:true
+            })
+            blocks.push({
+                x:w,
+                y:h/2,
+                wid:42,
+                hei:14,
+                speed:11,
+                hu:90,
+                left:true
+            })
+        }
+
+        function centerCanvas() {
+            var x = (windowWidth - w) / 2;
+            var y = (windowHeight - h) / 2;
+            cnv.position(x, y);
+        }
+
+        function draw() {
+            background(0,0,0)
+            drawBlocks()
+        }
+var curblock=0;
+        function drawBlocks(){
+            var b = blocks[curblock];
+            fill(b.hu,100,100)
+            rect(b.x,b.y-b.hei*0.5,b.wid,b.hei)
+            if(b.left){b.x-=b.speed}
+            else{b.x+=b.speed}
+
+        }
+
+    </script>
+</body>
+
+</html>
