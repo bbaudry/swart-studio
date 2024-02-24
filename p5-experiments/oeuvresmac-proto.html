@@ -78,9 +78,15 @@ var curblock=0;
             var b = blocks[curblock];
             fill(b.hu,100,100)
             rect(b.x,b.y-b.hei*0.5,b.wid,b.hei)
-            if(b.left){b.x-=b.speed}
-            else{b.x+=b.speed}
-
+            if(b.left){
+                b.x-=b.speed
+                if(b.x+b.wid<0){curblock++; console.log(curblock)}
+            }
+            else{
+                b.x+=b.speed
+                if(b.x+b.wid>w){curblock++}
+            }
+            if(curblock==blocks.length){curblock=0;initblocks()}
         }
 
     </script>
