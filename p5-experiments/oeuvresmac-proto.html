@@ -45,36 +45,33 @@
             initblocks()
         }
 
-        var blocks = []
+        var rows = []
 
         function initblocks() {
             for (var i = 1; i < 4; i++) {
                 var onerow = []
                 var leftrow, initx
-                if (random() < 0.5) { 
+                if (random() < 0.5) {
                     leftrow = true
                     initx = w
                 }
-                else{ 
-                    leftrow = false 
-                    initx=0
+                else {
+                    leftrow = false
+                    initx = 0
                 }
                 for (var j = 0; j < 4; j++) {
                     onerow.push({
                         x: initx,
                         y: h * i * 0.3,
-                        wid: 42,
                         hei: 17,
                         speed: random(21, 32),
-                        text: "01100001101010100010111010001110100110",
-                        hu: j * 90,
-                        left: leftrow
+                        text: "01100001101010100010111010001110100110"
                     })
                 }
-                blocks.push({
-                    currentblock:0,
-                    blocksinrow:onerow,
-                    left:leftrow
+                rows.push({
+                    currentblock: 0,
+                    left: leftrow,
+                    blocksinrow: onerow
                 })
             }
         }
@@ -87,43 +84,59 @@
 
         function draw() {
             background(0, 0, 0)
-            for(var i=0;i<blocks.length;i++){
+            for (var i = 0; i < rows.length; i++) {
                 //drawOneRowWithBoxes(blocks[i])
-                drawOneRowWithText(blocks[i])
+                drawOneRowWithText(rows[i])
             }
         }
-        
+
         function drawOneRowWithText(row) {
             var b = row.blocksinrow[row.currentblock];
-            fill(b.hu, 0, 100)
+            fill(0, 0, 100)
             textSize(b.hei)
             text(b.text, b.x, b.y + b.hei * 0.5)
-            if (b.left) {
+            if (row.left) {
                 b.x -= b.speed
-                if (b.x + textWidth(b.text) < 0) { row.currentblock++; console.log("left "+row.currentblock) }
+                if (b.x + textWidth(b.text) < 0) { row.currentblock++ }
             }
             else {
                 b.x += b.speed
                 if (b.x + textWidth(b.text) > w) { row.currentblock++ }
             }
-            if (row.currentblock == row.blocksinrow.length) { row.currentblock = 0;  }
+            if (row.currentblock == row.blocksinrow.length) {
+                row.currentblock = 0;
+                for (var i = 0; i < row.blocksinrow.length; i++) {
+                    if (row.left) {
+                        row.blocksinrow[i].x = w
+                    } else {
+                        row.blocksinrow[i].x = 0
+                    }
+                }
+            }
         }
 
         function drawOneRowWithBoxes(row) {
-            console.log("block "+row.currentblock+" in "+row.blocksinrow+" going left "+row.left+" at frame "+frameCount)
             var b = row.blocksinrow[row.currentblock];
             fill(b.hu, 0, 100)
             rect(b.x, b.y - b.hei * 0.5, b.wid, b.hei)
-
             if (b.left) {
                 b.x -= b.speed
-                if (b.x + b.wid < 0) { row.currentblock++; console.log("left "+row.currentblock) }
+                if (b.x + b.wid < 0) { row.currentblock++ }
             }
             else {
                 b.x += b.speed
                 if (b.x + b.wid > w) { row.currentblock++ }
             }
-            if (row.currentblock == row.blocksinrow.length) { row.currentblock = 0;  }
+            if (row.currentblock == row.blocksinrow.length) { 
+                row.currentblock = 0; 
+                for (var i = 0; i < row.blocksinrow.length; i++) {
+                    if (row.left) {
+                        row.blocksinrow[i].x = w
+                    } else {
+                        row.blocksinrow[i].x = 0
+                    }
+                }
+            }
         }
 
     </script>
