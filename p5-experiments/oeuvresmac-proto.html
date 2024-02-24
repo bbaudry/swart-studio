@@ -50,18 +50,23 @@
         function initblocks() {
             for (var i = 1; i < 4; i++) {
                 var onerow = []
-                var leftrow
-                if (random() < 0.1) { leftrow = true }
-                { leftrow = false }
-                leftrow=true
+                var leftrow, initx
+                if (random() < 0.5) { 
+                    leftrow = true
+                    initx = w
+                }
+                else{ 
+                    leftrow = false 
+                    initx=0
+                }
                 for (var j = 0; j < 4; j++) {
                     onerow.push({
-                        x: w,
+                        x: initx,
                         y: h * i * 0.3,
                         wid: 42,
                         hei: 17,
-                        speed: random(21, 42),
-                        text: "01100:.:.:.:00110",
+                        speed: random(21, 32),
+                        text: "01100001101010100010111010001110100110",
                         hu: j * 90,
                         left: leftrow
                     })
@@ -105,7 +110,7 @@
         }
 
         function drawOneRowWithBoxes(row) {
-            //console.log("block "+row.currentblock+" in "+row.blocksinrow+" going left "+row.left+" at frame "+frameCount)
+            console.log("block "+row.currentblock+" in "+row.blocksinrow+" going left "+row.left+" at frame "+frameCount)
             var b = row.blocksinrow[row.currentblock];
             fill(b.hu, 0, 100)
             rect(b.x, b.y - b.hei * 0.5, b.wid, b.hei)
