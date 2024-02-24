@@ -59,7 +59,7 @@
                         x: w,
                         y: h * i * 0.3,
                         wid: 42,
-                        hei: 7,
+                        hei: 17,
                         speed: random(21, 42),
                         text: "01100:.:.:.:00110",
                         hu: j * 90,
@@ -89,7 +89,6 @@
         }
         
         function drawOneRowWithText(row) {
-            //console.log("block "+row.currentblock+" in "+row.blocksinrow+" going left "+row.left+" at frame "+frameCount)
             var b = row.blocksinrow[row.currentblock];
             fill(b.hu, 0, 100)
             textSize(b.hei)
