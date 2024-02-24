@@ -40,27 +40,31 @@
             initblocks()
         }
 
-        var blocks=[]
+        var blocks = []
 
-        function initblocks(){
-            blocks.push({
-                x:w,
-                y:h/2,
-                wid:42,
-                hei:14,
-                speed:31,
-                hu:0,
-                left:true
-            })
-            blocks.push({
-                x:w,
-                y:h/2,
-                wid:42,
-                hei:14,
-                speed:11,
-                hu:90,
-                left:true
-            })
+        function initblocks() {
+            for (var i = 1; i < 4; i++) {
+                var onerow = []
+                var leftrow
+                if (random() < 0.1) { leftrow = true }
+                { leftrow = false }
+                for (var j = 0; j < 4; j++) {
+                    onerow.push({
+                        x: w,
+                        y: h * i * 0.3,
+                        wid: 42,
+                        hei: 7,
+                        speed: random(21, 42),
+                        hu: j * 90,
+                        left: leftrow
+                    })
+                }
+                blocks.push({
+                    currentblock:0,
+                    blocksinrow:onerow,
+                    left:leftrow
+                })
+            }
         }
 
         function centerCanvas() {
@@ -70,23 +74,25 @@
         }
 
         function draw() {
-            background(0,0,0)
-            drawBlocks()
+            background(0, 0, 0)
+            for(var i=0;i<blocks.length;i++){
+                drawOneRow(blocks[i])
+            }
         }
-var curblock=0;
-        function drawBlocks(){
-            var b = blocks[curblock];
-            fill(b.hu,100,100)
-            rect(b.x,b.y-b.hei*0.5,b.wid,b.hei)
-            if(b.left){
-                b.x-=b.speed
-                if(b.x+b.wid<0){curblock++; console.log(curblock)}
+        function drawOneRow(row) {
+            console.log("block "+row.currentblock+" in "+row.blocksinrow+" going left "+row.left+" at frame "+frameCount)
+            var b = row.blocksinrow[row.currentblock];
+            fill(0, 0, 100)
+            rect(b.x, b.y - b.hei * 0.5, b.wid, b.hei)
+            if (b.left) {
+                b.x -= b.speed
+                if (b.x + b.wid < 0) { row.currentblock++; console.log("left "+currentblock) }
             }
-            else{
-                b.x+=b.speed
-                if(b.x+b.wid>w){curblock++}
+            else {
+                b.x += b.speed
+                if (b.x + b.wid > w) { row.currentblock++ }
             }
-            if(curblock==blocks.length){curblock=0;initblocks()}
+            if (row.currentblock == row.length) { row.currentblock = 0; initblocks() }
         }
 
     </script>
