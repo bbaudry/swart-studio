@@ -81,19 +81,19 @@
             }
         }
         function drawOneRow(row) {
-            console.log("block "+row.currentblock+" in "+row.blocksinrow+" going left "+row.left+" at frame "+frameCount)
+            //console.log("block "+row.currentblock+" in "+row.blocksinrow+" going left "+row.left+" at frame "+frameCount)
             var b = row.blocksinrow[row.currentblock];
-            fill(0, 0, 100)
+            fill(b.hu, 100, 100)
             rect(b.x, b.y - b.hei * 0.5, b.wid, b.hei)
             if (b.left) {
                 b.x -= b.speed
-                if (b.x + b.wid < 0) { row.currentblock++; console.log("left "+currentblock) }
+                if (b.x + b.wid < 0) { row.currentblock++; console.log("left "+row.currentblock) }
             }
             else {
                 b.x += b.speed
                 if (b.x + b.wid > w) { row.currentblock++ }
             }
-            if (row.currentblock == row.length) { row.currentblock = 0; initblocks() }
+            if (row.currentblock == row.blocksinrow.length) { row.currentblock = 0;  }
         }
 
     </script>
