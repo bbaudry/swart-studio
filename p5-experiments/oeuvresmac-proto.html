@@ -85,8 +85,8 @@
         function draw() {
             background(0, 0, 0)
             for (var i = 0; i < rows.length; i++) {
-                //drawOneRowWithBoxes(blocks[i])
-                drawOneRowWithText(rows[i])
+                drawOneRowWithBoxes(rows[i])
+                //drawOneRowWithText(rows[i])
             }
         }
 
@@ -118,14 +118,16 @@
         function drawOneRowWithBoxes(row) {
             var b = row.blocksinrow[row.currentblock];
             fill(b.hu, 0, 100)
-            rect(b.x, b.y - b.hei * 0.5, b.wid, b.hei)
-            if (b.left) {
+            var wid =21
+            var hei = 16
+            rect(b.x, b.y - hei * 0.5, wid, hei)
+            if (row.left) {
                 b.x -= b.speed
-                if (b.x + b.wid < 0) { row.currentblock++ }
+                if (b.x + wid < 0) { row.currentblock++ }
             }
             else {
                 b.x += b.speed
-                if (b.x + b.wid > w) { row.currentblock++ }
+                if (b.x + wid > w) { row.currentblock++ }
             }
             if (row.currentblock == row.blocksinrow.length) { 
                 row.currentblock = 0; 
