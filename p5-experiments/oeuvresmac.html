@@ -37,7 +37,8 @@
             h = windowHeight * echelle
             cnv = createCanvas(w, h);
             colorMode(HSB, 360, 100, 100, 250);
-            initinstallation()
+            curateMacCollection()
+            initMacCollectionForViz()
         }
 
         function centerCanvas() {
@@ -53,36 +54,70 @@
         function draw() {
             background(0, 0, 0)
             //            drawinstallation2()
-            initoeuvres()
-            noLoop()
+            for (var i = 0; i < collectionForViz.length; i++) {
+                drawOneRowWithText(collectionForViz[i])
+            }
+//            noLoop()
         }
 
-        var collection = []
-        function initoeuvres() {
+        var collectionForViz = []
+        function initMacCollectionForViz() {
             var vera = Object.values(installations)
             var yinc = h / vera.length
             var y = 0
             for (var i = 0; i < vera.length; i++) {
-                var oneyear = vera[i]
-                var x = 0
-                var xinc = w / oneyear.length
-                var oeuvres = []
-                for (var j = 0; j < oneyear.length; j++) {
-                    oeuvres.push({
-                        x: x + j * xinc,
-                        y: y + i * yinc,
-                        cultures: vera[i][j]["cultures"]
+                var oneyear = []
+                var leftrow, initx, culture
+                if (random() < 0.5) {
+                    leftrow = true
+                    initx = w
+                }
+                else {
+                    leftrow = false
+                    initx = 0
+                }
+                for (var j = 0; j < 4; j++) {
+                    culture = vera[i][j]["cultures"][0]
+                    oneyear.push({
+                        x: initx,
+                        y: i * yinc,
+                        hei: yinc * 0.8,
+                        speed: random(21, 42),
+                        text: culture
                     })
                 }
-                collection.push({
-                    xinc: xinc,
-                    yinc: yinc,
-                    year: vera[i],
-                    oeuvres: oeuvres
+                collectionForViz.push({
+                    currentblock: 0,
+                    left: leftrow,
+                    blocksinrow: oneyear
                 })
             }
         }
 
+        function drawOneRowWithText(row) {
+            var b = row.blocksinrow[row.currentblock];
+            fill(0, 0, 100)
+            textSize(b.hei)
+            text(b.text, b.x, b.y + b.hei * 0.5)
+            if (row.left) {
+                b.x -= b.speed
+                if (b.x + textWidth(b.text) < 0) { row.currentblock++ }
+            }
+            else {
+                b.x += b.speed
+                if (b.x + textWidth(b.text) > w) { row.currentblock++ }
+            }
+            if (row.currentblock == row.blocksinrow.length) {
+                row.currentblock = 0;
+                for (var i = 0; i < row.blocksinrow.length; i++) {
+                    if (row.left) {
+                        row.blocksinrow[i].x = w
+                    } else {
+                        row.blocksinrow[i].x = 0
+                    }
+                }
+            }
+        }
 
         function drawinstallation2() {
             noStroke()
@@ -127,7 +162,7 @@
             rect(0, pos, w, rowhei)
         }
 
-        function initinstallation() {
+        function curateMacCollection() {
             console.log(oeuvres.length + " oeuvres au MAC.")
             fill(200, 100, 100)
             for (i = 0; i < oeuvres.length; i++) {
