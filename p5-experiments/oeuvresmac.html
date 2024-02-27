@@ -57,7 +57,7 @@
             for (var i = 0; i < collectionForViz.length; i++) {
                 drawOneRowWithText(collectionForViz[i])
             }
-//            noLoop()
+            //            noLoop()
         }
 
         var collectionForViz = []
@@ -67,7 +67,7 @@
             var y = 0
             for (var i = 0; i < vera.length; i++) {
                 var oneyear = []
-                var leftrow, initx, culture
+                var leftrow, initx, culture, speed
                 if (random() < 0.5) {
                     leftrow = true
                     initx = w
@@ -76,14 +76,25 @@
                     leftrow = false
                     initx = 0
                 }
+                speed = vera[i].length * random(0.2, 0.3)
                 for (var j = 0; j < 4; j++) {
                     culture = vera[i][j]["cultures"][0]
+                    var MD5 = new Hashes.MD5().hex(culture)
+                    let binary = '';
+                    if (culture) {
+                        for (let a = 0; a < str.length; a++) {
+                            const charBinary = MD5[a].charCodeAt().toString(2);
+                            var b = parseInt(a, 2);
+                            // Pad with leading zeros to ensure 8-bit representation
+                            binary += charBinary.padStart(8, '0');
+                        }
+                    }
                     oneyear.push({
                         x: initx,
                         y: i * yinc,
                         hei: yinc * 0.8,
-                        speed: random(21, 42),
-                        text: culture
+                        speed: speed,
+                        text: MD5
                     })
                 }
                 collectionForViz.push({
@@ -96,7 +107,8 @@
 
         function drawOneRowWithText(row) {
             var b = row.blocksinrow[row.currentblock];
-            fill(0, 0, 100)
+            if(random()<0.01){fill(0, 100, 100)}
+            else{fill(0, 0, 100)}
             textSize(b.hei)
             text(b.text, b.x, b.y + b.hei * 0.5)
             if (row.left) {
