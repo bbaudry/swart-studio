@@ -134,7 +134,7 @@
             let cx=0.5*w
             let cy=0.42*h
             let rad=0.5*w
-            let surf = PI*rad*rad*2.5
+            let surf = PI*rad*rad*0.5
             let x1,y1,angle,i,r,n, hu
             hu=(palette.first.hue+random(50))%360
             fill(hu,50+random()*50,palette.first.bri)
@@ -152,7 +152,7 @@
                     ellipse(x1,y1,2.42,2.42)                   
                 }
                 xoff+=0.1 
-                angle += 0.4
+                angle += 0.5
                 r+=0.5
             }
         }
