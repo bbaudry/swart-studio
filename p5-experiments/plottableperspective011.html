@@ -85,7 +85,7 @@
             n=noise(xoff); xoff+=inc
             offset=random(0.001,0.03)*w
             innergrid(offset)
-            if(frameCount==8){
+            if(frameCount==7){
                 noLoop()
             }
             //noLoop()
@@ -96,7 +96,7 @@
             stroke(0,0,0)
             for (var x = leftmargin; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step+offset)) {
-                    if( random()<0.9){
+                    if( random()<0.8){
                         drawoneportion(x, y, x + step, y + 0.5 * step, x + step, y + 1.5 * step, x, y + step)
                         drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
                         drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
@@ -108,9 +108,9 @@
         function innergrid(offset) {
             var step = (rightmargin - leftmargin) / 12 - offset
             stroke(330,100,100)
-            for (var x = leftmargin+step+offset; x < rightmargin; x += 2 * (step+offset)) {
+            for (var x = leftmargin+step+2*offset; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (2*step) +offset ; y < bottommargin - step ; y += 2 * (step+offset)) {
-                    if(x<rightmargin-3*step && random()<0.9){
+                    if(x<rightmargin-3*step && random()<0.8){
                         ellipse(x,y,3,3)
                         quad(x,y,x+step,y-(step*0.5),x+2*step,y,x+step,y+(step*0.5))
                     }
