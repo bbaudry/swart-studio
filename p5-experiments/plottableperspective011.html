@@ -82,13 +82,20 @@
         }
 
         function grid() {
-            var offset = 0.003*w
+            var offset = 0.008*w
             var step = (rightmargin - leftmargin) / 12 - offset
+            //line(leftmargin,topmargin,leftmargin+step,topmargin)
             for (var x = leftmargin; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step+offset)) {
                     drawoneportion(x, y, x + step, y + 0.5 * step, x + step, y + 1.5 * step, x, y + step)
                     drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
                     drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
+                }
+                for (var y = topmargin + (2*step) +offset ; y < bottommargin - step ; y += 2 * (step+offset)) {
+                    if(x<rightmargin-3*step){
+//                        ellipse(x+step+offset,y,7,7)
+                        quad(x+step+offset,y,x+2*step+offset,y-(step*0.5),x+3*step+offset,y,x+2*step+offset,y+(step*0.5))
+                    }
                 }
             }
         }
