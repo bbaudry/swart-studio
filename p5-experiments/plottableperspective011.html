@@ -76,25 +76,29 @@
         }
 
         function draw() {
-            grid()
-            noLoop()
-            
+            grid(random(0.001,0.03)*w)
+            if(frameCount==8){noLoop()}
+            //noLoop()
         }
 
-        function grid() {
-            var offset = 0.008*w
+        function grid(offset) {
+            //var offset = 0.03*w
             var step = (rightmargin - leftmargin) / 12 - offset
             //line(leftmargin,topmargin,leftmargin+step,topmargin)
+            stroke(0,0,0)
             for (var x = leftmargin; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step+offset)) {
                     drawoneportion(x, y, x + step, y + 0.5 * step, x + step, y + 1.5 * step, x, y + step)
                     drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
                     drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
                 }
+            }
+            stroke(0,100,100)
+            for (var x = leftmargin+step+offset; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (2*step) +offset ; y < bottommargin - step ; y += 2 * (step+offset)) {
                     if(x<rightmargin-3*step){
 //                        ellipse(x+step+offset,y,7,7)
-                        quad(x+step+offset,y,x+2*step+offset,y-(step*0.5),x+3*step+offset,y,x+2*step+offset,y+(step*0.5))
+                        //quad(x,y,x+step,y-(step*0.5),x+2*step,y,x+step,y+(step*0.5))
                     }
                 }
             }
