@@ -96,7 +96,7 @@
             var step = (rightmargin - leftmargin) / 12 - offset
             for (var x = leftmargin; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step+offset)) {
-                    if( random()<0.8){
+                    if( random()<1/(rightmargin-x)){
                         drawoneportion(x, y, x + step, y + 0.5 * step, x + step, y + 1.5 * step, x, y + step)
                         drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
                         drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
