@@ -109,7 +109,7 @@
             var step = (rightmargin - leftmargin) / 12 - offset
             for (var x = leftmargin+step+2*offset; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (2*step) +offset ; y < bottommargin - step ; y += 2 * (step+offset)) {
-                    if(x<rightmargin-3*step && random()<0.8){
+                    if(x<rightmargin-3*step && random()<(rightmargin-x)/rightmargin){
                         ellipse(x,y,3,3)
                         quad(x,y,x+step,y-(step*0.5),x+2*step,y,x+step,y+(step*0.5))
                     }
