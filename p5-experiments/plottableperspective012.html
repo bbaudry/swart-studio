@@ -77,17 +77,19 @@
         }
 
         function draw() {
+            background(0,0,100)
             stroke(230, 100, 100)
             strokeWeight(3)
             onecube ()
             noLoop()
+            if (frameCount==4200){noLoop()}
         }
 
         function onecube(){
             var x=leftmargin+0.25*actualwidth
             var y=topmargin+0.25*actualheight
             var step=0.15*actualwidth
-            var bend=0.2
+            var bend=0.5
             drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
             drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
             drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
