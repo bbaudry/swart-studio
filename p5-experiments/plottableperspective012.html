@@ -79,8 +79,18 @@
         function draw() {
             stroke(230, 100, 100)
             strokeWeight(3)
-            basicgrid()
+            onecube ()
             noLoop()
+        }
+
+        function onecube(){
+            var x=leftmargin+0.25*actualwidth
+            var y=topmargin+0.25*actualheight
+            var step=0.25*actualwidth
+            var bend=0.2
+            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
+            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
+            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
         }
 
         function basicgrid() {
@@ -96,7 +106,7 @@
             for (var x = leftmargin; x < rightmargin; x += 2 * (step + offset)) {
                 for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step + offset)) {
                     dec=0
-                    drawoneportion(x + dec, y + dec, x + step - dec, y + 0.5 * step + dec, x + step - dec, y + 1.5 * step - dec, x + dec, y + step - dec)
+                    drawoneportion(x + dec, y + 1.5*dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5*dec)
                     drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
                     drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
                     dec = decstep
