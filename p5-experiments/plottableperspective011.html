@@ -29,6 +29,7 @@
         var leftmargin = 0.2 * w
         var topmargin = 0.2 * h
         var bottommargin = 0.8 * h
+        var density = 18
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount, xoff, inc
@@ -93,10 +94,10 @@
         }
 
         function outergrid(offset) {
-            var step = (rightmargin - leftmargin) / 12 - offset
+            var step = (rightmargin - leftmargin) / density - offset
             for (var x = leftmargin; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step+offset)) {
-                    if( random()<(rightmargin-x)/rightmargin){
+                    if(  random()<(bottommargin-y)/bottommargin){
                         drawoneportion(x, y, x + step, y + 0.5 * step, x + step, y + 1.5 * step, x, y + step)
                         drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
                         drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
@@ -106,7 +107,7 @@
         }
 
         function innergrid(offset) {
-            var step = (rightmargin - leftmargin) / 12 - offset
+            var step = (rightmargin - leftmargin) / density - offset
             for (var x = leftmargin+step+2*offset; x < rightmargin; x += 2 * (step+offset)) {
                 for (var y = topmargin + (2*step) +offset ; y < bottommargin - step ; y += 2 * (step+offset)) {
                     if(x<rightmargin-3*step && random()<(rightmargin-x)/rightmargin){
