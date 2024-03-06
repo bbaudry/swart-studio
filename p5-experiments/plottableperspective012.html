@@ -86,10 +86,27 @@
         function onecube(){
             var x=leftmargin+0.25*actualwidth
             var y=topmargin+0.25*actualheight
-            var step=0.25*actualwidth
+            var step=0.15*actualwidth
             var bend=0.2
             drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
             drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
+            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
+            x+=2*step
+            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
+            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
+            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
+            x-=2*step
+            y+=(1+2*bend)*step
+            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
+            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
+            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
+            x+=2*step
+            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
+            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
+            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
+            stroke(330,100,100)
+            x-=step
+            y-=bend*step            
             drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
         }
 
