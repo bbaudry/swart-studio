@@ -77,39 +77,46 @@
         }
 
         function draw() {
-            background(0,0,100)
+            background(0, 0, 100)
             stroke(230, 100, 100)
-            strokeWeight(3)
-            onecube ()
+            onecube()
             noLoop()
-            if (frameCount==4200){noLoop()}
+            if (frameCount == 4200) { noLoop() }
         }
 
-        function onecube(){
-            var x=leftmargin+0.25*actualwidth
-            var y=topmargin+0.25*actualheight
-            var step=0.15*actualwidth
-            var bend=0.5
-            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
-            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
-            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
-            x+=2*step
-            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
-            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
-            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
-            x-=2*step
-            y+=(1+2*bend)*step
-            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
-            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
-            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
-            x+=2*step
-            drawoneportion(x,y,x+step,y+bend*step,x+step,y+(1+bend)*step,x,y+step)
-            drawoneportion(x+step,y+bend*step,x+2*step,y,x+2*step,y+step,x+step,y+(1+bend)*step)
-            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
-            stroke(330,100,100)
-            x-=step
-            y-=bend*step            
-            drawoneportion(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
+        function onecube() {
+            var x = leftmargin + 0.25 * actualwidth
+            var y = topmargin + 0.25 * actualheight
+            var initstep = 0.05 * actualwidth
+            var step = initstep
+            var bend = 0.3
+            var decstep = 0.2 * step
+            var dec = 0
+            for (var yglobal = topmargin + 0.25 * actualheight; yglobal < bottommargin - 2 * initstep; yglobal += (1 + 2 * bend) * initstep) {
+                for (var xglobal = leftmargin; xglobal < rightmargin - 2 * initstep; xglobal += 2 * initstep) {
+                    step = initstep
+                    y = yglobal
+                    x = xglobal
+                    for (var i = 0; i < 4; i++) {
+                        y+=random(0.5)*step
+                        drawoneportion(x, y, x + step, y + bend * step, x + step, y + (1 + bend) * step, x, y + step)
+                        drawoneportion(x + step, y + bend * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + (1 + bend) * step)
+                        drawoneportion(x, y, x + step, y - bend * step, x + 2 * step, y, x + step, y + bend * step)
+                        x += decstep
+                        y += decstep
+                        step -= decstep
+                    }
+                }
+            }
+
+            step = 0.15 * actualwidth
+            x = leftmargin + 0.25 * actualwidth
+            y = topmargin + 0.25 * actualheight + (1 + 2 * bend) * step
+            x += 2 * step
+            stroke(330, 100, 100)
+            x -= step
+            y -= bend * step
+            drawoneportion(x, y, x + step, y - bend * step, x + 2 * step, y, x + step, y + bend * step)
         }
 
         function basicgrid() {
@@ -124,16 +131,16 @@
             var dec = 0
             for (var x = leftmargin; x < rightmargin; x += 2 * (step + offset)) {
                 for (var y = topmargin + (step / 2); y < bottommargin; y += 2 * (step + offset)) {
-                    dec=0
-                    drawoneportion(x + dec, y + 1.5*dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5*dec)
+                    dec = 0
+                    drawoneportion(x + dec, y + 1.5 * dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5 * dec)
                     drawoneportion(x + step, y + 0.5 * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + 1.5 * step)
                     drawoneportion(x, y, x + step, y - 0.5 * step, x + 2 * step, y, x + step, y + 0.5 * step)
                     dec = decstep
-                    drawoneportion(x + dec, y + 1.5*dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5*dec)
-                    dec = 2*decstep
-                    drawoneportion(x + dec, y + 1.5*dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5*dec)
-                    dec = 3*decstep
-                    drawoneportion(x + dec, y + 1.5*dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5*dec)
+                    drawoneportion(x + dec, y + 1.5 * dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5 * dec)
+                    dec = 2 * decstep
+                    drawoneportion(x + dec, y + 1.5 * dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5 * dec)
+                    dec = 3 * decstep
+                    drawoneportion(x + dec, y + 1.5 * dec, x + step - dec, y + 0.5 * (step + dec), x + step - dec, y + 1.5 * (step - dec), x + dec, y + step - 0.5 * dec)
                 }
             }
         }
