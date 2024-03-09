@@ -59,16 +59,18 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     //c.x + rad * initangle.cos(),
     let mut d : f32;
     let i:usize;
-    if(model.count<model.field.size){i=model.count}
-    else{i=model.field.size}
+    if model.count<(model.field.len()  as i32) {i=model.count as usize}
+    else{i=model.field.len()}
+    //i=model.field.len();
     for n in 0..i{
-        let p = model.field[n];
+        let p = &mut model.field[n];
         if p.direction>135.0 && p.direction<225.0 {d=2.0*p.speed}
         else{d=p.speed}
         p.cx=p.cx+d*p.direction.to_radians().cos();
         p.cy=p.cy+d*p.direction.to_radians().sin();
         p.speed=p.speed*random_range(1.0,1.1)
     }
+    model.count+=1
 }
 
 fn view(app: &App, model: &Model, frame: Frame){
