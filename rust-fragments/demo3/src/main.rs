@@ -1,11 +1,3 @@
-use nannou::color::Alpha;
-use nannou::color::GetHue;
-use nannou::draw::mesh::vertex::Color;
-use nannou::geom::Range;
-use nannou::geom::Rect;
-use nannou::geom::Tri;
-use nannou::image::Frames;
-use nannou::lyon::geom::Triangle;
 use nannou::prelude::*;
 use nannou::rand::random_range;
 
@@ -54,14 +46,13 @@ fn model(app: &App) -> Model {
     }
 }
 
-//deg_to_rad
-fn update(_app: &App, model: &mut Model, _update: Update) {
-    //c.x + rad * initangle.cos(),
+fn update(app: &App, model: &mut Model, _update: Update) {
     let mut d : f32;
     let i:usize;
-    if model.count<(model.field.len()  as i32) {i=model.count as usize}
+    //select the right-most index for the field, and grow as time passes
+    if model.count<(model.field.len()  as i32) {i=(model.count*2) as usize}
     else{i=model.field.len()}
-    //i=model.field.len();
+    //move the particles up until the index that has been selected before
     for n in 0..i{
         let p = &mut model.field[n];
         if p.direction>135.0 && p.direction<225.0 {d=2.0*p.speed}
@@ -70,7 +61,21 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
         p.cy=p.cy+d*p.direction.to_radians().sin();
         p.speed=p.speed*random_range(1.0,1.1)
     }
-    model.count+=1
+    //remove the particles that have moved outside the window
+    cleanmodel(app,model);
+    //increment the counter
+    model.count+=1;
+}
+
+fn cleanmodel(app: &App, model: &mut Model) {
+    let mut i =0;
+    while i < model.field.len(){
+        let p = &model.field[i];
+        if p.cx < -1000.0 || p.cx > 1000.0 && p.cy < -500.0 || p.cy > 500.0{
+            let val = model.field.remove(i);
+        }
+        else{i+=1}
+    }
 }
 
 fn view(app: &App, model: &Model, frame: Frame){
@@ -84,6 +89,11 @@ fn view(app: &App, model: &Model, frame: Frame){
         .h(p.rad)
         .x_y(p.cx,p.cy);
         }
-
+    draw.ellipse()
+        .color(RED)
+        .w(10.0)
+        .h(10.0)
+        .x_y(-800.0,400.0);
+    
     draw.to_frame(app, &frame).unwrap();
 }

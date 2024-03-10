@@ -42,17 +42,6 @@ struct Model {
     flash: bool,
 }
 
-fn model(app: &App) -> Model {
-    app.new_window().size(1000, 1000).build().unwrap();
-    let petal_density = 500.0;
-    Model {
-        flower: init_flower(app, petal_density),
-        count: 1,
-        density: petal_density,
-        back_color: hsl(0.0, 0.0, 0.0),
-        flash: false,
-    }
-}
 
 fn init_flower(app: &App, pd: f32) -> Vec<Petal> {
     let w = app.window_rect().w();
