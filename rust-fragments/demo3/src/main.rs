@@ -1,6 +1,9 @@
 use nannou::prelude::*;
 use nannou::rand::random_range;
 
+const framewid : f32 = 2000.0;
+const framehei : f32 = 1000.0;
+
 fn main() {
     nannou::app(model)
         .update(update)
@@ -21,7 +24,7 @@ struct Model {
     count:i32
 }
 fn model(app: &App) -> Model {
-    app.new_window().size(2000, 1000).build().unwrap();
+    app.new_window().size(framewid as u32, framehei as u32).build().unwrap();
     let mut field = Vec::new();
     let mut speed: f32;
     let mut radius: f32;
@@ -71,7 +74,7 @@ fn cleanmodel(app: &App, model: &mut Model) {
     let mut i =0;
     while i < model.field.len(){
         let p = &model.field[i];
-        if p.cx < -1000.0 || p.cx > 1000.0 && p.cy < -500.0 || p.cy > 500.0{
+        if p.cx < -framewid/2.0 || p.cx > framewid/2.0 && p.cy < -framehei/2.0 || p.cy > framehei/2.0{
             let val = model.field.remove(i);
         }
         else{i+=1}
@@ -89,11 +92,5 @@ fn view(app: &App, model: &Model, frame: Frame){
         .h(p.rad)
         .x_y(p.cx,p.cy);
         }
-    draw.ellipse()
-        .color(RED)
-        .w(10.0)
-        .h(10.0)
-        .x_y(-800.0,400.0);
-    
     draw.to_frame(app, &frame).unwrap();
 }
