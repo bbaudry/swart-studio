@@ -29,7 +29,7 @@ fn model(app: &App) -> Model {
     let mut speed: f32;
     let mut radius: f32;
     let mut direction: f32;
-    for _i in 0..5000 {
+    for _i in 0..1000 {
         speed  = random_range(0.01,0.02);
         radius = random_range(0.5,9.9);
         direction = random_range(0.0,360.0);
@@ -52,6 +52,7 @@ fn model(app: &App) -> Model {
 fn update(app: &App, model: &mut Model, _update: Update) {
     let mut d : f32;
     let i:usize;
+    if model.field.len()>22{
     //select the right-most index for the field, and grow as time passes
     if model.count<(model.field.len()  as i32) {i=(model.count*2) as usize}
     else{i=model.field.len()}
@@ -67,6 +68,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     //remove the particles that have moved outside the window
     cleanmodel(app,model);
     //increment the counter
+}
     model.count+=1;
 }
 
@@ -92,5 +94,12 @@ fn view(app: &App, model: &Model, frame: Frame){
         .h(p.rad)
         .x_y(p.cx,p.cy);
         }
+    if model.field.len()==0{
+    draw.rect()
+        .color(RED)
+        .w(100.0)
+        .h(42.0)
+        .x_y(-400.0,-250.0);
+    }
     draw.to_frame(app, &frame).unwrap();
 }
