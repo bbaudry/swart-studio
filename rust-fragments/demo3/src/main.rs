@@ -1,4 +1,5 @@
 use nannou::prelude::*;
+use nannou::color::*;
 use nannou::rand::random_range;
 
 const framewid : f32 = 2000.0;
@@ -51,19 +52,20 @@ fn model(app: &App) -> Model {
 
 fn update(app: &App, model: &mut Model, _update: Update) {
     let mut d : f32;
-    let i:usize;
-    if model.field.len()>22{
-    //select the right-most index for the field, and grow as time passes
-    if model.count<(model.field.len()  as i32) {i=(model.count*2) as usize}
-    else{i=model.field.len()}
-    //move the particles up until the index that has been selected before
-    for n in 0..i{
-        let p = &mut model.field[n];
-        if p.direction>135.0 && p.direction<225.0 {d=2.0*p.speed}
-        else{d=p.speed}
-        p.cx=p.cx+d*p.direction.to_radians().cos();
-        p.cy=p.cy+d*p.direction.to_radians().sin();
-        p.speed=p.speed*random_range(1.0,1.1)
+    let mut i : usize;
+    if model.field.len()>0{
+        i = model.field.len();
+        //select the right-most index for the field, and grow as time passes
+        if model.count<(model.field.len()  as i32) {i=(model.count*2) as usize}
+        if i > model.field.len(){i=model.field.len()}
+        //move the particles up until the index that has been selected before
+        for n in 0..i{
+            let p = &mut model.field[n];
+            if p.direction>135.0 && p.direction<225.0 {d=2.0*p.speed}
+            else{d=p.speed}
+            p.cx=p.cx+d*p.direction.to_radians().cos();
+            p.cy=p.cy+d*p.direction.to_radians().sin();
+            p.speed=p.speed*random_range(1.0,1.1)
     }
     //remove the particles that have moved outside the window
     cleanmodel(app,model);
@@ -81,6 +83,7 @@ fn cleanmodel(app: &App, model: &mut Model) {
         }
         else{i+=1}
     }
+    println!("Now there are {0} elements in the field", model.field.len());
 }
 
 fn view(app: &App, model: &Model, frame: Frame){
@@ -96,10 +99,10 @@ fn view(app: &App, model: &Model, frame: Frame){
         }
     if model.field.len()==0{
     draw.rect()
-        .color(RED)
-        .w(100.0)
-        .h(42.0)
-        .x_y(-400.0,-250.0);
+        .color(hsla((230.0 / 360.0),1.0,0.5,random_range(0.3,0.9)))//360.0/x.abs()   ,random_range(0.3,0.9)
+        .w(framewid*0.6)
+        .h(framehei*0.6)
+        .x_y(0.0,0.0);
     }
     draw.to_frame(app, &frame).unwrap();
 }
