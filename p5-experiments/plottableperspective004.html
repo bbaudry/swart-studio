@@ -22,7 +22,7 @@
         //96dpi is for plotting on the UUNA TEK iDraw
         //w=96*297/25.4=1122.5
         //h=96*420/25.4=1587.4
-        var echelle = 1
+        var echelle = 0.5
         var w = 1122 * echelle
         var h = 1587 * echelle
         var rightmargin = 0.8 * w
@@ -79,6 +79,7 @@
         function draw() {
             background(0, 0, 100)
             stroke(0, 0, 0)
+            strokeWeight(3);rect(0,0,w,h);strokeWeight(1);
             eye()
             noLoop()
         }
