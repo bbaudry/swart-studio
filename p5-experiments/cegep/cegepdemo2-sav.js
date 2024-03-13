@@ -57,11 +57,11 @@ function draw() {
     background(0, 0, 0)
     //drawside(left)
     //drawside(right)
-    column(w*0.75)
+    //column(w*0.75)
     //noLoop()
 
-//    ikeda(w*0.25,h*0.5)
-//    ikeda(w*0.75,h*0.5)
+   ikeda(w*0.25,h*0.5)
+    ikeda(w*0.75,h*0.5)
 }
 
 

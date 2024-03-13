@@ -21,11 +21,10 @@ function draw() {
     var cx, cy, vera, molnar, density, color
     cx = 0.5 * w
     cy = 0.5 * h
-    vera = 0.5 * w
     molnar = 11
-    density = 37
+    density = 1
     color = true
-    for (vera = 0.5 * w; vera > 0; vera -= density) {
+    for (vera = 0.2 * w; vera > 0; vera -= density) {
         if (color) { fill(50, 100, 100); color = false }
         else { fill(0, 0, 0); color = true }
 

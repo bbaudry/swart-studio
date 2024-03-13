@@ -47,5 +47,3 @@ function ikeda(cx, cy) {
         rect(cx - 42, cy - (yoff-5), 84, yhei-10)
     }
 }
-
-
