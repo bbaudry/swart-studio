@@ -85,40 +85,43 @@
                 background(0, 0, 0)
                 stroke(0, 0, 100, 124)
             }
-            strokeWeight(7)
-            grid_cubes(9,bend,0.027)
-            grid_tiles(9,bend,0.027)
+            strokeWeight(2)
+            grid_cubes(9,bend,0.02)
+            grid_tiles(9,bend,0.02)
             strokeWeight(1)
-            grid_cubes(9,bend,0.027)
-            grid_tiles(9,bend,0.027)
+            grid_cubes(9,bend,0.02)
+            grid_tiles(9,bend,0.02)
             bend+=0.001
             noLoop()
         }
 
-
+        /* offset controls the distance between the cubes 
+        *  bend controls the orientation of the cube
+        *  size controls the size of the cubes
+        */
         function grid_cubes(offset,bend,size) {
             var x,y
-            //var offset = 12 // controls the distance between the cubes
-            var initstep = size * actualwidth // controls the size of the cubes
-            //var bend = 0.6 //controls the orientation of the cube
+            var initstep = size * actualwidth 
             var step = initstep
+            var halfx = actualwidth * 0.4
+            var halfy = actualheight * 0.4
             for (var yglobal = topmargin + 0.25 * actualheight; yglobal < bottommargin - 2 * initstep; yglobal += (1 + 2 * bend) * initstep + offset) {
                 for (var xglobal = leftmargin; xglobal < rightmargin - 2 * initstep; xglobal += 2 * initstep + offset) {
                     step = initstep
                     y = yglobal+step
                     x = xglobal
-                    drawoneportion(x, y, x + step, y + bend * step, x + step, y + (1 + bend) * step, x, y + step)
-                    drawoneportion(x + step, y + bend * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + (1 + bend) * step)
-                    drawoneportion(x, y, x + step, y - bend * step, x + 2 * step, y, x + step, y + bend * step)
+                    if(random() < (bottommargin - y) / halfy && random() < (rightmargin - x) / halfx){
+                        drawoneportion(x, y, x + step, y + bend * step, x + step, y + (1 + bend) * step, x, y + step)
+                        drawoneportion(x + step, y + bend * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + (1 + bend) * step)
+                        drawoneportion(x, y, x + step, y - bend * step, x + 2 * step, y, x + step, y + bend * step)
+                    }
                 }
             }
         }
 
         function grid_tiles(offset,bend,size){
             var x,y
-            //var offset = 12 // controls the distance between the cubes
-            var initstep = size * actualwidth // controls the size of the cubes
-            //var bend = 0.6 //controls the orientation of the cube
+            var initstep = size * actualwidth 
             var step = initstep
             for (var yglobal = topmargin + 0.25 * actualheight + initstep * (1+bend)+ offset/2; yglobal < bottommargin - 2 * initstep; yglobal += (1 + 2 * bend) * initstep + 1*offset) {
                 for (var xglobal = leftmargin + initstep + offset / 2; xglobal < rightmargin - 3 * initstep; xglobal += 2 * initstep + offset) {
