@@ -77,12 +77,26 @@
         }
 
         function draw() {
-            background(230, 100, 100)
-            stroke(230, 0, 0, 124)
-            strokeWeight(1)
+            var dice = Math.floor(random(3))
+            switch (dice) {
+                case 0:
+                    background(0, 0, 0)
+                    stroke(0, 0, 100, 124)
+                    strokeWeight(1)
+                    break;
+                case 1:
+                    background(0, 100, 100)
+                    stroke(0, 0, 100)
+                    strokeWeight(1)
+                    break;
+                case 2:
+                    background(230, 100, 100)
+                    stroke(0, 0, 0, 124)
+                    strokeWeight(1)
+                    break;
+            }
             onecube()
             noLoop()
-            if (frameCount == 4200) { noLoop() }
         }
 
         function onecube() {
@@ -99,12 +113,12 @@
                     y = yglobal
                     x = xglobal
                     for (var i = 0; i < 19; i++) {
-                        y+=random()*step
-                        if(random()<(bottommargin-y)/bottommargin){
-                        drawoneportion(x, y, x + step, y + bend * step, x + step, y + (1 + bend) * step, x, y + step)
-                        drawoneportion(x + step, y + bend * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + (1 + bend) * step)
-                        drawoneportion(x, y, x + step, y - bend * step, x + 2 * step, y, x + step, y + bend * step)
-                    }
+                        y += random() * step
+                        if (random() < (bottommargin - y) / bottommargin) {
+                            drawoneportion(x, y, x + step, y + bend * step, x + step, y + (1 + bend) * step, x, y + step)
+                            drawoneportion(x + step, y + bend * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + (1 + bend) * step)
+                            drawoneportion(x, y, x + step, y - bend * step, x + 2 * step, y, x + step, y + bend * step)
+                        }
                         x += decstep
                         y += decstep
                         step -= decstep
