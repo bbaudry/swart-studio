@@ -77,8 +77,16 @@
         }
         var bend = 0.4
         function draw() {
-            background(0, 0, 0)
-            stroke(0, 0, 100, 124)
+            if(random()<0.5){
+                background(330, 100, 80)
+                stroke(230, 100, 100, 124)
+            }
+            else {
+                background(0, 0, 0)
+                stroke(0, 0, 100, 124)
+            }
+            strokeWeight(7)
+            grid(9,bend)
             strokeWeight(1)
             grid(9,bend)
             bend+=0.001
@@ -110,7 +118,7 @@
                     step = initstep
                     y = yglobal+step
                     x = xglobal
-                    stroke(330,100,100)
+                    stroke(330,0,100,100)
                     strokeWeight(1)
                     quad(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
                 }
