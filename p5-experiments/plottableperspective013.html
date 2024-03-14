@@ -80,9 +80,9 @@
             background(0, 0, 0)
             stroke(0, 0, 100, 124)
             strokeWeight(1)
-            grid(12,bend)
+            grid(17,bend)
             bend+=0.001
-            noLoop()
+            //noLoop()
         }
 
 
@@ -105,14 +105,14 @@
                 }
             }
 
-            for (var yglobal = topmargin + 0.25 * actualheight + initstep * (1+bend)-offset/2 + offset; yglobal < bottommargin - 2 * initstep; yglobal += (1 + 2 * bend) * initstep + offset) {
-                for (var xglobal = leftmargin + initstep + offset; xglobal < rightmargin - 3 * initstep; xglobal += 2 * initstep + offset) {
+            for (var yglobal = topmargin + 0.25 * actualheight + initstep * (1+bend)+ offset/2; yglobal < bottommargin - 2 * initstep; yglobal += (1 + 2 * bend) * initstep + 1*offset) {
+                for (var xglobal = leftmargin + initstep + offset / 2; xglobal < rightmargin - 3 * initstep; xglobal += 2 * initstep + offset) {
                     step = initstep
                     y = yglobal+step
                     x = xglobal
                     stroke(330,100,100)
                     strokeWeight(1)
-                    quad(x,y,x+step-offset/2,y-bend*step+offset/2,x+2*step-offset,y,x+step-offset/2,y+bend*step-offset/2)
+                    quad(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
                 }
             }
 
