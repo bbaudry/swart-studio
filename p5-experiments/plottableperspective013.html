@@ -75,21 +75,21 @@
         function savepng() {
             save("plottableperspective001.png");
         }
-        var bend = 0
+        var bend = 0.4
         function draw() {
             background(0, 0, 0)
             stroke(0, 0, 100, 124)
             strokeWeight(1)
-            grid(17,bend)
+            grid(9,bend)
             bend+=0.001
-            //noLoop()
+            noLoop()
         }
 
 
         function grid(offset,bend) {
             var x,y
             //var offset = 12 // controls the distance between the cubes
-            var initstep = 0.04 * actualwidth // controls the size of the cubes
+            var initstep = 0.019 * actualwidth // controls the size of the cubes
             //var bend = 0.6 //controls the orientation of the cube
             var step = initstep
             var decstep = 0.15 * step // used to draw cubes inside a bigger cube
