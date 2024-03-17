@@ -75,9 +75,9 @@
         function savepng() {
             save("plottableperspective001.png");
         }
-        var bend = 0.4
+        var bend = 0
         function draw() {
-            if(random()<0.5 ){
+            if(random()<0.01 ){
                 background(330, 100, 80)
                 stroke(230, 100, 100, 124)
             }
@@ -92,7 +92,7 @@
             grid_cubes(9,bend,0.03)
             grid_tiles(9,bend,0.03)
             bend+=0.001
-            noLoop()
+            if(bend>0.5){noLoop()}
         }
 
         /* offset controls the distance between the cubes 
