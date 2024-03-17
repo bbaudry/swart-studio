@@ -77,7 +77,7 @@
         }
         var bend = 0.4
         function draw() {
-            if(random()<0.01){
+            if(random()<0.5 ){
                 background(330, 100, 80)
                 stroke(230, 100, 100, 124)
             }
@@ -86,11 +86,11 @@
                 stroke(0, 0, 100, 124)
             }
             strokeWeight(2)
-            grid_cubes(9,bend,0.02)
-            grid_tiles(9,bend,0.02)
+            grid_cubes(9,bend,0.03)
+            grid_tiles(9,bend,0.03)
             strokeWeight(1)
-            grid_cubes(9,bend,0.02)
-            grid_tiles(9,bend,0.02)
+            grid_cubes(9,bend,0.03)
+            grid_tiles(9,bend,0.03)
             bend+=0.001
             noLoop()
         }
@@ -103,14 +103,14 @@
             var x,y
             var initstep = size * actualwidth 
             var step = initstep
-            var halfx = actualwidth * 0.4
-            var halfy = actualheight * 0.4
+            var halfx = actualwidth * 0.5
+            var halfy = actualheight * 0.5
             for (var yglobal = topmargin + 0.25 * actualheight; yglobal < bottommargin - 2 * initstep; yglobal += (1 + 2 * bend) * initstep + offset) {
                 for (var xglobal = leftmargin; xglobal < rightmargin - 2 * initstep; xglobal += 2 * initstep + offset) {
                     step = initstep
                     y = yglobal+step
                     x = xglobal
-                    if(random() < (bottommargin - y) / halfy && random() < (rightmargin - x) / halfx){
+                    if(random() < (y - topmargin) / halfy && random() < (bottommargin - y) / halfy && random() < (rightmargin - x) / halfx && random() < (x - leftmargin) / halfx){
                         drawoneportion(x, y, x + step, y + bend * step, x + step, y + (1 + bend) * step, x, y + step)
                         drawoneportion(x + step, y + bend * step, x + 2 * step, y, x + 2 * step, y + step, x + step, y + (1 + bend) * step)
                         drawoneportion(x, y, x + step, y - bend * step, x + 2 * step, y, x + step, y + bend * step)
@@ -123,6 +123,9 @@
             var x,y
             var initstep = size * actualwidth 
             var step = initstep
+            var halfx = actualwidth * 0.5
+            var halfy = actualheight * 0.5
+
             for (var yglobal = topmargin + 0.25 * actualheight + initstep * (1+bend)+ offset/2; yglobal < bottommargin - 2 * initstep; yglobal += (1 + 2 * bend) * initstep + 1*offset) {
                 for (var xglobal = leftmargin + initstep + offset / 2; xglobal < rightmargin - 3 * initstep; xglobal += 2 * initstep + offset) {
                     step = initstep
@@ -130,7 +133,9 @@
                     x = xglobal
                     stroke(330,0,100,100)
                     strokeWeight(1)
-                    quad(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
+                    if(random() < (y - topmargin) / halfy && random() < (bottommargin - y) / halfy && random() < (rightmargin - x) / halfx && random() < (x - leftmargin) / halfx){
+                        quad(x,y,x+step,y-bend*step,x+2*step,y,x+step,y+bend*step)
+                    }
                 }
             }
 
