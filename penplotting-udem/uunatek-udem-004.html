@@ -34,6 +34,7 @@
         var actualheight = bottommargin - topmargin
         var cnv, imgbtn, maxcount
         var dataforonerow = []
+        var font
 
         function setup() {
             getsvg()
@@ -77,11 +78,16 @@
             save("uunatek-udem-004.png");
         }
 
+        function preload() {
+	        font=loadFont("../p5-experiments/fonts/1CamBam_Stick_0.ttf");
+        }
+
         function draw() {
             background(0, 0, 100)
             stroke(0,0,0)//stroke(30, 100, 100)
             rect(0, 0, w, h)
             eye()
+            credits()
             noLoop()
         }
 
@@ -140,6 +146,15 @@
             }
         }
 
+        function credits(){
+            textFont(font)
+            var fSize = 21
+            textSize(fSize)
+            var message = "almyre  p5js"
+            var xtxt = leftmargin //+ (actualwidth-textWidth(message))/2
+            var ytxt = bottommargin + fSize +17
+            text(message,xtxt,ytxt)
+        }
 
         function somethingelse(x1, y1, x2, y2, x3, y3, x4, y4) {
             //elsewithellipses(x1, y1, x2, y2, x3, y3, x4, y4)
