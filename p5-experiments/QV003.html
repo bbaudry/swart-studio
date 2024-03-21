@@ -15,7 +15,7 @@
     </style>
 </head>
 
-<body>
+<body>  
     <script>
         //global vars for the whole piece
         //110mm × 70mm
@@ -93,7 +93,13 @@
 
         function draw() {
             noisefield()
-            if(smooth){solar_spiral_smooth()}
+            if(smooth){
+                var hu=(palette.first.hue+random(50))%360
+
+                solar_spiral_smooth_clockwise(hu);
+                //solar_spiral_smooth_counterclockwise(hu)
+            }
+
             else{solar_spiral_2()}
             noLoop()
         }
@@ -130,13 +136,14 @@
         }
 
         //Penses tu qu'il soit possible d'avoir un rendu plus fluide? 
-        function solar_spiral_smooth(){
-            let cx=0.5*w
-            let cy=0.42*h
-            let rad=0.5*w
-            let surf = PI*rad*rad*0.5
-            let x1,y1,angle,i,r,n, hu
-            hu=(palette.first.hue+random(50))%360
+        function solar_spiral_smooth_clockwise(hu){
+            let initcx=0.5*w
+            let initcy=0.42*h
+            let cx,cy
+            let offcenter=random(25,75)
+            let rad=0.4*w
+            let surf = PI*rad*rad*0.4
+            let x1,y1,angle,i,r,n
             fill(hu,50+random()*50,palette.first.bri)
 //            noFill(); strokeWeight(1)
             r=0
@@ -147,12 +154,43 @@
                     angle=Math.floor(random(72))*5   
                 }
                 if (noise(xoff)<QV.volatile*QV.glucose){
+                    if(random()<0.7){cx+=random(-offcenter,offcenter);cy+=random(-offcenter,offcenter);}
+                    else{cx=initcx;cy=initcy}
                     x1=cx+r*cos(radians(angle))
                     y1=cy+r*sin(radians(angle))
                     ellipse(x1,y1,2.42,2.42)                   
                 }
                 xoff+=0.1 
                 angle += 0.5
+                r+=0.5
+            }
+        }
+        function solar_spiral_smooth_counterclockwise(hu){
+            let initcx=0.5*w
+            let initcy=0.42*h
+            let cx,cy
+            let offcenter=random(25,75)
+            let rad=0.55*w
+            let surf = PI*rad*rad*0.05
+            let x1,y1,angle,i,r,n
+            fill(hu,50+random()*50,palette.first.bri)
+//            noFill(); strokeWeight(1)
+            r=0
+            angle=random()*360
+            for(i=0;i<surf;i++){
+                if(r>=rad){
+                    r=0
+                    angle=Math.floor(random(72))*5   
+                }
+                if (noise(xoff)<QV.volatile*QV.glucose){
+                    if(random()<0.3){cx+=random(-offcenter,offcenter);cy+=random(-offcenter,offcenter);}
+                    else{cx=initcx;cy=initcy}
+                    x1=cx+r*cos(radians(angle))
+                    y1=cy+r*sin(radians(angle))
+                    ellipse(x1,y1,2.42,2.42)                   
+                }
+                xoff+=0.1 
+                angle -= 0.5
                 r+=0.5
             }
         }

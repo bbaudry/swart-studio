@@ -37,8 +37,8 @@
         var font, sourcecode
 
         function setup() {
-            getsvg()
-            //getpng()
+            //getsvg()
+            getpng()
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
@@ -88,56 +88,60 @@
             //frames()
             stroke(0, 0, 0)
             stroke(230, 100, 100)
-            var widdec=9
-            var heidec=5
-            var tiltdec=0.01
-            var wid=actualwidth*0.5
-            var hei=actualheight*0.42
-            var tilt=0.42
-            for(var i=0;i<1;i++){
-                cube2(w*0.5-3*i,h*0.25+3*i,wid,hei,tilt)
-                wid-=widdec
-                hei-=heidec
-               // tilt-=tiltdec
+            var wid = actualwidth * 0.5
+            var hei = actualheight * 0.42
+            var tilt = 0.42
+            var offsetx = 1
+            var offsety = 1
+            var widdec = 7
+            var heidec = 5
+            var tiltdec = 0.01
+            var offsetxdec = 2
+            var offsetydec = 3
+            for (var i = 0; i < 33; i++) {
+                cube2(w * 0.5 - 3 * i, h * 0.25 + 3 * i, wid, hei, tilt, offsetx, offsety)
+                wid -= widdec
+                hei -= heidec
+                tilt -= tiltdec
+                offsetx -= offsetxdec
+                offsety -= offsetydec
             }
             writecode2()
-            //noLoop()
+            noLoop()
         }
 
-        function cube2(x,y,xlen,ylen,tilt){
-            var offsetx=17
-            var offsety=17
-            var x1,x2,x3,x4,y1,y2,y3,y4,y5,y6,y7,y8
-            x2=x-offset
-            x4=x+offset
-            x1=x2-xlen
-            x3=x4+xlen
-            y1=y+offsety
-            y2=y1+ylen
-            y3=y+ylen*tilt
-            y4=y3+ylen
-            y5=y-offsety
-            y6=y5+ylen
-            y7=y-ylen*tilt 
-            y8=y+ylen-ylen*tilt
-            line(x1,y1,x1,y2)
-            line(x2,y3,x2,y4)
-            line(x3,y5,x3,y6)
-            line(x1,y1,x2,y3)
-            line(x2,y3,x3,y5)
-            line(x1,y2,x2,y4)
-            line(x2,y4,x3,y6)
-            line(x1,y1,x4,y7)
-            line(x4,y7,x3,y5)
-            line(x1,y2,x4,y8)
-            line(x4,y8,x3,y6)
-            line(x4,y7,x4,y8)
+        function cube2(x, y, xlen, ylen, tilt, offsetx, offsety) {
+            var x1, x2, x3, x4, y1, y2, y3, y4, y5, y6, y7, y8
+            x2 = x - offsetx
+            x4 = x + offsetx
+            x1 = x2 - xlen
+            x3 = x4 + xlen
+            y1 = y + offsety
+            y2 = y1 + ylen
+            y3 = y + ylen * tilt
+            y4 = y3 + ylen
+            y5 = y - offsety
+            y6 = y5 + ylen
+            y7 = y - ylen * tilt
+            y8 = y + ylen - ylen * tilt
+            line(x1, y1, x1, y2)
+            line(x2, y3, x2, y4)
+            line(x3, y5, x3, y6)
+            line(x1, y1, x2, y3)
+            line(x2, y3, x3, y5)
+            line(x1, y2, x2, y4)
+            line(x2, y4, x3, y6)
+            line(x1, y1, x4, y7)
+            line(x4, y7, x3, y5)
+            line(x1, y2, x4, y8)
+            line(x4, y8, x3, y6)
+            line(x4, y7, x4, y8)
         }
 
 
-        function frames(){
-            rect(0,0,w,h)
-            quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
+        function frames() {
+            rect(0, 0, w, h)
+            quad(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin)
         }
 
         function writecode2() {
@@ -145,15 +149,15 @@
             for (var i = 0; i < sourcecode.length; i++) {
                 var token = sourcecode[i]
                 var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
-                allcode+=notab
+                allcode += notab
             }
             var fSize = 8
             textSize(fSize)
             var x = leftmargin
-            var y = topmargin+actualheight*0.8
-            var c,tw
+            var y = topmargin + actualheight * 0.8
+            var c, tw
             for (let i = 0; i < allcode.length; i++) {
-                c=allcode.charAt(i)
+                c = allcode.charAt(i)
                 tw = textWidth(c)
                 if (x + tw > rightmargin) {
                     x = leftmargin
