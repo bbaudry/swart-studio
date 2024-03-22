@@ -64,7 +64,9 @@
             btngendoublenoise.mouseClicked(drawdoublehelixwithnoise)
             btnimg.mouseClicked(savepng);
             xoff = 0.0
-            clock = true
+            clockwise = true
+            counterclock = false
+            withnoise = false
         }
 
         function centerCanvas() {
@@ -76,8 +78,8 @@
         function placebtns() {
             var x = (windowWidth - w) * 0.5 - 333;
             var y = (windowHeight - h) / 2;
-            btngenclock.position(x, y + h * 0.4)
-            btngenclocknoise.position(x, y + h * 0.45)
+            btngenclocknoise.position(x, y + h * 0.4)
+            btngenclock.position(x, y + h * 0.45)
             btngendouble.position(x, y + h * 0.35)
             btngendoublenoise.position(x, y + h * 0.3)
             btnimg.position(x, y + h * 0.5)
@@ -118,8 +120,8 @@
         function draw() {
             noisefield()
             var hu = (palette.first.hue + random(50)) % 360
-            if (clockwise) { solar_spiral_smooth_clockwise(hu); }
-            if (counterclock) { solar_spiral_smooth_counterclockwise(hu) }
+            if (clockwise) { solar_spiral_smooth_clockwise(hu,true,0.5); }
+            if (counterclock) { solar_spiral_smooth_clockwise(hu,false,0.1) }
             //solar_spiral_2()
             noLoop()
         }
@@ -156,13 +158,17 @@
         }
 
         //Penses tu qu'il soit possible d'avoir un rendu plus fluide? 
-        function solar_spiral_smooth_clockwise(hu) {
+        function solar_spiral_smooth_clockwise(hu,clockwise,density) {
             let initcx = 0.5 * w
             let initcy = 0.42 * h
-            let cx, cy
+            let cx = initcx
+            let cy = initcy
+            let angleinc
+            if(clockwise){angleinc=0.5}
+            else{angleinc=-0.5}
             let offcenter = random(25, 75)
             let rad = 0.4 * w
-            let surf = PI * rad * rad * 0.4
+            let surf = PI * rad * rad * density
             let x1, y1, angle, i, r, n
             fill(hu, 50 + random() * 50, palette.first.bri)
             //            noFill(); strokeWeight(1)
@@ -174,17 +180,20 @@
                     angle = Math.floor(random(72)) * 5
                 }
                 if (noise(xoff) < QV.volatile * QV.glucose) {
+                    if(withnoise){
                     if (random() < 0.7) { cx += random(-offcenter, offcenter); cy += random(-offcenter, offcenter); }
                     else { cx = initcx; cy = initcy }
+                }
                     x1 = cx + r * cos(radians(angle))
                     y1 = cy + r * sin(radians(angle))
                     ellipse(x1, y1, 2.42, 2.42)
                 }
                 xoff += 0.1
-                angle += 0.5
+                angle += angleinc
                 r += 0.5
             }
         }
+
         function solar_spiral_smooth_counterclockwise(hu) {
             let initcx = 0.5 * w
             let initcy = 0.42 * h
@@ -203,8 +212,10 @@
                     angle = Math.floor(random(72)) * 5
                 }
                 if (noise(xoff) < QV.volatile * QV.glucose) {
+                    if(withnoise){
                     if (random() < 0.3) { cx += random(-offcenter, offcenter); cy += random(-offcenter, offcenter); }
                     else { cx = initcx; cy = initcy }
+                }
                     x1 = cx + r * cos(radians(angle))
                     y1 = cy + r * sin(radians(angle))
                     ellipse(x1, y1, 2.42, 2.42)
@@ -215,6 +226,7 @@
             }
         }
 
+        // spiral with a 'raw' visual
         function solar_spiral_2() {
             let cx = 0.5 * w
             let cy = 0.42 * h
