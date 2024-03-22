@@ -15,7 +15,7 @@
     </style>
 </head>
 
-<body>  
+<body>
     <script>
         //global vars for the whole piece
         //110mm × 70mm
@@ -23,44 +23,48 @@
         //w=300*70/25.4=826.77
         //h=300*110/25.4=1299.21
         var res = 0.6
-        var w = 826*res;
-        var h = 1299*res;
-        var cnv1, xoff, btngenrough, btngensmooth, btnimg, smooth
+        var w = 826 * res;
+        var h = 1299 * res;
+        var cnv1, xoff, btngenclock, btngenclocknoise, btnimg, btngendouble, btngendoublenoise, clockwise, counterclock, withnoise
         var QV = {
             "glucose": 0.57, //g/L
-            "alcool" : 15.57, //%vol
-            "acidite" : 4.23, //gH2SO4/L
-            "volatile" : 0.51, //gH2SO4/L
-            "pH" : 3.48,
-            "So2" : 25 //mg/L
+            "alcool": 15.57, //%vol
+            "acidite": 4.23, //gH2SO4/L
+            "volatile": 0.51, //gH2SO4/L
+            "pH": 3.48,
+            "So2": 25 //mg/L
         }
         var palette = {
-            first : {
-                "hue" : 340,
-                "sat" : 100,
-                "bri" : 100
+            first: {
+                "hue": 340,
+                "sat": 100,
+                "bri": 100
             },
-            second : {
-                "hue" : 230,
-                "sat" : 100,
-                "bri" : 80
+            second: {
+                "hue": 230,
+                "sat": 100,
+                "bri": 80
             }
         }
-        
+
         function setup() {
             cnv1 = createCanvas(w, h);
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
-            btngenrough = createButton("generate new artwork (rough)");
-            btngensmooth = createButton("generate new artwork (smooth)");
+            btngenclock = createButton("smooth clockwise");
+            btngenclocknoise = createButton("smooth clockwise with noise");
+            btngendouble = createButton("smooth clockwise and counterclock");
+            btngendoublenoise = createButton("smooth clockwise and counterclock with noise");
             btnimg = createButton("save the artwork (png)");
             placebtns();
-            btngenrough.mouseClicked(drawrough);
-            btngensmooth.mouseClicked(drawsmooth)
+            btngenclock.mouseClicked(drawclockwise);
+            btngenclocknoise.mouseClicked(drawclockwisewithnoise)
+            btngendouble.mouseClicked(drawdoublehelix)
+            btngendoublenoise.mouseClicked(drawdoublehelixwithnoise)
             btnimg.mouseClicked(savepng);
-            xoff=0.0
-            smooth=true
+            xoff = 0.0
+            clock = true
         }
 
         function centerCanvas() {
@@ -70,280 +74,296 @@
         }
 
         function placebtns() {
-            var x = (windowWidth - w)  *0.5 - 242 ;
+            var x = (windowWidth - w) * 0.5 - 333;
             var y = (windowHeight - h) / 2;
-            btngenrough.position(x, y+h*0.4)
-            btngensmooth.position(x, y+h*0.45)
-            btnimg.position(x, y+h*0.5)
+            btngenclock.position(x, y + h * 0.4)
+            btngenclocknoise.position(x, y + h * 0.45)
+            btngendouble.position(x, y + h * 0.35)
+            btngendoublenoise.position(x, y + h * 0.3)
+            btnimg.position(x, y + h * 0.5)
         }
 
         function savepng() {
-            save("QV"+millis()+".png");
+            save("QV" + millis() + ".png");
         }
 
-        function drawrough(){
-            smooth=false
+        function drawclockwise() {
+            clockwise = true
+            counterclock = false
+            withnoise = false
             draw()
         }
 
-        function drawsmooth(){
-            smooth=true
+        function drawclockwisewithnoise() {
+            clockwise = true
+            counterclock = false
+            withnoise = true
+            draw()
+        }
+
+        function drawdoublehelix() {
+            clockwise = true
+            counterclock = true
+            withnoise = false
+            draw()
+        }
+
+        function drawdoublehelixwithnoise() {
+            clockwise = true
+            counterclock = true
+            withnoise = true
             draw()
         }
 
         function draw() {
             noisefield()
-            if(smooth){
-                var hu=(palette.first.hue+random(50))%360
-
-                solar_spiral_smooth_clockwise(hu);
-                //solar_spiral_smooth_counterclockwise(hu)
-            }
-
-            else{solar_spiral_2()}
+            var hu = (palette.first.hue + random(50)) % 360
+            if (clockwise) { solar_spiral_smooth_clockwise(hu); }
+            if (counterclock) { solar_spiral_smooth_counterclockwise(hu) }
+            //solar_spiral_2()
             noLoop()
         }
 
-        function plainfield(){
-            fill(palette.second.hue,palette.second.bri,palette.second.bri)
+        function plainfield() {
+            fill(palette.second.hue, palette.second.bri, palette.second.bri)
             noStroke()
-            rect(0,0,w,h)
+            rect(0, 0, w, h)
         }
 
-        function trifield(){
+        function trifield() {
             noStroke()
-            fill(palette.second.hue,palette.second.bri,palette.second.bri-42)
-            triangle(0,0,w,0,0,h)
-            fill(palette.second.hue,palette.second.bri,palette.second.bri)
-            triangle(w,0,0,h,w,h)
+            fill(palette.second.hue, palette.second.bri, palette.second.bri - 42)
+            triangle(0, 0, w, 0, 0, h)
+            fill(palette.second.hue, palette.second.bri, palette.second.bri)
+            triangle(w, 0, 0, h, w, h)
         }
 
-        function noisefield(){
+        function noisefield() {
             noStroke()
             let xoff, yoff, bri, step
-            yoff=random()*500
-            step=2
-            for (let j=0;j<h;j+=step){
-                xoff=0.0
-                for (let i=0;i<w;i+=step){
-                    bri=72+noise(xoff,yoff)*28
-                    fill(palette.second.hue,bri,100)
-                    rect(i,j,step,step)
-                    xoff+=QV.pH
+            yoff = random() * 500
+            step = 2
+            for (let j = 0; j < h; j += step) {
+                xoff = 0.0
+                for (let i = 0; i < w; i += step) {
+                    bri = 72 + noise(xoff, yoff) * 28
+                    fill(palette.second.hue, bri, 100)
+                    rect(i, j, step, step)
+                    xoff += QV.pH
                 }
-                yoff+=QV.pH
+                yoff += QV.pH
             }
         }
 
         //Penses tu qu'il soit possible d'avoir un rendu plus fluide? 
-        function solar_spiral_smooth_clockwise(hu){
-            let initcx=0.5*w
-            let initcy=0.42*h
-            let cx,cy
-            let offcenter=random(25,75)
-            let rad=0.4*w
-            let surf = PI*rad*rad*0.4
-            let x1,y1,angle,i,r,n
-            fill(hu,50+random()*50,palette.first.bri)
-//            noFill(); strokeWeight(1)
-            r=0
-            angle=random()*360
-            for(i=0;i<surf;i++){
-                if(r>=rad){
-                    r=0
-                    angle=Math.floor(random(72))*5   
+        function solar_spiral_smooth_clockwise(hu) {
+            let initcx = 0.5 * w
+            let initcy = 0.42 * h
+            let cx, cy
+            let offcenter = random(25, 75)
+            let rad = 0.4 * w
+            let surf = PI * rad * rad * 0.4
+            let x1, y1, angle, i, r, n
+            fill(hu, 50 + random() * 50, palette.first.bri)
+            //            noFill(); strokeWeight(1)
+            r = 0
+            angle = random() * 360
+            for (i = 0; i < surf; i++) {
+                if (r >= rad) {
+                    r = 0
+                    angle = Math.floor(random(72)) * 5
                 }
-                if (noise(xoff)<QV.volatile*QV.glucose){
-                    if(random()<0.7){cx+=random(-offcenter,offcenter);cy+=random(-offcenter,offcenter);}
-                    else{cx=initcx;cy=initcy}
-                    x1=cx+r*cos(radians(angle))
-                    y1=cy+r*sin(radians(angle))
-                    ellipse(x1,y1,2.42,2.42)                   
+                if (noise(xoff) < QV.volatile * QV.glucose) {
+                    if (random() < 0.7) { cx += random(-offcenter, offcenter); cy += random(-offcenter, offcenter); }
+                    else { cx = initcx; cy = initcy }
+                    x1 = cx + r * cos(radians(angle))
+                    y1 = cy + r * sin(radians(angle))
+                    ellipse(x1, y1, 2.42, 2.42)
                 }
-                xoff+=0.1 
+                xoff += 0.1
                 angle += 0.5
-                r+=0.5
+                r += 0.5
             }
         }
-        function solar_spiral_smooth_counterclockwise(hu){
-            let initcx=0.5*w
-            let initcy=0.42*h
-            let cx,cy
-            let offcenter=random(25,75)
-            let rad=0.55*w
-            let surf = PI*rad*rad*0.05
-            let x1,y1,angle,i,r,n
-            fill(hu,50+random()*50,palette.first.bri)
-//            noFill(); strokeWeight(1)
-            r=0
-            angle=random()*360
-            for(i=0;i<surf;i++){
-                if(r>=rad){
-                    r=0
-                    angle=Math.floor(random(72))*5   
+        function solar_spiral_smooth_counterclockwise(hu) {
+            let initcx = 0.5 * w
+            let initcy = 0.42 * h
+            let cx, cy
+            let offcenter = random(25, 75)
+            let rad = 0.55 * w
+            let surf = PI * rad * rad * 0.05
+            let x1, y1, angle, i, r, n
+            fill(hu, 50 + random() * 50, palette.first.bri)
+            //            noFill(); strokeWeight(1)
+            r = 0
+            angle = random() * 360
+            for (i = 0; i < surf; i++) {
+                if (r >= rad) {
+                    r = 0
+                    angle = Math.floor(random(72)) * 5
                 }
-                if (noise(xoff)<QV.volatile*QV.glucose){
-                    if(random()<0.3){cx+=random(-offcenter,offcenter);cy+=random(-offcenter,offcenter);}
-                    else{cx=initcx;cy=initcy}
-                    x1=cx+r*cos(radians(angle))
-                    y1=cy+r*sin(radians(angle))
-                    ellipse(x1,y1,2.42,2.42)                   
+                if (noise(xoff) < QV.volatile * QV.glucose) {
+                    if (random() < 0.3) { cx += random(-offcenter, offcenter); cy += random(-offcenter, offcenter); }
+                    else { cx = initcx; cy = initcy }
+                    x1 = cx + r * cos(radians(angle))
+                    y1 = cy + r * sin(radians(angle))
+                    ellipse(x1, y1, 2.42, 2.42)
                 }
-                xoff+=0.1 
+                xoff += 0.1
                 angle -= 0.5
-                r+=0.5
+                r += 0.5
             }
         }
 
-        function solar_spiral_2(){
-            let cx=0.5*w
-            let cy=0.42*h
-            let rad=0.5*w
-            let surf = PI*rad*rad
-            let x1,y1,angle,i,r,n, hu
-            hu=(palette.first.hue+random(50))%360
-            stroke(hu,50+random()*50,palette.first.bri)
+        function solar_spiral_2() {
+            let cx = 0.5 * w
+            let cy = 0.42 * h
+            let rad = 0.5 * w
+            let surf = PI * rad * rad
+            let x1, y1, angle, i, r, n, hu
+            hu = (palette.first.hue + random(50)) % 360
+            stroke(hu, 50 + random() * 50, palette.first.bri)
             noFill(); strokeWeight(1)
-            r=0
-            angle=random()*360
-            for(i=0;i<surf;i++){
-                if(r>=rad){
-                    r=0
-                    angle=random()*360   
+            r = 0
+            angle = random() * 360
+            for (i = 0; i < surf; i++) {
+                if (r >= rad) {
+                    r = 0
+                    angle = random() * 360
                 }
-                if (noise(xoff)<QV.volatile*QV.glucose){
-                    x1=cx+r*cos(radians(angle))
-                    y1=cy+r*sin(radians(angle))
-                    rect(x1,y1,1,1)                   
+                if (noise(xoff) < QV.volatile * QV.glucose) {
+                    x1 = cx + r * cos(radians(angle))
+                    y1 = cy + r * sin(radians(angle))
+                    rect(x1, y1, 1, 1)
                 }
-                xoff+=0.1 
+                xoff += 0.1
                 angle += 1
-                r+=0.5
+                r += 0.5
             }
         }
 
 
-        function solar_spiral_1(){
-            let cx=w/2
-            let cy=h/2-random()*(h/2-w/2)*0.5; console.log(cy)
-            let rad=0.45*w
-            let surf = PI*rad*rad
-            let x1,y1,angle,i,r,n
-            stroke(palette.first.hue,palette.first.sat,palette.first.bri)
+        function solar_spiral_1() {
+            let cx = w / 2
+            let cy = h / 2 - random() * (h / 2 - w / 2) * 0.5; console.log(cy)
+            let rad = 0.45 * w
+            let surf = PI * rad * rad
+            let x1, y1, angle, i, r, n
+            stroke(palette.first.hue, palette.first.sat, palette.first.bri)
             noFill(); strokeWeight(1)
-            r=0
-            angle=random()*360
-            for(i=0;i<surf;i++){
-                if(r>=rad){
-                    r=0
-                    angle=random()*360   
+            r = 0
+            angle = random() * 360
+            for (i = 0; i < surf; i++) {
+                if (r >= rad) {
+                    r = 0
+                    angle = random() * 360
                 }
-                if (noise(xoff)<QV.alcool/100){
-                    x1=cx+r*cos(radians(angle))
-                    y1=cy+r*sin(radians(angle))
-                    rect(x1,y1,5,5)                   
+                if (noise(xoff) < QV.alcool / 100) {
+                    x1 = cx + r * cos(radians(angle))
+                    y1 = cy + r * sin(radians(angle))
+                    rect(x1, y1, 5, 5)
                 }
-                xoff+=0.1 
+                xoff += 0.1
                 angle += 1
-                r+=0.5
+                r += 0.5
             }
         }
 
 
 
-        function solar_spiral_3(){
-            let cx=w/2
-            let cy=h/2-random()*(h/2-w/2)*0.5; console.log(cy)
-            let rad=0.45*w
-            let surf = PI*rad*rad
-            let x1,y1,angle,i,r,n
-            stroke(palette.first.hue,palette.first.sat,palette.first.bri)
+        function solar_spiral_3() {
+            let cx = w / 2
+            let cy = h / 2 - random() * (h / 2 - w / 2) * 0.5; console.log(cy)
+            let rad = 0.45 * w
+            let surf = PI * rad * rad
+            let x1, y1, angle, i, r, n
+            stroke(palette.first.hue, palette.first.sat, palette.first.bri)
             noFill(); strokeWeight(1)
-            r=0
-            angle=random()*360
-            for(i=0;i<surf;i++){
-                if(r>=rad){
-                    r=0
-                    angle=random()*360   
+            r = 0
+            angle = random() * 360
+            for (i = 0; i < surf; i++) {
+                if (r >= rad) {
+                    r = 0
+                    angle = random() * 360
                 }
-                if (noise(xoff)<QV.volatile*QV.glucose){
-                    x1=cx+r*cos(radians(angle))
-                    y1=cy+r*sin(radians(angle))
-                    triangle(x1,y1,x1+4,y1,x1+2,y1+2)                   
+                if (noise(xoff) < QV.volatile * QV.glucose) {
+                    x1 = cx + r * cos(radians(angle))
+                    y1 = cy + r * sin(radians(angle))
+                    triangle(x1, y1, x1 + 4, y1, x1 + 2, y1 + 2)
                 }
-                xoff+=0.1 
+                xoff += 0.1
                 angle += 1
-                r+=0.5
+                r += 0.5
             }
         }
 
-        function cubicfield(){            
+        function cubicfield() {
             noStroke()
-            let ratio = QV.So2/100
+            let ratio = QV.So2 / 100
 
-            let cx = random()*w
-            let cy = random()*h*ratio
-            let x1,x2,y1,y2;
-            x1=0;y1=0;x2=0;y2=y1+ random()*h*ratio;
-            
-            while (y2<h){
+            let cx = random() * w
+            let cy = random() * h * ratio
+            let x1, x2, y1, y2;
+            x1 = 0; y1 = 0; x2 = 0; y2 = y1 + random() * h * ratio;
+
+            while (y2 < h) {
                 up_color()
-                triangle(x1,y1,cx,cy,x2,y2);
-                y1=y2
-                y2=y1+ random()*h*ratio
+                triangle(x1, y1, cx, cy, x2, y2);
+                y1 = y2
+                y2 = y1 + random() * h * ratio
             }
-            triangle(x1,y1,cx,cy,x2,h);
-            x2=x1+ random()*h*ratio;
-            y1=h; y2=h
-            while (x2<w){
+            triangle(x1, y1, cx, cy, x2, h);
+            x2 = x1 + random() * h * ratio;
+            y1 = h; y2 = h
+            while (x2 < w) {
                 up_color()
-                triangle(x1,y1,cx,cy,x2,y2);
-                x1=x2
-                x2=x1+ random()*h*ratio;
-            }      
-            triangle(x1,y1,cx,cy,w,y2);
-            x1=w;x2=w;
-            y1=h; y2=y1- random()*h*ratio
-            while (y2>0){
+                triangle(x1, y1, cx, cy, x2, y2);
+                x1 = x2
+                x2 = x1 + random() * h * ratio;
+            }
+            triangle(x1, y1, cx, cy, w, y2);
+            x1 = w; x2 = w;
+            y1 = h; y2 = y1 - random() * h * ratio
+            while (y2 > 0) {
                 up_color()
-                triangle(x1,y1,cx,cy,x2,y2);
-                y1=y2; 
-                y2=y1- random()*h*ratio
-                console.log("draw at "+y2)
-            }      
-            triangle(x1,y1,cx,cy,x2,0);
-            fill(30,100,100)
-            triangle(w,0,cx,cy,0,0)
+                triangle(x1, y1, cx, cy, x2, y2);
+                y1 = y2;
+                y2 = y1 - random() * h * ratio
+                console.log("draw at " + y2)
+            }
+            triangle(x1, y1, cx, cy, x2, 0);
+            fill(30, 100, 100)
+            triangle(w, 0, cx, cy, 0, 0)
         }
 
-        function up_color(){
-            let sat = 80+random()*20
-            let bright =  20+random()*80
-            fill(palette.second.hue,sat,bright)
-            stroke(palette.second.hue,sat,bright)
+        function up_color() {
+            let sat = 80 + random() * 20
+            let bright = 20 + random() * 80
+            fill(palette.second.hue, sat, bright)
+            stroke(palette.second.hue, sat, bright)
         }
-        function earth(){
-            fill(230,100,100)
+        function earth() {
+            fill(230, 100, 100)
             noStroke()
-            rect(0,0,w,h)
-            stroke(230,80,100)
+            rect(0, 0, w, h)
+            stroke(230, 80, 100)
             let step
-            let offset=QV.acidite*7
+            let offset = QV.acidite * 7
             console.log(Math.floor(QV.alcool))
             strokeWeight(7)
-            for(let i=0;i<Math.floor(QV.alcool);i++){
-                step = i*offset
-                bezier(50+step,42, 0,400, 50+step+187,500,0+step,h-42+step)
+            for (let i = 0; i < Math.floor(QV.alcool); i++) {
+                step = i * offset
+                bezier(50 + step, 42, 0, 400, 50 + step + 187, 500, 0 + step, h - 42 + step)
             }
         }
 
-        function back(){
-            let i,j;
+        function back() {
+            let i, j;
             noStroke()
-            fill(210,100,100)
-            for (i=0;i<w;i++){
-                for (j=0;j<h;j++){
-                    if (random()<QV.alcool/100){rect(i,j,1,1)}
+            fill(210, 100, 100)
+            for (i = 0; i < w; i++) {
+                for (j = 0; j < h; j++) {
+                    if (random() < QV.alcool / 100) { rect(i, j, 1, 1) }
                 }
             }
         }
