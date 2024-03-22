@@ -37,8 +37,8 @@
         var font, sourcecode
 
         function setup() {
-            //getsvg()
-            getpng()
+            getsvg()
+            //getpng()
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
@@ -98,7 +98,7 @@
             var tiltdec = 0.01
             var offsetxdec = 2
             var offsetydec = 3
-            for (var i = 0; i < 33; i++) {
+            for (var i = 0; i < 29; i++) {
                 cube2(w * 0.5 - 3 * i, h * 0.25 + 3 * i, wid, hei, tilt, offsetx, offsety)
                 wid -= widdec
                 hei -= heidec
@@ -145,7 +145,8 @@
         }
 
         function writecode2() {
-            var allcode = ''
+            textFont(font)
+                var allcode = ''
             for (var i = 0; i < sourcecode.length; i++) {
                 var token = sourcecode[i]
                 var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
