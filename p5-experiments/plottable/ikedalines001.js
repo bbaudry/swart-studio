@@ -19,7 +19,7 @@ function draw() {
 function frames() {
     strokeWeight(3);
     rect(0, 0, w, h);
-    //quad(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin)
+    quad(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin)
     strokeWeight(1);
 
 }
@@ -39,7 +39,6 @@ function block() {
     while (destx < rightmargin) {
         while (x2 < destx) {
             x2 = x1 + xstep * noise(xoff); xoff += xinc;
-            y=ystep
             for (i = 0; i < depth; i += 3) {
                 y = ystep+i* noise(yoff); yoff += yinc1;
                 line(x1, y, x2, y)
@@ -52,7 +51,7 @@ function block() {
         x1 = originx
         x2 = originx
         xstep = random(42,126)
-        ystep=actualheight* noise(yoff2); yoff2 += yinc2;//*random()
+        ystep=topmargin+actualheight*random()//* noise(yoff2); yoff2 += yinc2;//*random()
         depth=Math.floor(random(84))
     }
 }
