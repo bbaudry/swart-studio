@@ -52,9 +52,3 @@ function placebtn() {
     imgbtn.position(x - 200, y + h / 2 + 42)
 }
 
-function savesvg() {
-    save("plottableperspective004.svg");
-}
-function savepng() {
-    save("plottableperspective004.png");
-}

@@ -1,19 +1,28 @@
-var xoff = 0.0
-var yoff = 0.0
-var yoff2 = 0.0
+var xoff=0.0 
+var yoff=0.0 
+var yoff2=0.0
+
+
+function savesvg() {
+    save("ikedalines001.svg");
+}
+
+function savepng() {
+    save("ikedalines001.png");
+}
 
 function draw() {
-    background(0, 0, 100)
-    stroke(0, 0, 0)
-    frames()
-    for(var i=0;i<21;i++){
+    //background(0, 0, 100)
+    frameRate(1)
+    stroke(0, 0, 0,100)
+    //frames()
+    var nbblocks=7
+    if(frameCount<nbblocks){
         block()
     }
-    stroke(0, 100, 100)
-    for(var i=0;i<21;i++){
-        block()
-    }
+    else{
     noLoop()
+}
 }
 
 function frames() {
@@ -29,12 +38,15 @@ function block() {
     xinc = 0.01
     yinc1 = 0.001
     yinc2 = 0.1
-    originx = leftmargin + actualwidth*random()
-    destx = originx+actualwidth * random()
+    originx = leftmargin + (actualwidth*0.1) * noise(xoff); xoff += xinc;//*random()
+    destx = originx+(actualwidth*0.5) * noise(xoff); xoff += xinc;// * random()
+    console.log("right margin: "+rightmargin)
+    console.log("origin x: "+originx)
+    console.log("dest x: "+destx)
     x1 = originx
     x2 = originx
     xstep = random(42,84)
-    ystep = actualheight* noise(yoff2); yoff2 += yinc2;//*random()
+    ystep = topmargin+actualheight* noise(yoff2); yoff2 += yinc2;//*random()
     depth = 42
     while (destx < rightmargin) {
         while (x2 < destx) {
@@ -47,11 +59,11 @@ function block() {
             ystep=actualheight* noise(yoff); yoff += yinc1;//*random()
         }
         originx = destx
-        destx += actualwidth * random()
+        destx += (actualwidth*0.5) * random()
         x1 = originx
         x2 = originx
-        xstep = random(42,126)
-        ystep=topmargin+actualheight*random()//* noise(yoff2); yoff2 += yinc2;//*random()
+        xstep = random(4,42)
+        ystep=topmargin+actualheight* noise(yoff2); yoff2 += yinc2;//*random()
         depth=Math.floor(random(84))
     }
 }
