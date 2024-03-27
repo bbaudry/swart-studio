@@ -63,7 +63,7 @@ function placebtn() {
 }
 
 function savesvg() {
-    save("cartels-vernissage.svg");
+    save("cartels-code.svg");
 }
 
 function preload() {
