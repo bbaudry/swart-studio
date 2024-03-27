@@ -28,7 +28,7 @@ function setup() {
 }
 
 function getsvg() {
-    cnv = createCanvas(w, h, SVG);
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     imgbtn = createButton("save svg");
     placebtn();
     imgbtn.mouseClicked(savesvg);
