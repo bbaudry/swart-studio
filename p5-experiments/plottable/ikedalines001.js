@@ -42,7 +42,7 @@ function block() {
     xinc = 0.01
     yinc1 = 0.1
     yinc2 = 0.03
-    yinc3 = 0.05
+    yinc3 = 0.09
     originx = leftmargin + (actualwidth*0.1) * noise(xoff); xoff += xinc;//*random()
     destx = originx+(actualwidth*0.5) * noise(xoff); xoff += xinc;// * random()
     x1 = originx
@@ -64,9 +64,9 @@ function block() {
         destx += (actualwidth*0.5) * random()
         x1 = originx
         x2 = originx
-        xstep = random(42,84)
+        xstep = random(42,126)
         ystep=topmargin+actualheight* noise(yoff3); yoff3 += yinc3;//*random()
-        depth=Math.floor(random(84))
+        depth=Math.floor(random(42,84))
     }
 }
 function credits(){
