@@ -13,10 +13,12 @@ function savepng() {
 
 var xoff = 0.0
 var xinc = 0.001
+var y = h * 0.5
+var yoff = 0.0
+var yinc = 0.3
 
 function draw() {
     background(0, 0, 100)
-    frameRate(1)
     stroke(0, 0, 0, 100)
     frames()
     squiggleline()
@@ -34,50 +36,52 @@ function frames() {
 
 function squiggleline() {
     var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
-    var sqiwid = rightmargin - leftmargin
-    var ratio = 0.07
-    var sqighi = 0.03*h
-    var sqiglo = 0.02*h
-    var y = h * 0.5
+    var ratio = 0.04
+    var sqiwidlarge = (rightmargin - leftmargin)*ratio
+    var sqiwidsmall = (rightmargin - leftmargin)*ratio*0.08
+    var sqighi = 0.02*h
+    var sqiglo = 0.005*h
+    var yamplitude = 50
     beginShape();
     px = leftmargin
     py = y
     vertex(px, py);
-    for (var x = ratio; x <= 1; x += ratio) {
-        ellipse(px,py,5,5)
+    while(px<rightmargin-sqiwidlarge){
+//        ellipse(px,py,5,5)
         cpx2 = px 
         cpy2 = y - sqighi
-        px += sqiwid * ratio
+        px += sqiwidlarge
         py = y 
         cpx1 = px  
         cpy1 = y - sqighi
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-        ellipse(cpx1,cpy1,15,15)
-        ellipse(cpx2,cpy2,25,25)
+//        ellipse(cpx1,cpy1,15,15)
+//        ellipse(cpx2,cpy2,25,25)
 
-        ellipse(px,py,5,5)
+//        ellipse(px,py,5,5)
         cpx2 = px 
         cpy2 = y 
-        px -= sqiwid * ratio*0.2
+        px -= sqiwidsmall
         py = y+sqiglo
-        cpx1 = px+ sqiwid * (ratio * 0.2) 
+        cpx1 = px+ sqiwidsmall 
         cpy1 = py  
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-        ellipse(cpx1,cpy1,15,15)
-        ellipse(cpx2,cpy2,25,25)
+//        ellipse(cpx1,cpy1,15,15)
+//        ellipse(cpx2,cpy2,25,25)
 
 
-        ellipse(px,py,5,5)
-        cpx2 = px- sqiwid * (ratio * 0.2) 
+//        ellipse(px,py,5,5)
+        cpx2 = px- sqiwidsmall 
         cpy2 = py  
-        px -= sqiwid * ratio*0.2
+        px -= sqiwidsmall
         py = y
         cpx1 = px
         cpy1 = y 
         bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-        ellipse(cpx1,cpy1,15,15)
-        ellipse(cpx2,cpy2,25,25)
+//        ellipse(cpx1,cpy1,15,15)
+//        ellipse(cpx2,cpy2,25,25)
 
+        y+=yamplitude*0.5-noise(yoff)*yamplitude; yoff+=yinc
     }
     endShape()
 }
