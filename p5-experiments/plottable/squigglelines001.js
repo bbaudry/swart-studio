@@ -13,16 +13,18 @@ function savepng() {
 
 var xoff = 0.0
 var xinc = 0.001
-var y = h * 0.5
+var y = h * 0.1
 var yoff = 0.0
 var yinc = 0.3
 
 function draw() {
-    background(0, 0, 100)
+    //background(0, 0, 100)
     stroke(0, 0, 0, 100)
     frames()
-    squiggleline()
-    noLoop()
+    squiggleline(y)
+    y+=10
+    if(y>bottommargin*0.8){noLoop()}
+    //noLoop()
 }
 
 function frames() {
@@ -34,7 +36,7 @@ function frames() {
 }
 
 
-function squiggleline() {
+function squiggleline(y) {
     var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
     var ratio = 0.04
     var sqiwidlarge = (rightmargin - leftmargin)*ratio
