@@ -13,11 +13,11 @@ function savepng() {
 
 var xoff = 0.0
 var xinc = 0.001
-var y = h * 0.2
+var y = h * 0.4
 var xoff = 0.0
-var xinc = 0.01
+var xinc = 0.1
 var yoff = 0.0
-var yinc = 0.7
+var yinc = 0.007
 var right = true
 
 function draw() {
@@ -46,12 +46,12 @@ function squiggleline(y) {
     var sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
     var sqighi = 0.02 * h
     var sqiglo = 0.005 * h
-    var yamplitude = 50
+    var yamplitude = 40
     beginShape();
     px = leftmargin
     py = y
     vertex(px, py);
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 9; i++) {
         while (px < rightmargin - sqiwidlarge && right) {
             //        ellipse(px,py,5,5)
             cpx2 = px + 15 * noise(xoff) - 30; xoff += xinc
@@ -87,7 +87,7 @@ function squiggleline(y) {
             //        ellipse(cpx1,cpy1,15,15)
             //        ellipse(cpx2,cpy2,25,25)
 
-            y += yamplitude * 0.5 - noise(yoff) * yamplitude; yoff += yinc
+            y += yamplitude * 0.5 - random() * yamplitude; yoff += yinc
         }
         right = false
         while (px > leftmargin + sqiwidlarge && !right) {
@@ -115,7 +115,7 @@ function squiggleline(y) {
             cpy1 = y
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
 
-            y += yamplitude * 0.5 - noise(yoff) * yamplitude; yoff += yinc
+            y += yamplitude * 0.5 - random() * yamplitude; yoff += yinc
         }
         right = true
     }
