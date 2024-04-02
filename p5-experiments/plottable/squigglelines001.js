@@ -13,18 +13,21 @@ function savepng() {
 
 var xoff = 0.0
 var xinc = 0.001
-var y = h * 0.1
+var y = h * 0.2
+var xoff = 0.0
+var xinc = 0.01
 var yoff = 0.0
-var yinc = 0.3
+var yinc = 0.7
+var right = true
 
 function draw() {
     //background(0, 0, 100)
     stroke(0, 0, 0, 100)
     frames()
     squiggleline(y)
-    y+=10
-    if(y>bottommargin*0.8){noLoop()}
-    //noLoop()
+    y += 10
+    if (y > bottommargin * 0.8) { noLoop() }
+    noLoop()
 }
 
 function frames() {
@@ -39,51 +42,82 @@ function frames() {
 function squiggleline(y) {
     var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
     var ratio = 0.04
-    var sqiwidlarge = (rightmargin - leftmargin)*ratio
-    var sqiwidsmall = (rightmargin - leftmargin)*ratio*0.08
-    var sqighi = 0.02*h
-    var sqiglo = 0.005*h
+    var sqiwidlarge = (rightmargin - leftmargin) * ratio
+    var sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
+    var sqighi = 0.02 * h
+    var sqiglo = 0.005 * h
     var yamplitude = 50
     beginShape();
     px = leftmargin
     py = y
     vertex(px, py);
-    while(px<rightmargin-sqiwidlarge){
-//        ellipse(px,py,5,5)
-        cpx2 = px 
-        cpy2 = y - sqighi
-        px += sqiwidlarge
-        py = y 
-        cpx1 = px  
-        cpy1 = y - sqighi
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-//        ellipse(cpx1,cpy1,15,15)
-//        ellipse(cpx2,cpy2,25,25)
+    for (var i = 0; i < 7; i++) {
+        while (px < rightmargin - sqiwidlarge && right) {
+            //        ellipse(px,py,5,5)
+            cpx2 = px + 15 * noise(xoff) - 30; xoff += xinc
+            cpy2 = y - sqighi
+            px += sqiwidlarge
+            py = y
+            cpx1 = px
+            cpy1 = y - sqighi
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            //        ellipse(cpx1,cpy1,15,15)
+            //        ellipse(cpx2,cpy2,25,25)
 
-//        ellipse(px,py,5,5)
-        cpx2 = px 
-        cpy2 = y 
-        px -= sqiwidsmall
-        py = y+sqiglo
-        cpx1 = px+ sqiwidsmall 
-        cpy1 = py  
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-//        ellipse(cpx1,cpy1,15,15)
-//        ellipse(cpx2,cpy2,25,25)
+            //        ellipse(px,py,5,5)
+            cpx2 = px
+            cpy2 = y
+            px -= sqiwidsmall
+            py = y + sqiglo
+            cpx1 = px + sqiwidsmall
+            cpy1 = py
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            //        ellipse(cpx1,cpy1,15,15)
+            //        ellipse(cpx2,cpy2,25,25)
 
 
-//        ellipse(px,py,5,5)
-        cpx2 = px- sqiwidsmall 
-        cpy2 = py  
-        px -= sqiwidsmall
-        py = y
-        cpx1 = px
-        cpy1 = y 
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-//        ellipse(cpx1,cpy1,15,15)
-//        ellipse(cpx2,cpy2,25,25)
+            //        ellipse(px,py,5,5)
+            cpx2 = px - sqiwidsmall
+            cpy2 = py
+            px -= sqiwidsmall
+            py = y
+            cpx1 = px
+            cpy1 = y
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            //        ellipse(cpx1,cpy1,15,15)
+            //        ellipse(cpx2,cpy2,25,25)
 
-        y+=yamplitude*0.5-noise(yoff)*yamplitude; yoff+=yinc
+            y += yamplitude * 0.5 - noise(yoff) * yamplitude; yoff += yinc
+        }
+        right = false
+        while (px > leftmargin + sqiwidlarge && !right) {
+            cpx2 = px
+            cpy2 = y + sqighi
+            px -= sqiwidlarge
+            py = y
+            cpx1 = px
+            cpy1 = y + sqighi
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+            cpx2 = px
+            cpy2 = y
+            px += sqiwidsmall
+            py = y - sqiglo
+            cpx1 = px - sqiwidsmall
+            cpy1 = py
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+            cpx2 = px + sqiwidsmall
+            cpy2 = py
+            px += sqiwidsmall
+            py = y
+            cpx1 = px
+            cpy1 = y
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+            y += yamplitude * 0.5 - noise(yoff) * yamplitude; yoff += yinc
+        }
+        right = true
     }
     endShape()
 }
