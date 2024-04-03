@@ -1,0 +1,134 @@
+var xoff = 0.0
+var yoff = 0.0
+var yoff2 = 0.0
+
+
+function savesvg() {
+    save("squigglelines001.svg");
+}
+
+function savepng() {
+    save("squigglelines001.png");
+}
+
+var xoff = 0.0
+var xinc = 0.001
+var y = h * 0.4
+var xoff = 0.0
+var xinc = 0.1
+var yoff = 0.0
+var yinc = 0.007
+var right = true
+
+function draw() {
+    //background(0, 0, 100)
+    stroke(0, 0, 0, 100)
+    frames()
+    squiggleline(y)
+    y += 10
+    if (y > bottommargin * 0.8) { noLoop() }
+    noLoop()
+}
+
+function frames() {
+    strokeWeight(3);
+    rect(0, 0, w, h);
+    quad(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin)
+    strokeWeight(1);
+
+}
+
+
+function squiggleline(y) {
+    var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
+    var ratio, sqiwidlarge, sqiwidsmall
+    var sqighi = 0.02 * h
+    var sqiglo = 0.005 * h
+    var yamplitude = 40
+    ratio = 0.02 + random() * 0.02
+    sqiwidlarge = (rightmargin - leftmargin) * ratio
+    sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
+    beginShape();
+    py = y
+    px = leftmargin + sqiwidlarge
+    vertex(px, py);
+    for (var i = 0; i < 39; i++) {
+        while (px < rightmargin - sqiwidlarge && right) {
+            //        ellipse(px,py,5,5)
+            cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
+            cpy2 = y - sqighi
+            px += sqiwidlarge
+            py = y
+            cpx1 = px
+            cpy1 = y - sqighi
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            bezierVertex(cpx2, cpy2+3, cpx1, cpy1+3, px, py+3);
+            bezierVertex(cpx2, cpy2+6, cpx1, cpy1+6, px, py+6);
+            //        ellipse(cpx1,cpy1,15,15)
+            //        ellipse(cpx2,cpy2,25,25)
+
+            //        ellipse(px,py,5,5)
+            cpx2 = px
+            cpy2 = y
+            px -= sqiwidsmall
+            py = y + sqiglo
+            cpx1 = px + sqiwidsmall
+            cpy1 = py
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            bezierVertex(cpx2, cpy2+3, cpx1, cpy1+3, px, py+3);
+            bezierVertex(cpx2, cpy2+6, cpx1, cpy1+6, px, py+6);
+             //        ellipse(cpx1,cpy1,15,15)
+            //        ellipse(cpx2,cpy2,25,25)
+
+
+            //        ellipse(px,py,5,5)
+            cpx2 = px - sqiwidsmall
+            cpy2 = py
+            px -= sqiwidsmall
+            py = y
+            cpx1 = px
+            cpy1 = y
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+            bezierVertex(cpx2, cpy2+3, cpx1, cpy1+3, px, py+3);
+            bezierVertex(cpx2, cpy2+6, cpx1, cpy1+6, px, py+6);
+             //        ellipse(cpx1,cpy1,15,15)
+            //        ellipse(cpx2,cpy2,25,25)
+
+            y += yamplitude * 0.5 - random() * yamplitude; yoff += yinc
+        }
+        right = false
+        while (px > leftmargin + sqiwidlarge && !right) {
+            cpx2 = px
+            cpy2 = y + sqighi
+            px -= sqiwidlarge
+            py = y
+            cpx1 = px
+            cpy1 = y + sqighi
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+            cpx2 = px
+            cpy2 = y
+            px += sqiwidsmall
+            py = y - sqiglo
+            cpx1 = px - sqiwidsmall
+            cpy1 = py
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+            cpx2 = px + sqiwidsmall
+            cpy2 = py
+            px += sqiwidsmall
+            py = y
+            cpx1 = px
+            cpy1 = y
+            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+            y += yamplitude * 0.5 - random() * yamplitude; yoff += yinc
+        }
+        right = true
+        ratio = 0.01 + random()*0.03
+        sqiwidlarge = (rightmargin - leftmargin) * ratio
+        sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
+        px = leftmargin + sqiwidlarge
+    }
+    endShape()
+}
