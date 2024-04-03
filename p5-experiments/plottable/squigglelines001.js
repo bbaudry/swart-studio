@@ -41,20 +41,21 @@ function frames() {
 
 function squiggleline(y) {
     var px, py, cpx1, cpy1, cpx2, cpy2, px1, py1
-    var ratio = 0.04
-    var sqiwidlarge = (rightmargin - leftmargin) * ratio
-    var sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
+    var ratio, sqiwidlarge, sqiwidsmall
     var sqighi = 0.02 * h
     var sqiglo = 0.005 * h
     var yamplitude = 40
+    ratio = 0.02 + random() * 0.02
+    sqiwidlarge = (rightmargin - leftmargin) * ratio
+    sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
     beginShape();
-    px = leftmargin
     py = y
+    px = leftmargin + sqiwidlarge
     vertex(px, py);
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 39; i++) {
         while (px < rightmargin - sqiwidlarge && right) {
             //        ellipse(px,py,5,5)
-            cpx2 = px + 15 * noise(xoff) - 30; xoff += xinc
+            cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
             cpy2 = y - sqighi
             px += sqiwidlarge
             py = y
@@ -118,6 +119,10 @@ function squiggleline(y) {
             y += yamplitude * 0.5 - random() * yamplitude; yoff += yinc
         }
         right = true
+        ratio = 0.01 + random()*0.03
+        sqiwidlarge = (rightmargin - leftmargin) * ratio
+        sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
+        px = leftmargin + sqiwidlarge
     }
     endShape()
 }
