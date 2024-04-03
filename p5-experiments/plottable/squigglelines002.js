@@ -45,6 +45,7 @@ function squiggleline(y) {
     var sqighi = 0.02 * h
     var sqiglo = 0.005 * h
     var yamplitude = 40
+    var inc = 7
     ratio = 0.02 + random() * 0.02
     sqiwidlarge = (rightmargin - leftmargin) * ratio
     sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
@@ -61,9 +62,9 @@ function squiggleline(y) {
             py = y
             cpx1 = px
             cpy1 = y - sqighi
-            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-            bezierVertex(cpx2, cpy2+3, cpx1, cpy1+3, px, py+3);
-            bezierVertex(cpx2, cpy2+6, cpx1, cpy1+6, px, py+6);
+            bezierVertex(cpx2, cpy2+inc*0, cpx1, cpy1+inc*0, px, py+inc*0);
+            bezierVertex(cpx2, cpy2+inc*1, cpx1, cpy1+inc*1, px, py+inc*1);
+            bezierVertex(cpx2, cpy2+inc*2, cpx1, cpy1+inc*2, px, py+inc*2);
             //        ellipse(cpx1,cpy1,15,15)
             //        ellipse(cpx2,cpy2,25,25)
 
@@ -74,9 +75,9 @@ function squiggleline(y) {
             py = y + sqiglo
             cpx1 = px + sqiwidsmall
             cpy1 = py
-            bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-            bezierVertex(cpx2, cpy2+3, cpx1, cpy1+3, px, py+3);
-            bezierVertex(cpx2, cpy2+6, cpx1, cpy1+6, px, py+6);
+            bezierVertex(cpx2, cpy2+inc*0, cpx1, cpy1+inc*0, px, py+inc*0);
+            bezierVertex(cpx2, cpy2+inc*1, cpx1, cpy1+inc*1, px, py+inc*1);
+            bezierVertex(cpx2, cpy2+inc*2, cpx1, cpy1+inc*2, px, py+inc*2);
              //        ellipse(cpx1,cpy1,15,15)
             //        ellipse(cpx2,cpy2,25,25)
 
