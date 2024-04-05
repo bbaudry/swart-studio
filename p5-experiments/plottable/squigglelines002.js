@@ -22,10 +22,10 @@ var right = true
 
 function draw() {
     //background(0, 0, 100)
-    stroke(0, 0, 0, 100)
+    stroke(0, 0, 100, 200)
     frames()
     squiggleline(y)
-    y += 10
+    y += 42
     if (y > bottommargin * 0.8) { noLoop() }
     noLoop()
 }

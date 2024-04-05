@@ -17,9 +17,9 @@ function preload() {
 }
 
 function draw() {
-    //background(0, 0, 100)
+    background(0, 0, 0)
     frameRate(1)
-    stroke(0, 0, 0,100)
+    stroke(0, 0, 100)
     //frames()
     var nbblocks=17
     for(var i=0; i<nbblocks;i++){
