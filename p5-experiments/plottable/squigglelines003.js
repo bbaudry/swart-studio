@@ -25,8 +25,8 @@ function draw() {
     //frames()
     //lignecontinue()
     var x1, x2, y1, y2
-    x1=leftmargin
-    x2=x1+222
+    x1=rightmargin
+    x2=x1-222
     y1=h*0.5
     y2=h*0.6
     squiggleline(x1, x2, y1, y2)
@@ -50,7 +50,7 @@ function lignecontinue() {
     x1 = leftmargin + random() * actualwidth
     y1 = leftmargin + random() * actualheight
     beginShape()
-    for (var i = 0; i < 42; i++) {
+    for (var i = 0; i < 4; i++) {
         if (random() < 0.5) {
             x2 = x1 + noise(xoff) * (rightmargin - x1); xoff += xinc
             y2 = y1 + noise(xoff) * (bottommargin - y1) * 0.1; xoff += xinc
@@ -59,7 +59,8 @@ function lignecontinue() {
             x2 = x1 - noise(xoff) * (x1 - leftmargin); xoff += xinc
             y2 = y1 - noise(xoff) * (y1 - topmargin) * 0.3; xoff += xinc
         }
-        line(x1, y1, x2, y2)
+        stroke(0,0,100);line(x1, y1, x2, y2)
+        stroke(0,100,100);squiggleline(x1, x2, y1, y2)
         x1 = x2
         y1 = y2
     }
@@ -71,8 +72,6 @@ function squiggleline(x1, x2, y1, y2) {
     var ratio, sqiwidlarge, sqiwidsmall
     var sqighi = 0.02 * Math.abs(y2-y1)
     var sqiglo = 0.005 * Math.abs(y2-y1)
-    var yamplitude = 40
-    var inc = 7
     if (x2 < x1) { right=false } else {right =true}
     if (y2 < y1) { down=false } else {down =true}
     ratio = 0.2 + random() * 0.2
@@ -80,10 +79,13 @@ function squiggleline(x1, x2, y1, y2) {
     sqiwidsmall = Math.abs(x2 - x1) * ratio * 0.08
     beginShape();
     py = y1
+    y=y1
     if(right){px = x1}
-    else{px = x2 - sqiwidlarge}
+    else{px = x2}
+    px=x1
     vertex(px, py);
-        while (px < x2 && right) {
+        if(right){
+        while (px < x2) {
             cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
             cpy2 = y - sqighi
             px += sqiwidlarge
@@ -109,8 +111,9 @@ function squiggleline(x1, x2, y1, y2) {
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
 
             y += Math.abs(y2-y1)*ratio
-        }
-        while (px > x1 + sqiwidlarge && !right) {
+        }}
+        else{
+        while (px > x2 + sqiwidlarge) {
             cpx2 = px
             cpy2 = y + sqighi
             px -= sqiwidlarge
@@ -134,9 +137,8 @@ function squiggleline(x1, x2, y1, y2) {
             cpx1 = px
             cpy1 = y
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-            y += yamplitude * 0.5 - random() * yamplitude; yoff += yinc
-        }
+            y += Math.abs(y2-y1)*ratio
+        }}
 /*        right = true
         ratio = 0.01 + random() * 0.03
         sqiwidlarge = (rightmargin - leftmargin) * ratio
