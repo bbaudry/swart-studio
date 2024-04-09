@@ -23,15 +23,15 @@ function draw() {
     //background(0, 0, 100)
     stroke(0, 0, 100, 200)
     //frames()
-    //lignecontinue()
+    lignecontinue()
     var x1, x2, y1, y2
     x1 = rightmargin
     x2 = x1 - 222
     y1 = h * 0.5
     y2 = h * 0.4
-    squiggleline(x1, x2, y1, y2)
-    ellipse(x1, y1, 7, 7)
-    ellipse(x2, y2, 7, 7)
+    //squiggleline(x1, x2, y1, y2)
+    //ellipse(x1, y1, 7, 7)
+    //ellipse(x2, y2, 7, 7)
     noLoop()
 }
 
@@ -49,8 +49,8 @@ function lignecontinue() {
     var xinc = 0.001
     x1 = leftmargin + random() * actualwidth
     y1 = leftmargin + random() * actualheight
-    beginShape()
-    for (var i = 0; i < 4; i++) {
+    
+    for (var i = 0; i < 41; i++) {
         if (random() < 0.5) {
             x2 = x1 + noise(xoff) * (rightmargin - x1); xoff += xinc
             y2 = y1 + noise(xoff) * (bottommargin - y1) * 0.1; xoff += xinc
@@ -59,10 +59,11 @@ function lignecontinue() {
             x2 = x1 - noise(xoff) * (x1 - leftmargin); xoff += xinc
             y2 = y1 - noise(xoff) * (y1 - topmargin) * 0.3; xoff += xinc
         }
-        stroke(0, 0, 100); line(x1, y1, x2, y2)
-        stroke(0, 100, 100); squiggleline(x1, x2, y1, y2)
-        x1 = x2
-        y1 = y2
+        //stroke(0, 0, 100); line(x1, y1, x2, y2)
+        stroke(0, 100, 100); lastpoint=squiggleline(x1, x2, y1, y2)
+        
+        x1 = lastpoint[0]
+        y1 = lastpoint[1]
     }
 }
 
@@ -78,9 +79,9 @@ function squiggleline(x1, x2, y1, y2) {
     sqiwidlarge = Math.abs(x2 - x1) * ratio
     sqiwidsmall = Math.abs(x2 - x1) * ratio * 0.08
     beginShape();
+    y = y1
     py = y1
     px = x1
-    y = y1
     vertex(px, py);
     if (right) {
         while (px < x2) {
@@ -107,8 +108,8 @@ function squiggleline(x1, x2, y1, y2) {
             cpx1 = px
             cpy1 = y
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-            y += Math.abs(y2 - y1) * ratio
+            if(down){y += Math.abs(y2 - y1) * ratio}
+            else{y -= Math.abs(y2 - y1) * ratio}
         }
     }
     else {
@@ -140,11 +141,13 @@ function squiggleline(x1, x2, y1, y2) {
             else{y -= Math.abs(y2 - y1) * ratio}
         }
     }
+    endShape()
+    return([px,py])
     /*        right = true
             ratio = 0.01 + random() * 0.03
             sqiwidlarge = (rightmargin - leftmargin) * ratio
             sqiwidsmall = (rightmargin - leftmargin) * ratio * 0.08
             px = leftmargin + sqiwidlarge*/
 
-    endShape()
+    
 }
