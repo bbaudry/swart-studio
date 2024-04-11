@@ -23,9 +23,9 @@ function draw() {
     //background(0, 0, 100)
     stroke(0, 0, 100, 200)
     //frames()
-//    lignecontinue()
-pendown()  
-var x1, x2, y1, y2
+    //    lignecontinue()
+    pendown()
+    var x1, x2, y1, y2
     x1 = rightmargin
     x2 = x1 - 222
     y1 = h * 0.5
@@ -100,7 +100,7 @@ function pendown() {
             y2 = y1 - noise(xoff) * (y1 - topmargin) * 0.3; xoff += xinc
         }
 
-        if (right) {
+        if (x2>x1) {
             while (px < x2) {
                 cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
                 cpy2 = y - sqighi
@@ -154,7 +154,7 @@ function pendown() {
                 cpx1 = px
                 cpy1 = y
                 bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-                if (down) { y += Math.abs(y2 - y1) * ratio }
+                if (y2 > y1) { y += Math.abs(y2 - y1) * ratio }
                 else { y -= Math.abs(y2 - y1) * ratio }
             }
         }
@@ -234,7 +234,7 @@ function squiggleline(x1, x2, y1, y2) {
             cpx1 = px
             cpy1 = y
             bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-            if (down) { y += Math.abs(y2 - y1) * ratio }
+            if (y2 > y1) { y += Math.abs(y2 - y1) * ratio }
             else { y -= Math.abs(y2 - y1) * ratio }
         }
     }
