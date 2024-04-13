@@ -98,8 +98,8 @@ function pendown() {
         }
         sqiwidlarge = Math.abs(x2 - x1) * ratio
         sqiwidsmall = Math.abs(x2 - x1) * ratio * 0.08
-        sqighi = 0.2 * Math.abs(y2 - y1)
-        sqiglo = 0.005 * Math.abs(y2 - y1)
+        sqighi = 0.8 * Math.abs(y2 - y1)
+        sqiglo = 0.05 * Math.abs(y2 - y1)
         
         if (x2>x1) {
             while (px < x2) {
