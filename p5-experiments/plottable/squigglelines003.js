@@ -85,7 +85,7 @@ function pendown() {
     py = y1
     px = x1
     vertex(px, py);
-    for (var i = 0; i < 91; i++) {
+    for (var i = 0; i < 11; i++) {
         if (random() < 0.5) {
             x2 = x1 + noise(xoff) * (rightmargin - x1); xoff += xinc
             y2 = y1 + noise(xoff) * (bottommargin - y1) * 0.1; xoff += xinc
@@ -96,6 +96,8 @@ function pendown() {
             y2 = y1 - noise(xoff) * (y1 - topmargin) * 0.3; xoff += xinc
             console.log("x2 is lower than x1 and "+px+" = "+x1)
         }
+        if(y2>y1){stroke(0,100,100);console.log("y2 greater than y1")}
+        else{stroke(0,0,100);console.log("y2 lower than y1")}
         sqiwidlarge = Math.abs(x2 - x1) * ratio
         sqiwidsmall = Math.abs(x2 - x1) * ratio * 0.08
         sqighi = 0.8 * Math.abs(y2 - y1)
