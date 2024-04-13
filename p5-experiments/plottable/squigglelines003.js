@@ -39,6 +39,7 @@ function draw() {
 function frames() {
     strokeWeight(3);
     rect(0, 0, w, h);
+    stroke(0, 100, 100)
     quad(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin)
     strokeWeight(1);
 
@@ -77,29 +78,29 @@ function pendown() {
     x1 = leftmargin + random() * actualwidth
     y1 = leftmargin + random() * actualheight
 
-    var ratio, sqiwidlarge, sqiwidsmall
-    var sqighi = 0.02 * Math.abs(y2 - y1)
-    var sqiglo = 0.005 * Math.abs(y2 - y1)
-    if (x2 < x1) { right = false } else { right = true }
-    if (y2 < y1) { down = false } else { down = true }
+    var ratio, sqiwidlarge, sqiwidsmall,sqighi,sqiglo
     ratio = 0.2 + random() * 0.2
-    sqiwidlarge = Math.abs(x2 - x1) * ratio
-    sqiwidsmall = Math.abs(x2 - x1) * ratio * 0.08
     beginShape();
     y = y1
     py = y1
     px = x1
     vertex(px, py);
-    for (var i = 0; i < 41; i++) {
+    for (var i = 0; i < 91; i++) {
         if (random() < 0.5) {
             x2 = x1 + noise(xoff) * (rightmargin - x1); xoff += xinc
             y2 = y1 + noise(xoff) * (bottommargin - y1) * 0.1; xoff += xinc
+            console.log("x2 is greater than x1 and "+px+" = "+x1)
         }
         else {
             x2 = x1 - noise(xoff) * (x1 - leftmargin); xoff += xinc
             y2 = y1 - noise(xoff) * (y1 - topmargin) * 0.3; xoff += xinc
+            console.log("x2 is lower than x1 and "+px+" = "+x1)
         }
-
+        sqiwidlarge = Math.abs(x2 - x1) * ratio
+        sqiwidsmall = Math.abs(x2 - x1) * ratio * 0.08
+        sqighi = 0.2 * Math.abs(y2 - y1)
+        sqiglo = 0.005 * Math.abs(y2 - y1)
+        
         if (x2>x1) {
             while (px < x2) {
                 cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
@@ -131,6 +132,7 @@ function pendown() {
         }
         else {
             while (px > x2 + sqiwidlarge) {
+                console.log("x2 is lower than x1 and "+px+" = "+x1)
                 cpx2 = px
                 cpy2 = y + sqighi
                 px -= sqiwidlarge
