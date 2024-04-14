@@ -84,12 +84,12 @@ function testsquigglesconfigurations() {
 function testsquiggles(x1, x2, y1, y2) {
     ellipse(x1,y1,5,5);ellipse(x2,y2,5,5);
     var ratio, sqiwidlarge, sqiwidsmall, sqighi, squiglo, ystep, nbsteps
-    nbsteps = 7
+    nbsteps = 4
     ystep = (y2 - y1) / nbsteps
     sqighi = 0.02 * ystep
     sqiglo = 0.005 * ystep
     ratio = 0.2 + random() * 0.2
-    sqiwidlarge = (x2 - x1) * ratio
+    sqiwidlarge = (x2 - x1)* ratio
     sqiwidsmall = (x2 - x1) * ratio * 0.08
     beginShape();
     py = y1
