@@ -24,8 +24,8 @@ function draw() {
     stroke(0, 0, 100, 200)
     //frames()
     //    lignecontinue()
-    pendown()
-//    testloop()
+    //    pendown()
+    testloop()
     noLoop()
 }
 
@@ -63,47 +63,169 @@ function lignecontinue() {
 }
 
 function testloop() {
-    var x1, x2, y1, y2
-    var ratio, sqiwidlarge, sqiwidsmall,sqighi,squiglo
-    
+    var x1, x2, y1, y2, ystep
+    var ratio, sqiwidlarge, sqiwidsmall, sqighi, squiglo
+
     //x1<x2 && y1<y2
-    x1 = leftmargin; x2 = x1 - actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 - 300
-    sqighi = 0.02 * (y2 - y1)
-    sqiglo = 0.005 * (y2 - y1)
+    stroke(0, 100, 100)
+    x1 = rightmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 300
+    ystep = (y2 - y1) / 3
+    sqighi = 0.02 * ystep
+    sqiglo = 0.005 * ystep
     ratio = 0.2 + random() * 0.2
     sqiwidlarge = (x2 - x1) * ratio
     sqiwidsmall = (x2 - x1) * ratio * 0.08
     beginShape();
     py = y1
     px = x1
-    vertex(px, py);
-    cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
-    cpy2 = y - sqighi
-    px += sqiwidlarge
-    py = y
-    cpx1 = px
-    cpy1 = y - sqighi
-    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+    for (var i = 0; i < 3; i++) {
+        vertex(px, py);
+        cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
+        cpy2 = y1 + i * ystep - sqighi
+        px += sqiwidlarge
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep - sqighi
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
 
-    cpx2 = px
-    cpy2 = y
-    px -= sqiwidsmall
-    py = y + sqiglo
-    cpx1 = px + sqiwidsmall
-    cpy1 = py
-    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+        cpx2 = px
+        cpy2 = y1 + i * ystep
+        px -= sqiwidsmall
+        py = y1 + i * ystep + sqiglo
+        cpx1 = px + sqiwidsmall
+        cpy1 = py
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
 
-    cpx2 = px - sqiwidsmall
-    cpy2 = py
-    px -= sqiwidsmall
-    py = y
-    cpx1 = px
-    cpy1 = y
-    bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+        cpx2 = px - sqiwidsmall
+        cpy2 = py
+        px -= sqiwidsmall
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+    }
     endShape()
     //x1>x2 && y1<y2
+    /*stroke(90, 100, 100)
+    x1 = rightmargin; x2 = x1 - actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 300
+    ystep = (y2 - y1) / 3
+    sqighi = 0.02 * ystep
+    sqiglo = 0.005 * ystep
+    ratio = 0.2 + random() * 0.2
+    sqiwidlarge = (x2 - x1) * ratio
+    sqiwidsmall = (x2 - x1) * ratio * 0.08
+    beginShape();
+    py = y1
+    px = x1
+    for (var i = 0; i < 3; i++) {
+        vertex(px, py);
+        cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
+        cpy2 = y1 + i * ystep - sqighi
+        px += sqiwidlarge
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep - sqighi
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+        cpx2 = px
+        cpy2 = y1 + i * ystep
+        px -= sqiwidsmall
+        py = y1 + i * ystep + sqiglo
+        cpx1 = px + sqiwidsmall
+        cpy1 = py
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+        cpx2 = px - sqiwidsmall
+        cpy2 = py
+        px -= sqiwidsmall
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+    }
+    endShape()*/
     //x1>x2 && y1>y2
+    /*stroke(180, 100, 100)
+    x1 = rightmargin; x2 = x1 - actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 - 300
+    ystep = (y2 - y1) / 3
+    sqighi = 0.02 * ystep
+    sqiglo = 0.005 * ystep
+    ratio = 0.2 + random() * 0.2
+    sqiwidlarge = (x2 - x1) * ratio
+    sqiwidsmall = (x2 - x1) * ratio * 0.08
+    beginShape();
+    py = y1
+    px = x1
+    for (var i = 0; i < 3; i++) {
+        vertex(px, py);
+        cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
+        cpy2 = y1 + i * ystep - sqighi
+        px += sqiwidlarge
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep - sqighi
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+        cpx2 = px
+        cpy2 = y1 + i * ystep
+        px -= sqiwidsmall
+        py = y1 + i * ystep + sqiglo
+        cpx1 = px + sqiwidsmall
+        cpy1 = py
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+        cpx2 = px - sqiwidsmall
+        cpy2 = py
+        px -= sqiwidsmall
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+    }
+    endShape()    */
     //x1<x2 && y1>y2
+    stroke(270, 100, 100)
+    x1 = rightmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 - 300
+    ystep = (y2 - y1) / 3
+    sqighi = 0.02 * ystep
+    sqiglo = 0.005 * ystep
+    ratio = 0.2 + random() * 0.2
+    sqiwidlarge = (x2 - x1) * ratio
+    sqiwidsmall = (x2 - x1) * ratio * 0.08
+    beginShape();
+    py = y1
+    px = x1
+    for (var i = 0; i < 3; i++) {
+        vertex(px, py);
+        cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
+        cpy2 = y1 + i * ystep - sqighi
+        px += sqiwidlarge
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep - sqighi
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+        cpx2 = px
+        cpy2 = y1 + i * ystep
+        px -= sqiwidsmall
+        py = y1 + i * ystep + sqiglo
+        cpx1 = px + sqiwidsmall
+        cpy1 = py
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+        cpx2 = px - sqiwidsmall
+        cpy2 = py
+        px -= sqiwidsmall
+        py = y1 + i * ystep
+        cpx1 = px
+        cpy1 = y1 + i * ystep
+        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
+
+    }
+    endShape()
 }
 
 
