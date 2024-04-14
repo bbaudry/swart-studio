@@ -68,7 +68,8 @@ function testloop() {
 
     //x1<x2 && y1<y2
     stroke(0, 100, 100)
-    x1 = rightmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 300
+    x1 = leftmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 300
+    ellipse(x1,y1,5,5);ellipse(x2,y2,5,5);
     ystep = (y2 - y1) / 3
     sqighi = 0.02 * ystep
     sqiglo = 0.005 * ystep
@@ -78,7 +79,7 @@ function testloop() {
     beginShape();
     py = y1
     px = x1
-    for (var i = 0; i < 3; i++) {
+    for (var i = 1; i < 4; i++) {
         vertex(px, py);
         cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
         cpy2 = y1 + i * ystep - sqighi
@@ -188,7 +189,8 @@ function testloop() {
     endShape()    */
     //x1<x2 && y1>y2
     stroke(270, 100, 100)
-    x1 = rightmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 - 300
+    x1 = leftmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 - 300
+    ellipse(x1,y1,5,5);ellipse(x2,y2,5,5);
     ystep = (y2 - y1) / 3
     sqighi = 0.02 * ystep
     sqiglo = 0.005 * ystep
@@ -198,7 +200,7 @@ function testloop() {
     beginShape();
     py = y1
     px = x1
-    for (var i = 0; i < 3; i++) {
+    for (var i = 1; i < 4; i++) {
         vertex(px, py);
         cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
         cpy2 = y1 + i * ystep - sqighi
