@@ -25,7 +25,7 @@ function draw() {
     //frames()
     //    lignecontinue()
     //    pendown()
-    testloop()
+    testsquigglesconfigurations()
     noLoop()
 }
 
@@ -62,136 +62,30 @@ function lignecontinue() {
     }
 }
 
-function testloop() {
-    var x1, x2, y1, y2, ystep
-    var ratio, sqiwidlarge, sqiwidsmall, sqighi, squiglo
-
+function testsquigglesconfigurations() {
+    var x1, x2, y1, y2
     //x1<x2 && y1<y2
     stroke(0, 100, 100)
     x1 = leftmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 300
-    ellipse(x1,y1,5,5);ellipse(x2,y2,5,5);
-    ystep = (y2 - y1) / 3
-    sqighi = 0.02 * ystep
-    sqiglo = 0.005 * ystep
-    ratio = 0.2 + random() * 0.2
-    sqiwidlarge = (x2 - x1) * ratio
-    sqiwidsmall = (x2 - x1) * ratio * 0.08
-    beginShape();
-    py = y1
-    px = x1
-    for (var i = 1; i < 4; i++) {
-        vertex(px, py);
-        cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
-        cpy2 = y1 + i * ystep - sqighi
-        px += sqiwidlarge
-        py = y1 + i * ystep
-        cpx1 = px
-        cpy1 = y1 + i * ystep - sqighi
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-        cpx2 = px
-        cpy2 = y1 + i * ystep
-        px -= sqiwidsmall
-        py = y1 + i * ystep + sqiglo
-        cpx1 = px + sqiwidsmall
-        cpy1 = py
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-        cpx2 = px - sqiwidsmall
-        cpy2 = py
-        px -= sqiwidsmall
-        py = y1 + i * ystep
-        cpx1 = px
-        cpy1 = y1 + i * ystep
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-    }
-    endShape()
+    testsquiggles(x1, x2, y1, y2)
     //x1>x2 && y1<y2
-    /*stroke(90, 100, 100)
+    stroke(90, 100, 100)
     x1 = rightmargin; x2 = x1 - actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 300
-    ystep = (y2 - y1) / 3
-    sqighi = 0.02 * ystep
-    sqiglo = 0.005 * ystep
-    ratio = 0.2 + random() * 0.2
-    sqiwidlarge = (x2 - x1) * ratio
-    sqiwidsmall = (x2 - x1) * ratio * 0.08
-    beginShape();
-    py = y1
-    px = x1
-    for (var i = 0; i < 3; i++) {
-        vertex(px, py);
-        cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
-        cpy2 = y1 + i * ystep - sqighi
-        px += sqiwidlarge
-        py = y1 + i * ystep
-        cpx1 = px
-        cpy1 = y1 + i * ystep - sqighi
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-        cpx2 = px
-        cpy2 = y1 + i * ystep
-        px -= sqiwidsmall
-        py = y1 + i * ystep + sqiglo
-        cpx1 = px + sqiwidsmall
-        cpy1 = py
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-        cpx2 = px - sqiwidsmall
-        cpy2 = py
-        px -= sqiwidsmall
-        py = y1 + i * ystep
-        cpx1 = px
-        cpy1 = y1 + i * ystep
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-    }
-    endShape()*/
+    testsquiggles(x1, x2, y1, y2)
     //x1>x2 && y1>y2
-    /*stroke(180, 100, 100)
+    stroke(180, 100, 100)
     x1 = rightmargin; x2 = x1 - actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 - 300
-    ystep = (y2 - y1) / 3
-    sqighi = 0.02 * ystep
-    sqiglo = 0.005 * ystep
-    ratio = 0.2 + random() * 0.2
-    sqiwidlarge = (x2 - x1) * ratio
-    sqiwidsmall = (x2 - x1) * ratio * 0.08
-    beginShape();
-    py = y1
-    px = x1
-    for (var i = 0; i < 3; i++) {
-        vertex(px, py);
-        cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
-        cpy2 = y1 + i * ystep - sqighi
-        px += sqiwidlarge
-        py = y1 + i * ystep
-        cpx1 = px
-        cpy1 = y1 + i * ystep - sqighi
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-        cpx2 = px
-        cpy2 = y1 + i * ystep
-        px -= sqiwidsmall
-        py = y1 + i * ystep + sqiglo
-        cpx1 = px + sqiwidsmall
-        cpy1 = py
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-        cpx2 = px - sqiwidsmall
-        cpy2 = py
-        px -= sqiwidsmall
-        py = y1 + i * ystep
-        cpx1 = px
-        cpy1 = y1 + i * ystep
-        bezierVertex(cpx2, cpy2, cpx1, cpy1, px, py);
-
-    }
-    endShape()    */
+    testsquiggles(x1, x2, y1, y2)
     //x1<x2 && y1>y2
     stroke(270, 100, 100)
     x1 = leftmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 - 300
+    testsquiggles(x1, x2, y1, y2)
+}
+function testsquiggles(x1, x2, y1, y2) {
     ellipse(x1,y1,5,5);ellipse(x2,y2,5,5);
-    ystep = (y2 - y1) / 3
+    var ratio, sqiwidlarge, sqiwidsmall, sqighi, squiglo, ystep, nbsteps
+    nbsteps = 7
+    ystep = (y2 - y1) / nbsteps
     sqighi = 0.02 * ystep
     sqiglo = 0.005 * ystep
     ratio = 0.2 + random() * 0.2
@@ -200,7 +94,7 @@ function testloop() {
     beginShape();
     py = y1
     px = x1
-    for (var i = 1; i < 4; i++) {
+    for (var i = 1; i < nbsteps + 1; i++) {
         vertex(px, py);
         cpx2 = px + 5 * noise(xoff) - 10; xoff += xinc
         cpy2 = y1 + i * ystep - sqighi
