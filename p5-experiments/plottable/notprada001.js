@@ -30,17 +30,21 @@ function draw() {
 }
 
 function frames() {
-    strokeWeight(3);
     rect(0, 0, w, h);
     stroke(0, 100, 100)
     quad(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin)
     strokeWeight(1);
 }
 
-function unrond(){
-    var cx = random(leftmargin+actualwidth*0.2,leftmargin+actualwidth*0.7)
-    var cy = random(topmargin+actualheight*0.2,leftmargin+actualwidth*0.7)
-    var diam = 0.4*actualwidth
-    stroke(50,100,100)
-    ellipse(cx,cy,diam,diam)
+function unrond() {
+    var cx = random(leftmargin + actualwidth * 0.2, leftmargin + actualwidth * 0.7)
+    var cy = random(topmargin + actualheight * 0.2, leftmargin + actualwidth * 0.7)
+    var diam = 0.4 * actualwidth
+    var density = 2 //the largest the least dense
+    stroke(50, 100, 100)
+    strokeWeight(0.8)
+    for (var i = diam; i > 0; i -= density) {
+        ellipse(cx, cy, i, i)
+    }
+    return([cx,cy,density])
 }
