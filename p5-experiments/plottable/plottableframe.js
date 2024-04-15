@@ -6,13 +6,13 @@
 //w=96*8.5=816
 //h=96*11=1056
 
-var echelle = 0.5
+var echelle = 0.4
 var w = 1122 * echelle
 var h = 1587 * echelle
 var rightmargin = 0.95 * w
-var leftmargin = 0.25 * w
-var topmargin = 0.1 * h
-var bottommargin = 0.95 * h
+var leftmargin = 0.05 * w
+var topmargin = 0.05 * h
+var bottommargin = 0.65 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, imgbtn
