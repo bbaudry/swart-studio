@@ -66,7 +66,7 @@ function testsquigglesconfigurations() {
     var x1, x2, y1, y2
     //x1<x2 && y1<y2
     stroke(0, 100, 100)
-    x1 = leftmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 300
+    x1 = leftmargin; x2 = x1 + actualwidth * 0.5; y1 = topmargin + actualheight * 0.5; y2 = y1 + 100
     testsquiggles(x1, x2, y1, y2)
     //x1>x2 && y1<y2
     stroke(90, 100, 100)
@@ -89,8 +89,8 @@ function testsquiggles(x1, x2, y1, y2) {
     sqighi = 0.02 * ystep
     sqiglo = 0.005 * ystep
     ratio = 0.2 + random() * 0.2
-    sqiwidlarge = (x2 - x1)* ratio
-    sqiwidsmall = (x2 - x1) * ratio * 0.08
+    sqiwidlarge = (x2 - x1)/nbsteps
+    sqiwidsmall = (x2 - x1)/nbsteps * ratio
     beginShape();
     py = y1
     px = x1
