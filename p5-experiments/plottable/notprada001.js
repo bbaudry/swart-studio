@@ -23,8 +23,8 @@ function draw() {
     //background(0, 0, 100)
     stroke(0, 0, 100, 200)
     frames()
-    unrond()
-    //deslignes()
+    coords=unrond()
+    deslignes(coords)
     //destriangles()
     noLoop()
 }
@@ -46,5 +46,16 @@ function unrond() {
     for (var i = diam; i > 0; i -= density) {
         ellipse(cx, cy, i, i)
     }
-    return([cx,cy,density])
+    return([cx,cy,diam])
+}
+
+function deslignes(coords){
+    var cx = coords[0]
+    var cy = coords[1]
+    var diam = coords[2]
+    var x1,y1,x2,y2,angle
+    angle = random(360)
+    x1=cx+diam*0.5*cos(radians(angle))
+    y1=cy+diam*0.5*sin(radians(angle))
+    ellipse(x1,y1,11,11)
 }
