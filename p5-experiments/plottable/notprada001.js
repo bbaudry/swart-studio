@@ -55,11 +55,11 @@ function deslignes(coords) {
     var diam = coords[2]
     var x1, y1, x2, y2, angle
     angle = random(360)
-    for (i = 0; i < 11; i++) {
-        x1 = cx + i + diam * 0.5 * cos(radians(angle))
-        y1 = cy + i + diam * 0.5 * sin(radians(angle))
-        x2 = x1 + i + diam * 1.5 * cos(radians(angle + 90))
-        y2 = y1 + i + diam * 1.5 * sin(radians(angle + 90))
+    for (i = 0; i < 11; i+=0.5) {
+        x1 = cx + (i + diam * 0.5) * cos(radians(angle))
+        y1 = cy + (i + diam * 0.5) * sin(radians(angle))
+        x2 = x1 + (i + diam * 1.5) * cos(radians(angle + 90))
+        y2 = y1 + (i + diam * 1.5) * sin(radians(angle + 90))
         line(x1, y1, x2, y2)
     }
 }
