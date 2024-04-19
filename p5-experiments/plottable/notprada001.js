@@ -54,24 +54,25 @@ function deslignes(coords) {
     var cy = coords[1]
     var diam = coords[2]
     var ix, iy, x1, y1, x2, y2, angle
+    angle = random(180)
+    uneligne(cx,cy,diam*0.5,diam*1.2,diam*1.5,angle,angle-90,angle+90,11)
     angle = random(360)
-    for (i = 0; i < 11; i+=0.5) {
-        ix = cx + (i + diam * 0.5) * cos(radians(angle))
-        iy = cy + (i + diam * 0.5) * sin(radians(angle))
-        x1 = ix + (i + diam * 1.2) * cos(radians(angle - 90))
-        y1 = iy + (i + diam * 1.2) * sin(radians(angle - 90))
-        x2 = ix + (i + diam * 1.5) * cos(radians(angle + 90))
-        y2 = iy + (i + diam * 1.5) * sin(radians(angle + 90))
-        line(x1, y1, x2, y2)
-    }
+    stroke(120,100,100)
+    uneligne(cx,cy,diam*0.8,diam*0.8,diam*1.1,angle,angle-42,angle+90,7)
     angle = random(360)
-    for (i = 0; i < 7; i+=0.5) {
-        ix = cx + (i + diam * 0.8) * cos(radians(angle))
-        iy = cy + (i + diam * 0.8) * sin(radians(angle))
-        x1 = ix + (i + diam * 0.8) * cos(radians(angle - 42))
-        y1 = iy + (i + diam * 0.8) * sin(radians(angle - 42))
-        x2 = ix + (i + diam * 1.1) * cos(radians(angle + 90))
-        y2 = iy + (i + diam * 1.1) * sin(radians(angle + 90))
+    stroke(240,100,100)
+    uneligne(cx,cy,diam*0.8,diam*0.8,diam*1.7,angle,angle-21,angle+172,7)
+}
+
+function uneligne(cx,cy,distanceaucentre1,distanceaucentre2,distanceaucentre3,angle1,angle2,angle3,epaisseur){
+    var ix, iy, x1, y1, x2, y2
+    for (i = 0; i < epaisseur; i+=0.5) {
+        ix = cx + (i + distanceaucentre1) * cos(radians(angle1))
+        iy = cy + (i + distanceaucentre1) * sin(radians(angle1))
+        x1 = ix + (i + distanceaucentre2) * cos(radians(angle2))
+        y1 = iy + (i + distanceaucentre2) * sin(radians(angle2))
+        x2 = ix + (i + distanceaucentre3) * cos(radians(angle3))
+        y2 = iy + (i + distanceaucentre3) * sin(radians(angle3))
         line(x1, y1, x2, y2)
     }
 }
