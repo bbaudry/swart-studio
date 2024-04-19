@@ -64,4 +64,14 @@ function deslignes(coords) {
         y2 = iy + (i + diam * 1.5) * sin(radians(angle + 90))
         line(x1, y1, x2, y2)
     }
+    angle = random(360)
+    for (i = 0; i < 7; i+=0.5) {
+        ix = cx + (i + diam * 0.8) * cos(radians(angle))
+        iy = cy + (i + diam * 0.8) * sin(radians(angle))
+        x1 = ix + (i + diam * 0.8) * cos(radians(angle - 42))
+        y1 = iy + (i + diam * 0.8) * sin(radians(angle - 42))
+        x2 = ix + (i + diam * 1.1) * cos(radians(angle + 90))
+        y2 = iy + (i + diam * 1.1) * sin(radians(angle + 90))
+        line(x1, y1, x2, y2)
+    }
 }
