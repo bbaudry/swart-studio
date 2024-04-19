@@ -20,12 +20,9 @@ var yoff = 0.0
 var yinc = 0.007
 
 function draw() {
-    //background(0, 0, 100)
     stroke(0, 0, 100, 200)
     frames()
-    coords = unrond()
-    deslignes(coords)
-    //destriangles()
+    destriangles(deslignes(unrond()))
     noLoop()
 }
 
@@ -39,7 +36,7 @@ function frames() {
 function unrond() {
     var cx = random(leftmargin + actualwidth * 0.2, leftmargin + actualwidth * 0.7)
     var cy = random(topmargin + actualheight * 0.2, leftmargin + actualwidth * 0.7)
-    var diam = 0.4 * actualwidth
+    var diam = 0.21 * actualwidth
     var density = 2 //the largest the least dense
     stroke(50, 100, 100)
     strokeWeight(0.8)
@@ -56,14 +53,14 @@ function deslignes(coords) {
     var ix, iy, x1, y1, x2, y2, angle
     angle = random(180)
     uneligne(cx,cy,diam*0.5,diam*1.2,diam*1.5,angle,angle-90,angle+90,11)
-    angle = random(360)
-    stroke(120,100,100)
+    angle += random(90)
     uneligne(cx,cy,diam*0.8,diam*0.8,diam*1.1,angle,angle-42,angle+90,7)
     angle = random(360)
-    stroke(240,100,100)
     uneligne(cx,cy,diam*0.8,diam*0.8,diam*1.7,angle,angle-21,angle+172,7)
+    return (coords)
 }
-
+// draws a line in the vicinity of a circle centered in cx,cy. 
+// distance and angle are used to get 3 points: one reference and two others around this reference
 function uneligne(cx,cy,distanceaucentre1,distanceaucentre2,distanceaucentre3,angle1,angle2,angle3,epaisseur){
     var ix, iy, x1, y1, x2, y2
     for (i = 0; i < epaisseur; i+=0.5) {
@@ -75,4 +72,11 @@ function uneligne(cx,cy,distanceaucentre1,distanceaucentre2,distanceaucentre3,an
         y2 = iy + (i + distanceaucentre3) * sin(radians(angle3))
         line(x1, y1, x2, y2)
     }
+}
+
+function destriangles(coords){
+    var cx = coords[0]
+    var cy = coords[1]
+    var diam = coords[2]
+
 }
