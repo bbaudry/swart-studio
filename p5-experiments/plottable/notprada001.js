@@ -8,20 +8,13 @@ function savesvg() {
 }
 
 function savepng() {
-    save("squigglelines001.png");
+    save("notprada001.png");
 }
 
-var xoff = 0.0
-var xinc = 0.001
-var y = h * 0.4
-var xoff = 0.0
-var xinc = 0.1
-var yoff = 0.0
-var yinc = 0.007
-
 function draw() {
-    stroke(0, 0, 100, 200)
-    frames()
+    background(0,0,100)
+//    frames()
+    stroke(0,0,0)
     destriangles(deslignes(unrond()))
     noLoop()
 }
@@ -29,6 +22,7 @@ function draw() {
 function frames() {
     rect(0, 0, w, h);
     stroke(0, 100, 100)
+    strokeWeight(0.8)
     quad(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin)
     strokeWeight(1);
 }
@@ -38,8 +32,6 @@ function unrond() {
     var cy = random(topmargin + actualheight * 0.2, leftmargin + actualwidth * 0.7)
     var diam = 0.21 * actualwidth
     var density = 2 //the largest the least dense
-    stroke(50, 100, 100)
-    strokeWeight(0.8)
     for (var i = diam; i > 0; i -= density) {
         ellipse(cx, cy, i, i)
     }
@@ -66,10 +58,10 @@ function uneligne(cx,cy,distanceaucentre1,distanceaucentre2,distanceaucentre3,an
     for (i = 0; i < epaisseur; i+=0.5) {
         ix = cx + (i + distanceaucentre1) * cos(radians(angle1))
         iy = cy + (i + distanceaucentre1) * sin(radians(angle1))
-        x1 = ix + (i + distanceaucentre2) * cos(radians(angle2))
-        y1 = iy + (i + distanceaucentre2) * sin(radians(angle2))
-        x2 = ix + (i + distanceaucentre3) * cos(radians(angle3))
-        y2 = iy + (i + distanceaucentre3) * sin(radians(angle3))
+        x1 = ix + (i + distanceaucentre2) * cos(radians(angle2)); constrain(x1,leftmargin,rightmargin)
+        y1 = iy + (i + distanceaucentre2) * sin(radians(angle2)); constrain(y1,topmargin,bottommargin)
+        x2 = ix + (i + distanceaucentre3) * cos(radians(angle3)); constrain(x2,leftmargin,rightmargin)
+        y2 = iy + (i + distanceaucentre3) * sin(radians(angle3)); constrain(y2,topmargin,bottommargin)
         line(x1, y1, x2, y2)
     }
 }
@@ -83,7 +75,7 @@ function destriangles(coords){
     var x1 = milieux + (milieux - cx)
     var y1 = milieuy + (milieuy - cy)
     var angle=random(360)
-    var rad=actualwidth*0.1
+    var rad=actualwidth*0.17
     while(rad>1){
         triangle(x1+rad*cos(radians(angle)),y1+rad*sin(radians(angle)),x1+rad*cos(radians(angle+120)),y1+rad*sin(radians(angle+120)),x1+rad*cos(radians(angle+240)),y1+rad*sin(radians(angle+240)))
         rad-=3
