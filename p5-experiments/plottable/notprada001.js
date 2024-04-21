@@ -1,8 +1,3 @@
-var xoff = 0.0
-var yoff = 0.0
-var yoff2 = 0.0
-
-
 function savesvg() {
     save("squigglelines001.svg");
 }
@@ -54,14 +49,14 @@ function deslignes(coords) {
 // draws a line in the vicinity of a circle centered in cx,cy. 
 // distance and angle are used to get 3 points: one reference and two others around this reference
 function uneligne(cx,cy,distanceaucentre1,distanceaucentre2,distanceaucentre3,angle1,angle2,angle3,epaisseur){
-    var ix, iy, x1, y1, x2, y2
+    var ix, iy, x,y,x1, y1, x2, y2
     for (i = 0; i < epaisseur; i+=0.5) {
         ix = cx + (i + distanceaucentre1) * cos(radians(angle1))
         iy = cy + (i + distanceaucentre1) * sin(radians(angle1))
-        x1 = ix + (i + distanceaucentre2) * cos(radians(angle2)); constrain(x1,leftmargin,rightmargin)
-        y1 = iy + (i + distanceaucentre2) * sin(radians(angle2)); constrain(y1,topmargin,bottommargin)
-        x2 = ix + (i + distanceaucentre3) * cos(radians(angle3)); constrain(x2,leftmargin,rightmargin)
-        y2 = iy + (i + distanceaucentre3) * sin(radians(angle3)); constrain(y2,topmargin,bottommargin)
+        x = ix + (i + distanceaucentre2) * cos(radians(angle2)); x1=constrain(x,leftmargin,rightmargin)
+        y = iy + (i + distanceaucentre2) * sin(radians(angle2)); y1=constrain(y,topmargin,bottommargin)
+        x = ix + (i + distanceaucentre3) * cos(radians(angle3)); x2=constrain(x,leftmargin,rightmargin)
+        y = iy + (i + distanceaucentre3) * sin(radians(angle3)); y2=constrain(y,topmargin,bottommargin)
         line(x1, y1, x2, y2)
     }
 }
