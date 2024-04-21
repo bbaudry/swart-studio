@@ -84,5 +84,9 @@ function destriangles(coords){
     var y1 = milieuy + (milieuy - cy)
     var angle=random(360)
     var rad=actualwidth*0.1
-    triangle(x1+rad*cos(radians(angle)),y1+rad*sin(radians(angle)),x1+rad*cos(radians(angle+120)),y1+rad*sin(radians(angle+120)),x1+rad*cos(radians(angle+240)),y1+rad*sin(radians(angle+240)))
+    while(rad>1){
+        triangle(x1+rad*cos(radians(angle)),y1+rad*sin(radians(angle)),x1+rad*cos(radians(angle+120)),y1+rad*sin(radians(angle+120)),x1+rad*cos(radians(angle+240)),y1+rad*sin(radians(angle+240)))
+        rad-=3
+        angle+=1
+    }
 }
