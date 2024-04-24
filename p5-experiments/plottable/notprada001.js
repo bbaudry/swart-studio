@@ -23,7 +23,7 @@ function frames() {
 }
 
 function unrond() {
-    var cx = random(leftmargin + actualwidth * 0.2, leftmargin + actualwidth * 0.7)
+    var cx = random(leftmargin + actualwidth * 0.2, leftmargin + actualwidth * 0.7); saveknob("cx",cx)
     var cy = random(topmargin + actualheight * 0.2, leftmargin + actualwidth * 0.7)
     var diam = 0.21 * actualwidth
     var density = 2 //the largest the least dense
@@ -31,6 +31,11 @@ function unrond() {
         ellipse(cx, cy, i, i)
     }
     return ([cx, cy, diam])
+}
+knobs=[]
+function saveknob(name, value){
+    knobs.push()
+
 }
 
 function deslignes(coords) {
