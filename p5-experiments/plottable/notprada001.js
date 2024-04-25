@@ -6,11 +6,18 @@ function savepng() {
     save("notprada001.png");
 }
 
+var font
+function preload() {
+    font = loadFont("../fonts/1CamBam_Stick_8.ttf");
+}
+
+
 function draw() {
     background(0,0,100)
 //    frames()
     stroke(0,0,0)
     destriangles(deslignes(unrond()))
+    showknobs()
     noLoop()
 }
 
@@ -22,6 +29,18 @@ function frames() {
     strokeWeight(1);
 }
 
+knobs=[]
+function saveknob(name, value){
+    knobs.push({name:name,value:value})
+}
+
+function showknobs(){
+    textFont(font)
+    var fSize = 8
+    textSize(fSize)
+    text(knobs[0].name, leftmargin, topmargin+actualheight)
+    text(knobs[0].value, leftmargin, topmargin+actualheight)
+}
 function unrond() {
     var cx = random(leftmargin + actualwidth * 0.2, leftmargin + actualwidth * 0.7); saveknob("cx",cx)
     var cy = random(topmargin + actualheight * 0.2, leftmargin + actualwidth * 0.7)
@@ -32,11 +51,7 @@ function unrond() {
     }
     return ([cx, cy, diam])
 }
-knobs=[]
-function saveknob(name, value){
-    knobs.push()
 
-}
 
 function deslignes(coords) {
     var cx = coords[0]
