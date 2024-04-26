@@ -13,7 +13,7 @@ function preload() {
 
 }
 
-var fSize = 15
+var fSize = 14
 function draw() {
     background(0,0,100)
     stroke(0,0,0)
@@ -98,7 +98,7 @@ function showknobs(){
         posx+=textWidth(s)+fSize
     }
     posx = leftmargin
-    posy += fSize + 1
+    posy += 2*fSize + 1
 }
 
 function showcode() {
@@ -120,11 +120,10 @@ function showcode() {
         posx += tw
     }
     posx = leftmargin
-    posy += fSize + 1
+    posy += 2*fSize + 1
 }
 
 function showcredits(){
-    posy += fSize + 1
     var c="al.my.re :: p5.js :: CamBam Stick [destriangles(deslignes(unrond())) 001). April 2024]"
     text(c,posx,posy)
 }
