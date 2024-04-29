@@ -35,8 +35,8 @@ function saveknob(name, value){
 function unrond() {
     var cx = random(leftmargin + actualwidth * 0.2, leftmargin + actualwidth * 0.7); saveknob("cx",cx)
     var cy = random(topmargin + actualheight * 0.2, leftmargin + actualwidth * 0.7); saveknob("cy",cy)
-    var diam = 0.21 * actualwidth
-    var density = 2 //the largest the least dense
+    var diam = random(0.17,0.33) * actualwidth; saveknob("diam",diam)
+    var density = Math.floor(2,4); saveknob("density",density) //the largest the least dense
     for (var i = diam; i > 0; i -= density) {
         ellipse(cx, cy, i, i)
     }
@@ -75,13 +75,12 @@ function uneligne(cx,cy,distanceaucentre1,distanceaucentre2,distanceaucentre3,an
 function destriangles(coords){
     var cx = coords[0]
     var cy = coords[1]
-    var diam = coords[2]
     var milieux = leftmargin + actualwidth * 0.5
     var milieuy = topmargin + actualheight * 0.5
     var x1 = milieux + (milieux - cx)
     var y1 = milieuy + (milieuy - cy)
     var angle=random(360); saveknob("angle",angle)
-    var rad=actualwidth*0.17
+    var rad = random(0.17,0.33) * actualwidth; saveknob("rad",rad)
     while(rad>1){
         triangle(x1+rad*cos(radians(angle)),y1+rad*sin(radians(angle)),x1+rad*cos(radians(angle+120)),y1+rad*sin(radians(angle+120)),x1+rad*cos(radians(angle+240)),y1+rad*sin(radians(angle+240)))
         rad-=3
