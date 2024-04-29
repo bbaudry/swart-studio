@@ -48,13 +48,13 @@ function deslignes(coords) {
     var cy = coords[1]
     var diam = coords[2]
     var angle,epaisseur
-    epaisseur = Math.floor(9,42); saveknob("epaisseur",epaisseur)
+    epaisseur = Math.floor(random(9,42)); saveknob("epaisseur",epaisseur)
     angle = random(180); saveknob("angle",angle)
     uneligne(cx,cy,diam*0.5,diam*1.2,diam*1.5,angle,angle-90,angle+90,epaisseur)
-    epaisseur = Math.floor(9,42); saveknob("epaisseur",epaisseur)
+    epaisseur = Math.floor(random(9,42)); saveknob("epaisseur",epaisseur)
     angle += random(90); saveknob("angle",angle)
     uneligne(cx,cy,diam*0.8,diam*0.8,diam*1.1,angle,angle-42,angle+90,epaisseur)
-    epaisseur = Math.floor(9,42); saveknob("epaisseur",epaisseur)
+    epaisseur = Math.floor(random(9,42)); saveknob("epaisseur",epaisseur)
     angle = random(360); saveknob("angle",angle)
     uneligne(cx,cy,diam*0.8,diam*0.8,diam*1.7,angle,angle-21,angle+172,epaisseur)
     return (coords)
@@ -64,7 +64,7 @@ function deslignes(coords) {
 
 function uneligne(cx,cy,distanceaucentre1,distanceaucentre2,distanceaucentre3,angle1,angle2,angle3,epaisseur){
     var ix, iy, x,y,x1, y1, x2, y2
-    for (i = 0; i < epaisseur; i+=1) {
+    for (i = 0; i < epaisseur; i+=2) {
         ix = cx + (i + distanceaucentre1) * cos(radians(angle1))
         iy = cy + (i + distanceaucentre1) * sin(radians(angle1))
         x = ix + (i + distanceaucentre2) * cos(radians(angle2)); x1=constrain(x,leftmargin,rightmargin)
