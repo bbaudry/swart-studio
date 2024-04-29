@@ -90,3 +90,8 @@ function destriangles(coords){
         angle+=1
     }
 }
+
+function showcredits(){
+    var c="al.my.re :: p5.js :: CamBam Stick [destriangles(deslignes(unrond())) 001). April 2024]"
+    text(c,posx,posy)
+}
