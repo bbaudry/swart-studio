@@ -37,8 +37,8 @@ function saveknob(name, value) {
 function initgrid() {
     var yoff=0.0
     var xoff
-    var inc=0.8
-    for (j = 0; j < nbvertcicalsteps*0.5; j++) {
+    var inc=0.2
+    for (j = 0; j < nbvertcicalsteps; j++) {
         yoff+=inc
         xoff=0.0
         for (i = 0; i < nbhorizontalsteps; i++) {
@@ -46,7 +46,7 @@ function initgrid() {
             grid.push(noise(xoff,yoff))
         }
     }
-    inc=0.1
+/*    inc=0.1
     for (j = nbvertcicalsteps*0.5; j < nbvertcicalsteps; j++) {
         yoff+=inc
         xoff=0.0
@@ -54,7 +54,7 @@ function initgrid() {
             xoff+=inc
             grid.push(noise(xoff,yoff))
         }
-    }
+    }*/
 }
 
 function drawgrid() {
@@ -65,10 +65,16 @@ function drawgrid() {
             var x=leftmargin+i*stepsize
             var y=topmargin+j*stepsize
             var ratio
-            if(v<0.3){ratio=0.1}
-            if(v>=0.3&&v<0.5){ratio=0.14}
-            if(v>=0.5&&v<0.7){ratio=0.17}
-            if(v>=0.7){ratio=0.2}
+            if(v<0.1){ratio=0.1}
+            if(v>=0.1&&v<0.2){ratio=0.14}
+            if(v>=0.2&&v<0.3){ratio=0.17}
+            if(v>=0.3&&v<0.4){ratio=0.2}
+            if(v>=0.4&&v<0.5){ratio=0.23}
+            if(v>=0.5&&v<0.6){ratio=0.26}
+            if(v>=0.6&&v<0.7){ratio=0.29}
+            if(v>=0.7&&v<0.8){ratio=0.32}
+            if(v>=0.8&&v<0.9){ratio=0.35}
+            if(v>=0.9){ratio=0.38}
             rect(x+stepsize*ratio,y+stepsize*ratio,stepsize*(1-ratio*2),stepsize*(1-ratio*2))
         }
     }
