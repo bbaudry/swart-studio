@@ -65,18 +65,18 @@ function drawgrid() {
             var x=leftmargin+i*stepsize+stepsize*0.5
             var y=topmargin+j*stepsize+stepsize*0.5
             var ratio
-            if(v<0.1){ratio=0.05}
-            if(v>=0.1&&v<0.2){ratio=0.08}
-            if(v>=0.2&&v<0.3){ratio=0.11}
-            if(v>=0.3&&v<0.4){ratio=0.14}
-            if(v>=0.4&&v<0.5){ratio=0.17}
-            if(v>=0.5&&v<0.6){ratio=0.2}
-            if(v>=0.6&&v<0.7){ratio=0.23}
-            if(v>=0.7&&v<0.8){ratio=0.26}
-            if(v>=0.8&&v<0.9){ratio=0.29}
+            if(v<0.1){ratio=0.9}
+            if(v>=0.1&&v<0.2){ratio=0.87}
+            if(v>=0.2&&v<0.3){ratio=0.84}
+            if(v>=0.3&&v<0.4){ratio=0.81}
+            if(v>=0.4&&v<0.5){ratio=0.78}
+            if(v>=0.5&&v<0.6){ratio=0.75}
+            if(v>=0.6&&v<0.7){ratio=0.71}
+            if(v>=0.7&&v<0.8){ratio=0.68}
+            if(v>=0.8&&v<0.9){ratio=0.65}
             if(v>=0.9){ratio=0.38}
             ellipse(x,y,stepsize*ratio,stepsize*ratio)
-            ellipse(x,y,stepsize*ratio+2,stepsize*ratio+2)
+            ellipse(x,y,stepsize*ratio-3,stepsize*ratio-3)
         }
     }
 }
