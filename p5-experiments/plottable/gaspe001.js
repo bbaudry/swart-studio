@@ -7,8 +7,8 @@ function savepng() {
 }
 
 var font, posx, posy, knobs = [], grid = []
-var fSize = 9
-var stepsize = Math.floor(actualwidth * 0.02)
+var fSize = 19
+var stepsize = Math.floor(actualwidth * 0.015)
 var nbhorizontalsteps = Math.floor(actualwidth / stepsize)
 var nbvertcicalsteps = Math.floor(actualheight / stepsize)
 function preload() {
@@ -76,6 +76,7 @@ function drawgrid() {
             if(v>=0.8&&v<0.9){ratio=0.35}
             if(v>=0.9){ratio=0.38}
             rect(x+stepsize*ratio,y+stepsize*ratio,stepsize*(1-ratio*2),stepsize*(1-ratio*2))
+            rect(x+2+stepsize*ratio,y+2+stepsize*ratio,stepsize*(1-ratio*2),stepsize*(1-ratio*2))
         }
     }
 }
