@@ -8,7 +8,7 @@ function savepng() {
 
 var font, posx, posy, knobs = [], grid = []
 var fSize = 19
-var stepsize = Math.floor(actualwidth * 0.015)
+var stepsize = Math.floor(actualwidth * 0.012)
 var nbhorizontalsteps = Math.floor(actualwidth / stepsize)
 var nbvertcicalsteps = Math.floor(actualheight / stepsize)
 function preload() {
@@ -65,18 +65,18 @@ function drawgrid() {
             var x=leftmargin+i*stepsize+stepsize*0.5
             var y=topmargin+j*stepsize+stepsize*0.5
             var ratio
-            if(v<0.1){ratio=0.9}
-            if(v>=0.1&&v<0.2){ratio=0.87}
-            if(v>=0.2&&v<0.3){ratio=0.84}
-            if(v>=0.3&&v<0.4){ratio=0.81}
-            if(v>=0.4&&v<0.5){ratio=0.78}
-            if(v>=0.5&&v<0.6){ratio=0.75}
-            if(v>=0.6&&v<0.7){ratio=0.71}
-            if(v>=0.7&&v<0.8){ratio=0.68}
-            if(v>=0.8&&v<0.9){ratio=0.65}
+            if(v<0.1){ratio=1}
+            if(v>=0.1&&v<0.2){ratio=0.9}
+            if(v>=0.2&&v<0.3){ratio=0.8}
+            if(v>=0.3&&v<0.4){ratio=0.7}
+            if(v>=0.4&&v<0.5){ratio=0.6}
+            if(v>=0.5&&v<0.6){ratio=0.5}
+            if(v>=0.6&&v<0.7){ratio=0.4}
+            if(v>=0.7&&v<0.8){ratio=0.3}
+            if(v>=0.8&&v<0.9){ratio=0.2}
             if(v>=0.9){ratio=0.38}
             ellipse(x,y,stepsize*ratio,stepsize*ratio)
-            ellipse(x,y,stepsize*ratio-3,stepsize*ratio-3)
+            ellipse(x+random(-ratio*3,ratio*3),y+random(-1,1),stepsize*ratio,stepsize*ratio)
         }
     }
 }
