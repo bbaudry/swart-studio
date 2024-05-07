@@ -62,18 +62,18 @@ function drawgrid() {
         for (i = 0; i < nbhorizontalsteps; i++) {
             var index=i+j*nbhorizontalsteps
             var v = grid[index]
-            var x=leftmargin+i*stepsize//+stepsize*0.5
-            var y=topmargin+j*stepsize//+stepsize*0.5
+            var x=leftmargin+i*stepsize+stepsize*0.5
+            var y=topmargin+j*stepsize+stepsize*0.5
             var c
             if(v<0.1){}
             if(v>=0.1&&v<0.2){c='d'}
             if(v>=0.2&&v<0.3){c='i'}
             if(v>=0.3&&v<0.4){c='r'}
             if(v>=0.4&&v<0.5){c='o'}
-            if(v>=0.5&&v<0.6){c='d'}
-            if(v>=0.6&&v<0.7){c='i'}
-            if(v>=0.7&&v<0.8){c='r'}
-            if(v>=0.8&&v<0.9){c='o'}
+            if(v>=0.5&&v<0.6){c=':'}
+            if(v>=0.6&&v<0.7){c='.'}
+            if(v>=0.7&&v<0.8){c=';'}
+            if(v>=0.8&&v<0.9){c='!'}
             if(v>=0.9){c='*'}
             text(c,x,y)
         }
