@@ -7,7 +7,7 @@ function savepng() {
 }
 
 var font, posx, posy, knobs = [], grid = []
-var fSize = 19
+var fSize = 23
 var stepsize = Math.floor(actualwidth * 0.012)
 var nbhorizontalsteps = Math.floor(actualwidth / stepsize)
 var nbvertcicalsteps = Math.floor(actualheight / stepsize)
@@ -21,8 +21,9 @@ function draw() {
     background(0, 0, 100)
     stroke(0,0,0)
     initgrid()
-    drawgrid()
     textFont(font)
+    textSize(fSize)
+    drawgrid()
     textSize(fSize)
     showknobs()
     showcode()
@@ -46,15 +47,6 @@ function initgrid() {
             grid.push(noise(xoff,yoff))
         }
     }
-/*    inc=0.1
-    for (j = nbvertcicalsteps*0.5; j < nbvertcicalsteps; j++) {
-        yoff+=inc
-        xoff=0.0
-        for (i = 0; i < nbhorizontalsteps; i++) {
-            xoff+=inc
-            grid.push(noise(xoff,yoff))
-        }
-    }*/
 }
 
 function drawgrid() {
@@ -65,22 +57,23 @@ function drawgrid() {
             var x=leftmargin+i*stepsize+stepsize*0.5
             var y=topmargin+j*stepsize+stepsize*0.5
             var c
-            if(v<0.1){}
-            if(v>=0.1&&v<0.2){c='d'}
-            if(v>=0.2&&v<0.3){c='i'}
-            if(v>=0.3&&v<0.4){c='r'}
-            if(v>=0.4&&v<0.5){c='o'}
-            if(v>=0.5&&v<0.6){c=':'}
-            if(v>=0.6&&v<0.7){c='.'}
-            if(v>=0.7&&v<0.8){c=';'}
-            if(v>=0.8&&v<0.9){c='!'}
-            if(v>=0.9){c='*'}
+            if(v<0.1){c='.'}
+            if(v>=0.1&&v<0.2){c=':'}
+            if(v>=0.2&&v<0.3){c=';'}
+            if(v>=0.3&&v<0.4){c='d'}
+            if(v>=0.4&&v<0.5){c='i'}
+            if(v>=0.5&&v<0.6){c='r'}
+            if(v>=0.6&&v<0.7){c='o'}
+            if(v>=0.7&&v<0.8){c='*'}
+            if(v>=0.8&&v<0.9){c='&'}
+            if(v>=0.9){c='-'}
+            textSize(fSize*v)
             text(c,x,y)
         }
     }
 }
 
 function showcredits() {
-    var c = "al.my.re :: p5.js :: CamBam Stick [gaspe 001). April 2024]"
+    var c = "al.my.re :: p5.js :: CamBam Stick [gaspe 003). May 2024]"
     text(c, posx, posy)
 }
