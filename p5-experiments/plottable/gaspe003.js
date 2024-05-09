@@ -23,7 +23,7 @@ function draw() {
     initgrid()
     textFont(font)
     textSize(fSize)
-    drawgrid()
+    drawgrid2()
     textSize(fSize)
     showknobs()
     showcode()
@@ -63,6 +63,30 @@ function drawgrid() {
             if(v>=0.3&&v<0.4){c='d'}
             if(v>=0.4&&v<0.5){c='i'}
             if(v>=0.5&&v<0.6){c='r'}
+            if(v>=0.6&&v<0.7){c='o'}
+            if(v>=0.7&&v<0.8){c='*'}
+            if(v>=0.8&&v<0.9){c='&'}
+            if(v>=0.9){c='-'}
+            textSize(fSize*v)
+            text(c,x,y)
+        }
+    }
+}
+
+function drawgrid2() {
+    for (j = 0; j < nbvertcicalsteps; j++) {
+        for (i = 0; i < nbhorizontalsteps; i++) {
+            var index=i+j*nbhorizontalsteps
+            var v = grid[index]
+            var x=leftmargin+i*stepsize//+stepsize*0.5
+            var y=topmargin+j*stepsize//+stepsize*0.5
+            var c
+            if(v<0.1){rect(x,y,stepsize,stepsize);c=''}
+            if(v>=0.1&&v<0.2){ellipse(x+stepsize*0.5,y+stepsize*0.5,stepsize,stepsize);c=''}
+            if(v>=0.2&&v<0.3){c=';'}
+            if(v>=0.3&&v<0.4){c='d'}
+            if(v>=0.4&&v<0.5){c='i'}
+            if(v>=0.5&&v<0.6){rect(x,y,stepsize,stepsize);c=''}
             if(v>=0.6&&v<0.7){c='o'}
             if(v>=0.7&&v<0.8){c='*'}
             if(v>=0.8&&v<0.9){c='&'}
