@@ -20,7 +20,7 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stroke(0,0,0)
-    initgrid()
+    backgrid()
     textFont(font)
     textSize(fSize)
     drawgrid()
@@ -35,7 +35,7 @@ function saveknob(name, value) {
     knobs.push({ name: name, value: value.toFixed(2) })
 }
 
-function initgrid() {
+function backgrid() {
     var yoff=0.0
     var xoff
     var inc=0.1
@@ -44,7 +44,7 @@ function initgrid() {
         xoff=0.0
         for (i = 0; i < nbhorizontalsteps; i++) {
             xoff+=inc
-            grid.push(noise(xoff,yoff))
+            backgrid.push(noise(xoff,yoff))
         }
     }
 }
@@ -53,7 +53,7 @@ function drawgrid() {
     for (j = 0; j < nbvertcicalsteps; j++) {
         for (i = 0; i < nbhorizontalsteps; i++) {
             var index=i+j*nbhorizontalsteps
-            var v = grid[index]
+            var v = backgrid[index]
             var x=leftmargin+i*stepsize+stepsize*0.5
             var y=topmargin+j*stepsize+stepsize*0.5
             var c
