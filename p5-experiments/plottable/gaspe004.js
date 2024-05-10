@@ -56,8 +56,9 @@ function drawgrid() {
             var v = grid[index]
             var x=leftmargin+i*stepsize
             var y=topmargin+j*stepsize
+            if((v>0.11 && v<0.22) || (v>0.62 && v<0.73)){
             rect(x,y,stepsize,stepsize)
-            ellipse(x+stepsize*0.5,y+stepsize*0.5,stepsize*v,stepsize*v)
+            ellipse(x+stepsize*0.5,y+stepsize*0.5,stepsize*v,stepsize*v)}
         }
     }
 }
