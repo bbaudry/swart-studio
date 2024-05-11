@@ -23,6 +23,7 @@ function draw() {
     backgrid()
     section()
     stripes()
+    //testspiral()
     textFont(font)
     textSize(fSize)
     showknobs()
@@ -84,7 +85,7 @@ function stripes(){
     y3=bottommargin
     x4=rightmargin
     y4=topmargin+random(0.4,0.5)*actualheight
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    bottom(x1,y1,x2,y2,x3,y3,x4,y4)
     y1-=0.03*actualheight
     x2=leftmargin+random(0.7,0.8)*actualwidth
     y2=topmargin
@@ -92,6 +93,29 @@ function stripes(){
     y3=topmargin
     y4-=0.03*actualheight
     quad(x1,y1,x2,y2,x3,y3,x4,y4)
+}
+
+function bottom(x1,y1,x2,y2,x3,y3,x4,y4){
+    //quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    let off=2
+    for(i=0;i<97;i++){
+        line(x1+(i*off),y1+(i*off),x2+(i*off),y2-(i*off))
+        line(x2+(i*off),y2-(i*off),x3-(i*off),y3-(i*off))
+        line(x3-(i*off),y3-(i*off),x4-(i*off),y4+((i+1)*off))
+        line(x4-(i*off),y4+((i+1)*off),x1+((i+1)*off),y1+((i+1)*off))  
+    }
+
+}
+
+function testspiral(){
+    let off=5
+    for(i=0;i<7;i++){
+        line(200+(i*off),500+(i*off),200+(i*off),700-(i*off))
+        line(200+(i*off),700-(i*off),400-(i*off),700-(i*off))
+        line(400-(i*off),700-(i*off),400-(i*off),500+((i+1)*off))
+        line(400-(i*off),500+((i+1)*off),200+((i+1)*off),500+((i+1)*off))  
+    }
+
 }
 
 function showcredits() {
