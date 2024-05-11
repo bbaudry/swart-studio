@@ -20,10 +20,11 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stroke(0,0,0)
-    backgrid()
-    section()
-    stripes()
+    stroke(180,100,100);section()
+    stroke(180,100,100);stripes()
+    stroke(30,100,100);backgrid()
     //testspiral()
+    stroke(0,0,0)
     textFont(font)
     textSize(fSize)
     showknobs()
@@ -50,8 +51,8 @@ function backgrid() {
             xoff+=inc
             v=noise(xoff,yoff)
             grid.push(v)
-            if((v>0.11 && v<0.22) || (v>0.62 && v<0.73)){
-                rect(x,y,stepsize,stepsize)
+            if((v>0.11 && v<0.32) || (v>0.52 && v<0.73)){
+                //rect(x,y,stepsize,stepsize)
                 ellipse(x+stepsize*0.5,y+stepsize*0.5,stepsize*v,stepsize*v)}
         }
     }
@@ -97,10 +98,10 @@ function stripes(){
 
 function bottom(x1,y1,x2,y2,x3,y3,x4,y4){
     //quad(x1,y1,x2,y2,x3,y3,x4,y4)
-    let off=2
-    for(i=0;i<97;i++){
-        line(x1+(i*off),y1+(i*off),x2+(i*off),y2-(i*off))
-        line(x2+(i*off),y2-(i*off),x3-(i*off),y3-(i*off))
+    let off=3
+    for(i=0;i<47;i++){
+        line(x1+(i*off),y1+(i*off),x2+(i*1.5*off),y2-(i*off))
+        line(x2+(i*1.5*off),y2-(i*off),x3-(i*off),y3-(i*off))
         line(x3-(i*off),y3-(i*off),x4-(i*off),y4+((i+1)*off))
         line(x4-(i*off),y4+((i+1)*off),x1+((i+1)*off),y1+((i+1)*off))  
     }
@@ -109,11 +110,16 @@ function bottom(x1,y1,x2,y2,x3,y3,x4,y4){
 
 function testspiral(){
     let off=5
+    var x1,y1,x2,y2,x3,y3,x4,y4
+    x1=200;y1=200
+    x2=100;y2=400
+    x3=400;y3=400
+    x4=400;y4=200
     for(i=0;i<7;i++){
-        line(200+(i*off),500+(i*off),200+(i*off),700-(i*off))
-        line(200+(i*off),700-(i*off),400-(i*off),700-(i*off))
-        line(400-(i*off),700-(i*off),400-(i*off),500+((i+1)*off))
-        line(400-(i*off),500+((i+1)*off),200+((i+1)*off),500+((i+1)*off))  
+        line(x1+(i*off),y1+(i*off),x2+(i*1.5*off),y2-(i*off))
+        line(x2+(i*1.5*off),y2-(i*off),x3-(i*off),y3-(i*off))
+        line(x3-(i*off),y3-(i*off),x4-(i*off),y4+((i+1)*off))
+        line(x4-(i*off),y4+((i+1)*off),x1+((i+1)*off),y1+((i+1)*off))  
     }
 
 }
