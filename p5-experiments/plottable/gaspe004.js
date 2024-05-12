@@ -20,9 +20,9 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stroke(0,0,0)
-    stroke(180,100,100);section()
-    stroke(180,100,100);stripes()
-    stroke(30,100,100);backgrid()
+    stroke(0,0,0);section()
+    stroke(0,0,0);stripes()
+    stroke(50,100,100);backgrid()
     //testspiral()
     stroke(0,0,0)
     textFont(font)
@@ -66,7 +66,7 @@ function section(){
     y2=topmargin+random(0.7,0.8)*actualheight
     x3=leftmargin+random(0.6,0.7)*actualwidth
     y3=topmargin
-    for(t1=0;t1<1;t1+=0.01){
+    for(t1=0;t1<1;t1+=0.005){
         xi=(1 - t1) * x1 + (t1 * x3)
         yi=topmargin
         xd=leftmargin
