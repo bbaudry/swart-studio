@@ -6,11 +6,9 @@ function savepng() {
     save("gaspe005.png");
 }
 
-var font, posx, posy, knobs = [], grid = []
+var font, posx, posy, knobs = []
 var fSize = 15
-var stepsize = Math.floor(actualwidth * 0.01)
-var nbhorizontalsteps = Math.floor(actualwidth / stepsize)
-var nbvertcicalsteps = Math.floor(actualheight / stepsize)
+var stepsize,nbhorizontalsteps, nbvertcicalsteps,grid
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('gaspe005.js');
@@ -19,9 +17,31 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stroke(0, 0, 0)
+    stroke(300, 100, 100)
+    stepsize = Math.floor(actualwidth * 0.004)
+    nbhorizontalsteps = Math.floor(actualwidth / stepsize)
+    nbvertcicalsteps = Math.floor(actualheight / stepsize)
     initgrid()
     drawgrid()
+    stroke(0, 100, 100)
+    stepsize = Math.floor(actualwidth * 0.01)
+    nbhorizontalsteps = Math.floor(actualwidth / stepsize)
+    nbvertcicalsteps = Math.floor(actualheight / stepsize)
+    initgrid()
+    drawgrid()
+    stroke(230, 100, 100)
+    stepsize = Math.floor(actualwidth * 0.05)
+    nbhorizontalsteps = Math.floor(actualwidth / stepsize)
+    nbvertcicalsteps = Math.floor(actualheight / stepsize)
+    initgrid()
+    drawgrid()
+    stroke(30, 100, 100)
+    stepsize = Math.floor(actualwidth * 0.05)
+    nbhorizontalsteps = Math.floor(actualwidth / stepsize)
+    nbvertcicalsteps = Math.floor(actualheight / stepsize)
+    initgrid()
+    drawgrid()
+    stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
     showknobs()
@@ -35,6 +55,7 @@ function saveknob(name, value) {
 }
 
 function initgrid() {
+    grid=[]
     var yoff = 0.0
     var xoff
     var inc = 0.1
@@ -51,7 +72,7 @@ function initgrid() {
 function drawgrid() {
     for (j = 0; j < nbvertcicalsteps; j++) {
         for (i = 0; i < nbhorizontalsteps; i++) {
-            var index=i*nbhorizontalsteps+j*nbvertcicalsteps
+            var index=i+j*nbhorizontalsteps
             var v=grid[index]
             x = leftmargin + i * stepsize
             y = topmargin + j * stepsize
