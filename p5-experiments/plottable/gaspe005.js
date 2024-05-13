@@ -36,7 +36,7 @@ function draw() {
     initgrid()
     drawgrid()
     stroke(30, 100, 100)
-    stepsize = Math.floor(actualwidth * 0.05)
+    stepsize = Math.floor(actualwidth * 0.1)
     nbhorizontalsteps = Math.floor(actualwidth / stepsize)
     nbvertcicalsteps = Math.floor(actualheight / stepsize)
     initgrid()
