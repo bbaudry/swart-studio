@@ -30,13 +30,13 @@ function draw() {
     initgrid()
     drawgrid()
     stroke(180, 100, 100)
-    stepsize = Math.floor(actualwidth * 0.05)
+    stepsize = Math.floor(actualwidth * 0.015)
     nbhorizontalsteps = Math.floor(actualwidth / stepsize)
     nbvertcicalsteps = Math.floor(actualheight / stepsize)
     initgrid()
     drawgrid()
     stroke(30, 100, 100)
-    stepsize = Math.floor(actualwidth * 0.1)
+    stepsize = Math.floor(actualwidth * 0.021)
     nbhorizontalsteps = Math.floor(actualwidth / stepsize)
     nbvertcicalsteps = Math.floor(actualheight / stepsize)
     initgrid()
@@ -76,16 +76,16 @@ function drawgrid() {
             var v=grid[index]
             x = leftmargin + i * stepsize
             y = topmargin + j * stepsize
-            if (v < 0.1) { arc(x, y, stepsize * 2, stepsize * 2, 0, PI * 0.5) }
-            if (v >= 0.1 && v < 0.2) { arc(x + stepsize, y, stepsize * 2, stepsize * 2, PI * 0.5, PI) }
+            /*if (v < 0.1) { arc(x, y, stepsize * 2, stepsize * 2, 0, PI * 0.5) }
+            if (v >= 0.1 && v < 0.2) { arc(x + stepsize, y, stepsize * 2, stepsize * 2, PI * 0.5, PI) }*/
             if (v >= 0.2 && v < 0.3) { arc(x + stepsize, y + stepsize, stepsize * 2, stepsize * 2, PI, PI * 1.5) }
             if (v >= 0.3 && v < 0.4) { arc(x, y + stepsize, stepsize * 2, stepsize * 2, PI * 1.5, PI * 2) }
             if (v >= 0.4 && v < 0.5) { arc(x, y + stepsize * 0.5, stepsize, stepsize, PI * 1.5, PI * 2.5) }
             if (v >= 0.5 && v < 0.6) { arc(x + stepsize, y + stepsize * 0.5, stepsize, stepsize, PI * 0.5, PI * 1.5) }
-            if (v >= 0.6 && v < 0.7) { arc(x + stepsize * 0.5, y, stepsize, stepsize, 0, PI) }
+            /*if (v >= 0.6 && v < 0.7) { arc(x + stepsize * 0.5, y, stepsize, stepsize, 0, PI) }
             if (v >= 0.7 && v < 0.8) { arc(x + stepsize * 0.5, y + stepsize, stepsize, stepsize, PI, PI * 2) }
             if (v >= 0.8 && v < 0.9) { ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize) }
-            if (v >= 0.9) { rect(x, y, stepsize, stepsize, v, v, v, v) }
+            if (v >= 0.9) { rect(x, y, stepsize, stepsize, v, v, v, v) }*/
         }
     }
 
