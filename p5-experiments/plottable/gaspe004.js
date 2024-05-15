@@ -92,6 +92,11 @@ function stripes(){
     y3=topmargin
     y4-=0.03*actualheight
     quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    var xc=x2+(x3-x2)*0.5
+    var yc=y3+(y4-y3)*0.5
+    stroke(0,0,0);ellipse(xc,yc,7,7)
+    stroke(50,100,100);ellipse(x1,y1,7,7);ellipse(x3,y3,7,7);line(x1,y1,x3,y3)
+    stroke(230,100,100);ellipse(x2,y2,7,7);ellipse(x4,y4,7,7);line(x2,y2,x4,y4)
 }
 
 function bottom(x1,y1,x2,y2,x3,y3,x4,y4){
@@ -104,6 +109,8 @@ function bottom(x1,y1,x2,y2,x3,y3,x4,y4){
     }
 
 }
+
+
 
 function showcredits() {
     var c = "al.my.re :: p5.js :: CamBam Stick [gaspe 004). May 2024]"
