@@ -58,7 +58,7 @@ function initgrid() {
     grid=[]
     var yoff = 0.0
     var xoff
-    var inc = 0.06
+    var inc = 0.004
     for (j = 0; j < nbvertcicalsteps; j++) {
         yoff += inc
         xoff = 0.0
