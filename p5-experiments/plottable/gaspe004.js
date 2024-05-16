@@ -96,16 +96,16 @@ function stripes(){
 
 function toppart(x1,y1,x3,y3,x2,y2,x4,y4){
     var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
-    for(i=0;i<27;i+=4){
-        x1+=step;y1-=step;x2+=step;y2+=step;x3-=step;y3+=step;x4-=step;y4-=step
-        quad(x1,y1,x3,y3,x2,y2,x4,y4)
-    }
-    /*var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
     var max=x3-x2
-    for(var i=1;i<max;i+=5){
-        ellipse(croise.x,croise.y,i,i)
+    var step=3
+    for(var i=0;i<17;i+=1){
+        x1+=step;y1-=step;x2+=step;y2+=step;x3-=step;y3+=step;x4-=step;y4-=step
+        quad(x1,y1,x2,y2,x3,y3,x4,y4)
     }
-    for(t1=0;t1<1;t1+=0.01){
+    for(var j=1;j<max;j+=step){
+        ellipse(croise.x,croise.y,j,j)
+    }
+    /*for(t1=0;t1<1;t1+=0.01){
         xd=(1 - t1) * x1 + (t1 * x2)
         yd=(1 - t1) * y1 + (t1 * y2)
         line(croise.x,croise.y,xd,yd)
