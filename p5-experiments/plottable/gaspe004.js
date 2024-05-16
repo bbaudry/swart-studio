@@ -7,7 +7,7 @@ function savepng() {
 }
 
 var font, posx, posy, knobs = [], grid = []
-var fSize = 15
+var fSize = 14
 var stepsize = Math.floor(actualwidth * 0.01)
 var nbhorizontalsteps = Math.floor(actualwidth / stepsize)
 var nbvertcicalsteps = Math.floor(actualheight / stepsize)
@@ -104,6 +104,15 @@ function toppart(x1,y1,x3,y3,x2,y2,x4,y4){
     for(t1=0;t1<1;t1+=0.01){
         xd=(1 - t1) * x1 + (t1 * x2)
         yd=(1 - t1) * y1 + (t1 * y2)
+        line(croise.x,croise.y,xd,yd)
+        xd=(1 - t1) * x2 + (t1 * x3)
+        yd=(1 - t1) * y2 + (t1 * y3)
+        line(croise.x,croise.y,xd,yd)
+        xd=(1 - t1) * x3 + (t1 * x4)
+        yd=(1 - t1) * y3 + (t1 * y4)
+        line(croise.x,croise.y,xd,yd)
+        xd=(1 - t1) * x4 + (t1 * x1)
+        yd=(1 - t1) * y4 + (t1 * y1)
         line(croise.x,croise.y,xd,yd)
     }
 

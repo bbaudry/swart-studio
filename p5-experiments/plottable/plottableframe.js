@@ -9,9 +9,9 @@
 var echelle = 1
 var w = 1122 * echelle
 var h = 1587 * echelle
-var rightmargin = 0.95 * w
-var leftmargin = 0.05 * w
-var topmargin = 0.05 * h
+var rightmargin = 0.96 * w
+var leftmargin = 0.04 * w
+var topmargin = 0.03 * h
 var bottommargin = 0.75 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
