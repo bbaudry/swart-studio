@@ -7,7 +7,7 @@ function savepng() {
 }
 
 var font, posx, posy, knobs = [], grid = []
-var fSize = 14
+var fSize = 10
 var stepsize = Math.floor(actualwidth * 0.01)
 var nbhorizontalsteps = Math.floor(actualwidth / stepsize)
 var nbvertcicalsteps = Math.floor(actualheight / stepsize)
