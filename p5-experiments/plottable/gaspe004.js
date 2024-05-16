@@ -20,8 +20,8 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stroke(0,0,0)
-    stroke(0,0,0);section()
-    stroke(0,0,0);stripes()
+    section()
+    stripes()
     stroke(0,100,100);backgrid()
     stroke(0,0,0)
     textFont(font)
@@ -66,8 +66,8 @@ function section(){
     y3=topmargin
     for(t1=0;t1<1;t1+=0.005){
         xi=(1 - t1) * x1 + (t1 * x3)
-        yi=topmargin
-        xd=leftmargin
+        yi=y3
+        xd=x2
         yd=(1 - t1) * y1 + (t1 * y2)
         line(xi,yi,xd,yd)
     }
@@ -84,7 +84,7 @@ function stripes(){
     y3=bottommargin
     x4=rightmargin
     y4=topmargin+random(0.4,0.5)*actualheight
-    bottom(x1,y1,x2,y2,x3,y3,x4,y4)
+    bottompart(x1,y1,x2,y2,x3,y3,x4,y4)
     y1-=0.03*actualheight
     x2=leftmargin+random(0.7,0.8)*actualwidth
     y2=topmargin
@@ -95,8 +95,12 @@ function stripes(){
 }
 
 function toppart(x1,y1,x3,y3,x2,y2,x4,y4){
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
     var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
+    for(i=0;i<27;i+=4){
+        x1+=step;y1-=step;x2+=step;y2+=step;x3-=step;y3+=step;x4-=step;y4-=step
+        quad(x1,y1,x3,y3,x2,y2,x4,y4)
+    }
+    /*var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
     var max=x3-x2
     for(var i=1;i<max;i+=5){
         ellipse(croise.x,croise.y,i,i)
@@ -114,11 +118,10 @@ function toppart(x1,y1,x3,y3,x2,y2,x4,y4){
         xd=(1 - t1) * x4 + (t1 * x1)
         yd=(1 - t1) * y4 + (t1 * y1)
         line(croise.x,croise.y,xd,yd)
-    }
-
+    }*/
 }
 
-function bottom(x1,y1,x2,y2,x3,y3,x4,y4){
+function bottompart(x1,y1,x2,y2,x3,y3,x4,y4){
     let off=3
     for(i=0;i<47;i++){
         line(x1+(i*off),y1+(i*off),x2+(i*1.5*off),y2-(i*off))
