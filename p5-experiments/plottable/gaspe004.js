@@ -103,7 +103,7 @@ function toppart(x1,y1,x3,y3,x2,y2,x4,y4){
         xo=(1 - t1) * x4 + (t1 * x3)
         yo=(1 - t1) * y4 + (t1 * y3)
         line(xd,yd,xo,yo)
-        t1+=random(0.001,0.02)
+        t1+=random(0.001,0.015)
 
     }
     /*var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
