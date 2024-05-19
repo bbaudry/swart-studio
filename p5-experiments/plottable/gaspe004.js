@@ -95,18 +95,7 @@ function stripes(){
 }
 
 function toppart(x1,y1,x3,y3,x2,y2,x4,y4){
-    var t1=0
-    var xo,yo,xd,yd
-    while(t1<1){
-        xd=(1 - t1) * x1 + (t1 * x2)
-        yd=(1 - t1) * y1 + (t1 * y2)
-        xo=(1 - t1) * x4 + (t1 * x3)
-        yo=(1 - t1) * y4 + (t1 * y3)
-        line(xd,yd,xo,yo)
-        t1+=random(0.001,0.015)
-
-    }
-    /*var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
+    var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
     var max=x3-x2
     var step=3
     for(var i=0;i<17;i+=1){
@@ -115,7 +104,7 @@ function toppart(x1,y1,x3,y3,x2,y2,x4,y4){
     }
     for(var j=1;j<max;j+=step){
         ellipse(croise.x,croise.y,j,j)
-    }*/
+    }
     /*var croise=intersect(x1,y1,x3,y3,x2,y2,x4,y4)
     var max=x3-x2
     for(t1=0;t1<1;t1+=0.01){
