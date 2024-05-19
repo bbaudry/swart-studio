@@ -20,14 +20,15 @@
     <script>
         // to plot on 14cm x 14cm square with 96dpi 
         var echelle = 1
-        var w = 529 * echelle //96*140/25.4=567
-        var h = 529 * echelle //96*140/25.4=567
+        var w = 529 * echelle //96*140/25.4=529
+        var h = 529 * echelle //96*140/25.4=529
         var rightmargin = 0.96 * w
         var leftmargin = 0.04 * w
         var topmargin = 0.04 * h
         var bottommargin = 0.95 * h
         var actualwidth = rightmargin - leftmargin
         var actualheight = bottommargin - topmargin
+        var cnv
 
         function setup() {
             cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
@@ -35,7 +36,6 @@
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
             noFill()
-            maxcount = random(39, 45)
         }
 
         function centerCanvas() {
@@ -60,13 +60,13 @@
         function draw() {
             background(0, 0, 100)
             stroke(0, 0, 0)
-            /*section()
+            rect(0,0,w,h)
+            section()
             stripes()
             textFont(font)
             textSize(fSize)
-            showcredits()*/
+            showcredits()
             stroke(50, 90, 90); backgrid()
-            save("testguilded-guilded.svg")
             stroke(0, 0, 0)
             noLoop()
         }
