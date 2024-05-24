@@ -17,11 +17,14 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stepsize = Math.floor(actualwidth * 0.003)
+    stepsize = Math.floor(actualwidth * 0.005)
     nbhorizontalsteps = Math.floor(actualwidth / stepsize)
     nbvertcicalsteps = Math.floor(actualheight / stepsize)
     initgrid()
-    drawgrid()
+    stroke(300,100,100)
+    drawnoisecenter()
+    stroke(200,100,100)
+    drawrestofnoise()
     stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
@@ -50,38 +53,32 @@ function initgrid() {
     }
 }
 
-function drawgrid() {
+function drawnoisecenter() {
     for (j = 0; j < nbvertcicalsteps; j++) {
         for (i = 0; i < nbhorizontalsteps; i++) {
             var index = i + j * nbhorizontalsteps
             var v = grid[index]
             x = leftmargin + i * stepsize
             y = topmargin + j * stepsize
-            if (v >= 0.4 && v < 0.44) {
-                stroke(300, 100, 100)
+            if (v >= 0.4 && v < 0.44 || v >= 0.5 && v < 0.52) {
                 ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
             }
-            else {
-                if (v >= 0.5 && v < 0.52) {
-                    stroke(310, 100, 100)
-                    ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
-                }
-                else{
-                    if (v >= 0.64 && v < 0.66) {
-                        stroke(330, 100, 100)
-                        ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
-                    }   
-                    else{
-                        stroke(0, 0, 0)
-                        ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
-
-                    }     
-                }
-            }
-            // if (v >= 0.64 && v < 0.68) { ellipse(x + stepsize*0.5, y + stepsize*0.5, stepsize, stepsize) }
         }
     }
+}
 
+function drawrestofnoise() {
+    for (j = 0; j < nbvertcicalsteps; j++) {
+        for (i = 0; i < nbhorizontalsteps; i++) {
+            var index = i + j * nbhorizontalsteps
+            var v = grid[index]
+            x = leftmargin + i * stepsize
+            y = topmargin + j * stepsize
+            if (!(v >= 0.4 && v < 0.44 || v >= 0.5 && v < 0.52)) {
+                ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
+            }
+        }
+    }
 }
 
 function showcredits() {
