@@ -7,7 +7,7 @@ function savepng() {
 }
 
 var font, posx, posy, knobs = []
-var fSize = 15
+var fSize = 12
 var stepsize,nbhorizontalsteps, nbvertcicalsteps,grid
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");

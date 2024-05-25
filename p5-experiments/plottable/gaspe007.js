@@ -82,6 +82,6 @@ function drawrestofnoise() {
 }
 
 function showcredits() {
-    var c = "al.my.re :: p5.js :: CamBam Stick [gaspe 005). May 2024]"
+    var c = "al.my.re :: p5.js :: CamBam Stick [gaspe 007). May 2024]"
     text(c, posx, posy)
 }

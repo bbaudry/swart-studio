@@ -1,25 +1,27 @@
 //pixel = dpi * mm / 25.4 mm
 //A3: 297mm × 420mm
 //96dpi is for plotting on the UUNA TEK iDraw
+//A3
 //w=96*297/25.4=1122.5
 //h=96*420/25.4=1587.4
+//letter
 //w=96*8.5=816
 //h=96*11=1056
 
 var echelle = 1
-var w = 1122 * echelle
-var h = 1587 * echelle
+var w = 816 * echelle
+var h = 1056 * echelle
 var rightmargin = 0.96 * w
 var leftmargin = 0.04 * w
 var topmargin = 0.05 * h
-var bottommargin = 0.75 * h
+var bottommargin = 0.73 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, imgbtn
 
 function setup() {
-    //getsvg()
-    getpng()
+    getsvg()
+    //getpng()
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
