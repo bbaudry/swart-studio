@@ -109,6 +109,18 @@ and use the 'SVG' argument when creating the p5 canvas
 The sketch in [plottable001.html](https://github.com/bbaudry/swart-studio/blob/main/penplotting/plottable001.html) illustrates the usafe of [p5.js-svg](https://github.com/zenozeng/p5.js-svg), and you can find more documentation at [https://github.com/zenozeng/p5.js-svg](https://github.com/zenozeng/p5.js-svg). 
 
 Once you are happy with your sketch, save it as an svg, for example [```pointille.svg```](https://github.com/bbaudry/swart-studio/blob/main/penplotting/pointille.svg).
+
+* Prepare the svg for plotting, with vpype
+  * if the svg has several colors, separate each color layer into separate svg (needed to change pen when plotting)
+  ```
+  vpype read --attr stroke input.svg forlayer write "output%_lid%.svg" end
+  ```
+  This vpype command reads the input.svg, keeps the different color layers (```read --attr stroke ```) and names the output with the layer id (```%_lid%```)
+  * explore the svg structure
+  ```
+  vpype read --attr stroke input.svg show
+  ```
+
 * Transform the svg to gcode with [Juicy-GCode](https://github.com/domoszlai/juicy-gcode). Check out the flavor.txt configuration file to fine-tune the generation of the gcode. Put the generated gcode in a file, for example [```pointille.gcode```](https://github.com/bbaudry/swart-studio/blob/main/penplotting/pointille.gcode)
 * Use [gcode-cli](https://github.com/hzeller/gcode-cli) to draw the sketch on the pen plotter, for example ```g-code-cli pointille.gcode```
 
