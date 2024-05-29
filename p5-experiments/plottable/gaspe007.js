@@ -17,7 +17,7 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stepsize = Math.floor(actualwidth * 0.005)
+    stepsize = Math.floor(actualwidth * 0.007)
     nbhorizontalsteps = Math.floor(actualwidth / stepsize)
     nbvertcicalsteps = Math.floor(actualheight / stepsize)
     initgrid()
@@ -26,11 +26,11 @@ function draw() {
     stroke(200,100,100)
     drawrestofnoise()
     stroke(0, 0, 0)
-    /*textFont(font)
+    textFont(font)
     textSize(fSize)
     showknobs()
     showcode()
-    showcredits()*/
+    showcredits()
     noLoop()
 }
 
@@ -60,7 +60,7 @@ function drawnoisecenter() {
             var v = grid[index]
             x = leftmargin + i * stepsize
             y = topmargin + j * stepsize
-            if (v >= 0.4 && v < 0.44 || v >= 0.5 && v < 0.52) {
+            if (v >= 0.34 && v < 0.44 || v >= 0.5 && v < 0.6) {
                 ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
             }
         }
@@ -74,7 +74,7 @@ function drawrestofnoise() {
             var v = grid[index]
             x = leftmargin + i * stepsize
             y = topmargin + j * stepsize
-            if (!(v >= 0.4 && v < 0.44 || v >= 0.5 && v < 0.52)) {
+            if (!(v >= 0.34 && v < 0.44 || v >= 0.5 && v < 0.6)) {
                 ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
             }
         }
