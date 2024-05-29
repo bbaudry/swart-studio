@@ -20,8 +20,8 @@ function draw() {
     stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
-    showcode()
-    showcredits()
+    var s=showcode(leftmargin,bottommargin+fSize*2)
+    showcredits(leftmargin,s[1])
     noLoop()
 }
 
@@ -29,6 +29,7 @@ function grid(stepsize) {
     nbhorizontalsteps = Math.floor(actualwidth / stepsize)
     nbvertcicalsteps = Math.floor(actualheight / stepsize)
     var yoff = 0.0
+    var zoff = 0.0
     var xoff, v, x, y
     var inc = 0.004
     for (j = 0; j < nbvertcicalsteps; j++) {
@@ -40,18 +41,19 @@ function grid(stepsize) {
             x = leftmargin + i * stepsize
             y = topmargin + j * stepsize
             if (v >= 0.34 && v < 0.44 || v >= 0.5 && v < 0.6) {
-                stroke(200, 100, 100)
+                stroke(30, 100, 100)
             }
             else {
-                stroke(300, 100, 100)
+                stroke(210, 100, 100)
             }
-            ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*2, stepsize*2)
+            ellipse(x + stepsize * noise(zoff), y + stepsize * noise(zoff), stepsize*2, stepsize*2)
+            zoff+=inc*10
         }
     }
 }
 
 
-function showcredits() {
-    var c = "al.my.re :: p5.js :: CamBam Stick :: vyper [gaspe 008). May 2024]"
+function showcredits(posx, posy) {
+    var c = "al.my.re :: p5.js :: CamBam Stick :: noise :: vyper [gaspe 008). May 2024]"
     text(c, posx, posy)
 }

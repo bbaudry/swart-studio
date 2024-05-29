@@ -1,6 +1,7 @@
 function showknobs(){
     posx=leftmargin
     posy=topmargin+actualheight
+
     for(i=0;i<knobs.length;i++){
         var s = knobs[i].name+" "+knobs[i].value
         tw = textWidth(s)
