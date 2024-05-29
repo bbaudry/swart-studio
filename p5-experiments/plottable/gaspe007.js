@@ -17,7 +17,7 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stepsize = Math.floor(actualwidth * 0.007)
+    stepsize = Math.floor(actualwidth * 0.015)
     nbhorizontalsteps = Math.floor(actualwidth / stepsize)
     nbvertcicalsteps = Math.floor(actualheight / stepsize)
     initgrid()
@@ -75,7 +75,7 @@ function drawrestofnoise() {
             x = leftmargin + i * stepsize
             y = topmargin + j * stepsize
             if (!(v >= 0.34 && v < 0.44 || v >= 0.5 && v < 0.6)) {
-                ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize, stepsize)
+                ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*4, stepsize*4)
             }
         }
     }
