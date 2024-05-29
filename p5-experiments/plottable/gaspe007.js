@@ -26,11 +26,11 @@ function draw() {
     stroke(200,100,100)
     drawrestofnoise()
     stroke(0, 0, 0)
-    textFont(font)
+    /*textFont(font)
     textSize(fSize)
     showknobs()
     showcode()
-    showcredits()
+    showcredits()*/
     noLoop()
 }
 

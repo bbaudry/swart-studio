@@ -35,7 +35,7 @@
 
 
         function setup() {
-            cnv = createCanvas(w, h, SVG)//.mousePressed(savesvg);
+            cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
             centerCanvas();
             colorMode(HSB, 360, 100, 100, 250);
             strokeCap(SQUARE)
@@ -45,7 +45,6 @@
             blue = false
             initgrid()
             noFill()
-//            frameRate(1)
         }
 
         function centerCanvas() {
@@ -54,24 +53,21 @@
             cnv.position(x, y);
         }
 
-        function keyPressed() {
-            saveFrames('frame', 'svg', 2, 5);
-        }
-
         function preload() {
             font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
 
         }
 
+        function savesvg() {
+            console.log("save")
+    save("gaspe007.svg");
+}
+
+
         function draw() {
-            if (frameCount==1) {
                 background(0, 0, 100)
                 stroke(300, 100, 100)
                 drawnoisecenter();
-                blue = true
-            }
-            if (frameCount==120) {
-                background(0, 0, 100)
                 stroke(200, 100, 100)
                 drawrestofnoise()
                 stroke(0, 0, 0)
@@ -79,10 +75,6 @@
                 textSize(fSize)
                 showcredits()
                 noLoop()
-            }
-            if (frameCount==121) {
-                noLoop()
-            }
         }
 
         function initgrid() {
