@@ -15,8 +15,8 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stepsize = Math.floor(actualwidth * 0.011)
-    grid(stepsize)
+    stepsize = Math.floor(actualwidth * 0.009)
+    grid(leftmargin,topmargin,rightmargin,bottommargin,stepsize)
     stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
@@ -25,11 +25,10 @@ function draw() {
     noLoop()
 }
 
-function grid(stepsize) {
-    nbhorizontalsteps = Math.floor(actualwidth / stepsize)
-    nbvertcicalsteps = Math.floor(actualheight / stepsize)
+function grid(x1,y1,x2,y2,stepsize) {
+    nbhorizontalsteps = Math.floor((x2-x1) / stepsize)
+    nbvertcicalsteps = Math.floor((y2-y1) / stepsize)
     var yoff = 0.0
-    var zoff = 0.0
     var xoff, v, x, y
     var inc = 0.004
     for (j = 0; j < nbvertcicalsteps; j++) {
@@ -38,16 +37,21 @@ function grid(stepsize) {
         for (i = 0; i < nbhorizontalsteps; i++) {
             xoff += inc
             v = noise(xoff, yoff)
-            x = leftmargin + i * stepsize
-            y = topmargin + j * stepsize
-            if (v >= 0.34 && v < 0.44 || v >= 0.5 && v < 0.6) {
-                stroke(30, 100, 100)
+            x = x1 + i * stepsize
+            y = y1 + j * stepsize
+            if (v >= 0.34 && v < 0.44 ) {
+                stroke(300, 100, 100)
             }
             else {
-                stroke(210, 100, 100)
+                if ( v >= 0.5 && v < 0.6) {
+                    stroke(330, 100, 100)
+                }
+                else{
+                stroke(280, 100, 100)
             }
-            ellipse(x + stepsize * noise(zoff), y + stepsize * noise(zoff), stepsize*2, stepsize*2)
-            zoff+=inc*10
+            }
+            //ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*2, stepsize*2)
+            line(x,y,x+stepsize, y+stepsize*v)
         }
     }
 }
