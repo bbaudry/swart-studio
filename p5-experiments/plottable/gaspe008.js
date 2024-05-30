@@ -16,9 +16,12 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stepsize = Math.floor(actualwidth * 0.009)
-    grid(leftmargin,topmargin,leftmargin+actualwidth*0.42,bottommargin-actualheight*0.3,stepsize)
-    grid(leftmargin+actualwidth*0.43,topmargin,rightmargin,bottommargin-actualheight*0.3,stepsize)
-    grid(leftmargin,bottommargin-actualheight*0.28,rightmargin,bottommargin,stepsize)
+    var vratio = random(0.21,0.63)
+    var hratio = random(0.21,0.63)
+    var oratio = random(0.009,0.03)
+    grid(leftmargin,topmargin,leftmargin+actualwidth*vratio,topmargin+actualheight*hratio,stepsize)
+    grid(leftmargin+actualwidth*(vratio+oratio),topmargin,rightmargin,topmargin+actualheight*hratio,stepsize)
+    grid(leftmargin,topmargin+actualheight*(hratio+oratio),rightmargin,bottommargin,stepsize)
     stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
@@ -42,14 +45,14 @@ function grid(x1,y1,x2,y2,stepsize) {
             x = x1 + i * stepsize
             y = y1 + j * stepsize
             if (v >= 0.34 && v < 0.44 ) {
-                stroke(300, 100, 100)
+                stroke(30, 100, 100)//300
             }
             else {
                 if ( v >= 0.5 && v < 0.6) {
-                    stroke(330, 100, 100)
+                    stroke(180, 100, 100)//330
                 }
                 else{
-                stroke(280, 100, 100)
+                stroke(200, 100, 100)//280
             }
             }
             ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*2, stepsize*2)
@@ -60,6 +63,6 @@ function grid(x1,y1,x2,y2,stepsize) {
 
 
 function showcredits(posx, posy) {
-    var c = "al.my.re :: p5.js :: CamBam Stick :: noise :: vyper [gaspe 008). May 2024]"
+    var c = "al.my.re :: p5.js :: CamBam Stick :: noise :: vpype [gaspe 008). May 2024]"
     text(c, posx, posy)
 }
