@@ -16,7 +16,9 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stepsize = Math.floor(actualwidth * 0.009)
-    grid(leftmargin,topmargin,rightmargin,bottommargin,stepsize)
+    grid(leftmargin,topmargin,leftmargin+actualwidth*0.42,bottommargin-actualheight*0.3,stepsize)
+    grid(leftmargin+actualwidth*0.43,topmargin,rightmargin,bottommargin-actualheight*0.3,stepsize)
+    grid(leftmargin,bottommargin-actualheight*0.28,rightmargin,bottommargin,stepsize)
     stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
@@ -50,8 +52,8 @@ function grid(x1,y1,x2,y2,stepsize) {
                 stroke(280, 100, 100)
             }
             }
-            //ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*2, stepsize*2)
-            line(x,y,x+stepsize, y+stepsize*v)
+            ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*2, stepsize*2)
+            //line(x,y,x+stepsize, y+stepsize*v)
         }
     }
 }
