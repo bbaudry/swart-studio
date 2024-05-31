@@ -8,6 +8,7 @@ function savepng() {
 
 var font, posx, posy, stepsize, nbhorizontalsteps, nbvertcicalsteps
 var fSize = 15
+var palette =[{h1:280,h2:300,h3:330},{h1:180,h2:30,h3:200},{h1:280,h2:30,h3:250}]
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('gaspe008.js');
@@ -49,14 +50,13 @@ function grid(x1,y1,x2,y2,stepsize) {
             }
             else {
                 if ( v >= 0.5 && v < 0.6) {
-                    stroke(180, 100, 100)//330
+                    stroke(280, 100, 100)//330
                 }
                 else{
-                stroke(200, 100, 100)//280
+                         stroke(250, 100, 100)//280
             }
             }
             ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*2, stepsize*2)
-            //line(x,y,x+stepsize, y+stepsize*v)
         }
     }
 }
