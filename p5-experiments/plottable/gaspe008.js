@@ -8,7 +8,7 @@ function savepng() {
 
 var font, posx, posy, stepsize, nbhorizontalsteps, nbvertcicalsteps
 var fSize = 15
-var palette =[{h1:280,h2:300,h3:330},{h1:180,h2:30,h3:200},{h1:280,h2:30,h3:250}]
+var palette = [{ h1: 280, h2: 300, h3: 330 }, { h1: 180, h2: 30, h3: 200 }, { h1: 280, h2: 30, h3: 250 }]
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('gaspe008.js');
@@ -17,23 +17,23 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stepsize = Math.floor(actualwidth * 0.009)
-    var vratio = random(0.21,0.63)
-    var hratio = random(0.21,0.63)
-    var oratio = random(0.009,0.03)
-    grid(leftmargin,topmargin,leftmargin+actualwidth*vratio,topmargin+actualheight*hratio,stepsize)
-    grid(leftmargin+actualwidth*(vratio+oratio),topmargin,rightmargin,topmargin+actualheight*hratio,stepsize)
-    grid(leftmargin,topmargin+actualheight*(hratio+oratio),rightmargin,bottommargin,stepsize)
+    var vratio = random(0.21, 0.63)
+    var hratio = random(0.21, 0.63)
+    var oratio = random(0.009, 0.03)
+    grid(leftmargin, topmargin, leftmargin + actualwidth * vratio, topmargin + actualheight * hratio, stepsize)
+    grid(leftmargin + actualwidth * (vratio + oratio), topmargin, rightmargin, topmargin + actualheight * hratio, stepsize)
+    grid(leftmargin, topmargin + actualheight * (hratio + oratio), rightmargin, bottommargin, stepsize)
     stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
-    var s=showcode(leftmargin,bottommargin+fSize*2)
-    showcredits(leftmargin,s[1])
+    var s = showcode(leftmargin, bottommargin + fSize * 2)
+    showcredits(leftmargin, s[1])
     noLoop()
 }
 
-function grid(x1,y1,x2,y2,stepsize) {
-    nbhorizontalsteps = Math.floor((x2-x1) / stepsize)
-    nbvertcicalsteps = Math.floor((y2-y1) / stepsize)
+function grid(x1, y1, x2, y2, stepsize) {
+    nbhorizontalsteps = Math.floor((x2 - x1) / stepsize)
+    nbvertcicalsteps = Math.floor((y2 - y1) / stepsize)
     var yoff = 0.0
     var xoff, v, x, y
     var inc = 0.004
@@ -45,18 +45,24 @@ function grid(x1,y1,x2,y2,stepsize) {
             v = noise(xoff, yoff)
             x = x1 + i * stepsize
             y = y1 + j * stepsize
-            if (v >= 0.34 && v < 0.44 ) {
-                stroke(30, 100, 100)//300
+            if (v >= 0.34 && v < 0.44) {
+                stroke(0, 100, 100)//300
             }
             else {
-                if ( v >= 0.5 && v < 0.6) {
-                    stroke(280, 100, 100)//330
+                if (v >= 0.5 && v < 0.6) {
+                    stroke(90, 100, 100)//330
                 }
-                else{
-                         stroke(250, 100, 100)//280
+                else {
+                    if (v >= 0.63 && v < 0.84) {
+                        noStroke()
+                    }
+                    else {
+                        stroke(270, 100, 100)//280
+                    }
+                }
             }
-            }
-            ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize*2, stepsize*2)
+            var loupe =  random(1, 1.2)
+            ellipse(x + stepsize * 0.5, y + stepsize * 0.5, stepsize * loupe, stepsize * loupe)
         }
     }
 }
