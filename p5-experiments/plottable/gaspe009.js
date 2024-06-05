@@ -18,7 +18,7 @@ function draw() {
     //inc,shake,stepsize,palettecolor are the main knobs that steer the artwork 
     inc = 0.004
     if(random()<0.5){shake=true;}else{shake=false}
-    stepsize = Math.floor(actualwidth * 0.011)
+    stepsize = Math.floor(actualwidth * 0.05)
     var vratio = random(0.21, 0.63)
     var hratio = random(0.21, 0.63)
     var oratio = random(0.009, 0.03)
