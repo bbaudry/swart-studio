@@ -10,7 +10,7 @@ var font, xoff,yoff,inc,shake,stepsize, nbhorizontalsteps, nbvertcicalsteps
 var fSize = 14
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('gaspe008.js');
+    sourcecode = loadStrings('gaspe009.js');
 }
 
 function draw() {
