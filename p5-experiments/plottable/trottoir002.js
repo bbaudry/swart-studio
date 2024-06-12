@@ -9,7 +9,7 @@ function savepng() {
 var font
 var fSize = 14
 var xoff = 0.0
-var inc = 0.03
+var inc = 0.3
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('trottoir002.js');
@@ -28,13 +28,13 @@ function grid() {
     var cy = topmargin + actualheight * 0.5
     var x1, y1, x2, y2, amplitude1, amplitude2, pas, debut1, debut2
     debut1 = noise(xoff)*360
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < 17; i++) {
         amplitude1 = 21 + (i * 19)
         amplitude2 = 21 + ((i+1) * 19)
-        pas = 60
+        pas = 40
         debut2 = noise(xoff)*360
         xoff+=inc
-        for(var j=0;j<6;j++){
+        for(var j=0;j<9;j++){
             var a = debut1+j*pas
             x1 = cx + amplitude1 * cos(radians(a))
             y1 = cy + amplitude1 * sin(radians(a))
