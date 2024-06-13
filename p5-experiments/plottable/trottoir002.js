@@ -22,31 +22,19 @@ function draw() {
     noLoop()
 }
 
-
+var grid=[]
 function grid() {
-    var cx = leftmargin + actualwidth * 0.5
-    var cy = topmargin + actualheight * 0.5
-    var x1, y1, x2, y2, amplitude1, amplitude2, pas, debut1, debut2
-    debut1 = noise(xoff)*360
-    for (i = 0; i < 17; i++) {
-        amplitude1 = 21 + (i * 19)
-        amplitude2 = 21 + ((i+1) * 19)
-        pas = 60
-        debut2 = noise(xoff)*360
-        xoff+=inc
-        for(var j=0;j<3;j++){
-            var a = debut1+j*2*pas
-            x1 = cx + amplitude1 * cos(radians(a))
-            y1 = cy + amplitude1 * sin(radians(a))
-            x2 = cx + amplitude1 * cos(radians(a+pas))
-            y2 = cy + amplitude1 * sin(radians(a+pas))
-            line(x1, y1, x2, y2)
-            var deux=debut2+j*2*pas
-            x2 = cx + amplitude2 * cos(radians(deux))
-            y2 = cy + amplitude2 * sin(radians(deux))
-            line(x1, y1, x2, y2)
+    var nbpashorizon = 11
+    var nbpasvertical = 11
+    var pashorizon = Math.floor(actualwidth/nbpashorizon)
+    var pasvertical = Math.floor(actualwidth/nbpasvertical)
+    var x,y,x1,y1,x2,y2,x3,y3,x4,y4
+    for(i=0;i<nbpashorizon;i++){
+        for(j=0;j<nbpasvertical;j++){
+            x=leftmargin+i*pashorizon+random(i*2)
+            y=topmargin+j*pasvertical+random(j*2)
+            grid.push({x:x,y:y})
         }
-        debut1=debut2
     }
 }
 
