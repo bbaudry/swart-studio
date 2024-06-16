@@ -18,8 +18,9 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
-    initgrid()
-    drawgrid()
+    //initgrid()
+    //drawgrid()
+    test()
     noLoop()
 }
 
@@ -52,6 +53,21 @@ function drawgrid() {
 
 }
 
+function test(){
+    var x=leftmargin
+    var y = topmargin+actualheight*0.5
+    for(var i=1;i<11;i+=0.1){
+        x+=Math.exp(i)
+        ellipse(x,y,5,5)
+    }
+    y = topmargin+actualheight*0.6
+    x=leftmargin
+    for(var i=0.01;i<1;i+=0.2){
+        x+=Math.log10(i)
+        ellipse(x,y,5,5)
+    }
+
+}
 
 function showcredits(posx, posy) {
     var c = "al.my.re :: p5.js :: CamBam Stick :: noise :: vpype [trottoir 002). June 2024]"
