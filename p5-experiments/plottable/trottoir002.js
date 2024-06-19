@@ -54,17 +54,20 @@ function drawgrid() {
 }
 
 function test(){
-    var x=leftmargin
+    var x=w*0.5
+    var i=0
     var y = topmargin+actualheight*0.5
-    for(var i=1;i<11;i+=0.1){
-        x+=Math.exp(i)
+    while(x>leftmargin){
+        x-=Math.exp(i)
         ellipse(x,y,5,5)
+        i++
     }
     y = topmargin+actualheight*0.6
-    x=leftmargin
-    for(var i=0.01;i<1;i+=0.2){
-        x+=Math.log10(i)
+    x=w*0.5;i=0
+    while(x<rightmargin){
+        x+=Math.exp(i)
         ellipse(x,y,5,5)
+        i++
     }
 
 }
