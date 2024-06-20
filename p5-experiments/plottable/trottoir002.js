@@ -60,14 +60,25 @@ function test(){
     while(x>leftmargin){
         x-=Math.exp(i)
         ellipse(x,y,5,5)
-        i++
+        i+=inc
     }
-    y = topmargin+actualheight*0.6
     x=w*0.5;i=0
     while(x<rightmargin){
         x+=Math.exp(i)
         ellipse(x,y,5,5)
-        i++
+        i+=inc
+    }
+    x=w*0.5;i=0
+    while(y<bottommargin){
+        y+=Math.exp(i)
+        ellipse(x,y,5,5)
+        i+=inc
+    }
+    y=topmargin+actualheight*0.5;i=0
+    while(y>topmargin){
+        y-=Math.exp(i)
+        ellipse(x,y,5,5)
+        i+=inc
     }
 
 }
