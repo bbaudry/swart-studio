@@ -18,7 +18,7 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
-    inc = random(1,2)
+    inc = random(0.42,1.42)
     //initgrid()
     //drawgrid()
     test2()
@@ -89,10 +89,30 @@ function test(){
 
 function test2(){
     translate(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5)
-    var a=0
+    var a,b
+    a=0
     for(i=0;i<actualwidth*0.5;i+=Math.exp(a)){
-        var b=0
+        b=0
         for(j=0;j<actualheight*0.5;j+=Math.exp(b)){
+            ellipse(i,j,3,3)
+            b+=inc
+        }
+        b=0
+        for(j=0;j>-actualheight*0.5;j-=Math.exp(b)){
+            ellipse(i,j,3,3)
+            b+=inc
+        }
+        a+=inc
+    }
+    a=0
+    for(i=0;i>-actualwidth*0.5;i-=Math.exp(a)){
+        b=0
+        for(j=0;j<actualheight*0.5;j+=Math.exp(b)){
+            ellipse(i,j,3,3)
+            b+=inc
+        }
+        b=0
+        for(j=0;j>-actualheight*0.5;j-=Math.exp(b)){
             ellipse(i,j,3,3)
             b+=inc
         }
