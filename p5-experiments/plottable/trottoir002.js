@@ -16,107 +16,80 @@ function preload() {
 }
 
 function draw() {
-    background(0, 0, 100)
-    stroke(0, 0, 0)
-    inc = random(0.42,1.42)
-    //initgrid()
-    //drawgrid()
+    background(0, 0, 0)
+    stroke(0, 0, 100)
+    inc = random(0.42, 1.42)
     test2()
-    noLoop()
+    //noLoop()
 }
 
-var grid=[]
-var nbpashorizon = 11
-var nbpasvertical = 11
-var pashorizon = Math.floor(actualwidth/nbpashorizon)
-var pasvertical = Math.floor(actualwidth/nbpasvertical)
-function initgrid() {
-    var x,y,x1,y1,x2,y2,x3,y3,x4,y4
-    for(i=0;i<nbpashorizon;i++){
-        x=leftmargin+i*pashorizon+random(i*2)
-        for(j=0;j<nbpasvertical;j++){
-            y=topmargin+j*pasvertical+random(j*2)
-            grid.push({x:x,y:y})
-        }
-        grid.push({x:x,y:bottommargin})
-    }
-}
+var grid = []
 
-function drawgrid() {
-    var x,y,x1,y1,x2,y2,x3,y3,x4,y4,index
-    index=0
-    for(i=0;i<nbpashorizon;i++){
-        for(j=0;j<nbpasvertical;j++){
-            ellipse(grid[index].x,grid[index].y,5,5)
-            index++
-        }
-    }
 
-}
-
-function test(){
-    var x=w*0.5
-    var i=0
-    var y = topmargin+actualheight*0.5
-    while(x>leftmargin){
-        x-=Math.exp(i)
-        line(x,topmargin,x,bottommargin)
-        ellipse(x,y,5,5)
-        i+=inc
+function test() {
+    var x = w * 0.5
+    var i = 0
+    var y = topmargin + actualheight * 0.5
+    while (x > leftmargin) {
+        x -= Math.exp(i)
+        line(x, topmargin, x, bottommargin)
+        ellipse(x, y, 5, 5)
+        i += inc
     }
-    x=w*0.5;i=0
-    while(x<rightmargin){
-        x+=Math.exp(i)
-        ellipse(x,y,5,5)
-        line(x,topmargin,x,bottommargin)
-        i+=inc
+    x = w * 0.5; i = 0
+    while (x < rightmargin) {
+        x += Math.exp(i)
+        ellipse(x, y, 5, 5)
+        line(x, topmargin, x, bottommargin)
+        i += inc
     }
-    x=w*0.5;i=0
-    while(y<bottommargin){
-        y+=Math.exp(i)
-        ellipse(x,y,5,5)
-        line(leftmargin,y,rightmargin,y)
-        i+=inc
+    x = w * 0.5; i = 0
+    while (y < bottommargin) {
+        y += Math.exp(i)
+        ellipse(x, y, 5, 5)
+        line(leftmargin, y, rightmargin, y)
+        i += inc
     }
-    y=topmargin+actualheight*0.5;i=0
-    while(y>topmargin){
-        y-=Math.exp(i)
-        ellipse(x,y,5,5)
-        line(leftmargin,y,rightmargin,y)
-        i+=inc
+    y = topmargin + actualheight * 0.5; i = 0
+    while (y > topmargin) {
+        y -= Math.exp(i)
+        ellipse(x, y, 5, 5)
+        line(leftmargin, y, rightmargin, y)
+        i += inc
     }
 }
 
-function test2(){
-    translate(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5)
-    var a,b
-    a=0
-    for(i=0;i<actualwidth*0.5;i+=Math.exp(a)){
-        b=0
-        for(j=0;j<actualheight*0.5;j+=Math.exp(b)){
-            ellipse(i,j,3,3)
-            b+=inc
+function test2() {
+    translate(leftmargin + actualwidth * 0.5, topmargin + actualheight * 0.5)
+    var stepx, stepy, x, y, rayon
+    rayon = random(7,11)
+    stepx = 0
+    for (x = 0; x < actualwidth * 0.5; x += Math.exp(stepx)) {
+        stepy = 0
+        for (y = 0; y < actualheight * 0.5; y += Math.exp(stepy)) {
+            ellipse(x, y, rayon, rayon)
+            stepy += inc
         }
-        b=0
-        for(j=0;j>-actualheight*0.5;j-=Math.exp(b)){
-            ellipse(i,j,3,3)
-            b+=inc
+        stepy = 0
+        for (y = 0; y > -actualheight * 0.5; y -= Math.exp(stepy)) {
+            ellipse(x, y, rayon, rayon)
+            stepy += inc
         }
-        a+=inc
+        stepx += inc
     }
-    a=0
-    for(i=0;i>-actualwidth*0.5;i-=Math.exp(a)){
-        b=0
-        for(j=0;j<actualheight*0.5;j+=Math.exp(b)){
-            ellipse(i,j,3,3)
-            b+=inc
+    stepx = 0
+    for (x = 0; x > -actualwidth * 0.5; x -= Math.exp(stepx)) {
+        stepy = 0
+        for (y = 0; y < actualheight * 0.5; y += Math.exp(stepy)) {
+            ellipse(x, y, rayon, rayon)
+            stepy += inc
         }
-        b=0
-        for(j=0;j>-actualheight*0.5;j-=Math.exp(b)){
-            ellipse(i,j,3,3)
-            b+=inc
+        stepy = 0
+        for (y = 0; y > -actualheight * 0.5; y -= Math.exp(stepy)) {
+            ellipse(x, y, rayon, rayon)
+            stepy += inc
         }
-        a+=inc
+        stepx += inc
     }
 }
 
