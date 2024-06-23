@@ -7,7 +7,7 @@ function savepng() {
 }
 
 var font
-var fSize = 14
+var fSize = 19
 var xoff = 0.0
 var inc = 0.005
 function preload() {
@@ -17,9 +17,13 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stroke(0, 0, 0)
+    stroke(0, 0, 0);
     grid()
     grid()
+    textFont(font)
+    textSize(fSize)
+    coords=showcode(leftmargin,bottommargin+fSize)
+    showcredits(coords[0],coords[1])
     noLoop()
 }
 

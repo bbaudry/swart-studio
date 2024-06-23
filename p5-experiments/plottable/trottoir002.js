@@ -19,7 +19,7 @@ function draw() {
     background(0, 0, 0)
     stroke(0, 0, 100)
     inc = random(0.42, 1.42)
-    test2()
+    gridexp()
     //noLoop()
 }
 
@@ -59,7 +59,7 @@ function test() {
     }
 }
 
-function test2() {
+function gridexp() {
     translate(leftmargin + actualwidth * 0.5, topmargin + actualheight * 0.5)
     var stepx, stepy, x, y, rayon
     rayon = random(7,11)
