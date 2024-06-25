@@ -10,7 +10,7 @@ var font
 var fSize = 14
 var xoff = 0.0
 var yoff = 0.0
-var xinc = 0.01
+var xinc = 0.1
 var yinc = 0.001
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
