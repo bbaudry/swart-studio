@@ -73,30 +73,17 @@ function drawsection() {
     }
 }
 
-function testbezier() {
-    fill(0, 0, 100)
-    var cx, cy, x1, y1, x2, y2
-    cx = leftmargin + actualwidth * 0.5
-    cy = bottommargin
-    x1 = leftmargin + actualwidth * 0.1
-    y1 = topmargin + actualheight * 0.7
-    x2 = leftmargin + actualwidth * 0.9
-    y2 = topmargin + actualheight * 0.7
-    bezier(cx, cy, x1, y1, x2, y2, cx, cy)
-    noFill()
-    ellipse(x1, y1, 5, 5)
-    ellipse(x2, y2, 5, 5)
-}
 
 function nucleus() {
-    var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2
-    amp=3
+    var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, tours
+    amp=5
     xpos1=random()
     xpos2=random()
     ypos1=random()
     ypos2=random()
-    for (i = 0; i < 17; i++) {
-        x1 = leftmargin + actualwidth * xpos1; y1 = bottommargin - i*amp
+    tours=Math.floor(random(21,42))
+    for (i = 0; i < tours; i++) {
+        x1 = leftmargin + actualwidth * noise(xoff); y1 = bottommargin - i*amp;xoff+=xinc
         x2 = leftmargin + i*amp; y2 = topmargin + actualheight * ypos1
         x3 = leftmargin + actualwidth * xpos2; y3 = topmargin+i*amp
         x4 = rightmargin-i*amp; y4 = topmargin + actualheight * ypos2
