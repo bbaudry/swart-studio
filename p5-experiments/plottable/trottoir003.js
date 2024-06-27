@@ -85,7 +85,7 @@ function nucleus() {
     for (i = 0; i < tours; i++) {
         x1 = leftmargin + actualwidth * noise(xoff); y1 = bottommargin - i*amp;xoff+=xinc
         x2 = leftmargin + i*amp; y2 = topmargin + actualheight * ypos1
-        x3 = leftmargin + actualwidth * xpos2; y3 = topmargin+i*amp
+        x3 = leftmargin + actualwidth * noise(xoff); y3 = topmargin+i*amp;xoff+=xinc
         x4 = rightmargin-i*amp; y4 = topmargin + actualheight * ypos2
         beginShape()
         apx1 = x1
