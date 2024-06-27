@@ -10,8 +10,8 @@ var font
 var fSize = 11
 var xoff = 0.0
 var yoff = 0.0
-var xinc = 0.1
-var yinc = 0.01
+var xinc = 0.00001
+var yinc = 0.00001
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('trottoir002.js');
@@ -28,7 +28,7 @@ function draw() {
     textFont(font)
     textSize(fSize)
     showcredits(leftmargin, bottommargin + fSize)
-    noLoop()
+    //noLoop()
 }
 
 var grid = []
@@ -36,7 +36,7 @@ function gridexp() {
     //translate(leftmargin + actualwidth * 0.5, topmargin + actualheight * 0.5)
     var stepx, stepy, x, y, rayon, expstep, col
     expstep = random(0.1, 0.2)
-    rayon = random(7, 11)
+    rayon =  random(7, 11)
     stepx = 0
     for (x = leftmargin; x < actualwidth; x += Math.exp(stepx)) {
         stepy = 0
@@ -76,16 +76,16 @@ function drawsection() {
 
 function nucleus() {
     var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, tours
-    amp=5
-    xpos1=random()
-    xpos2=random()
-    ypos1=random()
-    ypos2=random()
-    tours=Math.floor(random(21,42))
+    amp=3
+    xpos1=noise(xoff);xoff+=xinc
+    xpos2=noise(xoff);xoff+=xinc
+    ypos1=noise(yoff);yoff+=yinc
+    ypos2=noise(yoff);yoff+=yinc
+    tours=42//Math.floor(random(21,42))
     for (i = 0; i < tours; i++) {
-        x1 = leftmargin + actualwidth * noise(xoff); y1 = bottommargin - i*amp;xoff+=xinc
+        x1 = leftmargin + actualwidth * xpos1; y1 = bottommargin - i*amp
         x2 = leftmargin + i*amp; y2 = topmargin + actualheight * ypos1
-        x3 = leftmargin + actualwidth * noise(xoff); y3 = topmargin+i*amp;xoff+=xinc
+        x3 = leftmargin + actualwidth * xpos2; y3 = topmargin+i*amp;xoff+=xinc
         x4 = rightmargin-i*amp; y4 = topmargin + actualheight * ypos2
         beginShape()
         apx1 = x1
