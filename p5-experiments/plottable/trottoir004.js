@@ -7,7 +7,7 @@ function savepng() {
 }
 
 var font
-var fSize = 11
+var fSize = 13
 var xoff = 0.0
 var yoff = 0.0
 var xinc = 0.0001
@@ -25,7 +25,8 @@ function draw() {
     nucleus()
     textFont(font)
     textSize(fSize)
-    showcredits(leftmargin, bottommargin + fSize)
+    coords=showcode(leftmargin,bottommargin+fSize)
+    showcredits(coords[0],coords[1])
     noLoop()
 }
 
@@ -38,7 +39,7 @@ function nucleus() {
     xpos3 = leftmargin + actualwidth * random(); ypos3 = topmargin
     xpos4 = rightmargin; ypos4 = topmargin + actualheight * random()
 
-    for (var t = 1; t > 0.8; t-=0.003) {
+    for (var t = 1; t > 0.6; t-=0.003) {
         x1 = (1 - t) * xpos1 + (t * xpos3); y1 = (1 - t) * ypos1 + (t * ypos3)
         x2 = (1 - t) * xpos2 + (t * xpos4); y2 = (1 - t) * ypos2 + (t * ypos4)
         x3 = (1 - t) * xpos3 + (t * xpos1); y3 = (1 - t) * ypos3 + (t * ypos1)
