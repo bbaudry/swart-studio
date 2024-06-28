@@ -1,9 +1,9 @@
 function savesvg() {
-    save("trottoir003.svg");
+    save("trottoir004.svg");
 }
 
 function savepng() {
-    save("trottoir003.png");
+    save("trottoir004.png");
 }
 
 var font
@@ -26,22 +26,23 @@ function draw() {
     textFont(font)
     textSize(fSize)
     showcredits(leftmargin, bottommargin + fSize)
-    //noLoop()
+    noLoop()
 }
 
 function nucleus() {
-    var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, tours
+    var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, xpos3, ypos3, xpos4, ypos4
     amp=3
-    xpos1=noise(xoff);xoff+=xinc
-    xpos2=noise(xoff);xoff+=xinc
-    ypos1=noise(yoff);yoff+=yinc
-    ypos2=noise(yoff);yoff+=yinc
-    tours=42//Math.floor(random(21,42))
-    for (i = 0; i < tours; i++) {
-        x1 = leftmargin + actualwidth * xpos1; y1 = bottommargin - i*amp
-        x2 = leftmargin + i*amp; y2 = topmargin + actualheight * ypos1
-        x3 = leftmargin + actualwidth * xpos2; y3 = topmargin+i*amp;xoff+=xinc
-        x4 = rightmargin-i*amp; y4 = topmargin + actualheight * ypos2
+    tours=Math.floor(random(21,42))
+    xpos1 = leftmargin + actualwidth * random(); ypos1 = bottommargin
+    xpos2 = leftmargin ; ypos2 = topmargin + actualheight * random()
+    xpos3 = leftmargin + actualwidth * random(); ypos3 = topmargin
+    xpos4 = rightmargin; ypos4 = topmargin + actualheight * random()
+
+    for (var t = 1; t > 0.8; t-=0.003) {
+        x1 = (1 - t) * xpos1 + (t * xpos3); y1 = (1 - t) * ypos1 + (t * ypos3)
+        x2 = (1 - t) * xpos2 + (t * xpos4); y2 = (1 - t) * ypos2 + (t * ypos4)
+        x3 = (1 - t) * xpos3 + (t * xpos1); y3 = (1 - t) * ypos3 + (t * ypos1)
+        x4 = (1 - t) * xpos4 + (t * xpos2); y4 = (1 - t) * ypos4 + (t * ypos2)
         beginShape()
         apx1 = x1
         apy1 = y1
@@ -85,6 +86,6 @@ function nucleus() {
 }
 
 function showcredits(posx, posy) {
-    var c = "al.my.re :: p5.js :: CamBam Stick :: noise :: vpype [trottoir 003). June 2024]"
+    var c = "al.my.re :: p5.js :: CamBam Stick :: noise :: vpype [trottoir 004). June 2024]"
     text(c, posx, posy)
 }
