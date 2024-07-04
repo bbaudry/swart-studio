@@ -73,7 +73,7 @@ function nucleus() {
         apy2 = cpy2
         bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
 
-        cpx1 = x4
+        cpx1 = x4+random(84)
         cpy1 = y1
         cpx2 = x1
         cpy2 = cpy1
