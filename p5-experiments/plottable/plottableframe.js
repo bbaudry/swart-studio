@@ -44,7 +44,7 @@ function getpng() {
 
 function centerCanvas() {
     var x = (windowWidth - w) / 2;
-    var y = (windowHeight - h) / 2;
+    var y = 0//(windowHeight - h) / 2;
     cnv.position(x, y);
 }
 

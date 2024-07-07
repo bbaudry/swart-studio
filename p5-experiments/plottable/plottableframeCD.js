@@ -14,10 +14,10 @@ var h = 1056 * echelle
 var wcd = 536 * echelle
 var hcd = 472 * echelle
 //draw in the following area, CD case dimensions in the top left of the letter page
-var rightmargin = 0.96 * wcd
-var leftmargin = 0.04 * wcd
-var topmargin = 0.05 * hcd
-var bottommargin = 0.73 * hcd
+var rightmargin = 0.97 * wcd
+var leftmargin = 0.03 * wcd
+var topmargin = 0.03 * hcd
+var bottommargin = 0.97 * hcd
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, imgbtn
@@ -47,7 +47,7 @@ function getpng() {
 
 function centerCanvas() {
     var x = (windowWidth - w) / 2;
-    var y = (windowHeight - h) / 2;
+    var y = 0//(windowHeight - h) / 2;
     cnv.position(x, y);
 }
 
