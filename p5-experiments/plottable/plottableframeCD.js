@@ -17,7 +17,7 @@ var hcd = 472 * echelle
 var rightmargin = 0.97 * wcd
 var leftmargin = 0.03 * wcd
 var topmargin = 0.03 * hcd
-var bottommargin = 0.97 * hcd
+var bottommargin = 0.95 * hcd
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, imgbtn

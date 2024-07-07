@@ -19,19 +19,22 @@ function draw() {
     noFill()
     rect(0,0,w,h)
     rect(0,0,wcd,hcd)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
+    summer()
+    textFont(font)
+    textSize(fSize)
+    showcredits(leftmargin,bottommargin+fSize)
     noLoop()
 }
 
-/*
-    rect(0, 0, w, h)
-    rect(0, 0, wcd, hcd)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    textFont(font)
-    textSize(fSize)
-    coords=showcode(leftmargin,topmargin)
-    showcredits(coords[0],coords[1])
-*/
+function summer(){
+    var cx=leftmargin+actualwidth*0.5
+    var cy=topmargin+actualheight*0.5
+    var rad=actualheight*0.05
+    quad(cx-rad,cy-rad,cx+rad,cy-rad,cx+rad,cy+rad,cx-rad,cy+rad)
+    rad=actualheight*0.5
+    quad(cx-rad,cy-rad,cx+rad,cy-rad,cx+rad,cy+rad,cx-rad,cy+rad)
+    
+}
 
 function showcredits(posx, posy) {
     var c = "al.my.re :: p5.js :: CamBam Stick :: vpype [summer 002). July 2024]"
