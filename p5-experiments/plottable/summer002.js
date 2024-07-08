@@ -30,34 +30,34 @@ function summer() {
     var cx = leftmargin + actualwidth * 0.5
     var cy = topmargin + actualheight * 0.5
     var rad = actualheight * 0.05
-    var x1,x2,x3,x4,y1,y2,y3,y4,x5,x6,x7,x8,y5,y6,y7,y8
-    x1=cx-rad;x2=cx+rad;x3=cx+rad;x4=cx-rad;
-    y1=cy-rad;y2=cy-rad;y3=cy+rad;y4=cy+rad
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    var x1, x2, x3, x4, y1, y2, y3, y4, x5, x6, x7, x8, y5, y6, y7, y8
+    x1 = cx - rad; x2 = cx + rad; x3 = cx + rad; x4 = cx - rad;
+    y1 = cy - rad; y2 = cy - rad; y3 = cy + rad; y4 = cy + rad
+    //quad(x1, y1, x2, y2, x3, y3, x4, y4)
     rad = actualheight * 0.5
-    x5=cx-rad;x6=cx+rad;x7=cx+rad;x8=cx-rad;
-    y5=cy-rad;y6=cy-rad;y7=cy+rad;y8=cy+rad
-    quad(x5,y5,x6,y6,x7,y7,x8,y8)
-    oiseaux(x1,x2,y1,y2,x5,x6,y5,y6)
-    oiseaux(x2,x3,y2,y3,x6,x7,y6,y7)
-    oiseaux(x3,x4,y3,y4,x7,x8,y7,y8)
-    oiseaux(x4,x1,y4,y1,x8,x5,y8,y5)
+    x5 = cx - rad; x6 = cx + rad; x7 = cx + rad; x8 = cx - rad;
+    y5 = cy - rad; y6 = cy - rad; y7 = cy + rad; y8 = cy + rad
+    //quad(x5, y5, x6, y6, x7, y7, x8, y8)
+    oiseaux(x1, x2, y1, y2, x5, x6, y5, y6)
+    oiseaux(x2, x3, y2, y3, x6, x7, y6, y7)
+    oiseaux(x3, x4, y3, y4, x7, x8, y7, y8)
+    oiseaux(x4, x1, y4, y1, x8, x5, y8, y5)
 }
 
-function oiseaux(verax,molnarx,veray,molnary,milesx,davisx,milesy,davisy){
-    var t1,xo1,yo1,xd1,yd1,xo2,yo2,xd2,yd2
-    t1=0
+function oiseaux(verax, molnarx, veray, molnary, milesx, davisx, milesy, davisy) {
+    var t1, xo1, yo1, xd1, yd1, xo2, yo2, xd2, yd2
+    t1 = 0
     xo1 = (1 - t1) * verax + (t1 * molnarx)
     yo1 = (1 - t1) * veray + (t1 * molnary)
     xd1 = (1 - t1) * milesx + (t1 * davisx)
     yd1 = (1 - t1) * milesy + (t1 * davisy)
-    while(t1 < 1) {
-        t1+=0.25
+    while (t1 < 1) {
+        t1 += 0.25
         xo2 = (1 - t1) * verax + (t1 * molnarx)
         yo2 = (1 - t1) * veray + (t1 * molnary)
         xd2 = (1 - t1) * milesx + (t1 * davisx)
         yd2 = (1 - t1) * milesy + (t1 * davisy)
-        lichtenstein(xo1,yo1,xd1,yd1,xd2,yd2,xo2,yo2)
+        lichtenstein(xo1, yo1, xd1, yd1, xd2, yd2, xo2, yo2)
         xo1 = xo2
         yo1 = yo2
         xd1 = xd2
@@ -65,27 +65,27 @@ function oiseaux(verax,molnarx,veray,molnary,milesx,davisx,milesy,davisy){
     }
 }
 
-function lichtenstein(x1,y1,x2,y2,x3,y3,x4,y4){
-    //fill(random(360),100,100)
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
-    var horizon,t1,t2,ox,oy,dx,dy,cx,cy,rad
-    if(x1!=x2){horizon=true}
-    else{horizon=false}
-    for(t1=0;t1<1;t1+=0.02){
+function lichtenstein(x1, y1, x2, y2, x3, y3, x4, y4) {
+    var t1, t2, ox, oy, dx, dy, cx, cy, rad
+    if(random()<0.5){
+        //quad(x1, y1, x2, y2, x3, y3, x4, y4)
+        for (t1 = 0; t1 < 1; t1 += 0.04) {
         ox = (1 - t1) * x1 + (t1 * x2)
         oy = (1 - t1) * y1 + (t1 * y2)
         dx = (1 - t1) * x4 + (t1 * x3)
         dy = (1 - t1) * y4 + (t1 * y3)
-        if(Math.abs((dy-oy))>0){
-        rad=Math.abs((dy-oy)*0.05)
+        if (Math.abs((dy - oy)) > 0) {
+            rad = Math.abs((dy - oy) * 0.05)
         }
-        else{rad=Math.abs((dx-ox)*0.05)}
-        for(t2=0;t2<1;t2+=0.1){
+        else { 
+            rad = Math.abs((dx - ox) * 0.05) 
+        }
+        for (t2 = 0; t2 < 1; t2 += 0.1) {
             cx = (1 - t2) * ox + (t2 * dx)
             cy = (1 - t2) * oy + (t2 * dy)
-            ellipse(cx,cy,rad,rad)
+            ellipse(cx, cy, rad, rad)
         }
-    }
+    }}
 }
 
 function showcredits(posx, posy) {
