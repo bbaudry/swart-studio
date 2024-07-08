@@ -33,18 +33,16 @@ function summer() {
     var x1, x2, x3, x4, y1, y2, y3, y4, x5, x6, x7, x8, y5, y6, y7, y8
     x1 = cx - rad; x2 = cx + rad; x3 = cx + rad; x4 = cx - rad;
     y1 = cy - rad; y2 = cy - rad; y3 = cy + rad; y4 = cy + rad
-    //quad(x1, y1, x2, y2, x3, y3, x4, y4)
     rad = actualheight * 0.5
     x5 = cx - rad; x6 = cx + rad; x7 = cx + rad; x8 = cx - rad;
     y5 = cy - rad; y6 = cy - rad; y7 = cy + rad; y8 = cy + rad
-    //quad(x5, y5, x6, y6, x7, y7, x8, y8)
-    oiseaux(x1, x2, y1, y2, x5, x6, y5, y6)
-    oiseaux(x2, x3, y2, y3, x6, x7, y6, y7)
-    oiseaux(x3, x4, y3, y4, x7, x8, y7, y8)
-    oiseaux(x4, x1, y4, y1, x8, x5, y8, y5)
+    oiseaux(x1, y1, x2, y2, x5, y5, x6, y6, 1)
+    oiseaux(x2, y2, x3, y3, x6, y6, x7, y7, 1)
+    oiseaux(x3, y3, x4, y4, x7, y7, x8, y8, 1)
+    oiseaux(x4, y4, x1, y1, x8, y8, x5, y5, 1)
 }
 
-function oiseaux(verax, molnarx, veray, molnary, milesx, davisx, milesy, davisy) {
+function oiseaux(verax, veray, molnarx, molnary, milesx, milesy, davisx, davisy, depth) {
     var t1, xo1, yo1, xd1, yd1, xo2, yo2, xd2, yd2
     t1 = 0
     xo1 = (1 - t1) * verax + (t1 * molnarx)
@@ -57,7 +55,18 @@ function oiseaux(verax, molnarx, veray, molnary, milesx, davisx, milesy, davisy)
         yo2 = (1 - t1) * veray + (t1 * molnary)
         xd2 = (1 - t1) * milesx + (t1 * davisx)
         yd2 = (1 - t1) * milesy + (t1 * davisy)
-        lichtenstein(xo1, yo1, xd1, yd1, xd2, yd2, xo2, yo2)
+        if(depth<2 && random()<0.5){
+            d=depth+1;
+            oiseaux(xo1, yo1, xd1, yd1, xd2, yd2, xo2, yo2,d)
+        }
+        else{
+            if(random()<0.5){
+                quad(xo1, yo1, xd1, yd1, xd2, yd2, xo2, yo2)
+            }
+            else{
+                lichtenstein(xo1, yo1, xd1, yd1, xd2, yd2, xo2, yo2)
+            }
+        }
         xo1 = xo2
         yo1 = yo2
         xd1 = xd2
