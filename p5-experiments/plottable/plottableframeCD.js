@@ -5,6 +5,7 @@
 //CD
 //wcd=96*5.59=536
 //hcd=96*4.92=472
+//scd=96*0.4=39
 
 var echelle = 1
 //overall frame on a letter size. (0,0) on the bottom left of a letter page, portrait position
@@ -13,6 +14,8 @@ var h = 1056 * echelle
 //CD case dimensions
 var wcd = 536 * echelle
 var hcd = 472 * echelle
+//CD side height
+var scd = 39 * echelle
 //draw in the following area, CD case dimensions in the top left of the letter page
 var rightmargin = 0.97 * wcd
 var leftmargin = 0.03 * wcd
@@ -23,8 +26,8 @@ var actualheight = bottommargin - topmargin
 var cnv, imgbtn
 
 function setup() {
-    //getsvg()
-    getpng()
+    getsvg()
+    //getpng()
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)

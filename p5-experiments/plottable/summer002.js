@@ -7,7 +7,7 @@ function savepng() {
 }
 
 var font
-var fSize = 17
+var fSize = 13
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('summer002.js');
@@ -17,12 +17,13 @@ function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
     noFill()
-    rect(0, 0, w, h)
-    rect(0, 0, wcd, hcd)
     summer()
     textFont(font)
     textSize(fSize)
-    showcredits(leftmargin, bottommargin + fSize)
+    showcredits(+leftmargin, bottommargin + fSize)
+    translate(wcd,hcd*2+scd)
+    rotate(radians(180))
+    showcode(leftmargin, topmargin+2*fSize)
     noLoop()
 }
 
@@ -55,12 +56,12 @@ function oiseaux(verax, veray, molnarx, molnary, milesx, milesy, davisx, davisy,
         yo2 = (1 - t1) * veray + (t1 * molnary)
         xd2 = (1 - t1) * milesx + (t1 * davisx)
         yd2 = (1 - t1) * milesy + (t1 * davisy)
-        if(depth<2 && random()<0.5){
+        if(depth<5 && random()<0.5){
             d=depth+1;
             oiseaux(xo1, yo1, xd1, yd1, xd2, yd2, xo2, yo2,d)
         }
         else{
-            if(random()<0.5){
+            if(random()<0.9){
                 quad(xo1, yo1, xd1, yd1, xd2, yd2, xo2, yo2)
             }
             else{
@@ -77,7 +78,6 @@ function oiseaux(verax, veray, molnarx, molnary, milesx, milesy, davisx, davisy,
 function lichtenstein(x1, y1, x2, y2, x3, y3, x4, y4) {
     var t1, t2, ox, oy, dx, dy, cx, cy, rad
     if(random()<0.5){
-        //quad(x1, y1, x2, y2, x3, y3, x4, y4)
         for (t1 = 0; t1 < 1; t1 += 0.04) {
         ox = (1 - t1) * x1 + (t1 * x2)
         oy = (1 - t1) * y1 + (t1 * y2)
@@ -98,6 +98,6 @@ function lichtenstein(x1, y1, x2, y2, x3, y3, x4, y4) {
 }
 
 function showcredits(posx, posy) {
-    var c = "al.my.re :: p5.js :: CamBam Stick :: vpype [summer 002). July 2024]"
+    var c = "al.my.re :: p5.js :: CamBam Stick [summer 002). July 2024]"
     text(c, posx, posy)
 }
