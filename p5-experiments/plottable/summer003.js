@@ -17,6 +17,7 @@ function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
     hexas(leftmargin+actualwidth*0.5, topmargin+actualheight*0.5, actualheight, 0)
+    testrand()
     noFill()
     textFont(font)
     textSize(fSize)
@@ -50,6 +51,25 @@ function hexas(x, y, wid, dep) {
     }
 }
 
+var randomnumbers = []
+function randstore(min,max){
+    var r = random(min,max);
+    randomnumbers.push(r)
+    return r
+}
+
+function testrand(){
+    var r
+    r = randstore()
+    console.log("with no arg "+r)
+    r = randstore(0.5)
+    console.log("with one arg "+r)
+    r = randstore(2,5)
+    console.log("with two args "+r)
+    for(i=0;i<randomnumbers.length;i++){
+        console.log(randomnumbers[i])
+    }
+}
 
 function showcredits(posx, posy) {
     var c = "al.my.re :: p5.js :: CamBam Stick [summer 002). July 2024]"
