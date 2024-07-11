@@ -32,13 +32,14 @@ function draw() {
 function hexas(x, y, wid, dep) {
     var x1, y1, rad, d
     rad = wid * 0.5
+    if(random()>0.9){
     beginShape()
     for (var j = 0; j < 360; j += 60) {
         x1 = x + rad * cos(radians(j))
         y1 = y + rad * sin(radians(j))
         vertex(x1, y1)
     }
-    endShape(CLOSE)
+    endShape(CLOSE)}
     d = dep + 1
     if (d < 5) {
         for (var j = 0; j < 360; j += 60) {
