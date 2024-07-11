@@ -16,22 +16,37 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
+    hexas(leftmargin+actualwidth*0.5, topmargin+actualheight*0.5, actualheight, 0)
     noFill()
     textFont(font)
     textSize(fSize)
     showcredits(leftmargin, bottommargin + fSize)
-    translate(wcd,hcd*2+scd)
+    translate(wcd, hcd * 2 + scd)
     rotate(radians(180))
-    showcode(leftmargin, topmargin+2*fSize)
+    showcode(leftmargin, topmargin + 2 * fSize)
     noLoop()
 }
 
 //xo1 = (1 - t1) * verax + (t1 * molnarx)
 //yo1 = (1 - t1) * veray + (t1 * molnary)
-function hex(){
-    var cx = leftmargin+actualwidth*0.5
-    var cy = topmargin+actualheight*0.5
-    
+function hexas(x, y, wid, dep) {
+    var x1, y1, rad, d
+    rad = wid * 0.5
+    beginShape()
+    for (var j = 0; j < 360; j += 60) {
+        x1 = x + rad * cos(radians(j))
+        y1 = y + rad * sin(radians(j))
+        vertex(x1, y1)
+    }
+    endShape(CLOSE)
+    d = dep + 1
+    if (d < 5) {
+        for (var j = 0; j < 360; j += 60) {
+            x1 = x + (rad * 0.5) * cos(radians(j))
+            y1 = y + (rad * 0.5) * sin(radians(j))
+            hexas(x1, y1, rad, d)
+        }
+    }
 }
 
 
