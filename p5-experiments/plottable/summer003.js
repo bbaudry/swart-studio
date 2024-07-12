@@ -15,9 +15,9 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stroke(0, 0, 0)
     hexas(leftmargin+actualwidth*0.5, topmargin+actualheight*0.5, actualheight, 0)
     testrand()
+    stroke(0, 0, 0)
     noFill()
     textFont(font)
     textSize(fSize)
@@ -28,13 +28,12 @@ function draw() {
     noLoop()
 }
 
-//xo1 = (1 - t1) * verax + (t1 * molnarx)
-//yo1 = (1 - t1) * veray + (t1 * molnary)
 function hexas(x, y, wid, dep) {
     var x1, y1, rad, d, a
-    a = Math.floor(random(360));
+    a = 0//Math.floor(random(360));
     rad = wid * 0.5
-    if(random()>0.99){
+    stroke(180+20*dep,100,100)
+    if(random()<1/(dep*10)){
     beginShape()
     for (var j = a; j < a+360; j += 60) {
         x1 = x + rad * cos(radians(j))
