@@ -33,20 +33,20 @@ var aoff=0.0
 var ainc=0.0001
 function hexas(x, y, wid, dep) {
     var x1, y1, rad, d, a
-    a = 10-Math.floor(noise(aoff)*20);aoff+=ainc//Math.floor(random(360));//
+    a = 5-Math.floor(noise(aoff)*10);aoff+=ainc//Math.floor(random(360));//
     rad = wid * 0.5
     stroke(220+10*dep,100,100)
     xoff+=xinc
-    if(noise(xoff)<2/dep){
+    if(noise(xoff)<2/(dep*1.1)){
     beginShape()
-    for (var j = a; j < a+360; j += 60) {
+    for (var j = a; j < a+360; j += 45) {
         x1 = x + rad * cos(radians(j))
         y1 = y + rad * sin(radians(j))
         vertex(x1, y1)
     }
     endShape(CLOSE)}
     d = dep + 1
-    if (d < 8) {
+    if (d < 5) {
         for (var j = a; j < a+360; j += 60) {
             x1 = x + (rad * 0.5) * cos(radians(j))
             y1 = y + (rad * 0.5) * sin(radians(j))
