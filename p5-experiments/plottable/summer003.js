@@ -31,19 +31,20 @@ function draw() {
 //xo1 = (1 - t1) * verax + (t1 * molnarx)
 //yo1 = (1 - t1) * veray + (t1 * molnary)
 function hexas(x, y, wid, dep) {
-    var x1, y1, rad, d
+    var x1, y1, rad, d, a
+    a = Math.floor(random(360));
     rad = wid * 0.5
-    if(random()>0.9){
+    if(random()>0.99){
     beginShape()
-    for (var j = 0; j < 360; j += 60) {
+    for (var j = a; j < a+360; j += 60) {
         x1 = x + rad * cos(radians(j))
         y1 = y + rad * sin(radians(j))
         vertex(x1, y1)
     }
     endShape(CLOSE)}
     d = dep + 1
-    if (d < 5) {
-        for (var j = 0; j < 360; j += 60) {
+    if (d < 8) {
+        for (var j = a; j < a+360; j += 60) {
             x1 = x + (rad * 0.5) * cos(radians(j))
             y1 = y + (rad * 0.5) * sin(radians(j))
             hexas(x1, y1, rad, d)
