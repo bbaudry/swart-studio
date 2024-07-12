@@ -27,13 +27,17 @@ function draw() {
     showcode(leftmargin, topmargin + 2 * fSize)
     noLoop()
 }
-
+var xoff=0.0
+var xinc=0.001
+var aoff=0.0
+var ainc=0.0001
 function hexas(x, y, wid, dep) {
     var x1, y1, rad, d, a
-    a = 0//Math.floor(random(360));
+    a = 10-Math.floor(noise(aoff)*20);aoff+=ainc//Math.floor(random(360));//
     rad = wid * 0.5
-    stroke(180+20*dep,100,100)
-    if(random()<1/(dep*10)){
+    stroke(220+10*dep,100,100)
+    xoff+=xinc
+    if(noise(xoff)<2/dep){
     beginShape()
     for (var j = a; j < a+360; j += 60) {
         x1 = x + rad * cos(radians(j))
