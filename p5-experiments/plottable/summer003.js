@@ -16,7 +16,6 @@ function preload() {
 function draw() {
     background(0, 0, 100)
     hexas(leftmargin+actualwidth*0.5, topmargin+actualheight*0.5, actualheight, 0)
-    testrand()
     stroke(0, 0, 0)
     noFill()
     textFont(font)
@@ -27,6 +26,7 @@ function draw() {
     showcode(leftmargin, topmargin + 2 * fSize)
     noLoop()
 }
+
 var xoff=0.0
 var xinc=0.001
 var aoff=0.0
@@ -39,14 +39,14 @@ function hexas(x, y, wid, dep) {
     xoff+=xinc
     if(noise(xoff)<2/(dep*1.1)){
     beginShape()
-    for (var j = a; j < a+360; j += 45) {
+    for (var j = a; j < a+360; j += 72) {
         x1 = x + rad * cos(radians(j))
         y1 = y + rad * sin(radians(j))
         vertex(x1, y1)
     }
     endShape(CLOSE)}
     d = dep + 1
-    if (d < 5) {
+    if (d < 7) {
         for (var j = a; j < a+360; j += 60) {
             x1 = x + (rad * 0.5) * cos(radians(j))
             y1 = y + (rad * 0.5) * sin(radians(j))
@@ -55,27 +55,7 @@ function hexas(x, y, wid, dep) {
     }
 }
 
-var randomnumbers = []
-function randstore(min,max){
-    var r = random(min,max);
-    randomnumbers.push(r)
-    return r
-}
-
-function testrand(){
-    var r
-    r = randstore()
-    console.log("with no arg "+r)
-    r = randstore(0.5)
-    console.log("with one arg "+r)
-    r = randstore(2,5)
-    console.log("with two args "+r)
-    for(i=0;i<randomnumbers.length;i++){
-        console.log(randomnumbers[i])
-    }
-}
-
 function showcredits(posx, posy) {
-    var c = "al.my.re :: p5.js :: CamBam Stick [summer 002). July 2024]"
+    var c = "al.my.re :: p5.js :: CamBam Stick [summer 004). July 2024]"
     text(c, posx, posy)
 }
