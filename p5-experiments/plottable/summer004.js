@@ -17,9 +17,9 @@ function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
     noFill()
-    //rowsingle(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 1)
+    rowsingle(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 1)
     //testturn()
-    rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 0)
+    //rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 0)
     textFont(font)
     textSize(fSize)
     showcredits(leftmargin, bottommargin + fSize)
@@ -60,7 +60,7 @@ function rowsingle(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
         dy2 = (1 - t2) * y2 + (t2 * y3)
         line(ox2, oy2, dx2, dy2); console.log("a line")
     }
-    else{//1,2,3,4 - 1,4,3,2
+    else {//1,2,3,4 - 1,4,3,2
         ox1 = (1 - t1) * x1 + (t1 * x2)
         oy1 = (1 - t1) * y1 + (t1 * y2)
         dx1 = (1 - t1) * x4 + (t1 * x3)
@@ -77,6 +77,29 @@ function rowsingle(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
 
     if (d < 3) {
         rowsingle(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2, d)
+        //rows(oy1,ox1,dy1,dx1,dy2,dx2,oy2,ox2,d)
+    }
+}
+
+function rowsinglerec(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
+    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, t2, d
+    t1 = 0
+    t2 = 0
+    d = dep + 1
+    ox1 = (1 - t1) * x1 + (t1 * x4)
+    oy1 = (1 - t1) * y1 + (t1 * y4)
+    dx1 = (1 - t1) * x2 + (t1 * x3)
+    dy1 = (1 - t2) * y2 + (t2 * y3)
+    line(ox1, oy1, dx1, dy1); console.log("a line")
+    t1 += random() * 0.17; xoff += xinc
+    t2 += random() * 0.17; xoff += xinc
+    ox2 = (1 - t1) * x1 + (t1 * x4)
+    oy2 = (1 - t1) * y1 + (t1 * y4)
+    dx2 = (1 - t1) * x2 + (t1 * x3)
+    dy2 = (1 - t2) * y2 + (t2 * y3)
+    line(ox2, oy2, dx2, dy2); console.log("a line")
+    if (d < 3) {
+        rowsinglerec(ox1, oy1, ox2, oy2, dx2, dy2, dx1, dy1, d)
         //rows(oy1,ox1,dy1,dx1,dy2,dx2,oy2,ox2,d)
     }
 }
@@ -106,7 +129,8 @@ function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
             push()
             translate(wcd, 0)
             rotate(radians(90))
-            rows(ox1,oy1,ox2,oy2,dx2,dy2,dx1,dy1,d)
+            //rows(ox1,oy1,ox2,oy2,dx2,dy2,dx1,dy1,d)
+            rows(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2, d)
             //rows(oy1, ox1, dy1, dx1, dy2, dx2, oy2, ox2, d)
             pop()
         }
