@@ -17,9 +17,10 @@ function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
     noFill()
-    rowsingle(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 1)
+    //rowoblique(20,20,40,80,280,90,240,40)
+    //rowsinglerec(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 1)
     //testturn()
-    //rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 0)
+    rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 0)
     textFont(font)
     textSize(fSize)
     showcredits(leftmargin, bottommargin + fSize)
@@ -30,17 +31,29 @@ function draw() {
 }
 
 
-function testturn() {
-    line(leftmargin, topmargin, rightmargin, topmargin)
-    line(leftmargin, topmargin + 100, rightmargin, topmargin + 100)
-    push()
-    translate(wcd, 0)
-    rotate(radians(90))
-    line(topmargin, leftmargin, topmargin + 100, leftmargin)
-    line(topmargin, leftmargin + 100, topmargin + 100, leftmargin + 100)
-    ellipse(topmargin, leftmargin, 11, 11)
-    pop()
+function rowoblique(x1, y1, x2, y2, x3, y3, x4, y4) {
+    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, t2, d
+    t1 = 0
+    t2 = 0
+    quad(x1, y1, x4, y4, x3, y3, x2, y2)
+    for (i = 0; i < 5; i++) {
+        ox1 = (1 - t1) * x1 + (t1 * x4)
+        oy1 = (1 - t1) * y1 + (t1 * y4)
+        dx1 = (1 - t2) * x2 + (t2 * x3)
+        dy1 = (1 - t2) * y2 + (t2 * y3)
+        line(ox1, oy1, dx1, dy1)
+        t1 += random() * 0.17; xoff += xinc
+        t2 += random() * 0.17; xoff += xinc
+        /*        ox2 = (1 - t1) * x1 + (t1 * x4)
+                oy2 = (1 - t1) * y1 + (t1 * y4)
+                dx2 = (1 - t1) * x2 + (t1 * x3)
+                dy2 = (1 - t2) * y2 + (t2 * y3)
+                line(ox2, oy2, dx2, dy2)*/
+    }
+
 }
+
+
 function rowsingle(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
     var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, t2, d
     t1 = 0
@@ -49,28 +62,28 @@ function rowsingle(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
     if (dep % 2 == 1) {
         ox1 = (1 - t1) * x1 + (t1 * x4)
         oy1 = (1 - t1) * y1 + (t1 * y4)
-        dx1 = (1 - t1) * x2 + (t1 * x3)
+        dx1 = (1 - t2) * x2 + (t2 * x3)
         dy1 = (1 - t2) * y2 + (t2 * y3)
         line(ox1, oy1, dx1, dy1); console.log("a line")
         t1 += random() * 0.17; xoff += xinc
         t2 += random() * 0.17; xoff += xinc
         ox2 = (1 - t1) * x1 + (t1 * x4)
         oy2 = (1 - t1) * y1 + (t1 * y4)
-        dx2 = (1 - t1) * x2 + (t1 * x3)
+        dx2 = (1 - t2) * x2 + (t2 * x3)
         dy2 = (1 - t2) * y2 + (t2 * y3)
         line(ox2, oy2, dx2, dy2); console.log("a line")
     }
     else {//1,2,3,4 - 1,4,3,2
         ox1 = (1 - t1) * x1 + (t1 * x2)
         oy1 = (1 - t1) * y1 + (t1 * y2)
-        dx1 = (1 - t1) * x4 + (t1 * x3)
+        dx1 = (1 - t2) * x4 + (t2 * x3)
         dy1 = (1 - t2) * y4 + (t2 * y3)
         line(ox1, oy1, dx1, dy1); console.log("a line")
         t1 += random() * 0.17; xoff += xinc
         t2 += random() * 0.17; xoff += xinc
         ox2 = (1 - t1) * x1 + (t1 * x2)
         oy2 = (1 - t1) * y1 + (t1 * y2)
-        dx2 = (1 - t1) * x4 + (t1 * x3)
+        dx2 = (1 - t2) * x4 + (t2 * x3)
         dy2 = (1 - t2) * y4 + (t2 * y3)
         line(ox2, oy2, dx2, dy2); console.log("a line")
     }
@@ -88,17 +101,18 @@ function rowsinglerec(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
     d = dep + 1
     ox1 = (1 - t1) * x1 + (t1 * x4)
     oy1 = (1 - t1) * y1 + (t1 * y4)
-    dx1 = (1 - t1) * x2 + (t1 * x3)
+    dx1 = (1 - t2) * x2 + (t2 * x3)
     dy1 = (1 - t2) * y2 + (t2 * y3)
     line(ox1, oy1, dx1, dy1); console.log("a line")
     t1 += random() * 0.17; xoff += xinc
     t2 += random() * 0.17; xoff += xinc
     ox2 = (1 - t1) * x1 + (t1 * x4)
     oy2 = (1 - t1) * y1 + (t1 * y4)
-    dx2 = (1 - t1) * x2 + (t1 * x3)
+    dx2 = (1 - t2) * x2 + (t2 * x3)
     dy2 = (1 - t2) * y2 + (t2 * y3)
     line(ox2, oy2, dx2, dy2); console.log("a line")
     if (d < 3) {
+        //rowsinglerec(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2, d)
         rowsinglerec(ox1, oy1, ox2, oy2, dx2, dy2, dx1, dy1, d)
         //rows(oy1,ox1,dy1,dx1,dy2,dx2,oy2,ox2,d)
     }
@@ -116,7 +130,7 @@ function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
     while (t1 < 1 && t2 < 1) {
         ox1 = (1 - t1) * x1 + (t1 * x4)
         oy1 = (1 - t1) * y1 + (t1 * y4)
-        dx1 = (1 - t1) * x2 + (t1 * x3)
+        dx1 = (1 - t2) * x2 + (t2 * x3)
         dy1 = (1 - t2) * y2 + (t2 * y3)
         line(ox1, oy1, dx1, dy1); console.log("a line")
         t1 += random() * 0.17; xoff += xinc
@@ -124,13 +138,13 @@ function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
         if (d < 2) {
             ox2 = (1 - t1) * x1 + (t1 * x4)
             oy2 = (1 - t1) * y1 + (t1 * y4)
-            dx2 = (1 - t1) * x2 + (t1 * x3)
+            dx2 = (1 - t2) * x2 + (t2 * x3)
             dy2 = (1 - t2) * y2 + (t2 * y3)
             push()
             translate(wcd, 0)
             rotate(radians(90))
-            //rows(ox1,oy1,ox2,oy2,dx2,dy2,dx1,dy1,d)
-            rows(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2, d)
+            rows(ox1, oy1, ox2, oy2, dx2, dy2, dx1, dy1, d)
+            //rows(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2, d)
             //rows(oy1, ox1, dy1, dx1, dy2, dx2, oy2, ox2, d)
             pop()
         }
