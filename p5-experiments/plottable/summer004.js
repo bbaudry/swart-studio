@@ -40,17 +40,26 @@ function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
         oy1 = (1 - t1) * y1 + (t1 * y4)
         dx1 = (1 - t2) * x2 + (t2 * x3)
         dy1 = (1 - t2) * y2 + (t2 * y3)
-            line(ox1, oy1, dx1, dy1);
+        line(ox1, oy1, dx1, dy1);
         t1 += random() * 0.17;
         t2 += random() * 0.17;
-        if (d < 2) {
+        if(t1>=1 || t2>=1){
+            ox2 = x4
+            oy2 = y4
+            dx2 = x3
+            dy2 = y3            
+        }
+        else{
             ox2 = (1 - t1) * x1 + (t1 * x4)
-        oy2 = (1 - t1) * y1 + (t1 * y4)
-        dx2 = (1 - t2) * x2 + (t2 * x3)
-        dy2 = (1 - t2) * y2 + (t2 * y3)
+            oy2 = (1 - t1) * y1 + (t1 * y4)
+            dx2 = (1 - t2) * x2 + (t2 * x3)
+            dy2 = (1 - t2) * y2 + (t2 * y3)
+        }
+        if (d < 3 && random()<0.84) {
             rows(ox1, oy1, ox2, oy2, dx2, dy2, dx1, dy1, d)
-        } 
+        }
     }
+    line(ox2,oy2,dx2,dy2)
 }
 
 var randomnumbers = []
