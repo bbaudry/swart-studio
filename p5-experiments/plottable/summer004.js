@@ -31,9 +31,10 @@ function draw() {
 }
 
 function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
-    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, t2, d
+    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, t2, d, off
     t1 = 0
     t2 = 0
+    off = random(0.11,0.42)
     d = dep + 1
     while (t1 < 1 && t2 < 1) {
         ox1 = (1 - t1) * x1 + (t1 * x4)
@@ -41,8 +42,8 @@ function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
         dx1 = (1 - t2) * x2 + (t2 * x3)
         dy1 = (1 - t2) * y2 + (t2 * y3)
         line(ox1, oy1, dx1, dy1);
-        t1 += random() * 0.17;
-        t2 += random() * 0.17;
+        t1 += random() * off;
+        t2 += random() * off;
         if(t1>=1 || t2>=1){
             ox2 = x4
             oy2 = y4
