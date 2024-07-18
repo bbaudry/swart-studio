@@ -20,7 +20,7 @@ function draw() {
     //rowoblique(20,20,40,80,280,90,240,40)
     //rowsinglerec(leftmargin, topmargin, rightmargin, topmargin, rightmargin, bottommargin, leftmargin, bottommargin, 1)
     //testturn()
-    rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin - 60, bottommargin - 60, leftmargin + 90, bottommargin - 70, 0)
+    rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin - random(60), bottommargin - random(60), leftmargin + random(90), bottommargin - random(70), 0)
     textFont(font)
     textSize(fSize)
     showcredits(leftmargin, bottommargin + fSize)
