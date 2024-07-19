@@ -24,13 +24,20 @@ function draw() {
     var bottom1=random(60); alea.push(bottom1)
     var bottom2=random(90); alea.push(bottom2)
     var gauche=random(70); alea.push(gauche)
+    var h
     rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin - droite, bottommargin - bottom1, leftmargin + bottom2, bottommargin - gauche, 0)
     textFont(font)
     textSize(fSize)
-    showcredits(leftmargin, bottommargin + fSize, alea.length + "[" + gentle() + "]", "al.my.re :: p5.js :: CamBam Stick. July 2024]")
-    translate(wcd, hcd * 2 + scd)
-    rotate(radians(180))
-    showcode(leftmargin, topmargin + 2 * fSize)
+    gentle().then((value) => {
+        console.log(value);
+        h=value
+        console.log(h);
+        showcredits(leftmargin, bottommargin + fSize, alea.length + "[" + h + "]", "al.my.re :: p5.js :: CamBam Stick. July 2024]")
+        translate(wcd, hcd * 2 + scd)
+        rotate(radians(180))
+        showcode(leftmargin, topmargin + 2 * fSize)
+        })
+    
     noLoop()
 }
 
@@ -38,7 +45,7 @@ function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
     var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, t2, d, off
     t1 = 0
     t2 = 0
-    off = random(0.11,0.42); alea.push(off)
+    off = 0.1+noise(xoff) * 0.21; xoff+=xinc ; alea.push(off)//random(0.11,0.42)
     d = dep + 1
     while (t1 < 1 && t2 < 1) {
         ox1 = (1 - t1) * x1 + (t1 * x4)
@@ -74,7 +81,7 @@ async function gentle(){
         tout+=alea[i]
     }
     bruit[0]=tout//pass the sum to the typedArray
-    h=await window.crypto.subtle.digest("SHA-256", bruit)//hash the sum of all random numbers
+    h=await window.crypto.subtle.digest("SHA-1", bruit)//hash the sum of all random numbers
     console.log(h)
     const hashArray = Array.from(new Uint8Array(h)); // convert buffer to byte array
     const hashHex = hashArray
