@@ -24,15 +24,11 @@ function draw() {
     var bottom1=random(60); alea.push(bottom1)
     var bottom2=random(90); alea.push(bottom2)
     var gauche=random(70); alea.push(gauche)
-    var h
     rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin - droite, bottommargin - bottom1, leftmargin + bottom2, bottommargin - gauche, 0)
     textFont(font)
     textSize(fSize)
-    gentle().then((value) => {
-        console.log(value);
-        h=value
-        console.log(h);
-        showcredits(leftmargin, bottommargin + fSize, alea.length + "[" + h + "]", "al.my.re :: p5.js :: CamBam Stick. July 2024]")
+    gentle().then((h) => {
+        showcredits(leftmargin, bottommargin + fSize, alea.length + "[" + h.toUpperCase() + "]", "al.my.re :: p5.js :: CamBam Stick. July 2024]")
         translate(wcd, hcd * 2 + scd)
         rotate(radians(180))
         showcode(leftmargin, topmargin + 2 * fSize)
