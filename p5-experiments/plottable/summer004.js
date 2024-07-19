@@ -27,13 +27,12 @@ function draw() {
     rows(leftmargin, topmargin, rightmargin, topmargin, rightmargin - droite, bottommargin - bottom1, leftmargin + bottom2, bottommargin - gauche, 0)
     textFont(font)
     textSize(fSize)
-    gentle().then((h) => {
-        showcredits(leftmargin, bottommargin + fSize, alea.length + "[" + h.toUpperCase() + "]", "al.my.re :: p5.js :: CamBam Stick. July 2024]")
+    gentle(alea).then((h) => {
+        showcredits(leftmargin, bottommargin + fSize,  "[" + h.toUpperCase() + "]", "al.my.re :: July 2024 (p5.js ~ CamBam Stick ~ gcode ~ juicy ~ "+alea.length+" random numbers)")
         translate(wcd, hcd * 2 + scd)
         rotate(radians(180))
-        showcode(leftmargin, topmargin + 2 * fSize)
-        })
-    
+        showcode(leftmargin, topmargin + 5 * fSize)
+        })    
     noLoop()
 }
 
@@ -70,23 +69,3 @@ function rows(x1, y1, x2, y2, x3, y3, x4, y4, dep) {
     line(ox2,oy2,dx2,dy2)
 }
 
-async function gentle(){
-    var bruit = new Float64Array(1);
-    var tout=0.0
-    for(i=0;i<alea.length;i++){//sum all random numbers used for the piece
-        tout+=alea[i]
-    }
-    bruit[0]=tout//pass the sum to the typedArray
-    h=await window.crypto.subtle.digest("SHA-1", bruit)//hash the sum of all random numbers
-    console.log(h)
-    const hashArray = Array.from(new Uint8Array(h)); // convert buffer to byte array
-    const hashHex = hashArray
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join(""); // convert bytes to hex string
-    return hashHex 
-}
-
-function showcredits(posx, posy, title, credits) {
-    text(title, posx, posy)
-    text(credits, posx, posy+fSize)
-}
