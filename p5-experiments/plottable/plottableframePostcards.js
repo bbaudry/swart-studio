@@ -15,6 +15,7 @@ var wpostcard = 454 * echelle
 var hpostcard = 726 * echelle
 
 var rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
+var globalmargin=22
 var cnv, imgbtn
 
 function setup() {
@@ -28,10 +29,10 @@ function setup() {
 }
 
 function setmargins(xorigin,yorigin){
-    rightmargin = xorigin + 0.97 * wpostcard
+    rightmargin = xorigin + 0.95 * wpostcard
     leftmargin = xorigin + 0.03 * wpostcard
-    topmargin = yorigin+ 0.03 * hpostcard
-    bottommargin = yorigin + 0.95 * hpostcard
+    topmargin = yorigin+ 0.02 * hpostcard
+    bottommargin = yorigin + 0.98 * hpostcard
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
 }
@@ -80,5 +81,5 @@ async function gentle(alea){
 function showcredits(posx, posy, title, credits) {
     console.log("write text at "+posy)
     text(title, posx, posy)
-    text(credits, posx, posy+fSize+5)
+    text(credits, posx, posy+fSize+2)
 }
