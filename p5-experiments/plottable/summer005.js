@@ -24,7 +24,6 @@ function draw() {
 }
 
 function drawpostcard(x, y) {
-    stroke(0, 100, 100)
     noFill()
     setmargins(x, y)
     onepiece()
@@ -37,29 +36,28 @@ function onepiece(){
 }
 
 function punch(){
+    stroke(0, 0, 0)
     var xoff,yoff,i,j
     xoff=floor(actualwidth*0.01)
-    //quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
     i=leftmargin
     while(i<rightmargin-xoff){
-        j=topmargin
+        j=bottommargin
         yoff=floor(actualheight*0.001)
-        while(j<bottommargin-yoff){
-            var black=random()
-            alea.push(black)
-            if(black<0.42){
+        while(j>topmargin-yoff){
+            var black=random(); alea.push(black)
+            if(black<0.21){
                 colorie(i,j,xoff,yoff)
             }
             else{
-                var bound=random()
-                if(bound<0.51){
+                var bound=random(); alea.push(bound)
+                if(bound<0.42){
                     line(i,j,i,j+yoff)
                 }
                 else{
                     line(i+xoff,j,i,j+yoff)
                 }
             }
-            yoff++
+            yoff--
             j+=yoff
         }
         xoff++
@@ -68,9 +66,13 @@ function punch(){
 }
 
 function colorie(x,y,largeur,hauteur){
+    push()
+    var red = random(); alea.push(red)
+    if(red<0.1){stroke(0,100,100)}
     for(var vera = 0;vera<largeur;vera+=1){
         line(x+vera,y,x+vera,y+hauteur)
     }
+    pop()
 }
 
 
