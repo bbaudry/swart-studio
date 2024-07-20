@@ -65,32 +65,32 @@ function punch(){
     }
 }
 
+var xoff=0.0
+var xinc=0.01
 function punch2(){
     stroke(0, 0, 0)
-    var xoff,yoff,i,j,yratio
+    var xoff,yoff,i,j,yratio,plein
     xoff=floor(actualwidth*0.01)
     i=leftmargin
     while(i<rightmargin-xoff){
         j=bottommargin
-        yratio=random(0.001,0.007); alea.push(yratio)
-        yoff=floor(actualheight*yratio)
+        yoff=noise(xoff)*11;xoff+=xinc; alea.push(yoff)
         while(j>topmargin-yoff){
-            var black=random(); alea.push(black)
-            if(black<0.21){
+            plein=random();alea.push(plein)
+            if(plein<0.11){
                 colorie(i,j,i+xoff,j,i+xoff,j+yoff,i,j+yoff)
             }
             else{
                 var bound=random(); alea.push(bound)
-                if(bound<0.42){
+                if(bound>0.42){
                     line(i,j,i,j+yoff)
                 }
                 else{
                     line(i+xoff,j,i,j+yoff)
                 }
             }
-            yratio=random(0.001,0.007); alea.push(yratio)
-            yoff=floor(actualheight*yratio)
             j-=yoff
+            yoff=noise(xoff)*11;xoff+=xinc; alea.push(yoff)
         }
         xoff++
         i+=xoff
