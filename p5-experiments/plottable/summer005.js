@@ -32,12 +32,13 @@ function drawpostcard(x, y) {
 }
 function onepiece(){
     alea = []
-    punch2()
+    punch()
 }
 
 function punch(){
     stroke(0, 0, 0)
-    var xoff,yoff,i,j
+    var xoff,yoff,i,j,yinc
+    yinc=1+random()
     xoff=floor(actualwidth*0.01)
     i=leftmargin
     while(i<rightmargin-xoff){
@@ -65,16 +66,16 @@ function punch(){
     }
 }
 
-var xoff=0.0
+var offset=0.0
 var xinc=0.01
 function punch2(){
     stroke(0, 0, 0)
-    var xoff,yoff,i,j,yratio,plein
+    var xoff,yoff,i,j,plein
     xoff=floor(actualwidth*0.01)
     i=leftmargin
     while(i<rightmargin-xoff){
         j=bottommargin
-        yoff=noise(xoff)*11;xoff+=xinc; alea.push(yoff)
+        yoff=noise(offset)*11;offset+=xinc; alea.push(yoff)
         while(j>topmargin-yoff){
             plein=random();alea.push(plein)
             if(plein<0.11){
@@ -90,7 +91,7 @@ function punch2(){
                 }
             }
             j-=yoff
-            yoff=noise(xoff)*11;xoff+=xinc; alea.push(yoff)
+            yoff=noise(offset)*11;offset+=xinc; alea.push(yoff)
         }
         xoff++
         i+=xoff
