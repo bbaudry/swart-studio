@@ -7,9 +7,7 @@ function savepng() {
 }
 
 var font
-var fSize = 13
-var xoff = 0
-var xinc = 0.1
+var fSize = 12
 var alea = []
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
@@ -18,11 +16,6 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    stroke(0, 100, 100)
-    noFill()
-    textFont(font)
-    textSize(fSize)
-    stroke(0, 0, 0)
     drawpostcard(globalmargin, globalmargin)
     drawpostcard(globalmargin+wpostcard, globalmargin)
     drawpostcard(globalmargin, globalmargin+hpostcard)
@@ -31,15 +24,56 @@ function draw() {
 }
 
 function drawpostcard(x, y) {
-    rect(x, y, wpostcard, hpostcard)
+    stroke(0, 100, 100)
+    noFill()
     setmargins(x, y)
     onepiece()
+    rect(x, y, wpostcard, hpostcard)
     sign()
 }
 function onepiece(){
     alea = []
-    alea.push(random())
+    punch()
 }
+
+function punch(){
+    var xoff,yoff,i,j
+    xoff=floor(actualwidth*0.01)
+    //quad(leftmargin,topmargin,rightmargin,topmargin,rightmargin,bottommargin,leftmargin,bottommargin)
+    i=leftmargin
+    while(i<rightmargin-xoff){
+        j=topmargin
+        yoff=floor(actualheight*0.001)
+        while(j<bottommargin-yoff){
+            var black=random()
+            alea.push(black)
+            if(black<0.42){
+                colorie(i,j,xoff,yoff)
+            }
+            else{
+                var bound=random()
+                if(bound<0.51){
+                    line(i,j,i,j+yoff)
+                }
+                else{
+                    line(i+xoff,j,i,j+yoff)
+                }
+            }
+            yoff++
+            j+=yoff
+        }
+        xoff++
+        i+=xoff
+    }
+}
+
+function colorie(x,y,largeur,hauteur){
+    for(var vera = 0;vera<largeur;vera+=1){
+        line(x+vera,y,x+vera,y+hauteur)
+    }
+}
+
+
 function sign(){
     var title="[summer005]"
     var credits="al.my.re :: July 2024 (p5.js ~ CamBam Stick ~ gcode ~ juicy ~ " + alea.length + " random numbers)"
@@ -48,6 +82,6 @@ function sign(){
     push()
     translate(rightmargin,bottommargin); 
     rotate(radians(270))
-    showcredits(0,0, title, credits)
+    showcredits(0,fSize, title, credits)
     pop()
 }
