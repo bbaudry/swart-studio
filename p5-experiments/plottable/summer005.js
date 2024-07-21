@@ -51,10 +51,7 @@ function punch(){
             }
             else{
                 var bound=random(); alea.push(bound)
-                if(bound<0.42){
-                    line(i,j,i,j+yoff)
-                }
-                else{
+                if(bound>0.42){
                     line(i+xoff,j,i,j+yoff)
                 }
                 if(bound<0.1){
