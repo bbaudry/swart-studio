@@ -57,6 +57,10 @@ function punch(){
                 else{
                     line(i+xoff,j,i,j+yoff)
                 }
+                if(bound<0.1){
+                    console.log("losange")
+                    colorie(i,j,i+xoff,j,i,j+yoff,i-xoff,j+yoff)
+                }
             }
             yoff++;
             j-=yoff
