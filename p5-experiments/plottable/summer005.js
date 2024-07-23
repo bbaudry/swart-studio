@@ -111,31 +111,42 @@ function punch3() {
         dy2 = (1 - (t1+0.05)) * bottommargin + ((t1+0.05) * topmargin)
         section(ox1,oy1,dx1,dy1,dx2,dy2)
     }
-    for (t1 = 0; t1 < 1; t1 += 0.1) {
+    for (t1 = 0; t1 < 1; t1 += 0.05) {
         ox1 = leftmargin
         oy1 = bottommargin
         dx1 = (1 - t1) * leftmargin + (t1 * rightmargin)
         dy1 = topmargin
-        line(ox1, oy1, dx1, dy1)
+        ox2 = leftmargin
+        oy2 = bottommargin
+        dx2 = (1 - (t1+0.05)) * leftmargin + ((t1+0.05) * rightmargin)
+        dy2 = topmargin
+        section(ox1,oy1,dx1,dy1,dx2,dy2)
+//        line(ox1, oy1, dx1, dy1)
     }
     ellipse(rightmargin,topmargin,7,7)
 }
 
 function section(x1, y1, x2, y2, x3, y3){
-    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1
+    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, step
+    step=0.01
     //line(x1, y1, x2, y2);line(x1, y1, x3, y3)
-    for (t1 = 0; t1 < 1; t1 += 0.1) {
+    for (t1 = 0; t1 < 1; t1 += step) {
         ox1 = (1 - t1) * x1 + (t1 * x2)
         oy1 = (1 - t1) * y1 + (t1 * y2)
         dx1 = (1 - t1) * x1 + (t1 * x3)
         dy1 = (1 - t1) * y1 + (t1 * y3)
-        if(random()<0.8){line(ox1,oy1,dx1,dy1)}
+        if(random()<0.42){line(ox1,oy1,dx1,dy1)}
+        ox2 = (1 - (t1-step)) * x1 + ((t1-step) * x2)
+        oy2 = (1 - (t1-step)) * y1 + ((t1-step) * y2)
+        dx2 = (1 - (t1-step)) * x1 + ((t1-step) * x3)
+        dy2 = (1 - (t1-step)) * y1 + ((t1-step) * y3)
+        if(random()<0.2){colorie(dx2,dy2,dx1,dy1,ox1,oy1,ox2,oy2)}
     }
-    for (t1 = 0; t1 < 0.9; t1 += 0.1) {
+    for (t1 = 0; t1 < 1; t1 += step) {
         ox1 = (1 - t1) * x1 + (t1 * x2)
         oy1 = (1 - t1) * y1 + (t1 * y2)
-        dx1 = (1 - (t1+0.05)) * x1 + ((t1+0.05) * x2)
-        dy1 = (1 - (t1+0.05)) * y1 + ((t1+0.05) * y2)
+        dx1 = (1 - (t1+step)) * x1 + ((t1+step) * x2)
+        dy1 = (1 - (t1+step)) * y1 + ((t1+step) * y2)
         if(random()>0.42){line(ox1,oy1,dx1,dy1)}
     }
 
