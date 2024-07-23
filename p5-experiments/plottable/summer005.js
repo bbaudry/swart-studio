@@ -100,6 +100,7 @@ function punch2() {
 
 function punch3() {
     var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1
+    if(random()<0.6){
     for (t1 = 0; t1 < 1; t1 += 0.05) {
         ox1 = leftmargin
         oy1 = bottommargin
@@ -110,7 +111,8 @@ function punch3() {
         dx2 = rightmargin
         dy2 = (1 - (t1+0.05)) * bottommargin + ((t1+0.05) * topmargin)
         section(ox1,oy1,dx1,dy1,dx2,dy2)
-    }
+    }}
+    if(random()<0.6){
     for (t1 = 0; t1 < 1; t1 += 0.05) {
         ox1 = leftmargin
         oy1 = bottommargin
@@ -121,8 +123,7 @@ function punch3() {
         dx2 = (1 - (t1+0.05)) * leftmargin + ((t1+0.05) * rightmargin)
         dy2 = topmargin
         section(ox1,oy1,dx1,dy1,dx2,dy2)
-//        line(ox1, oy1, dx1, dy1)
-    }
+    }}
     ellipse(rightmargin,topmargin,7,7)
 }
 
@@ -158,7 +159,7 @@ function colorie(x1, y1, x2, y2, x3, y3, x4, y4) {
     push()
     var red = random(); alea.push(red)
     if (red < 0.1) { stroke(0, 100, 100) }
-    for (var t1 = 0; t1 < 1; t1 += 0.01) {
+    for (var t1 = 0; t1 < 1; t1 += 0.03) {
         ox = (1 - t1) * x1 + (t1 * x2)
         oy = (1 - t1) * y1 + (t1 * y2)
         dx = (1 - t1) * x4 + (t1 * x3)
