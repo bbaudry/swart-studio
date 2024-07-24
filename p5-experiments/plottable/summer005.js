@@ -100,7 +100,7 @@ function punch2() {
 
 function punch3() {
     var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1
-    if(random()<0.1){
+    if(random()<0.5){
     for (t1 = 0; t1 < 1; t1 += 0.05) {
         ox1 = leftmargin
         oy1 = bottommargin
@@ -110,18 +110,19 @@ function punch3() {
         oy2 = bottommargin
         dx2 = rightmargin
         dy2 = (1 - (t1+0.05)) * bottommargin + ((t1+0.05) * topmargin)
-        //section(ox1,oy1,dx1,dy1,dx2,dy2)
+        section(ox1,oy1,dx1,dy1,dx2,dy2)
     }}
-    else{
+    else{    for (t1 = 0; t1 < 1; t1 += 0.05) {
         ox1 = leftmargin
         oy1 = bottommargin
         dx1 = rightmargin
-        dy1 = (1 - 0.5) * bottommargin + (0.5 * topmargin)
+        dy1 = (1 - t1) * bottommargin + (t1 * topmargin)
         ox2 = leftmargin
         oy2 = bottommargin
         dx2 = rightmargin
         dy2 = (1 - (t1+0.05)) * bottommargin + ((t1+0.05) * topmargin)
         ocean(ox1,oy1,dx1,dy1,dx2,dy2)
+    }
     }
     if(random()<0.6){
     for (t1 = 0; t1 < 1; t1 += 0.05) {
@@ -133,7 +134,7 @@ function punch3() {
         oy2 = bottommargin
         dx2 = (1 - (t1+0.05)) * leftmargin + ((t1+0.05) * rightmargin)
         dy2 = topmargin
-        //section(ox1,oy1,dx1,dy1,dx2,dy2)
+        section(ox1,oy1,dx1,dy1,dx2,dy2)
     }}
     else{
         t1=random()
@@ -169,19 +170,14 @@ function section(x1, y1, x2, y2, x3, y3){
 }
 
 function ocean(x1, y1, x2, y2, x3, y3){
-    console.log("ocean")
-    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t1, step
-    step=0.01
-    for (t1 = 0; t1 < 1; t1 += step) {
-        ox1 = (1 - t1) * x1 + (t1 * x2)
-        oy1 = (1 - t1) * y1 + (t1 * y2)
-        dx1 = (1 - t1) * x1 + (t1 * x3)
-        dy1 = (1 - t1) * y1 + (t1 * y3)
-        fill(0,100,100)
-        ellipse(ox1,oy1,random(17),random(17))
-        noFill()
-        console.log("ocean "+ox1+" "+oy1)
-    }
+    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, cpx1,cpy1,cpx2,cpy2,t1, step
+    var ratio1=0.25
+    var ratio2=0.75
+    cpx1 = ((1 - ratio1) * x1 + (ratio1 * x2))+random(-42,84)
+    cpy1 = ((1 - ratio1) * y1 + (ratio1 * y2))-42
+    cpx2 = ((1 - ratio2) * x1 + (ratio2 * x2))+random(-42,84)
+    cpy2 = ((1 - ratio2) * y1 + (ratio2 * y2))+42
+    bezier(x1,y1,cpx1,cpy1,cpx2,cpy2,x2,y2)
 }
 
 function colorie(x1, y1, x2, y2, x3, y3, x4, y4) {
