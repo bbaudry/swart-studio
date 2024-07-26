@@ -5,6 +5,9 @@
 //postcard 120x192 (192 is 1.6*120, a.k.a golden ratio)
 //wpost=120*96/25.4 = 454
 //hpost=192*96/25.4 = 726
+//letter, used for testing
+//w=96*8.5=816
+//h=96*11=1056
 
 var echelle = 1
 //overall frame on a letter size. (0,0) on the bottom left of a letter page, portrait position
@@ -79,7 +82,7 @@ async function gentle(alea){
 }
 
 function showcredits(posx, posy, title, credits) {
-    console.log("write text at "+posy)
+    console.log("write text at "+posx+", "+posy+". title: "+title+", credits: "+credits)
     text(title, posx, posy)
     text(credits, posx, posy+fSize+2)
 }
