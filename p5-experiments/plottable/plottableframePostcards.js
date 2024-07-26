@@ -11,8 +11,8 @@
 
 var echelle = 1
 //overall frame on a letter size. (0,0) on the bottom left of a letter page, portrait position
-var w = 1122 * echelle
-var h = 1587 * echelle
+var w = 816 * echelle
+var h = 1056 * echelle
 //postcard dimensions
 var wpostcard = 454 * echelle
 var hpostcard = 726 * echelle

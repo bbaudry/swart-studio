@@ -1,16 +1,14 @@
 function savesvg() {
-    save("etemontreal005.svg");
+    save("etemontreal001.svg");
 }
 
 function savepng() {
-    save("etemontreal005.png");
+    save("etemontreal001.png");
 }
 
 var font
 var fSize = 12
 var alea = []
-var mainhu = 30
-var rarehu = 180
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('etemontreal001-core.js');
@@ -18,16 +16,17 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    /*     cartepostale(globalmargin, globalmargin)
-        cartepostale(globalmargin + wpostcard, globalmargin)
-        cartepostale(globalmargin, globalmargin + hpostcard)
-        cartepostale(globalmargin + wpostcard, globalmargin + hpostcard)
-     */
-    codeetadresse(globalmargin, globalmargin, destinataires[0])
-    codeetadresse(globalmargin + wpostcard, globalmargin, destinataires[1])
+    strokeWeight(1.4)
+    cartepostale(globalmargin, globalmargin)
+/*     cartepostale(globalmargin + wpostcard, globalmargin)
+    cartepostale(globalmargin, globalmargin + hpostcard)
+    cartepostale(globalmargin + wpostcard, globalmargin + hpostcard)
+*/
+//    codeetadresse(globalmargin, globalmargin, destinataires[0])
+/*     codeetadresse(globalmargin + wpostcard, globalmargin, destinataires[1])
     codeetadresse(globalmargin, globalmargin + hpostcard, destinataires[2])
     codeetadresse(globalmargin + wpostcard, globalmargin + hpostcard, destinataires[3])
-    noLoop()
+ */    noLoop()
 }
 
 function codeetadresse(x, y, adresse) {
@@ -40,11 +39,14 @@ function codeetadresse(x, y, adresse) {
 }
 
 var destinataires = [
-    { noms: ["jacques baudry", "françoise burel"], adresse: "15 rue des vedaudais", ville: "35690 Acigné", pays: "FRANCE" },
+    { noms: ["dept. informatique et",'recherche opérationelle'], adresse: "pavillon andré-aisenstadt", ville: "Montréal (Qc), H3C 3J7", pays: "CANADA" },
+    { noms: ["jacques baudry", "françoise burel"], adresse: "15 rue des verdaudais", ville: "35690 Acigné", pays: "FRANCE" },
     { noms: ["martin monperrus"], adresse: "Virebergsvägen 15", ville: "16930 Solna", pays: "SUEDE" },
-    { noms: ["marie-cécile mocellin","corentin lemonnier"], adresse: "13 rue glacière", ville: "75013 Paris", pays: "FRANCE" },
+    { noms: ["marie-cécile mocellin", "corentin lemonnier"], adresse: "13 rue glacière", ville: "75013 Paris", pays: "FRANCE" },
     { noms: ["erik natanael gustafsson"], adresse: "orions bälte 38", ville: "136 76 Brandbergen", pays: "SUEDE" },
+    { noms: ["gaspard d'assignies","elvira periac"], adresse: "43 boulevard de l'estuaire", ville: "44200 Nantes", pays: "FRANCE" },
 ]
+
 
 function adresseadrtoite(adresse) {
     var adresse, posx, posy
@@ -57,14 +59,14 @@ function adresseadrtoite(adresse) {
     push()
     translate(leftmargin, bottommargin);
     rotate(radians(270))
-    for(i=0;i<adresse.noms.length;i++){
+    for (i = 0; i < adresse.noms.length; i++) {
         text(adresse.noms[i], posx, posy)
-        posy+=1.5*fSize
+        posy += 1.5 * fSize
     }
     text(adresse.adresse, posx, posy)
-    posy+=1.5*fSize
+    posy += 1.5 * fSize
     text(adresse.ville, posx, posy)
-    posy+=1.5*fSize
+    posy += 1.5 * fSize
     text(adresse.pays, posx, posy)
     pop()
 }
