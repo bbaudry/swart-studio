@@ -11,19 +11,34 @@ function cartepostale(x, y) {
     signature()
 }
 
+var grid=[]
+var xoff=0.0
+var xinc=0.1
 function grille(){
-    var x,y,stepx,stepy,cx,cy,rad,grain
-    grain=5
+    var x,y,stepx,stepy,cx,cy,rad,grain,p1,p2
+    grain=11
+    rad=5
     stepx = floor(actualwidth/grain)
     stepy = floor(actualheight/grain)
     for(x=leftmargin;x<grain*stepx;x+=stepx){
         for(y=topmargin;y<grain*stepy;y+=stepy){
-            //rect(x,y,stepx,stepy)
-            cx=random(stepx);alea.push(cx)
-            cy=random(stepx);alea.push(cy);
-            rad=random(stepx*0.1);alea.push(rad)
-            ellipse(x+cx,y+cy,rad,rad)
+            stroke(mainhu,100,100)
+            cx=x+noise(xoff)*stepx;alea.push(cx);xoff+=xinc
+            cy=y+noise(xoff)*stepy;alea.push(cy);xoff+=xinc
+            grid.push(createVector(cx,cy))
+            ellipse(cx,cy,rad,rad)
+            stroke(rarehu,100,100)
+            cx=x+random(stepx)
+            cy=y+random(stepy)
+            //ellipse(cx,cy,rad,rad)
         }
+    }
+    rad=3
+    for(i=0;i<grid.length;i++){
+        p1=grid[i]
+        p2=grid[floor(random(grid.length))]
+        //ellipse(p1.x,p1.y,rad,rad)
+        //line(p1.x,p1.y,p2.x,p2.y)
     }
 }
 
