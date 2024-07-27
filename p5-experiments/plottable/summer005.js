@@ -149,14 +149,27 @@ function section(x1, y1, x2, y2, x3, y3){
     }
 }
 
+
+var noff=42
+var ninc=0.001
 function punch4(){
-    ocean(leftmargin,bottommargin,rightmargin,bottommargin)
+    var x1=leftmargin
+    var x2=leftmargin
+    var y2=topmargin
+    var step=1
+    while(x1<rightmargin){
+        ocean(x2,bottommargin,x1,y2)
+        x1+=random(2,9)
+        x2+=2
+        y2+=2
+        step+=random()
+    }
+    var cx=leftmargin+actualwidth*0.5
+    var cy=topmargin+actualheight*0.5
+
 }
 
 function ocean(x1, y1, x2, y2){
-    ellipse(x1,y1,7,7)
-    ellipse(x2,y2,7,7)
-    line(x1, y1, x2, y2)
     var ox1, oy1, cpx1,cpy1,cpx2,cpy2,t1, step
     var ratio1=0.5
     var ratio2=0.5
@@ -165,23 +178,18 @@ function ocean(x1, y1, x2, y2){
     ox1=x1
     oy1=y1
     vertex(x1,y1)
-    for (var t1 = step; t1 < 1; t1 += step) {
+    for (var t1 = step; t1 < 1+step; t1 += step) {
         dx1 = (1 - t1) * x1 + (t1 * x2)
         dy1 = (1 - t1) * y1 + (t1 * y2)
-        cpx1 = ((1 - ratio1) * ox1 + (ratio1 * dx1))//+random(-42,84)
-        cpy1 = ((1 - ratio1) * oy1 + (ratio1 * dy1))-42
-        cpx2 = ((1 - ratio2) * ox1 + (ratio2 * dx1))//+random(-42,84)
-        cpy2 = ((1 - ratio2) * oy1 + (ratio2 * dy1))+42
+        cpx1 = ((1 - ratio1) * ox1 + (ratio1 * dx1))-21//+random(-42,84)
+        cpy1 = ((1 - ratio1) * oy1 + (ratio1 * dy1))
+        cpx2 = ((1 - ratio2) * ox1 + (ratio2 * dx1))+21//+random(-42,84)
+        cpy2 = ((1 - ratio2) * oy1 + (ratio2 * dy1))
         bezierVertex(cpx1,cpy1,cpx2,cpy2,dx1, dy1)
         ox1 = dx1
         oy1 = dy1
     }
     endShape()
-    cpx1 = ((1 - ratio1) * x1 + (ratio1 * x2))//+random(-42,84)
-    cpy1 = ((1 - ratio1) * y1 + (ratio1 * y2))-142
-    cpx2 = ((1 - ratio2) * x1 + (ratio2 * x2))//+random(-42,84)
-    cpy2 = ((1 - ratio2) * y1 + (ratio2 * y2))+142
-    bezier(x1,y1,cpx1,cpy1,cpx2,cpy2,x2,y2)
 }
 
 function colorie(x1, y1, x2, y2, x3, y3, x4, y4) {
