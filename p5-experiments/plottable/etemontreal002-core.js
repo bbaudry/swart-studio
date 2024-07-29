@@ -5,10 +5,8 @@ function cartepostale(x, y) {
     noFill()
     setmargins(x, y)
     alea = []
-    stroke(0,0,0)//stroke(mainhu, 100, 100)
-    grille()
-    stroke(0,0,0)//stroke(rarehu, 100, 100)
-    //grille()
+    stroke(mainhu, 100, 100)
+    montreal()
     rect(x, y, wpostcard, hpostcard)
     signature()
 }
@@ -16,16 +14,16 @@ function cartepostale(x, y) {
 var grid = []
 var xoff = 0.0
 var xinc = 0.1
-function grille() {
+function montreal() {
     grid = []
-    var x, y, i, j, stepx, stepy, cx, cy, grain
+    var i, j, blocSud, blocOuest, cx, cy, grain
     grain = 31
-    stepx = floor(actualwidth / grain)
-    stepy = floor(actualheight / grain)
+    blocSud = floor(actualwidth / grain)
+    blocOuest = floor(actualheight / grain)
     for (i = 0; i < grain; i++) {
         for (j = 0; j < grain; j++) {
-            cx = leftmargin + (i * stepx) + noise(xoff) * stepx; alea.push(cx); xoff += xinc
-            cy = topmargin + (j * stepy) + noise(xoff) * stepy; alea.push(cy); xoff += xinc
+            cx = leftmargin + (i * blocSud) + noise(xoff) * blocSud; alea.push(cx); xoff += xinc
+            cy = topmargin + (j * blocOuest) + noise(xoff) * blocOuest; alea.push(cy); xoff += xinc
             grid.push(createVector(cx, cy))
         }
     }
