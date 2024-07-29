@@ -11,33 +11,37 @@ function cartepostale(x, y) {
     signature()
 }
 
-var grid = []
+var lesBlocs = []
 var xoff = 0.0
-var xinc = 0.1
+var xinc = 0.001
 function montreal() {
-    grid = []
+    lesBlocs = []
     var i, j, blocSud, blocOuest, cx, cy, grain
-    grain = 31
+    grain = 21
     blocSud = floor(actualwidth / grain)
     blocOuest = floor(actualheight / grain)
     for (i = 0; i < grain; i++) {
         for (j = 0; j < grain; j++) {
             cx = leftmargin + (i * blocSud) + noise(xoff) * blocSud; alea.push(cx); xoff += xinc
             cy = topmargin + (j * blocOuest) + noise(xoff) * blocOuest; alea.push(cy); xoff += xinc
-            grid.push(createVector(cx, cy))
+            lesBlocs.push(createVector(cx, cy))
+            
         }
+        xinc+=0.5
     }
-    for (i = 0; i < grid.length - 1; i++) {
-        if (i < grid.length - grain && i % grain != grain - 1 && random() < 0.42) {
-            quad(grid[i].x, grid[i].y,
-                grid[i + grain].x, grid[i + grain].y,
-                grid[i + grain + 1].x, grid[i + grain + 1].y,
-                grid[i + 1].x, grid[i + 1].y)
+    for (i = 0; i < lesBlocs.length - 1; i++) {
+        if (i < lesBlocs.length - grain && i % grain != grain - 1 && random() < 0.42) {
             if (random() < 0.21) {
-                colorie(grid[i].x, grid[i].y,
-                    grid[i + grain].x, grid[i + grain].y,
-                    grid[i + grain + 1].x, grid[i + grain + 1].y,
-                    grid[i + 1].x, grid[i + 1].y)
+                colorie(lesBlocs[i].x, lesBlocs[i].y,
+                    lesBlocs[i + grain].x, lesBlocs[i + grain].y,
+                    lesBlocs[i + grain + 1].x, lesBlocs[i + grain + 1].y,
+                    lesBlocs[i + 1].x, lesBlocs[i + 1].y)
+            }
+            else{
+                quad(lesBlocs[i].x, lesBlocs[i].y,
+                    lesBlocs[i + grain].x, lesBlocs[i + grain].y,
+                    lesBlocs[i + grain + 1].x, lesBlocs[i + grain + 1].y,
+                    lesBlocs[i + 1].x, lesBlocs[i + 1].y)    
             }
         }
     }
@@ -48,6 +52,7 @@ function colorie(x1, y1, x2, y2, x3, y3, x4, y4) {
     push()
     var red = random(); alea.push(red)
     if (red < 0.1) { stroke(rarehu, 100, 100) }
+    quad(x1, y1, x2, y2, x3, y3, x4, y4)
     for (var t1 = 0; t1 < 1; t1 += 0.25) {
         ox = (1 - t1) * x1 + (t1 * x2)
         oy = (1 - t1) * y1 + (t1 * y2)
