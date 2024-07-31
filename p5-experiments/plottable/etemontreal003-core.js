@@ -17,32 +17,32 @@ var xinc = 0.001
 function montreal() {
     lesBlocs = []
     var i, j, blocSud, blocOuest, cx, cy, grain
-    grain = 31
-    blocSud = floor(actualwidth / grain)
-    blocOuest = floor(actualheight / grain)
+    grain =11
+    blocSud = floor((actualwidth*0.5) / grain)
+    blocOuest = floor((actualheight*0.5) / grain)
     for (i = 0; i < grain; i++) {
         for (j = 0; j < grain; j++) {
-            cx = leftmargin + (i * blocSud) + noise(xoff) * blocSud; alea.push(cx); xoff += xinc
-            cy = topmargin + (j * blocOuest) + noise(xoff) * blocOuest; alea.push(cy); xoff += xinc
+            cx = leftmargin + i*(i/grain  * blocSud)
+            cy = topmargin + j*(j/grain* blocOuest)
             lesBlocs.push(createVector(cx, cy))
-            
+            cx = rightmargin - (i * blocSud)
+            cy = topmargin + (j * blocOuest)
+            lesBlocs.push(createVector(cx, cy))
+            cx = rightmargin - (grain/i * blocSud)
+            cy = bottommargin - (grain/j * blocOuest)
+            //lesBlocs.push(createVector(cx, cy))
+            cx = leftmargin + (grain/i * blocSud)
+            cy = bottommargin - (grain/j * blocOuest)
+            //lesBlocs.push(createVector(cx, cy))
         }
-        xinc+=0.5
     }
-    for (i = 0; i < lesBlocs.length - 1; i++) {
-        if (i < lesBlocs.length - grain && i % grain != grain - 1 && random() < 0.1) {
-            if (random() < 0.21) {
-                colorie(lesBlocs[i].x, lesBlocs[i].y,
-                    lesBlocs[i + grain].x, lesBlocs[i + grain].y,
-                    lesBlocs[i + grain + 1].x, lesBlocs[i + grain + 1].y,
-                    lesBlocs[i + 1].x, lesBlocs[i + 1].y)
-            }
-            else{
-                quad(lesBlocs[i].x, lesBlocs[i].y,
-                    lesBlocs[i + grain].x, lesBlocs[i + grain].y,
-                    lesBlocs[i + grain + 1].x, lesBlocs[i + grain + 1].y,
-                    lesBlocs[i + 1].x, lesBlocs[i + 1].y)    
-            }
+    var offset = 2
+    for (i = 0; i < lesBlocs.length - offset; i++) {
+        if (i < lesBlocs.length - (grain*offset)  && i % (grain*offset) != (grain - 1)*offset && i % (grain*offset) != grain*offset - 1 ) {
+        quad(lesBlocs[i].x, lesBlocs[i].y,
+            lesBlocs[i + offset*grain].x, lesBlocs[i + offset*grain].y,
+            lesBlocs[i + offset*(grain + 1)].x, lesBlocs[i + offset*(grain + 1)].y,
+            lesBlocs[i + offset].x, lesBlocs[i + offset].y)
         }
     }
 }
