@@ -6,9 +6,32 @@ function cartepostale(x, y) {
     setmargins(x, y)
     alea = []
     stroke(mainhu, 0, 100)
-    montreal()
+    //montreal()
+    pei()
     rect(x, y, wpostcard, hpostcard)
     signature()
+}
+
+
+function pei() {
+    var x, y
+    y = topmargin + actualheight * 0.5
+    for (var i = 0; i < 90; i += 5) {
+        x = leftmargin + sin(radians(i)) * actualwidth * 0.5
+        for (var j = 0; j < 90; j += 1) {
+            y = topmargin + cos(radians(j)) * actualheight * 0.5
+            ellipse(x, y, 2, 2)
+            y = bottommargin - sin(radians(j+random(-2/(j+1),2/(j+1)))) * actualheight * 0.5
+            ellipse(x, y, 2, 2)
+        }
+        x = rightmargin - sin(radians(i)) * actualwidth * 0.5
+        for (var j = 0; j < 90; j += 10) {
+            y = topmargin + cos(radians(j)) * actualheight * 0.5
+            ellipse(x, y, 2, 2)
+            y = bottommargin - sin(radians(j)) * actualheight * 0.5
+            ellipse(x, y, 2, 2)
+        }
+    }
 }
 
 var lesBlocs = []
@@ -17,32 +40,32 @@ var xinc = 0.001
 function montreal() {
     lesBlocs = []
     var i, j, blocSud, blocOuest, cx, cy, grain
-    grain =11
-    blocSud = floor((actualwidth*0.5) / grain)
-    blocOuest = floor((actualheight*0.5) / grain)
+    grain = 11
+    blocSud = floor((actualwidth * 0.5) / grain)
+    blocOuest = floor((actualheight * 0.5) / grain)
     for (i = 0; i < grain; i++) {
         for (j = 0; j < grain; j++) {
-            cx = leftmargin + i*(i/grain  * blocSud)
-            cy = topmargin + j*(j/grain* blocOuest)
+            cx = leftmargin + i * (i / grain * blocSud)
+            cy = topmargin + j * (j / grain * blocOuest)
             lesBlocs.push(createVector(cx, cy))
             cx = rightmargin - (i * blocSud)
             cy = topmargin + (j * blocOuest)
             lesBlocs.push(createVector(cx, cy))
-            cx = rightmargin - (grain/i * blocSud)
-            cy = bottommargin - (grain/j * blocOuest)
+            cx = rightmargin - (grain / i * blocSud)
+            cy = bottommargin - (grain / j * blocOuest)
             //lesBlocs.push(createVector(cx, cy))
-            cx = leftmargin + (grain/i * blocSud)
-            cy = bottommargin - (grain/j * blocOuest)
+            cx = leftmargin + (grain / i * blocSud)
+            cy = bottommargin - (grain / j * blocOuest)
             //lesBlocs.push(createVector(cx, cy))
         }
     }
     var offset = 2
     for (i = 0; i < lesBlocs.length - offset; i++) {
-        if (i < lesBlocs.length - (grain*offset)  && i % (grain*offset) != (grain - 1)*offset && i % (grain*offset) != grain*offset - 1 ) {
-        quad(lesBlocs[i].x, lesBlocs[i].y,
-            lesBlocs[i + offset*grain].x, lesBlocs[i + offset*grain].y,
-            lesBlocs[i + offset*(grain + 1)].x, lesBlocs[i + offset*(grain + 1)].y,
-            lesBlocs[i + offset].x, lesBlocs[i + offset].y)
+        if (i < lesBlocs.length - (grain * offset) && i % (grain * offset) != (grain - 1) * offset && i % (grain * offset) != grain * offset - 1) {
+            quad(lesBlocs[i].x, lesBlocs[i].y,
+                lesBlocs[i + offset * grain].x, lesBlocs[i + offset * grain].y,
+                lesBlocs[i + offset * (grain + 1)].x, lesBlocs[i + offset * (grain + 1)].y,
+                lesBlocs[i + offset].x, lesBlocs[i + offset].y)
         }
     }
 }
