@@ -14,9 +14,11 @@ function cartepostale(x, y) {
 
 
 function pei() {
-    var x, y
-    y = topmargin + actualheight * 0.5
-    for (var i = 0; i < 90; i += 5) {
+    var x, y,cx,cy
+    cx=leftmargin+actualwidth*0.5
+    cy = topmargin + actualheight * 0.5
+
+/*     for (var i = 0; i < 90; i += 5) {
         x = leftmargin + sin(radians(i)) * actualwidth * 0.5
         for (var j = 0; j < 90; j += 1) {
             y = topmargin + cos(radians(j)) * actualheight * 0.5
@@ -31,6 +33,17 @@ function pei() {
             y = bottommargin - sin(radians(j)) * actualheight * 0.5
             ellipse(x, y, 2, 2)
         }
+    }
+ */
+    textFont(font)
+    textSize(fSize)
+
+    ellipse(cx,cy,7,7)
+    ellipse(cx+actualwidth*0.5,cy,7,7)
+    for(var a=180;a<360;a+=3){
+        stroke(a,100,100)
+        x=cx+cos(radians(a))*actualwidth*0.5
+        line(x,cy-42,x,cy+42)
     }
 }
 
