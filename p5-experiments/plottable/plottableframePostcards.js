@@ -2,6 +2,9 @@
 //A3
 //w=96*297/25.4=1122.5
 //h=96*420/25.4=1587.4
+//A4
+//h=96*210/25.4=793.7
+//h=96*297/25.4=1122.5
 //postcard 120x192 (192 is 1.6*120, a.k.a golden ratio)
 //wpost=120*96/25.4 = 454
 //hpost=192*96/25.4 = 726
@@ -11,8 +14,8 @@
 
 var echelle = 1
 //overall frame on a letter size. (0,0) on the bottom left of a letter page, portrait position
-var w = 816 * echelle
-var h = 1056 * echelle
+var w = 1122 * echelle
+var h = 1587 * echelle
 //postcard dimensions
 var wpostcard = 454 * echelle
 var hpostcard = 726 * echelle

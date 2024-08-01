@@ -9,49 +9,76 @@ function savepng() {
 var font
 var fSize = 12
 var alea = []
+var lesBlocs = []
+
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('etemontreal001-core.js');
+    sourcecode = loadStrings('etemontreal003-core.js');
 }
 
 function draw() {
-    background(0, 0, 0)
+    background(0, 0, 100)
     strokeWeight(1.4)
-    cartepostale(globalmargin, globalmargin)
-    cartepostale(globalmargin + wpostcard, globalmargin)
-    cartepostale(globalmargin, globalmargin + hpostcard)
-    cartepostale(globalmargin + wpostcard, globalmargin + hpostcard)
-
-    codeetadresse(globalmargin, globalmargin, destinataires[0])
-    codeetadresse(globalmargin + wpostcard, globalmargin, destinataires[1])
-    codeetadresse(globalmargin, globalmargin + hpostcard, destinataires[2])
-    codeetadresse(globalmargin + wpostcard, globalmargin + hpostcard, destinataires[3])
-    noLoop()
+    noFill()
+    var midh = (h-(2*hpostcard))/2
+    var midw = (w-(2*wpostcard))/2
+    stroke(0,50,50)
+    rect(midw, midh, wpostcard, hpostcard)
+    rect(midw + wpostcard, midh, wpostcard, hpostcard)
+    rect(midw, midh + hpostcard, wpostcard, hpostcard)
+    rect(midw + wpostcard, midh + hpostcard, wpostcard, hpostcard)
+    
+    stroke(0,0,0);
+    cartepostale(midw, midh)
+    cartepostale(midw + wpostcard, midh)
+    cartepostale(midw, midh + hpostcard)
+    cartepostale(midw + wpostcard, midh + hpostcard)
+    
+/*     codeetadresse(midw, midh, destinataires[0])
+    codeetadresse(midw + wpostcard, midh, destinataires[1])
+    codeetadresse(midw, midh + hpostcard, destinataires[2])
+    codeetadresse(midw + wpostcard, midh + hpostcard, destinataires[3])
+ */    noLoop()
 }
 
+
+function signature() {
+    var title = "~ été à montréal #3  ~"
+    var credits = "al.my.re :: July 2024 (p5.js ~ CamBam Stick ~ vpype ~ juicy ~ gcode ~ " + alea.length + " random numbers)"
+    textFont(font)
+    textSize(fSize)
+    push()
+    translate(rightmargin, bottommargin);
+    rotate(radians(270))
+    showcredits(0, fSize, title, credits)
+    pop()
+}
+
+
 function codeetadresse(x, y, adresse) {
-    stroke(0, 0, 100)
     setmargins(x, y)
-    rect(x, y, wpostcard, hpostcard)
     codeagauche()
     adresseadrtoite(adresse)
 
 }
 
 var destinataires = [
-    { noms: ["dept. informatique et",'recherche opérationelle'], adresse: "pavillon andré-aisenstadt", ville: "Montréal (Qc), H3C 3J7", pays: "CANADA" },
     { noms: ["jacques baudry", "françoise burel"], adresse: "15 rue des verdaudais", ville: "35690 Acigné", pays: "FRANCE" },
     { noms: ["martin monperrus"], adresse: "Virebergsvägen 15", ville: "16930 Solna", pays: "SUEDE" },
-    { noms: ["marie-cécile mocellin", "corentin lemonnier"], adresse: "13 rue glacière", ville: "75013 Paris", pays: "FRANCE" },
     { noms: ["erik natanael gustafsson"], adresse: "orions bälte 38", ville: "136 76 Brandbergen", pays: "SUEDE" },
     { noms: ["gaspard d'assignies","elvira periac"], adresse: "43 boulevard de l'estuaire", ville: "44200 Nantes", pays: "FRANCE" },
+    { noms: ["marie-cécile mocellin", "corentin lemonnier"], adresse: "13 rue glacière", ville: "75013 Paris", pays: "FRANCE" },
+    { noms: ["anne-gaelle renoullin", "antoine ballouhey"], adresse: "", ville: "", pays: "FRANCE" },
+    { noms: ["peter geijerman", "olga geijerman"], adresse: "Grev Turegatan 10C", ville: "114 46 Stockholm", pays: "SUEDE" },
+    { noms: ["sandrine baudry"], adresse: "8 rue Mollkirch", ville: "67200 Strasbourg", pays: "FRANCE" },
+    { noms: ["dept. informatique et",'recherche opérationelle'], adresse: "pavillon andré-aisenstadt", ville: "Montréal (Qc), H3C 3J7", pays: "CANADA" },
 ]
 
 
 function adresseadrtoite(adresse) {
     var adresse, posx, posy
 
-    fSize = 21
+    fSize = 22
     textFont(font)
     textSize(fSize)
     posx = actualheight * 0.55
@@ -77,7 +104,7 @@ function codeagauche() {
     posx = 0
     posy = 3 * fSize
     allcode = ''
-    fSize = 11
+    fSize = 13
     for (var i = 0; i < sourcecode.length; i++) {
         var token = sourcecode[i]
         if (token.toString().startsWith("function")) { allcode += "$" }
@@ -98,7 +125,7 @@ function codeagauche() {
             posy += fSize + 1
         }
         if (c != "$") { text(c, posx, posy) }
-        else (text(""), posx, posy)
+        else {text("", posx, posy)}
         posx += tw
     }
     posx = 0
