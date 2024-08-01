@@ -35,10 +35,10 @@ function setup() {
 }
 
 function setmargins(xorigin,yorigin){
-    rightmargin = xorigin + 0.93 * wpostcard
-    leftmargin = xorigin + 0.03 * wpostcard
-    topmargin = yorigin+ 0.02 * hpostcard
-    bottommargin = yorigin + 0.98 * hpostcard
+    rightmargin = xorigin + 0.85 * wpostcard
+    leftmargin = xorigin + 0.1 * wpostcard
+    topmargin = yorigin+ 0.1 * hpostcard
+    bottommargin = yorigin + 0.9 * hpostcard
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
 }
