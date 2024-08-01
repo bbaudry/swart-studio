@@ -18,19 +18,19 @@ function draw() {
     background(0, 0, 0)
     strokeWeight(1.4)
     cartepostale(globalmargin, globalmargin)
-/*     cartepostale(globalmargin + wpostcard, globalmargin)
+    cartepostale(globalmargin + wpostcard, globalmargin)
     cartepostale(globalmargin, globalmargin + hpostcard)
     cartepostale(globalmargin + wpostcard, globalmargin + hpostcard)
-*/
-//    codeetadresse(globalmargin, globalmargin, destinataires[0])
-/*     codeetadresse(globalmargin + wpostcard, globalmargin, destinataires[1])
+
+    codeetadresse(globalmargin, globalmargin, destinataires[0])
+    codeetadresse(globalmargin + wpostcard, globalmargin, destinataires[1])
     codeetadresse(globalmargin, globalmargin + hpostcard, destinataires[2])
     codeetadresse(globalmargin + wpostcard, globalmargin + hpostcard, destinataires[3])
- */    noLoop()
+    noLoop()
 }
 
 function codeetadresse(x, y, adresse) {
-    stroke(0, 0, 0)
+    stroke(0, 0, 100)
     setmargins(x, y)
     rect(x, y, wpostcard, hpostcard)
     codeagauche()

@@ -16,9 +16,10 @@ function cartepostale(x, y) {
 var lesBlocs = []
 function pei() {
     var x, y, cx, cy, count, density
+    lesBlocs = []
     cx = leftmargin + actualwidth * 0.5
     cy = topmargin + actualheight * 0.5
-    density=floor(random(3,9))
+    density=floor(random(7,11))
     for (var a = 180; a < 360; a += density) {
         x = cx + cos(radians(a + random(-a / 90, a / 90))) * actualwidth * 0.5
         count = 0
