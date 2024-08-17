@@ -21,13 +21,15 @@ function draw() {
     strokeWeight(1.4)
     noFill()
     var midh = (h-(2*hpostcard))/2
-    var midw = (w-(2*wpostcard))/2
-/*     stroke(0,50,50)
+    var midw = (w-(3*wpostcard))/3
+     stroke(0,50,50)
     rect(midw, midh, wpostcard, hpostcard)
     rect(midw + wpostcard, midh, wpostcard, hpostcard)
+    rect(midw + 2*wpostcard, midh, wpostcard, hpostcard)
     rect(midw, midh + hpostcard, wpostcard, hpostcard)
     rect(midw + wpostcard, midh + hpostcard, wpostcard, hpostcard)
- */    
+    rect(midw + 2*wpostcard, midh + hpostcard, wpostcard, hpostcard)
+     
     stroke(0,0,0);
      cartepostale(midw, midh)
     cartepostale(midw + wpostcard, midh)

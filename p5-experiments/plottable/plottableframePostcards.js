@@ -6,14 +6,15 @@
 //h=96*210/25.4=793.7
 //h=96*297/25.4=1122.5
 //postcard 120x192 (192 is 1.6*120, a.k.a golden ratio)
-//wpost=120*96/25.4 = 454
-//hpost=192*96/25.4 = 726
+//103x150
+//wpost=120*96/25.4 = 454 ou 390
+//hpost=192*96/25.4 = 726 ou 567
 //letter, used for testing
 //w=96*8.5=816
 //h=96*11=1056
 
 var echelle = 1
-//overall frame on a letter size. (0,0) on the bottom left of a letter page, portrait position
+//overall frame on a A3 size. (0,0) on the bottom left of a letter page, portrait position
 var w = 1122 * echelle
 var h = 1587 * echelle
 //postcard dimensions
