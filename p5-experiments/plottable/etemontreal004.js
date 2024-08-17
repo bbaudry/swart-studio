@@ -13,7 +13,7 @@ var lesBlocs = []
 
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('etemontreal003-core.js');
+    sourcecode = loadStrings('etemontreal004-core.js');
 }
 
 function draw() {
@@ -31,10 +31,12 @@ function draw() {
     rect(midw + 2*wpostcard, midh + hpostcard, wpostcard, hpostcard)
      
     stroke(0,0,0);
-     cartepostale(midw, midh)
+    cartepostale(midw, midh)
     cartepostale(midw + wpostcard, midh)
+    cartepostale(midw + wpostcard*2, midh)
     cartepostale(midw, midh + hpostcard)
     cartepostale(midw + wpostcard, midh + hpostcard)
+    cartepostale(midw + wpostcard*2, midh + hpostcard)
      
     /*codeetadresse(midw, midh, destinataires[0])
     codeetadresse(midw + wpostcard, midh, destinataires[1])
