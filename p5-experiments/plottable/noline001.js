@@ -24,26 +24,39 @@ function draw() {
 function alice(){
     var cx=leftmargin + actualwidth*0.5
     var cy=topmargin + actualheight*0.5
-    ellipse(cx,cy,72,72)
-    //ellipse(cx,cy,actualwidth,actualwidth)
-    var a1, x1, y1, a2, x2, y2, a3, x3, y3, a4, x4, y4, off, r1, r2
-    r1=actualwidth*0.5
+    var a1, a2, init, a4, off, r2, n, step
+    n=random([2,3,5])
     off=17
-    a1=random(-off,off)
+    step=360/n
+    init=random(-off,off)
+    a1=init
+    for(var i = 1;i<n;i++){
+//        stroke(i*step,100,100)
+        a2=i*step+random(-off,off)
+        stroke(160,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,r2)
+        stroke(340,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,r2)
+        a1=a2
+    }
+    r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,init,r2)
+
+    /*     a1=random(-off,off)
     a2=90+random(-off,off)
     a3=180+random(-off,off)
     a4=270+random(-off,off)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,72,r2)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a2,a3,72,r2)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a3,a4,72,r2)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a4,a1,72,r2)
-}
+    r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,r2)
+    r2=actualwidth*random(0.81,0.97); section(cx,cy,a2,a3,r2)
+    r2=actualwidth*random(0.81,0.97); section(cx,cy,a3,a4,r2)
+    r2=actualwidth*random(0.81,0.97); section(cx,cy,a4,a1,r2)
+ */}
 
-function section(cx,cy,a1,a2,r1,r2){
-    arc(cx,cy,r2,r2,radians(a1),radians(a2))
-    arc(cx,cy,r2-42,r2,radians(a1),radians(a2))
-    arc(cx,cy,r2-99,r2,radians(a1),radians(a2))
-    arc(cx,cy,r1,r1,radians(a1),radians(a2))
+function section(cx,cy,a1,a2,r){
+    var off = floor(random(7,13))
+    var r1,r2
+    r1=r
+    for(var i=0;i<33;i++){
+        r1-=off+random(i)
+        arc(cx,cy,r1,r-(i*off),radians(a1),radians(a2))
+    }
 }
 
 function showcredits(posx, posy) {
