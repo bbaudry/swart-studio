@@ -37,7 +37,8 @@ function alice(){
         stroke(340,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,r2)
         a1=a2
     }
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,init,r2)
+    stroke(160,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,init,r2)
+    stroke(340,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,init,r2)
 
     /*     a1=random(-off,off)
     a2=90+random(-off,off)
