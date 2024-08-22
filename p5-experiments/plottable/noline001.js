@@ -25,14 +25,18 @@ function alice(){
     var cx=leftmargin + actualwidth*0.5
     var cy=topmargin + actualheight*0.5
     ellipse(cx,cy,72,72)
-    ellipse(cx,cy,actualwidth,actualwidth)
-    var a1, x1, y1, a2, x2, y2, a3, x3, y3, a4, x4, y4, off, r
-    r=actualwidth*0.5
-    off=5
-    a1=random(-off,off);x1=cx+r*cos(radians(a1));y1=cy+r*sin(radians(a1));line(cx,cy,x1,y1);ellipse(x1,y1,7,7)
-    a2=90+random(-off,off);x2=cx+r*cos(radians(a2));y2=cy+r*sin(radians(a2));line(cx,cy,x2,y2);ellipse(x2,y2,7,7)
-    a3=180+random(-off,off);x3=cx+r*cos(radians(a3));y3=cy+r*sin(radians(a3));line(cx,cy,x3,y3);ellipse(x3,y3,7,7)
-    a4=270+random(-off,off);x4=cx+r*cos(radians(a4));y4=cy+r*sin(radians(a4));line(cx,cy,x4,y4);ellipse(x4,y4,7,7)
+    //ellipse(cx,cy,actualwidth,actualwidth)
+    var a1, x1, y1, a2, x2, y2, a3, x3, y3, a4, x4, y4, off, r1, r2
+    r1=actualwidth*0.5
+    off=17
+    a1=random(-off,off);x1=cx+r1*cos(radians(a1));y1=cy+r1*sin(radians(a1));line(cx,cy,x1,y1);ellipse(x1,y1,7,7);
+    a2=90+random(-off,off);x2=cx+r1*cos(radians(a2));y2=cy+r1*sin(radians(a2));line(cx,cy,x2,y2);ellipse(x2,y2,7,7)
+    a3=180+random(-off,off);x3=cx+r1*cos(radians(a3));y3=cy+r1*sin(radians(a3));line(cx,cy,x3,y3);ellipse(x3,y3,7,7)
+    a4=270+random(-off,off);x4=cx+r1*cos(radians(a4));y4=cy+r1*sin(radians(a4));line(cx,cy,x4,y4);ellipse(x4,y4,7,7)
+    r2=actualwidth*random(0.81,0.97); arc(cx,cy,r2,r2,radians(a1),radians(a2))
+    r2=actualwidth*random(0.81,0.97); arc(cx,cy,r2,r2,radians(a2),radians(a3))
+    r2=actualwidth*random(0.81,0.97); arc(cx,cy,r2,r2,radians(a3),radians(a4))
+    r2=actualwidth*random(0.81,0.97); arc(cx,cy,r2,r2,radians(a4),radians(a1))
 }
 
 function showcredits(posx, posy) {
