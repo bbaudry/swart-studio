@@ -18,8 +18,8 @@ var echelle = 1
 var w = 1122 * echelle
 var h = 1587 * echelle
 //postcard dimensions
-var wpostcard = 370 * echelle
-var hpostcard = 592 * echelle
+var wpostcard = 360 * echelle
+var hpostcard = 576 * echelle
 
 var rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
 var globalmargin=22

@@ -22,14 +22,14 @@ function draw() {
     noFill()
     var midh = (h-(2*hpostcard))/2
     var midw = (w-(3*wpostcard))/3
-     stroke(0,50,50)
-    rect(midw, midh, wpostcard, hpostcard)
+     stroke(0,100,100)
+/*    rect(midw, midh, wpostcard, hpostcard)
     rect(midw + wpostcard, midh, wpostcard, hpostcard)
     rect(midw + 2*wpostcard, midh, wpostcard, hpostcard)
     rect(midw, midh + hpostcard, wpostcard, hpostcard)
     rect(midw + wpostcard, midh + hpostcard, wpostcard, hpostcard)
     rect(midw + 2*wpostcard, midh + hpostcard, wpostcard, hpostcard)
-     
+      
     stroke(0,0,0);
     cartepostale(midw, midh)
     cartepostale(midw + wpostcard, midh)
@@ -37,12 +37,14 @@ function draw() {
     cartepostale(midw, midh + hpostcard)
     cartepostale(midw + wpostcard, midh + hpostcard)
     cartepostale(midw + wpostcard*2, midh + hpostcard)
-     
-    /*codeetadresse(midw, midh, destinataires[0])
+*/    
+    codeetadresse(midw, midh, destinataires[0])
     codeetadresse(midw + wpostcard, midh, destinataires[1])
-     codeetadresse(midw, midh + hpostcard, destinataires[2])
+    codeetadresse(midw + wpostcard*2, midh, destinataires[1])
+    codeetadresse(midw, midh + hpostcard, destinataires[2])
     codeetadresse(midw + wpostcard, midh + hpostcard, destinataires[3])
-     */noLoop()
+    codeetadresse(midw + wpostcard*2, midh + hpostcard, destinataires[3])
+    noLoop()
 }
 
 function colorie(x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -77,7 +79,7 @@ function signature() {
 function codeetadresse(x, y, adresse) {
     setmargins(x, y)
     codeagauche()
-    adresseadrtoite(adresse)
+    //adresseadrtoite(adresse)
 
 }
 
@@ -121,9 +123,9 @@ function adresseadrtoite(adresse) {
 function codeagauche() {
     var allcode, c, tw, posx, posy
     posx = 0
-    posy = 3 * fSize
+    posy = 0//3 * fSize
     allcode = ''
-    fSize = 13
+    fSize = 11
     for (var i = 0; i < sourcecode.length; i++) {
         var token = sourcecode[i]
         if (token.toString().startsWith("function")) { allcode += "$" }
@@ -133,7 +135,7 @@ function codeagauche() {
     textFont(font)
     textSize(fSize)
     push()
-    translate(leftmargin, bottommargin);
+    translate(leftmargin, bottommargin-22);
     rotate(radians(270))
     for (let i = 0; i < allcode.length; i++) {
         c = allcode.charAt(i)

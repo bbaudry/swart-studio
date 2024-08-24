@@ -31,30 +31,18 @@ function alice(){
     init=random(-off,off)
     a1=init
     for(var i = 1;i<n;i++){
-//        stroke(i*step,100,100)
         a2=i*step+random(-off,off)
-        stroke(160,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,r2)
-        stroke(340,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,r2)
+        r2=actualwidth*random(0.81,0.97); section(cx,cy,a1+2,a2-2,r2)
         a1=a2
     }
-    stroke(160,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,init,r2)
-    stroke(340,100,100);r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,init,r2)
-
-    /*     a1=random(-off,off)
-    a2=90+random(-off,off)
-    a3=180+random(-off,off)
-    a4=270+random(-off,off)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a1,a2,r2)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a2,a3,r2)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a3,a4,r2)
-    r2=actualwidth*random(0.81,0.97); section(cx,cy,a4,a1,r2)
- */}
+    r2=actualwidth*random(0.81,0.97); section(cx,cy,a1+2,init-2,r2)
+}
 
 function section(cx,cy,a1,a2,r){
-    var off = floor(random(7,13))
-    var r1,r2
+    var off = floor(random(13,17))
+    var r1
     r1=r
-    for(var i=0;i<33;i++){
+    for(var i=0;i<31;i++){
         r1-=off+random(i)
         arc(cx,cy,r1,r-(i*off),radians(a1),radians(a2))
     }
