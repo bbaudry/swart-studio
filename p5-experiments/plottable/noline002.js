@@ -15,12 +15,20 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
+    translate(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5)
+    stroke(0,0,0);ellipse(0,0,11,11)
+    alice()
+    translate(100,0)
+    stroke(0,0,0);ellipse(0,0,11,11)
+    alice()
+    translate(-200,0)
+    stroke(0,0,0);ellipse(0,0,11,11)
     alice()
     noLoop()
 }
 
 function alice(){
-    translate(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5)
+    push()
     var x,y,r1,r2
     r1=20
     doublecircle(0,0,r1,r1)
@@ -44,23 +52,7 @@ function alice(){
         y=r2*sin(radians(i*60))
         doublecircle(x,y,r1,r1)
     }
-    r2+=15
-    rotate(radians(15))
-    for(var i=0;i<12;i++){
-        stroke(i*20,100,100)
-        x=r2*cos(radians(i*30))
-        y=r2*sin(radians(i*30))
-//        ellipse(x,y,r1,r1)
-    }
-    r2+=1
-    rotate(radians(15))
-    for(var i=0;i<12;i++){
-        stroke(i*20,100,100)
-        x=r2*cos(radians(i*30))
-        y=r2*sin(radians(i*30))
-//        ellipse(x,y,r1,r1)
-    }
-
+    pop()
 }
 
 function doublecircle(x,y,r,r){
