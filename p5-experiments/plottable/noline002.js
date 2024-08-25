@@ -17,26 +17,49 @@ function draw() {
     background(0, 0, 100)
     var cx=leftmargin+actualwidth*0.5
     var cy=topmargin+actualheight*0.5
+    for(var i=0;i<24;i++){
+        x=cx+400*cos(radians(i*15))
+        y=cy+400*sin(radians(i*15))
+        line(cx,cy,x,y)
+    }
     push()
     translate(cx,cy)
     alice()
     pop()
     for(var i=0;i<6;i++){
         push()
-        x=cx+88*cos(radians(i*60)+30)
-        y=cy+88*sin(radians(i*60)+30)
+        x=cx+88*cos(radians(i*60+30))
+        y=cy+88*sin(radians(i*60+30))
         translate(x,y)
         alice()
         pop()
     }
-/* 
-    push()
-    translate(leftmargin+actualwidth*0.5-100,topmargin+actualheight*0.5)
-    stroke(0,0,0);ellipse(0,0,11,11)
-    alice()
-    pop()
+    for(var i=0;i<6;i++){
+        push()
+        x=cx+152*cos(radians(i*60))
+        y=cy+152*sin(radians(i*60))
+        translate(x,y)
+        alice()
+        pop()
+    }
+    for(var i=0;i<6;i++){
+        push()
+        x=cx+178*cos(radians(i*60+30))
+        y=cy+178*sin(radians(i*60+30))
+        translate(x,y)
+        alice()
+        pop()
+    }
+    for(var i=0;i<6;i++){
+        push()
+        x=cx+250*cos(radians(i*60+15))
+        y=cy+250*sin(radians(i*60+15))
+        translate(x,y)
+        alice()
+        pop()
+    }
     noLoop()
- */}
+ }
 
 function alice(){
     push()
@@ -66,7 +89,9 @@ function alice(){
     pop()
 }
 
-function doublecircle(x,y,r,r){
+function doublecircle(x,y,r1,r1){
+//    var r=random(r1)
+    var r=r1
     strokeWeight(3)
     stroke(0,50,80)
     ellipse(x,y,r,r)
