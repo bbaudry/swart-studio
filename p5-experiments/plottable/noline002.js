@@ -15,17 +15,28 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    translate(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5)
+    var cx=leftmargin+actualwidth*0.5
+    var cy=topmargin+actualheight*0.5
+    push()
+    translate(cx,cy)
+    alice()
+    pop()
+    for(var i=0;i<6;i++){
+        push()
+        x=cx+88*cos(radians(i*60)+30)
+        y=cy+88*sin(radians(i*60)+30)
+        translate(x,y)
+        alice()
+        pop()
+    }
+/* 
+    push()
+    translate(leftmargin+actualwidth*0.5-100,topmargin+actualheight*0.5)
     stroke(0,0,0);ellipse(0,0,11,11)
     alice()
-    translate(100,0)
-    stroke(0,0,0);ellipse(0,0,11,11)
-    alice()
-    translate(-200,0)
-    stroke(0,0,0);ellipse(0,0,11,11)
-    alice()
+    pop()
     noLoop()
-}
+ */}
 
 function alice(){
     push()
