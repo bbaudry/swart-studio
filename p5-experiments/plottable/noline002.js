@@ -20,7 +20,7 @@ function draw() {
     for(var i=0;i<24;i++){
         x=cx+400*cos(radians(i*15))
         y=cy+400*sin(radians(i*15))
-        line(cx,cy,x,y)
+//        line(cx,cy,x,y)
     }
     push()
     translate(cx,cy)
@@ -89,11 +89,14 @@ function alice(){
     pop()
 }
 
+var xoff=0.0
+var xinc=0.1
 function doublecircle(x,y,r1,r1){
 //    var r=random(r1)
-    var r=r1
+//    var r=r1
+var r = noise(xoff)*r1;xoff+=xinc
     strokeWeight(3)
-    stroke(0,50,80)
+    stroke(50,50,80)
     ellipse(x,y,r,r)
     strokeWeight(0.5)
     stroke(0,0,0)
