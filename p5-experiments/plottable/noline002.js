@@ -58,6 +58,9 @@ function draw() {
         alice()
         pop()
     }
+    ellipse(cx,cy,500,500)
+    ellipse(cx,cy,570,570)
+    ellipse(cx,cy,640,640)
     noLoop()
  }
 
