@@ -72,15 +72,12 @@ function draw() {
  function france(x,y){
     var x1,y1
     beginShape()
-//    vertex(x,y)
     for(var i = 0; i<6; i++){
-        stroke(i*40,100,100)
-        x1=x+100*cos(i*60)
-        y1=y+100*sin(i*60)
-        ellipse(x1,y1,7,7)
+        x1=x+100*cos(radians(i*60))
+        y1=y+100*sin(radians(i*60))
         vertex(x1,y1)
     }
-    endShape()
+    endShape(CLOSE)
  }
 
 function alice(){
