@@ -17,10 +17,16 @@ function draw() {
     background(0, 0, 100)
     var cx=leftmargin+actualwidth*0.5
     var cy=topmargin+actualheight*0.5
+//    anniv(cx,cy)
+    france(cx,cy)
+    noLoop()
+ }
+
+ function anniv(cx,cy){
     for(var i=0;i<24;i++){
         x=cx+400*cos(radians(i*15))
         y=cy+400*sin(radians(i*15))
-//        line(cx,cy,x,y)
+        line(cx,cy,x,y)
     }
     push()
     translate(cx,cy)
@@ -61,7 +67,20 @@ function draw() {
     ellipse(cx,cy,500,500)
     ellipse(cx,cy,570,570)
     ellipse(cx,cy,640,640)
-    noLoop()
+ }
+
+ function france(x,y){
+    var x1,y1
+    beginShape()
+//    vertex(x,y)
+    for(var i = 0; i<6; i++){
+        stroke(i*40,100,100)
+        x1=x+100*cos(i*60)
+        y1=y+100*sin(i*60)
+        ellipse(x1,y1,7,7)
+        vertex(x1,y1)
+    }
+    endShape()
  }
 
 function alice(){
