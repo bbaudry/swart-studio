@@ -13,21 +13,27 @@ function preload() {
     sourcecode = loadStrings('noline001.js');
 }
 
-var rayon = 100
+var rayon = Math.floor(actualwidth*0.1)
 function draw() {
     background(0, 0, 100)
     var cx=leftmargin+actualwidth*0.5
     var cy=topmargin+actualheight*0.5
 //    anniv(cx,cy)
-    translate(cx,cy)
-    france(cx,cy)
+translate(leftmargin+rayon,rayon)
+france(cx,cy)
+push()
+for(var i=0;i<4;i++){
     translate(rayon*2,0)
     france(cx,cy)
-    translate(-rayon,rayon*2)
+}
+pop()
+
+translate(0,rayon*2)
+france(cx,cy)
+for(var i=0;i<4;i++){
+    translate(rayon*2,0)
     france(cx,cy)
-    rotate(radians(90))
-    rayon-=14
-    france(cx,cy)
+}
     noLoop()
  }
 
@@ -80,6 +86,7 @@ function draw() {
 
  function france(){
     var x1,y1
+    ellipse(0,0,rayon*2,rayon*2)
     beginShape()
     for(var i = 0; i<6; i++){
         x1=rayon*cos(radians(i*60))
