@@ -143,7 +143,7 @@ function alice() {
     var x, y, r1, r2
     r1 = 20
     doublecircle(0, 0, r1, r1)
-    r2 = 20
+    r2 = 30
     for (var i = 0; i < 6; i++) {
         x = r2 * cos(radians(i * 60))
         y = r2 * sin(radians(i * 60))
