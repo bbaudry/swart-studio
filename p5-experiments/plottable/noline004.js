@@ -14,17 +14,19 @@ function preload() {
 
 function draw() {
     background(0, 0, 100)
-    anniversaire()
+    translate(width*0.5,height*0.5)
+    rad = actualwidth*0.5
+    anniversaire(222,rad)
+    rad = actualwidth*0.2
+    stroke(50,100,100);anniversaire(22,rad)
     noLoop()
 }
 
-function anniversaire(){
-    var x1, y1, x2, y2, x3, y3, x4, y4, rad, step, inita
-    translate(width*0.5,height*0.5)
-    rad = actualwidth*0.5
+function anniversaire(iter,rad){
+    var x1, y1, x2, y2, x3, y3, x4, y4, step, inita
     step = Math.floor(random(1,3))
     inita = random(70,110)
-    for(var i=0;i<222*step;i+=step){
+    for(var i=0;i<iter*step;i+=step){
     x1 = (rad-i)*cos(radians(inita+i))
     y1 = (rad-i)*sin(radians(inita+i))
     x2 = (rad-i)*cos(radians(inita+90+i))
