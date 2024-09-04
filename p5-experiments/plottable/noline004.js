@@ -19,18 +19,22 @@ function draw() {
 }
 
 function anniversaire(){
-    var x1, y1, x2, y2, x3, y3, x4, y4, rad
+    var x1, y1, x2, y2, x3, y3, x4, y4, rad, step, inita
     translate(width*0.5,height*0.5)
     rad = actualwidth*0.5
-    x1 = rad*cos(radians(90))
-    y1 = rad*sin(radians(90))
-    x2 = rad*cos(radians(180))
-    y2 = rad*sin(radians(180))
-    x3 = rad*cos(radians(270))
-    y3 = rad*sin(radians(270))
-    x4 = rad*cos(radians(0))
-    y4 = rad*sin(radians(0))
+    step = Math.floor(random(1,3))
+    inita = random(70,110)
+    for(var i=0;i<222*step;i+=step){
+    x1 = (rad-i)*cos(radians(inita+i))
+    y1 = (rad-i)*sin(radians(inita+i))
+    x2 = (rad-i)*cos(radians(inita+90+i))
+    y2 = (rad-i)*sin(radians(inita+90+i))
+    x3 = (rad-i)*cos(radians(inita+180+i))
+    y3 = (rad-i)*sin(radians(inita+180+i))
+    x4 = (rad-i)*cos(radians(inita+270+i))
+    y4 = (rad-i)*sin(radians(inita+270+i))
     nucleus(x1, y1, x2, y2, x3, y3, x4, y4)
+}
 }
 
 function nucleus(x1, y1, x2, y2, x3, y3, x4, y4) {
