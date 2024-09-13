@@ -31,8 +31,8 @@ function anniversaire(iter, rad) {
         var mov = -11//random(-11,11)
         x1 = (rad -i) * cos(radians(inita + mov))
         y1 = (rad -i) * sin(radians(inita + mov))
-        x2 = (rad ) * cos(radians(inita + 90 + mov))
-        y2 = (rad ) * sin(radians(inita + 90 + mov))
+        x2 = getrad(rad,i) * cos(radians(inita + 90 + mov))
+        y2 = getrad(rad,i) * sin(radians(inita + 90 + mov))
         x3 = (rad - i) * cos(radians(inita + 180 + mov))
         y3 = (rad - i) * sin(radians(inita + 180 + mov))
         x4 = (rad ) * cos(radians(inita + 270 + mov))
@@ -45,6 +45,11 @@ function anniversaire(iter, rad) {
         ellipse(x3,y3,5,5)
         ellipse(x4,y4,5,5)
  */    }
+}
+
+function getrad(r,i){
+    if (random()<0.5){return r-i}
+    else{return r}
 }
 
 function nucleus(x1, y1, x2, y2, x3, y3, x4, y4) {
