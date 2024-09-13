@@ -13,12 +13,12 @@ function preload() {
 }
 
 function draw() {
-    background(200, 100, 100)
+    background(230, 80, 50)
     translate(width * 0.5, height * 0.5)
     rad = actualwidth * 0.5
     anniversaire(99, rad)
     anniversaire(99, rad)
-    showcredits(-width*0.4,rad*1.1)
+    showcredits(-width*0.4,rad*1.2)
     noLoop()
 }
 
@@ -30,8 +30,9 @@ function anniversaire(iter, rad) {
         var mov = -11//random(-11,11)
         x1 = (rad -i) * cos(radians(inita + mov))
         y1 = (rad -i) * sin(radians(inita + mov))
-        x2 = getrad(rad,i) * cos(radians(inita + 90 + mov))
-        y2 = getrad(rad,i) * sin(radians(inita + 90 + mov))
+        var ro=getrad(rad,i)
+        x2 = ro * cos(radians(inita + 90 + mov))
+        y2 = ro * sin(radians(inita + 90 + mov))
         x3 = (rad - i) * cos(radians(inita + 180 + mov))
         y3 = (rad - i) * sin(radians(inita + 180 + mov))
         x4 = (rad ) * cos(radians(inita + 270 + mov))
