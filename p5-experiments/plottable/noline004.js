@@ -18,8 +18,7 @@ function draw() {
     rad = actualwidth * 0.5
     anniversaire(99, rad)
     anniversaire(99, rad)
-    rad = actualwidth * 0.2
-    //stroke(50, 100, 100); anniversaire(22, rad)
+    showcredits(-width*0.4,rad*1.1)
     noLoop()
 }
 
@@ -40,11 +39,7 @@ function anniversaire(iter, rad) {
         stroke(50,0,100)
         strokeWeight(1)
         nucleus(x1, y1, x2, y2, x3, y3, x4, y4)
-/*         ellipse(x1,y1,5,5)
-        ellipse(x2,y2,5,5)
-        ellipse(x3,y3,5,5)
-        ellipse(x4,y4,5,5)
- */    }
+}
 }
 
 function getrad(r,i){
@@ -96,6 +91,6 @@ function nucleus(x1, y1, x2, y2, x3, y3, x4, y4) {
 
 
 function showcredits(posx, posy) {
-    var c = "al.my.re :: p5.js :: CamBam Stick :: noise :: vpype [gaspe 008). June 2024]"
+    var c = "al.my.re :: p5.js [noline 004). September 2024]"
     text(c, posx, posy)
 }
