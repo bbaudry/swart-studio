@@ -13,10 +13,11 @@ function preload() {
 }
 
 function draw() {
-    background(0, 0, 100)
+    background(200, 100, 100)
     translate(width * 0.5, height * 0.5)
     rad = actualwidth * 0.5
-    anniversaire(42, rad)
+    anniversaire(99, rad)
+    anniversaire(99, rad)
     rad = actualwidth * 0.2
     //stroke(50, 100, 100); anniversaire(22, rad)
     noLoop()
@@ -24,22 +25,19 @@ function draw() {
 
 function anniversaire(iter, rad) {
     var x1, y1, x2, y2, x3, y3, x4, y4, step, inita
-    step = Math.floor(random(5, 7))
+    step = Math.floor(random(2, 7))
     inita = random(81, 99)
     for (var i = 0; i < iter * step; i += step) {
-        var mov = random(-11,11)
-        x1 = (rad - i) * cos(radians(inita + mov))
-        y1 = (rad - i) * sin(radians(inita + mov))
-        x2 = (rad - i) * cos(radians(inita + 90 + mov))
-        y2 = (rad - i) * sin(radians(inita + 90 + mov))
+        var mov = -11//random(-11,11)
+        x1 = (rad -i) * cos(radians(inita + mov))
+        y1 = (rad -i) * sin(radians(inita + mov))
+        x2 = (rad ) * cos(radians(inita + 90 + mov))
+        y2 = (rad ) * sin(radians(inita + 90 + mov))
         x3 = (rad - i) * cos(radians(inita + 180 + mov))
         y3 = (rad - i) * sin(radians(inita + 180 + mov))
-        x4 = (rad - i) * cos(radians(inita + 270 + mov))
-        y4 = (rad - i) * sin(radians(inita + 270 + mov))
-        stroke(50,100,100)
-        strokeWeight(3)
-        nucleus(x1, y1, x2, y2, x3, y3, x4, y4)
-        stroke(50,0,0)
+        x4 = (rad ) * cos(radians(inita + 270 + mov))
+        y4 = (rad ) * sin(radians(inita + 270 + mov))
+        stroke(50,0,100)
         strokeWeight(1)
         nucleus(x1, y1, x2, y2, x3, y3, x4, y4)
 /*         ellipse(x1,y1,5,5)
