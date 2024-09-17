@@ -58,15 +58,16 @@ function draw() {
 
 
 
+var r=0.1
 function ikeda(index) {
     var t = testresults[index]
     noStroke()
     if(t.verdict==1){fill(0,0,100)}
     else{fill(0,0,0)}
     rect(-testw,-testh*0.5,testw,testh)
-    if(t.test==1){fill(0,0,100)}
-    else{fill(0,0,0)}
-    rect(0,-testh*2,testw,testh*4)
+    if(t.test==1){fill(0,0,100);r+=0.01}
+    else{fill(0,0,0);r=0.1}
+    rect(0,-testh*r,testw,testh*2*r)
 }
 
 class TestExec {
