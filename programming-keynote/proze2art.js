@@ -1,9 +1,9 @@
 var w, h
 var cnv
-var x, y
 var testresults= [];
-var iter;
+var index;
 var table;
+var testw,testh;
 
 function setup() {
     w = windowWidth
@@ -13,8 +13,9 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
     noFill();
     background(0, 0, 0);
-    iter=0;
-    frameRate(10)
+    index=0;
+    testw=w*0.5
+    testh=h*0.1
 }
 
 function centerCanvas() {
@@ -45,13 +46,13 @@ function preload() {
 
 function draw() {
     background(0, 0, 0)
-    console.log(testresults.length)
-    if(iter<testresults.length){
-        ikeda(iter)
-        iter++
+    translate(w*0.5,h*0.5)
+    if(index<testresults.length){
+        ikeda(index)
+        index++
     }
     else{
-        noLoop()
+        index=0
     }
 }
 
@@ -60,10 +61,12 @@ function draw() {
 function ikeda(index) {
     var t = testresults[index]
     noStroke()
-    console.log(t.verdict)
     if(t.verdict==1){fill(0,0,100)}
     else{fill(0,0,0)}
-    rect(0,0,300,300)
+    rect(-testw,-testh*0.5,testw,testh)
+    if(t.test==1){fill(0,0,100)}
+    else{fill(0,0,0)}
+    rect(0,-testh*2,testw,testh*4)
 }
 
 class TestExec {
