@@ -56,8 +56,6 @@ function draw() {
     }
 }
 
-
-
 var r=0.1
 function ikeda(index) {
     var t = testresults[index]
