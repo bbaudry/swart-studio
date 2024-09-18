@@ -16,10 +16,10 @@ function setup() {
   index = 0;
   indexhi = 0;
   indexlo = 0;
-  nbrows = 20;
+  nbrows = 100;
   testw = w * 0.5
   testh = h / nbrows
-  frameRate(10)
+  //frameRate(10)
 }
 
 function centerCanvas() {
@@ -30,7 +30,7 @@ function centerCanvas() {
 
 
 function preload() {
-  table = loadTable('./fakeproze.csv', 'header', loadData);
+  table = loadTable('./test-results-new.csv', 'header', loadData);
 }
 
 // Convert saved Bubble data into Bubble Objects
@@ -38,8 +38,8 @@ function loadData(table) {
   let tableRows = table.getRows();
   for (let row of tableRows) {
     // Get verdict, test
-    let x = row.getNum('passfail');
-    let y = row.getNum('testcase');
+    let x = row.getNum('result');
+    let y = row.getNum('test');
 
     // Put object in array
     testresults.push(new TestExec(x, y));
@@ -51,14 +51,14 @@ function loadData(table) {
 function draw() {
   background(0, 0, 0)
   if (index < testresults.length) {
-    //ikeda(index)
-    ikedaintense()
+    ikeda(index)
+    //ikedaintense()
     index++
   }
   else {
     index = 0
-    indexhi=0
-    indexlo=0
+    indexhi = 0
+    indexlo = 0
   }
 }
 
@@ -69,43 +69,54 @@ function ikeda(index) {
   noStroke()
   if (t.verdict == 1) { fill(0, 0, 100) }
   else { fill(0, 0, 0) }
-  rect(-testw, testh*i, testw, testh)
+  rect(-testw, -testh, testw, testh*2)
+  if(index>0){
+    if(t.test!=testresults[index-1].test){r=0.1}
+  }
   if (t.test == 1) { fill(0, 0, 100); r += 0.01 }
-  else { fill(0, 0, 0); r = 0.1 }
+  else { fill(0, 0, 0); r += 0.01 }
+  stroke(0,0,100)
   rect(0, -testh * r, testw, testh * 2 * r)
+  noStroke()
 }
 
 function ikedaintense() {
-  var t,j
-  noStroke()
-//  stroke(0,0,100)
+  var t, j
+    noStroke()
   console.log(indexhi)
-  j=0
+  j = 0
   if (indexhi < nbrows - 1) {
     indexhi++
     for (var i = 0; i < indexhi; i++) {
       t = testresults[i]
-      if (t.verdict == 1) { fill(0, 0, 100) }
-      else { fill(0, 0, 0) }
-      rect(0, testh*i, testw, testh)
-      if (t.test == 1) { fill(0, 0, 100); r += 0.01 }
-      else { fill(0, 0, 0); r = 0.1 }
-      //rect(0, -testh * r, testw, testh * 2 * r)
+      if (t.verdict == 1) {
+        fill(0, 0, 100)
+      }
+      else {
+        fill(0, 0, 0)
+      }
+      rect(0, testh * i, testw, testh)
     }
   }
-  else{
+  else {
     for (var i = indexlo; i < indexhi; i++) {
       t = testresults[i]
-      if (t.verdict == 1) { fill(0, 0, 100) }
-      else { fill(0, 0, 0) }
+      if (t.verdict == 1) { stroke(0,0,100);fill(0, 0, 100) }
+      else { stroke(0,0,0);fill(0, 0, 0) }
       rect(0, testh * j, testw, testh)
-      if (t.test == 1) { fill(0, 0, 100); r += 0.01 }
-      else { fill(0, 0, 0); r = 0.1 }
-      //rect(0, -testh * r, testw, testh * 2 * r)
       j++
     }
-    indexlo++;indexhi++;
+    indexlo++; indexhi++;
   }
+  t = testresults[indexhi]
+  if(indexhi>0){
+    if(t.test!=testresults[indexhi-1].test){r=0.1}
+  }
+  stroke(0,0,100)
+  if (t.test == 1) { fill(0, 0, 100); r += 0.01 }
+  else { fill(0, 0, 0); r += 0.01 }
+  rect(testw, h * 0.5 - testh * r, testw, testh * 2 * r)
+  noStroke()
 }
 
 
