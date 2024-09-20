@@ -6,7 +6,7 @@ function savepng() {
     save("noline003.png");
 }
 
-var fSize = 14
+var fSize = 17
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('noline004.js');
@@ -23,7 +23,7 @@ function draw() {
     anniversaire(42, rad)
     translate(rad*2, 0)
     anniversaire(84, rad)
-    showcredits(-rad*3,rad*1.2)
+    showcredits(-rad*3,rad*2)
     noLoop()
 }
 
@@ -97,8 +97,14 @@ function nucleus(x1, y1, x2, y2, x3, y3, x4, y4) {
 
 
 function showcredits(posx, posy) {
-    var c = "al.my.re [noline 004). September 2024]"
+    textSize(fSize);
+    noStroke()
+    fill(0,0,100)
+    var c = "al.my.re [noline 004). 20 September 2024"
     text(c, posx, posy)
     c = "p5.js :: random() :: juicy-gcode"
     text(c, posx, posy+fSize)
+    c = "pour alice"
+    text(c, posx, posy+2*fSize)
+
 }
