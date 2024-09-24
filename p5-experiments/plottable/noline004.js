@@ -7,13 +7,15 @@ function savepng() {
 }
 
 var fSize = 17
+var bowie
 function preload() {
-    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
+    bowie = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('noline004.js');
 }
 
 function draw() {
     background(230, 80, 50)
+    strokeWeight(2)
     rad = actualwidth * 0.25
     translate(leftmargin+rad, topmargin+rad)
     anniversaire(7, rad)
@@ -43,7 +45,6 @@ function anniversaire(iter, rad) {
         x4 = (rad ) * cos(radians(inita + 270 + mov))
         y4 = (rad ) * sin(radians(inita + 270 + mov))
         stroke(50,0,100)
-        strokeWeight(1)
         nucleus(x1, y1, x2, y2, x3, y3, x4, y4)
 }
 }
@@ -97,8 +98,9 @@ function nucleus(x1, y1, x2, y2, x3, y3, x4, y4) {
 
 
 function showcredits(posx, posy) {
+    textFont(bowie)
     textSize(fSize);
-    noStroke()
+    stroke(0,0,100)
     fill(0,0,100)
     var c = "al.my.re [noline 004). 20 September 2024"
     text(c, posx, posy)

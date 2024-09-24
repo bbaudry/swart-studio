@@ -6,7 +6,7 @@ function savepng() {
     save("etemontreal001.png");
 }
 
-var font
+var font 
 var fSize = 12
 var alea = []
 function preload() {
