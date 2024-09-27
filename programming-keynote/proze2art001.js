@@ -4,7 +4,7 @@ var testresults = [];
 var index, indexlo, indexhi;
 var table;
 var testw, testh, nbrows;
-var synth
+var osc;
 const now = Tone.now();
 function setup() {
   w = windowWidth
@@ -18,7 +18,7 @@ function setup() {
   nbrows = 100;
   testw = w * 0.5
   testh = h / nbrows
-  synth = new Tone.Synth().toDestination();
+  osc = new Tone.Oscillator().toDestination();
   //frameRate(10)
 }
 
@@ -66,9 +66,9 @@ function ikeda(index) {
   noStroke()
   if (t.verdict == 1) { 
     fill(0, 0, 100) 
-    synth.triggerAttack("C4", now);
-    // wait one second before triggering the release
-    synth.triggerRelease(now + 1);  }
+    let freq = 220 + random() * 220
+    osc = new Tone.Oscillator().toDestination();
+  }
   else { fill(0, 0, 0) }
   rect(-testw, -testh, testw, testh * 2)
   if (index > 0) {

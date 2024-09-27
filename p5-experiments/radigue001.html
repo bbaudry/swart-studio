@@ -44,14 +44,14 @@
 			for (let j = 0; j < 3; j++) {
 				for (let k = 0; k < 3; k++) {
 					kickDrum = new Tone.MembraneSynth({
-				volume: 6
-			}).toDestination();
+						volume: 6
+					}).toDestination();
 					let p = {
 						cx: offx + 2 * j * offx,
 						cy: offy + 2 * k * offy,
 						diam: 7,
 						pulse: 84 + k * 7,
-						beat : kickDrum
+						beat: kickDrum
 					}
 					hits.push(p)
 				}
@@ -92,7 +92,7 @@
 					let rx = random() * w * 0.33
 					let ry = random() * h * 0.33
 					rect(p.cx - rx / 2, p.cy - ry / 2, rx, ry)
-					let freq = 220+random()*220
+					let freq = 220 + random() * 220
 					p.beat.triggerAttackRelease(freq, '8n');
 				}
 			}
