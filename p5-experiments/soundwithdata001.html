@@ -95,9 +95,8 @@
                 osc3.start()
                 osc4.start()
                 osc1.frequency.value = 110;//map(mouseX,0,w,110,880)
-                osc2.frequency.value = 770;//map(mouseY,0,h,110,330)
+                osc2.frequency.value = 42;//map(mouseY,0,h,110,330)
                 osc3.frequency.value = 220;
-                firstFrame = frameCount
                 background(0, 0, 0);
             }
         }
@@ -127,16 +126,11 @@
             noStroke()
             if (t.verdict == 1) {
                 fill(0, 0, 100)
-                noise.start()
-                noise_play = true
-                noise_duration = frameCount + 42
-                osc1.stop();
-                osc2.stop()
-                osc3.stop()
-                osc4.stop()
+                osc2.frequency.value++
             }
             else {
                 fill(0, 0, 0)
+                osc2.frequency.value = 42
                 noise.stop()
                 noise_play = false
                 osc1.start();
