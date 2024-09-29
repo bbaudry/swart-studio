@@ -4,13 +4,10 @@ var testresults = [];
 var index, indexlo, indexhi;
 var table;
 var testw, testh, nbrows;
-var osc;
-const now = Tone.now();
 function setup() {
   w = windowWidth
   h = windowHeight
   cnv = createCanvas(w, h);
-  //centerCanvas();
   colorMode(HSB, 360, 100, 100, 250);
   noFill();
   background(0, 0, 0);
@@ -18,8 +15,6 @@ function setup() {
   nbrows = 100;
   testw = w * 0.5
   testh = h / nbrows
-  osc = new Tone.Oscillator().toDestination();
-  //frameRate(10)
 }
 
 function centerCanvas() {
@@ -66,8 +61,6 @@ function ikeda(index) {
   noStroke()
   if (t.verdict == 1) { 
     fill(0, 0, 100) 
-    let freq = 220 + random() * 220
-    osc = new Tone.Oscillator().toDestination();
   }
   else { fill(0, 0, 0) }
   rect(-testw, -testh, testw, testh * 2)
