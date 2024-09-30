@@ -29,6 +29,7 @@
         var firstFrame;
         var noise_duration;
         var noise_play;
+        var noise_start_time
         var testresults = []
         var index, indexlo, indexhi;
         var table;
@@ -84,7 +85,9 @@
             nbrows = 100;
             testw = w * 0.5
             testh = h / nbrows
-
+            noise_duration = 42
+            noise_play = false
+            
         }
 
         function mousePressed() {
@@ -94,9 +97,9 @@
                 osc2.start()
                 osc3.start()
                 osc4.start()
-                osc1.frequency.value = 220;//map(mouseX,0,w,110,880)
-                osc2.frequency.value = 220;//map(mouseY,0,h,110,330)
-                osc3.frequency.value = 220;
+                osc1.frequency.value = 110;//map(mouseX,0,w,110,880)
+                osc2.frequency.value = 110;//map(mouseY,0,h,110,330)
+                osc3.frequency.value = 84;
                 background(0, 0, 0);
             }
         }
@@ -104,10 +107,10 @@
         function draw() {
             background(0, 0, 0);
             if (!soundOn) {
-                fill(50, 100, 100); stroke(50, 100, 100);
-                textSize(42)
+                fill(0, 0, 100); stroke(50, 100, 100);
+                textSize(210)
                 textAlign("center")
-                text("click to start", w / 2, h / 2);
+                text("cli[c]k", w / 2, h / 2);
             }
             else {
                 if (index < testresults.length) {
@@ -118,6 +121,9 @@
                     index = 0
                 }
             }
+            if(noise_play && frameCount==noise_start_time+noise_duration){
+                noise.stop()
+            }
         }
         var r = 1
         function ikeda(index) {
@@ -126,23 +132,25 @@
             noStroke()
             if (t.verdict == 1) {
                 fill(0, 0, 100)
-                osc2.frequency.value++
+                osc2.frequency.value+=0.2
             }
             else {
                 fill(0, 0, 0)
-                osc2.frequency.value = 42
-                noise.stop()
-                noise_play = false
-                osc1.start();
-                osc2.start()
-                osc3.start()
-                osc4.start();
+                if(osc2.frequency.value>7){
+                    osc2.frequency.value-=0.2
+                }
             }
             rect(-testw, -testh, testw, testh * 2)
             if (index > 0) {
                 if (t.test != testresults[index - 1].test) { 
                     r = 1;
-                    osc1.frequency.value = 220 
+                    osc1.frequency.value = 110 
+                    if(random()<0.05 && !noise_play){
+                    noise.start()
+                    noise_play=true
+                    noise_start_time=frameCount
+                }
+
                 }
             }
             if (t.test == 1) {
@@ -153,7 +161,9 @@
             else {
                 fill(0, 0, 0); 
                 r += 0.01
-                osc1.frequency.value-=0.2
+                if(osc1.frequency.value>7){
+                    osc1.frequency.value-=0.2
+                }
             }
             stroke(0, 0, 100)
             rect(0, -testh * r, testw, testh * 2 * r)
