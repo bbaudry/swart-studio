@@ -94,8 +94,8 @@
                 osc2.start()
                 osc3.start()
                 osc4.start()
-                osc1.frequency.value = 110;//map(mouseX,0,w,110,880)
-                osc2.frequency.value = 42;//map(mouseY,0,h,110,330)
+                osc1.frequency.value = 220;//map(mouseX,0,w,110,880)
+                osc2.frequency.value = 220;//map(mouseY,0,h,110,330)
                 osc3.frequency.value = 220;
                 background(0, 0, 0);
             }
@@ -140,13 +140,20 @@
             }
             rect(-testw, -testh, testw, testh * 2)
             if (index > 0) {
-                if (t.test != testresults[index - 1].test) { r = 1 }
+                if (t.test != testresults[index - 1].test) { 
+                    r = 1;
+                    osc1.frequency.value = 220 
+                }
             }
             if (t.test == 1) {
-                fill(0, 0, 100); r += 0.01
+                fill(0, 0, 100); 
+                r += 0.01;
+                osc1.frequency.value+=0.2
             }
             else {
-                fill(0, 0, 0); r += 0.01
+                fill(0, 0, 0); 
+                r += 0.01
+                osc1.frequency.value-=0.2
             }
             stroke(0, 0, 100)
             rect(0, -testh * r, testw, testh * 2 * r)
