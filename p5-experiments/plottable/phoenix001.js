@@ -1,16 +1,16 @@
 function savesvg() {
-    save("noline003.svg");
+    save("phoenix001.svg");
 }
 
 function savepng() {
-    save("noline003.png");
+    save("phoenix001.png");
 }
 
 var fSize = 17
 var bowie
 function preload() {
     bowie = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('noline004.js');
+    sourcecode = loadStrings('phoenix001.js');
 }
 
 function draw() {

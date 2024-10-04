@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/ccapture.js-npmfixed@1.1.0/build/CCapture.all.min.js "></script>
+    <script src=" https://cdn.jsdelivr.net/npm/webm-writer@1.0.0/browser.min.js "></script>
+    <script src=" https://cdn.jsdelivr.net/npm/download@8.0.0/index.min.js "></script>
     <style>
         body {
             padding: 0;
@@ -47,7 +50,18 @@
     <div class="credits">
     </div>
 
-    <script src="proze2art002.js"></script>
+    <script>
+
+        var capturer = new CCapture ({
+            format: 'gif',
+            workersPath: 'output/',
+            framerate: 60,
+            verbose: true
+        })
+
+    </script>
+    
+    <script src="demo3.js"></script>
 </body>
 
 </html>
