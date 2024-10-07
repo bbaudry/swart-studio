@@ -36,6 +36,7 @@
         var testw, testh, nbrows;
 
 
+
         function preload() {
             table = loadTable('./test-results-new.csv', 'header', loadData);
         }
@@ -59,14 +60,15 @@
             canvas = createCanvas(w, h);
             background(0, 0, 0);
             noise_play = false;
+        }
 
-
+        function initSound() {
             osc1 = new Tone.Oscillator();
             osc1.toDestination();
             osc1.volume.value = -15
             osc2 = new Tone.Oscillator();
             osc2.toDestination();
-            osc2.volume.value = -15
+            osc2.volume.value = -5
             osc3 = new Tone.Oscillator();
             osc3.toDestination();
             osc3.volume.value = -15
@@ -79,7 +81,7 @@
             wave2 = new Tone.Waveform()
             noise.connect(wave2)
 
-            //Tone.Master.volume.value=-3;
+            //Tone.Master.volume.value=-1;
 
             index = 0;
             nbrows = 100;
@@ -88,11 +90,12 @@
             noise_duration = 42
             noise_play = false
 
-        }
+       }
 
         function mousePressed() {
             if (!soundOn) {
                 soundOn = true
+                initSound()
                 osc1.start();
                 osc2.start()
                 osc3.start()
@@ -100,6 +103,7 @@
                 osc1.frequency.value = 110;//map(mouseX,0,w,110,880)
                 osc2.frequency.value = 110;//map(mouseY,0,h,110,330)
                 osc3.frequency.value = 84;
+
                 background(0, 0, 0);
             }
         }
