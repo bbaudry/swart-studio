@@ -58,15 +58,15 @@
                     release: 0.01
                 }
             });
-            synth.volume=-1
+            synth.volume = -1
             synth.toDestination();
-            freq =2780
+            freq = 2780
             loop = new Tone.Loop(time => {
                 synth.triggerAttackRelease(freq, "64n", time);
             }, "64n").start(0);
             // the loops start when the Transport is started
             Tone.Transport.start()
-            
+
             Tone.Master.volume.value = -15;
         }
 
@@ -79,7 +79,7 @@
                 text("click to start", w / 2, h / 2);
             }
             else {
-                freq=map(mouseX,0,w,2500,4200)
+                freq = map(mouseX, 0, w, 2500, 4200)
             }
         }
 

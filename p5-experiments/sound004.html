@@ -39,11 +39,12 @@
             if (!soundOn) {
                 soundOn = true
                 initSound()
+                freq =1780//map(mouseX, 0, w, 110, 880)
+                loop.start()
             }
             else {
 
-                freq =1780//map(mouseX, 0, w, 110, 880)
-                synth.triggerAttackRelease(freq, "8n");
+//                synth.triggerAttackRelease(freq, "8n");
             }
         }
 
@@ -68,10 +69,11 @@
 
             //play a note every quarter-note
             loop = new Tone.Loop(time => {
-                //synth.triggerAttackRelease(freq, "8n", time);
-            }, "16n").start(0);
-            // the loops start when the Transport is started
+                synth.triggerAttackRelease(freq, "4n", time);
+            }, "1n")//.start(0);
             Tone.Transport.start()
+
+            // the loops start when the Transport is started
             // ramp up to 800 bpm over 10 seconds
             //Tone.Transport.bpm.rampTo(800, 10);
             wave2 = new Tone.Waveform()
