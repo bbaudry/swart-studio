@@ -50,22 +50,22 @@ function drawgrid(){
     var x1,y1,x2,y2,x3,y3,x4,y4
     var i1,i2,i3,i4,j1,j2,j3,j4
     var rad=17
-    j1=Math.floor(random(steps-2));console.log("i1: "+i1)
-    i1=0//Math.floor(random(steps-2))    
+    j1=Math.floor(random(steps-2))
+    i1=0 
     x1=grille[i1+j1*steps].x
     y1=grille[i1+j1*steps].y
     //fill(0,100,100);ellipse(x1,y1,rad,rad)
-    j2=Math.floor(random(j1+1,steps-1));console.log("i2: "+i2)
-    i2=0//Math.floor(random(steps-2))    
+    j2=Math.floor(random(j1+1,steps-1))
+    i2=0    
     x2=grille[i2+j2*steps].x
     y2=grille[i2+j2*steps].y
     //fill(50,100,100);ellipse(x2,y2,rad,rad)
-    j3=Math.floor(random(j1+1,steps-1));console.log(i3)
+    j3=Math.floor(random(j1+1,steps-1))
     i3=Math.floor(random(i1+1,steps-1))    
     x3=grille[i3+j3*steps].x
     y3=grille[i3+j3*steps].y
     //fill(180,100,100);ellipse(x3,y3,rad,rad)
-    j4=i1//Math.floor(random(steps-2));console.log(i4)
+    j4=j1
     i4=Math.floor(random(i2+1,steps-1))    
     x4=grille[i4+j4*steps].x
     y4=grille[i4+j4*steps].y
