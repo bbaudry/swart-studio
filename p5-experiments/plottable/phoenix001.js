@@ -26,10 +26,10 @@ function draw() {
     stroke(0,0,100)
     rect(leftmargin,topmargin,actualwidth,actualheight)
     grid()
-    drawgrid()
-    drawgrid()
-    drawgrid()
-    drawgrid()
+    drawgrid(0)
+    drawgrid(1)
+    drawgrid(2)
+    drawgrid(3)
     noLoop()
 }
 
@@ -46,17 +46,17 @@ function grid(){
     }
 }
 
-function drawgrid(){
+function drawgrid(off){
     var x1,y1,x2,y2,x3,y3,x4,y4
     var i1,i2,i3,i4,j1,j2,j3,j4
     var rad=17
     j1=Math.floor(random(steps-2))
-    i1=0 
+    i1=off 
     x1=grille[i1+j1*steps].x
     y1=grille[i1+j1*steps].y
     //fill(0,100,100);ellipse(x1,y1,rad,rad)
     j2=Math.floor(random(j1+1,steps-1))
-    i2=0    
+    i2=off    
     x2=grille[i2+j2*steps].x
     y2=grille[i2+j2*steps].y
     //fill(50,100,100);ellipse(x2,y2,rad,rad)
