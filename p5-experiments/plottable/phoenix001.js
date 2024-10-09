@@ -9,7 +9,7 @@ function savepng() {
 var fSize = 17
 var bowie
 var xoff,xinc
-var steps = 10
+var steps = 20
 var xstep = actualwidth/steps
 var ystep = actualheight/steps
 
@@ -27,6 +27,9 @@ function draw() {
     rect(leftmargin,topmargin,actualwidth,actualheight)
     grid()
     drawgrid()
+    drawgrid()
+    drawgrid()
+    drawgrid()
     noLoop()
 }
 
@@ -43,25 +46,31 @@ function grid(){
 }
 
 function drawgrid(){
-    var x,y
-    for(i=0;i<grille.length;i++){
-        x=grille[i].x
-        y=grille[i].y
-//        ellipse(x,y,5,5)
-    }
-
     var x1,y1,x2,y2,x3,y3,x4,y4
-    var i1,i2,i3,i4
+    var i1,i2,i3,i4,j1,j2,j3,j4
+    var rad=17
     i1=Math.floor(random(steps-2));console.log(i1)
-    i2=i1+Math.floor(random(steps-2))*steps
-    x1=grille[i2].x
-    y1=grille[i2].y
-    ellipse(x1,y1,5,5)
+    j1=Math.floor(random(steps-2))    
+    x1=grille[i1+j1*steps].x
+    y1=grille[i1+j1*steps].y
+    fill(0,100,100);ellipse(x1,y1,rad,rad)
     i2=Math.floor(random(i1+1,steps-1));console.log(i2)
-    i2+=Math.floor(random(steps-1))*steps
-    x2=grille[i2].x
-    y2=grille[i2].y
-    ellipse(x2,y2,5,5)
+    j2=Math.floor(random(steps-2))    
+    x2=grille[i2+j2*steps].x
+    y2=grille[i2+j2*steps].y
+    fill(90,100,100);ellipse(x2,y2,rad,rad)
+    i3=Math.floor(random(i1+1,steps-1));console.log(i3)
+    j3=Math.floor(random(j1+1,steps-1))    
+    x3=grille[i3+j3*steps].x
+    y3=grille[i3+j3*steps].y
+    fill(180,100,100);ellipse(x3,y3,rad,rad)
+    i4=Math.floor(random(steps-2));console.log(i4)
+    j4=Math.floor(random(j2+1,steps-1))    
+    x4=grille[i4+j4*steps].x
+    y4=grille[i4+j4*steps].y
+    fill(210,100,100);ellipse(x4,y4,rad,rad)
+    noFill()
+    stroke(0,0,100);quad(x1,y1,x2,y2,x3,y3,x4,y4)
 }
 
 function showcredits(posx, posy) {
