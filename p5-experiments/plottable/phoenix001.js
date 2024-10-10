@@ -31,8 +31,11 @@ function draw() {
     onesection(0)
     onesection(1)
     onesection(5)
+    onesection(0)
     onesection(3)
     onesection(6)
+    onesection(3)
+    onesection(7)
     noLoop()
 }
 
@@ -68,13 +71,13 @@ function onesection(off) {
     x2 = grille[i2 + j2 * steps].x
     y2 = grille[i2 + j2 * steps].y
     //fill(50,100,100);ellipse(x2,y2,rad,rad)
-    j3 = Math.floor(random(j1 + 1, steps - 1))
+    j3 = j2//Math.floor(random(j1 + 1, steps - 1))
     i3 = Math.floor(random(i1 + 1, steps - 1))
     x3 = grille[i3 + j3 * steps].x
     y3 = grille[i3 + j3 * steps].y
     //fill(180,100,100);ellipse(x3,y3,rad,rad)
     j4 = j1
-    i4 = Math.floor(random(i2 + 1, steps - 1))
+    i4 = i3//Math.floor(random(i2 + 1, steps - 1))
     x4 = grille[i4 + j4 * steps].x
     y4 = grille[i4 + j4 * steps].y
     //fill(210,100,100);ellipse(x4,y4,rad,rad)
@@ -84,11 +87,10 @@ function onesection(off) {
 function innerquad(x1, y1, x2, y2, x3, y3, x4, y4) {
     var h = random([0,90,180,230])
     stroke(h, 100, 100)
-    quad(x1, y1, x2, y2, x3, y3, x4, y4)
     var ix1, iy1, ix2, iy2, ix3, iy3, ix4, iy4
     var tstep=random(0.008,0.02)
     var maxt=random(0.21,0.42)
-    var t = tstep
+    var t = 0
     while (t < maxt) {
         ix1 = (1 - t) * x1 + (t * x2)
         iy1 = (1 - t) * y1 + (t * y4)
