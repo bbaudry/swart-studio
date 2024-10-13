@@ -24,9 +24,9 @@ function draw() {
     xoff = 0.0
     xinc = 0.05
     stroke(0, 0, 100)
-    rect(leftmargin, topmargin, actualwidth, actualheight)
+    //rect(leftmargin, topmargin, actualwidth, actualheight)
     initgrid()
-    showgrid()
+    //showgrid()
     for(var i=0;i<11;i++){
         cactus()
     }
@@ -37,9 +37,9 @@ var grille = []
 function initgrid() {
     var x, y
     for (i = 0; i < steps; i++) {
-        x = leftmargin + i * xstep + noise(xoff) * xstep; xoff += xinc
+        x = leftmargin + i * xstep + noise(xoff) * (xstep*0.5-xstep); xoff += xinc
         for (j = 0; j < steps; j++) {
-            y = topmargin + j * ystep + random(xoff) * ystep; xoff += xinc
+            y = topmargin + j * ystep + random(xoff) * (ystep*0.5-ystep); xoff += xinc
             grille.push({ x: x, y: y })
         }
     }
