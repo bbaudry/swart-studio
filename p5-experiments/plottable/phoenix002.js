@@ -58,10 +58,16 @@ function cactus() {
         p2=p1+steps
         p3=p2+1
         p4=p1+1
+        if(random()<0.2){
         innerquad(grille[p1].x,grille[p1].y,
             grille[p2].x,grille[p2].y,
             grille[p3].x,grille[p3].y,
             grille[p4].x,grille[p4].y,)
+        }
+        else{
+            line(grille[p1].x,grille[p1].y,
+                grille[p3].x,grille[p3].y)
+        }
     }
 }
 
