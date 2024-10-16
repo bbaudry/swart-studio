@@ -8,7 +8,8 @@ function savepng() {
 
 var fSize = 17
 var bowie
-var xoff, xinc
+var xoff = 0.0
+var xinc = 0.01 
 var steps = 10
 var xstep = actualwidth / steps
 var ystep = actualheight / steps
@@ -21,12 +22,11 @@ function preload() {
 function draw() {
     background(0, 0, 0)
     noFill()
-    xoff = 0.0
-    xinc = 0.05
     stroke(0, 0, 100)
-    //rect(leftmargin, topmargin, actualwidth, actualheight)
+    rect(leftmargin, topmargin, actualwidth, actualheight)
     initgrid()
-    //showgrid()
+    showgrid()
+    xinc = 0.5
     for(var i=0;i<11;i++){
         cactus()
     }
@@ -36,9 +36,9 @@ function draw() {
 var grille = []
 function initgrid() {
     var x, y
-    for (i = 0; i < steps; i++) {
+    for (i = 1; i < steps; i++) {
         x = leftmargin + i * xstep + noise(xoff) * (xstep*0.5-xstep); xoff += xinc
-        for (j = 0; j < steps; j++) {
+        for (j = 1; j < steps; j++) {
             y = topmargin + j * ystep + random(xoff) * (ystep*0.5-ystep); xoff += xinc
             grille.push({ x: x, y: y })
         }
