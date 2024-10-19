@@ -25,9 +25,9 @@ function draw() {
     stroke(0, 0, 100)
     rect(leftmargin, topmargin, actualwidth, actualheight)
     initgrid()
-    showgrid()
+    //showgrid()
     xinc = 0.5
-    for(var i=0;i<11;i++){
+    for(var i=0;i<42;i++){
         cactus()
     }
     noLoop()
@@ -65,8 +65,14 @@ function cactus() {
             grille[p4].x,grille[p4].y,)
         }
         else{
-            line(grille[p1].x,grille[p1].y,
+            if(random()<0.42){
+                line(grille[p1].x,grille[p1].y,
                 grille[p3].x,grille[p3].y)
+            }
+            else{
+                line(grille[p2].x,grille[p2].y,
+                    grille[p4].x,grille[p4].y)    
+            }
         }
     }
 }
