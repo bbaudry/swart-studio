@@ -10,7 +10,7 @@ var fSize = 17
 var bowie
 var xoff = 0.0
 var xinc = 0.01 
-var steps = 10
+var steps = 17
 var xstep = actualwidth / steps
 var ystep = actualheight / steps
 
@@ -27,7 +27,7 @@ function draw() {
     initgrid()
     //showgrid()
     xinc = 0.5
-    for(var i=0;i<42;i++){
+    for(var i=0;i<84;i++){
         cactus()
     }
     noLoop()
