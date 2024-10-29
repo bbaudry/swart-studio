@@ -10,7 +10,7 @@ var fSize = 17
 var bowie
 var xoff = 0.0
 var xinc = 0.01 
-var steps = 21
+var steps = 11
 var xstep = actualwidth / steps
 var ystep = actualheight / steps
 
@@ -57,10 +57,10 @@ function cactus() {
             var index2 = (i*(steps-1))+j+steps-1
             var index3 = (i*(steps-1))+j+steps
             var index4 = (i*(steps-1))+j+1
-            for(t=0;t<11;t++){
-            quad(grille[index1].x,grille[index1].y+t,
+            for(t=0;t<42;t++){
+            quad(grille[index1].x+t,grille[index1].y+t,
                 grille[index2].x,grille[index2].y-t,
-                grille[index3].x+t,grille[index3].y,
+                grille[index3].x,grille[index3].y,
                 grille[index4].x-t,grille[index4].y
             )
         }
