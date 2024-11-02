@@ -36,19 +36,21 @@ function drawart(){
     for(var i=0; i<5; i++){
         push()
         translate(padding+leftmargin,(i+1)*padding+i*h+topmargin)
-        oneptyque(0,0,actualwidth,actualheight,0)
+        oneptyque(0,0,actualwidth,actualheight,i,0)
         pop()
     }
 }
 
-function oneptyque(x1,y1,x2,y2,d){
+function oneptyque(x1,y1,x2,y2,i,d){
     if(d<4){
         d++
-        var cx=random(0.1*actualwidth,0.9*actualwidth)
-        var cy=random(0.1*actualheight,0.9*actualheight)
-        triangle(x1,y1,x1,y2,cx,cy);oneptyque(x1,y1,cx,y2,d);
-        triangle(x1,y1,x2,y1,cx,cy);oneptyque(x1,y1,x2,cy,d);
-        triangle(x2,y1,x2,y2,cx,cy);oneptyque(cx,y1,x2,y2,d);
-        triangle(x2,y2,x1,y2,cx,cy);oneptyque(x1,cy,x2,y2,d);
+        var off1 = 0.5-(i*0.01)
+        var off2 = 0.5+(i*0.01)
+        var cx=x1+random(off1*Math.abs(x2-x1),off2*Math.abs(x2-x1))
+        var cy=y1+random(off1*Math.abs(y2-y1),off2*Math.abs(y2-y1))
+        triangle(x1,y1,x1,y2,cx,cy);oneptyque(x1,y1,cx,y2,i,d);
+        triangle(x1,y1,x2,y1,cx,cy);oneptyque(x1,y1,x2,cy,i,d);
+        triangle(x2,y1,x2,y2,cx,cy);oneptyque(cx,y1,x2,y2,i,d);
+        triangle(x2,y2,x1,y2,cx,cy);oneptyque(x1,cy,x2,y2,i,d);
     }
 }
