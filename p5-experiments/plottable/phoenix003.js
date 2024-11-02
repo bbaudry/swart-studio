@@ -1,16 +1,16 @@
 function savesvg() {
-    save("phoenix001.svg");
+    save("phoenix003.svg");
 }
 
 function savepng() {
-    save("phoenix001.png");
+    save("phoenix003.png");
 }
 
 var fSize = 17
 var bowie
 var xoff = 0.0
-var xinc = 0.05
-var steps = 4
+var xinc = 0.8
+var steps = 11
 var xstep = actualwidth / steps
 var ystep = actualheight / steps
 
@@ -23,11 +23,10 @@ function draw() {
     background(0, 0, 0)
     noFill()
     stroke(0, 0, 100)
-    rect(leftmargin, topmargin, actualwidth, actualheight)
-    rect(0, 0, w, h)
+    rect(0,0,w,h)
     initgrid()
-    showgrid()
-    cactus()
+    //showgrid()
+    cactus2()
     noLoop()
 }
 
@@ -49,51 +48,50 @@ function showgrid() {
     }
 }
 
-function cactus() {
+function cactus2(){
+    var size = actualwidth/steps
+    for (var i = 0; i < grille.length; i++) {
+        push()
+        translate(grille[i].x, grille[i].y, 5, 5)
+        var initangle=Math.floor(random(97))
+        rotate(initangle)
+        var maxj=Math.floor(random(2,17))
+        if(random()<0.5){stroke(0,0,100)}
+        else{stroke(0,100,100)}
+        for(j=0;j<maxj;j++){
+            rotate(radians(j))
+            quad(-size*0.5,-size*0.5,
+                size*0.5,-size*0.5,
+                size*0.5,size*0.5,
+                -size*0.5,size*0.5
+            )
+        }
+        pop()
+    }
+    
+}
 
-    for (i = 0; i < steps - 1; i++) {
+function cactus() {
+    for (i = 0; i < steps - 2; i++) {
         for (j = 0; j < steps - 2; j++) {
             var index1 = (i * (steps - 1)) + j
             var index2 = (i * (steps - 1)) + j + steps - 1
             var index3 = (i * (steps - 1)) + j + steps
             var index4 = (i * (steps - 1)) + j + 1
-            for (t = 0; t < 1; t++) {
-                quad(grille[index1].x + t, grille[index1].y + t,
-                    grille[index2].x + t, grille[index2].y - t,
+            var mt = Math.floor(random(3,13))
+            var r = 3
+            for (t = 0; t < mt; t++) {
+                quad(grille[index1].x + r*t, grille[index1].y + r*t,
+                    grille[index2].x + r*t, grille[index2].y - r*t,
                     grille[index3].x, grille[index3].y,
-                    grille[index4].x - t, grille[index4].y - t
+                    grille[index4].x - r*t, grille[index4].y - r*t
                 )
             }
         }
     }
 }
 
-function intersect(x1,y1,x2,y2,x3,y3,x4,y4){
-    detL1 = Det(x1, y1, x3, y3);
-    detL2 = Det(x2, y2, x4, y4);
-    x1mx2 = x1 - x2;
-    x3mx4 = x3 - x4;
-    y1my2 = y1 - y2;
-    y3my4 = y3 - y4;
 
-    xnom = Det(detL1, x1mx2, detL2, x3mx4);
-    ynom = Det(detL1, y1my2, detL2, y3my4);
-    denom = Det(x1mx2, y1my2, x3mx4, y3my4);
-    if(denom == 0.0)//Lines don't seem to cross
-    {
-        ixOut = NAN;
-        iyOut = NAN;
-        return false;
-    }
-
-    ixOut = xnom / denom;   
-    iyOut = ynom / denom;
-    console(ixOut+"  "+iyOut)
-}
-
-function Det(x1,y1,x2,y2){
-    return x1*x2-y1*y2
-}
 
 function showcredits(posx, posy) {
     textFont(bowie)
