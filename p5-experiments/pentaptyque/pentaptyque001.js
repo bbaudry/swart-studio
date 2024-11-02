@@ -44,8 +44,8 @@ function drawart(){
 function oneptyque(x1,y1,x2,y2,i,d){
     if(d<4){
         d++
-        var off1 = 0.5-(i*0.01)
-        var off2 = 0.5+(i*0.01)
+        var off1 = 0.5 - (i*0.02)
+        var off2 = 0.5 + (i*0.02)
         var cx=x1+random(off1*Math.abs(x2-x1),off2*Math.abs(x2-x1))
         var cy=y1+random(off1*Math.abs(y2-y1),off2*Math.abs(y2-y1))
         triangle(x1,y1,x1,y2,cx,cy);oneptyque(x1,y1,cx,y2,i,d);
