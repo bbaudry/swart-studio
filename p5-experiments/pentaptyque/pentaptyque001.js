@@ -18,11 +18,21 @@ function setup() {
 
 function draw(){
     drawmask()
+    drawart()
 }
 
 function drawmask(){
-    rect(0,0,w,totalheight)
+    rect(0,0,totalwidth,totalheight)
     for(var i=0; i<5; i++){
-        rect(0,(i+1)*padding+i*h,w,h)
+        rect(padding,(i+1)*padding+i*h,w,h)
+        rect(padding+leftmargin,(i+1)*padding+i*h+topmargin,actualwidth,actualheight)
+    }
+}
+
+function drawart(){
+    for(var i=0; i<5; i++){
+        push()
+        translate(padding+leftmargin,(i+1)*padding+i*h+topmargin)
+        pop()
     }
 }

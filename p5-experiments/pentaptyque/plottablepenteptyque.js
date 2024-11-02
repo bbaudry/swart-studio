@@ -16,16 +16,17 @@ var bottommargin = 0.98 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var totalheight = padding * 6 + h * 5
+var totalwidth = padding * 2 + w
 var cnv, imgbtn
 
 function getsvg() {
-    cnv = createCanvas(w, totalheight, SVG).mousePressed(savesvg);
+    cnv = createCanvas(totalwidth, totalheight, SVG).mousePressed(savesvg);
     imgbtn = createButton("save svg");
     placebtn();
     imgbtn.mouseClicked(savesvg);
 }
 function getpng() {
-    cnv = createCanvas(w, totalheight);
+    cnv = createCanvas(totalwidth, totalheight);
     imgbtn = createButton("save png");
     placebtn();
     imgbtn.mouseClicked(savepng);
