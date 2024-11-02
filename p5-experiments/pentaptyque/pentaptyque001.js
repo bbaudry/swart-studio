@@ -18,7 +18,7 @@ function setup() {
 
 function draw(){
     drawmask()
-    for(var i=0;i<3;i++){
+    for(var i=0;i<1;i++){
         drawart()
     }
     noLoop()
@@ -36,16 +36,19 @@ function drawart(){
     for(var i=0; i<5; i++){
         push()
         translate(padding+leftmargin,(i+1)*padding+i*h+topmargin)
-        oneptyque()
+        oneptyque(0,0,actualwidth,actualheight,0)
         pop()
     }
 }
 
-function oneptyque(){
-    var cx=random(0.1*actualwidth,0.9*actualwidth)
-    var cy=random(0.1*actualheight,0.9*actualheight)
-    triangle(0,0,cx,cy,0,actualheight)
-    triangle(0,0,actualwidth,0,cx,cy)
-    triangle(actualwidth,0,actualwidth,actualheight,cx,cy)
-    triangle(actualwidth,actualheight,0,actualheight,cx,cy)
+function oneptyque(x1,y1,x2,y2,d){
+    if(d<4){
+        d++
+        var cx=random(0.1*actualwidth,0.9*actualwidth)
+        var cy=random(0.1*actualheight,0.9*actualheight)
+        triangle(x1,y1,x1,y2,cx,cy);oneptyque(x1,y1,cx,y2,d);
+        triangle(x1,y1,x2,y1,cx,cy);oneptyque(x1,y1,x2,cy,d);
+        triangle(x2,y1,x2,y2,cx,cy);oneptyque(cx,y1,x2,y2,d);
+        triangle(x2,y2,x1,y2,cx,cy);oneptyque(x1,cy,x2,y2,d);
+    }
 }
