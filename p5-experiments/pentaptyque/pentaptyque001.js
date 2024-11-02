@@ -17,5 +17,12 @@ function setup() {
 }
 
 function draw(){
+    drawmask()
+}
+
+function drawmask(){
     rect(0,0,w,totalheight)
+    for(var i=0; i<5; i++){
+        rect(0,(i+1)*padding+i*h,w,h)
+    }
 }
