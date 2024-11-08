@@ -29,7 +29,7 @@ var xoff, yoff
 
 function initfield() {
     let angle, row
-
+    yoff = 0.0
     for (let y = 0; y < nbrows; y++) {
         row = []
         yoff += noiseres
@@ -39,6 +39,7 @@ function initfield() {
             let ikeda = noise(xoff, yoff)
             angle = map(ikeda, 0.0, 1.0, 0, PI)
             row.push(angle)
+            //console.log(xoff+" "+yoff+" "+angle)
         }
         field.push(row)
     }
@@ -47,7 +48,7 @@ function initfield() {
 
 function draw(){
     drawmask()
-    onetyp()
+    drawart()
     noLoop()
 }
 
@@ -63,6 +64,7 @@ function drawart(){
     for(var i=0; i<5; i++){
         push()
         translate(padding+leftmargin,(i+1)*padding+i*h+topmargin)
+        onetyp()
         pop()
     }
 }
@@ -70,8 +72,12 @@ function drawart(){
 function onetyp(){
     for (let y = 0; y < nbrows; y++) {
         for (let x = 0; x < nbcols; x++) {
-            var r = field[x+y*nbcols]
-            ellipse(x,y*nbcols,7,7)
+            var r = field[y][x]
+            push()
+            console.log(r)
+            rotate(r)
+            rect((x*res),(y*res),7,7)
+            pop()
         }
     }
 }
