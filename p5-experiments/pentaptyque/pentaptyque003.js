@@ -15,10 +15,12 @@ function setup() {
     noFill()
     initfield()
     maxcount = random(39, 45)
+    yoff = 0.0
+
 }
 
 var res = 11 //knob: density of the field
-var noiseres = 0.09//knob: speed to navigate noise. smallest, smoother angle changes
+//knob: speed to navigate noise. smallest, smoother angle changes
 var steplength = 2*res//knob: length of each curve 
 var strw = 2 //knob: weight of each curve
 var field = []
@@ -27,9 +29,9 @@ var nbrows = Math.floor(actualheight / res) + 1
 var xoff, yoff
 
 
-function initfield() {
+function initfield(noiseres) {
     let angle, row
-    yoff = 0.0
+    field = []
     for (let y = 0; y < nbrows; y++) {
         row = []
         yoff += noiseres
@@ -61,11 +63,14 @@ function drawmask(){
 }
 
 function drawart(){
+    var noiseres=0.09
     for(var i=0; i<5; i++){
+        initfield(noiseres)
         push()
         translate(padding+leftmargin,(i+1)*padding+i*h+topmargin)
         onetyp()
         pop()
+        noiseres+=0.1
     }
 }
 
@@ -74,9 +79,7 @@ function onetyp(){
         for (let x = 0; x < nbcols; x++) {
             var r = field[y][x]
             push()
-            console.log(r)
-            rotate(r)
-            rect((x*res),(y*res),7,7)
+            rect((x*res),(y*res),4*r,4*r)
             pop()
         }
     }
