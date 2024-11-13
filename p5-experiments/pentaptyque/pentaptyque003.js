@@ -49,7 +49,7 @@ function initfield(noiseres) {
 
 
 function draw(){
-    drawmask()
+    //drawmask()
     drawart()
     noLoop()
 }
@@ -68,8 +68,8 @@ function drawart(){
         initfield(noiseres)
         push()
         translate(padding+leftmargin,(i+1)*padding+i*h+topmargin)
-        //onetyp()
-        drawcurveinfield(Math.floor(nbrows/2),3, 11)
+        onetyp()
+        //drawcurveinfield(Math.floor(nbrows/2),3, 11)
         pop()
         noiseres+=0.1
     }
@@ -87,7 +87,8 @@ function onetyp(){
             y1=y*res
             x2=x1+r*cos(a)
             y2=y1+r*sin(a)
-            line(x1,y1,x2,y2)
+            quad(x1,y1,x2,y1,x2,y2,x1,y2)
+            //line(x1,y1,x2,y2)
             pop()
         }
     }
