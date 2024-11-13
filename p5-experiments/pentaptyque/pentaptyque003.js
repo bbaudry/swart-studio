@@ -80,7 +80,7 @@ function onetyp(){
     for (let y = 0; y < nbrows; y++) {
         for (let x = 0; x < nbcols; x++) {
             a = field[y][x]
-            r = res
+            r = res*2
             push()
             //rect((x*res),(y*res),4*r,4*r)
             x1=x*res
