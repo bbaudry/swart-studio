@@ -50,6 +50,7 @@ function initfield(noiseres) {
 
 function draw(){
     //drawmask()
+    fill(0,0,0)
     drawart()
     noLoop()
 }
