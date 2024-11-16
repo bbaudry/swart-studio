@@ -59,9 +59,9 @@
             save("plottablefield001.svg");
         }
 
-        var res = 11 //knob: density of the field
+        var res = 5 //knob: density of the field
         var noiseres = 0.09//knob: speed to navigate noise. smallest, smoother angle changes
-        var steplength = 0.5*res//knob: length of each curve 
+        var steplength = 5*res//knob: length of each curve 
         var strw = 2 //knob: weight of each curve
         var field = []
         var nbcols = Math.floor(w / res) + 1
@@ -88,7 +88,7 @@
             //drawfieldangles()
             zoff += 0.1
             //drawcurveinfield(Math.floor(0.5*nbrows), Math.floor(0.9*nbcols), 1, 42)
-            drawcurveinfield(Math.floor(random(nbrows)), Math.floor(random(nbcols)), 3, 42)
+            drawcurveinfield(Math.floor(random(nbrows)), Math.floor(random(nbcols)), 3, 142)
             //noLoop()
             if (frameCount == 17000) { noLoop() }
         }
