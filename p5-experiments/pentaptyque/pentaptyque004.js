@@ -21,7 +21,7 @@ function setup() {
 
 var res = 3 //knob: density of the field
 //knob: speed to navigate noise. smallest, smoother angle changes
-var steplength = 7 * res//knob: length of each curve 
+var steplength = 3 * res//knob: length of each curve 
 var strw = 2 //knob: weight of each curve
 var field = []
 var nbcols = Math.floor(actualwidth / res) + 1
@@ -49,7 +49,7 @@ function initfield(noiseres) {
 
 
 function draw() {
-    //drawmask()
+    drawmask()
     fill(0, 0, 0)
     drawart()
     noLoop()
@@ -64,16 +64,15 @@ function drawmask() {
 }
 
 function drawart() {
-    stroke(0, 0, 0)
     for (var i = 0; i < 5; i++) {
         initfield(noiseres)
         push()
         translate(padding + leftmargin, (i + 1) * padding + i * h + topmargin)
         //drawvecs()
-        for(var j=0;j<nbcols-1;j++){
-            drawcurveinfield(1, j, 21)
-            drawcurveinfield(2, j, 21)
-            drawcurveinfield(3, j, 21)
+        for(var j=0;j<nbcols-1;j+=2){
+            drawcurveinfield(1, j, 77)
+            drawcurveinfield(2, j, 77)
+            drawcurveinfield(3, j, 77)
         }
         //onetyp()
         //drawcurveinfield(Math.floor(nbrows/2),3, 11)
@@ -97,7 +96,7 @@ function drawvecs(){
 
 function drawcurveinfield(row, col, len) {
     strokeWeight(strw)
-    stroke(0, 100, 100, 42)
+    stroke(200, 100, 100, 42)
     noFill()
     beginShape()
     x1 = col * res
