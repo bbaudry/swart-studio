@@ -70,10 +70,11 @@ function drawart() {
         push()
         translate(padding + leftmargin, padding + topmargin)
         //drawvecs()
-        for (var j = 0; j < nbcols - 1; j += 2) {
-            if(random()<0.7){drawcurveinfield(1, j, len)}
-            if(random()<0.7){drawcurveinfield(2, j, len)}
-                if(random()<0.7){drawcurveinfield(3, j, len)}
+        for (var j = 0; j < 210; j += 1) {
+            var u=Math.floor(random(0,nbcols-1))
+            if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
+            if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
+            if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
         }
         //onetyp()
         //drawcurveinfield(Math.floor(nbrows/2),3, 11)
