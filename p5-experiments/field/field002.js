@@ -73,8 +73,10 @@ function drawart() {
             var u=Math.floor(random(nbcols*0.42,nbcols*0.45))
             if(random()<0.7){drawcurveinfield(Math.floor(random(0,5)), u, len)}
             if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
+            if(random()<0.007){shapeinfield(Math.floor(random(0,nbrows-1)), u)}
             u=Math.floor(random(nbcols*0.7,nbcols*0.73))
             if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
+            if(random()<0.007){shapeinfield(Math.floor(random(0,nbrows-1)), u)}
         }
         //onetyp()
         //drawcurveinfield(Math.floor(nbrows/2),3, 11)
@@ -93,6 +95,18 @@ function drawvecs() {
     }
 }
 
+function shapeinfield(row,col){
+    var x1,y1,x2,y2,x3,y3,offset
+    offset=42
+    x1 = col * res
+    y1 = row * res
+    x2 = (col+Math.floor(random(-offset,offset)))*res
+    y2 = (row+Math.floor(random(-offset,offset)))*res
+    x3 = (col+Math.floor(random(-offset,offset)))*res
+    y3 = (row+Math.floor(random(-offset,offset)))*res
+    triangle(x1,y1,x2,y2,x3,y3)
+    console.log("shape"+x1+" "+y1+" "+x2+" "+y2+" "+x3+" "+y3)
+}
 
 function drawcurveinfield(row, col, len) {
     strokeWeight(strw)
@@ -101,11 +115,11 @@ function drawcurveinfield(row, col, len) {
     beginShape()
     x1 = col * res
     y1 = row * res
-    console.log("row: " + row + "; col: " + col + "; x1: " + x1 + " ; y1: " + y1 + "; nbrow: " + nbrows + "; nbcols: " + nbcols)
+//    console.log("row: " + row + "; col: " + col + "; x1: " + x1 + " ; y1: " + y1 + "; nbrow: " + nbrows + "; nbcols: " + nbcols)
     curveVertex(x1, y1)
     curveVertex(x1, y1)
     for (let i = 0; i < len; i++) {
-        console.log(i + "; row: " + row + "; col: " + col + "; x1: " + x1 + " ; y1: " + y1 + "; res: " + res + "; nbrows: " + nbrows + "; h: " + h)
+//        console.log(i + "; row: " + row + "; col: " + col + "; x1: " + x1 + " ; y1: " + y1 + "; res: " + res + "; nbrows: " + nbrows + "; h: " + h)
         angle = field[row][col]
         x2 = x1 + steplength * cos(angle)
         y2 = y1 + steplength * sin(angle)
