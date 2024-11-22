@@ -1,11 +1,3 @@
-function savesvg() {
-    save("pentaptyque001.svg");
-}
-
-function savepng() {
-    save("pentaptyque001.png");
-}
-
 function setup() {
     getsvg()
     //getpng()
@@ -17,6 +9,9 @@ function setup() {
     maxcount = random(39, 45)
     yoff = 0.0
     noiseres = 0.05
+    textFont(font)
+    textSize(fSize)
+
 }
 
 var res = 7 //knob: density of the field
@@ -49,18 +44,10 @@ function initfield(noiseres) {
 
 
 function draw() {
-    drawmask()
-    fill(0, 0, 0)
     drawart()
+    fill(0,0,0)
+    showcredits(leftmargin,bottommargin*1.04,"al.my.re :: p5.js :: CamBam Stick [field 002). November 2024]")
     noLoop()
-}
-
-function drawmask() {
-    rect(0, 0, totalwidth, totalheight)
-    for (var i = 0; i < 5; i++) {
-        rect(padding, (i + 1) * padding + i * h, w, h)
-        rect(padding + leftmargin, (i + 1) * padding + i * h + topmargin, actualwidth, actualheight)
-    }
 }
 
 function drawart() {
@@ -68,32 +55,16 @@ function drawart() {
         initfield(noiseres)
         push()
         translate(padding + leftmargin, padding + topmargin)
-        //drawvecs()
-        for (var j = 0; j < 420; j += 1) {
+        for (var j = 0; j < 42; j += 1) {
             var u=Math.floor(random(nbcols*0.42,nbcols*0.45))
             if(random()<0.7){drawcurveinfield(Math.floor(random(0,5)), u, len)}
             if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
             if(random()<0.007){shapeinfield(Math.floor(random(0,nbrows-1)), u)}
-            u=Math.floor(random(nbcols*0.7,nbcols*0.73))
-            if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
-            if(random()<0.007){shapeinfield(Math.floor(random(0,nbrows-1)), u)}
         }
-        //onetyp()
-        //drawcurveinfield(Math.floor(nbrows/2),3, 11)
         pop()
 }
 
-function drawvecs() {
-    for (let y = 0; y < nbrows; y++) {
-        for (let x = 0; x < nbcols; x++) {
-            push()
-            translate(x * res, y * res)
-            rotate(field[y][x])
-            line(0, 0, res, 0)
-            pop()
-        }
-    }
-}
+
 
 function shapeinfield(row,col){
     var x1,y1,x2,y2,x3,y3,offset
@@ -105,7 +76,6 @@ function shapeinfield(row,col){
     x3 = (col+Math.floor(random(-offset,offset)))*res
     y3 = (row+Math.floor(random(-offset,offset)))*res
     triangle(x1,y1,x2,y2,x3,y3)
-    console.log("shape"+x1+" "+y1+" "+x2+" "+y2+" "+x3+" "+y3)
 }
 
 function drawcurveinfield(row, col, len) {
@@ -115,21 +85,34 @@ function drawcurveinfield(row, col, len) {
     beginShape()
     x1 = col * res
     y1 = row * res
-//    console.log("row: " + row + "; col: " + col + "; x1: " + x1 + " ; y1: " + y1 + "; nbrow: " + nbrows + "; nbcols: " + nbcols)
     curveVertex(x1, y1)
     curveVertex(x1, y1)
     for (let i = 0; i < len; i++) {
-//        console.log(i + "; row: " + row + "; col: " + col + "; x1: " + x1 + " ; y1: " + y1 + "; res: " + res + "; nbrows: " + nbrows + "; h: " + h)
         angle = field[row][col]
         x2 = x1 + steplength * cos(angle)
         y2 = y1 + steplength * sin(angle)
         curveVertex(x2, y2)
-        col = Math.floor(x2 / res)//if(x2==0){col=0}else{}
-        row = Math.floor(y2 / res)//if(y2==0){row=0}else{}
+        col = Math.floor(x2 / res)
+        row = Math.floor(y2 / res)
         if (col >= nbcols || col < 0) { break } else { x1 = x2 }
         if (row >= nbrows || row < 0) { break } else { y1 = y2 }
     }
     curveVertex(x2, y2)
     curveVertex(x2, y2)
     endShape()
+}
+
+
+var font, posx,posy, knobs=[]
+var fSize = 11
+function preload() {
+    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
+    sourcecode = loadStrings('field002.js');
+}
+function savesvg() {
+    save("field002.svg");
+}
+
+function savepng() {
+    save("field002.png");
 }
