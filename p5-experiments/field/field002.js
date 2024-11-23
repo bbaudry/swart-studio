@@ -1,3 +1,18 @@
+var font, posx,posy, knobs=[]
+var fSize = 11
+function preload() {
+    font = loadFont("1CAMBam_Stick_9.ttf");
+    //font = loadFont("FreeMono.ttf");
+    sourcecode = loadStrings('field002.js');
+}
+function savesvg() {
+    save("field002.svg");
+}
+
+function savepng() {
+    save("field002.png");
+}
+
 function setup() {
     getsvg()
     //getpng()
@@ -9,8 +24,6 @@ function setup() {
     maxcount = random(39, 45)
     yoff = 0.0
     noiseres = 0.05
-    textFont(font)
-    textSize(fSize)
 
 }
 
@@ -103,16 +116,37 @@ function drawcurveinfield(row, col, len) {
 }
 
 
-var font, posx,posy, knobs=[]
-var fSize = 11
-function preload() {
-    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('field002.js');
-}
-function savesvg() {
-    save("field002.svg");
+
+
+function showcredits(posx,posy,credit){
+    textFont(font)
+    console.log(font.textBounds('p5*js', 35, 53))
+    textSize(fSize)
+    var coord = showcode(posx,posy)
+    text(credit,coord[0],coord[1])
+    //text("hi",leftmargin,bottommargin)
 }
 
-function savepng() {
-    save("field002.png");
+
+function showcode(posx,posy) {
+    var allcode, c, tw 
+    allcode = ''
+    for (var i = 0; i < sourcecode.length; i++) {
+        var token = sourcecode[i]
+        var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
+        allcode += notab
+    }
+    for (let i = 0; i < allcode.length; i++) {
+        c = allcode.charAt(i)
+        tw = textWidth(c)
+        if (posx + tw > rightmargin) {
+            posx = leftmargin
+            posy += fSize + 1
+        }
+        text(c, posx, posy)
+        posx += tw
+    }
+    posx = leftmargin
+    posy += 2*fSize + 1
+    return([posx,posy])
 }
