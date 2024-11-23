@@ -1,8 +1,7 @@
-var font, posx,posy, knobs=[]
-var fSize = 11
+var font, posx, posy, knobs = []
+var fSize = 14
 function preload() {
-    font = loadFont("1CAMBam_Stick_9.ttf");
-    //font = loadFont("FreeMono.ttf");
+    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('field002.js');
 }
 function savesvg() {
@@ -55,40 +54,24 @@ function initfield(noiseres) {
     }
 }
 
-
 function draw() {
     drawart()
-    fill(0,0,0)
-    showcredits(leftmargin,bottommargin*1.04,"al.my.re :: p5.js :: CamBam Stick [field 002). November 2024]")
+    fill(0, 0, 0); stroke(0, 0, 0)
+    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 002). November 2024]")
     noLoop()
 }
 
 function drawart() {
     var len = 420
-        initfield(noiseres)
-        push()
-        translate(padding + leftmargin, padding + topmargin)
-        for (var j = 0; j < 42; j += 1) {
-            var u=Math.floor(random(nbcols*0.42,nbcols*0.45))
-            if(random()<0.7){drawcurveinfield(Math.floor(random(0,5)), u, len)}
-            if(random()<0.7){drawcurveinfield(Math.floor(random(0,nbrows-1)), u, len)}
-            if(random()<0.007){shapeinfield(Math.floor(random(0,nbrows-1)), u)}
-        }
-        pop()
-}
-
-
-
-function shapeinfield(row,col){
-    var x1,y1,x2,y2,x3,y3,offset
-    offset=42
-    x1 = col * res
-    y1 = row * res
-    x2 = (col+Math.floor(random(-offset,offset)))*res
-    y2 = (row+Math.floor(random(-offset,offset)))*res
-    x3 = (col+Math.floor(random(-offset,offset)))*res
-    y3 = (row+Math.floor(random(-offset,offset)))*res
-    triangle(x1,y1,x2,y2,x3,y3)
+    initfield(noiseres)
+    push()
+    translate(padding + leftmargin, padding + topmargin)
+    for (var j = 0; j < 168; j += 1) {
+        var u = Math.floor(random(nbcols * 0.4, nbcols * 0.5))
+        if (random() < 0.7) { drawcurveinfield(Math.floor(random(0, 5)), u, len) }
+        if (random() < 0.7) { drawcurveinfield(Math.floor(random(0, nbrows - 1)), u, len, random(0, 2)) }
+    }
+    pop()
 }
 
 function drawcurveinfield(row, col, len) {
@@ -113,40 +96,4 @@ function drawcurveinfield(row, col, len) {
     curveVertex(x2, y2)
     curveVertex(x2, y2)
     endShape()
-}
-
-
-
-
-function showcredits(posx,posy,credit){
-    textFont(font)
-    console.log(font.textBounds('p5*js', 35, 53))
-    textSize(fSize)
-    var coord = showcode(posx,posy)
-    text(credit,coord[0],coord[1])
-    //text("hi",leftmargin,bottommargin)
-}
-
-
-function showcode(posx,posy) {
-    var allcode, c, tw 
-    allcode = ''
-    for (var i = 0; i < sourcecode.length; i++) {
-        var token = sourcecode[i]
-        var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
-        allcode += notab
-    }
-    for (let i = 0; i < allcode.length; i++) {
-        c = allcode.charAt(i)
-        tw = textWidth(c)
-        if (posx + tw > rightmargin) {
-            posx = leftmargin
-            posy += fSize + 1
-        }
-        text(c, posx, posy)
-        posx += tw
-    }
-    posx = leftmargin
-    posy += 2*fSize + 1
-    return([posx,posy])
 }

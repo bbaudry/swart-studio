@@ -43,3 +43,34 @@ function placebtn() {
     var y = (windowHeight - h) / 2;
     imgbtn.position(x - 200, y + h / 2 + 42)
 }
+
+function showcredits(posx,posy,credit){
+    textFont(font)
+    textSize(fSize)
+    var coord = showcode(posx,posy)
+    text(credit,coord[0],coord[1])
+}
+
+
+function showcode(posx,posy) {
+    var allcode, c, tw 
+    allcode = ''
+    for (var i = 0; i < sourcecode.length; i++) {
+        var token = sourcecode[i]
+        var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
+        allcode += notab
+    }
+    for (let i = 0; i < allcode.length; i++) {
+        c = allcode.charAt(i)
+        tw = textWidth(c)
+        if (posx + tw > rightmargin) {
+            posx = leftmargin
+            posy += fSize + 1
+        }
+        text(c, posx, posy)
+        posx += tw
+    }
+    posx = leftmargin
+    posy += 2*fSize + 1
+    return([posx,posy])
+}
