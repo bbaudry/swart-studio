@@ -51,7 +51,6 @@ function showcredits(posx,posy,credit){
     text(credit,coord[0],coord[1])
 }
 
-
 function showcode(posx,posy) {
     var allcode, c, tw 
     allcode = ''
@@ -73,4 +72,22 @@ function showcode(posx,posy) {
     posx = leftmargin
     posy += 2*fSize + 1
     return([posx,posy])
+}
+
+
+function drawvecs() {
+    for (let y = 0; y < nbrows; y++) {
+        for (let x = 0; x < nbcols; x++) {
+            push()
+            translate(leftmargin+x * res, topmargin+y * res)
+            rotate(field[y][x])
+            line(0, 0, res, 0)
+            pop()
+        }
+    }
+}
+
+function drawframe(){
+    rect(0,0,w,h)
+    rect(leftmargin,topmargin,actualwidth,actualheight)
 }
