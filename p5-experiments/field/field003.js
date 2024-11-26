@@ -26,7 +26,7 @@ function setup() {
 
 }
 
-var res = 7 //knob: density of the field
+var res = 17 //knob: density of the field
 //knob: speed to navigate noise. smallest, smoother angle changes
 var steplength = 3 * res//knob: length of each curve 
 var strw = 2 //knob: weight of each curve
@@ -57,14 +57,29 @@ function initfield(noiseres) {
 function draw() {
     //drawframe()
     drawart()
-    stroke(0,0,0)
-    ellipse(leftmargin+4*res,topmargin+(nbrows-1)*res,7,7)
-    var angle=field[nbrows-1][4]
-    var x2=(leftmargin+4*res)+(2*res)*cos(angle+PI)
-    var y2=(topmargin+(nbrows-1)*res)+(2*res)*sin(angle+PI)
-    stroke(0,100,100)
-    ellipse(x2,y2,7,7)
-    stroke(0,0,0)
+    stroke(0, 0, 0)
+    var x1, y1, x2, y2, len, angle
+    len = res
+    x1 = leftmargin + 4 * res
+    y1 = topmargin + (nbrows - 1) * res
+    ellipse(x1, y1, 7, 7)
+    stroke(0, 100, 100)
+    for (var i = 1; i < 42; i++) {
+        angle = field[nbrows - i][4]
+        x2 = x1 + len * cos(angle + PI)
+        y2 = y1 + len * sin(angle + PI)
+        ellipse(x2, y2, 7, 7)
+        x1 = x2; y1 = y2;
+    }
+/*    x1 = x2; y1 = y2; angle = field[nbrows - 2][4]
+    x2 = x1 + len * cos(angle + PI)
+    y2 = y1 + len * sin(angle + PI)
+    ellipse(x2, y2, 7, 7)
+    x1 = x2; y1 = y2; angle = field[nbrows - 3][4]
+    x2 = x1 + len * cos(angle + PI)
+    y2 = y1 + len * sin(angle + PI)
+    ellipse(x2, y2, 7, 7)*/
+    stroke(0, 0, 0)
     drawvecs()
     fill(0, 0, 0); stroke(0, 0, 0)
     showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 003). November 2024]")
@@ -74,10 +89,10 @@ function draw() {
 function drawart() {
     initfield(noiseres)
     for (var j = 0; j < nbcols; j++) {
-        if(random()<0.5){//goingdown(j)
-            }
-        else{//goingup(j)
-            }    
+        if (random() < 0.5) {//goingdown(j)
+        }
+        else {//goingup(j)
+        }
     }
 }
 
@@ -113,7 +128,7 @@ function goingup(j) {
     stroke(0, 100, 100)
     noFill()
     x1 = leftmargin + col * res
-    y1 =  row * res
+    y1 = row * res
     for (var i = 0; i < 21; i++) {
         ellipse(x1, y1, rad, rad)
         angle = field[row][col]//;text(Math.floor(angle),x1,y1)
