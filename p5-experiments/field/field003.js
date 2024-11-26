@@ -71,16 +71,37 @@ function draw() {
         ellipse(x2, y2, 7, 7)
         x1 = x2; y1 = y2;
     }
-/*    x1 = x2; y1 = y2; angle = field[nbrows - 2][4]
-    x2 = x1 + len * cos(angle + PI)
-    y2 = y1 + len * sin(angle + PI)
-    ellipse(x2, y2, 7, 7)
-    x1 = x2; y1 = y2; angle = field[nbrows - 3][4]
-    x2 = x1 + len * cos(angle + PI)
-    y2 = y1 + len * sin(angle + PI)
-    ellipse(x2, y2, 7, 7)*/
+    x1 = leftmargin + 5 * res
+    y1 = topmargin + (nbrows - 1) * res
+    ellipse(x1, y1, 7, 7)
+    stroke(0, 100, 100)
+    for (var i = 1; i < 42; i++) {
+        angle = field[nbrows - i][4]
+        x2 = x1 + len * cos(angle + PI)
+        y2 = y1 + len * sin(angle + PI)
+        ellipse(x2, y2, 7, 7)
+        x1 = x2; y1 = y2;
+    }
+    x1 = leftmargin + 6 * res
+    y1 = topmargin + (nbrows - 1) * res
+    ellipse(x1, y1, 7, 7)
+    stroke(0, 100, 100)
+    for (var i = 1; i < 42; i++) {
+        angle = field[nbrows - i][4]
+        x2 = x1 + len * cos(angle + PI)
+        y2 = y1 + len * sin(angle + PI)
+        ellipse(x2, y2, 7, 7)
+        x1 = x2; y1 = y2;
+    }
+    for (var i = 1; i < 42; i++) {
+        angle = field[nbrows - i][4]
+        x2 = x1 + len * cos(angle)
+        y2 = y1 + len * sin(angle)
+        ellipse(x2, y2, 7, 7)
+        x1 = x2; y1 = y2;
+    }
     stroke(0, 0, 0)
-    drawvecs()
+//    drawvecs()
     fill(0, 0, 0); stroke(0, 0, 0)
     showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 003). November 2024]")
     noLoop()
