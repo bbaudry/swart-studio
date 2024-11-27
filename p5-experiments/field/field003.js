@@ -61,7 +61,7 @@ function draw() {
     var x1, y1, x2, y2, len, angle, rad, iter
     len = res
     rad=3
-    iter=182
+    iter=212
     x1 = leftmargin + 44 * res
     y1 = topmargin + (nbrows - 1) * res
     ellipse(x1, y1, rad, rad)
@@ -86,7 +86,7 @@ function draw() {
     }
     x1 = leftmargin + 46 * res
     y1 = topmargin + (nbrows - 1) * res
-    ellipse(x1, y1, 7, 7)
+    ellipse(x1, y1, rad, rad)
     stroke(0, 100, 100)
     for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][4]
