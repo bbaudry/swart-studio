@@ -26,7 +26,7 @@ function setup() {
 
 }
 
-var res = 17 //knob: density of the field
+var res = 3 //knob: density of the field
 //knob: speed to navigate noise. smallest, smoother angle changes
 var steplength = 3 * res//knob: length of each curve 
 var strw = 2 //knob: weight of each curve
@@ -57,47 +57,49 @@ function initfield(noiseres) {
 function draw() {
     //drawframe()
     drawart()
-    stroke(0, 0, 0)
-    var x1, y1, x2, y2, len, angle
+    stroke(0, 100, 100)
+    var x1, y1, x2, y2, len, angle, rad, iter
     len = res
-    x1 = leftmargin + 4 * res
+    rad=3
+    iter=182
+    x1 = leftmargin + 44 * res
     y1 = topmargin + (nbrows - 1) * res
-    ellipse(x1, y1, 7, 7)
+    ellipse(x1, y1, rad, rad)
     stroke(0, 100, 100)
-    for (var i = 1; i < 42; i++) {
+    for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][4]
         x2 = x1 + len * cos(angle + PI)
         y2 = y1 + len * sin(angle + PI)
-        ellipse(x2, y2, 7, 7)
+//         ellipse(x2, y2, rad, rad)
         x1 = x2; y1 = y2;
     }
-    x1 = leftmargin + 5 * res
+    x1 = leftmargin + 45 * res
     y1 = topmargin + (nbrows - 1) * res
-    ellipse(x1, y1, 7, 7)
+    ellipse(x1, y1, rad, rad)
     stroke(0, 100, 100)
-    for (var i = 1; i < 42; i++) {
+    for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][4]
         x2 = x1 + len * cos(angle + PI)
         y2 = y1 + len * sin(angle + PI)
-        ellipse(x2, y2, 7, 7)
+//        ellipse(x2, y2, rad, rad)
         x1 = x2; y1 = y2;
     }
-    x1 = leftmargin + 6 * res
+    x1 = leftmargin + 46 * res
     y1 = topmargin + (nbrows - 1) * res
     ellipse(x1, y1, 7, 7)
     stroke(0, 100, 100)
-    for (var i = 1; i < 42; i++) {
+    for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][4]
         x2 = x1 + len * cos(angle + PI)
         y2 = y1 + len * sin(angle + PI)
-        ellipse(x2, y2, 7, 7)
+        ellipse(x2, y2, rad, rad)
         x1 = x2; y1 = y2;
     }
-    for (var i = 1; i < 42; i++) {
+    for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][4]
         x2 = x1 + len * cos(angle)
         y2 = y1 + len * sin(angle)
-        ellipse(x2, y2, 7, 7)
+        ellipse(x2, y2, rad, rad)
         x1 = x2; y1 = y2;
     }
     stroke(0, 0, 0)
