@@ -57,51 +57,6 @@ function initfield(noiseres) {
 function draw() {
     //drawframe()
     drawart()
-    stroke(0, 100, 100)
-    var x1, y1, x2, y2, len, angle, rad, iter
-    len = res
-    rad=3
-    iter=212
-    x1 = leftmargin + 44 * res
-    y1 = topmargin + (nbrows - 1) * res
-    ellipse(x1, y1, rad, rad)
-    stroke(0, 100, 100)
-    for (var i = 1; i < iter; i++) {
-        angle = field[nbrows - i][4]
-        x2 = x1 + len * cos(angle + PI)
-        y2 = y1 + len * sin(angle + PI)
-//         ellipse(x2, y2, rad, rad)
-        x1 = x2; y1 = y2;
-    }
-    x1 = leftmargin + 45 * res
-    y1 = topmargin + (nbrows - 1) * res
-    ellipse(x1, y1, rad, rad)
-    stroke(0, 100, 100)
-    for (var i = 1; i < iter; i++) {
-        angle = field[nbrows - i][4]
-        x2 = x1 + len * cos(angle + PI)
-        y2 = y1 + len * sin(angle + PI)
-//        ellipse(x2, y2, rad, rad)
-        x1 = x2; y1 = y2;
-    }
-    x1 = leftmargin + 46 * res
-    y1 = topmargin + (nbrows - 1) * res
-    ellipse(x1, y1, rad, rad)
-    stroke(0, 100, 100)
-    for (var i = 1; i < iter; i++) {
-        angle = field[nbrows - i][4]
-        x2 = x1 + len * cos(angle + PI)
-        y2 = y1 + len * sin(angle + PI)
-        ellipse(x2, y2, rad, rad)
-        x1 = x2; y1 = y2;
-    }
-    for (var i = 1; i < iter; i++) {
-        angle = field[nbrows - i][4]
-        x2 = x1 + len * cos(angle)
-        y2 = y1 + len * sin(angle)
-        ellipse(x2, y2, rad, rad)
-        x1 = x2; y1 = y2;
-    }
     stroke(0, 0, 0)
 //    drawvecs()
     fill(0, 0, 0); stroke(0, 0, 0)
@@ -111,11 +66,34 @@ function draw() {
 
 function drawart() {
     initfield(noiseres)
-    for (var j = 0; j < nbcols; j++) {
-        if (random() < 0.5) {//goingdown(j)
-        }
-        else {//goingup(j)
-        }
+    for (var j = 0; j < 17; j++) {
+        oneloop()
+    }
+}
+
+function oneloop(){
+    var init, x1, y1, x2, y2, len, angle, rad, iter
+    len = res
+    rad=3
+    iter=212
+    init=Math.floor(random(nbcols-1))
+    x1 = leftmargin + init * res
+    y1 = topmargin + (nbrows - 1) * res
+    ellipse(x1, y1, rad, rad)
+    stroke(0, 100, 100)
+    for (var i = 1; i < iter; i++) {
+        angle = field[nbrows - i][init]
+        x2 = x1 + len * cos(angle)
+        y2 = y1 + len * sin(angle + PI)
+        ellipse(x2, y2, rad, rad)
+        x1 = x2; y1 = y2;
+    }
+    for (var i = 1; i < iter; i++) {
+        angle = field[nbrows - i][init]
+        x2 = x1 + len * cos(angle + PI)
+        y2 = y1 + len * sin(angle)
+        ellipse(x2, y2, rad, rad)
+        x1 = x2; y1 = y2;
     }
 }
 
