@@ -22,7 +22,7 @@ function setup() {
     initfield()
     maxcount = random(39, 45)
     yoff = 0.0
-    noiseres = 0.05
+    noiseres = 0.005
 
 }
 
@@ -65,36 +65,39 @@ function draw() {
 }
 
 function drawart() {
-    initfield(noiseres)
     for (var j = 0; j < 17; j++) {
+        initfield(noiseres)
         oneloop()
     }
 }
 
 function oneloop(){
-    var init, x1, y1, x2, y2, len, angle, rad, iter
+    var initx, inity, x1, y1, x2, y2, len, angle, rad, iter
     len = res
-    rad=3
+    rad=1
     iter=212
-    init=Math.floor(random(nbcols-1))
-    x1 = leftmargin + init * res
-    y1 = topmargin + (nbrows - 1) * res
+    initx=Math.floor(nbcols/2)//Math.floor(random(nbcols-1))
+    inity=nbrows-1//Math.floor(random(nbrows-1))
+    x1 = leftmargin + initx * res
+    y1 = topmargin + inity * res
     ellipse(x1, y1, rad, rad)
     stroke(0, 100, 100)
+    beginShape()
     for (var i = 1; i < iter; i++) {
-        angle = field[nbrows - i][init]
+        angle = field[nbrows - i][initx]
         x2 = x1 + len * cos(angle)
         y2 = y1 + len * sin(angle + PI)
-        ellipse(x2, y2, rad, rad)
+        vertex(x2, y2)
         x1 = x2; y1 = y2;
     }
     for (var i = 1; i < iter; i++) {
-        angle = field[nbrows - i][init]
+        angle = field[nbrows - i][initx]
         x2 = x1 + len * cos(angle + PI)
         y2 = y1 + len * sin(angle)
-        ellipse(x2, y2, rad, rad)
+        vertex(x2, y2)
         x1 = x2; y1 = y2;
     }
+    endShape(CLOSE)
 }
 
 function goingdown(j) {
