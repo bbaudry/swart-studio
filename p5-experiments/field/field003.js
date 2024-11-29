@@ -1,15 +1,15 @@
 var font, posx, posy, knobs = []
-var fSize = 14
+var fSize = 15
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('field002.js');
+    sourcecode = loadStrings('field003.js');
 }
 function savesvg() {
-    save("field002.svg");
+    save("field003.svg");
 }
 
 function savepng() {
-    save("field002.png");
+    save("field003.png");
 }
 
 function setup() {
@@ -22,7 +22,7 @@ function setup() {
     initfield()
     maxcount = random(39, 45)
     yoff = 0.0
-    noiseres = 0.005
+    noiseres = 0.007
 
 }
 
@@ -65,9 +65,10 @@ function draw() {
 }
 
 function drawart() {
-    for (var j = 0; j < 42; j+=7) {
-        initfield(noiseres)
+    for (var j = 0; j < 2; j++) {
+        initfield(0.001)
         oneloop(j)
+        //noiseres+=0.001
     }
 }
 
@@ -80,8 +81,7 @@ function oneloop(j){
     inity=nbrows-1//Math.floor(random(nbrows-1))
     x1 = leftmargin + initx * res
     y1 = topmargin + inity * res
-    ellipse(x1, y1, rad, rad)
-    stroke(0, 100, 100)
+    stroke(200,100,100)
     beginShape()
     for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][initx]
