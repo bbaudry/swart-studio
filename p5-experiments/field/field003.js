@@ -1,5 +1,5 @@
 var font, posx, posy, knobs = []
-var fSize = 12
+var fSize = 14
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     sourcecode = loadStrings('field002.js');
@@ -65,17 +65,17 @@ function draw() {
 }
 
 function drawart() {
-    for (var j = 0; j < 17; j++) {
+    for (var j = 0; j < 42; j+=7) {
         initfield(noiseres)
-        oneloop()
+        oneloop(j)
     }
 }
 
-function oneloop(){
+function oneloop(j){
     var initx, inity, x1, y1, x2, y2, len, angle, rad, iter
     len = res
     rad=1
-    iter=212
+    iter=199
     initx=Math.floor(nbcols/2)//Math.floor(random(nbcols-1))
     inity=nbrows-1//Math.floor(random(nbrows-1))
     x1 = leftmargin + initx * res
@@ -85,98 +85,17 @@ function oneloop(){
     beginShape()
     for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][initx]
-        x2 = x1 + len * cos(angle)
-        y2 = y1 + len * sin(angle + PI)
+        x2 = x1 + len * cos(angle+ PI)
+        y2 = y1 + len * sin(angle+ PI)
         vertex(x2, y2)
         x1 = x2; y1 = y2;
     }
     for (var i = 1; i < iter; i++) {
         angle = field[nbrows - i][initx]
-        x2 = x1 + len * cos(angle + PI)
+        x2 = x1 + len * cos(angle)
         y2 = y1 + len * sin(angle)
         vertex(x2, y2)
         x1 = x2; y1 = y2;
     }
     endShape(CLOSE)
-}
-
-function goingdown(j) {
-    var col, row, x1, y1, x2, y2, steplength, rad
-    col = j
-    row = 1
-    steplength = Math.floor(random(3, 17))
-    rad = Math.floor(random(3, 7))
-    stroke(0, 100, 100)
-    noFill()
-    x1 = leftmargin + col * res
-    y1 = topmargin + row * res
-    for (var i = 0; i < 210; i++) {
-        ellipse(x1, y1, rad, rad)
-        angle = field[row][col]//;text(Math.floor(angle),x1,y1)
-        x2 = x1 + steplength * cos(angle)
-        y2 = y1 + steplength * sin(angle)
-        col = Math.floor(x2 / res)
-        row = Math.floor(y2 / res)
-        if (col >= nbcols || col < 0) { break } else { x1 = x2 }
-        if (row >= nbrows || row < 0) { break } else { y1 = y2 }
-    }
-
-}
-
-function goingup(j) {
-    var col, row, x1, y1, x2, y2, steplength, rad
-    col = j
-    row = nbrows - 1
-    steplength = Math.floor(random(3, 17))
-    rad = Math.floor(random(3, 7))
-    stroke(0, 100, 100)
-    noFill()
-    x1 = leftmargin + col * res
-    y1 = row * res
-    for (var i = 0; i < 21; i++) {
-        ellipse(x1, y1, rad, rad)
-        angle = field[row][col]//;text(Math.floor(angle),x1,y1)
-        x2 = x1 + steplength * cos(angle + PI)
-        y2 = y1 + steplength * sin(angle + PI)
-        col = Math.floor(x2 / res)
-        row = Math.floor(y2 / res)
-        if (col >= nbcols || col < 0) { break } else { x1 = x2 }
-        if (row >= nbrows || row < 0) { break } else { y1 = y2 }
-    }
-}
-
-function shapeinfield(row, col) {
-    var x1, y1, x2, y2, x3, y3, offset
-    offset = 42
-    x1 = col * res
-    y1 = row * res
-    x2 = (col + Math.floor(random(-offset, offset))) * res
-    y2 = (row + Math.floor(random(-offset, offset))) * res
-    x3 = (col + Math.floor(random(-offset, offset))) * res
-    y3 = (row + Math.floor(random(-offset, offset))) * res
-    triangle(x1, y1, x2, y2, x3, y3)
-}
-
-function drawcurveinfield(row, col, len) {
-    strokeWeight(strw)
-    stroke(200, 100, 100, 42)
-    noFill()
-    beginShape()
-    x1 = col * res
-    y1 = row * res
-    curveVertex(x1, y1)
-    curveVertex(x1, y1)
-    for (let i = 0; i < len; i++) {
-        angle = field[row][col]
-        x2 = x1 + steplength * cos(angle)
-        y2 = y1 + steplength * sin(angle)
-        curveVertex(x2, y2)
-        col = Math.floor(x2 / res)
-        row = Math.floor(y2 / res)
-        if (col >= nbcols || col < 0) { break } else { x1 = x2 }
-        if (row >= nbrows || row < 0) { break } else { y1 = y2 }
-    }
-    curveVertex(x2, y2)
-    curveVertex(x2, y2)
-    endShape()
 }
