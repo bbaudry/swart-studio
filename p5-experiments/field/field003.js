@@ -26,7 +26,7 @@ function setup() {
 
 }
 
-var res = 3 //knob: density of the field
+var res = 7 //knob: density of the field
 //knob: speed to navigate noise. smallest, smoother angle changes
 var steplength = 3 * res//knob: length of each curve 
 var strw = 2 //knob: weight of each curve
@@ -58,15 +58,15 @@ function draw() {
     //drawframe()
     drawart()
     stroke(0, 0, 0)
-//    drawvecs()
+    //drawvecs()
     fill(0, 0, 0); stroke(0, 0, 0)
     showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 003). November 2024]")
     noLoop()
 }
 
 function drawart() {
-    for (var j = 0; j < 2; j++) {
-        initfield(0.001)
+    for (var j = 0; j < 1; j++) {
+        initfield(0.05)
         oneloop(j)
         //noiseres+=0.001
     }
@@ -76,7 +76,7 @@ function oneloop(j){
     var initx, inity, x1, y1, x2, y2, len, angle, rad, iter
     len = res
     rad=1
-    iter=199
+    iter=42
     initx=Math.floor(nbcols/2)//Math.floor(random(nbcols-1))
     inity=nbrows-1//Math.floor(random(nbrows-1))
     x1 = leftmargin + initx * res
@@ -84,6 +84,7 @@ function oneloop(j){
     stroke(200,100,100)
     beginShape()
     for (var i = 1; i < iter; i++) {
+        console.log("nbrows: "+nbrows+"; field rows: "+field.length)
         angle = field[nbrows - i][initx]
         x2 = x1 + len * cos(angle+ PI)
         y2 = y1 + len * sin(angle+ PI)
