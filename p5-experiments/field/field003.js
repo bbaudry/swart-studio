@@ -62,6 +62,7 @@ function draw() {
 
 function drawart() {
     initfield(0.02)
+    strokeWeight(1.5)
     for (var j = 0; j < 52; j++) {
         oneloop()
     }
@@ -76,7 +77,7 @@ function oneloop(){
     inity=Math.floor(nbrows*0.7)
     x1 = leftmargin + Math.floor(nbcols/2) * res
     y1 = topmargin + inity * res
-    hu=random([200,300,100,50])
+    hu=random([230,320,50])
     stroke(hu,100,100)
     beginShape()
     for (var i = 1; i < iter; i++) {
