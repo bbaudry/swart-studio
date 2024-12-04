@@ -1,0 +1,73 @@
+function preload() {
+    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
+    sourcecode = loadStrings('field003.js');
+}
+
+var font
+var fSize = 15
+
+function savesvg() {
+    save("field003.svg");
+}
+
+function savepng() {
+    save("field003.png");
+}
+
+function setup() {
+    //getsvg()
+    getpng()
+    centerCanvas();
+    colorMode(HSB, 360, 100, 100, 250);
+    strokeCap(SQUARE)
+    background(0,0,0)
+    noFill()
+}
+
+var nbcells = 3 //knob: density of the field
+//knob: speed to navigate noise. smallest, smoother angle changes
+var yoff, field
+
+
+function initgrid(noiseres) {
+    let x1, y1, x2, y2, x3, y3, x4, y4
+    field = []
+    yoff = 0.0
+    x1 = leftmargin
+    x4 = leftmargin
+    for (let x = 0; x < nbcells; x++) {
+        yoff += noiseres
+        y1=topmargin
+        y2=topmargin
+        x2=x1+actualwidth/nbcells
+        x3=x4+actualwidth/nbcells
+        for (let y = 0; y < nbcells; y++) {
+            y3=y2+actualheight/nbcells
+            y4=y1+actualheight/nbcells
+            field.push({x1:x1,y1:y1,x2:x2,y2:y2,x3:x3,y3:y3,x4:x4,y4:y4})
+            y1=y4
+            y2=y3
+        }
+        x1=x2
+        x4=x3
+    }
+}
+
+function draw() {
+    drawframe()
+    initgrid(0)
+    drawart()
+    fill(0, 0, 100); stroke(0, 0, 100)
+    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 003). November 2024]")
+    noLoop()
+}
+
+function drawart() {
+    for(i=0;i<field.length;i++){
+        var s=field[i]
+        stroke(0,100,100)
+        quad(s.x1,s.y1,s.x2,s.y2,s.x3,s.y3,s.x4,s.y4)
+    }
+}
+
+
