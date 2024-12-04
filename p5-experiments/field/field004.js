@@ -30,9 +30,10 @@ var yoff, field
 
 
 function initgrid(noiseres) {
-    let x1, y1, x2, y2, x3, y3, x4, y4
+    let x1, y1, x2, y2, x3, y3, x4, y4, off
     field = []
     yoff = 0.0
+    off=13
     x1 = leftmargin
     x4 = leftmargin
     for (let x = 0; x < nbcells; x++) {
@@ -45,14 +46,14 @@ function initgrid(noiseres) {
             y3=y2+(actualheight/nbcells)+random(-17,17)
             y4=y1+(actualheight/nbcells)+random(-17,17)
             field.push({x1:x1,y1:y1,x2:x2,y2:y2,x3:x3,y3:y3,x4:x4,y4:y4})
-            y1=y4
-            y2=y3
+            y1=y4+off
+            y2=y3+off
         }
         y3=bottommargin
         y4=bottommargin
         field.push({x1:x1,y1:y1,x2:x2,y2:y2,x3:x3,y3:y3,x4:x4,y4:y4})
-        x1=x2
-        x4=x3
+        x1=x2+off
+        x4=x3+off
     }
 }
 
