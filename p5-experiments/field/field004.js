@@ -24,7 +24,7 @@ function setup() {
     noFill()
 }
 
-var nbcells = 3 //knob: density of the field
+var nbcells = 5 //knob: density of the field
 //knob: speed to navigate noise. smallest, smoother angle changes
 var yoff, field
 
@@ -41,13 +41,16 @@ function initgrid(noiseres) {
         y2=topmargin
         x2=x1+actualwidth/nbcells
         x3=x4+actualwidth/nbcells
-        for (let y = 0; y < nbcells; y++) {
-            y3=y2+actualheight/nbcells
-            y4=y1+actualheight/nbcells
+        for (let y = 0; y < nbcells-1; y++) {
+            y3=y2+(actualheight/nbcells)+random(-17,17)
+            y4=y1+(actualheight/nbcells)+random(-17,17)
             field.push({x1:x1,y1:y1,x2:x2,y2:y2,x3:x3,y3:y3,x4:x4,y4:y4})
             y1=y4
             y2=y3
         }
+        y3=bottommargin
+        y4=bottommargin
+        field.push({x1:x1,y1:y1,x2:x2,y2:y2,x3:x3,y3:y3,x4:x4,y4:y4})
         x1=x2
         x4=x3
     }
