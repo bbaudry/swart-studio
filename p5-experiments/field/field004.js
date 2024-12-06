@@ -24,7 +24,7 @@ function setup() {
     noFill()
 }
 
-var nbcells = 5 //knob: density of the field
+var nbcells = 6 //knob: density of the field
 //knob: speed to navigate noise. smallest, smoother angle changes
 var yoff, field
 
@@ -70,13 +70,14 @@ function drawart() {
     for (i = 0; i < field.length; i++) {
         var s = field[i]
         stroke(0, 100, 100)
-        quad(s.x1, s.y1, s.x2, s.y2, s.x3, s.y3, s.x4, s.y4)
-        eye(s)
+        //quad(s.x1, s.y1, s.x2, s.y2, s.x3, s.y3, s.x4, s.y4)
+        if(random()<0.8){eye(s)}
+        else{eye2(s)}
     }
 }
 
 function eye(s) {
-    var x1, y1, x2, y2, x3, y3, x4, y4, t, ox, oy, dx, dy, alea
+    var x1, y1, x2, y2, x3, y3, t, ox, oy, dx, dy, alea
     alea = random()
     if (alea < 0.25) {
         x1 = s.x1; y1 = s.y1; x2 = s.x2; y2 = s.y2; x3 = s.x3; y3 = s.y3;
@@ -101,5 +102,17 @@ function eye(s) {
         dy = (1 - t) * y2 + (t * y3);
         line(ox, oy, dx, dy)
     }
+}
 
+function eye2(s){
+    var x1, y1, x2, y2, x3, y3, t, ox, oy, dx, dy, alea
+    //quad(s.x1, s.y1, s.x2, s.y2, s.x3, s.y3, s.x4, s.y4)
+    x1=s.x1; y1=s.y1; x2=s.x2; y2=s.y2; x3=s.x3; y3=s.y3; x4=s.x4; y4=s.y4
+    for (t = 0; t < 1; t += 0.1) {
+        ox = (1 - t) * x1 + (t * x2);
+        oy = (1 - t) * y1 + (t * y2);
+        dx = (1 - t) * x3 + (t * x4);
+        dy = (1 - t) * y3 + (t * y4);
+        line(ox, oy, dx, dy)
+    }
 }
