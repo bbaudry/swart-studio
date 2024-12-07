@@ -108,6 +108,7 @@ function eye2(s){
     var x1, y1, x2, y2, x3, y3, t, ox, oy, dx, dy, alea
     //quad(s.x1, s.y1, s.x2, s.y2, s.x3, s.y3, s.x4, s.y4)
     x1=s.x1; y1=s.y1; x2=s.x2; y2=s.y2; x3=s.x3; y3=s.y3; x4=s.x4; y4=s.y4
+    line(x1,y1,x2,y2);line(x4,y4,x3,y3)
     for (t = 0; t < 1; t += 0.1) {
         ox = (1 - t) * x1 + (t * x2);
         oy = (1 - t) * y1 + (t * y2);
