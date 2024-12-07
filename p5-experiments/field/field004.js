@@ -24,7 +24,7 @@ function setup() {
     noFill()
 }
 
-var nbcells = 6 //knob: density of the field
+var nbcells = 7 //knob: density of the field
 //knob: speed to navigate noise. smallest, smoother angle changes
 var yoff, field
 
@@ -61,8 +61,8 @@ function draw() {
     background(0,0,100)
     initgrid(0.1)
     drawart()
-    fill(0, 0, 0); stroke(0, 0, 0)
-    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 003). November 2024]")
+    fill(0, 0, 0); stroke(0, 0, 0);     strokeWeight(1)
+    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 004). December 2024]")
     noLoop()
 }
 
@@ -160,7 +160,7 @@ function oneloop(){
     rad=0.5
     iter=37
     initx=Math.floor(random(nbcols))
-    inity=Math.floor(nbrows*0.7)
+    inity=Math.floor(nbrows*0.8)
     x1 = leftmargin + Math.floor(nbcols/2) * res
     y1 = topmargin + inity * res
     hu=random([50])
@@ -168,14 +168,14 @@ function oneloop(){
     beginShape()
     for (var i = 1; i < iter; i++) {
         console.log("nbrows: "+nbrows+"; field rows: "+field.length)
-        angle = fieldflower[nbrows - i][initx]
+        angle = fieldflower[nbrows - i][initx+i]
         x2 = x1 + len * cos(angle+ PI*rad)
         y2 = y1 + len * sin(angle+ PI*rad)
         vertex(x2, y2)
         x1 = x2; y1 = y2;
     }
     for (var i = 1; i < iter; i++) {
-        angle = fieldflower[nbrows - i][initx]
+        angle = fieldflower[nbrows - i][initx+i]
         x2 = x1 + len * cos(angle- PI*(1-rad))
         y2 = y1 + len * sin(angle- PI*(1-rad))
         vertex(x2, y2)
