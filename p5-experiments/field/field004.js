@@ -7,11 +7,11 @@ var font
 var fSize = 15
 
 function savesvg() {
-    save("field003.svg");
+    save("field004.svg");
 }
 
 function savepng() {
-    save("field003.png");
+    save("field004.png");
 }
 
 function setup() {

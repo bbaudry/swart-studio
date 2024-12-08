@@ -7,11 +7,11 @@ var font
 var fSize = 15
 
 function savesvg() {
-    save("field003.svg");
+    save("field005.svg");
 }
 
 function savepng() {
-    save("field003.png");
+    save("field005.png");
 }
 
 function setup() {
@@ -68,22 +68,22 @@ function shape() {
     noFill()
     var xoff, yoff, noiseinc, diam, diamorigin, diaminc, step, x, y, xorigin, yorigin
     // knobs
-    step = 210 // how far to move in the canvas
-    diamorigin = 21 // value of the circle diameter, when a new trace starts
-    diaminc = 0.5 // increment at each trace step
+    step = 2 // how far to move in the canvas
+    diamorigin = 2 // value of the circle diameter, when a new trace starts
+    diaminc = 0.1 // increment at each trace step
     xorigin = leftmargin+actualwidth/2 
-    yorigin = topmargin+actualheight*0.7    
-    noiseinc = 1.8 // speed at which we move around a circle in the noise space
+    yorigin = topmargin//+actualheight*0.7    
+    noiseinc = 1 // speed at which we move around a circle in the noise space
     //draw one or more traces
     for (var i = 1; i < 2; i++) {
         diam = diamorigin; x=xorigin; y=yorigin+i
         //one trace drawn, fetching noise values on a circle, and considering the value as an angle to move in the canvas
         for (var a = 0; a < 360; a += noiseinc) {
-            xoff = 20 * i + cos(radians(a)) + 1 // 20*i is to move in the noise space at each iteration i
-            yoff = 20 * i + sin(radians(a)) + 1
-            var angle = map(noise(xoff, yoff), 0, 1, 0, 360)
-            x = xorigin+step  * cos(radians(angle))
-            y = yorigin+step  * sin(radians(angle))
+            xoff = 20 * i + 42*cos(radians(a)) + 1 // 20*i is to move in the noise space at each iteration i
+            yoff = 20 * i + 42*sin(radians(a)) + 1
+            var angle = map(noise(xoff, yoff), 0, 1, 0, 360);console.log(noise(xoff, yoff))
+            x = x+step  * cos(radians(angle-90))
+            y = y+step  * sin(radians(angle-90))
             ellipse(x, y, diam, diam)
             diam += diaminc
         }
