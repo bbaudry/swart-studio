@@ -68,20 +68,22 @@ function shape() {
     noFill()
     var xoff, yoff, noiseinc, diam, diamorigin, diaminc, step, x, y, xorigin, yorigin
     // knobs
-    step = 3 // how far to move in the canvas
-    diamorigin = 7 // value of the circle diameter, when a new trace starts
-    diaminc = 2 // increment at each trace step
+    step = 210 // how far to move in the canvas
+    diamorigin = 21 // value of the circle diameter, when a new trace starts
+    diaminc = 0.5 // increment at each trace step
     xorigin = leftmargin+actualwidth/2 
     yorigin = topmargin+actualheight*0.7    
-    noiseinc = 3 // speed at which we move around a circle in the noise space
-    for (var i = 1; i < 3; i++) {
+    noiseinc = 1.8 // speed at which we move around a circle in the noise space
+    //draw one or more traces
+    for (var i = 1; i < 2; i++) {
         diam = diamorigin; x=xorigin; y=yorigin+i
+        //one trace drawn, fetching noise values on a circle, and considering the value as an angle to move in the canvas
         for (var a = 0; a < 360; a += noiseinc) {
             xoff = 20 * i + cos(radians(a)) + 1 // 20*i is to move in the noise space at each iteration i
             yoff = 20 * i + sin(radians(a)) + 1
             var angle = map(noise(xoff, yoff), 0, 1, 0, 360)
-            x = x+ step  * cos(radians(angle+a/2))
-            y = y+step  * sin(radians(angle+a/2))
+            x = xorigin+step  * cos(radians(angle))
+            y = yorigin+step  * sin(radians(angle))
             ellipse(x, y, diam, diam)
             diam += diaminc
         }
