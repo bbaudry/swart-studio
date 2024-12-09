@@ -1,6 +1,6 @@
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('field003.js');
+    sourcecode = loadStrings('field005.js');
 }
 
 var font
