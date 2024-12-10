@@ -46,19 +46,12 @@ function drawart() {
         x3 = x2 + actualwidth * 0.4
         y3 = y2 + 21+i
         line(x2, y2, x3, y3)
-        push()
-        translate(padding + leftmargin, padding + topmargin)
-        drawcurveinfield(Math.floor((y2-topmargin)/res), Math.floor((x2-leftmargin)/res), len) 
-        pop()
+        drawcurveinfield(Math.floor((y2)/res), Math.floor((x2+i*2)/res), len) 
     }
-    
-
-
 }
 
 
 var res = 7 //knob: density of the field
-//knob: speed to navigate noise. smallest, smoother angle changes
 var steplength = res//knob: length of each curve 
 var strw = 2 //knob: weight of each curve
 var field = []
@@ -90,9 +83,6 @@ function initfield(noiseres) {
 
 
 function drawcurveinfield(row, col, len) {
-    strokeWeight(strw)
-    stroke(200, 100, 100, 42)
-    noFill()
     beginShape()
     x1 = col * res
     y1 = row * res
