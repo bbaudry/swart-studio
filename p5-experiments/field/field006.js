@@ -39,14 +39,14 @@ function drawart() {
     initfield(0.05)
     for (var i = 0; i < nbiter; i++) {
         x1 = leftmargin + actualwidth * 0.1
-        y1 = topmargin + actualheight * 0.1 +i*17
-        x2 = x1 + actualwidth * 0.4
-        y2 = topmargin + actualheight * 0.1 +i
+        y1 = topmargin + actualheight * 0.005 +i*2
+        x2 =  42*res// x1 + actualwidth * 0.4
+        y2 =  (17+i)*res//topmargin + actualheight * 0.1 +i
         line(x1, y1, x2, y2)
         x3 = x2 + actualwidth * 0.4
         y3 = y2 + 21+i
-        line(x2, y2, x3, y3)
-        drawcurveinfield(Math.floor((y2)/res), Math.floor((x2+i*2)/res), len) 
+        //line(x2, y2, x3, y3)
+        drawcurveinfield(Math.floor((y2)/res), Math.floor((x2)/res), len) 
     }
 }
 
