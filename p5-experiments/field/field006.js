@@ -26,27 +26,28 @@ function setup() {
 
 function draw() {
     drawart()
-    fill(0, 0, 0); stroke(0, 0, 0); strokeWeight(1)
+    fill(0, 0, 0); stroke(0, 0, 100); strokeWeight(1)
     showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 006). December 2024]")
     noLoop()
 }
 
 function drawart() {
     stroke(0, 0, 100)
-    var x1, y1, x2, y2, x3, y3, nbiter, len
+    var x1, y1, x2, y2, x3, y3, nbiter, len, vera
     nbiter=37
-    len = 180
+    len = 42
     initfield(0.05)
     for (var i = 0; i < nbiter; i++) {
         x1 = leftmargin + actualwidth * 0.1
-        y1 = topmargin + actualheight * 0.005 +i*2
+        y1 = topmargin + actualheight * 0.75 +i*2
         x2 =  42*res// x1 + actualwidth * 0.4
         y2 =  (17+i)*res//topmargin + actualheight * 0.1 +i
         line(x1, y1, x2, y2)
         x3 = x2 + actualwidth * 0.4
         y3 = y2 + 21+i
         //line(x2, y2, x3, y3)
-        drawcurveinfield(Math.floor((y2)/res), Math.floor((x2)/res), len) 
+        vera=drawcurveinfield(Math.floor((y2)/res), Math.floor((x2)/res), len) 
+        line(vera.x,vera.y,rightmargin,y1)
     }
 }
 
@@ -101,4 +102,5 @@ function drawcurveinfield(row, col, len) {
     curveVertex(x2, y2)
     curveVertex(x2, y2)
     endShape()
+    return({x:x2,y:y2})
 }
