@@ -33,21 +33,23 @@ function draw() {
 
 function drawart() {
     stroke(0, 0, 100)
-    var x1, y1, x2, y2, x3, y3, nbiter, len, vera
-    nbiter=37
-    len = 42
+    var x1, y1, x2, y2, x3, y3, nbiter, len, luxus, vera, molnar
+    nbiter=Math.floor(random(29,37))
+    len = Math.floor(random(37,53))
+    vera = Math.floor(random(37,53))
+    molnar = random(0.1,0.77)
     initfield(0.05)
     for (var i = 0; i < nbiter; i++) {
-        x1 = leftmargin + actualwidth * 0.1
-        y1 = topmargin + actualheight * 0.75 +i*2
-        x2 =  42*res// x1 + actualwidth * 0.4
+        x1 = leftmargin
+        y1 = topmargin + actualheight * molnar +i*2
+        x2 =  42*res
         y2 =  (17+i)*res//topmargin + actualheight * 0.1 +i
         line(x1, y1, x2, y2)
         x3 = x2 + actualwidth * 0.4
         y3 = y2 + 21+i
         //line(x2, y2, x3, y3)
-        vera=drawcurveinfield(Math.floor((y2)/res), Math.floor((x2)/res), len) 
-        line(vera.x,vera.y,rightmargin,y1)
+        luxus=drawcurveinfield(Math.floor((y2)/res), Math.floor((x2)/res), len) 
+        line(luxus.x,luxus.y,rightmargin,y1)
     }
 }
 
