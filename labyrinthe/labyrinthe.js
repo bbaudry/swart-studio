@@ -8,7 +8,7 @@ var topmargin = 0.05 * h
 var bottommargin = 0.7 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
-var cnv, pos
+var cnv, pos, speed
 
 function setup() {
     cnv =   createCanvas(windowWidth, windowHeight);
@@ -19,6 +19,7 @@ function setup() {
     strokeCap(SQUARE)
     background(0,0,0);
     pos={x:w/2,y:h/2}
+    speed=7
 }
 
 function centerCanvas() {
@@ -27,12 +28,17 @@ function centerCanvas() {
 }
 
 function draw(){
+    background(0,0,0);
     fill(50,100,100)
-    if(mouseX-pmouseX >0 ){pos.x++}
-    if(mouseX-pmouseX <0 ){pos.x--}
-    if(mouseY-pmouseY >0 ){pos.y++}
-    if(mouseY-pmouseY <0 ){pos.y--}
     ellipse(pos.x,pos.y,200,200)
 }
 
+function keyPressed() {
+    if(keyCode === RIGHT_ARROW ){pos.x+=speed}
+    if(keyCode === LEFT_ARROW ){pos.x-=speed}
+    if(keyCode === DOWN_ARROW ){pos.y+=speed}
+    if(keyCode === UP_ARROW){pos.y-=speed}
+    
+  }
+  
 
