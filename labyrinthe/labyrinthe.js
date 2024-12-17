@@ -9,17 +9,39 @@ var bottommargin = 0.7 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, pos, speed
+var cols, rows;
+var density = 42;
+var grid = [];
+
+var current;
+
+var stack = [];
+
+
 
 function setup() {
-    cnv =   createCanvas(windowWidth, windowHeight);
-    w = windowWidth
-    h = windowHeight
-    centerCanvas;
-    colorMode(HSB, 360, 100, 100, 250);
-    strokeCap(SQUARE)
-    background(0,0,0);
+    cnv =   createCanvas(800, 800);
+    w = 800
+    h = 800
+    //colorMode(HSB, 360, 100, 100, 250);
+//    strokeCap(SQUARE)
+    //background(0,0,0);
     pos={x:w/2,y:h/2}
     speed=7
+    cols = Math.floor(w / density);
+    rows = Math.floor(h / density);
+    //frameRate(5);
+  
+    for (var j = 0; j < rows; j++) {
+      for (var i = 0; i < cols; i++) {
+        var cell = new Cell(i, j);
+        grid.push(cell);
+      }
+    }
+    
+  
+    current = grid[0];
+  
 }
 
 function centerCanvas() {
@@ -27,18 +49,71 @@ function centerCanvas() {
     cnv.position(x, y);
 }
 
-function draw(){
-    background(0,0,0);
-    fill(50,100,100)
-    ellipse(pos.x,pos.y,200,200)
+
+function draw() {
+    background(51);
+    for (var i = 0; i < grid.length; i++) {
+      grid[i].show();
+    }
+  
+    current.visited = true;
+    current.highlight();
+    // STEP 1
+    var next = current.checkNeighbors();
+    if (next) {
+      next.visited = true;
+  
+      // STEP 2
+      stack.push(current);
+  
+      // STEP 3
+      removeWalls(current, next);
+  
+      // STEP 4
+      current = next;
+    } else if (stack.length > 0) {
+      current = stack.pop();
+    }
+  
+  
+    //background(0,0,0);
+    //fill(50,100,100)
+    //ellipse(pos.x,pos.y,200,200)
 }
 
-function keyPressed() {
+/*function keyPressed() {
     if(keyCode === RIGHT_ARROW ){pos.x+=speed}
     if(keyCode === LEFT_ARROW ){pos.x-=speed}
     if(keyCode === DOWN_ARROW ){pos.y+=speed}
     if(keyCode === UP_ARROW){pos.y-=speed}
     
-  }
+  }*/
   
 
+
+  function index(i, j) {
+    if (i < 0 || j < 0 || i > cols - 1 || j > rows - 1) {
+      return -1;
+    }
+    return i + j * cols;
+  }
+  
+  
+  function removeWalls(a, b) {
+    var x = a.i - b.i;
+    if (x === 1) {
+      a.walls[3] = false;
+      b.walls[1] = false;
+    } else if (x === -1) {
+      a.walls[1] = false;
+      b.walls[3] = false;
+    }
+    var y = a.j - b.j;
+    if (y === 1) {
+      a.walls[0] = false;
+      b.walls[2] = false;
+    } else if (y === -1) {
+      a.walls[2] = false;
+      b.walls[0] = false;
+    }
+  }
