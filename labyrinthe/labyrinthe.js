@@ -1,7 +1,4 @@
-var echelle = 1
-var w = 1200 * echelle
-var h = 900 * echelle
-var padding = 0
+var w, h 
 var rightmargin = 0.95 * w
 var leftmargin = 0.05 * w
 var topmargin = 0.05 * h
@@ -10,7 +7,7 @@ var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, pos, speed
 var cols, rows
-var density = 84;
+var density = 42;
 var grid = [];
 var stack = [];
 var current;
@@ -18,9 +15,9 @@ var current;
 
 
 function setup() {
-    cnv = createCanvas(800, 800);
-    w = 800
-    h = 800
+    cnv = createCanvas(windowWidth, windowHeight);
+    w = windowWidth
+    h = windowHeight
     colorMode(HSB, 360, 100, 100, 250);
     pos = { x: density / 2, y: density / 2 }
     speed = density
@@ -46,7 +43,7 @@ function centerCanvas() {
 
 
 function draw() {
-    background(51);
+    background(0,0,0);
     for (var i = 0; i < grid.length; i++) {
         grid[i].show();
     }
