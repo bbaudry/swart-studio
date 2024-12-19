@@ -1,10 +1,4 @@
-var w, h 
-var rightmargin = 0.95 * w
-var leftmargin = 0.05 * w
-var topmargin = 0.05 * h
-var bottommargin = 0.7 * h
-var actualwidth = rightmargin - leftmargin
-var actualheight = bottommargin - topmargin
+var w, h, rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
 var cnv, pos, speed
 var cols, rows
 var density = 42;
@@ -18,11 +12,18 @@ function setup() {
     cnv = createCanvas(windowWidth, windowHeight);
     w = windowWidth
     h = windowHeight
+    rightmargin = 0.95 * w
+    leftmargin = 0.05 * w
+    topmargin = 0.05 * h
+    bottommargin = 0.9 * h
+    actualwidth = rightmargin - leftmargin
+    actualheight = bottommargin - topmargin
+
     colorMode(HSB, 360, 100, 100, 250);
-    pos = { x: density / 2, y: density / 2 }
+    pos = { x: leftmargin+ density * 0.5, y: topmargin + density * 0.5 }
     speed = density
-    cols = Math.floor(w / density);
-    rows = Math.floor(h / density);
+    cols = Math.floor(actualwidth / density);
+    rows = Math.floor(actualheight / density);
 
     for (var j = 0; j < rows; j++) {
         for (var i = 0; i < cols; i++) {
@@ -30,8 +31,6 @@ function setup() {
             grid.push(cell);
         }
     }
-
-
     current = grid[0];
 
 }
