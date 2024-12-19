@@ -69,7 +69,8 @@ function draw() {
         }
         else {
             fill(50,100,100)
-            ellipse(pos.x,pos.y,density-4,density-4)
+            current.jeton()
+//            ellipse(pos.x,pos.y,density-4,density-4)
         }
     }
 }
