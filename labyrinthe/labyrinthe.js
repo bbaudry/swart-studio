@@ -12,10 +12,10 @@ function setup() {
     cnv = createCanvas(windowWidth, windowHeight);
     w = windowWidth
     h = windowHeight
-    rightmargin = 0.95 * w
-    leftmargin = 0.05 * w
-    topmargin = 0.05 * h
-    bottommargin = 0.9 * h
+    rightmargin = 0.65 * w
+    leftmargin = 0.45 * w
+    topmargin = 0.35 * h
+    bottommargin = 0.7 * h
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
 
@@ -48,7 +48,7 @@ function draw() {
     }
 
     current.visited = true;
-    current.highlight();
+    //current.highlight();
     // STEP 1
     var next = current.checkNeighbors();
     if (next) {
@@ -68,19 +68,27 @@ function draw() {
             current = stack.pop();
         }
         else {
-            fill(50,100,100)
+            grid[grid.length-1].highlight()
             current.jeton()
-//            ellipse(pos.x,pos.y,density-4,density-4)
         }
     }
 }
 
 function keyPressed() {
-    if(keyCode === RIGHT_ARROW ){pos.x+=speed}
-    if(keyCode === LEFT_ARROW ){pos.x-=speed}
-    if(keyCode === DOWN_ARROW ){pos.y+=speed}
-    if(keyCode === UP_ARROW){pos.y-=speed}
-    
+    var next
+    if(keyCode === UP_ARROW && !current.walls[0]){
+        current=grid[index(current.i, current.j-1)]
+    }
+    if(keyCode === RIGHT_ARROW && !current.walls[1]){
+        current=grid[index(current.i+1, current.j)]
+    }
+    if(keyCode === DOWN_ARROW && !current.walls[2]){
+        current=grid[index(current.i, current.j+1)]
+    }
+    if(keyCode === LEFT_ARROW && !current.walls[3]){
+        current=grid[index(current.i-1, current.j)]
+    }
+    console.log("keyCode: "+keyCode+"; wall 0"+current.walls[0]+"; wall 1"+current.walls[1]+"; wall 2"+current.walls[2]+"; wall 3"+current.walls[3])
   }
 
 
