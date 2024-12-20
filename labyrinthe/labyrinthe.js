@@ -1,11 +1,13 @@
-var w, h, rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
-var cnv, pos, speed
-var cols, rows
+var w, h, rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight, cnv
+var cols, rows, font
 var density = 42;
 var grid = [];
 var stack = [];
 var current;
 
+function preload() {
+    font = loadFont("../p5-experiments/fonts/FreeMono.otf");
+}
 
 
 function setup() {
@@ -20,8 +22,6 @@ function setup() {
     actualheight = bottommargin - topmargin
 
     colorMode(HSB, 360, 100, 100, 250);
-    pos = { x: leftmargin+ density * 0.5, y: topmargin + density * 0.5 }
-    speed = density
     cols = Math.floor(actualwidth / density);
     rows = Math.floor(actualheight / density);
 
@@ -48,7 +48,6 @@ function draw() {
     }
 
     current.visited = true;
-    //current.highlight();
     // STEP 1
     var next = current.checkNeighbors();
     if (next) {
@@ -70,12 +69,16 @@ function draw() {
         else {
             grid[grid.length-1].highlight()
             current.jeton()
+            if(index(current.i,current.j)==grid.length-1){
+                background(330,100,100);
+                bravo()
+                noLoop();
+            }
         }
     }
 }
 
 function keyPressed() {
-    var next
     if(keyCode === UP_ARROW && !current.walls[0]){
         current=grid[index(current.i, current.j-1)]
     }
@@ -88,8 +91,7 @@ function keyPressed() {
     if(keyCode === LEFT_ARROW && !current.walls[3]){
         current=grid[index(current.i-1, current.j)]
     }
-    console.log("keyCode: "+keyCode+"; wall 0"+current.walls[0]+"; wall 1"+current.walls[1]+"; wall 2"+current.walls[2]+"; wall 3"+current.walls[3])
-  }
+}
 
 
 
@@ -118,4 +120,16 @@ function removeWalls(a, b) {
         a.walls[2] = false;
         b.walls[0] = false;
     }
+}
+
+function bravo(){
+    stroke(0,0,100)
+    fill(0,0,100)
+    var b="#bra[vo]"
+    var fSize = 192
+    textSize(fSize)
+    textFont(font)
+    var posx = (w-textWidth(b))*0.5
+    var posy = (h+fSize*0.7)*0.5
+    text(b,posx,posy)
 }
