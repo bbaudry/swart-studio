@@ -1,17 +1,17 @@
 //pixel = dpi * mm / 25.4 mm
 //each of the 5 sections is 120mm × 170mm
 //96dpi is for plotting on the UUNA TEK iDraw
-//w=96*8.5=816
-//h=96*11=1056
+//w=96*6.5=624
+//h=96*4=384
 //padding=96*45/25=172
 
 var echelle = 1
-var w = 816 * echelle
-var h = 706 * echelle
+var w = 624 * echelle
+var h = 384 * echelle
 var rightmargin = 0.95 * w
 var leftmargin = 0.05 * w
 var topmargin = 0.05 * h
-var bottommargin = 0.7 * h
+var bottommargin = 0.95 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, imgbtn
