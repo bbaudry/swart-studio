@@ -7,7 +7,7 @@
 
 var echelle = 1
 var w = 816 * echelle
-var h = 1056 * echelle
+var h = 706 * echelle
 var rightmargin = 0.95 * w
 var leftmargin = 0.05 * w
 var topmargin = 0.05 * h
