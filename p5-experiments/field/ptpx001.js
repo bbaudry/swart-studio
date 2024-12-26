@@ -7,11 +7,11 @@ var font
 var fSize = 15
 
 function savesvg() {
-    save("field006.svg");
+    save("ptpx001.svg");
 }
 
 function savepng() {
-    save("field006.png");
+    save("ptpx001.png");
 }
 
 function setup() {
@@ -20,14 +20,15 @@ function setup() {
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
-    background(0, 0, 0)
+    background(0, 0, 100)
     noFill()
 }
 
 function draw() {
-    star()
-    fill(0, 0, 0); stroke(0, 0, 100); strokeWeight(1)
-    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 006). December 2024]")
+    background
+    drawframe()
+//    fill(0, 0, 0); stroke(0, 0, 100); strokeWeight(1)
+//    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 006). December 2024]")
     noLoop()
 }
 

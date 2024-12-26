@@ -1,17 +1,19 @@
 //pixel = dpi * mm / 25.4 mm
 //each of the 5 sections is 120mm × 170mm
 //96dpi is for plotting on the UUNA TEK iDraw
-//w=96*6.5=624
-//h=96*4=384
-//padding=96*45/25=172
+//w=96*210/25.4=793
+//h=96*297/25.4=1122
 
 var echelle = 1
-var w = 624 * echelle
-var h = 384 * echelle
-var rightmargin = 0.95 * w
-var leftmargin = 0.05 * w
-var topmargin = 0.05 * h
-var bottommargin = 0.9 * h
+var w = 793 * echelle
+var h = 1122 * echelle
+var padding = 19 //5mm
+var postcardwidth = 378 //10cm
+var postcardheight = 265 //7cm
+var rightmargin = 0.97 * postcardwidth
+var leftmargin = 0.03 * postcardwidth
+var topmargin = 0.03 * postcardheight
+var bottommargin = 0.85 * postcardheight
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, imgbtn
@@ -85,6 +87,34 @@ function drawvecs() {
 }
 
 function drawframe(){
-    rect(0,0,w,h)
+    push()
+    translate(padding,padding)
+    rect(0,0,postcardwidth,postcardheight)
     rect(leftmargin,topmargin,actualwidth,actualheight)
+    pop()
+    push()
+    translate(padding+postcardwidth,padding)
+    rect(0,0,postcardwidth,postcardheight)
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    pop()
+    push()
+    translate(padding,padding+postcardheight)
+    rect(0,0,postcardwidth,postcardheight)
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    pop()
+    push()
+    translate(padding+postcardwidth,padding+postcardheight)
+    rect(0,0,postcardwidth,postcardheight)
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    pop()
+    push()
+    translate(padding,padding+2*postcardheight)
+    rect(0,0,postcardwidth,postcardheight)
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    pop()
+    push()
+    translate(padding+postcardwidth,padding+2*postcardheight)
+    rect(0,0,postcardwidth,postcardheight)
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    pop()
 }
