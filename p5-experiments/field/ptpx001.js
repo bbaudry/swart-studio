@@ -1,17 +1,7 @@
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('field006.js');
-}
-
-var font
-var fSize = 15
-
-function savesvg() {
-    save("ptpx001.svg");
-}
-
-function savepng() {
-    save("ptpx001.png");
+    fileName = "ptpx001"
+    sourcecode = loadStrings(fileName+'.js');
 }
 
 function setup() {

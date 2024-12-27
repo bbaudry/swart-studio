@@ -14,7 +14,7 @@ var postcardheight = 378 //7cm
 var rightmargin = 0.97 * postcardwidth
 var leftmargin = 0.03 * postcardwidth
 var topmargin = 0.03 * postcardheight
-var bottommargin = 0.85 * postcardheight
+var bottommargin = 0.93 * postcardheight
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 var cnv, imgbtn
@@ -74,19 +74,6 @@ function showcode(posx,posy) {
     return([posx,posy])
 }
 
-
-function drawvecs() {
-    for (let y = 0; y < nbrows; y++) {
-        for (let x = 0; x < nbcols; x++) {
-            push()
-            translate(leftmargin+x * res, topmargin+y * res)
-            rotate(field[y][x])
-            line(0, 0, res, 0)
-            pop()
-        }
-    }
-}
-
 function drawframe(){
     for(var i=0;i<2;i++){
         for(var j=1;j<3;j++){
@@ -95,7 +82,24 @@ function drawframe(){
             rotate(radians(270))
             rect(0,0,postcardwidth,postcardheight)
             rect(leftmargin,topmargin,actualwidth,actualheight)
+            stroke(0,0,0); fill(0,0,0)
+            textFont(font)
+            textSize(fSize)
+            text("ptpx001",leftmargin,bottommargin+fSize)
             pop()        
         }
     }
+}
+
+
+var font
+var fSize = 15
+var fileName
+
+function savesvg() {
+    save(fileName+".svg");
+}
+
+function savepng() {
+    save(fileName+".png");
 }
