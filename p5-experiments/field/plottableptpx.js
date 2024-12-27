@@ -7,9 +7,10 @@
 var echelle = 1
 var w = 793 * echelle
 var h = 1122 * echelle
-var padding = 19 //5mm
-var postcardwidth = 378 //10cm
-var postcardheight = 265 //7cm
+var wpadding = 11 //3mm
+var hpadding = 19 //5mm
+var postcardwidth = 491 //10cm
+var postcardheight = 378 //7cm
 var rightmargin = 0.97 * postcardwidth
 var leftmargin = 0.03 * postcardwidth
 var topmargin = 0.03 * postcardheight
@@ -87,34 +88,14 @@ function drawvecs() {
 }
 
 function drawframe(){
-    push()
-    translate(padding,padding)
-    rect(0,0,postcardwidth,postcardheight)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    pop()
-    push()
-    translate(padding+postcardwidth,padding)
-    rect(0,0,postcardwidth,postcardheight)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    pop()
-    push()
-    translate(padding,padding+postcardheight)
-    rect(0,0,postcardwidth,postcardheight)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    pop()
-    push()
-    translate(padding+postcardwidth,padding+postcardheight)
-    rect(0,0,postcardwidth,postcardheight)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    pop()
-    push()
-    translate(padding,padding+2*postcardheight)
-    rect(0,0,postcardwidth,postcardheight)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    pop()
-    push()
-    translate(padding+postcardwidth,padding+2*postcardheight)
-    rect(0,0,postcardwidth,postcardheight)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    pop()
+    for(var i=0;i<2;i++){
+        for(var j=1;j<3;j++){
+            push()
+            translate(wpadding+i*(wpadding+postcardheight),j*(hpadding+postcardwidth))
+            rotate(radians(270))
+            rect(0,0,postcardwidth,postcardheight)
+            rect(leftmargin,topmargin,actualwidth,actualheight)
+            pop()        
+        }
+    }
 }
