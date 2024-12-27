@@ -43,14 +43,14 @@ function star() {
     var x1, y1, x2, y2, x3, y3, nbiter, len, luxus, vera, molnar
     nbiter = Math.floor(random(21, 42))
     len = Math.floor(random(37, 53))
-    vera = Math.floor(random(21, 33))
-    molnar = random(0.1, 0.77)
+    vera = Math.floor(random(11, 29))
+    molnar = random(0.1, 0.69)
     initfield(0.05)
     for (var i = 0; i < nbiter; i++) {
         x1 = leftmargin
         y1 = topmargin + actualheight * molnar + i
         x2 = vera * res * 2
-        y2 = (17 + i) * res
+        y2 = (9 + i) * res
         line(x1, y1, x2, y2)
         x3 = x2 + actualwidth * 0.4
         y3 = y2 + 21 + i
@@ -65,7 +65,7 @@ function star() {
 }
 
 
-var res = 5 //knob: density of the field
+var res = 7 //knob: density of the field
 var steplength = res * 2//knob: length of each curve 
 var strw = 2 //knob: weight of each curve
 var field = []
