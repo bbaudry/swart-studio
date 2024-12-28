@@ -75,6 +75,7 @@ function draw() {
                 translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
                 rotate(radians(270))
                 stroke(0,0,0)
+                rect(0, 0, postcardwidth, postcardheight)
                 fill(0, 0, 0)
                 textFont(font)
                 textSize(fSize)
@@ -101,30 +102,6 @@ function initallfields() {
     }
 }
 
-function wave(nbiter, field, len, vera, molnar) {
-    for (var i = 0; i < nbiter; i++) {
-        uneligne(i, len, vera, molnar, field)
-    }
-}
-
-function uneligne(i, len, vera, molnar, field) {
-    var x1, y1, x2, y2, x3, y3, luxus
-    x1 = leftmargin
-    y1 = topmargin + actualheight * molnar + i
-    x2 = vera * res * 2
-    y2 = (7 + i) * res
-    line(x1, y1, x2, y2)
-    x3 = x2 + actualwidth * 0.4
-    y3 = y2 + 21 + i
-    luxus = drawcurveinfield(Math.floor((y2) / res), Math.floor((x2) / res), len, field)
-    beginShape()
-    var diffx = rightmargin - luxus.x
-    var diffy = Math.abs(y1 - luxus.y)
-    vertex(luxus.x, luxus.y)
-    bezierVertex(luxus.x + diffx * 0.2, luxus.y - diffy * 0.7, luxus.x + diffx * 0.7, luxus.y - diffy * 1.6, rightmargin, y1)
-    endShape()
-}
-
 function initfield(noiseres) {
     let angle, row, field, xoff, yoff
     yoff = 0.0
@@ -145,7 +122,29 @@ function initfield(noiseres) {
 }
 
 
+function wave(nbiter, field, len, vera, molnar) {
+    for (var i = 0; i < nbiter; i++) {
+        scatteredline(i, len, vera, molnar, field)
+    }
+}
 
+function scatteredline(i, len, vera, molnar, field) {
+    var x1, y1, x2, y2, luxus
+    x1 = leftmargin
+    y1 = topmargin + actualheight * molnar + i
+    x2 = vera * res * 2
+    y2 = (7 + i) * res
+    line(x1, y1, x2, y2)
+    x3 = x2 + actualwidth * 0.4
+    y3 = y2 + 21 + i
+    luxus = drawcurveinfield(Math.floor((y2) / res), Math.floor((x2) / res), len, field)
+    beginShape()
+    var diffx = rightmargin - luxus.x
+    var diffy = Math.abs(y1 - luxus.y)
+    vertex(luxus.x, luxus.y)
+    bezierVertex(luxus.x + diffx * 0.2, luxus.y - diffy * 0.7, luxus.x + diffx * 0.7, luxus.y - diffy * 1.6, rightmargin, y1)
+    endShape()
+}
 
 function drawcurveinfield(row, col, len, field) {
     beginShape()
@@ -154,7 +153,6 @@ function drawcurveinfield(row, col, len, field) {
     curveVertex(x1, y1)
     curveVertex(x1, y1)
     for (let i = 0; i < len; i++) {
-        //console.log("try row "+row+" out of "+nbrows+"; at iteration "+i+" for length "+len)
         angle = field[row][col]
         x2 = x1 + steplength * cos(angle)
         y2 = y1 + steplength * sin(angle)

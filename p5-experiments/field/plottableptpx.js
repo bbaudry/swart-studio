@@ -7,7 +7,7 @@
 var echelle = 1
 var w = 793 * echelle
 var h = 1122 * echelle
-var wpadding = 11 //3mm
+var wpadding = 12 //3mm
 var hpadding = 19 //5mm
 var postcardwidth = 491 //10cm
 var postcardheight = 378 //7cm
