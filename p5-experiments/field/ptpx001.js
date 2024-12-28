@@ -78,7 +78,7 @@ function draw() {
                 fill(0, 0, 0)
                 textFont(font)
                 textSize(fSize)
-                text("ptpx001", leftmargin, bottommargin + fSize)
+                text("[scaTer] al.my.re, december 2024", leftmargin, bottommargin + fSize)
                 pop()
             }
         }
