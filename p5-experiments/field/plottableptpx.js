@@ -17,19 +17,23 @@ var topmargin = 0.03 * postcardheight
 var bottommargin = 0.93 * postcardheight
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
-var cnv, imgbtn
+var cnv, imgbtn, gensvg,genpng
 
 function getsvg() {
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     imgbtn = createButton("save svg");
     placebtn();
     imgbtn.mouseClicked(savesvg);
+    gensvg=true
+    genpng=false
 }
 function getpng() {
     cnv = createCanvas(w, h);
     imgbtn = createButton("save png");
     placebtn();
     imgbtn.mouseClicked(savepng);
+    genpng=true
+    gensvg=false
 }
 
 function centerCanvas() {
