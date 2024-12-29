@@ -42,29 +42,24 @@ function ikeda() {
     var diam = 7 * res
     var rad = diam * 0.5
     noFill(); stroke(230, 100, 100)
-    ellipse(cx, cy, diam, diam)
-    ellipse(cx, cy, 5, 5)
-    var blockw = rad * 0.2
+    //ellipse(cx, cy, diam, diam)
+    //ellipse(cx, cy, 5, 5)
+    var blockw = rad * 0.1
     var blockh = 42
-    var x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, offx
-    for (var i = 0; i < 5; i++) {
-        offx = blockw * (i + 1)
-        x1 = cx - blockw * (i + 1)
-        y1 = cy - blockh
-        x2 = cx - blockw * i
-        y2 = cy - blockh
-        x3 = cx - blockw * i
-        y3 = cy + blockh
-        x4 = cx - blockw * (i + 1)
-        y4 = cy + blockh
+    var x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, initx
+    initx = cx - rad
+    for (var i = 0; i < 20; i++) {
+        x1 = initx + blockw * i
+        x2 = initx + blockw * (i+1)
+        r1 = disttoedge(Math.abs(cx-x1), rad)
+        r2 = disttoedge(Math.abs(cx-x2), rad)
+        y1 = cy - r1
+        y2 = cy - r2
+        x3 = initx + blockw * (i+1)
+        y3 = cy + r2
+        x4 = initx + blockw * i
+        y4 = cy + r1
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
-        r1 = disttoedge(offx, rad)
-        x5 = cx - blockw * (i + 1)
-        y5 = cy - r1
-        r2 = disttoedge(offx - blockw, rad)
-        x6 = cx - blockw * i
-        y6 = cy - r2
-        quad(x1, y1, x5, y5, x6, y6, x2, y2)
     }
 }
 
