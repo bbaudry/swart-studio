@@ -1,16 +1,16 @@
 //pixel = dpi * mm / 25.4 mm
 //each of the 5 sections is 120mm × 170mm
 //96dpi is for plotting on the UUNA TEK iDraw
-//w=96*210/25.4=793
-//h=96*297/25.4=1122
+//w=96*297/25.4=1122
+//h=96*420/25.4=1587
 
 var echelle = 1
-var w = 793 * echelle
-var h = 1122 * echelle
-var wpadding = 12 //3mm
-var hpadding = 19 //5mm
-var postcardwidth = 491 //10cm
-var postcardheight = 378 //7cm
+var w = 1122 * echelle
+var h = 1587 * echelle
+var wpadding = 25.5 
+var hpadding = 20.25
+var postcardwidth = 502 //13.3cm
+var postcardheight = 340 //9cm
 var rightmargin = 0.97 * postcardwidth
 var leftmargin = 0.03 * postcardwidth
 var topmargin = 0.03 * postcardheight

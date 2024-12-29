@@ -29,8 +29,8 @@ function draw() {
     background(0, 0, 100)
     var field, len, vera, molnar
     if (frameCount == 1) {
-        for (var i = 0; i < 2; i++) {
-            for (var j = 0; j < 2; j++) {
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
                 push()
                 translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
                 rotate(radians(270))
@@ -46,11 +46,11 @@ function draw() {
                 pop()
             }
         }
-        if(gensvg){save("ptpx001-main.svg")}
+        if (gensvg) { save("ptpx001-main.svg") }
     }
     if (frameCount == 2) {
-        for (var i = 0; i < 2; i++) {
-            for (var j = 0; j < 2; j++) {
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
                 push()
                 translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
                 rotate(radians(270))
@@ -65,16 +65,16 @@ function draw() {
                 pop()
             }
         }
-        if(gensvg){save("ptpx001-guild.svg")}
+        if (gensvg) { save("ptpx001-guild.svg") }
 
     }
-    if (frameCount==3){
-        for (var i = 0; i < 2; i++) {
-            for (var j = 0; j < 2; j++) {
+    if (frameCount == 3) {
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
                 push()
                 translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
                 rotate(radians(270))
-                stroke(0,0,0)
+                stroke(0, 0, 0)
                 rect(0, 0, postcardwidth, postcardheight)
                 fill(0, 0, 0)
                 textFont(font)
@@ -83,7 +83,7 @@ function draw() {
                 pop()
             }
         }
-        if(gensvg){save("ptpx001-credits.svg")}
+        if (gensvg) { save("ptpx001-credits.svg") }
         noLoop()
     }
 }
@@ -91,11 +91,11 @@ function draw() {
 function initallfields() {
     var field = []
     var len, vera, molnar
-    for (var f = 0; f < 4; f++) {
+    for (var f = 0; f < 9; f++) {
         field = initfield(0.05)
         len = Math.floor(random(37, 53))
         vera = Math.floor(random(11, 29))
-        molnar = random(0.1, 0.69)
+        molnar = random(0.1, 0.42)
         field.push({ len: len, vera: vera, molnar: molnar })
         console.log(field)
         allfields.push(field)
@@ -133,7 +133,7 @@ function scatteredline(i, len, vera, molnar, field) {
     x1 = leftmargin
     y1 = topmargin + actualheight * molnar + i
     x2 = vera * res * 2
-    y2 = (7 + i) * res
+    y2 = (5 + i) * res
     line(x1, y1, x2, y2)
     x3 = x2 + actualwidth * 0.4
     y3 = y2 + 21 + i
@@ -147,23 +147,29 @@ function scatteredline(i, len, vera, molnar, field) {
 }
 
 function drawcurveinfield(row, col, len, field) {
-    beginShape()
     x1 = col * res
     y1 = row * res
-    curveVertex(x1, y1)
-    curveVertex(x1, y1)
-    for (let i = 0; i < len; i++) {
-        angle = field[row][col]
-        x2 = x1 + steplength * cos(angle)
-        y2 = y1 + steplength * sin(angle)
+    if (row < nbrows) {
+        beginShape()
+        curveVertex(x1, y1)
+        curveVertex(x1, y1)
+        for (let i = 0; i < len; i++) {
+            angle = field[row][col]
+            x2 = x1 + steplength * cos(angle)
+            y2 = y1 + steplength * sin(angle)
+            curveVertex(x2, y2)
+            col = Math.floor(x2 / res)
+            row = Math.floor(y2 / res)
+            if (col >= nbcols || col < 0) { break } else { x1 = x2 }
+            if (row >= nbrows || row < 0) { break } else { y1 = y2 }
+        }
+
         curveVertex(x2, y2)
-        col = Math.floor(x2 / res)
-        row = Math.floor(y2 / res)
-        if (col >= nbcols || col < 0) { break } else { x1 = x2 }
-        if (row >= nbrows || row < 0) { break } else { y1 = y2 }
+        curveVertex(x2, y2)
+        endShape()
+        return ({ x: x2, y: y2 })
     }
-    curveVertex(x2, y2)
-    curveVertex(x2, y2)
-    endShape()
-    return ({ x: x2, y: y2 })
+    else{
+        return ({ x: x1, y: y1 })
+    }
 }
