@@ -27,7 +27,7 @@ function draw() {
             push()
             translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
             rotate(radians(270))
-            //bin2025()
+            bin2025()
             ikeda()
             pop()
         }
@@ -44,7 +44,7 @@ function ikeda() {
     noFill(); stroke(230, 100, 100)
     //ellipse(cx, cy, diam, diam)
     //ellipse(cx, cy, 5, 5)
-    var blockw = rad * 0.1
+    var blockw = res
     var blockh = 42
     var x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, initx
     initx = cx - rad
@@ -76,7 +76,6 @@ function bin2025() {
     stroke(230, 100, 100);
     rect(0, 0, postcardwidth, postcardheight)
     //            rect(leftmargin, topmargin, res * year.length, actualheight)
-    console.log("draw one bar with " + year.length)
     for (var k = 0; k < year.length; k++) {
         v = year[k]
         //stroke(0,0,0); noFill();rect(leftmargin+y*res,topmargin,res,actualheight)
@@ -91,8 +90,4 @@ function bin2025() {
         rect(cellx, celly, cellw, cellh)
         xoff += xinc
     }
-    var cx = leftmargin + Math.floor(res * year.length * 0.5)
-    var cy = topmargin + Math.floor(actualheight * 0.5)
-    noFill(); stroke(230, 100, 100)
-    ellipse(cx, cy, 7 * res, 7 * res)
 }
