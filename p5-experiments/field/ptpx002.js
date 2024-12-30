@@ -45,19 +45,18 @@ function ikeda() {
     //ellipse(cx, cy, diam, diam)
     //ellipse(cx, cy, 5, 5)
     var blockw = res
-    var blockh = 42
     var x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, initx
     initx = cx - rad
     for (var i = 0; i < 20; i++) {
-        x1 = initx + blockw * i
-        x2 = initx + blockw * (i+1)
+        x1 = initx + blockw * i + offset
+        x2 = initx + blockw * (i+1) - offset
         r1 = disttoedge(Math.abs(cx-x1), rad)
         r2 = disttoedge(Math.abs(cx-x2), rad)
         y1 = cy - r1
         y2 = cy - r2
-        x3 = initx + blockw * (i+1)
+        x3 = initx + blockw * (i+1) - offset
         y3 = cy + r2
-        x4 = initx + blockw * i
+        x4 = initx + blockw * i + offset
         y4 = cy + r1
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
     }
