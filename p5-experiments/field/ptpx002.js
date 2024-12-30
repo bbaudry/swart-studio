@@ -90,10 +90,39 @@ function ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4) {
         y5 = cy - r1 
         x6 = x2
         y6 = cy - r2 
-        quad(x1, y1, x2, y2, x6, y6, x5, y5)
+        quadwpoints(x1, y1, x2, y2, x6, y6, x5, y5)
         y5 = cy + r1 
         y6 = cy + r2 
         quad(x4, y4, x3, y3, x6, y6, x5, y5)
+}
+
+// pre: x1==x4, x2==x3, x1<x2, y1==y2, y3>y4 or y3<=y4
+function quadwpoints(x1, y1, x2, y2, x3, y3, x4, y4){
+    //push();stroke(0,100,100);quad(x1, y1, x2, y2, x3, y3, x4, y4);pop()
+    var disty,inity
+    if (y3>y4) {
+        disty=Math.abs(y1-y3)
+        if(y1>y3){
+            inity=y3
+        }
+        else{
+            inity=y1
+        }
+    }
+    else {
+        disty=Math.abs(y1-y4)
+        if(y1>y4){
+            inity=y4
+        }
+        else{
+            inity=y1
+        }
+    }
+    for(var y=inity;y<inity+disty-weight;y+=weight){
+        for(var x=x1;x<x2;x+=weight){
+            if (random()<0.4){rect(x,y,weight,weight)}
+        }
+    }
 }
 
 function disttoedge(x, rad) { //precond: x<=rad
