@@ -98,7 +98,22 @@ function ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4) {
 
 // pre: x1==x4, x2==x3, x1<x2, y1==y2, y3>y4 or y3<=y4
 function quadwpoints(x1, y1, x2, y2, x3, y3, x4, y4){
-    //push();stroke(0,100,100);quad(x1, y1, x2, y2, x3, y3, x4, y4);pop()
+    push();stroke(0,100,100);
+    line(x1, y1, x2, y2);
+    line(x1, y1, x4, y4);
+    line(x2, y2, x3, y3);
+    if(y3<y4){
+    a1=asin((y3-circ.cy)/circ.rad)
+    a2=asin((y4-circ.cy)/circ.rad)
+    arc(circ.cx,circ.cy,circ.rad*2,circ.rad*2,a1,a2)
+}
+else{
+    a1=asin((y4-circ.cy)/circ.rad)
+    a2=asin((y3-circ.cy)/circ.rad)
+    arc(circ.cx,circ.cy,circ.rad*2,circ.rad*2,a1,a2)
+
+}    //line(x3, y3, x4, y4);
+    pop()
     var disty,inity
     if (y3>y4 && y1>y4) {
         disty=Math.abs(y1-y4); inity=y4
@@ -114,7 +129,7 @@ function quadwpoints(x1, y1, x2, y2, x3, y3, x4, y4){
     }
     for(var y=inity;y<inity+disty-weight;y+=weight){
         for(var x=x1;x<x2;x+=weight){
-            if (random()<0.4 && cellincircle(x,y,x+weight,y,x+weight,y+weight,x,y+weight)){
+            if (random()<0.3 && cellincircle(x,y,x+weight,y,x+weight,y+weight,x,y+weight)){
                 rect(x,y,weight,weight)
             }
         }
