@@ -12,6 +12,7 @@ function setup() {
     strokeCap(SQUARE)
     background(0, 0, 100)
     noFill()
+    frameRate(1)
 }
 
 const year = [1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1]
@@ -24,20 +25,51 @@ function draw() {
     //    fill(0, 0, 0); stroke(0, 0, 100); strokeWeight(1)
     //    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 006). December 2024]")
     background(0, 0, 100)
-    for (var i = 0; i < 3; i++) {
-        for (var j = 0; j < 3; j++) {
-            push()
-            translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
-            rotate(radians(270))
-            stroke(230, 100, 100);
-            rect(0, 0, postcardwidth, postcardheight)
-
-            bin2025()
-//            ikeda()
-            pop()
+    if (frameCount == 1) {
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                push()
+                translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
+                rotate(radians(270))
+                stroke(0,0,0)
+                rect(0, 0, postcardwidth, postcardheight)
+                pop()
+            }
         }
+        if (gensvg) { save("ptpx002-frames.svg") }
     }
-    noLoop()
+    if (frameCount == 2) {
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                push()
+                translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
+                rotate(radians(270))
+                stroke(230, 100, 100);
+                bin2025()
+                pop()
+            }
+        }
+        if (gensvg) { save("ptpx002-main.svg") }
+    }
+    if (frameCount == 3) {
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                push()
+                translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
+                rotate(radians(270))
+                stroke(0, 0, 0)
+                fill(0, 0, 0)
+                textFont(font)
+                textSize(fSize)
+                text("[b11111101001]", leftmargin, bottommargin + fSize)
+                var signature="al.my.re, december 2024"
+                text(signature, rightmargin-textWidth(signature), bottommargin + fSize)
+                pop()
+            }
+        }
+        if (gensvg) { save("ptpx002-main.svg") }
+        noLoop()
+    }
 }
 
 const circ = {
@@ -76,9 +108,6 @@ function ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4) {
     var cy = circ.cy
     var rad = circ.rad
     noFill(); stroke(230, 100, 100); strokeWeight(weight)
-    //ellipse(cx, cy, diam, diam)
-    //ellipse(cx, cy, 5, 5)
-    var blockw = res
     var x5, y5, x6, y6
         y1 -= offset*2
         y2 -= offset*2
@@ -98,22 +127,12 @@ function ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4) {
 
 // pre: x1==x4, x2==x3, x1<x2, y1==y2, y3>y4 or y3<=y4
 function quadwpoints(x1, y1, x2, y2, x3, y3, x4, y4){
-    push();stroke(0,100,100);
-    line(x1, y1, x2, y2);
-    line(x1, y1, x4, y4);
-    line(x2, y2, x3, y3);
     if(y3<y4){
     a1=asin((y3-circ.cy)/circ.rad)
     a2=asin((y4-circ.cy)/circ.rad)
     arc(circ.cx,circ.cy,circ.rad*2,circ.rad*2,a1,a2)
+    arc(circ.cx,circ.cy,circ.rad*2,circ.rad*2,2*a1,2*a2)
 }
-else{
-    a1=asin((y4-circ.cy)/circ.rad)
-    a2=asin((y3-circ.cy)/circ.rad)
-    arc(circ.cx,circ.cy,circ.rad*2,circ.rad*2,a1,a2)
-
-}    //line(x3, y3, x4, y4);
-    pop()
     var disty,inity
     if (y3>y4 && y1>y4) {
         disty=Math.abs(y1-y4); inity=y4
@@ -129,7 +148,7 @@ else{
     }
     for(var y=inity;y<inity+disty-weight;y+=weight){
         for(var x=x1;x<x2;x+=weight){
-            if (random()<0.3 && cellincircle(x,y,x+weight,y,x+weight,y+weight,x,y+weight)){
+            if (random()<0.21 && cellincircle(x,y,x+weight,y,x+weight,y+weight,x,y+weight)){
                 rect(x,y,weight,weight)
             }
         }
@@ -158,32 +177,14 @@ function bin2025() {
         y3 = y1 + cellh
         x4 = x1
         y4 = y1 + cellh
-        if (celloutcircle(x1, y1, x2, y2, x3, y3, x4, y4)) {
-            if (v == 1) {
-                quadwlines(x1, y1, x2, y2, x3, y3, x4, y4)
-            }
-            else {
-                quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            }
+        if (v == 1) {
+            quadwlines(x1, y1, x2, y2, x3, y3, x4, y4)
+        }
+        else {
+            quad(x1, y1, x2, y2, x3, y3, x4, y4)
         }
         if(cellincircle(x1, y1, x2, y2, x3, y3, x4, y4)){
-            if (v == 1) {
-                quadwlines(x1, y1, x2, y2, x3, y3, x4, y4)
-            }
-            else {
-                quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            }
             ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4)
-        }
-        else{
-            push()
-            strokeWeight(1)
-            stroke(0,0,0)
-            noFill()
-            quad(x1, y1, x2, y2, x3, y3, x4, y4)
-
-            ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4)
-            pop()
         }
         //        rect(cellx, celly, cellw, cellh)
         xoff += xinc
