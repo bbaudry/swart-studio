@@ -97,7 +97,7 @@ function drawframe(){
 
 
 var font
-var fSize = 15
+var fSize = 12
 var fileName
 
 function savesvg() {

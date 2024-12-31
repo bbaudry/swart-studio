@@ -17,7 +17,7 @@ function setup() {
 
 const year = [1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1]
 const weight = 3
-const offset = weight
+const offset = weight + 1
 const res = Math.floor(actualwidth / year.length)
 
 function draw() {
@@ -31,12 +31,12 @@ function draw() {
                 push()
                 translate(wpadding + i * (wpadding + postcardheight), (j + 1) * (hpadding + postcardwidth))
                 rotate(radians(270))
-                stroke(0,0,0)
+                stroke(0, 0, 0)
                 rect(0, 0, postcardwidth, postcardheight)
                 pop()
             }
         }
-        if (gensvg) { save("ptpx002-frames.svg") }
+        if (gensvg) { save("ptpx002-frame.svg") }
     }
     if (frameCount == 2) {
         for (var i = 0; i < 3; i++) {
@@ -50,6 +50,7 @@ function draw() {
             }
         }
         if (gensvg) { save("ptpx002-main.svg") }
+        noLoop()
     }
     if (frameCount == 3) {
         for (var i = 0; i < 3; i++) {
@@ -62,12 +63,12 @@ function draw() {
                 textFont(font)
                 textSize(fSize)
                 text("[b11111101001]", leftmargin, bottommargin + fSize)
-                var signature="al.my.re, december 2024"
-                text(signature, rightmargin-textWidth(signature), bottommargin + fSize)
+                var signature = "al.my.re, december 2024"
+                text(signature, rightmargin - textWidth(signature), bottommargin + fSize)
                 pop()
             }
         }
-        if (gensvg) { save("ptpx002-main.svg") }
+        if (gensvg) { save("ptpx002-credit.svg") }
         noLoop()
     }
 }
@@ -93,8 +94,8 @@ function ikeda() {
         x2 = initx + blockw * (i + 1) - offset
         r1 = disttoedge(Math.abs(cx - x1), rad)
         r2 = disttoedge(Math.abs(cx - x2), rad)
-        y1 = cy - r1 
-        y2 = cy - r2 
+        y1 = cy - r1
+        y2 = cy - r2
         x3 = initx + blockw * (i + 1) - offset
         y3 = cy + r2
         x4 = initx + blockw * i + offset
@@ -109,47 +110,47 @@ function ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4) {
     var rad = circ.rad
     noFill(); stroke(230, 100, 100); strokeWeight(weight)
     var x5, y5, x6, y6
-        y1 -= offset*2
-        y2 -= offset*2
-        y3 += offset*2
-        y4 += offset*2
-        r1 = disttoedge(Math.abs(cx - x1), rad)
-        r2 = disttoedge(Math.abs(cx - x2), rad)
-        x5 = x1
-        y5 = cy - r1 
-        x6 = x2
-        y6 = cy - r2 
-        quadwpoints(x1, y1, x2, y2, x6, y6, x5, y5)
-        y5 = cy + r1 
-        y6 = cy + r2 
-        quadwpoints(x4, y4, x3, y3, x6, y6, x5, y5)
+    y1 -= offset * 2
+    y2 -= offset * 2
+    y3 += offset * 2
+    y4 += offset * 2
+    r1 = disttoedge(Math.abs(cx - x1), rad)
+    r2 = disttoedge(Math.abs(cx - x2), rad)
+    x5 = x1
+    y5 = cy - r1
+    x6 = x2
+    y6 = cy - r2
+    quadwpoints(x1, y1, x2, y2, x6, y6, x5, y5)
+    y5 = cy + r1
+    y6 = cy + r2
+    quadwpoints(x4, y4, x3, y3, x6, y6, x5, y5)
 }
 
 // pre: x1==x4, x2==x3, x1<x2, y1==y2, y3>y4 or y3<=y4
-function quadwpoints(x1, y1, x2, y2, x3, y3, x4, y4){
-    if(y3<y4){
-    a1=asin((y3-circ.cy)/circ.rad)
-    a2=asin((y4-circ.cy)/circ.rad)
-    arc(circ.cx,circ.cy,circ.rad*2,circ.rad*2,a1,a2)
-    arc(circ.cx,circ.cy,circ.rad*2,circ.rad*2,2*a1,2*a2)
-}
-    var disty,inity
-    if (y3>y4 && y1>y4) {
-        disty=Math.abs(y1-y4); inity=y4
+function quadwpoints(x1, y1, x2, y2, x3, y3, x4, y4) {
+    //the four lines below will draw the proper arcs because x1<x2
+    a1 = acos((x2 - circ.cx) / circ.rad)
+    a2 = acos((x1 - circ.cx) / circ.rad)
+    arc(circ.cx, circ.cy, circ.rad * 2, circ.rad * 2, a1, a2)
+    arc(circ.cx, circ.cy, circ.rad * 2, circ.rad * 2, -a2, -a1)
+    var disty, inity
+    if (y3 > y4 && y1 > y4) {
+        disty = Math.abs(y1 - y4); inity = y4
     }
-    if (y3>y4 && y1<y4) {
-        disty=Math.abs(y1-y3); inity=y1
+    if (y3 > y4 && y1 < y4) {
+        disty = Math.abs(y1 - y3); inity = y1
     }
-    if (y4>=y3 && y1>y3){
-        disty=Math.abs(y1-y3); inity=y3
+    if (y4 >= y3 && y1 > y3) {
+        disty = Math.abs(y1 - y3); inity = y3
     }
-    if (y4>=y3 && y1<y3){
-        disty=Math.abs(y1-y4); inity=y1
+    if (y4 >= y3 && y1 < y3) {
+        disty = Math.abs(y1 - y4); inity = y1
     }
-    for(var y=inity;y<inity+disty-weight;y+=weight){
-        for(var x=x1;x<x2;x+=weight){
-            if (random()<0.21 && cellincircle(x,y,x+weight,y,x+weight,y+weight,x,y+weight)){
-                rect(x,y,weight,weight)
+    var amp = 3
+    for (var y = inity; y < inity + disty - weight * amp; y += weight * amp) {
+        for (var x = x1; x < x2; x += weight * amp) {
+            if (random() < 0.21 && cellincircle(x, y, x + weight * amp, y, x + weight * amp, y + weight * amp, x, y + weight * amp)) {
+                rect(x, y, weight * amp, weight * amp)
             }
         }
     }
@@ -183,7 +184,7 @@ function bin2025() {
         else {
             quad(x1, y1, x2, y2, x3, y3, x4, y4)
         }
-        if(cellincircle(x1, y1, x2, y2, x3, y3, x4, y4)){
+        if (cellincircle(x1, y1, x2, y2, x3, y3, x4, y4)) {
             ikedaslice(x1, y1, x2, y2, x3, y3, x4, y4)
         }
         //        rect(cellx, celly, cellw, cellh)
@@ -216,11 +217,11 @@ function celloutcircle(x1, y1, x2, y2, x3, y3, x4, y4) {
     }
 }
 
-function quadwlines(x1, y1, x2, y2, x3, y3, x4, y4){
+function quadwlines(x1, y1, x2, y2, x3, y3, x4, y4) {
     stroke(230, 100, 100); noFill(); strokeWeight(weight)
     quad(x1, y1, x2, y2, x3, y3, x4, y4)
-    while(x1<x2-weight){
-        x1+=weight; x4+=weight
-        line(x1,y1,x4,y4)
+    while (x1 < x2 - weight) {
+        x1 += weight; x4 += weight
+        line(x1, y1, x4, y4)
     }
 }
