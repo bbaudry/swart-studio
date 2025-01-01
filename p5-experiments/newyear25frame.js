@@ -4,7 +4,7 @@
 //w=96*297/25.4=1122
 //h=96*420/25.4=1587
 
-var echelle = 0.5
+var echelle = 1
 var w = 1122 * echelle
 var h = 1587 * echelle
 var rightmargin = 0.95 * w
