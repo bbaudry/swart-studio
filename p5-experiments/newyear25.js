@@ -1,71 +1,52 @@
 function preload() {
-    font = loadFont("./fonts/ChunkFive-Regular.otf");
+    font = loadFont("./fonts/FreeMono.otf");//ChunkFive-Regular, CNCHero-TallandHandsome-Regular
     fileName = "newyear25"
     sourcecode = loadStrings(fileName + '.js');
 }
 
 function setup() {
-    //getsvg()
-    getpng()
+    getsvg()
+    //getpng()
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
     background(0, 0, 100)
     noFill()
-    setTypo()
 }
 
 var font
 var fSize = 129
 
 function draw() {
-    //background(0, 0, 100)
     stroke(0, 0, 0)
     noFill()
-    //rect(leftmargin, topmargin, actualwidth, actualheight)
-/*    push()
-    translate(w, 0)
-    rotate(radians(90))
-    stroke(0, 0, 0)
-    rect(topmargin, leftmargin, actualheight, actualwidth)
-
-    fill(0, 0, 0)
-    textFont(font)
-    textSize(fSize)*/
-    //text("11111101001", topmargin, leftmargin + fSize * 2.5)
-    let ikeda = digits[Math.floor(random() * 3)]
-    let ryoji = ikeda[Math.floor(random() * ikeda.length)]
-    let vera = random() * 5
-    let molnar = exp(random() * 5)
-    let x1 = ryoji.x + molnar * cos(ryoji.alpha)
-    let y1 = ryoji.y + molnar * sin(ryoji.alpha)
-    ellipse(x1, y1, vera, vera)
-
-
-    //pop()
-    //noLoop()
+    bris()
+    bris()
+    bris()
+    let points = font.textToPoints('111111', leftmargin, topmargin + fSize, fSize, { sampleFactor: 0.05 });
+    let points2 = font.textToPoints('01001', leftmargin, topmargin + 2 * fSize, fSize, { sampleFactor: 0.05 });
+    var diam
+    for (let p of points) {
+        diam = Math.floor(random(1, 11))
+        rect(p.x, p.y, diam, diam);
+    }
+    for (let p of points2) {
+        diam = Math.floor(random(1, 11))
+        rect(p.x, p.y, diam, diam);
+    }
+    noLoop()
 }
 
-var digits = []
-var onedigit, initialPixelDensity
-function setTypo() {
-    alpha = 10
-    initialPixelDensity = 0.42
-    fSize = 129
-    var y = topmargin + fSize
-    onedigit = font.textToPoints('1', leftmargin, y, fSize, {
-        sampleFactor: initialPixelDensity,
-        simplifyThreshold: 0
-    })
-    digits.push(onedigit)
-    onedigit1 = font.textToPoints('1', 100,y, fSize, {
-        sampleFactor: initialPixelDensity,
-        simplifyThreshold: 0
-    })
-    digits.push(onedigit1)
-    onedigit2 = font.textToPoints('1', 200, y, fSize, {
-        sampleFactor: initialPixelDensity,
-        simplifyThreshold: 0
-    })
-    digits.push(onedigit2)
+function bris(){
+    var x1,y1,x2,y2,x3,y3,x4,y4
+    x1=leftmargin
+    y1=topmargin
+    x2=rightmargin
+    y2 = Math.floor(random(topmargin+actualheight*0.07,topmargin+actualheight*0.42))
+    x3 = rightmargin
+    y3 = Math.floor(random(topmargin+actualheight*0.49,topmargin+actualheight*0.99))
+    x4 = leftmargin
+    y4 = bottommargin
+
+    quad(x1,y1,x2,y2,x3,y3,x4,y4)
 }
