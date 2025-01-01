@@ -5,8 +5,8 @@ function preload() {
 }
 
 function setup() {
-    getsvg()
-    //getpng()
+    //getsvg()
+    getpng()
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
@@ -20,10 +20,8 @@ const weight = 3
 const offset = weight + 1
 const res = Math.floor(actualwidth / year.length)
 
+//draws 3 differents frames to plot with different pens. if svg, save each frame
 function draw() {
-    //    drawframe()
-    //    fill(0, 0, 0); stroke(0, 0, 100); strokeWeight(1)
-    //    showcredits(leftmargin, bottommargin * 1.06, "al.my.re :: p5.js :: CamBam Stick [field 006). December 2024]")
     background(0, 0, 100)
     if (frameCount == 1) {
         for (var i = 0; i < 3; i++) {
@@ -50,7 +48,6 @@ function draw() {
             }
         }
         if (gensvg) { save("ptpx002-main.svg") }
-        noLoop()
     }
     if (frameCount == 3) {
         for (var i = 0; i < 3; i++) {
