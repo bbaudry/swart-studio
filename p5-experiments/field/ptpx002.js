@@ -5,8 +5,8 @@ function preload() {
 }
 
 function setup() {
-    //getsvg()
-    getpng()
+    getsvg()
+    //getpng()
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
