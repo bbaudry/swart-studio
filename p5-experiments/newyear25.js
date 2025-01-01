@@ -1,5 +1,6 @@
 function preload() {
     font = loadFont("./fonts/FreeMono.otf");//ChunkFive-Regular, CNCHero-TallandHandsome-Regular
+    titlefont = loadFont("./fonts/1CAMBam_Stick_9.ttf");
     fileName = "newyear25"
     sourcecode = loadStrings(fileName + '.js');
 }
@@ -14,33 +15,35 @@ function setup() {
     noFill()
 }
 
-var font
-var fSize = 233
+var font,titlefont
+var fSize = 284
 
 function draw() {
     stroke(0, 0, 0)
     noFill()
     var year = []
     var points, diam
-    points = font.textToPoints('111', leftmargin+actualwidth*0.27, topmargin + actualheight*0.33, fSize, { sampleFactor: 0.05 });
+    points = font.textToPoints('111', leftmargin + actualwidth * 0.27, topmargin + actualheight * 0.33, fSize, { sampleFactor: 0.05 });
     year.push(points)
-    points = font.textToPoints('111', leftmargin+actualwidth*0.27, topmargin + actualheight*0.49, fSize, { sampleFactor: 0.05 });
+    points = font.textToPoints('111', leftmargin + actualwidth * 0.27, topmargin + actualheight * 0.49, fSize, { sampleFactor: 0.05 });
     year.push(points)
-    points = font.textToPoints('010', leftmargin+actualwidth*0.27, topmargin + actualheight*0.66, fSize, { sampleFactor: 0.05 });
+    points = font.textToPoints('010', leftmargin + actualwidth * 0.27, topmargin + actualheight * 0.66, fSize, { sampleFactor: 0.05 });
     year.push(points)
-    points = font.textToPoints('01', leftmargin+actualwidth*0.34, topmargin + actualheight*0.82, fSize, { sampleFactor: 0.05 });
+    points = font.textToPoints('01', leftmargin + actualwidth * 0.34, topmargin + actualheight * 0.82, fSize, { sampleFactor: 0.05 });
     year.push(points)
-    for (var i = 0; i < 2025; i++) {
+    for (var i = 0; i < 81; i++) {
         bris(year)
     }
-/*    for (var i=0;i<year.length;i++) {
-        for (let p of year[i]) {
-            diam = Math.floor(random(7, 21))
-            rect(p.x, p.y, diam, diam);
-        }
-    }*/
+    textFont(titlefont)
+    textSize(17)
+    fill(0,0,0)
+    credit="al.my.re"
+    text(credit,rightmargin-textWidth(credit),bottommargin)
     noLoop()
 }
+
+var xoff=0.0
+var xinc=0.05
 
 function bris(year) {
     var x1, y1, x2, y2, x3, y3, x4, y4, t, sx1, sy1, sx2, sy2, sx3, sy3, sx4, sy4
@@ -64,30 +67,33 @@ function bris(year) {
         x4 = leftmargin
         y4 = Math.floor(random(topmargin + actualheight * 0.49, topmargin + actualheight * 0.87))
     }
-    t = random()
+    t = noise(xoff); xoff+=xinc
     sx1 = (1 - t) * x1 + (t * x4);
     sy1 = (1 - t) * y1 + (t * y4);
     sx2 = (1 - t) * x2 + (t * x3);
     sy2 = (1 - t) * y2 + (t * y3);
-    t += random(0.01, 0.07)
+    t += noise(xoff)*0.13;xoff+=xinc//random(0.01, 0.07)
     sx3 = (1 - t) * x2 + (t * x3);
     sy3 = (1 - t) * y2 + (t * y3);
     sx4 = (1 - t) * x1 + (t * x4);
     sy4 = (1 - t) * y1 + (t * y4);
     quad(sx1, sy1, sx2, sy2, sx3, sy3, sx4, sy4)
-    var vera = Math.floor(random(year.length))
-    var molnar = Math.floor(random(year[vera].length))
-    var diam = Math.floor(random(7, 21))
-    rect(year[vera][molnar].x, year[vera][molnar].y, diam, diam)
-/*
-    for (var i=0;i<year.length;i++) {
-        for (let p of year[i]) {
-            diam = Math.floor(random(7, 21))
-            if(random()<0.5){
-                rect(p.x, p.y, diam, diam)
-                console.log("rect")
+    var vera, molnar, carre
+    for (var kyoto = 0; kyoto < 25; kyoto++) {
+        vera = Math.floor(random(year.length))
+        molnar = Math.floor(noise(xoff)*year[vera].length);xoff+=xinc
+        carre = Math.floor(random(7+noise(xoff)*42));xoff+=xinc
+        rect(year[vera][molnar].x, year[vera][molnar].y, carre, carre)
+    }
+    /*
+        for (var i=0;i<year.length;i++) {
+            for (let p of year[i]) {
+                diam = Math.floor(random(7, 21))
+                if(random()<0.5){
+                    rect(p.x, p.y, diam, diam)
+                    console.log("rect")
+                }
             }
         }
-    }
-*/
+    */
 }
