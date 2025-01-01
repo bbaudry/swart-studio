@@ -20,9 +20,6 @@ var fSize = 233
 function draw() {
     stroke(0, 0, 0)
     noFill()
-    for (var i = 0; i < 2025; i++) {
-        bris()
-    }
     var year = []
     var points, diam
     points = font.textToPoints('111', leftmargin+actualwidth*0.27, topmargin + actualheight*0.33, fSize, { sampleFactor: 0.05 });
@@ -33,16 +30,19 @@ function draw() {
     year.push(points)
     points = font.textToPoints('01', leftmargin+actualwidth*0.34, topmargin + actualheight*0.82, fSize, { sampleFactor: 0.05 });
     year.push(points)
-    for (var i=0;i<year.length;i++) {
+    for (var i = 0; i < 2025; i++) {
+        bris(year)
+    }
+/*    for (var i=0;i<year.length;i++) {
         for (let p of year[i]) {
             diam = Math.floor(random(7, 21))
             rect(p.x, p.y, diam, diam);
         }
-    }
+    }*/
     noLoop()
 }
 
-function bris() {
+function bris(year) {
     var x1, y1, x2, y2, x3, y3, x4, y4, t, sx1, sy1, sx2, sy2, sx3, sy3, sx4, sy4
     if (random() < 0.5) {
         x1 = leftmargin
@@ -75,5 +75,19 @@ function bris() {
     sx4 = (1 - t) * x1 + (t * x4);
     sy4 = (1 - t) * y1 + (t * y4);
     quad(sx1, sy1, sx2, sy2, sx3, sy3, sx4, sy4)
-
+    var vera = Math.floor(random(year.length))
+    var molnar = Math.floor(random(year[vera].length))
+    var diam = Math.floor(random(7, 21))
+    rect(year[vera][molnar].x, year[vera][molnar].y, diam, diam)
+/*
+    for (var i=0;i<year.length;i++) {
+        for (let p of year[i]) {
+            diam = Math.floor(random(7, 21))
+            if(random()<0.5){
+                rect(p.x, p.y, diam, diam)
+                console.log("rect")
+            }
+        }
+    }
+*/
 }
