@@ -92,15 +92,4 @@ function bris(year) {
         carre = Math.floor(random(7 + noise(xoff) * 42)); xoff += xinc
         rect(year[vera][molnar].x, year[vera][molnar].y, carre, carre)
     }
-    /*
-        for (var i=0;i<year.length;i++) {
-            for (let p of year[i]) {
-                diam = Math.floor(random(7, 21))
-                if(random()<0.5){
-                    rect(p.x, p.y, diam, diam)
-                    console.log("rect")
-                }
-            }
-        }
-    */
 }
