@@ -5,7 +5,7 @@
 //h=96*4=384
 //padding=96*45/25=172
 
-var echelle = 1
+var echelle = 2
 var w = 624 * echelle
 var h = 384 * echelle
 var rightmargin = 0.95 * w
