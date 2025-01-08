@@ -10,6 +10,7 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
     i = 0
     maxi = 242
+    frameRate(1)
 }
 
 function draw() {
@@ -45,7 +46,7 @@ function withnoise() {
 }
 
 let xoff=0.0
-
+var filename
 function withcolors() {
     translate(w * 0.5, h * 0.5)
     noStroke()
@@ -64,8 +65,10 @@ function withcolors() {
         rect(-w * noise(xoff) * 0.5, -h * noise(xoff) * 0.5, w * noise(xoff) , h * noise(xoff) )
     }
     xoff = map(cos(radians(i)), -1, 1, 0, 4);
+    filename="intro"+i+".png"
+    save(filename)
     i += 2
-    if (i % 360 == 0) { i = 0; }
+    if (i % 360 == 0) { i = 0; noLoop()}
 }
 
 function nest(cx,cy,dx,dy){
