@@ -47,27 +47,40 @@ function withnoise() {
 let xoff=0.0
 
 function withcolors() {
-    stroke(0, 100, 100)
-    fill(0, 100, 100, 100)
     translate(w * 0.5, h * 0.5)
-//    rotate(radians(i))
-    ellipse(0, 0, w * 0.5, h * noise(xoff))
+    noStroke()
+    fill(0, 0,100, 199)
+    rect(-w * 0.25, -h * noise(xoff)*0.5, w * 0.5, h * noise(xoff))
     if (i > 30 && i < 330) {
-        stroke(90, 100, 100)
-        fill(90, 100, 100, 100)
-        ellipse(0, 0, w * noise(xoff), h * 0.1)
+        rect(-w * noise(xoff) * 0.5, -h * 0.1, w * noise(xoff), h * 0.2)
     }
     if (i > 90 && i < 270) {
-        stroke(180, 100, 100)
-        fill(180, 100, 100, 100)
-        ellipse(0, 0, w * noise(xoff), h * 0.7)
+        rect(-w * noise(xoff) * 0.5, -h * 0.3, w * noise(xoff) , h * 0.6)
     }
     if (i > 150 && i < 210) {
-        stroke(270, 100, 100)
-        fill(270, 100, 100, 100)
-        ellipse(0, 0, w * noise(xoff), h * noise(xoff))
+        rect(-w * noise(xoff) * 0.5, -h * noise(xoff) * 0.5, w * noise(xoff) , h * noise(xoff) )
     }
-    xoff = map(cos(radians(i)), -1, 1, 0, 1);
+    xoff = map(cos(radians(i)), -1, 1, 0, 4);
     i += 2
     if (i % 360 == 0) { i = 0; }
+}
+
+function nest(cx,cy,dx,dy){
+    var offset=5
+    if(dx>dy){
+        while(dy>offset){
+            noFill()
+            stroke(0,0,100)
+            ellipse(cx,cy,dx,dy)
+            dx-=offset;dy-=offset;
+        }
+    }
+    else{
+        while(dx>offset){
+            noFill()
+            stroke(0,0,100)
+            ellipse(cx,cy,dx,dy)
+            dx-=offset;dy-=offset;
+        }
+    }
 }
