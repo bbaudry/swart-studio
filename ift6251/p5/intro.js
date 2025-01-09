@@ -1,4 +1,4 @@
-var w, h, cnv, i, maxi, font, fSize
+var w, h, cnv, i, font, fSize
 function preload() {
     font = loadFont("./FreeMono.otf");
 }
@@ -12,7 +12,6 @@ function setup() {
     cnv.position(x, y);
     colorMode(HSB, 360, 100, 100, 250);
     i = 0
-    maxi = 242
     fSize = 84
     textFont(font)
     textSize(fSize)
@@ -20,34 +19,7 @@ function setup() {
 
 function draw() {
     background(0, 0, 0)
-    withnoise()
-}
-let phase = 0;
-let zoff = 0;
-let grow = true
-function withnoise() {
-    translate(w / 2, h / 2);
-    stroke(0, 0, 100);
-    strokeWeight(2);
-    fill(0,0,100)
-    beginShape();
-    let noiseMax = 1;
-    for (let a = 0; a < TWO_PI; a += radians(7)) {
-        let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
-        let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
-        let r = map(noise(xoff, yoff, zoff), 0, 1, 100, h * 0.6);
-        let x = (r-i) * cos(a);
-        let y = (r-i) * sin(a);
-        vertex(x, y);
-    }
-    endShape(CLOSE);
-    phase += 0.003;
-    if(grow && i<maxi){i+=4}
-    else{grow=false; 
-        if(i>0){i-=4}
-        else{grow=true}
-    }
-    zoff += 0.01;
+    withcolors()
 }
 
 let xoff=0.0
@@ -78,28 +50,6 @@ function withcolors() {
     if (random()<0.5){fill(0,0,100); stroke(0,0,100)}
     else{fill(0,0,0); stroke(0,0,0)}}
     text(cours, -textWidth(cours)*0.5, fSize*0.25 )
-//    filename="intro"+i+".png"
-//    save(filename)
     i += 1
     if (i % 360 == 0) { i = 0;}
-}
-
-function nest(cx,cy,dx,dy){
-    var offset=5
-    if(dx>dy){
-        while(dy>offset){
-            noFill()
-            stroke(0,0,100)
-            ellipse(cx,cy,dx,dy)
-            dx-=offset;dy-=offset;
-        }
-    }
-    else{
-        while(dx>offset){
-            noFill()
-            stroke(0,0,100)
-            ellipse(cx,cy,dx,dy)
-            dx-=offset;dy-=offset;
-        }
-    }
 }
