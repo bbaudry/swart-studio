@@ -20,7 +20,7 @@ function setup() {
 
 function draw() {
     background(0, 0, 0)
-    withcolors()
+    withnoise()
 }
 let phase = 0;
 let zoff = 0;
@@ -31,7 +31,7 @@ function withnoise() {
     strokeWeight(2);
     fill(0,0,100)
     beginShape();
-    let noiseMax = 0.1;
+    let noiseMax = 1;
     for (let a = 0; a < TWO_PI; a += radians(7)) {
         let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
         let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
@@ -41,13 +41,13 @@ function withnoise() {
         vertex(x, y);
     }
     endShape(CLOSE);
-    //phase += 0.003;
+    phase += 0.003;
     if(grow && i<maxi){i+=4}
     else{grow=false; 
         if(i>0){i-=4}
         else{grow=true}
     }
-//    zoff += 0.01;
+    zoff += 0.01;
 }
 
 let xoff=0.0
