@@ -1,4 +1,7 @@
-var w, h, cnv, i, maxi
+var w, h, cnv, i, maxi, font, fSize
+function preload() {
+    font = loadFont("./FreeMono.otf");
+}
 
 function setup() {
     w = 800
@@ -10,7 +13,9 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
     i = 0
     maxi = 242
-    frameRate(1)
+    fSize = 84
+    textFont(font)
+    textSize(fSize)
 }
 
 function draw() {
@@ -51,7 +56,8 @@ function withcolors() {
     translate(w * 0.5, h * 0.5)
     noStroke()
     fill(0, 0,100, 199)
-    rect(-w * 0.35, -h * noise(xoff)*0.5, w * 0.7, h * noise(xoff))
+    var cours = "algorithmic art"
+    rect(-textWidth(cours)*0.5, -h * noise(xoff)*0.5, textWidth(cours), h * noise(xoff))
     if (i > 30 && i < 330) {
         fill(0, 0,100, 199)
         rect(-w * noise(xoff) * 0.5, -h * 0.05, w * noise(xoff), h * 0.1)
@@ -65,10 +71,17 @@ function withcolors() {
         rect(-w * noise(xoff) * 0.5, -h * noise(xoff) * 0.5, w * noise(xoff) , h * noise(xoff) )
     }
     xoff = map(cos(radians(i)), -1, 1, 0, 4);
-    filename="intro"+i+".png"
-    save(filename)
-    i += 2
-    if (i % 360 == 0) { i = 0; noLoop()}
+    if(i%84<53){
+        fill(0,0,100); stroke(0,0,100)
+    }
+    else{
+    if (random()<0.5){fill(0,0,100); stroke(0,0,100)}
+    else{fill(0,0,0); stroke(0,0,0)}}
+    text(cours, -textWidth(cours)*0.5, fSize*0.25 )
+//    filename="intro"+i+".png"
+//    save(filename)
+    i += 1
+    if (i % 360 == 0) { i = 0;}
 }
 
 function nest(cx,cy,dx,dy){
