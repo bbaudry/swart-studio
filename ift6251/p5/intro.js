@@ -28,14 +28,14 @@ function withcolors() {
     translate(w * 0.5, h * 0.5)
     noStroke()
     fill(0, 0,100, 199)
-    var cours = "algorithmic art"
+    var cours = "algo art"
     rect(-textWidth(cours)*0.5, -h * noise(xoff)*0.5, textWidth(cours), h * noise(xoff))
     if (i > 30 && i < 330) {
         fill(0, 0,100, 199)
         rect(-w * noise(xoff) * 0.5, -h * 0.05, w * noise(xoff), h * 0.1)
     }
     if (i > 90 && i < 270) {
-        fill(0, 0,100, 199)
+        fill(0, 100,100, 199)
         rect(-w * noise(xoff) * 0.5, -h * 0.3, w * noise(xoff) , h * 0.6)
     }
     if (i > 150 && i < 210) {

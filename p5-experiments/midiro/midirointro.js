@@ -33,8 +33,8 @@ function head(){
     textSize(142)
     noStroke()
     fill(0,0,100)
-    text("art",0.37*w,0.25*h)
-    text("génératif",0.13*w,0.93*h)
+    text("art",w*0.5-textWidth("art")*0.5,0.25*h)
+    text("génératif",w*0.5-textWidth("génératif")*0.5,0.93*h)
 }
 
 function carre(){
