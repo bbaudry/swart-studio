@@ -1,6 +1,7 @@
 package art.algo;
 
 import processing.core.PApplet;
+import java.util.Random;
 
 public class Carresjaunes extends PApplet {
     int w = 1000;
@@ -9,14 +10,8 @@ public class Carresjaunes extends PApplet {
     float cx;
     float cy;
     float rad;
-    float x1;
-    float x2;
-    float y1;
-    float y2;
-
-    int hu;
-    boolean grow;
-
+    Random rand;
+    
     @Override
     public void settings() {
         size(w, h);
@@ -31,21 +26,25 @@ public class Carresjaunes extends PApplet {
         rad=random((float)0.3,(float)0.5)*w;
         colorMode(HSB,360,100,100);
         background(0,0,0);
+        rand = new Random();
     }
 
     @Override
     public void draw() {
         fill(50,100,100);
+        noStroke();
         float x,y;
+        int size = (int) Math.floor(w*0.4);
         float offsetx, offsety;
-        for(int i=0; i< 42;i++){
-            offsetx=random(-100,100);
-            offsety=random(-100,100);
+        for(int i=0; i< 4;i++){
+            
+            offsetx=rand.nextInt(-100,100);
+            offsety=rand.nextInt(-100,100);
             x=cx+offsetx;
             y=cy+offsety;
             pushMatrix();
             translate(x,y);
-            rect(-(float)(w*0.3),-(float)(h*0.3),(float)(w*0.6),(float)(h*0.6));
+            rect(-size/2,-size/2,size,size);
             popMatrix();                
         }
         noLoop();
