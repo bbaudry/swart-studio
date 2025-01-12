@@ -25,9 +25,15 @@ def line(x,y,size,level):
         line(x-size,y-size,size,level)
         line(x+size,y-size,size,level)
 
-width(4)
-hideturtle()
-tracer(False)
-line(0,0,400,5)
-tracer(True)
-exitonclick()
+def main():
+    print("hey there")
+    width(4)
+    hideturtle()
+    tracer(False)
+    line(0,0,400,6)
+    tracer(True)
+    exitonclick()
+
+
+if __name__=="__main__":
+    main()
