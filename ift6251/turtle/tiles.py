@@ -26,7 +26,6 @@ def line(x,y,size,level):
         line(x+size,y-size,size,level)
 
 def main():
-    print("hey there")
     width(4)
     hideturtle()
     tracer(False)

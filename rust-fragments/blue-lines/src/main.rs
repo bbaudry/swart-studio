@@ -41,7 +41,6 @@ fn playground(app: &App) -> Vec<(f32,f32)> {
         y2 = y1-lulllaby-random_range(-5.0,-1.0);
         v.push((y1,y2));
         let bass = y1+lulllaby;
-        println!("y1: {y1}; y2: {y2}");
         y1 = y1-lulllaby;
     }
     return v
