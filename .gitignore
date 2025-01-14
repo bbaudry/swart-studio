@@ -2,3 +2,4 @@
 rust-fragments/target/*.*
 penplotting/web_svg2gcode/target
 penplotting/*.d.ts
+ift6251/nannou/*/target/*.*
