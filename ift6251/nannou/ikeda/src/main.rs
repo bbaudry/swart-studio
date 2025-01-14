@@ -64,7 +64,6 @@ fn view(app: &App, model: &Model, frame: Frame){
     let w = app.window_rect().w();
     let blockw = w/(model.nbcols as f32);
     let blockh = h/(model.nbrows as f32);
-    println!("nb cols: {}, blockw: {}, nb rows: {}, blockh: {}", model.nbcols, blockw, model.nbrows, blockh);
 
     for i in 0..model.nbcols{
         for j in 0..model.nbrows{
