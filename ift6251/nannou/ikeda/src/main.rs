@@ -8,7 +8,7 @@ use nannou::rand::random_range;
 
 fn main() {
     nannou::app(model)
-    .loop_mode(LoopMode::loop_ntimes(499))
+    //.loop_mode(LoopMode::loop_ntimes(499))
     .update(update)
     .view(view)
     //.simple_window(view)
@@ -33,18 +33,27 @@ fn model(app: &App) -> Model {
     }
 }
 
-fn update(_app: &App, model: &mut Model, _update: Update) {
+fn update(app: &App, model: &mut Model, _update: Update) {
     if model.grow && model.nbrows < 84 {
         model.nbrows+=1;
     }
     else {
-        model.grow = false;
-        if !model.grow && model.nbrows>0{
-            model.nbrows -= 1;
-        }
-        else {
-            model.grow = true;
-        }
+           if app.elapsed_frames() > 42{
+                if model.nbcols<142 {
+                    model.nbcols+=1;
+                }
+            }
+            else {
+                model.grow = false;
+                if !model.grow && model.nbrows>1{
+                    model.nbrows -= 1;
+                }
+                else {
+         
+                model.grow = true;
+                }
+            }
+        
     }
 }
 
@@ -55,16 +64,17 @@ fn view(app: &App, model: &Model, frame: Frame){
     let w = app.window_rect().w();
     let blockw = w/(model.nbcols as f32);
     let blockh = h/(model.nbrows as f32);
+    println!("nb cols: {}, blockw: {}, nb rows: {}, blockh: {}", model.nbcols, blockw, model.nbrows, blockh);
 
     for i in 0..model.nbcols{
         for j in 0..model.nbrows{
             if random_range(0.0,1.0)<0.5 {
-            draw.rect()
-            .color(hsl(0.0,1.0,1.0))
-            .x_y(-blockw*0.5+(i as f32)*blockw,h*0.5-blockh*0.5-(j as f32)*blockh)
-            .w_h(blockw,blockh);
+                draw.rect()
+                .color(hsl(0.0,1.0,1.0))
+                .x_y(-w*0.5+blockw*0.5+(i as f32)*blockw,h*0.5-blockh*0.5-(j as f32)*blockh)
+                .w_h(blockw,blockh);
+            }
         }
-    }
     }
     draw.to_frame(app,&frame).unwrap();
 
