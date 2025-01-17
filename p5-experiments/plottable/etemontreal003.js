@@ -29,11 +29,11 @@ function draw() {
     rect(midw + wpostcard, midh + hpostcard, wpostcard, hpostcard)
  */    
     stroke(0,0,0);
-/*     cartepostale(midw, midh)
+     cartepostale(midw, midh)
     cartepostale(midw + wpostcard, midh)
     cartepostale(midw, midh + hpostcard)
     cartepostale(midw + wpostcard, midh + hpostcard)
- */    
+    
     codeetadresse(midw, midh, destinataires[0])
     codeetadresse(midw + wpostcard, midh, destinataires[1])
     /* codeetadresse(midw, midh + hpostcard, destinataires[2])

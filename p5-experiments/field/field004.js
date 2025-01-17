@@ -74,7 +74,7 @@ function drawart() {
         if(random()<0.8){eye(s)}
         else{eye2(s)}
     }
-    strokeWeight(3)
+    strokeWeight(1)
     drawflower()
 }
 

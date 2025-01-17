@@ -24,10 +24,15 @@ public class Truchet extends PApplet {
 
     @Override
     public void draw() {
-        int size = 100;
+        int size = 20;
         noFill();
         stroke(0, 0, 100);
         strokeWeight((float) (size * 0.1));
+tiling(size);        
+noLoop();
+    }
+
+    public void tiling(int size) {
         for (int x = size; x < w - size; x += size) {
             for (int y = size; y < h - size; y += size) {
                 int vera = rand.nextInt(0, 2);
@@ -43,7 +48,6 @@ public class Truchet extends PApplet {
                 }
             }
         }
-        noLoop();
     }
 
     public void tile1(int x, int y, int size) {
@@ -53,11 +57,12 @@ public class Truchet extends PApplet {
     }
 
     public void tile2(int x, int y, int size) {
+        strokeWeight((float) (size * 0.1));
         arc(x + size, y, size, size, PI / 2, PI);
         arc(x, y + size, size, size, 3 * PI / 2, 2 * PI);
     }
 
-    public void mouseClicked(){
+    public void mouseClicked() {
         exit();
     }
 
