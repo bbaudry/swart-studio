@@ -1,5 +1,5 @@
 
-var w, h 
+var w, h, inc
 var cnv
 
 function setup() {
@@ -8,7 +8,7 @@ function setup() {
     cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
-    background(0, 0, 0)
+    inc=0
 }
 
 function centerCanvas() {
@@ -19,22 +19,26 @@ function centerCanvas() {
 
 
 function draw() {
-    stroke(0,100,100)
+    background(0, 0, 0)
+noStroke()
     noFill()
     rect(0,0,w,h)
     translate(w*0.5,h*0.5)
-    fill(0,100,100)
-    spirale()
+    fill(300,100,100,150)
+    spirale(inc)
+    inc+=0.01
+//    noLoop()
 }
 
-function spirale(){
+function spirale(inc){
     var x,y,taille
-    taille=3
+    taille=w*0.2
     var angle=0
-    for(var r=10;r<w*0.5;r+=0.05){
+
+    for(var r=10;r<w*0.5;r+=5){
         x=r*cos(radians(angle))
         y=r*sin(radians(angle))
         ellipse(x,y,taille,taille)
-        angle++
+        angle+=inc
     }
 }
