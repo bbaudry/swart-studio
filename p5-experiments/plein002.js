@@ -13,14 +13,14 @@ function setup() {
 
 function init(){
     boites=[]
-    var n=4
+    var n=7
     var y1,y2,y3,y4
     y1=0
     y2=0
     while(y1<h-h/n && y2<h-h/n){
         y3=y2+random()*h/n
         y4=y1+random()*h/n
-        boites.push(new Boite(0,y1,w,y2,w,y3,0,y4,random(60,180),100,100))
+        boites.push(new Boite(0,y1,w,y2,w,y3,0,y4,random([30,120,210,300]),random([0,100]),random([0,100])))
         y1=y4
         y2=y3
     }
