@@ -27,37 +27,22 @@ function draw() {
 function diag() {
     var black = true
     noFill()
-    strokeWeight(2)
-    for (var t = 0; t < 1; t += 0.008) {
+    strokeWeight(3)
+    for (var t = 0; t < 1; t += 0.01) {
         if (black) {
-            stroke(30, 100, 100)
+            stroke(0, 0, 0)
             black = false
         }
         else {
-            stroke(210, 100, 100)
+            stroke(0, 0, 0)
             black = true
         }
-        x1 = (1 - t) * 0 + (t * w * 0.5);
+        x1 = (1 - t) * 0 + (t * w );
         y1 = (1 - t) * 0 + (t * 0);
-        x2 = (1 - t) * w * 0.5 + (t * w * 0.5);
-        y2 = (1 - t) * 0 + (t * h * 0.5);
-        line(x1, y1, x2, y2)
-        x1 = (1 - t) * w + (t * w * 0.5);
-        y1 = (1 - t) * 0 + (t * 0);
-        x2 = (1 - t) * w * 0.5 + (t * w * 0.5);
-        y2 = (1 - t) * 0 + (t * h * 0.5);
+        x2 = (1 - t) * w + (t * w);
+        y2 = (1 - t) * 0 + (t * h);
         line(x1, y1, x2, y2)
     }
-    arc(0, h * 0.5, w, w, PI * 1.5, PI * 2)
-    stroke(330,100,100)
-    beginShape();
-    vertex(0, 0);
-    bezierVertex(w*0.5, 0, w*0.5, h*0.40, w*0.5, h*0.5);
-    endShape();
-    beginShape();
-    vertex(0, 0);
-    bezierVertex(w*0.5, 0, w*0.5, h*0.45, w*0.5, h*0.5);
-    endShape();
 }
 
 function grid2() {
