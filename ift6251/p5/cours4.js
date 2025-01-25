@@ -20,11 +20,11 @@ function setup() {
 function draw() {
     background(0, 0, 100)
     stroke(0, 0, 0)
-    diag()
+    oeil()
     noLoop()
 }
 
-function diag() {
+function oeil() {
     var black = true
     noFill()
     strokeWeight(3)
