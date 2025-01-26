@@ -42,21 +42,18 @@ function oeil(ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2) {
         x2 = (1 - t) * ox2 + (t * dx2);
         y2 = (1 - t) * oy2 + (t * dy2);
         line(x1, y1, x2, y2)
-        // x1 = (1 - t) * w + (t * w * 0.5);
-        // y1 = (1 - t) * 0 + (t * 0);
-        // x2 = (1 - t) * w * 0.5 + (t * w * 0.5);
-        // y2 = (1 - t) * 0 + (t * h * 0.5);
-        // line(x1, y1, x2, y2)
     }
-    rect(dx1 - 5, dx2 - 5, 10, 10)
     stroke(330, 100, 100)
-    var offx = 0.02
+    var offx = random(0.01,0.04)
     var offy = offx * 0.2
     var max = Math.floor(0.5 / offx)
+    var ecartx,ecarty
+    if (ox1>dx1){ecartx=w}else{ecartx=-w}
+    if (oy2>dy2){ecarty=h}else{ecarty=h}
     for (i = 0; i < max; i++) {
         beginShape();
         vertex(ox1, oy1);
-        bezierVertex(dx1 - w * i * offx, dy1, ox2, dx2 * 0.8 + h * i * offy, dx2, dy2);
+        bezierVertex(dx1 + ecartx * i * offx, dy1, ox2, dx2 * 0.8 + ecarty * i * offy, dx2, dy2);
         endShape();
     }
 }
