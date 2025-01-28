@@ -15,7 +15,7 @@ function setup() {
 }
 
 function draw() {
-    background(0, 0, 100)
+    background(0, 0, 0)
     stroke(0, 0, 0)
     oeil(0, 0, w * 0.5, 0, w * 0.5, 0, w * 0.5, h * 0.5)
     oeil(w, 0, w * 0.5, 0, w * 0.5, 0, w * 0.5, h * 0.5)
@@ -43,8 +43,8 @@ function oeil(ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2) {
         y2 = (1 - t) * oy2 + (t * dy2);
         line(x1, y1, x2, y2)
     }
-    stroke(330, 100, 100)
-    var offx = random(0.01,0.04)
+    stroke(330, 0, 100)
+    var offx = random(0.001,0.04)
     var offy = offx * 0.2
     var max = Math.floor(0.5 / offx)
     var ecartx,ecarty
@@ -53,7 +53,10 @@ function oeil(ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2) {
     for (i = 0; i < max; i++) {
         beginShape();
         vertex(ox1, oy1);
-        bezierVertex(dx1 + ecartx * i * offx, dy1, ox2, dx2 * 0.8 + ecarty * i * offy, dx2, dy2);
+        bezierVertex(
+            dx1 + ecartx * i * offx, dy1, 
+            dx2, dx2 * 1.2 + ecarty * i * offy, 
+            dx2, dy2);
         endShape();
     }
 }
