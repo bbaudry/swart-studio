@@ -22,6 +22,10 @@ function draw() {
     background(0, 0, 0)
     noStroke()
     ellipse(w*0.5,h*0.5,100,100)
+    ellipse(0,h*0.5,6,6)
+    ellipse(w,h*0.5,6,6)
+    ellipse(w*0.5,0,6,6)
+    ellipse(w*0.5,h,6,6)
     beginShape();
     vertex(ox1, oy1);
     bezierVertex(
@@ -29,6 +33,11 @@ function draw() {
         dx2, dx2 * 1.2 + ecarty * i * offy, 
         dx2, dy2);
     endShape();
-
+        rose()
     noLoop()
+}
+
+function rose(){
+
+    ellipse(0,h*0.5,6,6)
 }
