@@ -78,18 +78,44 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
         line(ox, oy, dx, dy)
         t += 0.085 * noise(xoff); xoff += xinc
     }
-    var cx,cy
-    cx=w*0.5
-    cy=h*0.5
-    if(a1<45 || a1>315){
-        var p = intersect(
-            cx,cy,
-            cx+2*w*cos(a1),cy+2*w*sin(a1),
-            w,0,
-            w,h
-        )
-        ellipse(p.x,p.y,5,5)
+    var cx, cy, outx1, outy1, outx2, outy2
+    cx = w * 0.5
+    cy = h * 0.5
+    console.log(a1+" "+a2)
+    if ((a1 > 315 || a1 < 45) && (a2 > 315 || a2 < 45)) {
+        outx1 = rightmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = bottommargin
     }
+    else {
+        if ((a1 > 225 || a1 < 315) && (a2 > 225 || a2 < 315)) {
+            outx1 = leftmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = topmargin
+        }
+        else {
+            if ((a1 > 45 || a1 < 135) && (a2 > 45 || a2 < 135)) {
+                console.log("bottom")
+                outx1 = leftmargin; outy1 = bottommargin; outx2 = rightmargin; outy2 = bottommargin
+            }
+            else{
+                if ((a1 > 135 || a1 < 225) && (a2 > 135 || a2 < 225)) {
+                    console.log("left")
+                    outx1 = leftmargin; outy1 = bottommargin; outx2 = leftmargin; outy2 = topmargin
+                }    
+            }
+        }
+    }
+    var p1 = intersect(
+        cx, cy,
+        cx + 2 * w * cos(a1), cy + 2 * w * sin(a1),
+        outx1, outy1,
+        outx2, outy2
+    )
+    var p2 = intersect(
+        cx, cy,
+        cx + 2 * w * cos(a2), cy + 2 * w * sin(a2),
+        outx1, outy1,
+        outx2, outy2
+    )
+    quad(ox, oy, p1.x, p1.y, p2.x, p2.y, dx, dy)
+
 }
 
 
@@ -99,28 +125,28 @@ returns coordinates where two segments [x1, y1, x2, y2] and [x3, y3, x4, y4] int
 function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
 
     // Check if none of the lines are of length 0
-      if ((x1 === x2 && y1 === y2) || (x3 === x4 && y3 === y4)) {
-          return false
-      }
-  
-      denominator = ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1))
-  
+    if ((x1 === x2 && y1 === y2) || (x3 === x4 && y3 === y4)) {
+        return false
+    }
+
+    denominator = ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1))
+
     // Lines are parallel
-      if (denominator === 0) {
-          return false
-      }
-  
-      let ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denominator
-      let ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denominator
-  
+    if (denominator === 0) {
+        return false
+    }
+
+    let ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denominator
+    let ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denominator
+
     // is the intersection along the segments
-      if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
-          return false
-      }
-  
+    if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
+        return false
+    }
+
     // Return a object with the x and y coordinates of the intersection
-      let x = x1 + ua * (x2 - x1)
-      let y = y1 + ua * (y2 - y1)
-  
-      return {x, y}
-  }
+    let x = x1 + ua * (x2 - x1)
+    let y = y1 + ua * (y2 - y1)
+
+    return { x, y }
+}
