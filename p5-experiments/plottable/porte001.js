@@ -81,24 +81,26 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     var cx, cy, outx1, outy1, outx2, outy2
     cx = w * 0.5
     cy = h * 0.5
-    console.log(a1+" "+a2)
+    console.log(a1 + " " + a2)
     if ((a1 > 315 || a1 < 45) && (a2 > 315 || a2 < 45)) {
+        console.log("right")
         outx1 = rightmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = bottommargin
     }
     else {
-        if ((a1 > 225 || a1 < 315) && (a2 > 225 || a2 < 315)) {
-            outx1 = leftmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = topmargin
+        if ((a1 > 45 || a1 < 135) && (a2 > 45 || a2 < 135)) {
+            console.log("bottom")
+            outx1 = leftmargin; outy1 = bottommargin; outx2 = rightmargin; outy2 = bottommargin
         }
         else {
-            if ((a1 > 45 || a1 < 135) && (a2 > 45 || a2 < 135)) {
-                console.log("bottom")
-                outx1 = leftmargin; outy1 = bottommargin; outx2 = rightmargin; outy2 = bottommargin
+            if ((a1 > 135 || a1 < 225) && (a2 > 135 || a2 < 225)) {
+                console.log("left")
+                outx1 = leftmargin; outy1 = bottommargin; outx2 = leftmargin; outy2 = topmargin
             }
-            else{
-                if ((a1 > 135 || a1 < 225) && (a2 > 135 || a2 < 225)) {
-                    console.log("left")
-                    outx1 = leftmargin; outy1 = bottommargin; outx2 = leftmargin; outy2 = topmargin
-                }    
+            else {
+                if ((a1 > 225 || a1 < 315) && (a2 > 225 || a2 < 315)) {
+                    console.log("top")
+                    outx1 = leftmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = topmargin
+                }
             }
         }
     }
