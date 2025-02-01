@@ -111,7 +111,21 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
         outx2, outy2
     )
     quad(ox, oy, p1.x, p1.y, p2.x, p2.y, dx, dy)
-
+    carte(ox, oy, p1.x, p1.y, p2.x, p2.y, dx, dy, 0)
+}
+function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
+    var ox, oy, dx, dy, t
+    if (d < 2) {
+        t = noise(xoff); xoff += xinc
+        ox = (1 - t) * x1 + (t * x2);
+        oy = (1 - t) * y1 + (t * y2);
+        dx = (1 - t) * x3 + (t * x4);
+        dy = (1 - t) * y3 + (t * y4);
+        line(ox, oy, dx, dy)
+        d++
+        carte(ox,oy,dx,dy,x4,y4,x1,y1,d)
+        carte(ox,oy,dx,dy,x3,y3,x2,y2,d)
+    }
 }
 
 
