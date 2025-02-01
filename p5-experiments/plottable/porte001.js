@@ -82,7 +82,7 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     cx = w * 0.5
     cy = h * 0.5
     console.log(a1 + " " + a2)
-    if ((a1 > 315 && a1 < 45) && (a2 > 315 && a2 < 45)) {
+    if ((a1 > 315 || a1 < 45) && (a2 > 315 || a2 < 45)) {
         console.log("right")
         outx1 = rightmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = bottommargin
     }
