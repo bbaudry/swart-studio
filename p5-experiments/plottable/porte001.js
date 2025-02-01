@@ -49,7 +49,7 @@ function field() {
     cy = h * 0.5
     rad1 = 15
     rad2 = actualwidth * 0.5
-    anggleinc = 10
+    anggleinc = 15
     for (var a = 0; a < 360; a += anggleinc) {
         x1 = cx + rad1 * cos(a)
         y1 = cy + rad1 * sin(a)
@@ -82,21 +82,21 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     cx = w * 0.5
     cy = h * 0.5
     console.log(a1 + " " + a2)
-    if ((a1 > 315 || a1 < 45) && (a2 > 315 || a2 < 45)) {
+    if ((a1 >= 315 || a1 <= 45) && (a2 >= 315 || a2 <= 45)) {
         console.log("right")
-        outx1 = rightmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = bottommargin
+        outx1 = rightmargin; outy1 = 0; outx2 = rightmargin; outy2 = h
     }
-    if ((a1 > 45 && a1 < 135) && (a2 > 45 && a2 < 135)) {
+    if ((a1 >= 45 && a1 <= 135) && (a2 >= 45 && a2 <= 135)) {
         console.log("bottom")
-        outx1 = leftmargin; outy1 = bottommargin; outx2 = rightmargin; outy2 = bottommargin
+        outx1 = 0; outy1 = bottommargin; outx2 = w; outy2 = bottommargin
     }
-    if ((a1 > 135 && a1 < 225) && (a2 > 135 && a2 < 225)) {
+    if ((a1 >= 135 && a1 <= 225) && (a2 >= 135 && a2 <= 225)) {
         console.log("left")
-        outx1 = leftmargin; outy1 = bottommargin; outx2 = leftmargin; outy2 = topmargin
+        outx1 = leftmargin; outy1 = h; outx2 = leftmargin; outy2 = 0
     }
-    if ((a1 > 225 && a1 < 315) && (a2 > 225 && a2 < 315)) {
+    if ((a1 >= 225 && a1 <= 315) && (a2 >= 225 && a2 <= 315)) {
         console.log("top")
-        outx1 = leftmargin; outy1 = topmargin; outx2 = rightmargin; outy2 = topmargin
+        outx1 = 0; outy1 = topmargin; outx2 = w; outy2 = topmargin
     }
     var p1 = intersect(
         cx, cy,
