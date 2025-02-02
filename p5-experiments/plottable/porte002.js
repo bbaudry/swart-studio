@@ -115,6 +115,7 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     //quad(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2)
     carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
     carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
+    carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
 }
 function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
     var ox, oy, dx, dy, t
