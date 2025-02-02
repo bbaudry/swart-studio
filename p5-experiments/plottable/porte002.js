@@ -1,7 +1,6 @@
-var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, imgbtn
-//var palette = [180,210,240,270,300,330,30,60]
-//var palette = [0,90,180,270]
-var palette = [0,90,180,270]
+var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, imgbtn, palette
+
+var palettes = [[0,90,180,270],[0,30,60,90,120,150,180],[180,210,240,270,300,330,30,60],[200,230,260,290,320,350]]
 function setup() {
     w = 800
     h = 800
@@ -17,6 +16,7 @@ function setup() {
     bottommargin = h - 16
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
+    palette=palettes[Math.floor(random(palettes.length))]
     angleMode(DEGREES);
 }
 
@@ -33,8 +33,36 @@ function draw() {
     noFill()
     rect(0, 0, w, h)
     stroke(300, 100, 100)
-    field()
+    sky()
+//    field()
     noLoop()
+}
+
+function sky(){
+    var a1,a2,a3,a4,x1,y1,x2,y2,x3,y3,x4,y4,rad
+    rad=0.35*w
+    push()
+    translate(w*0.5,h*0.5)
+    stroke(0,0,0);noFill()
+    ellipse(0,0,2*rad,2*rad)
+    a1=180*noise(xoff);xoff+=xinc
+    a2=181+178*noise(xoff);xoff+=xinc
+    x1=rad*cos(a1)
+    y1=rad*sin(a1)
+    x2=rad*cos(a2)
+    y2=rad*sin(a2)
+    line(x1,y1,x2,y2)
+    a3=random(a1,a1+(a2-a1))
+    a4=random(a2,a2+a1)
+    x3=rad*cos(a3)
+    y3=rad*sin(a3)
+    x4=rad*cos(a4)
+    y4=rad*sin(a4)
+    stroke(0,100,100)
+    line(x3,y3,x4,y4)
+    var p=intersect(x1,y1,x2,y2,x3,y3,x4,y4)
+    ellipse(p.x,p.y,7,7)
+    pop()
 }
 
 function field() {
@@ -114,8 +142,6 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     )
     //quad(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2)
     carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
-    carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
-    carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
 }
 function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
     var ox, oy, dx, dy, t
@@ -131,8 +157,11 @@ function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
         carte(ox,oy,dx,dy,x3,y3,x2,y2,d)
     }
     else{
-        hu=random(palette)
         noStroke()
+        hu=random(palette)
+        fill(hu,100,100,100)
+        quad(x1, y1, x2, y2, x3, y3, x4, y4)
+        hu=random(palette)
         fill(hu,100,100,100)
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
     }
