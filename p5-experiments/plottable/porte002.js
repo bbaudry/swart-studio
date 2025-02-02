@@ -1,9 +1,10 @@
 var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, imgbtn
 
 function setup() {
-    w = Math.floor(96 * 110 / 25.4)
-    h = Math.floor(96 * 110 / 25.4)
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    w = 800
+    h = 800
+    //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    cnv = createCanvas(w, h).mousePressed(savepng);
     var x = (windowWidth - w) / 2;
     var y = (windowHeight - h) / 2;
     cnv.position(x, y);
@@ -18,15 +19,18 @@ function setup() {
 }
 
 function savesvg() {
-    save("porte001.svg");
+    save("porte002.svg");
+}
+function savepng() {
+    save("porte002.png");
 }
 
 function draw() {
-    background(0, 0, 0)
-    stroke(0, 0, 100)
+    background(0, 0, 100)
+    stroke(300, 100, 100)
     noFill()
     rect(0, 0, w, h)
-    stroke(0, 0, 100)
+    stroke(300, 100, 100)
     field()
     noLoop()
 }
@@ -55,16 +59,24 @@ var xoff = 0.0
 var xinc = 0.05
 
 function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
-    var ox, oy, dx, dy, t, maxt
+    var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t, maxt
     t = 0.7 * noise(xoff); xoff += xinc
-    maxt = random(0.8, 0.99)
+    maxt = random(0.8, 0.91)
     while (t < maxt) {
-        ox = (1 - t) * x1 + (t * x2);
-        oy = (1 - t) * y1 + (t * y2);
-        dx = (1 - t) * x3 + (t * x4);
-        dy = (1 - t) * y3 + (t * y4);
-        line(ox, oy, dx, dy)
+        ox1 = (1 - t) * x1 + (t * x2);
+        oy1 = (1 - t) * y1 + (t * y2);
+        dx1 = (1 - t) * x3 + (t * x4);
+        dy1 = (1 - t) * y3 + (t * y4);
         t += 0.085 * noise(xoff); xoff += xinc
+        ox2 = (1 - t) * x1 + (t * x2);
+        oy2 = (1 - t) * y1 + (t * y2);
+        dx2 = (1 - t) * x3 + (t * x4);
+        dy2 = (1 - t) * y3 + (t * y4);
+//        t += 0.085 * noise(xoff); xoff += xinc
+        hu=random([180,210,240,270,300,330,30,60])
+        noStroke()
+        fill(hu,100,100)
+        quad(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2)
     }
     var cx, cy, outx1, outy1, outx2, outy2
     cx = w * 0.5
@@ -98,8 +110,8 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
         outx1, outy1,
         outx2, outy2
     )
-    quad(ox, oy, p1.x, p1.y, p2.x, p2.y, dx, dy)
-    carte(ox, oy, p1.x, p1.y, p2.x, p2.y, dx, dy, 0)
+    quad(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2)
+    carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
 }
 function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
     var ox, oy, dx, dy, t
