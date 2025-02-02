@@ -1,5 +1,7 @@
 var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, imgbtn
-
+//var palette = [180,210,240,270,300,330,30,60]
+//var palette = [0,90,180,270]
+var palette = [0,90,180,270]
 function setup() {
     w = 800
     h = 800
@@ -73,7 +75,7 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
         dx2 = (1 - t) * x3 + (t * x4);
         dy2 = (1 - t) * y3 + (t * y4);
 //        t += 0.085 * noise(xoff); xoff += xinc
-        hu=random([180,210,240,270,300,330,30,60])
+        hu=random(palette)
         noStroke()
         fill(hu,100,100)
         quad(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2)
@@ -110,7 +112,8 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
         outx1, outy1,
         outx2, outy2
     )
-    quad(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2)
+    //quad(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2)
+    carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
     carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
 }
 function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
@@ -125,6 +128,12 @@ function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
         d++
         carte(ox,oy,dx,dy,x4,y4,x1,y1,d)
         carte(ox,oy,dx,dy,x3,y3,x2,y2,d)
+    }
+    else{
+        hu=random(palette)
+        noStroke()
+        fill(hu,100,100,100)
+        quad(x1, y1, x2, y2, x3, y3, x4, y4)
     }
 }
 
