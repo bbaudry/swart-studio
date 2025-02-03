@@ -28,7 +28,7 @@ function savepng() {
 }
 
 function draw() {
-    background(0, 0, 100)
+    background(0, 50, 100)
     stroke(300, 100, 100)
     noFill()
     rect(0, 0, w, h)
@@ -61,7 +61,14 @@ function sky(){
     stroke(0,100,100)
     line(x3,y3,x4,y4)
     var p=intersect(x1,y1,x2,y2,x3,y3,x4,y4)
-    ellipse(p.x,p.y,7,7)
+    fill(200,100,100,100)
+    //triangle(x1,y1,p.x,p.y,x3,y3)
+    fill(270,100,100,100)
+    //triangle(x1,y1,p.x,p.y,x4,y4)
+    arc(0,0,rad*2,rad*2,a1,a3,PIE)
+    fill(330,100,100,100)
+    //triangle(p.x,p.y,x1,y1,x4,y4)
+    //arc(0,0,rad*2,rad*2,a4,a1,PIE)
     pop()
 }
 
