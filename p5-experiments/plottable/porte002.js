@@ -66,7 +66,7 @@ function field() {
     cy = h * 0.5
     rad1 = 15
     rad2 = actualwidth * 0.5
-    anggleinc = 15
+    anggleinc = 5
     for (var a = 0; a < 360; a += anggleinc) {
         x1 = cx + rad1 * cos(a)
         y1 = cy + rad1 * sin(a)
