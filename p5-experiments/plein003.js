@@ -27,7 +27,7 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 0)
-    fill(0,0,100,10)
+    fill(0,0,100,30)
     nucleus()
     noLoop()
 }
@@ -82,9 +82,9 @@ function nucleus() {
         apx2 = cpx2
         apy2 = cpy1
         bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
-
-        stroke(0, 0, 100);
-        endShape()
+        noStroke()
+        //stroke(0, 0, 100);
+        endShape(CLOSE)
     }
 }
 
