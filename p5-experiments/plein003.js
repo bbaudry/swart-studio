@@ -1,12 +1,19 @@
 
 var w, h
 var cnv
+var leftmargin,rightmargin,topmargin,bottommargin,actualheight,actualwidth
 
 function setup() {
     w = windowHeight
     h = windowHeight
     cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
+    leftmargin=Math.floor(w*0.15)
+    rightmargin=Math.floor(w*0.85)
+    topmargin=Math.floor(h*0.15)
+    bottommargin=Math.floor(h*0.85)
+    actualwidth=rightmargin-leftmargin
+    actualheight=bottommargin-topmargin
     colorMode(HSB, 360, 100, 100, 250);
 }
 
@@ -20,27 +27,64 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 0)
-    noStroke()
-    ellipse(w*0.5,h*0.5,100,100)
-        rose()
+    fill(0,0,100,10)
+    nucleus()
     noLoop()
 }
 
-function rose(){
-    noStroke()
-    fill(330,100,100)
-    ellipse(0,h*0.5,6,6)
-    ellipse(w,h*0.5,6,6)
-    ellipse(w*0.5,0,6,6)
-    ellipse(w*0.5,h,6,6)
-    var px1,py1,px2,py2,px3,py3,px4,py4
-    px1 = 0; py1 = h*0.5
-    px2 = w*0.5; py2 = 0
-    px3 = w; py3 = h*0.5
-    px4 = w*0.5; py4 = h
-    beginShape();
-    vertex(px1, py1);
-    bezierVertex(px1, py2,px1,py4,px2,py2);
-    endShape();
+function nucleus() {
+    var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, xpos3, ypos3, xpos4, ypos4
+    amp=3
+    tours=Math.floor(random(21,42))
+    xpos1 = leftmargin + actualwidth * random(); ypos1 = bottommargin
+    xpos2 = leftmargin ; ypos2 = topmargin + actualheight * random()
+    xpos3 = leftmargin + actualwidth * random(); ypos3 = topmargin
+    xpos4 = rightmargin; ypos4 = topmargin + actualheight * random()
 
+    for (var t = 1; t > 0.6; t-=0.003) {
+        x1 = (1 - t) * xpos1 + (t * xpos3); y1 = (1 - t) * ypos1 + (t * ypos3)
+        x2 = (1 - t) * xpos2 + (t * xpos4); y2 = (1 - t) * ypos2 + (t * ypos4)
+        x3 = (1 - t) * xpos3 + (t * xpos1); y3 = (1 - t) * ypos3 + (t * ypos1)
+        x4 = (1 - t) * xpos4 + (t * xpos2); y4 = (1 - t) * ypos4 + (t * ypos2)
+        beginShape()
+        apx1 = x1
+        apy1 = y1
+        vertex(apx1, apy1)
+
+        cpx1 = x2
+        cpy1 = y1
+        cpx2 = cpx1
+        cpy2 = y2
+        apx2 = cpx1
+        apy2 = cpy2
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x2
+        cpy1 = y3
+        cpx2 = x3
+        cpy2 = cpy1
+        apx2 = cpx2
+        apy2 = cpy1
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x4
+        cpy1 = y3
+        cpx2 = cpx1
+        cpy2 = y4
+        apx2 = cpx1
+        apy2 = cpy2
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x4+random(84)
+        cpy1 = y1
+        cpx2 = x1
+        cpy2 = cpy1
+        apx2 = cpx2
+        apy2 = cpy1
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        stroke(0, 0, 100);
+        endShape()
+    }
 }
+

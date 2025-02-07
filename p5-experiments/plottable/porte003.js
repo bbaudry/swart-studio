@@ -2,8 +2,8 @@ var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, ac
 
 var palettes = [[30, 120, 300]]
 function setup() {
-    w=Math.floor(96*297/25.4)
-    h=Math.floor(96*420/25.4)
+    w=Math.floor(96*8.5)//Math.floor(96*297/25.4)
+    h=Math.floor(96*11)//Math.floor(96*420/25.4)
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     var x = (windowWidth - w) / 2;
@@ -61,7 +61,7 @@ function field() {
     cy = topmargin+actualheight*0.5
     rad1 = 15
     rad2 = actualwidth * 0.5
-    anggleinc = 15
+    anggleinc = 45
     for (var a = 0; a < 360; a += anggleinc) {
         x1 = cx + rad1 * cos(a)
         y1 = cy + rad1 * sin(a)
@@ -99,8 +99,8 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
         quad(ox1, oy1, dx1, dy1, dx2, dy2, ox2, oy2)
     }
     var cx, cy, outx1, outy1, outx2, outy2
-    cx = w * 0.5
-    cy = h * 0.5
+    cx = leftmargin+actualwidth*0.5
+    cy = topmargin+actualheight*0.5
     if ((a1 >= 315 || a1 <= 45) && (a2 >= 315 || a2 <= 45)) {
         console.log("right")
         outx1 = rightmargin; outy1 = 0; outx2 = rightmargin; outy2 = bottommargin+topmargin

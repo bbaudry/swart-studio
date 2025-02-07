@@ -35,16 +35,6 @@
 
 
         function initSound(){
-            env5 = new Tone.Envelope({
-                attack: 0.1,
-		        decay: 0.2,
-		        sustain: 0.5,
-		        release: 0.8,
-	        }).toDestination();
-            //const rev = new Tone.Reverb({decay:5,wet:0.8}).toDestination();
-            //env5.connect(rev)
-
-
             // create a new synth
             synth=new Tone.Synth().toDestination();
             freq=30+Math.floor(random()*555)
