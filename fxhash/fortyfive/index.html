@@ -1,19 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="./p5.js"></script>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <script id="fxhash-snippet">
+    //---- do not edit the following code (you can indent as you wish)
+    let alphabet = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
+    var fxhash = "oo" + Array(49).fill(0).map(_ => alphabet[(Math.random() * alphabet.length) | 0]).join('')
+    let b58dec = str => [...str].reduce((p, c) => p * alphabet.length + alphabet.indexOf(c) | 0, 0)
+    let fxhashTrunc = fxhash.slice(2)
+    let regex = new RegExp(".{" + ((fxhashTrunc.length / 4) | 0) + "}", 'g')
+    let hashes = fxhashTrunc.match(regex).map(h => b58dec(h))
+    let sfc32 = (a, b, c, d) => {
+      return () => {
+        a |= 0; b |= 0; c |= 0; d |= 0
+        var t = (a + b | 0) + d | 0
+        d = d + 1 | 0
+        a = b ^ b >>> 9
+        b = c + (c << 3) | 0
+        c = c << 21 | c >>> 11
+        c = c + t | 0
+        return (t >>> 0) / 4294967296
+      }
+    }
+    var fxrand = sfc32(...hashes)
+    // true if preview mode active, false otherwise
+    // you can append preview=1 to the URL to simulate preview active
+    var isFxpreview = new URLSearchParams(window.location.search).get('preview') === "1"
+    // call this method to trigger the preview
+    function fxpreview() {
+      console.log("fxhash: TRIGGER PREVIEW")
+    }
+        //---- /do not edit the following code
+  </script>
+</head>
+
+<body>
+  <script>
+
 var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, imgbtn, palette
 
-var palettes = [[30, 120, 300]]
+var palettes = [[0, 90, 180, 270], [0, 30, 60, 90, 120, 150, 180], [180, 210, 240, 270, 300, 330, 30, 60], [200, 230, 260, 290, 320, 350]]
 function setup() {
-    w=Math.floor(96*8.5)//Math.floor(96*297/25.4)
-    h=Math.floor(96*11)//Math.floor(96*420/25.4)
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
-    //cnv = createCanvas(w, h).mousePressed(savepng);
-    var x = (windowWidth - w) / 2;
-    var y = 0;
-    cnv.position(x, y);
-    leftmargin = Math.floor(w*0.05)
-    rightmargin = Math.floor(w*0.95)
+    w=900
+    h=900
+    cnv = createCanvas(w, h)
+    leftmargin = Math.floor(w*0.01)
+    rightmargin = Math.floor(w*0.99)
     actualwidth = rightmargin - leftmargin
-    topmargin = Math.floor(w*0.05)
-    bottommargin = Math.floor(w*0.95)
+    topmargin = Math.floor(w*0.01)
+    bottommargin = Math.floor(w*0.99)
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     palette = palettes[Math.floor(random(palettes.length))]
@@ -21,18 +59,9 @@ function setup() {
     strokeWeight(2.2)
 }
 
-function savesvg() {
-    save("porte003.svg");
-}
-function savepng() {
-    save("porte003.png");
-}
 
 function draw() {
     background(0, 0, 100)
-    stroke(300, 100, 100)
-    noFill()
-    rect(0, 0, w, h)
     sky()
     field()
     noLoop()
@@ -43,12 +72,12 @@ function sky() {
     rad = 0.35 * w
     push()
     translate(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5)
-    noFill()
+    noStroke()
     a2 = 0
-    hu=random(palette)
-    stroke(hu, 100, 100)
     for (var i = 0; i < 42; i++) {
-        a1 = a2 + 280 * noise(xoff); xoff += xinc
+        hu=random(palette)
+        fill(hu, 100, 100,100)
+            a1 = a2 + 280 * noise(xoff); xoff += xinc
         a2 = a1 + 278 * noise(xoff); xoff += xinc
         arc(0, 0, rad * 2, rad * 2, a1, a2, CHORD)
     }
@@ -61,7 +90,7 @@ function field() {
     cy = topmargin+actualheight*0.5
     rad1 = 15
     rad2 = actualwidth * 0.5
-    anggleinc = 45
+    anggleinc = 15
     for (var a = 0; a < 360; a += anggleinc) {
         x1 = cx + rad1 * cos(a)
         y1 = cy + rad1 * sin(a)
@@ -82,10 +111,10 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t, maxt
     t = 0.7 * noise(xoff); xoff += xinc
     maxt = random(0.8, 0.91)
-    hu = random(palette)
-    stroke(hu,100,100)
-    noFill()
+    noStroke()
     while (t < maxt) {
+        hu=random(palette)
+        fill(hu, 100, 100)
         ox1 = (1 - t) * x1 + (t * x2);
         oy1 = (1 - t) * y1 + (t * y2);
         dx1 = (1 - t) * x3 + (t * x4);
@@ -103,7 +132,7 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     cy = topmargin+actualheight*0.5
     if ((a1 >= 315 || a1 <= 45) && (a2 >= 315 || a2 <= 45)) {
         console.log("right")
-        outx1 = rightmargin; outy1 = 0; outx2 = rightmargin; outy2 = bottommargin+topmargin
+        outx1 = rightmargin; outy1 = 0; outx2 = rightmargin; outy2 = h
     }
     if ((a1 >= 45 && a1 <= 135) && (a2 >= 45 && a2 <= 135)) {
         console.log("bottom")
@@ -111,7 +140,7 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     }
     if ((a1 >= 135 && a1 <= 225) && (a2 >= 135 && a2 <= 225)) {
         console.log("left")
-        outx1 = leftmargin; outy1 = bottommargin+topmargin; outx2 = leftmargin; outy2 = 0
+        outx1 = leftmargin; outy1 = h; outx2 = leftmargin; outy2 = 0
     }
     if ((a1 >= 225 && a1 <= 315) && (a2 >= 225 && a2 <= 315)) {
         console.log("top")
@@ -129,8 +158,6 @@ function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
         outx1, outy1,
         outx2, outy2
     )
-    hu = random(palette)
-    stroke(hu, 100, 100)
     carte(ox2, oy2, p1.x, p1.y, p2.x, p2.y, dx2, dy2, 0)
 }
 function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
@@ -148,8 +175,12 @@ function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
         carte(ox, oy, dx, dy, x3, y3, x2, y2, d)
     }
     else {
-        noFill()
+        noStroke()
+        hu=random(palette)
+        fill(hu, 100, 100,100)
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
+        hu=random(palette)
+        fill(hu, 100, 100,100)
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
     }
 }
@@ -186,3 +217,12 @@ function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
 
     return { x, y }
 }
+    function windowResized() {
+      w = document.documentElement.clientWidth;//width of window that is available for drawing
+      h = document.documentElement.clientHeight;//width of window that is available for drawing
+      resizeCanvas(windowWidth, windowHeight);
+    }
+
+  </script>
+
+</body>
