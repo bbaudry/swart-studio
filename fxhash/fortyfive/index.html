@@ -54,7 +54,7 @@ function setup() {
     bottommargin = Math.floor(w*0.99)
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
-    palette = palettes[Math.floor(random(palettes.length))]
+    palette = palettes[Math.floor(fxrand()*palettes.length)]
     angleMode(DEGREES);
     strokeWeight(2.2)
 }
@@ -75,7 +75,7 @@ function sky() {
     noStroke()
     a2 = 0
     for (var i = 0; i < 42; i++) {
-        hu=random(palette)
+        hu=palette[Math.floor(fxrand()*palette.length)]
         fill(hu, 100, 100,100)
             a1 = a2 + 280 * noise(xoff); xoff += xinc
         a2 = a1 + 278 * noise(xoff); xoff += xinc
@@ -110,11 +110,11 @@ var xinc = 0.05
 function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t, maxt
     t = 0.7 * noise(xoff); xoff += xinc
-    maxt = random(0.8, 0.91)
+    maxt = 0.8+fxrand()*0.11
     noStroke()
     while (t < maxt) {
-        hu=random(palette)
-        fill(hu, 100, 100)
+      hu=palette[Math.floor(fxrand()*palette.length)]
+      fill(hu, 100, 100)
         ox1 = (1 - t) * x1 + (t * x2);
         oy1 = (1 - t) * y1 + (t * y2);
         dx1 = (1 - t) * x3 + (t * x4);
@@ -176,10 +176,10 @@ function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
     }
     else {
         noStroke()
-        hu=random(palette)
+        hu=palette[Math.floor(fxrand()*palette.length)]
         fill(hu, 100, 100,100)
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
-        hu=random(palette)
+        hu=palette[Math.floor(fxrand()*palette.length)]
         fill(hu, 100, 100,100)
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
     }
