@@ -1,14 +1,11 @@
+
 var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, imgbtn, palette
 
 var palettes = [[0, 90, 180, 270], [0, 30, 60, 90, 120, 150, 180], [180, 210, 240, 270, 300, 330, 30, 60], [200, 230, 260, 290, 320, 350]]
 function setup() {
     w=900
     h=900
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
-    //cnv = createCanvas(w, h).mousePressed(savepng);
-    var x = (windowWidth - w) / 2;
-    var y = 0;
-    cnv.position(x, y);
+    cnv = createCanvas(w, h)
     leftmargin = Math.floor(w*0.01)
     rightmargin = Math.floor(w*0.99)
     actualwidth = rightmargin - leftmargin
@@ -16,17 +13,11 @@ function setup() {
     bottommargin = Math.floor(w*0.99)
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
-    palette = palettes[Math.floor(random(palettes.length))]
+    palette = palettes[Math.floor($fx.rand()*palettes.length)]
     angleMode(DEGREES);
     strokeWeight(2.2)
 }
 
-function savesvg() {
-    save("porte003.svg");
-}
-function savepng() {
-    save("porte003.png");
-}
 
 function draw() {
     background(0, 0, 100)
@@ -43,7 +34,7 @@ function sky() {
     noStroke()
     a2 = 0
     for (var i = 0; i < 42; i++) {
-        hu=random(palette)
+        hu=palette[Math.floor($fx.rand()*palette.length)]
         fill(hu, 100, 100,100)
             a1 = a2 + 280 * noise(xoff); xoff += xinc
         a2 = a1 + 278 * noise(xoff); xoff += xinc
@@ -78,11 +69,11 @@ var xinc = 0.05
 function quartier(x1, y1, x2, y2, x3, y3, x4, y4, a1, a2) {
     var ox1, oy1, dx1, dy1, ox2, oy2, dx2, dy2, t, maxt
     t = 0.7 * noise(xoff); xoff += xinc
-    maxt = random(0.8, 0.91)
+    maxt = 0.8+$fx.rand()*0.11
     noStroke()
     while (t < maxt) {
-        hu=random(palette)
-        fill(hu, 100, 100)
+      hu=palette[Math.floor($fx.rand()*palette.length)]
+      fill(hu, 100, 100)
         ox1 = (1 - t) * x1 + (t * x2);
         oy1 = (1 - t) * y1 + (t * y2);
         dx1 = (1 - t) * x3 + (t * x4);
@@ -144,10 +135,10 @@ function carte(x1, y1, x2, y2, x3, y3, x4, y4, d) {
     }
     else {
         noStroke()
-        hu=random(palette)
+        hu=palette[Math.floor($fx.rand()*palette.length)]
         fill(hu, 100, 100,100)
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
-        hu=random(palette)
+        hu=palette[Math.floor($fx.rand()*palette.length)]
         fill(hu, 100, 100,100)
         quad(x1, y1, x2, y2, x3, y3, x4, y4)
     }
@@ -185,3 +176,8 @@ function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
 
     return { x, y }
 }
+    function windowResized() {
+      w = document.documentElement.clientWidth;//width of window that is available for drawing
+      h = document.documentElement.clientHeight;//width of window that is available for drawing
+      resizeCanvas(windowWidth, windowHeight);
+    }
