@@ -18,29 +18,26 @@ function setup() {
 
 
 function draw() {
-    background(220, 100, 90)
+    background(300, 20, 90)
     sky()
     noLoop()
 }
 
 function sky(){
-    stars()
-    moon()
+    moons()
 }
 
-function moon(){
+function moons(){
     var cx = leftmargin+random(0.2,0.8)*actualwidth
     var cy = topmargin+random(0.2,0.4)*actualwidth
     noStroke()
-    fill(50,100,100)
-    ellipse(cx,cy,42,42)
     
     push();
-    fill(0,100,100);
+    fill(220,40,100);
     ellipse(150,200,200);
     canvas.getContext("2d").clip();
-    fill(255,100,100)
-    ellipse(250,200,200);
+    fill(300, 20, 90)
+    ellipse(50,200,250);
     pop();
     
     push();
@@ -53,18 +50,3 @@ function moon(){
   
 }
 
-function stars(){
-    var cx,cy,a,x1,y1
-    for (var i=0;i<42;i++){
-        cx = leftmargin+random(0.2,0.9)*actualwidth
-        cy = topmargin+random(0.2,0.4)*actualwidth
-        a=0//Math.floor(random(360))
-        stroke(30,100,100)
-        for (var j=0;j<6;j++){
-            x1=cx+11*cos(a)
-            y1=cy+11*sin(a)
-            line(cx,cy,x1,y1)
-            a+=45+random(-11,11)
-        }
-    }
-}
