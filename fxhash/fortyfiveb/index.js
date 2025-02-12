@@ -3,9 +3,9 @@ var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, ac
 
 var palettes = [[0, 90, 180, 270], [0, 30, 60, 90, 120, 150, 180], [180, 210, 240, 270, 300, 330, 30, 60], [200, 230, 260, 290, 320, 350]]
 function setup() {
-    w=900
-    h=900
-    cnv = createCanvas(w, h)
+    w=690
+    h=690
+    createCanvas(w, h)
     leftmargin = Math.floor(w*0.01)
     rightmargin = Math.floor(w*0.99)
     actualwidth = rightmargin - leftmargin
