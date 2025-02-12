@@ -34,6 +34,23 @@ function moon(){
     noStroke()
     fill(50,100,100)
     ellipse(cx,cy,42,42)
+    
+    push();
+    fill(0,100,100);
+    ellipse(150,200,200);
+    canvas.getContext("2d").clip();
+    fill(255,100,100)
+    ellipse(250,200,200);
+    pop();
+    
+    push();
+    fill(20,100,100);
+    ellipse(250,200,200);
+    canvas.getContext("2d").clip();
+    fill(200,100,100)
+    ellipse(150,200,200);
+    pop();
+  
 }
 
 function stars(){
