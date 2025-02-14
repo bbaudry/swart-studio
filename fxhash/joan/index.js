@@ -19,7 +19,7 @@ function setup() {
 
 var hues=[30,90,230]
 function draw() {
-    background(300, 100, 100)
+    background(180, 100, 100)
     sky()
     noLoop()
 }
@@ -45,7 +45,7 @@ function light(){
         x4=cx-random(0.05)*actualwidth
         y4=y3
         hu=hues[Math.floor(random(hues.length))]
-        fill(random([0,30,120,210,300]),random([0,100]),random([0,100]))
+        fill(random([30,120,210,300]),random([0,100,100]),random([0,100,100]))
         quad(x1,y1,x2,y2,x3,y3,x4,y4)
         y1=y4
         y2=y3
