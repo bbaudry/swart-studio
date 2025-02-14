@@ -19,7 +19,7 @@ function setup() {
 
 var hues=[30,90,230]
 function draw() {
-    background(330, 100, 100)
+    background(230, 100, 70)
     sky()
     noLoop()
 }
@@ -28,21 +28,26 @@ function sky(){
     light()
 }
 
+xoff=$fx.rand()
+xinc=$fx.rand()*0.5
+stepx=0.05
+stepy=0.2
+
 function light(){
     var x1,y1,x2,y2,x3,y3,x4,y4,cx,minx,maxx,hu
     minx=leftmargin
     maxx=leftmargin
     for(var i=0;i<10;i++){
-        cx=leftmargin+(i*0.1+0.05)*actualwidth
+        cx=leftmargin+(i*(stepx*2)+stepx)*actualwidth
         y1=topmargin
         y2=y1
-        x1=cx-random(0.05)*actualwidth
-        x2=cx+random(0.05)*actualwidth
+        x1=cx-noise(xoff)*stepx*actualwidth; xoff+=xinc
+        x2=cx+noise(xoff)*stepx*actualwidth; xoff+=xinc
         while(y1<bottommargin){
-        x3=cx+random(0.05)*actualwidth
-        y3=y1+random(0.01,0.2)*actualheight
+        x3=cx+noise(xoff)*stepx*actualwidth; xoff+=xinc
+        y3=y1+noise(xoff)*stepy*actualheight; xoff+=xinc
         if(y3>=bottommargin){y3=bottommargin}
-        x4=cx-random(0.05)*actualwidth
+        x4=cx-noise(xoff)*stepx*actualwidth; xoff+=xinc
         y4=y3
         hu=hues[Math.floor(random(hues.length))]
         fill(random([30,120,210,300]),random([0,100,100]),random([0,100,100]))
