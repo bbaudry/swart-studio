@@ -14,11 +14,12 @@ function setup() {
     bottommargin = Math.floor(w*0.99)
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
+    noStroke()
 }
 
-var hues=[30,50,90,230,330]
+var hues=[30,90,230]
 function draw() {
-    background(300, 20, 90)
+    background(300, 100, 100)
     sky()
     noLoop()
 }
@@ -28,17 +29,20 @@ function sky(){
 }
 
 function light(){
-    var x1,y1,x2,y2,x3,y3,x4,y4,minx,maxx,hu
-    x1=leftmargin+0.1*actualwidth
-    y1=topmargin
-    x2=x1+random(0.1,0.2)*actualwidth
-    y2=y1
+    var x1,y1,x2,y2,x3,y3,x4,y4,cx,minx,maxx,hu
     minx=leftmargin
     maxx=leftmargin
-    while(y1<bottommargin){
-        x3=x2+random(-0.03,0.03)*actualwidth
-        y3=y1+random(0.1,0.2)*actualwidth
-        x4=x1+random(-0.03,0.03)*actualwidth
+    for(var i=0;i<10;i++){
+        cx=leftmargin+(i*0.1+0.05)*actualwidth
+        y1=topmargin
+        y2=y1
+        x1=cx-random(0.05)*actualwidth
+        x2=cx+random(0.05)*actualwidth
+        while(y1<bottommargin){
+        x3=cx+random(0.05)*actualwidth
+        y3=y1+random(0.01,0.2)*actualheight
+        if(y3>=bottommargin){y3=bottommargin}
+        x4=cx-random(0.05)*actualwidth
         y4=y3
         hu=hues[Math.floor(random(hues.length))]
         fill(hu,100,100)
@@ -47,7 +51,7 @@ function light(){
         y2=y3
         x1=x4
         x2=x3
-    }
+    }}
 }
 
 function moons(){
