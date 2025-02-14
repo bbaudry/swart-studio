@@ -31,14 +31,14 @@ function sky(){
 xoff=$fx.rand()
 xinc=$fx.rand()*0.5
 stepx=0.05
-stepy=0.2
+stepy=0.01+$fx.rand()*0.3
 
 function light(){
     var x1,y1,x2,y2,x3,y3,x4,y4,cx,minx,maxx,hu
     minx=leftmargin
     maxx=leftmargin
     for(var i=0;i<10;i++){
-        cx=leftmargin+(i*(stepx*2)+stepx)*actualwidth
+        cx=leftmargin+(i*(stepx*1.4)+stepx)*actualwidth
         y1=topmargin
         y2=y1
         x1=cx-noise(xoff)*stepx*actualwidth; xoff+=xinc
