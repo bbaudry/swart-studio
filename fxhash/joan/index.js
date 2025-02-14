@@ -19,7 +19,7 @@ function setup() {
 
 var hues=[30,90,230]
 function draw() {
-    background(180, 100, 100)
+    background(330, 100, 100)
     sky()
     noLoop()
 }
