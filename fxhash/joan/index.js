@@ -29,12 +29,12 @@ function sky() {
 }
 
 var xoff = $fx.rand()
-var xinc = $fx.rand() * 0.5
+var xinc = $fx.rand() * 0.3
 var stepx = 0.5//0.05
 var stepy = 0.01 + $fx.rand() * 0.3
 var hu,humin,humax,huup,hudiff
-humin=50
-humax=180
+humin=Math.floor($fx.rand()*230)
+humax=humin+130
 hu=humin
 huup=true
 hudiff=0.5
