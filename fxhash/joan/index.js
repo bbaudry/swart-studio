@@ -24,6 +24,13 @@ distribution=[
     }
 ]
 
+var xoff = $fx.rand()
+var xinc = $fx.rand() * 0.3
+var d = Math.floor($fx.rand()*distribution.length)
+var stepx = distribution[d].stepx
+var stepy = 0.05 + $fx.rand() * 0.3
+var indexup,indexc,randcol
+
 function setup() {
     w = 690
     h = 690
@@ -34,11 +41,9 @@ function setup() {
     topmargin = Math.floor(w * 0.01)
     bottommargin = Math.floor(w * 0.99)
     actualheight = bottommargin - topmargin
-    strokeWeight(1)
     palette=palettes[Math.floor($fx.rand()*palettes.length)]
 }
 
-var hues = [30, 90, 230]
 function draw() {
     background(0)
     sky()
@@ -49,14 +54,6 @@ function sky() {
     light()
     $fx.preview()
 }
-
-var xoff = $fx.rand()
-var xinc = $fx.rand() * 0.3
-var d = Math.floor($fx.rand()*distribution.length)
-var stepx = distribution[d].stepx
-var stepy = 0.05 + $fx.rand() * 0.3
-var indexup,indexc,randcol
-
 
 function light() {
     var x1, y1, x2, y2, x3, y3, x4, y4, cx, minx, maxx
