@@ -1,5 +1,5 @@
 
-var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, palettes, palette
+var w, h, cnv, leftmargin, rightmargin, topmargin, bottommargin, actualwidth, actualheight, palettes, palette, distribution
 //color palettes generated with https://generativepixels.app/, using pictures from different seasons in Mtl 2024
 palettes=[
     ['#EB6756', '#FF9F96', '#FD5925', '#8D371B', '#E0BFB4', '#D6790B', '#A67C47', '#FFB618', '#402D09', '#F9CF7F', '#FCE400', '#A49117', '#869764', '#B2E291', '#F3FFEB', '#315C31', '#399643', '#4CCCB7', '#00CAEF', '#2B6ABE', '#4D6C94', '#A8B8E6', '#342C46', '#5D3676', '#9A3C70', '#EB1241', '#E24E75', '#894E4F', '#848484', '#000000'],
@@ -25,7 +25,7 @@ distribution=[
 ]
 
 var xoff = $fx.rand()
-var xinc = $fx.rand() * 0.3
+var xinc = $fx.rand() * 0.3 //<0.05: smooth;<0.28 && >=0.05: regular; >=0.28 noisy
 var d = Math.floor($fx.rand()*distribution.length)
 var stepx = distribution[d].stepx
 var stepy = 0.05 + $fx.rand() * 0.3
@@ -34,7 +34,7 @@ var indexup,indexc,randcol
 function setup() {
     w = 690
     h = 690
-    createCanvas(w, h)
+    createCanvas(w, h).mousePressed(savepng);
     leftmargin = Math.floor(w * 0.01)
     rightmargin = Math.floor(w * 0.99)
     actualwidth = rightmargin - leftmargin
@@ -42,17 +42,45 @@ function setup() {
     bottommargin = Math.floor(w * 0.99)
     actualheight = bottommargin - topmargin
     palette=palettes[Math.floor($fx.rand()*palettes.length)]
+    noiseSeed($fx.iteration)
+    setfeatures()
+}
+
+function savepng(){
+    save("mtlmood"+millis()+".png")
+}
+
+function setfeatures(){
+    var n
+//    <0.05: smooth;<0.28 && >=0.05: regular; >=0.28 noisy
+    if(xinc<0.05){
+        n="smooth"
+    }
+    else{
+        if(xinc<0.28){
+            n="regular"
+        }
+        else{
+            n="crack"
+        }
+    }
+    $fx.features({
+        "noise":n,
+        "MTL stripes":distribution[d].iter
+    })
+    console.log($fx.features)
+
 }
 
 function draw() {
     background(0)
     sky()
     noLoop()
+    $fx.preview()
 }
 
 function sky() {
     light()
-    $fx.preview()
 }
 
 function light() {
@@ -62,9 +90,8 @@ function light() {
     for (var i = 0; i < distribution[d].iter; i++) {
         palette=palettes[Math.floor($fx.rand()*palettes.length)]
         randcol =  ($fx.rand()<0.5) ? true :false;
-        indexup=true
-        indexc=0
-
+        indexc = 0
+        indexup = true
         cx = leftmargin + (i * (stepx * 2) + stepx) * actualwidth
         y1 = topmargin
         y2 = y1
