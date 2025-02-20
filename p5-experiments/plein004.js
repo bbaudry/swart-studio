@@ -46,7 +46,13 @@ function vera(){
     x3=leftmargin+42
     y3=topmargin+84
     x4=leftmargin+111
-    y4=topmargin+444
+    y4=topmargin+333
     fill(50,100,100)
     quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    x5=rightmargin
+    y5=topmargin
+    x6=rightmargin-42
+    y6=topmargin+144
+    quad(x4,y4,x3,y3,x5,y5,x6,y6)
+
 }
