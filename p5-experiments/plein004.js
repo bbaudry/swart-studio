@@ -33,8 +33,10 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 0)
+    noStroke()
+    fill(50,100,100)
     vera()
-    noLoop()
+    //noLoop()
 }
 
 function vera(){
@@ -46,8 +48,7 @@ function vera(){
     x3=leftmargin+42
     y3=topmargin+84
     x4=leftmargin+111
-    y4=topmargin+333
-    fill(50,100,100)
+    y4=topmargin+111+frameCount*0.1
     quad(x1,y1,x2,y2,x3,y3,x4,y4)
     x5=rightmargin
     y5=topmargin
