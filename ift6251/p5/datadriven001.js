@@ -14,7 +14,7 @@ socket.onmessage = (event) => {
     console.log(obj.Syscall.returns_error);
     //textid(obj)
     //bw()
-    bwErrors(obj) 
+        bwErrors(obj) 
 }
 
 function preload() {
