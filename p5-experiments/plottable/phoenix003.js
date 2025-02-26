@@ -20,9 +20,9 @@ function preload() {
 }
 
 function draw() {
-    background(0, 0, 0)
+    background(0, 0, 100)
     noFill()
-    stroke(0, 0, 100)
+    stroke(0, 0, 0)
     rect(0,0,w,h)
     initgrid()
     //showgrid()
@@ -56,8 +56,8 @@ function cactus2(){
         var initangle=Math.floor(random(97))
         rotate(initangle)
         var maxj=Math.floor(random(2,17))
-        if(random()<0.5){stroke(0,0,100)}
-        else{stroke(0,100,100)}
+        //if(random()<0.5){stroke(0,0,100)}
+        //else{stroke(0,100,100)}
         for(j=0;j<maxj;j++){
             rotate(radians(j))
             quad(-size*0.5,-size*0.5,

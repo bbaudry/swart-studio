@@ -12,8 +12,8 @@ socket.onmessage = (event) => {
     console.log(obj.Syscall.kind);
     console.log(obj.Syscall.return_value);
     console.log(obj.Syscall.returns_error);
-    //bw()
     //textid(obj)
+    //bw()
     bwErrors(obj) 
 }
 
@@ -79,4 +79,29 @@ function bwErrors(obj){
         fill(0,0,100)
         rect(w*0.5,0,w*0.5,h)
     }
+}
+
+var callboxes=new Set()
+var errorboxes=new Set()
+function strips(obj){
+    console.log("ONE")
+    var boxheight=42
+    if(black){
+        var b = new Box(0,callboxes.size*42,42,color(0,0,100))
+        callboxes.add(b)
+        black=false
+    }
+    else{
+        var b = new Box(0,callboxes.size*42,42,color(0,0,100))
+        callboxes.add(b)
+        black=true
+    }
+    callboxes.forEach((b) => {
+        if(b.update()){
+        b.display()}
+        else{
+            callboxes.delete(b)
+        }
+     });
+     console.log(callboxes.size)
 }
