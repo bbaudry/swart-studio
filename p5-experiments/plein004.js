@@ -6,7 +6,7 @@ var leftmargin,rightmargin,topmargin,bottommargin,actualheight,actualwidth
 function setup() {
     w = windowHeight
     h = windowHeight
-    cnv = createCanvas(windowHeight, windowHeight).mousePressed(savepng);;
+    cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
     leftmargin=Math.floor(w*0.15)
     rightmargin=Math.floor(w*0.85)
@@ -18,12 +18,6 @@ function setup() {
 }
 
 
-function savepng(){
-    save("mtlmood"+millis()+".png")
-}
-
-
-
 function centerCanvas() {
     var x = (windowWidth - windowHeight) / 2;
     var y = (windowHeight - windowHeight) / 2;
@@ -33,27 +27,64 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 0)
-    noStroke()
-    fill(50,100,100)
-    vera()
-    //noLoop()
+    fill(0,0,100,30)
+    nucleus()
+    noLoop()
 }
 
-function vera(){
-    var x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6
-    x1=leftmargin+84
-    y1=bottommargin-30
-    x2=leftmargin+10
-    y2=bottommargin-10
-    x3=leftmargin+42
-    y3=topmargin+84
-    x4=leftmargin+111
-    y4=topmargin+111+frameCount*0.1
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
-    x5=rightmargin
-    y5=topmargin
-    x6=rightmargin-42
-    y6=topmargin+144
-    quad(x4,y4,x3,y3,x5,y5,x6,y6)
+function nucleus() {
+    var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, xpos3, ypos3, xpos4, ypos4
+    amp=3
+    tours=Math.floor(random(21,42))
+    xpos1 = leftmargin + actualwidth * random(); ypos1 = bottommargin
+    xpos2 = leftmargin ; ypos2 = topmargin + actualheight * random()
+    xpos3 = leftmargin + actualwidth * random(); ypos3 = topmargin
+    xpos4 = rightmargin; ypos4 = topmargin + actualheight * random()
 
+    for (var t = 1; t > 0.6; t-=0.003) {
+        x1 = (1 - t) * xpos1 + (t * xpos3); y1 = (1 - t) * ypos1 + (t * ypos3)
+        x2 = (1 - t) * xpos2 + (t * xpos4); y2 = (1 - t) * ypos2 + (t * ypos4)
+        x3 = (1 - t) * xpos3 + (t * xpos1); y3 = (1 - t) * ypos3 + (t * ypos1)
+        x4 = (1 - t) * xpos4 + (t * xpos2); y4 = (1 - t) * ypos4 + (t * ypos2)
+        beginShape()
+        apx1 = x1
+        apy1 = y1
+        vertex(apx1, apy1)
+
+        cpx1 = x2
+        cpy1 = y1
+        cpx2 = cpx1
+        cpy2 = y2
+        apx2 = cpx1
+        apy2 = cpy2
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x2
+        cpy1 = y3
+        cpx2 = x3
+        cpy2 = cpy1
+        apx2 = cpx2
+        apy2 = cpy1
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x4
+        cpy1 = y3
+        cpx2 = cpx1
+        cpy2 = y4
+        apx2 = cpx1
+        apy2 = cpy2
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x4+random(84)
+        cpy1 = y1
+        cpx2 = x1
+        cpy2 = cpy1
+        apx2 = cpx2
+        apy2 = cpy1
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+        noStroke()
+        //stroke(0, 0, 100);
+        endShape(CLOSE)
+    }
 }
+

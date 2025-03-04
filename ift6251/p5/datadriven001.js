@@ -1,6 +1,12 @@
 var w, h, cnv, font, black
 
 
+// this is a simplified, browser-based mockup of the syscalls installation: https://rethread.art/
+// the piece is fed by a websocket that transmits all the syscalls triggered by an application
+// before running this piece, one needs to launch two processes, in this order:
+// - a server that handles the websocket: ```node index.js``` in the folder for https://github.com/rethread-studio/rethread/tree/master/code/syscalls/strace_collector_node_relay
+// - the syscall collector for an application, e.g., gedit: ```cargo run --release -- --command gedit``` https://github.com/rethread-studio/rethread/tree/master/code/syscalls/strace_collector_json
+
 const socket = new WebSocket("ws://localhost:8081", [
     "protocolOne",
     "protocolTwo",
