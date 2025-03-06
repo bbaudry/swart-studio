@@ -51,7 +51,11 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
         x3 = cx + r * cos(radians(initangle + 240))
         y3 = cy + r * sin(radians(initangle + 240))
         triangle(x1, y1, x2, y2, x3, y3)
+    x2 = cx + rinit * cos(radians(initangle + 120))
+    y2 = cy + rinit * sin(radians(initangle + 120))
     }
+    x1 = cx + rinit * cos(radians(initangle))
+    y1 = cy + rinit * sin(radians(initangle))
     x2 = cx + rinit * cos(radians(initangle + 120))
     y2 = cy + rinit * sin(radians(initangle + 120))
     x3 = cx + rinit * cos(radians(initangle + 240))
@@ -64,6 +68,21 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
         line(ox,oy,dx,dy)
     }
     line(x3,y3,leftmargin,y3)
+    for (var t = 0; t < 0.5; t += 0.01) {
+        ox = (1 - t) * x3 + (t * x1);
+        oy = (1 - t) * y3 + (t * y1);
+        dx = ox;
+        dy = topmargin;
+        line(ox,oy,dx,dy)
+    }
+    for (var t = 0.5; t < 1; t += 0.01) {
+        ox = (1 - t) * x3 + (t * x1);
+        oy = (1 - t) * y3 + (t * y1);
+        dx = rightmargin;
+        dy = oy;
+        line(ox,oy,dx,dy)
+    }
+    line(x1,y1,rightmargin,y1)
     ellipse(cx, cy, 7, 7)
 }
 
