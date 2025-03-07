@@ -26,9 +26,9 @@ function centerCanvas() {
 
 
 function draw() {
-    background(0, 0, 0)
+    background(0, 0, 100)
     noFill()
-    stroke(0, 0, 100)
+    stroke(0, 100, 100)
     rect(0, 0, w, h)
     rect(leftmargin, topmargin, actualwidth, actualheight)
     var x2 = leftmargin + Math.floor(random(actualwidth))
@@ -42,7 +42,7 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
     var rinit = w * 0.3
     var rdec = 5
     var initangle = Math.floor(random(30))
-    var ox,oy,dx,dy
+    var ox, oy, dx, dy
     for (var r = rinit; r > rdec; r -= rdec) {
         x1 = cx + r * cos(radians(initangle))
         y1 = cy + r * sin(radians(initangle))
@@ -51,8 +51,8 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
         x3 = cx + r * cos(radians(initangle + 240))
         y3 = cy + r * sin(radians(initangle + 240))
         triangle(x1, y1, x2, y2, x3, y3)
-    x2 = cx + rinit * cos(radians(initangle + 120))
-    y2 = cy + rinit * sin(radians(initangle + 120))
+        x2 = cx + rinit * cos(radians(initangle + 120))
+        y2 = cy + rinit * sin(radians(initangle + 120))
     }
     x1 = cx + rinit * cos(radians(initangle))
     y1 = cy + rinit * sin(radians(initangle))
@@ -60,29 +60,29 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
     y2 = cy + rinit * sin(radians(initangle + 120))
     x3 = cx + rinit * cos(radians(initangle + 240))
     y3 = cy + rinit * sin(radians(initangle + 240))
+    stroke(0, 0, 0)
     for (var t = 0; t < 1; t += 0.01) {
         ox = (1 - t) * x2 + (t * x3);
         oy = (1 - t) * y2 + (t * y3);
         dx = leftmargin;
         dy = oy;
-        line(ox,oy,dx,dy)
+        line(ox, oy, dx, dy)
     }
-    line(x3,y3,leftmargin,y3)
+    line(x3, y3, leftmargin, y3)
     for (var t = 0; t < 0.5; t += 0.01) {
         ox = (1 - t) * x3 + (t * x1);
         oy = (1 - t) * y3 + (t * y1);
         dx = ox;
         dy = topmargin;
-        line(ox,oy,dx,dy)
+        line(ox, oy, dx, dy)
     }
     for (var t = 0.5; t < 1; t += 0.01) {
         ox = (1 - t) * x3 + (t * x1);
         oy = (1 - t) * y3 + (t * y1);
         dx = rightmargin;
         dy = oy;
-        line(ox,oy,dx,dy)
+        line(ox, oy, dx, dy)
     }
-    line(x1,y1,rightmargin,y1)
-    ellipse(cx, cy, 7, 7)
+    line(x1, y1, rightmargin, y1)
 }
 
