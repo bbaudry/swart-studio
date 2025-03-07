@@ -4,9 +4,9 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth
 
 function setup() {
-    w = windowHeight
-    h = windowHeight
-    cnv = createCanvas(windowHeight, windowHeight);
+    w = Math.floor(8.5 * 96)
+    h = Math.floor(11 * 96)
+    cnv = createCanvas(w, h);
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
@@ -15,6 +15,7 @@ function setup() {
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
+    strokeWeight(3)
 }
 
 
@@ -29,8 +30,6 @@ function draw() {
     background(0, 0, 100)
     noFill()
     stroke(0, 100, 100)
-    rect(0, 0, w, h)
-    rect(leftmargin, topmargin, actualwidth, actualheight)
     var x2 = leftmargin + Math.floor(random(actualwidth))
     nucleus(leftmargin, topmargin, x2, bottommargin, topmargin, bottommargin)
     noLoop()
@@ -84,10 +83,11 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
         line(ox, oy, dx, dy)
     }
     line(x1, y1, rightmargin, y1)
-    for (var t = 0.5; t < 1; t += 0.01) {
-        ox = (1 - t) * x2 + (t * x1);
-        oy = (1 - t) * y2 + (t * y1);
-        dx = ox-84;
+    var xoff = Math.floor(random(w*0.1,w*0.21))
+    for (var t = 0; t < 0.5; t += 0.01) {
+        ox = (1 - t) * x1 + (t * x2);
+        oy = (1 - t) * y1 + (t * y2);
+        dx = ox-xoff;
         dy = bottommargin;
         line(ox, oy, dx, dy)
     }
