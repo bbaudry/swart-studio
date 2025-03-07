@@ -84,5 +84,12 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
         line(ox, oy, dx, dy)
     }
     line(x1, y1, rightmargin, y1)
+    for (var t = 0.5; t < 1; t += 0.01) {
+        ox = (1 - t) * x2 + (t * x1);
+        oy = (1 - t) * y2 + (t * y1);
+        dx = ox-84;
+        dy = bottommargin;
+        line(ox, oy, dx, dy)
+    }
 }
 
