@@ -36,20 +36,21 @@ function draw() {
 }
 
 
-function vasa(){
-    var cx,cy,a1,a2,r,x1,y1,x2,y2
-    cx=leftmargin+actualwidth*0.5
-    cy=topmargin+actualheight*0.5
-    r=actualwidth*0.42
-    a1=radians(0)
-    a2=radians(330)
-    for(i=0;i<42;i++){
-    arc(cx,cy,r,r,a1,a2)
-    x1=cx+r*0.5*cos(a1)
-    y1=cy+r*0.5*sin(a1)
-    x2=cx+r*0.5*cos(a2)
-    y2=cy+r*0.5*sin(a2)
-    line(x1,y1,x2,y2)
-    r-=7
-}
+function vasa() {
+    var cx, cy, a1, a2, r, x1, y1, x2, y2
+    cx = leftmargin + actualwidth * 0.5
+    cy = topmargin + actualheight * 0.5
+    r = actualwidth * 0.42
+    a1 = radians(random(45))
+    a2 = radians(a1+random(180,250))
+    console.log("angles, a1: "+a1+", a2:"+a2)
+    for (i = 0; i < 42; i++) {
+        arc(cx, cy, r, r, a1, a2)
+        x1 = cx + r * 0.5 * cos(a1)
+        y1 = cy + r * 0.5 * sin(a1)
+        x2 = cx + r * 0.5 * cos(a2)
+        y2 = cy + r * 0.5 * sin(a2)
+        line(x1, y1, x2, y2)
+        r -= 7
+    }
 }
