@@ -1,0 +1,12 @@
+[
+    {
+        "sketch":"exquisitebw.js",
+        "setup":"initbw",
+        "draw":"drawbw"
+    },
+    {
+        "sketch":"exquisitered.js",
+        "setup":"intired",
+        "draw":"drawred"
+    }
+]
