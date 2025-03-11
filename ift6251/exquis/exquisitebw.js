@@ -1,7 +1,7 @@
 var s
 
-function initbw(section) {
-    s = section
+function initbw() {
+    s = currentsection
 }
 
 

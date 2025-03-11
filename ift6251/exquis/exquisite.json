@@ -6,7 +6,7 @@
     },
     {
         "sketch":"exquisitered.js",
-        "setup":"intired",
+        "setup":"initred",
         "draw":"drawred"
     }
 ]

@@ -1,7 +1,7 @@
 var s
 
-function initred(section) {
-    s = section
+function initred() {
+    s = currentsection
 }
 
 

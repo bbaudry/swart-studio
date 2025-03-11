@@ -1,6 +1,10 @@
-var w, h, cnv, font, black, sections, nbsectionshorizontal, nbsectionsvertical, sectionwidth, sectionheight, sectionduration
-
-
+//global variable only used here in the orchestrator sketch
+var w, h, cnv, font, sections, nbsectionshorizontal, nbsectionsvertical, config
+//global variables that can be used in all sketches
+var sectionwidth //width of a section
+var sectionheight //height of a section
+var sectionduration //duration (in frames) for one section animation
+var currentsection //object that 
 
 function preload() {
     font = loadFont("./FreeMono.otf");
@@ -24,6 +28,7 @@ function setup() {
     duration=60*2
     textSize(84)
     textFont(font)
+    stroke(0,0,100);
 }
 
 function initsections() {
@@ -63,29 +68,34 @@ function initsections() {
 var index = 0
 var counter = 0
 
+
 function draw() {
+    var functionName, fn
     if(counter==0){
-        initbw(sections[index])
-        stroke(0,0,100);fill(0,0,100)
-        rect(sections[index].x,sections[index].y,sectionwidth,sectionheight)
-        text(sections[index].x+" "+sections[index].y,0,84)
+        currentsection=sections[index]
+        functionName = config[index].setup;
+        fn = new Function(`return ${functionName}()`);
+        fn();   
         index++
     }
     if(counter>0 && counter<duration){
-        const functionName = "drawbw";
-        const fn = new Function(`return ${functionName}()`);
-        fn();    }
+        functionName = config[index-1].draw;
+        fn = new Function(`return ${functionName}()`);
+        fn();   
+    }
     if(counter==duration){
-        initred(sections[index])
-        stroke(0,0,100);fill(0,0,100)
-        rect(sections[index].x,sections[index].y,sectionwidth,sectionheight)
-        text(sections[index].x+" "+sections[index].y,0,184)
+        currentsection=sections[index]
+        functionName = config[index].setup;
+        fn = new Function(`return ${functionName}()`);
+        fn();   
         index++
     }
     if(counter>duration && counter<duration*2){
-        drawred()
+        functionName = config[index-1].draw;
+        fn = new Function(`return ${functionName}()`);
+        fn()
     }
-    if(counter==duration*27){
+    if(counter==Object.keys(config).length*duration){
         background(0,0,0)
         counter=0
         index=0
