@@ -71,19 +71,19 @@ var counter = 0
 
 function draw() {
     var functionName, fn
-    if(counter==0){
+    if(counter%duration==0){
         currentsection=sections[index]
         functionName = config[index].setup;
         fn = new Function(`return ${functionName}()`);
         fn();   
         index++
     }
-    if(counter>0 && counter<duration){
+    if(counter%duration>0 ){//&& counter<duration
         functionName = config[index-1].draw;
         fn = new Function(`return ${functionName}()`);
         fn();   
     }
-    if(counter==duration){
+   /* if(counter==duration){
         currentsection=sections[index]
         functionName = config[index].setup;
         fn = new Function(`return ${functionName}()`);
@@ -94,7 +94,7 @@ function draw() {
         functionName = config[index-1].draw;
         fn = new Function(`return ${functionName}()`);
         fn()
-    }
+    }*/
     if(counter==Object.keys(config).length*duration){
         background(0,0,0)
         counter=0
