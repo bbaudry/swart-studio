@@ -1,10 +1,12 @@
 //global variable only used here in the orchestrator sketch
 var w, h, cnv, font, sections, nbsectionshorizontal, nbsectionsvertical, config
 //global variables that can be used in all sketches
-var sectionwidth //width of a section
-var sectionheight //height of a section
-var sectionduration //duration (in frames) for one section animation
-var currentsection //object that 
+var O_sectionwidth //width of a section
+var O_sectionheight //height of a section
+var O_sectionduration //duration (in frames) for one section animation
+var O_currentsection //object that has data for the section that is currently drawing
+var O_counter = 0 //global frame counter
+
 
 function preload() {
     font = loadFont("./FreeMono.otf");
@@ -19,13 +21,13 @@ function setup() {
     var y = (windowHeight - h) / 2;
     cnv.position(x, y);
     colorMode(HSB, 360, 100, 100, 250);
-    nbsectionshorizontal = 6
+    nbsectionshorizontal = 3
     nbsectionsvertical = 3
-    sectionwidth = Math.floor(w / nbsectionshorizontal)
-    sectionheight = Math.floor(h / nbsectionsvertical)
+    O_sectionwidth = Math.floor(w / nbsectionshorizontal)
+    O_sectionheight = Math.floor(h / nbsectionsvertical)
     initsections()
     sections = shuffle(sections)
-    duration = 60 * 2
+    O_sectionduration = 60 * 2
     textSize(84)
     textFont(font)
     stroke(0, 0, 100);
@@ -37,26 +39,26 @@ function initsections() {
     for (var i = 0; i < nbsectionshorizontal; i++) {
         for (var j = 0; j < nbsectionsvertical; j++) {
             if (i == 0) {
-                y4 = random(sectionheight * 0.1, sectionheight * 0.9)
+                y4 = random(O_sectionheight * 0.1, O_sectionheight * 0.9)
             }
             else {
                 y4 = sections[(i - 1) * nbsectionsvertical + j].y2
             }
             if (j == 0) {
-                x1 = random(sectionwidth * 0.1, sectionwidth * 0.9)
+                x1 = random(O_sectionwidth * 0.1, O_sectionwidth * 0.9)
             }
             else {
                 x1 = sections[i * nbsectionsvertical + (j - 1)].x3
             }
             var s = {
-                x: i * sectionwidth,
-                y: j * sectionheight,
+                x: i * O_sectionwidth,
+                y: j * O_sectionheight,
                 x1: x1,
                 y1: 0,
-                x2: sectionwidth,
-                y2: random(sectionheight * 0.1, sectionheight * 0.9),
-                x3: random(sectionwidth * 0.1, sectionwidth * 0.9),
-                y3: sectionheight,
+                x2: O_sectionwidth,
+                y2: random(O_sectionheight * 0.1, O_sectionheight * 0.9),
+                x3: random(O_sectionwidth * 0.1, O_sectionwidth * 0.9),
+                y3: O_sectionheight,
                 x4: 0,
                 y4: y4
             }
@@ -66,30 +68,30 @@ function initsections() {
 }
 
 var index = 0
-var counter = 0
 
 
 function draw() {
     var functionName, fn
-    if (counter == Object.keys(config).length * duration) {
-        background(0, 0, 0)
-        counter = 0
+    if (O_counter == Object.keys(config).length * O_sectionduration) {
+        //background(0, 0, 0)
+        noLoop()
+        O_counter = 0
         index = 0
     }
     else {
-        if (counter % duration == 0) {
-            currentsection = sections[index]
+        if (O_counter % O_sectionduration == 0) {
+            O_currentsection = sections[index]
             functionName = config[index].setup;
             fn = new Function(`return ${functionName}()`);
             fn();
             index++
         }
-        if (counter % duration > 0) {
+        if (O_counter % O_sectionduration > 0) {
             functionName = config[index - 1].draw;
             fn = new Function(`return ${functionName}()`);
             fn();
         }
-        counter++
+        O_counter++
     }
 }
 

@@ -13,5 +13,35 @@
         "sketch":"exquisitespin.js",
         "setup":"initspin",
         "draw":"drawspin"
+    },
+    {
+        "sketch":"exquisitebw.js",
+        "setup":"initbw",
+        "draw":"drawbw"
+    },
+    {
+        "sketch":"exquisitered.js",
+        "setup":"initred",
+        "draw":"drawred"
+    },
+    {
+        "sketch":"exquisitespin.js",
+        "setup":"initspin",
+        "draw":"drawspin"
+    },
+    {
+        "sketch":"exquisitebw.js",
+        "setup":"initbw",
+        "draw":"drawbw"
+    },
+    {
+        "sketch":"exquisitered.js",
+        "setup":"initred",
+        "draw":"drawred"
+    },
+    {
+        "sketch":"exquisitespin.js",
+        "setup":"initspin",
+        "draw":"drawspin"
     }
 ]
