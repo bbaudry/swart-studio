@@ -8,5 +8,10 @@
         "sketch":"exquisitered.js",
         "setup":"initred",
         "draw":"drawred"
+    },
+    {
+        "sketch":"exquisitespin.js",
+        "setup":"initspin",
+        "draw":"drawspin"
     }
 ]

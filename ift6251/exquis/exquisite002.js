@@ -24,11 +24,11 @@ function setup() {
     sectionwidth = Math.floor(w / nbsectionshorizontal)
     sectionheight = Math.floor(h / nbsectionsvertical)
     initsections()
-    sections=shuffle(sections)
-    duration=60*2
+    sections = shuffle(sections)
+    duration = 60 * 2
     textSize(84)
     textFont(font)
-    stroke(0,0,100);
+    stroke(0, 0, 100);
 }
 
 function initsections() {
@@ -71,36 +71,24 @@ var counter = 0
 
 function draw() {
     var functionName, fn
-    if(counter%duration==0){
-        currentsection=sections[index]
-        functionName = config[index].setup;
-        fn = new Function(`return ${functionName}()`);
-        fn();   
-        index++
+    if (counter == Object.keys(config).length * duration) {
+        background(0, 0, 0)
+        counter = 0
+        index = 0
     }
-    if(counter%duration>0 ){//&& counter<duration
-        functionName = config[index-1].draw;
-        fn = new Function(`return ${functionName}()`);
-        fn();   
-    }
-   /* if(counter==duration){
-        currentsection=sections[index]
-        functionName = config[index].setup;
-        fn = new Function(`return ${functionName}()`);
-        fn();   
-        index++
-    }
-    if(counter>duration && counter<duration*2){
-        functionName = config[index-1].draw;
-        fn = new Function(`return ${functionName}()`);
-        fn()
-    }*/
-    if(counter==Object.keys(config).length*duration){
-        background(0,0,0)
-        counter=0
-        index=0
-    }
-    else{
+    else {
+        if (counter % duration == 0) {
+            currentsection = sections[index]
+            functionName = config[index].setup;
+            fn = new Function(`return ${functionName}()`);
+            fn();
+            index++
+        }
+        if (counter % duration > 0) {
+            functionName = config[index - 1].draw;
+            fn = new Function(`return ${functionName}()`);
+            fn();
+        }
         counter++
     }
 }
