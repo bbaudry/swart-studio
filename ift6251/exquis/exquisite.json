@@ -10,9 +10,9 @@
         "draw":"drawred"
     },
     {
-        "sketch":"exquisitespin.js",
-        "setup":"initspin",
-        "draw":"drawspin"
+        "sketch":"exquisitepix.js",
+        "setup":"initpix",
+        "draw":"drawpix"
     },
     {
         "sketch":"exquisitebw.js",

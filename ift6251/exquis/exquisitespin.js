@@ -7,7 +7,7 @@ function initspin() {
 
 
 function drawspin() {
-    var r=random()
+    strokeWeight(3)
     push()
     translate(s.x, s.y)
         stroke(0,100,100)
@@ -17,5 +17,5 @@ function drawspin() {
         bezier(s.x3,s.y3,off,s.y3,off,s.y3,s.x4,s.y4)
         bezier(s.x4,s.y4,off,s.y4,off,s.y4,s.x1,s.y1)
     pop()
-    off+=2
+    off+=0
 }
