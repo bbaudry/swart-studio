@@ -21,43 +21,87 @@ function draw() {
     stroke(0, 0, 100)
     noFill()
     rect(0, 0, w, h)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
+    //rect(leftmargin, topmargin, actualwidth, actualheight)
     initgrid()
-    showgrid()
+    drawgrid()
     textFont(font)
     textSize(fSize)
-    coords=showcode(leftmargin,bottommargin+fSize)
-    showcredits(coords[0],coords[1])
+    coords = showcode(leftmargin, bottommargin + fSize)
+    showcredits(coords[0], coords[1])
     noLoop()
 }
 
-function initgrid(){
-    var cellwidth=Math.floor(actualwidth/resolution)
-    var cellheight=Math.floor(actualheight/resolution)
-    var x,y,xoff,yoff;
-    for(var i=0;i<resolution+1;i++){
-        x=leftmargin+i*cellwidth
-        if(i>0&&i<resolution+1){x+=random(-10,10)}
-        y=0
-        yoff=random(-10,10)
-        for(var j=0;j<resolution+1;j++){
-            y=topmargin+j*cellheight
-            if(j>0&&j<resolution+1){y+=yoff}
-            grid.push({x:x,y:y})
+function initgrid() {
+    var cellwidth = Math.floor(actualwidth / resolution)
+    var cellheight = Math.floor(actualheight / resolution)
+    var x, y
+    var xcoords = []
+    var ycoords = []
+    var xoffset = cellwidth * 0.42
+    var yoffset = cellheight * 0.42
+    for (var i = 0; i < resolution + 1; i++) {
+        x = leftmargin + i * cellwidth
+        if (i > 0 && i < resolution) { x += random(-xoffset, xoffset) }
+        xcoords.push(x)
+    }
+    for (var j = 0; j < resolution + 1; j++) {
+        y = topmargin + j * cellheight
+        if (j > 0 && j < resolution) { y += random(-yoffset, yoffset) }
+        ycoords.push(y)
+    }
+    for (var i = 0; i < resolution + 1; i++) {
+        x = xcoords[i]
+        for (var j = 0; j < resolution + 1; j++) {
+            y = ycoords[j]
+            grid.push({ x: x, y: y })
         }
     }
 }
 
-function showgrid(){
-    for(var i=0;i<resolution;i++){
-        for(var j=0;j<resolution;j++){
+function showgrid() {
+    for (var i = 0; i < resolution; i++) {
+        for (var j = 0; j < resolution; j++) {
             quad(
-                grid[i*(resolution+1)+j].x,grid[i*(resolution+1)+j].y,
-                grid[(i+1)*(resolution+1)+j].x,grid[(i+1)*(resolution+1)+j].y,
-                grid[(i+1)*(resolution+1)+j+1].x,grid[(i+1)*(resolution+1)+j+1].y,
-                grid[i*(resolution+1)+j+1].x,grid[i*(resolution+1)+j+1].y,
+                grid[i * (resolution + 1) + j].x, grid[i * (resolution + 1) + j].y,
+                grid[(i + 1) * (resolution + 1) + j].x, grid[(i + 1) * (resolution + 1) + j].y,
+                grid[(i + 1) * (resolution + 1) + j + 1].x, grid[(i + 1) * (resolution + 1) + j + 1].y,
+                grid[i * (resolution + 1) + j + 1].x, grid[i * (resolution + 1) + j + 1].y,
             )
         }
+    }
+}
+
+function drawgrid() {
+    for (var i = 0; i < resolution; i++) {
+        for (var j = 0; j < resolution; j++) {
+            tile(
+                grid[i * (resolution + 1) + j].x, grid[i * (resolution + 1) + j].y,
+                grid[(i + 1) * (resolution + 1) + j].x, grid[(i + 1) * (resolution + 1) + j].y,
+                grid[(i + 1) * (resolution + 1) + j + 1].x, grid[(i + 1) * (resolution + 1) + j + 1].y,
+                grid[i * (resolution + 1) + j + 1].x, grid[i * (resolution + 1) + j + 1].y,
+            )
+        }
+    }
+}
+
+function tile(x1, y1, x2, y2, x3, y3, x4, y4) {
+    var dice = Math.floor(random(3))
+    fill(0,0,100)
+    switch (dice) {
+        // don't draw the quad
+        case 0:
+            break;
+        // draw complete quad
+        case 1: quad(x1, y1, x2, y2, x3, y3, x4, y4)
+            break;
+        // split the quad
+        case 2:
+            var ratio = Math.floor(random(2,5))
+            var yoff = (y4-y1)/ratio
+            for(var i=0;i<ratio;i+=2){
+                quad(x1, y1+i*yoff, x2, y2+i*yoff, x3, y2+(i+1)*yoff, x4, y1+(i+1)*yoff)
+            }
+            break;
     }
 }
 
