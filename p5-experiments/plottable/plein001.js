@@ -85,7 +85,7 @@ function drawgrid() {
 }
 
 function tile(x1, y1, x2, y2, x3, y3, x4, y4) {
-    var dice = Math.floor(random(3))
+    var dice = Math.floor(random(4))
     fill(0,0,100)
     switch (dice) {
         // don't draw the quad
@@ -94,12 +94,20 @@ function tile(x1, y1, x2, y2, x3, y3, x4, y4) {
         // draw complete quad
         case 1: quad(x1, y1, x2, y2, x3, y3, x4, y4)
             break;
-        // split the quad
+        // split the quad horizontal
         case 2:
             var ratio = Math.floor(random(2,5))
             var yoff = (y4-y1)/ratio
             for(var i=0;i<ratio;i+=2){
                 quad(x1, y1+i*yoff, x2, y2+i*yoff, x3, y2+(i+1)*yoff, x4, y1+(i+1)*yoff)
+            }
+            break;
+        // split the quad horizontal
+        case 3:
+            var ratio = Math.floor(random(2,5))
+            var xoff = (x2-x1)/ratio
+            for(var i=0;i<ratio;i+=2){
+                quad(x1+i*xoff, y1, x1+(i+1)*xoff, y2, x4+(i+1)*xoff, y3, x4+i*xoff, y4)
             }
             break;
     }
