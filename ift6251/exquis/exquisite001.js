@@ -56,11 +56,11 @@ function initsections() {
     }
 }
 
-var index = 0
+var indexleft = 0
 
 function draw() {
-    if (frameCount % 30 == 0 && index < sections.length) {
-        var s = sections[index]
+    if (frameCount % 30 == 0 && indexleft < sections.length) {
+        var s = sections[indexleft]
         var dice = Math.floor(random(3))
         switch (dice) {
             case 0:
@@ -73,7 +73,7 @@ function draw() {
                     tile003(s)
                     break;
             }
-        index++
+        indexleft++
     }
 }
 
