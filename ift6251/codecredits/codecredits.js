@@ -1,5 +1,6 @@
-var w, h, cnv, font, fSize
-var indexleft, indexright, x, y, allcode, boutdecode
+var w, h, cnv, font
+var     fSize = 42
+var indexleft, indexright, x, y, allcode, boutdecode, counter, speed
 var textarray=[]
 
 function preload() {
@@ -8,7 +9,7 @@ function preload() {
     getData("codecredits.html")
 }
 
-function getData(file) {
+function getData(file,y) {
     fetch(file)
         .then((res) => res.text())
         .then((text) => {
@@ -27,26 +28,29 @@ function getData(file) {
 function setup() {
     w = windowWidth
     h = windowHeight
-    fSize = 42
     cnv = createCanvas(w, h);
-    stroke(0, 0, 0)
     textFont(font)
     textSize(fSize)
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
     stroke(130, 100, 100); fill(130, 100, 100)
 
+    initcodefiles()
+
     indexleft = 0;
     indexright = 0;
     x = w
     y = fSize * 3
     boutdecode = []
+    counter = 0
+    speed = 7
 
 }
 
 function draw() {
-    background(0, 0, 0)
-    showcodeline()
+    
+    if(counter%speed==0){showcodeline()}
+    //textarray[0].bouge()
     if (frameCount > allcode.length + 10) { noLoop() }
     /*    x=0
         y=fSize
@@ -54,9 +58,11 @@ function draw() {
         showcode()
         if(indexleft < allcode.length-1){indexleft++}
         else{noLoop()}*/
+        counter++
 }
 
 function showcodeline() {
+    push();noStroke();fill(0,0,0);rect(0,y-fSize*0.8,w,fSize);pop()
     boutdecode += allcode[indexright]
     var tw = textWidth(boutdecode)
     // if boutdecode's lenght is less than canvas width, continue shifting left
@@ -73,7 +79,7 @@ function showcodeline() {
         indexright = 0
         fill(0, 100, 100) 
     }
-    console.log(boutdecode.length)
+
 }
 
 function showcode() {
@@ -86,4 +92,13 @@ function showcode() {
     }
     text(c, x, y)
     x += tw
+}
+
+function initcodefiles(){
+    console.log("code")
+    console.log(textarray.length)
+
+    for(i in textarray){
+        console.log(textarray[i].length)
+    }
 }
