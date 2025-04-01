@@ -4,36 +4,21 @@ var indexleft, indexright, x, y, allcode, boutdecode, counter, speed
 var textarray = []
 
 function preload() {
+    var code;
     font = loadFont("./FreeMono.otf");
-    loadStrings("./codecredits.js", handlecode())
-    loadStrings("./codecredits.html", handlecode())
-    console.log("array size " + textarray.length)
-    console.log("0 "+textarray[0].vitesse)
-    console.log("1 "+textarray[1].vitesse)
+    code = loadStrings("./codecredits.js", handlecode())
+    textarray.push(new CodeFile(code,fSize))
+    code = loadStrings("./codecredits.html", handlecode())
+    textarray.push(new CodeFile(code,fSize))
 }
 
 function handlecode(data) {
-    allcode = ""
+    var codestring = ""
     for (i in data) {
-        allcode += data[i]
+        codestring += data[i]
     }
-    textarray.push(new CodeFile(allcode,fSize*2))
-}
-
-function getData(file, y) {
-    fetch(file)
-        .then((res) => res.text())
-        .then((text) => {
-            // allcodearr is an array that includes all text found in "index.html"
-            // each line in the file is a separate element in the array
-            var allcodearr = text.split("\n")
-            allcode = ""
-            for (i in allcodearr) {
-                allcode += allcodearr[i]
-            }
-            textarray.push(allcode)
-        })
-        .catch((e) => console.error(e));
+    return codestring
+    
 }
 
 function setup() {
@@ -60,9 +45,9 @@ function setup() {
 
 function draw() {
 
-    if (counter % speed == 0) { showcodeline() }
-    //textarray[0].bouge()
-    if (frameCount > allcode.length + 10) { noLoop() }
+    //if (counter % speed == 0) { showcodeline() }
+    textarray[0].bouge()
+    //if (frameCount > textarray[0].length + 10) { noLoop() }
     /*    x=0
         y=fSize
         indexleft=0

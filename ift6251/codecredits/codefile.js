@@ -12,8 +12,9 @@ class CodeFile {
 
     bouge() {  
         if(this.counter % this.vitesse == 0){
-            push();noStroke();fill(0,0,0);rect(0,y-fSize*0.8,w,fSize);pop()
-            this.boutdecode += this.code[index]
+            push();
+            noStroke();fill(0,0,100);rect(0,this.y-fSize*0.8,w,fSize);pop()
+            this.boutdecode += this.code[this.index]
             var tw = textWidth(this.boutdecode)
             // if boutdecode's length is less than canvas width, continue shifting left
             // else x does not change and remove first character of boutdecode to keep fit in width
