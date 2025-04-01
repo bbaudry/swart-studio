@@ -9,7 +9,7 @@ function preload() {
     code = loadStrings("./codecredits.js", handlecode())
     textarray.push(new CodeFile(code,fSize))
     code = loadStrings("./codecredits.html", handlecode())
-    textarray.push(new CodeFile(code,fSize))
+    textarray.push(new CodeFile(code,fSize*2))
 }
 
 function handlecode(data) {
@@ -47,6 +47,7 @@ function draw() {
 
     //if (counter % speed == 0) { showcodeline() }
     textarray[0].bouge()
+    textarray[1].bouge()
     //if (frameCount > textarray[0].length + 10) { noLoop() }
     /*    x=0
         y=fSize

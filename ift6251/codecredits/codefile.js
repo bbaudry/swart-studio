@@ -3,7 +3,7 @@ class CodeFile {
         this.x = w
         this.y = y
         this.code = code
-        this.vitesse = 3//Math.floor(random(3, 9))
+        this.vitesse = Math.floor(random(1, 11))
         this.counter = 0
         this.boutdecode = []
         this.index = 0
@@ -13,7 +13,7 @@ class CodeFile {
     bouge() {  
         if(this.counter % this.vitesse == 0){
             push();
-            noStroke();fill(0,0,100);rect(0,this.y-fSize*0.8,w,fSize);pop()
+            noStroke();fill(0,0,0);rect(0,this.y-fSize*0.8,w,fSize);pop()
             this.boutdecode += this.code[this.index]
             var tw = textWidth(this.boutdecode)
             // if boutdecode's length is less than canvas width, continue shifting left
@@ -26,10 +26,6 @@ class CodeFile {
             }
             text(this.boutdecode, this.x, this.y)
             this.index++
-            if (this.index > this.code.length) { 
-                this.index = 0
-                fill(0, 100, 100) 
-            }
             console.log(this.boutdecode.length)
         
         }
