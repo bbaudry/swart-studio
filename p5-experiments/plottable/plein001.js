@@ -1,6 +1,6 @@
 var grid = [];
 var gridresolution = 8;
-var penwidth = 1.5;
+var penwidth = 1;
 var penresolution = 96*penwidth/25.4;
 
 function draw() {

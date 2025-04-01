@@ -1,15 +1,26 @@
-var w, h, cnv, font
-var     fSize = 42
+var w, h, cnv, font, ht, js
+var fSize = 42
 var indexleft, indexright, x, y, allcode, boutdecode, counter, speed
-var textarray=[]
+var textarray = []
 
 function preload() {
     font = loadFont("./FreeMono.otf");
-    getData("codecredits.js")
-    getData("codecredits.html")
+    loadStrings("./codecredits.js", handlecode())
+    loadStrings("./codecredits.html", handlecode())
+    console.log("array size " + textarray.length)
+    console.log("0 "+textarray[0].vitesse)
+    console.log("1 "+textarray[1].vitesse)
 }
 
-function getData(file,y) {
+function handlecode(data) {
+    allcode = ""
+    for (i in data) {
+        allcode += data[i]
+    }
+    textarray.push(new CodeFile(allcode,fSize*2))
+}
+
+function getData(file, y) {
     fetch(file)
         .then((res) => res.text())
         .then((text) => {
@@ -48,8 +59,8 @@ function setup() {
 }
 
 function draw() {
-    
-    if(counter%speed==0){showcodeline()}
+
+    if (counter % speed == 0) { showcodeline() }
     //textarray[0].bouge()
     if (frameCount > allcode.length + 10) { noLoop() }
     /*    x=0
@@ -58,11 +69,11 @@ function draw() {
         showcode()
         if(indexleft < allcode.length-1){indexleft++}
         else{noLoop()}*/
-        counter++
+    counter++
 }
 
 function showcodeline() {
-    push();noStroke();fill(0,0,0);rect(0,y-fSize*0.8,w,fSize);pop()
+    push(); noStroke(); fill(0, 0, 0); rect(0, y - fSize * 0.8, w, fSize); pop()
     boutdecode += allcode[indexright]
     var tw = textWidth(boutdecode)
     // if boutdecode's lenght is less than canvas width, continue shifting left
@@ -75,9 +86,9 @@ function showcodeline() {
     }
     text(boutdecode, x, y)
     indexright++
-    if (indexright > allcode.length) { 
+    if (indexright > allcode.length) {
         indexright = 0
-        fill(0, 100, 100) 
+        fill(0, 100, 100)
     }
 
 }
@@ -94,11 +105,11 @@ function showcode() {
     x += tw
 }
 
-function initcodefiles(){
+function initcodefiles() {
     console.log("code")
     console.log(textarray.length)
 
-    for(i in textarray){
+    for (i in textarray) {
         console.log(textarray[i].length)
     }
 }
