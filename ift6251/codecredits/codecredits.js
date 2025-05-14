@@ -25,6 +25,7 @@ function setup() {
     w = windowWidth
     h = windowHeight
     cnv = createCanvas(w, h);
+    fSize = Math.floor(h/30)
     textFont(font)
     textSize(fSize)
     colorMode(HSB, 360, 100, 100, 250);

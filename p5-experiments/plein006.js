@@ -31,7 +31,7 @@ function draw() {
     noFill()
     stroke(0, 100, 100)
     vasa()
-    save("plein005.png")
+    //save("plein005.png")
     noLoop()
 }
 
@@ -42,8 +42,8 @@ function vasa() {
     cy = topmargin + actualheight * 0.5
     r = actualwidth * 0.42
     a1 = radians(random(45))
-    a2 = radians(a1+random(180,250))
-    console.log("angles, a1: "+a1+", a2:"+a2)
+    a2 = radians(a1 + random(180, 250))
+    console.log("angles, a1: " + a1 + ", a2:" + a2)
     for (i = 0; i < 42; i++) {
         arc(cx, cy, r, r, a1, a2)
         x1 = cx + r * 0.5 * cos(a1)
@@ -53,4 +53,14 @@ function vasa() {
         line(x1, y1, x2, y2)
         r -= 7
     }
+    r = actualwidth * 0.42
+    x1 = cx + r * 0.5 * cos(a1)
+    y1 = cy + r * 0.5 * sin(a1)
+    y1-=80
+    ellipse(x1,y1,160,160)
+    x2 = cx + r * 0.5 * cos(a2)
+    y2 = cy + r * 0.5 * sin(a2)
+    y2-=80
+    ellipse(x2,y2,160,160)
+
 }
