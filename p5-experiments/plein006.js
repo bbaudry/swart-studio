@@ -1,7 +1,7 @@
 
 var w, h
 var cnv
-var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth
+var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -15,7 +15,8 @@ function setup() {
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
-    strokeWeight(3)
+    strokeWeight(3);
+    penwidth=3
 }
 
 
@@ -54,13 +55,16 @@ function vasa() {
         r -= 7
     }
     r = actualwidth * 0.42
-    x1 = cx + r * 0.5 * cos(a1)
-    y1 = cy + r * 0.5 * sin(a1)
-    y1-=80
-    ellipse(x1,y1,160,160)
     x2 = cx + r * 0.5 * cos(a2)
     y2 = cy + r * 0.5 * sin(a2)
-    y2-=80
-    ellipse(x2,y2,160,160)
-
+    r = actualheight * 0.2
+    y2 -= r * 0.5
+    ellipse(x2, y2, r, r)
+    a1 = radians(220)
+    a2 = radians(320)
+    r = actualheight * 0.3
+    for (i = 0; i < 11; i++) {
+        arc(x2, y2, r, r, a1, a2)
+        r+=penwidth
+    }
 }
