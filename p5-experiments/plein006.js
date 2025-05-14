@@ -62,9 +62,13 @@ function vasa() {
     ellipse(x2, y2, r, r)
     a1 = radians(220)
     a2 = radians(320)
-    r = actualheight * 0.3
-    for (i = 0; i < 11; i++) {
-        arc(x2, y2, r, r, a1, a2)
-        r+=penwidth
+    r += penwidth*7
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 11; j++) {
+            arc(x2, y2, r, r, a1, a2)
+            r+=penwidth
+        }
+        a1+=radians(11)
+            r+=penwidth*3
     }
 }
