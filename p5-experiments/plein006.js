@@ -16,7 +16,7 @@ function setup() {
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     strokeWeight(3);
-    penwidth=0.04*96 // 0.04 inch is 1 mm, the width of stabilo 68/32
+    penwidth = 0.04 * 96 // 0.04 inch is 1 mm, the width of stabilo 68/32
 }
 
 
@@ -57,48 +57,56 @@ function vasa() {
     r = actualwidth * 0.42
     x2 = cx + r * 0.5 * cos(a2)
     y2 = cy + r * 0.5 * sin(a2)
-    r = actualheight * 0.2
     y2 -= r * 0.5
-    stripesincircle(x2,y2,r)
-    a1 = radians(220)
-    a2 = radians(320)
-    r += penwidth*7
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 11; j++) {
-            arc(x2, y2, r, r, a1, a2)
-            r+=penwidth
-        }
-        a1+=radians(11)
-            r+=penwidth*3
+    r = actualheight * 0.2
+    stripesincircle(x2, y2, r)
+    r += penwidth * 7
+    arcstripes(x2,y2,r)
+}
+
+// moiré in a circle
+function stripesincircle(cx, cy, r) {
+    //ellipse(cx,cy,r,r)
+    var x1, y1, x2, y2, a1, a2, a1init, a2init, aoffset
+    a1init = Math.floor(random(60, 80))
+    a2init = Math.floor(random(150, 200))
+    aoffset = Math.floor(random(3, 9))
+    a1 = radians(a1init)
+    a2 = radians(a2init)
+    for (i = 0; i < 33; i++) {
+        x1 = cx + r * 0.5 * cos(a1)
+        y1 = cy + r * 0.5 * sin(a1)
+        x2 = cx + r * 0.5 * cos(a2)
+        y2 = cy + r * 0.5 * sin(a2)
+        line(x1, y1, x2, y2)
+        a1 -= radians(4)
+        a2 += radians(4)
+    }
+    a1 = radians(a1init + aoffset)
+    a2 = radians(a2init + aoffset)
+    for (i = 0; i < 33; i++) {
+        x1 = cx + r * 0.5 * cos(a1)
+        y1 = cy + r * 0.5 * sin(a1)
+        x2 = cx + r * 0.5 * cos(a2)
+        y2 = cy + r * 0.5 * sin(a2)
+        line(x1, y1, x2, y2)
+        a1 -= radians(4)
+        a2 += radians(4)
     }
 }
 
-function stripesincircle(cx,cy,r){
-    //ellipse(cx,cy,r,r)
-    var x1,y1,x2,y2,a1,a2,a1init,a2init,aoffset
-    a1init=Math.floor(random(60,80))
-    a2init=Math.floor(random(150,200))
-    aoffset=Math.floor(random(3,9))
-    a1=radians(a1init)
-    a2=radians(a2init)
-    for(i=0;i<33;i++){
-    x1=cx+r*0.5*cos(a1)
-    y1=cy+r*0.5*sin(a1)
-    x2=cx+r*0.5*cos(a2)
-    y2=cy+r*0.5*sin(a2)
-    line(x1,y1,x2,y2)
-    a1-=radians(4)
-    a2+=radians(4)
-    }
-    a1=radians(a1init+aoffset)
-    a2=radians(a2init+aoffset)
-    for(i=0;i<33;i++){
-    x1=cx+r*0.5*cos(a1)
-    y1=cy+r*0.5*sin(a1)
-    x2=cx+r*0.5*cos(a2)
-    y2=cy+r*0.5*sin(a2)
-    line(x1,y1,x2,y2)
-    a1-=radians(4)
-    a2+=radians(4)
+function arcstripes(cx, cy, r) {
+    var aoffset, nbstripes
+    aoffset = Math.floor(random(9,17))
+    nbstripes = Math.floor(random(2,6))
+    a1 = radians(Math.floor(random(180,220)))
+    a2 = radians(Math.floor(random(250,359)))
+    for (i = 0; i < nbstripes; i++) {
+        for (j = 0; j < 11; j++) {
+            arc(cx, cy, r, r, a1, a2)
+            r += penwidth
+        }
+        a1 += radians(aoffset)
+        r += penwidth * 3
     }
 }
