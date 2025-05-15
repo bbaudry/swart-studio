@@ -59,7 +59,7 @@ function vasa() {
     y2 = cy + r * 0.5 * sin(a2)
     r = actualheight * 0.2
     y2 -= r * 0.5
-    ellipse(x2, y2, r, r)
+    stripesincircle(x2,y2,r)
     a1 = radians(220)
     a2 = radians(320)
     r += penwidth*7
@@ -70,5 +70,35 @@ function vasa() {
         }
         a1+=radians(11)
             r+=penwidth*3
+    }
+}
+
+function stripesincircle(cx,cy,r){
+    //ellipse(cx,cy,r,r)
+    var x1,y1,x2,y2,a1,a2,a1init,a2init,aoffset
+    a1init=Math.floor(random(60,80))
+    a2init=Math.floor(random(150,200))
+    aoffset=Math.floor(random(3,9))
+    a1=radians(a1init)
+    a2=radians(a2init)
+    for(i=0;i<33;i++){
+    x1=cx+r*0.5*cos(a1)
+    y1=cy+r*0.5*sin(a1)
+    x2=cx+r*0.5*cos(a2)
+    y2=cy+r*0.5*sin(a2)
+    line(x1,y1,x2,y2)
+    a1-=radians(4)
+    a2+=radians(4)
+    }
+    a1=radians(a1init+aoffset)
+    a2=radians(a2init+aoffset)
+    for(i=0;i<33;i++){
+    x1=cx+r*0.5*cos(a1)
+    y1=cy+r*0.5*sin(a1)
+    x2=cx+r*0.5*cos(a2)
+    y2=cy+r*0.5*sin(a2)
+    line(x1,y1,x2,y2)
+    a1-=radians(4)
+    a2+=radians(4)
     }
 }
