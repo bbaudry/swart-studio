@@ -16,7 +16,7 @@ function setup() {
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     strokeWeight(3);
-    penwidth=3
+    penwidth=0.04*96 // 0.04 inch is 1 mm, the width of stabilo 68/32
 }
 
 
