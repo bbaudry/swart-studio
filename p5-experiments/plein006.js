@@ -60,12 +60,12 @@ function vasa() {
     r = actualheight * 0.2
     stripesincircle(x2, y2, r)
     r += penwidth * 7
-    arcstripes(x2,y2,r)
+    arcstripes(x2, y2, r)
     x1 = cx + r * 0.5 * cos(a1)
     y1 = cy + r * 0.5 * sin(a1)
     y1 -= r * 0.5
     r = actualheight * 0.3
-    sections(x1,y1,r)
+    sections(x1, y1, r)
 }
 
 // moiré in a circle
@@ -102,10 +102,10 @@ function stripesincircle(cx, cy, r) {
 // stripes as arcs
 function arcstripes(cx, cy, r) {
     var aoffset, nbstripes
-    aoffset = Math.floor(random(9,17))
-    nbstripes = Math.floor(random(2,6))
-    a1 = radians(Math.floor(random(180,220)))
-    a2 = radians(Math.floor(random(250,359)))
+    aoffset = Math.floor(random(9, 17))
+    nbstripes = Math.floor(random(2, 6))
+    a1 = radians(Math.floor(random(180, 220)))
+    a2 = radians(Math.floor(random(250, 359)))
     for (i = 0; i < nbstripes; i++) {
         for (j = 0; j < 11; j++) {
             arc(cx, cy, r, r, a1, a2)
@@ -117,20 +117,22 @@ function arcstripes(cx, cy, r) {
 }
 
 function sections(cx, cy, r) {
-    var a1,a2,x1,y1,x2,y2,x3,y3,x4,y4
+    var a1, a2, x1, y1, x2, y2, x3, y3, x4, y4
     //ellipse(cx,cy,r,r)
-    a1=radians(300)
-    a2=radians(404)
+    a1 = radians(300)
+    a2 = radians(404)
     arc(cx, cy, r, r, a1, a2)
-    x1=cx+r*0.5*cos(a1)
-    y1=cy+r*0.5*sin(a1)
-    x2=cx+r*0.5*cos(a2)
-    y2=cy+r*0.5*sin(a2)
-    x3=cx+r*0.1*cos(a1)
-    y3=cy+r*0.1*sin(a1)
-    x4=cx+r*0.1*cos(a2)
-    y4=cy+r*0.1*sin(a2)
-    line(x1,y1,x3,y3)
-    line(x2,y2,x4,y4)
-    line(x4,y4,x3,y3)
+    arc(cx, cy, r*0.2, r*0.2, a1, a2)
+    while (a1 < a2) {
+        x1 = cx + r * 0.5 * cos(a1)
+        y1 = cy + r * 0.5 * sin(a1)
+        x2 = cx + r * 0.5 * cos(a2)
+        y2 = cy + r * 0.5 * sin(a2)
+        x3 = cx + r * 0.1 * cos(a1)
+        y3 = cy + r * 0.1 * sin(a1)
+        x4 = cx + r * 0.1 * cos(a2)
+        y4 = cy + r * 0.1 * sin(a2)
+        line(x1, y1, x3, y3)
+        a1+=radians(1)
+    }
 }
