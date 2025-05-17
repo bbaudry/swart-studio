@@ -40,11 +40,10 @@ function draw() {
 function vasa() {
     var cx, cy, a1, a2, r, x1, y1, x2, y2
     cx = leftmargin + actualwidth * 0.5
-    cy = topmargin + actualheight * 0.5
+    cy = topmargin + actualheight * 0.6
     r = actualwidth * 0.42
     a1 = radians(random(45))
     a2 = radians(a1 + random(180, 250))
-    console.log("angles, a1: " + a1 + ", a2:" + a2)
     for (i = 0; i < 42; i++) {
         arc(cx, cy, r, r, a1, a2)
         x1 = cx + r * 0.5 * cos(a1)
@@ -62,6 +61,11 @@ function vasa() {
     stripesincircle(x2, y2, r)
     r += penwidth * 7
     arcstripes(x2,y2,r)
+    x1 = cx + r * 0.5 * cos(a1)
+    y1 = cy + r * 0.5 * sin(a1)
+    y1 -= r * 0.5
+    r = actualheight * 0.3
+    sections(x1,y1,r)
 }
 
 // moiré in a circle
@@ -95,6 +99,7 @@ function stripesincircle(cx, cy, r) {
     }
 }
 
+// stripes as arcs
 function arcstripes(cx, cy, r) {
     var aoffset, nbstripes
     aoffset = Math.floor(random(9,17))
@@ -109,4 +114,23 @@ function arcstripes(cx, cy, r) {
         a1 += radians(aoffset)
         r += penwidth * 3
     }
+}
+
+function sections(cx, cy, r) {
+    var a1,a2,x1,y1,x2,y2,x3,y3,x4,y4
+    //ellipse(cx,cy,r,r)
+    a1=radians(300)
+    a2=radians(404)
+    arc(cx, cy, r, r, a1, a2)
+    x1=cx+r*0.5*cos(a1)
+    y1=cy+r*0.5*sin(a1)
+    x2=cx+r*0.5*cos(a2)
+    y2=cy+r*0.5*sin(a2)
+    x3=cx+r*0.1*cos(a1)
+    y3=cy+r*0.1*sin(a1)
+    x4=cx+r*0.1*cos(a2)
+    y4=cy+r*0.1*sin(a2)
+    line(x1,y1,x3,y3)
+    line(x2,y2,x4,y4)
+    line(x4,y4,x3,y3)
 }
