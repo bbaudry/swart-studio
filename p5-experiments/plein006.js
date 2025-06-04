@@ -36,7 +36,7 @@ function draw() {
     noLoop()
 }
 
-
+var keys=[]
 function vasa() {
     var cx, cy, a1, a2, r, x1, y1, x2, y2
     cx = leftmargin + actualwidth * 0.5
@@ -53,19 +53,26 @@ function vasa() {
         line(x1, y1, x2, y2)
         r -= 7
     }
+    keys.push(createVector(x2,y2))
+
     r = actualwidth * 0.42
     x2 = cx + r * 0.5 * cos(a2)
     y2 = cy + r * 0.5 * sin(a2)
     y2 -= r * 0.5
     r = actualheight * 0.2
-    stripesincircle(x2, y2, r)
+    stripesincircle(x2, y2, r); 
+    keys.push(createVector(x2,y2))
+    
     r += penwidth * 7
     arcstripes(x2, y2, r)
+    
     x1 = cx + r * 0.5 * cos(a1)
     y1 = cy + r * 0.5 * sin(a1)
     y1 -= r * 0.5
     r = actualheight * 0.3
     sections(x1, y1, r)
+
+    showkeys()
 }
 
 // moiré in a circle
@@ -114,6 +121,10 @@ function arcstripes(cx, cy, r) {
         a1 += radians(aoffset)
         r += penwidth * 3
     }
+    r -= penwidth * 3
+    let x = cx+r*0.5*cos(a2)
+    let y = cy+r*0.5*sin(a2)
+    keys.push(createVector(x,y))
 }
 
 function sections(cx, cy, r) {
@@ -134,5 +145,13 @@ function sections(cx, cy, r) {
         y4 = cy + r * 0.1 * sin(a2)
         line(x1, y1, x3, y3)
         a1+=radians(1)
+    }
+    keys.push(createVector(x1,y1))
+}
+
+function showkeys(){
+    for(i=0;i<keys.length;i++){
+        fill(200,100,100)
+        ellipse(keys[i].x,keys[i].y,11,11)
     }
 }
