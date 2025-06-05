@@ -150,8 +150,16 @@ function sections(cx, cy, r) {
 }
 
 function showkeys(){
+    let dir = createVector(-5,-5)
+    for(j=0;j<3;j++){
     for(i=0;i<keys.length;i++){
         fill(200,100,100)
-        ellipse(keys[i].x,keys[i].y,11,11)
+        strokeWeight(11)
+        point(keys[i])
+//        keys[i]=keys[i].add(dir)
+        let v = keys[i].add(dir.mult(j))
+        ellipse(v,11,11);console.log(v)
+
+    }
     }
 }
