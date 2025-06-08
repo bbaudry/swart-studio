@@ -2,7 +2,7 @@
 var w, h
 var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
-var resolution
+var resolution, hu
 
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -50,7 +50,15 @@ function vasa(){
 }
 
 function tiltquad(x,y,step){
-    var off=2
-    var inc=Math.floor(step/(penwidth+off))
-    rect(x,y,step,step)
+    var off=1
+    var inc=penwidth+off
+    var a=random(-3,3)
+    push()
+    rotate(radians(a))
+//    rect(x,y,step,step)
+    for(var i=0;i<step;i+=inc){
+        line(x,y,x+step,y)
+        y+=inc
+    }
+    pop()
 }
