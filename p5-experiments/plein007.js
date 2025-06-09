@@ -52,10 +52,10 @@ function vasa(){
 function tiltquad(x,y,step){
     var off=1
     var inc=penwidth+off
-    var a=random(-3,3)
+    var a=random(-3.6,3.6)
     push()
+    translate(a,a)
     rotate(radians(a))
-//    rect(x,y,step,step)
     for(var i=0;i<step;i+=inc){
         line(x,y,x+step,y)
         y+=inc
