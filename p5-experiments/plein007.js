@@ -7,7 +7,7 @@ var font
 var fSize = 13
 
 function preload() {
-    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
+    font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
 }
 function setup() {
     w = Math.floor(8.5 * 96)
