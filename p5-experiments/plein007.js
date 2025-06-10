@@ -60,13 +60,14 @@ function vera(){
 function tiltquad(x,y,step){
     var off=0.8
     var inc=penwidth+off
-    var a=random(-3.6,3.6)
+    var desordre=random(-3.6,3.6)
+    var horizon=0
     push()
-    translate(a,a)
-    rotate(radians(a))
+    translate(x,y)
+    rotate(radians(desordre))
     for(var i=0;i<step;i+=inc){
-        line(x,y,x+step,y)
-        y+=inc
+        line(0,horizon,step,horizon)
+        horizon+=inc
     }
     pop()
 }
