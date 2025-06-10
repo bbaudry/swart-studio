@@ -3,11 +3,16 @@ var w, h
 var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var resolution, hu
+var font
+var fSize = 13
 
+function preload() {
+    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
+}
 function setup() {
     w = Math.floor(8.5 * 96)
     h = Math.floor(11 * 96)
-    cnv = createCanvas(w, h);
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);;
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
@@ -21,6 +26,9 @@ function setup() {
     resolution = Math.floor(random(3,7))
 }
 
+function savesvg() {
+    save("plein007.svg");
+}
 
 function centerCanvas() {
     var x = (windowWidth - windowHeight) / 2;
@@ -33,12 +41,12 @@ function draw() {
     background(0, 0, 100)
     noFill()
     stroke(0, 100, 100)
-    vasa()
+    vera()
     //save("plein006.png")
     noLoop()
 }
 
-function vasa(){
+function vera(){
     var step = Math.floor(actualwidth/resolution)
     for(var i=0;i<resolution;i++){
         x=leftmargin+i*step
@@ -50,7 +58,7 @@ function vasa(){
 }
 
 function tiltquad(x,y,step){
-    var off=1
+    var off=0.8
     var inc=penwidth+off
     var a=random(-3.6,3.6)
     push()
@@ -61,4 +69,31 @@ function tiltquad(x,y,step){
         y+=inc
     }
     pop()
+}
+
+
+
+
+
+function showcode(posx,posy) {
+    var allcode, c, tw 
+    allcode = ''
+    for (var i = 0; i < sourcecode.length; i++) {
+        var token = sourcecode[i]
+        var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
+        allcode += notab
+    }
+    for (let i = 0; i < allcode.length; i++) {
+        c = allcode.charAt(i)
+        tw = textWidth(c)
+        if (posx + tw > rightmargin) {
+            posx = leftmargin
+            posy += fSize + 1
+        }
+        text(c, posx, posy)
+        posx += tw
+    }
+    posx = leftmargin
+    posy += 2*fSize + 1
+    return([posx,posy])
 }
