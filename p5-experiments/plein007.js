@@ -2,12 +2,13 @@
 var w, h
 var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
-var resolution, hu
+var resolution, sourcecode
 var font
 var fSize = 13
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
+    sourcecode = loadStrings('plein007-core.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -42,39 +43,10 @@ function draw() {
     noFill()
     stroke(0, 100, 100)
     vera()
-    //save("plein006.png")
+    stroke(0,0,0);noFill();strokeWeight(1)
+    showcode(leftmargin,bottommargin+fSize)
     noLoop()
 }
-
-function vera(){
-    var step = Math.floor(actualwidth/resolution)
-    for(var i=0;i<resolution;i++){
-        x=leftmargin+i*step
-        for(var j=0;j<resolution;j++){
-            y=topmargin+j*step
-            tiltquad(x,y,step)
-        }
-    }
-}
-
-function tiltquad(x,y,step){
-    var off=0.8
-    var inc=penwidth+off
-    var desordre=random(-3.6,3.6)
-    var horizon=0
-    push()
-    translate(x,y)
-    rotate(radians(desordre))
-    for(var i=0;i<step;i+=inc){
-        line(0,horizon,step,horizon)
-        horizon+=inc
-    }
-    pop()
-}
-
-
-
-
 
 function showcode(posx,posy) {
     var allcode, c, tw 
