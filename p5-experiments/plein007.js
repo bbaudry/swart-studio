@@ -4,7 +4,7 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var resolution, sourcecode
 var font
-var fSize = 13
+var fSize = 11
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
@@ -24,7 +24,7 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
     strokeWeight(3);
     penwidth = 0.04 * 96 // 0.04 inch is 1 mm, the width of stabilo 68/32
-    resolution = Math.floor(random(3,7))
+    resolution = Math.floor(random([3,5,7]))
 }
 
 function savesvg() {
@@ -44,29 +44,20 @@ function draw() {
     stroke(0, 100, 100)
     vera()
     stroke(0,0,0);noFill();strokeWeight(1)
-    showcode(leftmargin,bottommargin+fSize)
+    let c=showcodeall(leftmargin*4.2,bottommargin+fSize)
+    text("deux pourcent de désordre [almyre::2025]",c[0],c[1]+fSize)
     noLoop()
 }
 
-function showcode(posx,posy) {
-    var allcode, c, tw 
-    allcode = ''
-    for (var i = 0; i < sourcecode.length; i++) {
-        var token = sourcecode[i]
-        var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
-        allcode += notab
+
+function showcodeall(posx,posy) {
+    var x, y
+    x=posx
+    y=posy
+    for (b in sourcecode) {
+      text(sourcecode[b], x, y)
+      y += fSize
     }
-    for (let i = 0; i < allcode.length; i++) {
-        c = allcode.charAt(i)
-        tw = textWidth(c)
-        if (posx + tw > rightmargin) {
-            posx = leftmargin
-            posy += fSize + 1
-        }
-        text(c, posx, posy)
-        posx += tw
-    }
-    posx = leftmargin
-    posy += 2*fSize + 1
-    return([posx,posy])
+    return([x,y])
 }
+

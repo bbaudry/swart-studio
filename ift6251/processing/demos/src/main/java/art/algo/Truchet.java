@@ -24,17 +24,17 @@ public class Truchet extends PApplet {
 
     @Override
     public void draw() {
-        int size = 20;
+        int size = 111;
         noFill();
         stroke(0, 0, 100);
         strokeWeight((float) (size * 0.1));
-tiling(size);        
-noLoop();
+        tiling(size);        
+        noLoop();
     }
 
     public void tiling(int size) {
-        for (int x = size; x < w - size; x += size) {
-            for (int y = size; y < h - size; y += size) {
+        for (int x = size; x < w - size*2; x += size) {
+            for (int y = size; y < h - size*2; y += size) {
                 int vera = rand.nextInt(0, 2);
                 switch (vera) {
                     case 0:
