@@ -41,9 +41,9 @@ function centerCanvas() {
 function draw() {
     background(0, 0, 100)
     noFill()
-    stroke(0, 100, 100)
-    vera()
-    stroke(0,0,0);noFill();strokeWeight(1)
+        stroke(0, 100, 100)
+        vera()
+    stroke(0,0,0);strokeWeight(1)
     let c=showcodeall(leftmargin*4.2,bottommargin+fSize)
     text("deux pourcent de désordre [almyre::2025]",c[0],c[1]+fSize)
     noLoop()
@@ -54,6 +54,8 @@ function showcodeall(posx,posy) {
     var x, y
     x=posx
     y=posy
+    textFont(font)
+    textSize(fSize)
     for (b in sourcecode) {
       text(sourcecode[b], x, y)
       y += fSize
