@@ -8,11 +8,12 @@ var fSize = 11
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
+        sourcecode = loadStrings('plein008-core.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
     h = Math.floor(11 * 96)
-    cnv = createCanvas(w, h)//createCanvas(w, h, SVG).mousePressed(savesvg);;
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);;
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
@@ -41,31 +42,25 @@ function draw() {
     background(0, 0, 100)
     //    clemence()
     hal()
+    stroke(0, 0, 0); strokeWeight(1)
+    let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
+    text("deux pourcent de désordre [almyre::2025]", c[0], c[1] + fSize)
+
+    noLoop()
 }
 
-function hal() {
-    var cx, cy, angle1, angle2, angleinc, diam, diaminc, xoff, xinc
-    stroke(0, 0, 0)
-    noFill()
-    cx = w * 0.5
-    cy = h * 0.5
-    xoff = 0.0
-    xinc = 0.0001
-    angleinc = 60
-    diam = w * 0.1
-    diaminc = w*0.003
-    while(diam<w*0.9){
-        angle2 = 0
-        angle1 = Math.floor(noise(xoff) * angleinc); xoff += xinc
-        while (angle2 < 360) {
-            angle2 = angle1 + Math.floor(noise(xoff) * angleinc); console.log(noise(xoff));xoff += xinc
-        console.log("angle1: "+angle1+"; angle2: "+angle2+"; diam: "+diam)
-            arc(cx, cy, diam, diam, radians(angle1), radians(angle2))
-            angle1 = angle2 + Math.floor(noise(xoff) * angleinc); console.log(noise(xoff)); xoff += xinc
-        }
-        diam+=diaminc;
+
+function showcodeall(posx, posy) {
+    var x, y
+    x = posx
+    y = posy
+    textFont(font)
+    textSize(fSize)
+    for (b in sourcecode) {
+        text(sourcecode[b], x, y)
+        y += fSize
     }
-    noLoop()
+    return ([x, y])
 }
 
 function clemence() {
