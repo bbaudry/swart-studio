@@ -18,7 +18,7 @@ function setup() {
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.75)
+    bottommargin = Math.floor(h * 0.7)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -41,10 +41,12 @@ function centerCanvas() {
 function draw() {
     background(0, 0, 100)
     //    clemence()
-    hal()
+    let magicnumbers=hal()
+    let magie=magicnumbers[0].name+": "+magicnumbers[0].value+";"
     stroke(0, 0, 0); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
-    text("deux pourcent de désordre [almyre::2025]", c[0], c[1] + fSize)
+    text(magie, c[0], c[1] + fSize)
+    text("beautiful noise [almyre::2025]", c[0], c[1] + 2*fSize)
 
     noLoop()
 }
