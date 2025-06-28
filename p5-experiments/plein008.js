@@ -46,26 +46,26 @@ function draw() {
 function hal() {
     var cx, cy, angle1, angle2, angleinc, diam, diaminc, xoff, xinc
     stroke(0, 0, 0)
+    noFill()
     cx = w * 0.5
     cy = h * 0.5
     xoff = 0.0
-    xinc = 0.1
+    xinc = 0.0001
     angleinc = 60
     diam = w * 0.1
-    diaminc = 1
-    angle1 = radians(noise(xoff) * angleinc); xoff += xinc
-    angle2 = angle1 + radians(noise(xoff) * angleinc); xoff += xinc
-    arc(cx, cy, diam, diam, angle1, angle2)
-    while (diam < w * 0.7) {
-        while (angle2 < radians(360)) {
-            angle1 = angle2 + radians(noise(xoff) * angleinc); xoff += xinc
-            angle2 = angle1 + radians(noise(xoff) * angleinc); xoff += xinc
-            arc(cx, cy, diam, diam, angle1, angle2)
+    diaminc = w*0.003
+    while(diam<w*0.9){
+        angle2 = 0
+        angle1 = Math.floor(noise(xoff) * angleinc); xoff += xinc
+        while (angle2 < 360) {
+            angle2 = angle1 + Math.floor(noise(xoff) * angleinc); console.log(noise(xoff));xoff += xinc
+        console.log("angle1: "+angle1+"; angle2: "+angle2+"; diam: "+diam)
+            arc(cx, cy, diam, diam, radians(angle1), radians(angle2))
+            angle1 = angle2 + Math.floor(noise(xoff) * angleinc); console.log(noise(xoff)); xoff += xinc
         }
         diam+=diaminc;
-        console.log(diam)
     }
-
+    noLoop()
 }
 
 function clemence() {
