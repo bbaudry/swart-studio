@@ -59,7 +59,7 @@ public class Plein007 extends PApplet {
     }
 
     public void tiltquad(double x, double y, double step) {
-        double off = 0.8;
+        double off = 0.2;
         double inc = penwidth + off;
         double horizon = 0.0;
         double desordre = (rand.nextDouble() * (3.6 + 3.6)) - 3.6; // random number in range (-3.6, 3.6)
@@ -68,7 +68,7 @@ public class Plein007 extends PApplet {
         translate((float) x, (float) y);
         rotate(radians((float) desordre));
         for (int i = 0; i < step; i += inc) {
-            line((float) 0, (float) horizon, (float) step, (float) horizon);
+            line(0, (float) horizon, (float) step, (float) horizon);
             horizon += inc;
         }
         popMatrix();
