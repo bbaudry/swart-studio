@@ -41,6 +41,8 @@ function centerCanvas() {
 function draw() {
     background(0, 0, 100)
     //    clemence()
+    noFill()
+    stroke(0,0,0)
     let magicnumbers=hal()
     let magie=magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val+";"
     stroke(0, 0, 0); strokeWeight(1)
