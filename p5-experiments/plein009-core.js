@@ -2,8 +2,8 @@
 function hal() {
     var cx, cy, angle1, angle2, angleinc, diam, diaminc, maxdiam, xoff, xinc, magics
     magics=[]
-    cx = leftmargin + actualwidth * random(0.3,0.42); magics.push({name:"cx",val:cx})
-    cy = topmargin + actualheight  * random(0.3,0.42); magics.push({name:"cy",val:cy})
+    cx = leftmargin + actualwidth * random(0.42,0.52); magics.push({name:"cx",val:cx})
+    cy = topmargin + actualheight  * random(0.42,0.52); magics.push({name:"cy",val:cy})
     xoff = random()*1000; xinc = 0.001; magics.push({name:"xinc",val:xinc})
     angleinc = 60; magics.push({name:"angleinc",val:angleinc})
     diam = actualwidth * 0.01; diaminc = actualwidth * 0.01; magics.push({name:"diaminc",val:diaminc})

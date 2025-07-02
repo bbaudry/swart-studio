@@ -45,10 +45,12 @@ function draw() {
     stroke(0,0,0)
     let magicnumbers=hal()
     let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
+    magicnumbers=hal()
+    magie+='\n'+"Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
     stroke(0, 0, 0); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
     text(magie, c[0], c[1] + fSize)
-    text("beautiful noise [almyre::2025]", c[0], c[1] + 2*fSize)
+    text("\n beautiful noise [almyre::2025]", c[0], c[1] + 2*fSize)
 
     noLoop()
 }
