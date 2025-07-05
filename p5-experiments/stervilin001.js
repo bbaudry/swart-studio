@@ -55,14 +55,26 @@ function draw() {
 }
 
 function kerou(){
-    let xoff,xinc
+    let xoff,xinc,x1,y1,ax1,ay1,ax2,ay2,x2,y2
     xoff=0.0
-    xinc=0.01
+    xinc=0.0001
     stroke(0,100,100)
+    for(let i = 0;i<500;i++){
     beginShape()
-    vertex(leftmargin,h*0.5)
-    bezierVertex(leftmargin+actualwidth*0.1,topmargin,leftmargin+actualwidth*0.9,bottommargin,rightmargin,h*0.5)
+    x1=leftmargin
+    y1=h*0.1+i
+    vertex(x1,y1)
+    ax1=leftmargin+actualwidth*noise(xoff)
+    xoff+=xinc
+    ay1=topmargin
+    ax2=leftmargin+actualwidth*(1-noise(xoff))
+    xoff+=xinc
+    ay2=bottommargin
+    x2=rightmargin
+    y2=y1
+    bezierVertex(ax1,ay1,ax2,ay2,x2,y2)
     endShape()
+    }
 }
 
 function showcodeall(posx, posy) {
