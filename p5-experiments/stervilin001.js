@@ -59,10 +59,11 @@ function kerou(){
     xoff=0.0
     xinc=0.0001
     stroke(0,100,100)
-    for(let i = 0;i<500;i++){
+    for(let i = 0;i<150;i++){
     beginShape()
     x1=leftmargin
-    y1=h*0.1+i
+    if(random()<0.1){y1+=h*0.1}
+    else{y1=h*0.1+i*5}
     vertex(x1,y1)
     ax1=leftmargin+actualwidth*noise(xoff)
     xoff+=xinc
