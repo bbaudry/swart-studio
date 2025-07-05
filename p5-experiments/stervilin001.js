@@ -8,7 +8,7 @@ var fSize = 11
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
-        sourcecode = loadStrings('plein009-core.js');
+        sourcecode = loadStrings('stervilin001.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -28,7 +28,7 @@ function setup() {
 }
 
 function savesvg() {
-    save("plein009.svg");
+    save("stervilin001.svg");
 }
 
 function centerCanvas() {
@@ -42,8 +42,10 @@ function draw() {
     background(0, 0, 100)
     noFill()
     stroke(300,80,100)
-    let magicnumbers=hal()
-    let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val+"; "+magicnumbers[3].name+": "+magicnumbers[3].val+"; "+magicnumbers[4].name+": "+magicnumbers[4].val
+    let magie
+    kerou()
+    //let magicnumbers=hal()
+    //magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val+"; "+magicnumbers[3].name+": "+magicnumbers[3].val+"; "+magicnumbers[4].name+": "+magicnumbers[4].val
     magie+='\n'+"beautiful noise [almyre::2025]"
     stroke(0, 0, 0); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
@@ -52,6 +54,16 @@ function draw() {
     noLoop()
 }
 
+function kerou(){
+    let xoff,xinc
+    xoff=0.0
+    xinc=0.01
+    stroke(0,100,100)
+    beginShape()
+    vertex(leftmargin,h*0.5)
+    bezierVertex(leftmargin+actualwidth*0.1,topmargin,leftmargin+actualwidth*0.9,bottommargin,rightmargin,h*0.5)
+    endShape()
+}
 
 function showcodeall(posx, posy) {
     var x, y
