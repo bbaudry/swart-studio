@@ -14,12 +14,12 @@ function hal() {
         angle2 = 0
         angle1 = Math.floor(noise(xoff) * angleinc); xoff += xinc
         while (angle1 < 360) {
-            stroke(300,100,100)
-            arc(cx, cy, diam, diam, radians(angle1), radians(angle2))
             angle2 = angle1 + Math.floor(noise(xoff) * angleinc); xoff += xinc
             stroke(50,100,100)
             arc(cx, cy, diam, diam, radians(angle1), radians(angle2))
             angle1 = angle2 + Math.floor(noise(xoff) * angleinc); xoff += xinc
+            stroke(300,80,100)
+            arc(cx, cy, diam, diam, radians(angle2), radians(angle1))
         }
         diam+=diaminc;}
     return magics
