@@ -8,7 +8,7 @@ var fSize = 11
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
-        sourcecode = loadStrings('stervilin001.js');
+    sourcecode = loadStrings('stervilin001.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -41,12 +41,12 @@ function centerCanvas() {
 function draw() {
     background(0, 0, 100)
     noFill()
-    stroke(300,80,100)
+    stroke(300, 80, 100)
     let magie
     kerou()
     //let magicnumbers=hal()
     //magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val+"; "+magicnumbers[3].name+": "+magicnumbers[3].val+"; "+magicnumbers[4].name+": "+magicnumbers[4].val
-    magie+='\n'+"beautiful noise [almyre::2025]"
+    magie += '\n' + "beautiful noise [almyre::2025]"
     stroke(0, 0, 0); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
     text(magie, c[0], c[1] + fSize)
@@ -54,27 +54,28 @@ function draw() {
     noLoop()
 }
 
-function kerou(){
-    let xoff,xinc,x1,y1,ax1,ay1,ax2,ay2,x2,y2
-    xoff=0.0
-    xinc=0.0001
-    stroke(0,100,100)
-    for(let i = 0;i<150;i++){
-    beginShape()
-    x1=leftmargin
-    if(random()<0.1){y1+=h*0.1}
-    else{y1=h*0.1+i*5}
-    vertex(x1,y1)
-    ax1=leftmargin+actualwidth*noise(xoff)
-    xoff+=xinc
-    ay1=topmargin
-    ax2=leftmargin+actualwidth*(1-noise(xoff))
-    xoff+=xinc
-    ay2=bottommargin
-    x2=rightmargin
-    y2=y1
-    bezierVertex(ax1,ay1,ax2,ay2,x2,y2)
-    endShape()
+function kerou() {
+    let xoff, xinc, x1, y1, ax1, ay1, ax2, ay2, x2, y2
+    xoff = 0.0
+    xinc = 0.01
+    stroke(0, 100, 100)
+    for (let i = 0; i < 150; i++) {
+        beginShape()
+        x1 = leftmargin
+        if (random() < 0.1) { y1 += h * 0.1 }
+        else { y1 = h * 0.1 + i * 3 }
+        vertex(x1, y1)
+        ax1 = leftmargin + actualwidth * noise(xoff)
+        xoff += xinc
+        ay1 = y1-actualheight*0.1
+        ax2 = leftmargin + actualwidth * (1 - noise(xoff))
+        xoff += xinc
+        ay2 = y1+actualheight*(noise(xoff)*1.3)
+        xoff += xinc
+        x2 = rightmargin
+        y2 = y1
+        bezierVertex(ax1, ay1, ax2, ay2, x2, y2)
+        endShape()
     }
 }
 
