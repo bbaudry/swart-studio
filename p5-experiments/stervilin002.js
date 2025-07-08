@@ -49,6 +49,7 @@ function draw() {
         magie+=magicnumbers[index].name+": "+magicnumbers[index].val+"; "
     }
     stroke(180, 100, 100);magicnumbers=kerou()
+    magie+='\n'
     for(let index in magicnumbers){
         magie+=magicnumbers[index].name+": "+magicnumbers[index].val+"; "
     }
