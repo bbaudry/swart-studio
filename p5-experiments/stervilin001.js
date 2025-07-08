@@ -8,7 +8,7 @@ var fSize = 11
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
-    sourcecode = loadStrings('stervilin001.js');
+    sourcecode = loadStrings('stervilin001-core.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -18,7 +18,7 @@ function setup() {
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.7)
+    bottommargin = Math.floor(h * 0.67)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -42,38 +42,22 @@ function draw() {
     background(0, 0, 100)
     noFill()
     stroke(300, 80, 100)
-    let magie
-    stroke(0, 100, 100);kerou()
-    stroke(180, 100, 100);kerou()
-    //let magicnumbers=hal()
-    //magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val+"; "+magicnumbers[3].name+": "+magicnumbers[3].val+"; "+magicnumbers[4].name+": "+magicnumbers[4].val
-    magie += '\n' + "beautiful noise [almyre::2025]"
+    let magie, magicnumbers
+    magie="Magic numbers :: "
+    stroke(0, 100, 100);magicnumbers=kerou()
+    for(let index in magicnumbers){
+        magie+=magicnumbers[index].name+": "+magicnumbers[index].val+"; "
+    }
+    stroke(180, 100, 100);magicnumbers=kerou()
+    for(let index in magicnumbers){
+        magie+=magicnumbers[index].name+": "+magicnumbers[index].val+"; "
+    }
+    magie += '\n' + "stervilin001 [almyre::2025]"
     stroke(0, 0, 0); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
     text(magie, c[0], c[1] + fSize)
 
     noLoop()
-}
-var xoff=0.0
-var xinc=0.001
-function kerou() {
-    let x1, y1, ax1, ay1, ax2, ay2, x2, y2
-    y1 = h * 0.3 
-    for (let i = 0; i < 100; i++) {
-        beginShape()
-        x1 = leftmargin
-        if (random() < 0.01) { y1 += h * 0.05 }
-        else { y1+=2 }
-        vertex(x1, y1)
-        ax1 = leftmargin + actualwidth * noise(xoff);xoff += xinc
-        ay1 = y1+cos(radians(i))//actualheight*0.1
-        ax2 = leftmargin + actualwidth * (0.3 * noise(xoff)); xoff += xinc
-        ay2 = y1-actualheight*(cos(radians(i))); xoff += xinc //noise(xoff)*1.2
-        x2 = rightmargin
-        y2 = y1
-        bezierVertex(ax1, ay1, ax2, ay2, x2, y2)
-        endShape()
-    }
 }
 
 function showcodeall(posx, posy) {
