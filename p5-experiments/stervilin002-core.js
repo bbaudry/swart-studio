@@ -1,12 +1,10 @@
 var xoff=0.0
 var xinc=0.005
-
 function kerou() {
     let x1, y1, ax1, ay1, ax2, ay2, x2, y2, magics, iter, direction
-    magics=[]
-    iter = 100
+    magics=[]; iter = 100; y1 = h * 0.3;
     magics.push({name:"xinc",val:xinc}); magics.push({name:"iterations",val:iter})
-    y1 = h * 0.3; magics.push({name:"y1 init",val:y1})
+    magics.push({name:"y1 init",val:y1})
     direction=random([-1,1]); magics.push({name:"direction",val:direction})
     for (let i = 0; i < iter; i++) {
         beginShape()
