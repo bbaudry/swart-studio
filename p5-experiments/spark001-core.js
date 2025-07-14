@@ -1,9 +1,11 @@
 var xoff = 0.0
 var xinc = 0.005
 var sectionwidth
+// inspired by https://i.pinimg.com/originals/ce/67/ff/ce67ff060a0e13808a023b3d61389ee0.jpg
+// other option https://www.pinterest.com/pin/410109109798861399/
 function spark() {
     let x
-    sectionwidth = Math.floor(actualwidth * 0.7)
+    sectionwidth = Math.floor(actualwidth * 0.5)
     x = leftmargin
     essd(x)
 }
@@ -16,8 +18,8 @@ function essd(x) {
     offset = random(0.01,0.05)
     rad = sectionwidth * (0.5 + offset / 2)
     a1 = 230
-    a2 = 240
-    a3 = 40
+    a2 = 260
+    a3 = 20
     a4 = 50
 
     // draw top arc
@@ -27,8 +29,10 @@ function essd(x) {
     y2 = cy + rad * sin(radians(a3))
     px = (1 - t) * x1 + (t * x2);
     py = (1 - t) * y1 + (t * y2);
-    a1top = a2
+    a1top = a1
     a2top = 360
+    ellipse(px,py,5,5)
+    line(x1, y1, x2, y2)
     arc(px, py, rad * 2, rad * 2, radians(a1top), radians(a2top))
 
     for (let i = 0; i < 10; i++) {
@@ -36,8 +40,7 @@ function essd(x) {
         y1 = cy + rad * sin(radians(a2 - i))
         x2 = cx + rad * cos(radians(a3 + i))
         y2 = cy + rad * sin(radians(a3 + i))
-        line(x1, y1, x2, y2)
-        console.log("hi")
+//        line(x1, y1, x2, y2)
     }
 
     // draw bottom arc
@@ -49,6 +52,7 @@ function essd(x) {
     py = (1 - t) * y1 + (t * y2);
     a1low = a4
     a2low = 180
+    line(x1, y1, x2, y2)
     arc(px, py, rad * 2, rad * 2, radians(a1low), radians(a2low))
 
 
