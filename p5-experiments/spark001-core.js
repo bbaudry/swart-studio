@@ -7,7 +7,39 @@ function spark() {
     let x
     sectionwidth = Math.floor(actualwidth * 0.5)
     x = leftmargin
-    essd(x)
+    essbis(x)
+}
+
+
+function essbis(x) {
+    let cx, cy, a1, a2, a3, a4, rad, x1, y1, x2, y2, x3, y3, x4, y4, offsetx,offsety,px, py, t, a1top, a2top, a1low, a2low
+    fill(0,100,100)
+    stroke(0,100,100)
+    cx = x + sectionwidth * 0.5
+    cy = topmargin + actualheight * 0.5
+    t = 0.5
+    offsetx = sectionwidth*0.1
+    offsety = 20
+    rad = sectionwidth * 0.5
+    a1 = 230
+    a2 = 360
+    a3 = 50
+    a4 = 180
+
+    // draw top arc
+    arc(cx-offsetx, cy-offsety, rad * 2, rad * 2, radians(a1), radians(a2))
+    // draw bottom arc
+    arc(cx+offsetx, cy+offsety, rad * 2, rad * 2, radians(a3), radians(a4))
+    //
+    x1=(cx+offsetx)+offsety*2*cos(radians(a3+180))
+    y1=cy-offsety
+    x2=cx-offsetx
+    y2=cy-offsety
+    x3=(cx-offsetx)+offsety*2*cos(radians(a1+180))
+    y3=cy+offsety
+    x4=cx+offsetx
+    y4=cy+offsety
+    quad(x1, y1, x2, y2, x3, y3, x4, y4,)
 }
 
 function essd(x) {
