@@ -53,11 +53,12 @@ function s(x,y) {
 }
 
 function p(x,y){
-    let cx,cy,rad,thick
-    thick=sectionwidth*random(0.3,0.6)
+    let cx,cy,rad,thick,offset
+    offset=random(0.4,0.6)
+    thick=sectionwidth*offset
     y-=sectionheight
     rect(x,y,thick,sectionheight)
-    rad=sectionwidth*random(0.2,0.4)
+    rad=sectionwidth*(0.9-offset)
     cx=x+thick
     cy=y+rad
     arc(cx,cy,rad*2,rad*2,radians(270),radians(90))
@@ -67,9 +68,9 @@ function a(x,y){
     let x1,y1,x2,y2,x3,y3
     x1=x
     y1=y
-    x2=x+sectionwidth*random(0.7,0.99)
+    x2=x+sectionwidth
     y2=y
-    x3=x2
+    x3=x+sectionwidth*random(0.3,0.7)
     y3=y-sectionheight
     triangle(x1,y1,x2,y2,x3,y3)
 }
