@@ -17,9 +17,9 @@ function spark() {
     x+=sectionwidth
     a(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
     x+=sectionwidth
-    a(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
+    r(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
     x+=sectionwidth
-    a(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
+    k(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
 }
 
 
@@ -72,5 +72,38 @@ function a(x,y){
     y2=y
     x3=x+sectionwidth*random(0.3,0.7)
     y3=y-sectionheight
+    triangle(x1,y1,x2,y2,x3,y3)
+}
+
+function r(x,y){
+    let cx,cy,rad,thick,offset,x1,y1,x2,y2,x3,y3
+    offset=random(0.4,0.6)
+    thick=sectionwidth*offset
+    rect(x,y-sectionheight,thick,sectionheight)
+
+    rad=sectionwidth*(0.9-offset)
+    cx=x+thick
+    cy=y-sectionheight+rad
+    arc(cx,cy,rad*2,rad*2,radians(270),radians(90))
+
+    x1=cx;x2=x+sectionwidth;x3=cx
+    y1=cy+rad*random();y2=y;y3=y
+    triangle(x1,y1,x2,y2,x3,y3)
+}
+
+function k(x,y){
+    let cx,cy,thick,offset,x1,y1,x2,y2,x3,y3
+    offset=random(0.4,0.6)
+    thick=sectionwidth*offset
+    rect(x,y-sectionheight,thick,sectionheight)
+
+    cx=x+thick
+    cy=y-sectionheight*0.5
+
+    x1=cx;x2=x+sectionwidth;x3=cx
+    y1=cy+sectionheight*random(-0.15,0.15);y2=y-sectionheight;y3=y-sectionheight
+    triangle(x1,y1,x2,y2,x3,y3)
+
+    y2=y;y3=y
     triangle(x1,y1,x2,y2,x3,y3)
 }
