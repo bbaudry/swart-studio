@@ -8,13 +8,18 @@ function spark() {
     stroke(0,100,100)
     fill(0,100,100)
     sectionwidth = Math.floor(actualwidth * 0.2)
+    sectionheight = Math.floor(actualheight * 0.3)
     x = leftmargin
     y = bottommargin
-    s(x,y); line(x,y)
+    s(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
     x+=sectionwidth
-    p(x,y); line(x,y)
+    p(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
     x+=sectionwidth
-    a(x,y); line(x,y)
+    a(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
+    x+=sectionwidth
+    a(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
+    x+=sectionwidth
+    a(x,y); noFill();quad(x,y,x,y-sectionheight,x+sectionwidth,y-sectionheight,x+sectionwidth,y);fill(0,100,100)
 }
 
 
@@ -26,7 +31,7 @@ function s(x,y) {
     cxlow = x + sectionwidth * 0.5 - offsetx
     cylow = y - rad
     cxtop = x + sectionwidth * 0.5 + offsetx
-    cytop = cylow - offsety * 2
+    cytop = cylow - sectionheight + rad + offsety * 2
     a1 = Math.floor(random(210,230))
     a2 = Math.floor(random(340,360))
     a3 = Math.floor(random(30,50))
@@ -51,8 +56,8 @@ function s(x,y) {
 function p(x,y){
     let cx,cy,rad,thick
     thick=sectionwidth*random(0.3,0.5)
-    y-=sectionwidth
-    rect(x,y,thick,sectionwidth)
+    y-=sectionheight
+    rect(x,y,thick,sectionheight)
     rad=sectionwidth*random(0.2,0.3)
     cx=x+thick
     cy=y+rad
@@ -66,6 +71,6 @@ function a(x,y){
     x2=x+sectionwidth*random(0.7,0.99)
     y2=y
     x3=x2
-    y3=y-sectionwidth*random(0.7,0.99)
+    y3=y-sectionheight*random(0.7,0.99)
     triangle(x1,y1,x2,y2,x3,y3)
 }
