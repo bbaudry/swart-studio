@@ -5,27 +5,27 @@ var sectionwidth
 // other option https://www.pinterest.com/pin/410109109798861399/
 function spark() {
     let x
-    sectionwidth = Math.floor(actualwidth * 0.5)
+    stroke(0,100,100)
+    fill(0,100,100)
+    sectionwidth = Math.floor(actualwidth * 0.2)
     x = leftmargin
-    essbis(x)
+    s(x)
+    x+=sectionwidth
+    p(x)
 }
 
 
-function essbis(x) {
-    let cx, cy, a1, a2, a3, a4, rad, x1, y1, x2, y2, x3, y3, x4, y4, offsetx,offsety,px, py, t, a1top, a2top, a1low, a2low
-    stroke(0,100,100)
-    rect(x,topmargin,sectionwidth,actualheight)
-    fill(0,100,100)
+function s(x) {
+    let cx, cy, a1, a2, a3, a4, rad, x1, y1, x2, y2, x3, y3, x4, y4, offsetx,offsety
     cx = x + sectionwidth * 0.5
     cy = topmargin + actualheight * 0.5
-    t = 0.5
     offsetx = sectionwidth*0.1
-    offsety = 20
-    rad = sectionwidth * 0.4
-    a1 = 200
-    a2 = 360
-    a3 = 20
-    a4 = 180
+    offsety = Math.floor(random(10,20))
+    rad = Math.floor(sectionwidth * 0.38)
+    a1 = Math.floor(random(210,230))
+    a2 = Math.floor(random(340,360))
+    a3 = Math.floor(random(30,50))
+    a4 = Math.floor(random(160,180))
 
     // draw top arc
     arc(cx+offsetx, cy-offsety, rad * 2, rad * 2, radians(a1), radians(a2))
@@ -41,4 +41,16 @@ function essbis(x) {
     x4=cx-offsetx
     y4=cy+offsety
     quad(x1, y1, x2, y2, x3, y3, x4, y4,)
+}
+
+function p(x){
+    let y,cx,cy,rad,thick
+    thick=sectionwidth*random(0.3,0.5)
+    y=topmargin+actualheight*0.5
+    y-=sectionwidth*0.5
+    rect(x,y,thick,sectionwidth)
+    rad=sectionwidth*random(0.2,0.3)
+    cx=x+thick
+    cy=y+rad
+    arc(cx,cy,rad*2,rad*2,radians(270),radians(90))
 }
