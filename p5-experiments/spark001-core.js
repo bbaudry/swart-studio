@@ -25,13 +25,12 @@ function spark() {
 
 function s(x,y) {
     let cxtop, cytop, cxlow, cylow, a1, a2, a3, a4, rad, x1, y1, x2, y2, x3, y3, x4, y4, offsetx,offsety
-    offsetx = sectionwidth*0.05
-    offsety = Math.floor(random(10,20))
+    offsetx = sectionwidth*random(0.05,0.1)
     rad = Math.floor(sectionwidth * 0.38)
     cxlow = x + sectionwidth * 0.5 - offsetx
     cylow = y - rad
     cxtop = x + sectionwidth * 0.5 + offsetx
-    cytop = cylow - sectionheight + rad + offsety * 2
+    cytop = y - sectionheight + rad
     a1 = Math.floor(random(210,230))
     a2 = Math.floor(random(340,360))
     a3 = Math.floor(random(30,50))
@@ -55,10 +54,10 @@ function s(x,y) {
 
 function p(x,y){
     let cx,cy,rad,thick
-    thick=sectionwidth*random(0.3,0.5)
+    thick=sectionwidth*random(0.3,0.6)
     y-=sectionheight
     rect(x,y,thick,sectionheight)
-    rad=sectionwidth*random(0.2,0.3)
+    rad=sectionwidth*random(0.2,0.4)
     cx=x+thick
     cy=y+rad
     arc(cx,cy,rad*2,rad*2,radians(270),radians(90))
@@ -71,6 +70,6 @@ function a(x,y){
     x2=x+sectionwidth*random(0.7,0.99)
     y2=y
     x3=x2
-    y3=y-sectionheight*random(0.7,0.99)
+    y3=y-sectionheight
     triangle(x1,y1,x2,y2,x3,y3)
 }
