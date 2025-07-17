@@ -15,7 +15,7 @@ function spark() {
     x += sectionwidth
     plines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
     x += sectionwidth
-    a(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
+    alines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
     x += sectionwidth
     rlines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
     x += sectionwidth
@@ -87,6 +87,20 @@ function a(x, y) {
     y3 = y - sectionheight
     triangle(x1, y1, x2, y2, x3, y3)
 }
+
+function alines(x, y) {
+    let x1, y1, x2, y2, x3, y3
+    noFill()
+    x1 = x
+    y1 = y
+    x2 = x + sectionwidth
+    y2 = y
+    x3 = x + sectionwidth * random(0.3, 0.7)
+    y3 = y - sectionheight
+    trianglewithlines(x3, y3, x2, y2, x3, y1); 
+    trianglewithlines(x3, y3, x1, y1, x3, y1); 
+}
+
 
 function r(x, y) {
     let cx, cy, rad, thick, offset, x1, y1, x2, y2, x3, y3
@@ -169,6 +183,8 @@ function rectwithlines(x, y, rectw, recth) {
     }
 }
 
+// draws a triangle with lines
+// assumes it is a right triangle with hypothenus (x1,y1,x2,y2)
 function trianglewithlines(x1, y1, x2, y2, x3, y3){
     triangle(x1, y1, x2, y2, x3, y3)
     let lx1, ly1, lx2, ly2,t
