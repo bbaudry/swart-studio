@@ -1,25 +1,24 @@
 var xoff = 0.0
 var xinc = 0.005
-var sectionwidth
+var sectionwidth,sectionheight
 // inspired by https://i.pinimg.com/originals/ce/67/ff/ce67ff060a0e13808a023b3d61389ee0.jpg
 // other option https://www.pinterest.com/pin/410109109798861399/
-function spark() {
-    let x, y
+function spark(y,s) {
+    let x
+    sectionheight=s
     stroke(0, 100, 100)
-    fill(0, 100, 100)
+    noFill()
     sectionwidth = Math.floor(actualwidth * 0.2)
-    sectionheight = Math.floor(actualheight * 0.3)
     x = leftmargin
-    y = bottommargin
-    slines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
+    slines(x, y); 
     x += sectionwidth
-    plines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
+    plines(x, y);  
     x += sectionwidth
-    alines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
+    alines(x, y);
     x += sectionwidth
-    rlines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
+    rlines(x, y); 
     x += sectionwidth
-    klines(x, y); noFill(); quad(x, y, x, y - sectionheight, x + sectionwidth, y - sectionheight, x + sectionwidth, y); fill(0, 100, 100)
+    klines(x, y); 
 }
 
 
@@ -31,7 +30,7 @@ function s(x, y) {
     cxlow = x + sectionwidth * 0.5 - offsetx
     cylow = y - rad
     cxtop = x + sectionwidth * 0.5 + offsetx
-    cytop = y - sectionheight + rad
+    cytop = y - sectionhesectionheightight + rad
     a1 = Math.floor(random(210, 230))
     a2 = Math.floor(random(340, 360))
     a3 = Math.floor(random(30, 50))
@@ -56,7 +55,7 @@ function s(x, y) {
 
 function slines(x, y) {
     let cxtop, cytop, cxlow, cylow, a1, a2, a3, a4, rad, x1, y1, x2, y2, x3, y3, x4, y4, offsetx, off
-    noFill()
+    
     off=random(0.05, 0.1)
     offsetx = sectionwidth * off
     rad = Math.floor(sectionwidth * (0.5-off))
@@ -99,7 +98,7 @@ function p(x, y) {
 
 function plines(x, y) {
     let cx, cy, rad, thick, offset
-    noFill()
+    
     offset = random(0.4, 0.6)
     thick = sectionwidth * offset
     y -= sectionheight
@@ -123,7 +122,7 @@ function a(x, y) {
 
 function alines(x, y) {
     let x1, y1, x2, y2, x3, y3
-    noFill()
+    
     x1 = x
     y1 = y
     x2 = x + sectionwidth
@@ -153,7 +152,7 @@ function r(x, y) {
 
 function rlines(x, y) {
     let cx, cy, rad, thick, offset, x1, y1, x2, y2, x3, y3
-    noFill()
+    
     offset = random(0.4, 0.6)
     thick = sectionwidth * offset
     rectwithlines(x, y - sectionheight, thick, sectionheight)
@@ -187,7 +186,7 @@ function k(x, y) {
 
 function klines(x, y) {
     let cx, cy, thick, offset, x1, y1, x2, y2, x3, y3
-    noFill()
+    
     offset = random(0.4, 0.6)
     thick = sectionwidth * offset
     rectwithlines(x, y - sectionheight, thick, sectionheight)

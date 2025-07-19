@@ -11,8 +11,8 @@ function preload() {
     sourcecode = loadStrings('stervilin003-core.js');
 }
 function setup() {
-    w = Math.floor(8 * 96)
-    h = Math.floor(8 * 96)
+    w = Math.floor(8.5 * 96)
+    h = Math.floor(11 * 96)
     cnv = createCanvas(w, h)//createCanvas(w, h, SVG).mousePressed(savesvg);;
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
@@ -39,9 +39,14 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 100)
+    stroke(0,100,100)
     noFill()
-    stroke(300, 80, 100)
-    spark();
+    let sectionheight=actualheight*0.23
+    let offsety=actualheight*0.02
+    spark(topmargin+sectionheight,sectionheight);
+    spark(topmargin+2*sectionheight+offsety,sectionheight);
+    spark(topmargin+3*sectionheight+2*offsety,sectionheight);
+    spark(topmargin+4*sectionheight+3*offsety,sectionheight);
     noLoop()
 }
 
