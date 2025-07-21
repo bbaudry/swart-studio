@@ -33,7 +33,7 @@ function setup() {
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     penwidth = 0.04 * 96 // 0.04 inch is 1 mm, the width of stabilo 68/32
-    //strokeWeight(penwidth);
+    
 }
 
 function savesvg() {
@@ -62,7 +62,9 @@ function draw() {
     
     x=leftmargin+cardleftmargin
     y=topmargin+cardtopmargin+cardactualheight
+    strokeWeight(penwidth);
     spark(x,y, cardactualheight)
+    strokeWeight(1);
     text("thank you for visiting and contributing", x, y+fSize*2)
 
     y=topmargin+cardheight+cardtopmargin
@@ -70,7 +72,9 @@ function draw() {
     pos=showcodeoneblock(x,y)
     x=leftmargin+cardleftmargin
     y=topmargin+cardheight+cardtopmargin+cardactualheight
+    strokeWeight(penwidth);
     spark(x,y, cardactualheight)
+    strokeWeight(1);
     fSize=27; textSize(fSize)
     text("thank you for visiting and contributing", pos[0], pos[1]+fSize)
     noLoop()

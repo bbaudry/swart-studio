@@ -2,7 +2,6 @@ var xoff = 0.0
 var xinc = 0.005
 var sectionwidth, sectionheight
 // inspired by https://i.pinimg.com/originals/ce/67/ff/ce67ff060a0e13808a023b3d61389ee0.jpg
-// other option https://www.pinterest.com/pin/410109109798861399/
 // cardx is left x for spark, cardy is the bottom y for spark, cardheight is the height of spark
 function spark(cardx, cardy, cardheight) {
     let x = cardx
@@ -22,8 +21,7 @@ function spark(cardx, cardy, cardheight) {
 
 function slines(x, y) {
     let cxtop, cytop, cxlow, cylow, a1, a2, a3, a4, rad, x1, y1, x2, y2, x3, y3, x4, y4, offsetx, off
-
-    off = random(0.05, 0.1)
+    off = random(0.03, 0.15)
     offsetx = sectionwidth * off
     rad = Math.floor(sectionwidth * (0.5 - off))
     cxlow = x + sectionwidth * 0.5 - offsetx
@@ -114,7 +112,6 @@ function klines(x, y) {
 }
 
 function rectwithlines(x, y, rectw, recth) {
-    let penwidth = 3
     let x1, y1, x2, y2
     y1 = y
     y2 = y + recth
@@ -138,14 +135,13 @@ function trianglewithlines(x1, y1, x2, y2, x3, y3) {
         lx2 = lx1
         ly2 = y2
         line(lx1, ly1, lx2, ly2)
-        t += 0.02
+        t += 0.06
     }
 }
 
 function arcwithlines(cx, cy, rad, rad, a1, a2) {
     arc(cx, cy, rad, rad, a1, a2)
     let r = rad
-    let penwidth = 3
     while (r > 0) {
         arc(cx, cy, r, r, a1, a2)
         r -= penwidth
@@ -162,6 +158,6 @@ function quadwithlines(x1, y1, x2, y2, x3, y3, x4, y4) {
         lx2 = (1 - t) * x2 + (t * x3);
         ly2 = (1 - t) * y2 + (t * y3);
         line(lx1, ly1, lx2, ly2)
-        t += 0.02
+        t += 0.03
     }
 }
