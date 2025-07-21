@@ -112,6 +112,7 @@ function klines(x, y) {
 }
 
 function rectwithlines(x, y, rectw, recth) {
+    rect(x, y, rectw, recth)
     let x1, y1, x2, y2
     y1 = y
     y2 = y + recth

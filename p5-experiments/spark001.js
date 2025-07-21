@@ -14,7 +14,7 @@ function preload() {
 function setup() {
     w = Math.floor(8.5 * 96)//215.9mm
     h = Math.floor(11 * 96)// 279.4mm
-    cnv = createCanvas(w, h)//createCanvas(w, h, SVG).mousePressed(savesvg);;
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);;
     centerCanvas();
     cardwidth=Math.floor(96*140/25.4) // card is 14 cm wide
     cardheight=Math.floor(96*100/25.4) // card is 1O cm high
@@ -52,32 +52,39 @@ function draw() {
     stroke(0,100,100)
     noFill()
 
-    rect(0,0,w,h)
-    rect(leftmargin,topmargin,cardwidth,cardheight)
-    rect(leftmargin,topmargin+cardheight,cardwidth,cardheight)
+    // rect(0,0,w,h)
+    // rect(leftmargin,topmargin,cardwidth,cardheight)
+    // rect(leftmargin,topmargin+cardheight,cardwidth,cardheight)
     
-    textFont(font)
-    textSize(fSize)
     let x,y
+    textFont(font)
     
-    x=leftmargin+cardleftmargin
-    y=topmargin+cardtopmargin+cardactualheight
-    strokeWeight(penwidth);
-    spark(x,y, cardactualheight)
-    strokeWeight(1);
-    text("thank you for visiting and contributing", x, y+fSize*2)
+    // x=leftmargin+cardleftmargin
+    // y=topmargin+cardtopmargin+cardactualheight
+    // strokeWeight(penwidth);
+    // spark(x,y, cardactualheight)
+    // strokeWeight(1);
+    // textSize(fSize)
+    // text("thank you for visiting and contributing", x, y+fSize*2)
 
-    y=topmargin+cardheight+cardtopmargin
-    fSize=10; textSize(fSize)
-    pos=showcodeoneblock(x,y)
-    x=leftmargin+cardleftmargin
-    y=topmargin+cardheight+cardtopmargin+cardactualheight
-    strokeWeight(penwidth);
-    spark(x,y, cardactualheight)
+    if(frameCount==1){
     strokeWeight(1);
+    fSize=10; textSize(fSize)
+    x=leftmargin+cardleftmargin
+    y=topmargin+cardheight+cardtopmargin
+    pos=showcodeoneblock(x,y)
     fSize=27; textSize(fSize)
     text("thank you for visiting and contributing", pos[0], pos[1]+fSize)
+    save("spark001-back.svg");
+    }
+    if(frameCount==2){
+    strokeWeight(penwidth);
+    x=leftmargin+cardleftmargin
+    y=topmargin+cardheight+cardtopmargin+cardactualheight
+    spark(x,y, cardactualheight)
+    save("spark001-front.svg");
     noLoop()
+    }
 }
 
 // draws the code, keeping indentation and line breaks
