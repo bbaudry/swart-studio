@@ -58,20 +58,25 @@ function draw() {
     
     let x,y
     textFont(font)
-    
+    if(frameCount==1){    
     x=leftmargin+cardleftmargin
     y=topmargin+cardtopmargin+cardactualheight
     strokeWeight(penwidth);
     spark(x,y, cardactualheight)
+    save("spark001-front.svg");
+    }
+    if(frameCount==2){
     strokeWeight(1);
     textSize(fSize)
-        stroke(0,0,0)
-
+    stroke(0,0,0)
     x=leftmargin+cardleftmargin
     y=topmargin+cardtopmargin+fSize
     pos=showknobs(x,y)
-    text("thank you for visiting and contributing", pos[0], pos[1]+fSize)
+    textSize(fSize-5)
+    text("thank you for contributing to the krew's scientific journey", pos[0], pos[1]+fSize)
+    save("spark001-back.svg");
     noLoop()
+    }
     // if(frameCount==1){
     // strokeWeight(1);
     // fSize=10; textSize(fSize)
