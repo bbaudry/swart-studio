@@ -5,7 +5,7 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var cardwidth, cardheight, cardleftmargin, cardrightmargin, cardtopmargin, cardbottommargin, cardactualwidth, cardactualheight
 var resolution, sourcecode
 var font
-var fSize = 27
+var fSize = 25
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
@@ -53,38 +53,43 @@ function draw() {
     noFill()
 
     // rect(0,0,w,h)
-    // rect(leftmargin,topmargin,cardwidth,cardheight)
+    rect(leftmargin,topmargin,cardwidth,cardheight)
     // rect(leftmargin,topmargin+cardheight,cardwidth,cardheight)
     
     let x,y
     textFont(font)
     
-    // x=leftmargin+cardleftmargin
-    // y=topmargin+cardtopmargin+cardactualheight
-    // strokeWeight(penwidth);
-    // spark(x,y, cardactualheight)
-    // strokeWeight(1);
-    // textSize(fSize)
-    // text("thank you for visiting and contributing", x, y+fSize*2)
-
-    if(frameCount==1){
-    strokeWeight(1);
-    fSize=10; textSize(fSize)
     x=leftmargin+cardleftmargin
-    y=topmargin+cardheight+cardtopmargin
-    pos=showcodeoneblock(x,y)
-    fSize=27; textSize(fSize)
-    text("thank you for visiting and contributing", pos[0], pos[1]+fSize)
-    save("spark001-back.svg");
-    }
-    if(frameCount==2){
+    y=topmargin+cardtopmargin+cardactualheight
     strokeWeight(penwidth);
-    x=leftmargin+cardleftmargin
-    y=topmargin+cardheight+cardtopmargin+cardactualheight
     spark(x,y, cardactualheight)
-    save("spark001-front.svg");
+    strokeWeight(1);
+    textSize(fSize)
+        stroke(0,0,0)
+
+    x=leftmargin+cardleftmargin
+    y=topmargin+cardtopmargin+fSize
+    pos=showknobs(x,y)
+    text("thank you for visiting and contributing", pos[0], pos[1]+fSize)
     noLoop()
-    }
+    // if(frameCount==1){
+    // strokeWeight(1);
+    // fSize=10; textSize(fSize)
+    // x=leftmargin+cardleftmargin
+    // y=topmargin+cardheight+cardtopmargin
+    // pos=showcodeoneblock(x,y)
+    // fSize=27; textSize(fSize)
+    // text("thank you for visiting and contributing", pos[0], pos[1]+fSize)
+    // save("spark001-back.svg");
+    // }
+    // if(frameCount==2){
+    // strokeWeight(penwidth);
+    // x=leftmargin+cardleftmargin
+    // y=topmargin+cardheight+cardtopmargin+cardactualheight
+    // spark(x,y, cardactualheight)
+    // save("spark001-front.svg");
+    // noLoop()
+    // }
 }
 
 // draws the code, keeping indentation and line breaks
@@ -124,5 +129,18 @@ function showcodeoneblock(posx,posy) {
     }
     tx = posx
     ty += 2*fSize + 1
+    return([tx,ty])
+}
+
+
+function showknobs(posx,posy) {
+    var knob, tx, ty
+    tx=posx
+    ty=posy
+    for (k in knobs){
+        knob=knobs[k].name+" "+knobs[k].val
+        text(knob, tx, ty)
+        ty+=fSize
+    }
     return([tx,ty])
 }

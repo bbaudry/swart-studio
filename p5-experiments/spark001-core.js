@@ -1,11 +1,10 @@
-var xoff = 0.0
-var xinc = 0.005
-var sectionwidth, sectionheight
+var sectionwidth, sectionheight, knobs
 // inspired by https://i.pinimg.com/originals/ce/67/ff/ce67ff060a0e13808a023b3d61389ee0.jpg
 // cardx is left x for spark, cardy is the bottom y for spark, cardheight is the height of spark
 function spark(cardx, cardy, cardheight) {
     let x = cardx
     let y = cardy
+    knobs=[]
     sectionheight = cardheight
     sectionwidth = Math.floor(cardactualwidth * 0.2)
     slines(x, y);
@@ -21,17 +20,17 @@ function spark(cardx, cardy, cardheight) {
 
 function slines(x, y) {
     let cxtop, cytop, cxlow, cylow, a1, a2, a3, a4, rad, x1, y1, x2, y2, x3, y3, x4, y4, offsetx, off
-    off = random(0.03, 0.15)
+    off = random(0.03, 0.15); knobs.push({name:"soff",val:off})
     offsetx = sectionwidth * off
     rad = Math.floor(sectionwidth * (0.5 - off))
     cxlow = x + sectionwidth * 0.5 - offsetx
     cylow = y - rad
     cxtop = x + sectionwidth * 0.5 + offsetx
     cytop = y - sectionheight + rad
-    a1 = Math.floor(random(210, 230))
-    a2 = Math.floor(random(340, 360))
-    a3 = Math.floor(random(30, 50))
-    a4 = Math.floor(random(160, 180))
+    a1 = Math.floor(random(210, 230));knobs.push({name:"sa1",val:a1})
+    a2 = Math.floor(random(340, 360));knobs.push({name:"sa2",val:a2})
+    a3 = Math.floor(random(30, 50));knobs.push({name:"sa3",val:a3})
+    a4 = Math.floor(random(160, 180));knobs.push({name:"sa4",val:a4})
 
     // draw top arc
     arcwithlines(cxtop, cytop, rad * 2, rad * 2, radians(a1), radians(a2))
@@ -53,7 +52,7 @@ function slines(x, y) {
 function plines(x, y) {
     let cx, cy, rad, thick, offset
 
-    offset = random(0.25, 0.5)
+    offset = random(0.25, 0.5);knobs.push({name:"poff",val:offset})
     thick = sectionwidth * offset
     y -= sectionheight
     rectwithlines(x, y, thick, sectionheight)
@@ -70,7 +69,7 @@ function alines(x, y) {
     y1 = y
     x2 = x + sectionwidth
     y2 = y
-    x3 = x + sectionwidth * random(0.3, 0.7)
+    x3 = x + sectionwidth * random(0.3, 0.7);knobs.push({name:"ax3",val:x3})
     y3 = y - sectionheight
     trianglewithlines(x3, y3, x2, y2, x3, y1);
     trianglewithlines(x3, y3, x1, y1, x3, y1);
@@ -79,7 +78,7 @@ function alines(x, y) {
 function rlines(x, y) {
     let cx, cy, rad, thick, offset, x1, y1, x2, y2, x3, y3
 
-    offset = random(0.25, 0.5)
+    offset = random(0.25, 0.5);knobs.push({name:"roff",val:offset})
     thick = sectionwidth * offset
     rectwithlines(x, y - sectionheight, thick, sectionheight)
 
@@ -89,14 +88,14 @@ function rlines(x, y) {
     arcwithlines(cx, cy, rad * 2, rad * 2, radians(270), radians(90))
 
     x1 = cx; x2 = x + sectionwidth; x3 = cx
-    y1 = cy + rad * random(); y2 = y; y3 = y
+    y1 = cy + rad * random(); y2 = y; y3 = y;knobs.push({name:"rytriangle",val:y1})
     trianglewithlines(x1, y1, x2, y2, x3, y3)
 }
 
 function klines(x, y) {
     let cx, cy, thick, offset, x1, y1, x2, y2, x3, y3
 
-    offset = random(0.25, 0.5)
+    offset = random(0.25, 0.5);knobs.push({name:"koff",val:offset})
     thick = sectionwidth * offset
     rectwithlines(x, y - sectionheight, thick, sectionheight)
 
@@ -104,7 +103,7 @@ function klines(x, y) {
     cy = y - sectionheight * 0.5
 
     x1 = cx; x2 = x + sectionwidth; x3 = cx
-    y1 = cy + sectionheight * random(-0.15, 0.15); y2 = y - sectionheight; y3 = y - sectionheight
+    y1 = cy + sectionheight * random(-0.15, 0.15); y2 = y - sectionheight; y3 = y - sectionheight;knobs.push({name:"kytriangle",val:y1})
     trianglewithlines(x1, y1, x2, y2, x3, y3)
 
     y2 = y; y3 = y
