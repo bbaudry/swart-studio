@@ -113,7 +113,7 @@ function klines(x, y) {
 function rectwithlines(x, y, rectw, recth) {
     rect(x, y, rectw, recth)
     let x1, y1, x2, y2
-    if(random()<0.6){
+    if(random()<0.65){
     y1 = y
     y2 = y + recth
     x1 = x
@@ -130,7 +130,7 @@ function rectwithlines(x, y, rectw, recth) {
 function trianglewithlines(x1, y1, x2, y2, x3, y3) {
     triangle(x1, y1, x2, y2, x3, y3)
     let lx1, ly1, lx2, ly2, t
-    if(random()<0.6){
+    if(random()<0.65){
     t = 0
     while (t < 1) {
         lx1 = (1 - t) * x1 + (t * x2);

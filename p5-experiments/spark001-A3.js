@@ -5,7 +5,7 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var cardwidth, cardheight, cardleftmargin, cardrightmargin, cardtopmargin, cardbottommargin, cardactualwidth, cardactualheight
 var resolution, sourcecode
 var font
-var fSize = 25
+var fSize
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
@@ -48,70 +48,60 @@ function centerCanvas() {
     cnv.position(x, y);
 }
 
-
+let allknobs=[]
 function draw() {
     background(0, 0, 100)
     stroke(0,100,100)
-    noFill() 
-    let x,y,xpark,yspark
+    noFill()
+    textFont(font)
+    let x,y,xspark,yspark
+    // front frames
     for(i=0;i<2;i++){
         for(j=0;j<4;j++){
             x=leftmargin+i*cardwidth
             y=topmargin+j*cardheight
             rect(x,y,cardwidth,cardheight)
+        }
+    }
+
+    // front art
+    for(i=0;i<2;i++){
+        for(j=0;j<4;j++){
+            x=leftmargin+i*cardwidth
+            y=topmargin+j*cardheight
             push()
             translate(x,y)
             xspark=cardleftmargin
             yspark=cardbottommargin
-            spark(xspark,yspark,cardactualheight)
+            knobs=spark(xspark,yspark,cardactualheight)
+            allknobs.push(knobs)
+            fSize=37;textSize(fSize)
+            text("thank you for contributing", xspark,  yspark+fSize)
+            text("to the krew's scientific journey", xspark,  yspark+fSize*2)
             pop()
         }
     }
+    let index, xknobs, yknobs
+    // back with knobs
+    for(i=2;i<0;i--){ // go on the backwards order on the x axis to match knobs on the back of the gen art work (turn the paper and left becomes tight :)
+        for(j=0;j<4;j++){
+            x=leftmargin+i*cardwidth
+            y=topmargin+j*cardheight
+            push()
+            translate(x,y)
+            xknobs=cardleftmargin
+            yknobs=cardtopmargin
+            index=i*4+j
+            showknobs(xknobs,yknobs,allknobs[index])
+            pop()
+        }
+    }
+
     noLoop()
 }
 
-// draws the code, keeping indentation and line breaks
-function showcodeall(posx, posy) {
-    var x, y
-    x = posx
-    y = posy
-    textFont(font)
-    textSize(fSize)
-    for (b in sourcecode) {
-        text(sourcecode[b], x, y)
-        y += fSize
-    }
-    return ([x, y])
-}
 
-// draws the code with no space, in a single block of text
-function showcodeoneblock(posx,posy) {
-    var allcode, c, tw, tx, ty
-    allcode = ''
-    tx=posx
-    ty=posy
-    for (var i = 0; i < sourcecode.length; i++) {
-        var token = sourcecode[i]
-        var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
-        allcode += notab
-    }
-    for (let i = 0; i < allcode.length; i++) {
-        c = allcode.charAt(i)
-        tw = textWidth(c)
-        if (tx + tw > posx+cardactualwidth) {
-            tx = posx
-            ty += fSize + 1
-        }
-        text(c, tx, ty)
-        tx += tw
-    }
-    tx = posx
-    ty += 2*fSize + 1
-    return([tx,ty])
-}
-
-
-function showknobs(posx,posy) {
+function showknobs(posx,posy, knobs) {
     var knob, tx, ty
     tx=posx
     ty=posy
