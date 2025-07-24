@@ -16,6 +16,7 @@ function spark(cardx, cardy, cardheight) {
     rlines(x, y);
     x += sectionwidth
     klines(x, y);
+    return knobs
 }
 
 function slines(x, y) {

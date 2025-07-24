@@ -75,7 +75,20 @@ function draw() {
             yspark=cardbottommargin
             knobs=spark(xspark,yspark,cardactualheight)
             allknobs.push(knobs)
-            fSize=37;textSize(fSize)
+            console.log(knobs)
+            pop()
+        }
+    }
+    // front text
+    fSize=37;textSize(fSize)
+    for(i=0;i<2;i++){
+        for(j=0;j<4;j++){
+            x=leftmargin+i*cardwidth
+            y=topmargin+j*cardheight
+            push()
+            translate(x,y)
+            xspark=cardleftmargin
+            yspark=cardbottommargin
             text("thank you for contributing", xspark,  yspark+fSize)
             text("to the krew's scientific journey", xspark,  yspark+fSize*2)
             pop()
@@ -83,16 +96,18 @@ function draw() {
     }
     let index, xknobs, yknobs
     // back with knobs
-    for(i=2;i<0;i--){ // go on the backwards order on the x axis to match knobs on the back of the gen art work (turn the paper and left becomes tight :)
-        for(j=0;j<4;j++){
-            x=leftmargin+i*cardwidth
-            y=topmargin+j*cardheight
+    fSize=31;textSize(fSize)
+    for(let k=2;k>0;k--){ // go on the backwards order on the x axis to match knobs on the back of the gen art work (turn the paper and left becomes tight :)
+        for(let n=0;n<4;n++){
+            x=leftmargin+(2-k)*cardwidth
+            y=topmargin+n*cardheight
             push()
             translate(x,y)
             xknobs=cardleftmargin
-            yknobs=cardtopmargin
-            index=i*4+j
+            yknobs=cardtopmargin+fSize
+            index=(k-1)*4+n
             showknobs(xknobs,yknobs,allknobs[index])
+            console.log(index + " " + allknobs[index][0].name + " " + allknobs[index][0].val)
             pop()
         }
     }
@@ -101,13 +116,18 @@ function draw() {
 }
 
 
-function showknobs(posx,posy, knobs) {
-    var knob, tx, ty
+function showknobs(posx, posy, aknobs) {
+    var knob_on_card, tx, ty, ind
     tx=posx
     ty=posy
-    for (k in knobs){
-        knob=knobs[k].name+" "+knobs[k].val
-        text(knob, tx, ty)
+    ind=10
+        // knob_on_card=aknobs[ind].name+" "+aknobs[ind].val
+        // text(knob_on_card, tx, ty)
+        // ty+=fSize
+        //     console.log(knob_on_card)
+    for (let k in aknobs){
+        knob_on_card=aknobs[k].name+" "+aknobs[k].val
+        text(knob_on_card, tx, ty)
         ty+=fSize
     }
     return([tx,ty])
