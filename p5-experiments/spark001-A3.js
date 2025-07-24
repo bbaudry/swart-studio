@@ -13,11 +13,8 @@ function preload() {
 }
 function setup() {
     //A3
-    //w=96*297/25.4=1122.5
-    //h=96*420/25.4=1587.4
-
-    w = Math.floor(8.5 * 96)//215.9mm
-    h = Math.floor(11 * 96)// 279.4mm
+    w = Math.floor(96*297/25.4)
+    h = Math.floor(96*420/25.4)
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);;
     centerCanvas();
     cardwidth=Math.floor(96*140/25.4) // card is 14 cm wide
@@ -29,10 +26,10 @@ function setup() {
     cardactualheight=cardbottommargin-cardtopmargin
     cardactualwidth=cardrightmargin-cardleftmargin
 
-    leftmargin = Math.floor((w-cardwidth)*0.5)
-    rightmargin = Math.floor(w-(w-cardwidth)*0.5)
-    topmargin = Math.floor((h-2*cardheight)*0.5)
-    bottommargin = Math.floor(h-(h-2*cardheight)*0.5)
+    leftmargin = Math.floor((w-cardwidth*2)*0.5)
+    rightmargin = Math.floor(w-(w-cardwidth*2)*0.5)
+    topmargin = Math.floor((h-4*cardheight)*0.5)
+    bottommargin = Math.floor(h-(h-4*cardheight)*0.5)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -55,53 +52,22 @@ function centerCanvas() {
 function draw() {
     background(0, 0, 100)
     stroke(0,100,100)
-    noFill()
-
-    // rect(0,0,w,h)
-    // rect(leftmargin,topmargin+cardheight,cardwidth,cardheight)
-    
-    let x,y
-    if(frameCount==1){
-    textFont(font)
-    x=leftmargin+cardleftmargin
-    y=topmargin+cardheight+cardtopmargin+cardactualheight
-    strokeWeight(penwidth);
-    spark(x,y, cardactualheight)
-    save("spark001-front.svg");
-    
-}
-if(frameCount==2){
-    strokeWeight(1);
-    rect(leftmargin,topmargin,cardwidth,cardheight)
-    fSize-=1;textSize(fSize)
-    stroke(0,0,0)
-    x=leftmargin+cardleftmargin
-    y=topmargin+cardheight+cardtopmargin+fSize
-    pos=showknobs(x,y)
-    textSize(fSize-3)
-    text("thank you for contributing to the krew's scientific journey", pos[0], pos[1]+fSize)
-    save("spark001-back.svg");
-    noLoop()
+    noFill() 
+    let x,y,xpark,yspark
+    for(i=0;i<2;i++){
+        for(j=0;j<4;j++){
+            x=leftmargin+i*cardwidth
+            y=topmargin+j*cardheight
+            rect(x,y,cardwidth,cardheight)
+            push()
+            translate(x,y)
+            xspark=cardleftmargin
+            yspark=cardbottommargin
+            spark(xspark,yspark,cardactualheight)
+            pop()
+        }
     }
-    
-    // if(frameCount==1){
-    // strokeWeight(1);
-    // fSize=10; textSize(fSize)
-    // x=leftmargin+cardleftmargin
-    // y=topmargin+cardheight+cardtopmargin
-    // pos=showcodeoneblock(x,y)
-    // fSize=27; textSize(fSize)
-    // text("thank you for visiting and contributing", pos[0], pos[1]+fSize)
-    // save("spark001-back.svg");
-    // }
-    // if(frameCount==2){
-    // strokeWeight(penwidth);
-    // x=leftmargin+cardleftmargin
-    // y=topmargin+cardheight+cardtopmargin+cardactualheight
-    // spark(x,y, cardactualheight)
-    // save("spark001-front.svg");
-    // noLoop()
-    // }
+    noLoop()
 }
 
 // draws the code, keeping indentation and line breaks

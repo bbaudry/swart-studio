@@ -113,6 +113,7 @@ function klines(x, y) {
 function rectwithlines(x, y, rectw, recth) {
     rect(x, y, rectw, recth)
     let x1, y1, x2, y2
+    if(random()<0.6){
     y1 = y
     y2 = y + recth
     x1 = x
@@ -121,6 +122,7 @@ function rectwithlines(x, y, rectw, recth) {
         line(x1, y1, x2, y2)
         x1 += penwidth
     }
+    }
 }
 
 // draws a triangle with lines
@@ -128,6 +130,7 @@ function rectwithlines(x, y, rectw, recth) {
 function trianglewithlines(x1, y1, x2, y2, x3, y3) {
     triangle(x1, y1, x2, y2, x3, y3)
     let lx1, ly1, lx2, ly2, t
+    if(random()<0.6){
     t = 0
     while (t < 1) {
         lx1 = (1 - t) * x1 + (t * x2);
@@ -137,14 +140,14 @@ function trianglewithlines(x1, y1, x2, y2, x3, y3) {
         line(lx1, ly1, lx2, ly2)
         t += 0.06
     }
-}
+    }}
 
 function arcwithlines(cx, cy, rad, rad, a1, a2) {
     arc(cx, cy, rad, rad, a1, a2)
     let r = rad
     while (r > 0) {
         arc(cx, cy, r, r, a1, a2)
-        r -= penwidth
+        r -= penwidth+3
     }
 }
 
@@ -158,6 +161,6 @@ function quadwithlines(x1, y1, x2, y2, x3, y3, x4, y4) {
         lx2 = (1 - t) * x2 + (t * x3);
         ly2 = (1 - t) * y2 + (t * y3);
         line(lx1, ly1, lx2, ly2)
-        t += 0.03
+        t += 0.04
     }
 }
