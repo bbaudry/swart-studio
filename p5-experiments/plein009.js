@@ -40,14 +40,15 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 100)
+    //    clemence()
     noFill()
-    stroke(300,80,100)
+    stroke(0,0,0)
     let magicnumbers=hal()
-    let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val+"; "+magicnumbers[3].name+": "+magicnumbers[3].val+"; "+magicnumbers[4].name+": "+magicnumbers[4].val
-    magie+='\n'+"beautiful noise [almyre::2025]"
+    let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
     stroke(0, 0, 0); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
     text(magie, c[0], c[1] + fSize)
+    text("beautiful noise [almyre::2025]", c[0], c[1] + 2*fSize)
 
     noLoop()
 }
@@ -64,4 +65,19 @@ function showcodeall(posx, posy) {
         y += fSize
     }
     return ([x, y])
+}
+
+function clemence() {
+    fill(330, 50, 100)
+    noStroke()
+    let x, y, rayon
+    rayon = w * 0.3
+    x = w * 0.5
+    y = topmargin + rayon
+    arc(x, y, rayon * 2, rayon * 2, PI, 2 * PI)
+
+    fill(50, 80, 100)
+    x -= rayon
+    y += h * 0.1
+    rect(x, y, rayon, rayon)
 }
