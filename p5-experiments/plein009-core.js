@@ -6,8 +6,8 @@ function hal() {
     magics=[]
     xoff = random()*1000; xinc = 0.0001; magics.push({name:"xinc",val:xinc})
     angleinc = Math.floor(random([30,45,60])); magics.push({name:"angleinc",val:angleinc})
-    diam = actualwidth * 0.01; diaminc = penwidth; magics.push({name:"diaminc",val:diaminc})
-    while(diam<w*0.7){
+    diam = actualwidth * 0.01; diaminc = penwidth*3; magics.push({name:"diaminc",val:diaminc})
+    while(diam<w*0.65){
         angle2 = 0
         angle1 = Math.floor(noise(xoff) * angleinc); xoff += xinc
         while (angle1 < 360) {

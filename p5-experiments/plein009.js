@@ -2,7 +2,7 @@
 var w, h
 var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
-var resolution, sourcecode
+var sourcecode
 var font
 var fSize = 11
 
@@ -23,8 +23,10 @@ function setup() {
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     strokeWeight(3);
-    penwidth = 0.04 * 96 // 0.04 inch is 1 mm, the width of stabilo 68/32
-    resolution = Math.floor(random([3, 5, 7]))
+    //96*0.2/25.4 : 0.2mm is the width of a fineliner
+    //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
+    penwidth = 96*0.2/25.4
+    strokeWeight(penwidth)
 }
 
 function savesvg() {
