@@ -18,7 +18,7 @@ function setup() {
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.7)
+    bottommargin = Math.floor(h * 0.67)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -50,7 +50,8 @@ function draw() {
     stroke(0, 0, 0); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
     text(magie, c[0], c[1] + fSize)
-    text("beautiful noise [almyre::2025]", c[0], c[1] + 2*fSize)
+    text("src: plein009-core.js", c[0], c[1] + 2 * fSize)
+    text("beautiful noise [almyre::2025]", c[0], c[1] + 3*fSize)
 
     noLoop()
 }

@@ -36,6 +36,7 @@ function setup() {
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
     penwidth = 96*0.2/25.4
+    strokeWeight(penwidth)
     
 }
 
@@ -62,7 +63,7 @@ function draw() {
         for(j=0;j<4;j++){
             x=leftmargin+i*cardwidth
             y=topmargin+j*cardheight
-            rect(x,y,cardwidth,cardheight)
+//            rect(x,y,cardwidth,cardheight)
             push()
             translate(x,y)
             xspark=cardleftmargin
