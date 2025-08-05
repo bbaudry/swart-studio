@@ -4,7 +4,7 @@ function hal() {
     // Initialize some variables
     sections = [];
     id = 0;
-    resolution = 100
+    resolution = 142
     nbsectionshorizontal = resolution
     nbsectionsvertical = resolution
     noisex = 0.0; noisey = 0.0
@@ -24,10 +24,10 @@ function hal() {
                     x2 = x1 + stepx + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     x3 = x1 + stepx + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     x4 = leftmargin + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
-                    y1 = topmargin + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
-                    y2 = topmargin + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
-                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
-                    y4 = y1 + stepy + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
+                    y1 = topmargin + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
+                    y2 = topmargin + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
+                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
+                    y4 = y1 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
                 }
                 else {
                     x1 = sections[(j - 1)].x4
@@ -36,8 +36,8 @@ function hal() {
                     x4 = x1 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     y1 = sections[(j - 1)].y4
                     y2 = sections[(j - 1)].y3
-                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
-                    y4 = y1 + stepy + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
+                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); //noisex += noisexinc
+                    y4 = y1 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); //noisex += noisexinc
                 }
             } else {
                 if (j == 0) {
@@ -46,8 +46,8 @@ function hal() {
                     x3 = x1 + stepx + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     x4 = sections[((i - 1) * nbsectionsvertical) + j].x3
                     y1 = sections[((i - 1) * nbsectionsvertical) + j].y2
-                    y2 = y1 + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
-                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
+                    y2 = y1 + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
+                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
                     y4 = sections[((i - 1) * nbsectionsvertical) + j].y3
                 }
                 else {
@@ -57,7 +57,7 @@ function hal() {
                     x4 = sections[((i - 1) * nbsectionsvertical) + j].x3
                     y1 = sections[i * nbsectionsvertical + j - 1].y4
                     y2 = sections[i * nbsectionsvertical + j - 1].y3
-                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisex) * yoffset); noisex += noisexinc
+                    y3 = y2 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); //noisex += noisexinc
                     y4 = sections[((i - 1) * nbsectionsvertical) + j].y3
                 }
             }
