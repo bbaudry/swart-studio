@@ -1,8 +1,10 @@
+var     sections;
+
 function hal() {
-    let x1, y1, x2, y2, x3, y3, x4, y4, resolution, stepx, stepy, noisex, noisexinc, noisey, noiseyinc, xoffset, yoffset, sections, nbsectionshorizontal, nbsectionsvertical
+    let x1, y1, x2, y2, x3, y3, x4, y4, resolution, stepx, stepy, noisex, noisexinc, noisey, noiseyinc, xoffset, yoffset, nbsectionshorizontal, nbsectionsvertical
 
     // Initialize some variables
-    sections = [];
+    sections=[]
     id = 0;
     resolution = 142
     nbsectionshorizontal = resolution
