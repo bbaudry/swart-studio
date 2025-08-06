@@ -6,9 +6,9 @@ function hal() {
     // Initialize some variables
     sections = []
     id = 0;
-    resolution = 31
-    nbsectionshorizontal = resolution*3
-    nbsectionsvertical = resolution*7
+    resolution = 17
+    nbsectionshorizontal = resolution*5
+    nbsectionsvertical = resolution*11
     noisex = 0.0; noisey = 0.0
     noisexinc = 0.001; noiseyinc = 0.01
     stepx = Math.floor(actualwidth / nbsectionshorizontal)
@@ -22,10 +22,10 @@ function hal() {
             // Check if we are at the beginning of a row
             if (i == 0) {
                 if (j == 0) {
-                    x1 = leftmargin + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
+                    x1 = leftmargin*2 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     x2 = x1 + stepx + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     x3 = x1 + stepx + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
-                    x4 = leftmargin + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
+                    x4 = leftmargin*2 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     y1 = topmargin + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
                     y2 = topmargin + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
                     y3 = y2 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
@@ -84,7 +84,7 @@ function hal() {
 
 function showgrid() {
     let black = true
-    fill(0,0,0)
+    //fill(0,0,0)
     for (s in sections) {
         if (black) {
             quad(sections[s].x1, sections[s].y1, sections[s].x2, sections[s].y2, sections[s].x3, sections[s].y3, sections[s].x4, sections[s].y4)
