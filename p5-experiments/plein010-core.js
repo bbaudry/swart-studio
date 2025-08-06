@@ -1,25 +1,17 @@
 var sections;
-
 function hal() {
     let x1, y1, x2, y2, x3, y3, x4, y4, resolution, stepx, stepy, noisex, noisexinc, noisey, noiseyinc, xoffset, yoffset, nbsectionshorizontal, nbsectionsvertical
-
-    // Initialize some variables
     sections = []
-    id = 0;
     resolution = 17
     nbsectionshorizontal = resolution*5
-    nbsectionsvertical = resolution*11
+    nbsectionsvertical = resolution*15
     noisex = 0.0; noisey = 0.0
     noisexinc = 0.001; noiseyinc = 0.01
     stepx = Math.floor(actualwidth / nbsectionshorizontal)
     stepy = Math.floor(actualheight / nbsectionsvertical)
-    xoffset = stepx * 0.1
-    yoffset = stepy * 0.1
-
-    // Create all sections
+    xoffset = stepx * 0.1; yoffset = stepy * 0.1
     for (let i = 0; i < nbsectionshorizontal; i++) {
         for (let j = 0; j < nbsectionsvertical; j++) {
-            // Check if we are at the beginning of a row
             if (i == 0) {
                 if (j == 0) {
                     x1 = leftmargin*2 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
@@ -63,19 +55,9 @@ function hal() {
                     y4 = sections[((i - 1) * nbsectionsvertical) + j].y3
                 }
             }
-            // Create the section
             let section = {
-                x1: x1,
-                y1: y1,
-                x2: x2,
-                y2: y2,
-                x3: x3,
-                y3: y3,
-                x4: x4,
-                y4: y4,
+                x1: x1, y1: y1, x2: x2, y2: y2, x3: x3, y3: y3, x4: x4, y4: y4,
             };
-
-            // Add the section to the list and increment the id
             sections.push(section);
         }
     }
