@@ -2,14 +2,14 @@ var sections, nbsectionshorizontal, nbsectionsvertical;
 function hal() {
     let x1, y1, x2, y2, x3, y3, x4, y4, resolution, stepx, stepy, noisex, noisexinc, noisey, noiseyinc, xoffset, yoffset
     sections = []
-    resolution = 17
-    nbsectionshorizontal = resolution * 5
-    nbsectionsvertical = resolution * 15
+    resolution = 7
+    nbsectionshorizontal = resolution * 25
+    nbsectionsvertical = resolution * 5
     noisex = 0.0; noisey = 0.0
-    noisexinc = 0.001; noiseyinc = 0.01
+    noisexinc = 0.1; noiseyinc = 0.01
     stepx = Math.floor(actualwidth / nbsectionshorizontal)
     stepy = Math.floor(actualheight / nbsectionsvertical)
-    xoffset = stepx * 0.1; yoffset = stepy * 0.1
+    xoffset = stepx * 0.5; yoffset = stepy * 0.1
     for (let i = 0; i < nbsectionshorizontal; i++) {
         for (let j = 0; j < nbsectionsvertical; j++) {
             if (i == 0) {
@@ -61,33 +61,39 @@ function hal() {
             sections.push(section);
         }
     }
-    //    showgrid()
+    //showgrid()
     wave()
 }
 
 function wave() {
     var p1, p2, p3, d
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < nbsectionshorizontal-1; i++) {
         beginShape()
         p1 = sections[i * nbsectionsvertical]
         vertex(p1.x1, p1.y1)
         for (let j = 1; j < nbsectionsvertical - 3; j++) {
-            d=Math.floor(random(2,7))
-            if (j % 2 == 0) {
-                p1 = sections[i * nbsectionsvertical + j]
-                p2 = sections[i * (nbsectionsvertical + j + 1) + 1]
-                p3 = sections[i * nbsectionsvertical + j + 2]
-                //ellipse(p.x1, p.y1, d, d)
+            //d=Math.floor(random(2,7))
+            if (j % 6 == 0) {
+                d = 9
+                p1 = sections[(i+1) * nbsectionsvertical + j]
+                p2 = sections[i * nbsectionsvertical + j  + 1]
+                p3 = sections[(i+1) * nbsectionsvertical + j + 2]
+                // ellipse(p1.x1, p1.y1, d, d)
+                // ellipse(p2.x1, p2.y1, d, d)
+                // ellipse(p3.x1, p3.y1, d, d)
                 bezierVertex(p1.x1,p1.y1,p2.x1,p2.y1,p3.x1,p3.y1);
             }
             else {
-                p1 = sections[i * (nbsectionsvertical+1) + j]
-                p2 = sections[i * (nbsectionsvertical + j + 1) + 1]
+                d = 19
+                p1 = sections[i * nbsectionsvertical  + j]
+                p2 = sections[(i+1) * nbsectionsvertical + j + 1]
                 p3 = sections[i * nbsectionsvertical + j + 2]
-                //ellipse(p1.x1, p1.y1, d, d)
-                bezierVertex(p1.x1,p1.y1,p2.x1,p2.y1,p3.x1,p3.y1);
+                // ellipse(p1.x1, p1.y1, d, d)
+                // ellipse(p2.x1, p2.y1, d, d)
+                // ellipse(p3.x1, p3.y1, d, d)
+                // bezierVertex(p1.x1,p1.y1,p2.x1,p2.y1,p3.x1,p3.y1);
             }
-        endShape()
+            endShape()
         }
     }
 }
