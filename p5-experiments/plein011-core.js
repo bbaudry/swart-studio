@@ -1,0 +1,20 @@
+function hal() {
+    let ax1, ay1, px1, py1, px2, py2, ax2, ay2
+    //rect(leftmargin,topmargin,actualwidth,actualheight)
+    for (i = 0; i < 300; i++) {
+        if(i<100){
+        ax1 = leftmargin
+        ay1 = bottommargin - i * 1.5
+        ax2 = rightmargin
+        ay2 = bottommargin - i * 2.2
+        px1 = ax1 + actualwidth * 0.25 - i * 2
+        py1 = ay1 - i * i * 0.05
+        px2 = ax2 - actualwidth * 0.5 + i * i* 0.007
+        py2 = ay2 + i
+        beginShape()
+        vertex(ax1, ay1)
+        bezierVertex(px1, py1, px2, py2, ax2, ay2)
+        endShape()
+        }
+    }
+}

@@ -4,11 +4,11 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 11
+var fSize = 9
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
-        sourcecode = loadStrings('plein009-core.js');
+        sourcecode = loadStrings('plein011-core.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -18,7 +18,7 @@ function setup() {
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.67)
+    bottommargin = Math.floor(h * 0.9)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -30,7 +30,7 @@ function setup() {
 }
 
 function savesvg() {
-    save("plein009.svg");
+    save("plein010.svg");
 }
 
 function centerCanvas() {
@@ -44,18 +44,16 @@ function draw() {
     background(0, 0, 100)
     //    clemence()
     noFill()
-    stroke(0,0,0)
-        textFont(font)
+    stroke(0,0,0)    
+    textFont(font)
     textSize(fSize)
 
     let magicnumbers=hal()
-    let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
-    stroke(0, 0, 0); strokeWeight(1)
-    let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
-    text(magie, c[0], c[1] + fSize)
-    text("src: plein009-core.js", c[0], c[1] + 2 * fSize)
-    text("beautiful noise [almyre::2025]", c[0], c[1] + 3*fSize)
-
+    //let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
+    stroke(0, 0, 0); noFill()
+    //let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
+    //text(magie, c[0], c[1] + fSize)
+    text("noise avenue [almyre::2025]", leftmargin,bottommargin + 2*fSize)
     noLoop()
 }
 

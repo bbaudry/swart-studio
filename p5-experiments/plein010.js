@@ -45,6 +45,9 @@ function draw() {
     //    clemence()
     noFill()
     stroke(0,0,0)
+        textFont(font)
+    textSize(fSize)
+
     let magicnumbers=hal()
     //let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
     stroke(0, 0, 0); noFill()
@@ -60,8 +63,6 @@ function showcodeall(posx, posy) {
     var x, y
     x = posx
     y = posy
-    textFont(font)
-    textSize(fSize)
     for (b in sourcecode) {
         text(sourcecode[b], x, y)
         y += fSize
