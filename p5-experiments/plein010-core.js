@@ -1,10 +1,10 @@
-var sections;
+var sections, nbsectionshorizontal, nbsectionsvertical;
 function hal() {
-    let x1, y1, x2, y2, x3, y3, x4, y4, resolution, stepx, stepy, noisex, noisexinc, noisey, noiseyinc, xoffset, yoffset, nbsectionshorizontal, nbsectionsvertical
+    let x1, y1, x2, y2, x3, y3, x4, y4, resolution, stepx, stepy, noisex, noisexinc, noisey, noiseyinc, xoffset, yoffset
     sections = []
     resolution = 17
-    nbsectionshorizontal = resolution*5
-    nbsectionsvertical = resolution*15
+    nbsectionshorizontal = resolution * 5
+    nbsectionsvertical = resolution * 15
     noisex = 0.0; noisey = 0.0
     noisexinc = 0.001; noiseyinc = 0.01
     stepx = Math.floor(actualwidth / nbsectionshorizontal)
@@ -14,10 +14,10 @@ function hal() {
         for (let j = 0; j < nbsectionsvertical; j++) {
             if (i == 0) {
                 if (j == 0) {
-                    x1 = leftmargin*2 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
+                    x1 = leftmargin * 2 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     x2 = x1 + stepx + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     x3 = x1 + stepx + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
-                    x4 = leftmargin*2 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
+                    x4 = leftmargin * 2 + (-xoffset + 2 * noise(noisex) * xoffset); noisex += noisexinc
                     y1 = topmargin + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
                     y2 = topmargin + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
                     y3 = y2 + stepy + (-yoffset + 2 * noise(noisey) * yoffset); noisey += noiseyinc
@@ -61,7 +61,35 @@ function hal() {
             sections.push(section);
         }
     }
-    showgrid()
+    //    showgrid()
+    wave()
+}
+
+function wave() {
+    var p1, p2, p3, d
+    for (let i = 0; i < 1; i++) {
+        beginShape()
+        p1 = sections[i * nbsectionsvertical]
+        vertex(p1.x1, p1.y1)
+        for (let j = 1; j < nbsectionsvertical - 3; j++) {
+            d=Math.floor(random(2,7))
+            if (j % 2 == 0) {
+                p1 = sections[i * nbsectionsvertical + j]
+                p2 = sections[i * (nbsectionsvertical + j + 1) + 1]
+                p3 = sections[i * nbsectionsvertical + j + 2]
+                //ellipse(p.x1, p.y1, d, d)
+                bezierVertex(p1.x1,p1.y1,p2.x1,p2.y1,p3.x1,p3.y1);
+            }
+            else {
+                p1 = sections[i * (nbsectionsvertical+1) + j]
+                p2 = sections[i * (nbsectionsvertical + j + 1) + 1]
+                p3 = sections[i * nbsectionsvertical + j + 2]
+                //ellipse(p1.x1, p1.y1, d, d)
+                bezierVertex(p1.x1,p1.y1,p2.x1,p2.y1,p3.x1,p3.y1);
+            }
+        endShape()
+        }
+    }
 }
 
 function showgrid() {
@@ -71,7 +99,7 @@ function showgrid() {
         if (black) {
             quad(sections[s].x1, sections[s].y1, sections[s].x2, sections[s].y2, sections[s].x3, sections[s].y3, sections[s].x4, sections[s].y4)
         }
-        black=!black
+        black = !black
     }
 }
 
