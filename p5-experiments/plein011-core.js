@@ -1,9 +1,10 @@
 function hal() {
-    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, xoff, xinc
+    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, xoff, xinc, max
     xoff=0.0
-    xinc=0.001
+    xinc=0.005
+    max=300
     //rect(leftmargin,topmargin,actualwidth,actualheight)
-    for (i = 0; i < 300; i++) {
+    for (i = 0; i < max; i++) {
         if(i<100){
         ax1 = leftmargin
         ay1 = bottommargin - i * noise(xoff); xoff+=xinc
