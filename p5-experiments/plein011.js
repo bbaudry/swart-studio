@@ -44,11 +44,13 @@ function draw() {
     background(0, 0, 100)
     //    clemence()
     noFill()
-    stroke(0,0,0)    
     textFont(font)
     textSize(fSize)
-
+    stroke(200,100,100)    
     let magicnumbers=hal()
+
+    stroke(0,100,100)    
+    magicnumbers=hal()
     //let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
     stroke(0, 0, 0); noFill()
     //let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
