@@ -18,7 +18,7 @@ function setup() {
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.9)
+    bottommargin = Math.floor(h * 0.7)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -53,9 +53,9 @@ function draw() {
     magicnumbers=hal()
     //let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
     stroke(0, 0, 0); noFill()
-    //let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
+    let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
     //text(magie, c[0], c[1] + fSize)
-    text("noise avenue [almyre::2025]", leftmargin,bottommargin + 2*fSize)
+    text("noise avenue [almyre::2025]", c[0], c[1] + 2*fSize)
     noLoop()
 }
 
