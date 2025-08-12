@@ -22,15 +22,14 @@ function setup() {
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
-    strokeWeight(3);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
-    penwidth = 96*0.2/25.4
+    penwidth =96*0.2/25.4
     strokeWeight(penwidth)
 }
 
 function savesvg() {
-    save("plein010.svg");
+    save("plein011.svg");
 }
 
 function centerCanvas() {
