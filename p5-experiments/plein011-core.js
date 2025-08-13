@@ -4,25 +4,39 @@ var xoff, xinc,
 
 function hal() {
     let ax1, ay1, px1, py1, px2, py2, ax2, ay2, max, magicy, magicx, cy
+    for(let t=0;t<=1;t+=0.01){
+    ax1=leftmargin
+    ay1=lerp(bottommargin,topmargin,t)
+    ax2=lerp(leftmargin,rightmargin,t)
+    ay2=bottommargin
+    line(ax1, ay1, ax2, ay2)
+    }
+    for(let t=0;t<=1;t+=0.01){
+    ax1=lerp(leftmargin,rightmargin,t)
+    ay1=topmargin
+    ax2=rightmargin
+    ay2=lerp(bottommargin,topmargin,t)
+    line(ax1, ay1, ax2, ay2)
+    }
+}
+
+function hal3() {
+    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, max, magicy, magicx, cy
     max=Math.floor(actualheight)
     cy=max/2
     magicy=random(1.8,2.2)
     magicx=random(0.0001,0.005)
-    //rect(leftmargin,topmargin,actualwidth,actualheight)
     for (i = 0; i < max; i++) {
         ax1 = leftmargin
-        ay1 = bottommargin - i 
+        ay1 = bottommargin - i * noise(xoff); xoff+=xinc
         ax2 = rightmargin
-        ay2 = ay1
+        ay2 = topmargin+i//*1.5* noise(xoff); xoff+=xinc
 
         px1 = ax1 + actualwidth * 0.25
-        py1 = ay1 - (cy -i)
+        py1 = ay1 - (cy -i)* noise(xoff); xoff+=xinc
         px2 = ax2 - actualwidth * 0.25
-        py2 = ay2 - (cy -i)
-        beginShape()
-        vertex(ax1, ay1)
-        bezierVertex(px1, py1, px2, py2, ax2, ay2)
-        endShape()
+        py2 = ay2 + (cy -i)* noise(xoff); xoff+=xinc
+        bezier(ax1, ay1,px1, py1, px2, py2, ax2, ay2)
         
     }
 }
