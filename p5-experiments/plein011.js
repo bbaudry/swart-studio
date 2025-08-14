@@ -49,7 +49,7 @@ function draw() {
     let magicnumbers=hal()
 
     stroke(0,100,100)    
-    magicnumbers=hal()
+//    magicnumbers=hal()
     //let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
     stroke(0, 0, 0); noFill()
     let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
