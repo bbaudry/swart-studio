@@ -1,10 +1,10 @@
 var xoff, xinc,
     xoff = 0.0
-xinc = 0.005
+xinc = 0.009
 
 function hal() {
     let ax1, ay1, px1, py1, px2, py2, ax2, ay2, max, magicy, magicx, cy
-    for (let t = 0; t <= 1; t += 0.0042) {
+    for (let t = 0; t < 1; t += 0.0032) {
         ax1 = leftmargin
         ay1 = lerp(bottommargin, topmargin, t)
         ax2 = lerp(leftmargin, rightmargin, t)
@@ -14,8 +14,8 @@ function hal() {
         px2 = ax2 - (ax2-ax1) * noise(xoff); xoff += xinc
         py2 = ay2 
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-//        line(ax1, ay1, ax2, ay2)
-
+    }
+    for (let t = 0; t <= 1; t += 0.0032) {
         ax1 = lerp(leftmargin, rightmargin, t)
         ay1 = topmargin
         ax2 = rightmargin
@@ -25,7 +25,6 @@ function hal() {
         px2 = ax2 - (ax2-ax1) * noise(xoff); xoff += xinc
         py2 = ay2 
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-//        line(ax1, ay1, ax2, ay2)
     }
 }
 
