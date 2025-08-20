@@ -4,6 +4,26 @@ xinc = 0.009
 
 function hal() {
     let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon
+    rayon=5
+    for (let t = 0; t < 50; t ++) {
+        ax1 = leftmargin
+        ay1 = lerp(bottommargin, topmargin, 0.5)-t
+        ax2 = rightmargin
+        ay2 = lerp(bottommargin, topmargin, 0.5)+t
+        px1 = lerp(ax1,ax2,0.25)+rayon*cos(radians(270))
+        py1 = lerp(ay1,ay2,0.25)+rayon*sin(radians(270))
+        px2 = lerp(ax1,ax2,0.75)-rayon*cos(radians(270))
+        py2 = lerp(ay1,ay2,0.75)-rayon*sin(radians(270)) 
+        bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
+        ellipse(lerp(ax1,ax2,0.25),lerp(ay1,ay2,0.25),7,7)
+        ellipse(lerp(ax1,ax2,0.75),lerp(ay1,ay2,0.75),7,7)
+        rayon+=random(19)
+    }
+   
+}
+
+function hal5() {
+    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon
     rayon=135
     for (let t = 0; t < 1; t += 0.0042) {
         ax1 = leftmargin
