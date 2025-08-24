@@ -8,7 +8,7 @@ var fSize = 9
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
-        sourcecode = loadStrings('plein011-core.js');
+        sourcecode = loadStrings('plein012-core.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -17,14 +17,14 @@ function setup() {
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
-    topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.7)
+    topmargin = Math.floor(h * 0.07)
+    bottommargin = Math.floor(h * 0.75)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
-    penwidth =96*0.2/25.4
+    penwidth =0.04 * 96
     strokeWeight(penwidth)
 }
 
@@ -41,20 +41,15 @@ function centerCanvas() {
 
 function draw() {
     background(0, 0, 100)
-    //    clemence()
     noFill()
     textFont(font)
     textSize(fSize)
     stroke(200,100,100)    
-    let magicnumbers=hal()
-
-    stroke(0,100,100)    
-//    magicnumbers=hal()
-    //let magie="Magic numbers :: "+magicnumbers[0].name+": "+magicnumbers[0].val+"; "+magicnumbers[1].name+": "+magicnumbers[1].val+"; "+magicnumbers[2].name+": "+magicnumbers[2].val
+    hal()
     stroke(0, 0, 0); noFill()
-    //let c = showcodeall(leftmargin * 4.2, bottommargin + fSize)
-    //text(magie, c[0], c[1] + fSize)
-    //text("noise avenue [almyre::2025]", c[0], c[1] + 2*fSize)
+    let c = showcodeall(leftmargin * 4.2, bottommargin)
+    text("vague horizon", c[0], c[1] + fSize)
+    text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize)
     noLoop()
 }
 

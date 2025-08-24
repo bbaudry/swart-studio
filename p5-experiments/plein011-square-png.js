@@ -12,13 +12,13 @@ function preload() {
 }
 function setup() {
     w = Math.floor(8.5 * 96)
-    h = Math.floor(11 * 96)
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);;
+    h = w//Math.floor(11 * 96)
+    cnv = createCanvas(w, h).mousePressed(savepng);;
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.7)
+    bottommargin = Math.floor(h * 0.95)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -28,8 +28,8 @@ function setup() {
     strokeWeight(penwidth)
 }
 
-function savesvg() {
-    save("plein011.svg");
+function savepng() {
+    save("plein011.png");
 }
 
 function centerCanvas() {
