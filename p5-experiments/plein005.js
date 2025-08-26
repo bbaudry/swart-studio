@@ -32,7 +32,7 @@ function draw() {
     stroke(0, 100, 100)
     var x2 = leftmargin + Math.floor(random(actualwidth))
     nucleus(leftmargin, topmargin, x2, bottommargin, topmargin, bottommargin)
-    save("plein005.png")
+    //save("plein005.png")
     noLoop()
 }
 

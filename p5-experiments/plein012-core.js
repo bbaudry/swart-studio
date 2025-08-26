@@ -20,6 +20,6 @@ function hal() {
         px2 = lerp(ax1,ax2,0.75)
         py2 = lerp(ay1,ay2,0.75)-rayon*sin(radians(rayon*noise(xoff)));xoff+=xinc 
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-        rayon+=5
+        rayon+=4.2
     }
 }

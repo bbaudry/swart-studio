@@ -13,7 +13,7 @@ function preload() {
 function setup() {
     w = Math.floor(8.5 * 96)
     h = Math.floor(11 * 96)
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);;
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
@@ -47,9 +47,9 @@ function draw() {
     stroke(200,100,100)    
     hal()
     stroke(0, 0, 0); noFill()
-    let c = showcodeall(leftmargin * 4.2, bottommargin)
-    text("vague horizon", c[0], c[1] + fSize)
-    text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize)
+    //let c = showcodeall(leftmargin * 4.2, bottommargin)
+    //text("vague horizon", c[0], c[1] + fSize)
+    //text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize)
     noLoop()
 }
 
