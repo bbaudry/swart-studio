@@ -48,11 +48,26 @@ function draw() {
     noFill()
     stroke(0, 100, 100)
     var yinit = topmargin+random(0.1,0.5)*actualheight
-    var topsegmentheigt=Math.floor(random(27,53))*penwidth
-    var bottomsegmentheigt=Math.floor(random(27,53))*penwidth
-    quad(leftmargin,topmargin,rightmargin,yinit,rightmargin,yinit+topsegmentheigt,leftmargin,topmargin+topsegmentheigt)
-    quad(leftmargin,bottommargin,rightmargin,yinit+topsegmentheigt+bottomsegmentheigt,rightmargin,yinit+topsegmentheigt,leftmargin,bottommargin-bottomsegmentheigt)
-
+    var topsegmentheigt=Math.floor(random(42,74))*penwidth
+    var bottomsegmentheigt=Math.floor(random(42,74))*penwidth
+    var x1,y1,x2,y2,x3,y3
+    var x4,y4,x5,y5,x6,y6
+    var x7,y7,x8,y8,x9,y9
+    x1=leftmargin;y1=topmargin
+    x2=rightmargin;y2=topmargin
+    x3=rightmargin;y3=topmargin+random(0.1,0.5)*actualheight
+    x4=leftmargin;y4=topmargin+topsegmentheigt
+    x5=rightmargin;y5=y3+topsegmentheigt
+    x6=rightmargin;y6=y5+bottomsegmentheigt
+    x7=leftmargin;y7=bottommargin
+    x8=leftmargin;y8=bottommargin-bottomsegmentheigt
+    x9=rightmargin;y9=bottommargin
+    quad(x1,y1,x3,y3,x5,y5,x4,y4)
+    quad(x8,y8,x5,y5,x6,y6,x7,y7)
+    fill(200,100,100)
+    triangle(x1,y1,x2,y2,x3,y3)
+    triangle(x4,y4,x5,y5,x8,y8)
+    triangle(x7,y7,x6,y6,x9,y9)
     noLoop()
 }
 
