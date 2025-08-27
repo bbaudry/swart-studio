@@ -62,13 +62,23 @@ function draw() {
     x7=leftmargin;y7=bottommargin
     x8=leftmargin;y8=bottommargin-bottomsegmentheigt
     x9=rightmargin;y9=bottommargin
-    quad(x1,y1,x3,y3,x5,y5,x4,y4)
-    quad(x8,y8,x5,y5,x6,y6,x7,y7)
-    fill(200,100,100)
+    quadwithlines(x1,y1,x3,y3,x5,y5,x4,y4)
+    quadwithlines(x8,y8,x5,y5,x6,y6,x7,y7)
     triangle(x1,y1,x2,y2,x3,y3)
     triangle(x4,y4,x5,y5,x8,y8)
     triangle(x7,y7,x6,y6,x9,y9)
     noLoop()
+}
+
+function quadwithlines(x1,y1,x2,y2,x3,y3,x4,y4){
+    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    var yleft,yright
+    yleft=y1;yright=y2
+    while(yleft<y4){
+        line(x1,yleft,x2,yright)
+        yleft+=penwidth
+        yright+=penwidth    
+    }
 }
 
 function nucleus(x1, y1, x2, y2, x3, y3) {
