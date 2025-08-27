@@ -1,7 +1,7 @@
 
 var w, h
 var cnv
-var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth
+var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
@@ -47,9 +47,12 @@ function draw() {
     background(0, 0, 100)
     noFill()
     stroke(0, 100, 100)
-    var x2 = leftmargin + Math.floor(random(actualwidth))
-    nucleus(leftmargin, topmargin, x2, bottommargin, topmargin, bottommargin)
-    //save("plein005.png")
+    var yinit = topmargin+random(0.1,0.5)*actualheight
+    var topsegmentheigt=Math.floor(random(27,53))*penwidth
+    var bottomsegmentheigt=Math.floor(random(27,53))*penwidth
+    quad(leftmargin,topmargin,rightmargin,yinit,rightmargin,yinit+topsegmentheigt,leftmargin,topmargin+topsegmentheigt)
+    quad(leftmargin,bottommargin,rightmargin,yinit+topsegmentheigt+bottomsegmentheigt,rightmargin,yinit+topsegmentheigt,leftmargin,bottommargin-bottomsegmentheigt)
+
     noLoop()
 }
 
@@ -60,7 +63,7 @@ function nucleus(x1, y1, x2, y2, x3, y3) {
     var rdec = 5
     var initangle = Math.floor(random(59))
     var ox, oy, dx, dy
-    for (var r = rinit; r > rdec; r -= rdec) {
+    for (var r = rinit; r > rdec; r -= penwidth) {
         x1 = cx + r * cos(radians(initangle))
         y1 = cy + r * sin(radians(initangle))
         x2 = cx + r * cos(radians(initangle + 120))
