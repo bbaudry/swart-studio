@@ -1,3 +1,4 @@
+const { useOptimistic } = require("react");
 
 var w, h
 var cnv
@@ -47,9 +48,9 @@ function draw() {
     background(0, 0, 100)
     noFill()
     stroke(0, 100, 100)
-    var yinit = topmargin+random(0.1,0.5)*actualheight
-    var topsegmentheigt=Math.floor(random(42,74))*penwidth
-    var bottomsegmentheigt=Math.floor(random(42,74))*penwidth
+    var yinit = topmargin+random(0.21,0.42)*actualheight
+    var topsegmentheigt=Math.floor(random(32,63))*penwidth
+    var bottomsegmentheigt=Math.floor(random(32,63))*penwidth
     var x1,y1,x2,y2,x3,y3
     var x4,y4,x5,y5,x6,y6
     var x7,y7,x8,y8,x9,y9
@@ -64,9 +65,9 @@ function draw() {
     x9=rightmargin;y9=bottommargin
     quadwithlines(x1,y1,x3,y3,x5,y5,x4,y4)
     quadwithlines(x8,y8,x5,y5,x6,y6,x7,y7)
-    triangle(x1,y1,x2,y2,x3,y3)
-    triangle(x4,y4,x5,y5,x8,y8)
-    triangle(x7,y7,x6,y6,x9,y9)
+    triwstripes(x1,y1,x2,y2,x3,y3)
+    triwstripes(x4,y4,x5,y5,x8,y8)
+    triwstripes(x7,y7,x6,y6,x9,y9)
     noLoop()
 }
 
@@ -79,6 +80,39 @@ function quadwithlines(x1,y1,x2,y2,x3,y3,x4,y4){
         yleft+=penwidth
         yright+=penwidth    
     }
+}
+
+function triwstripes(x1,y1,x2,y2,x3,y3){
+    var xi,yi,xd,yd,step,up,i
+    xi=x1;yi=y1
+    xd=x2;yd=y2
+    step=0.02
+    up=true
+    i=0
+    line(xi,yi,xd,yd)
+    while(step*i<1){
+        if(up){
+    xi=xd;yi=yd
+    xd=lerp(x2,x3,step*i)
+    yd=lerp(y2,y3,step*i)
+    line(xi,yi,xd,yd)
+    xi=xd;yi=yd
+    xd=lerp(x1,x3,step*i)
+    yd=lerp(y1,y3,step*i)
+    line(xi,yi,xd,yd)
+    }else{
+    xi=xd;yi=yd
+    xd=lerp(x1,x3,step*i)
+    yd=lerp(y1,y3,step*i)
+    line(xi,yi,xd,yd)
+    xi=xd;yi=yd
+    xd=lerp(x2,x3,step*i)
+    yd=lerp(y2,y3,step*i)
+    line(xi,yi,xd,yd)
+    }
+    up=!up
+    i++
+}
 }
 
 function nucleus(x1, y1, x2, y2, x3, y3) {
