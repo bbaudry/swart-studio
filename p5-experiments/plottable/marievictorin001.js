@@ -16,10 +16,10 @@ function setup() {
     //cnv = createCanvas(w, h).mousePressed(savepng);
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     centerCanvas();
-    leftmargin = Math.floor(w * 0.05)
-    rightmargin = Math.floor(w * 0.95)
-    topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.95)
+    leftmargin = Math.floor(w * 0.03)
+    rightmargin = Math.floor(w * 0.97)
+    topmargin = Math.floor(h * 0.03)
+    bottommargin = Math.floor(h * 0.97)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -47,7 +47,6 @@ function centerCanvas() {
 function draw() {
     background(0, 0, 100)
     noFill()
-    stroke(0, 100, 100)
     var yinit = topmargin+random(0.21,0.42)*actualheight
     var topsegmentheigt=Math.floor(random(32,63))*penwidth
     var bottomsegmentheigt=Math.floor(random(32,63))*penwidth
@@ -63,8 +62,10 @@ function draw() {
     x7=leftmargin;y7=bottommargin
     x8=leftmargin;y8=bottommargin-bottomsegmentheigt
     x9=rightmargin;y9=bottommargin
+    stroke(0, 100, 100)
     quadwithlines(x1,y1,x3,y3,x5,y5,x4,y4)
     quadwithlines(x8,y8,x5,y5,x6,y6,x7,y7)
+    stroke(200, 100, 100)
     triwstripes(x1,y1,x2,y2,x3,y3)
     triwstripes(x4,y4,x5,y5,x8,y8)
     triwstripes(x7,y7,x6,y6,x9,y9)
