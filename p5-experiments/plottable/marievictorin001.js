@@ -63,7 +63,9 @@ function draw() {
     x8=leftmargin;y8=bottommargin-bottomsegmentheigt
     x9=rightmargin;y9=bottommargin
     stroke(0, 100, 100)
-    quadwithlines(x1,y1,x3,y3,x5,y5,x4,y4)
+    //quadwithlines(x1,y1,x3,y3,x5,y5,x4,y4)
+    triwstripes(x5,y5,x1,y1,x3,y3)
+    triwstripes(x4,y4,x1,y1,x5,y5)
     quadwithlines(x8,y8,x5,y5,x6,y6,x7,y7)
     stroke(200, 100, 100)
     triwstripes(x1,y1,x2,y2,x3,y3)
