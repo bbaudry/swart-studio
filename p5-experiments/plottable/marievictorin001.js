@@ -53,15 +53,24 @@ function draw() {
     var x1,y1,x2,y2,x3,y3
     var x4,y4,x5,y5,x6,y6
     var x7,y7,x8,y8,x9,y9
-    x1=leftmargin;y1=topmargin
-    x2=rightmargin;y2=topmargin
-    x3=rightmargin;y3=topmargin+random(0.1,0.5)*actualheight
-    x4=leftmargin;y4=topmargin+topsegmentheigt
-    x5=rightmargin;y5=y3+topsegmentheigt
-    x6=rightmargin;y6=y5+bottomsegmentheigt
-    x7=leftmargin;y7=bottommargin
-    x8=leftmargin;y8=bottommargin-bottomsegmentheigt
-    x9=rightmargin;y9=bottommargin
+    // x1=leftmargin;y1=topmargin
+    // x2=rightmargin;y2=topmargin
+    // x3=rightmargin;y3=topmargin+random(0.1,0.5)*actualheight
+    // x4=leftmargin;y4=topmargin+topsegmentheigt
+    // x5=rightmargin;y5=y3+topsegmentheigt
+    // x6=rightmargin;y6=y5+bottomsegmentheigt
+    // x7=leftmargin;y7=bottommargin
+    // x8=leftmargin;y8=bottommargin-bottomsegmentheigt
+    // x9=rightmargin;y9=bottommargin
+    x1=rightmargin;y1=topmargin
+    x2=leftmargin;y2=topmargin
+    x3=leftmargin;y3=topmargin+random(0.1,0.5)*actualheight
+    x4=rightmargin;y4=topmargin+topsegmentheigt
+    x5=leftmargin;y5=y3+topsegmentheigt
+    x6=leftmargin;y6=y5+bottomsegmentheigt
+    x7=rightmargin;y7=bottommargin
+    x8=rightmargin;y8=bottommargin-bottomsegmentheigt
+    x9=leftmargin;y9=bottommargin
     stroke(0, 100, 100)
     //quadwithlines(x1,y1,x3,y3,x5,y5,x4,y4)
     triwstripes(x5,y5,x1,y1,x3,y3)
