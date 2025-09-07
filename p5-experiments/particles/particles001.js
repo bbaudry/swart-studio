@@ -1,7 +1,7 @@
 
 var w, h
 var cnv
-var walker
+var walkers, nbwalkers
 
 function setup() {
     w = windowHeight
@@ -9,8 +9,18 @@ function setup() {
     cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
     colorMode(HSB, 360, 100, 100, 250);
-        background(0, 0, 0)
-    walker=new Walker(400,400)
+    background(0, 0, 0)
+    nbwalkers=111
+    initwalkers()
+}
+
+function initwalkers() {
+    walkers = []
+    for (let i = 0; i < nbwalkers; i++) {
+        let walker = new Walker(400, 400)
+        walkers.push(walker)
+    }
+
 }
 
 function centerCanvas() {
@@ -21,7 +31,9 @@ function centerCanvas() {
 
 
 function draw() {
-    walker.update()
-    walker.show()
+    for (let i = 0; i < nbwalkers; i++) {
+        walkers[i].update()
+        walkers[i].show()
+    }
 }
 

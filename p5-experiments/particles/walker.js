@@ -1,11 +1,13 @@
 class Walker{
     constructor(x,y){
         this.pos=createVector(x,y)
+        this.vel=p5.Vector.random2D()
+        this.vel=this.vel*random(3,21)
     }
 
     update(){
-        this.pos.x=this.pos.x+random(-5,5)
-        this.pos.y=this.pos.y+random(-5,5)
+        this.pos.add(this.vel)
+        this.vel=p5.Vector.random2D()
     }
 
     show(){
