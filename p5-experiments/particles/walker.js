@@ -2,7 +2,7 @@ class Walker{
     constructor(x,y){
         this.pos=createVector(x,y)
         this.vel=p5.Vector.random2D()
-        this.vel.mult(random(3,21))
+        this.vel.mult(random(21,42))
         this.xoff=0.0
         this.xinx=0.001
     }
@@ -17,11 +17,11 @@ class Walker{
     }
 
     show(){
-        stroke(0,0,100,10)
+        stroke(frameCount*0.1,0,100,10)
         strokeWeight(7)
         //point(this.pos.x,this.pos.y)
-        stroke(0,100,100,20)
-        strokeWeight(1)
+        stroke(frameCount*0.001,100,100,20)
+        strokeWeight(7)
         point(this.pos.x,this.pos.y)
     }
 }

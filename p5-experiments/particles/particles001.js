@@ -17,7 +17,7 @@ function setup() {
 function initwalkers() {
     walkers = []
     for (let i = 0; i < nbwalkers; i++) {
-        let walker = new Walker(400, 400)
+        let walker = new Walker(random(300,500), random(300,500))
         walkers.push(walker)
     }
 
