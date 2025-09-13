@@ -1,0 +1,17 @@
+name: Generate one artwork for every commit
+
+on: push
+
+jobs:
+  get_commit:
+    name: Get commit content
+  
+  extract_commit_data :
+    name: Extract commit data for art Generate
+    # extract commit-id, nb lines changed, nb files changed
+
+  gen_art :
+    name: Generate artwork
+  
+  save_art :
+    name: Save artwork
