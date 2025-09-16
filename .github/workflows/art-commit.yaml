@@ -17,13 +17,8 @@ jobs:
       run: |
         echo "SHA_SHORT: ${{ env.sha_short }}"
 
-    - uses: actions/checkout@v4
-    - name: Find changed lines
-      id: changed_lines
-      uses: hestonhoffman/changed-lines@v1
+ 
       
-    - name: Print changed lines
-      run: echo ${{ steps.changed_lines.outputs.changed_lines }}
 
     - name: Extract commits data for art Generate
       # extract commit-id, nb lines changed, nb files changed
