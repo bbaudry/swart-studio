@@ -2,23 +2,28 @@ class Walker{
     constructor(x,y){
         this.pos=createVector(x,y)
         this.vel=p5.Vector.random2D()
-        this.vel.mult(random(21,42))
+        //this.vel.mult(random(21,42))
         this.xoff=random(1000.0)
         this.xinx=0.001
+        this.acc=p5.Vector.random2D().setMag(0.001)
+        this.x=x
+        this.y=y
     }
 
     update(){
+        this.vel.add(this.acc)
         this.pos.add(this.vel)
-        this.vel=p5.Vector.random2D().mult(21+noise(this.xoff)*42);this.xoff+=this.xinc
+//        this.vel=p5.Vector.random2D().mult(21+noise(this.xoff)*42);this.xoff+=this.xinc
         if(this.pos.x<0 || this.pos.x>w || this.pos.y<0 || this.pos.y>h ){
-            this.pos.x=200
-            this.pos.y=200
+            this.pos=createVector(this.x,this.y)
+            this.vel=p5.Vector.random2D()
+            this.acc=p5.Vector.random2D().setMag(0.01)  
         }
     }
 
     show(){
-        stroke(frameCount*0.001,100,100,20)
-        strokeWeight(7)
+        stroke(this.x%360,100,100,20)
+        strokeWeight(2)
         point(this.pos.x,this.pos.y)
     }
 }

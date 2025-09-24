@@ -3,26 +3,19 @@ name: Generate one artwork for every commit
 on: push
 
 jobs:
-  set-vars:
+  gen-art:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Set enviroment
+    - name: Get hash
       shell: bash
       run: |
         echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
-
-    - name: Read enviroment
-      shell: bash
-      run: |
-        echo "SHA_SHORT: ${{ env.sha_short }}"
-
- 
+        echo "SHA_SHORT: ${{ env.sha_short }}
       
-
-    - name: Extract commits data for art Generate
+#    - name: Extract commits data for art Generate
       # extract commit-id, nb lines changed, nb files changed
-      run: echo "extracting"
+#      run: echo "extracting"
 
     - name: Generate artwork
       run: echo "generating"
