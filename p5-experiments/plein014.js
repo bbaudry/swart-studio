@@ -5,15 +5,17 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 9
+var artname = "plein014"
 
 function preload() {
     font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
-        sourcecode = loadStrings('plein014-core.js');
+        sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
     w = Math.floor(8.5 * 96)
     h = Math.floor(11 * 96)
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
@@ -29,8 +31,14 @@ function setup() {
 }
 
 function savesvg() {
-    save("plein014.svg");
+    save(artname+".svg");
 }
+
+
+function savepng() {
+    save(artname+".png");
+}
+
 
 function centerCanvas() {
     var x = (windowWidth - windowHeight) / 2;
