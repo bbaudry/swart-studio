@@ -17,8 +17,8 @@ function setup() {
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
-    topmargin = Math.floor(h * 0.07)
-    bottommargin = Math.floor(h * 0.75)
+    topmargin = Math.floor(h * 0.02)
+    bottommargin = Math.floor(h * 0.7)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
