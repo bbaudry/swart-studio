@@ -11,7 +11,7 @@ jobs:
       shell: bash
       run: |
         echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
-        echo "SHA_SHORT: ${{ env.sha_short }}
+        echo "SHA_SHORT: ${{ env.sha_short }}"
       
 #    - name: Extract commits data for art Generate
       # extract commit-id, nb lines changed, nb files changed
@@ -22,3 +22,13 @@ jobs:
 
     - name: Save artwork
       run: echo "saving"
+
+    - name: Hello world action step
+      id: hello
+      uses: bbaudry/solar@v1.1
+      with:
+        who-to-greet: Vera Molnar
+
+    # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.hello.outputs.time }}"
