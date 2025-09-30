@@ -3,8 +3,7 @@ var xinc = 1
 
 function hal() {
     let resx, resy, stepx, stepy, x, y, x1, y1, coords, p1, p2, p3
-    circlewlines(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5,actualwidth)
-    resx = 2 * Math.floor(random(2, 3)); resy = 2 * Math.floor(random(2, 3)); coords = []
+    resx = 2 * Math.floor(random(1, 3)); resy = 2 * Math.floor(random(2, 4)); coords = []
     stepx = Math.floor(actualwidth / resx); stepy = Math.floor(actualheight / resy)
     x = leftmargin
     for (let i = 0; i < resx; i++) {
@@ -20,17 +19,18 @@ function hal() {
             trianglewlines(p1.x, p1.y, p3.x, p3.y, p4.x, p4.y);
             trianglewlines(p2.x, p2.y, p3.x, p3.y, p1.x, p1.y);
             trianglewlines(p2.x, p2.y, p3.x, p3.y, p4.x, p4.y);
+            dice=random()
+            if(dice<0.42){
+                p5.x=lerp(p3.x, p2.x, dice);p5.y=lerp(p3.y, p2.y, dice)
+                trianglewlines(p1.x, p1.y, p3.x, p3.y, p5.x, p5.y);
+                trianglewlines(p2.x, p2.y, p5.x, p5.y, p1.x, p1.y);
+            }
 }}}
 
 function trianglewlines(x1, y1, x2, y2, x3, y3) {
     // https://mathopenref.com/coordincenter.html
     len1 = dist(x2, y2, x3, y3); len2 = dist(x1, y1, x3, y3); len3 = dist(x1, y1, x2, y2)
     cx = (len1 * x1 + len2 * x2 + len3 * x3) / (len1 + len2 + len3); cy = (len1 * y1 + len2 * y2 + len3 * y3) / (len1 + len2 + len3)
-    for (let i = 0; i < 0.8; i += 0.03) {
+    for (let i = 0; i < 1; i += 0.03) {
         triangle(lerp(cx, x1, i), lerp(cy, y1, i), lerp(cx, x2, i), lerp(cy, y2, i), lerp(cx, x3, i), lerp(cy, y3, i))
-}}
-
-function circlewlines(cx, cy, rad) {
-    for (let i = 0; i < 0.8; i += 0.005) {
-        ellipse(cx,cy,rad*i)
 }}

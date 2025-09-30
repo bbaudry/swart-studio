@@ -17,8 +17,8 @@ function setup() {
     //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    leftmargin = Math.floor(w * 0.05)
-    rightmargin = Math.floor(w * 0.95)
+    leftmargin = Math.floor(w * 0.03)
+    rightmargin = Math.floor(w * 0.97)
     topmargin = Math.floor(h * 0.02)
     bottommargin = Math.floor(h * 0.7)
     actualwidth = rightmargin - leftmargin
