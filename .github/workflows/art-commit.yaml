@@ -10,7 +10,7 @@ jobs:
     - name: Get hash
       shell: bash
       run: |
-        echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+        sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV
         echo "SHA_SHORT: ${{ env.sha_short }}"
       
     - name: Generate artwork
