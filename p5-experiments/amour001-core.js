@@ -1,6 +1,6 @@
 var xoff,yoff
-var noiseres = 0.01
-var resolution = 5
+var noiseres = 0.005
+var resolution = 7
 var nbx,nby 
 
 function hal() {
@@ -18,12 +18,15 @@ function hal() {
             console.log(hu)
             switch(hu){
                 case 0:
+                    x1=leftmargin+i*resolution
+                    y1=topmargin+j*resolution
+                    rect(x1,y1,resolution,resolution)
                     break;
                 case 1:
                     x1=leftmargin+i*resolution
                     x2=leftmargin+i*resolution+resolution
                     y1=topmargin+j*resolution+resolution*0.5
-                    line(x1,y1,x2,y1)
+                //    line(x1,y1,x2,y1)
                     break;
                 case 2:
                     x1=leftmargin+i*resolution+resolution*0.5
