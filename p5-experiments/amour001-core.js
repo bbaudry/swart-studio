@@ -1,6 +1,6 @@
 var xoff,yoff
 var noiseres = 0.05
-var resolution = 17
+var resolution = 7
 var nbx,nby 
 
 function hal() {
@@ -47,7 +47,7 @@ function hal() {
 function rectwithlines(x,y,r){
     let x1
     rect(x,y,r,r)
-    for(let t=0;t<1;t+=0.05){
+    for(let t=0;t<1;t+=0.1){
         x1=lerp(x,x+r,t)
         line(x1,y,x1,y+r)
     }
