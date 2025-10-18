@@ -1,6 +1,6 @@
 var xoff,yoff
-var noiseres = 0.005
-var resolution = 7
+var noiseres = 0.05
+var resolution = 17
 var nbx,nby 
 
 function hal() {
@@ -15,41 +15,21 @@ function hal() {
         xoff=0.0
         for(let i =0;i<nbx;i++){
             hu=Math.floor(noise(xoff,yoff)*5)
-            console.log(hu)
             switch(hu){
                 case 0:
-                    x1=leftmargin+i*resolution
-                    y1=topmargin+j*resolution
-                    rect(x1,y1,resolution,resolution)
+                    stroke(0,100,100)
                     break;
                 case 1:
-                    x1=leftmargin+i*resolution
-                    x2=leftmargin+i*resolution+resolution
-                    y1=topmargin+j*resolution+resolution*0.5
-                //    line(x1,y1,x2,y1)
+                    stroke(200,100,100)
                     break;
                 case 2:
-                    x1=leftmargin+i*resolution+resolution*0.5
-                    y1=topmargin+j*resolution
-                    y2=topmargin+j*resolution+resolution
-                    line(x1,y1,x1,y2)
+                    stroke(300,100,100)
                     break;
                 case 3:
-                    x1=leftmargin+i*resolution+resolution*0.5
-                    y1=topmargin+j*resolution
-                    y2=topmargin+j*resolution+resolution
-                    line(x1,y1,x1,y2)
-                    x1=leftmargin+i*resolution
-                    x2=leftmargin+i*resolution+resolution
-                    y1=topmargin+j*resolution+resolution*0.5
-                    line(x1,y1,x2,y1)
+                    stroke(100,100,100)
                     break;
                 case 4:
-                    x1=leftmargin+i*resolution
-                    x2=leftmargin+i*resolution+resolution
-                    y1=topmargin+j*resolution
-                    y2=topmargin+j*resolution+resolution
-                    line(x1,y1,x2,y2)
+                    stroke(42,100,100)
                     break;
                 case 5:
                     break;
@@ -57,8 +37,18 @@ function hal() {
                     break;
                 
             }
+            rectwithlines(leftmargin+i*resolution,topmargin+j*resolution,resolution)
             xoff+=noiseres
         }
         yoff+=noiseres
+    }
+}
+
+function rectwithlines(x,y,r){
+    let x1
+    rect(x,y,r,r)
+    for(let t=0;t<1;t+=0.05){
+        x1=lerp(x,x+r,t)
+        line(x1,y,x1,y+r)
     }
 }
