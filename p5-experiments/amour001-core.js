@@ -1,12 +1,12 @@
 var xoff,yoff
 var noiseres = 0.05
-var resolution = 7
+var resolutionx = 7
 var nbx,nby 
 
 function hal() {
     let hu,x1,y1,x2,y2
-    nbx= Math.floor(actualwidth/resolution)
-    nby = Math.floor(actualheight/resolution)
+    nbx= Math.floor(actualwidth/resolutionx)
+    nby = Math.floor(actualheight/resolutionx)
     noStroke()
     xoff=0.0
     yoff=0.0
@@ -37,7 +37,7 @@ function hal() {
                     break;
                 
             }
-            rectwithlines(leftmargin+i*resolution,topmargin+j*resolution,resolution)
+            rectwithlines(leftmargin+i*resolutionx,topmargin+j*resolutionx,resolutionx)
             xoff+=noiseres
         }
         yoff+=noiseres
