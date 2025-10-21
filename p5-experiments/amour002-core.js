@@ -1,7 +1,7 @@
 var xoff,yoff
 var noiseres = 0.07
-var resolutionx = 11
-var resolutiony = 42
+var resolutionx = 42
+var resolutiony = 11
 var nbx,nby 
 
 function hal() {
@@ -21,10 +21,10 @@ function hal() {
                     tinc=0.1
                     break;
                 case 1:
-                    tinc=0.2
+                    tinc=0.5
                     break;
                 case 2:
-                    tinc=0.5
+                    tinc=0.2
                     break;
                 case 3:
                     tinc=0.2
