@@ -1,11 +1,10 @@
-var xoff, yoff
+var xoff, resolutiony
 var noiseres = 0.001
 var resolutionx = 2
-var resolutiony = 11
-var nbx, nby
 
 function hal() {
     let x,stepy,angle,xzone
+    resolutiony = Math.floor(random(7,37))
     stepy = Math.floor(actualheight / resolutiony)
     for (let j = 0; j < resolutiony - 1; j++){
         xoff = random(100.0)
@@ -14,7 +13,7 @@ function hal() {
         xzone=actualwidth*0.5
         while (angle<180) {
             line(x, topmargin + j * stepy, x, topmargin + (j + 1)*stepy)
-            x = x+(1+sin(radians(angle)))*(xzone-x)*0.25*noise(xoff);xoff+=noiseres
+            x = x+(sin(radians(angle)))*(xzone-x)*0.5*noise(xoff);xoff+=noiseres
             angle+=1
         }
     }
