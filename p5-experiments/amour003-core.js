@@ -9,7 +9,7 @@ function hal() {
     for (let j = 0; j < resolutiony - 1; j++){
         xoff = random(100.0)
         angle=0
-        cx=rightmargin//leftmargin+actualwidth*0.5
+        cx=leftmargin+actualwidth*0.5
         x1=cx;x2=cx
         while (angle<90) {
             line(x1, topmargin + j * stepy, x1, topmargin + (j + 1)*stepy)
