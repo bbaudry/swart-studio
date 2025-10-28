@@ -6,7 +6,7 @@ function hal() {
     let x1, x2, y1, y2, stepx, stepy, left
     xoff = 0.0
     yoff = 0.0
-    noiseres = 0.001
+    noiseres = 0.005
     resolutionx = Math.floor(7,11)
     resolutiony = Math.floor(21,42)
     stepx = Math.floor(actualheight / resolutionx)
