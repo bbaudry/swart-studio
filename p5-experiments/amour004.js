@@ -48,11 +48,11 @@ function centerCanvas() {
 
 
 function draw() {
-    background(0, 0, 100)
+    background(220, 100, 60)
     noFill()
     textFont(font)
     textSize(fSize)
-    stroke(300,100,100)   
+    stroke(0,0,100)
     hal()
     stroke(0, 0, 0); noFill(); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin)
