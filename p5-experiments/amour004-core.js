@@ -4,7 +4,7 @@ function hal() {
     xoff = 0.0; yoff = 0.0
     noiseres = 0.005
     resolutiony = Math.floor(random(21, 42)); stepy = Math.floor(actualheight / resolutiony)
-    resolutionx = Math.floor(random(3, 11)); stepx = Math.floor(actualheight / resolutionx)
+    resolutionx = Math.floor(random(3, 7)); stepx = Math.floor(actualheight / resolutionx)
     y1 = topmargin; y2 = y1 + stepy
     while (y2 < bottommargin) {
         x1 = leftmargin + noise(xoff, yoff) * stepx; xoff += noiseres; x2 = x1 + noise(xoff, yoff) * stepx; xoff += noiseres
