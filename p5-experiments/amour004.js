@@ -12,15 +12,15 @@ function preload() {
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
-    w = Math.floor(8.5 * 96)
-    h = Math.floor(11 * 96)
-    //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
-    cnv = createCanvas(w, h).mousePressed(savepng);
+    w = Math.floor(8.5 * 96) // (297 / 25.4)
+    h = Math.floor(11 * 96) // (420 / 25.4)
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    leftmargin = Math.floor(w * 0.03)
-    rightmargin = Math.floor(w * 0.97)
-    topmargin = Math.floor(h * 0.02)
-    bottommargin = Math.floor(h * 0.7)
+    leftmargin = Math.floor(w * 0.09)
+    rightmargin = Math.floor(w * 0.91)
+    topmargin = Math.floor(h * 0.2)
+    bottommargin = Math.floor(h * 0.8)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -51,13 +51,13 @@ function draw() {
     background(220, 100, 60)
     noFill()
     textFont(font)
-    textSize(fSize)
+    textSize(33)
     stroke(0,0,100)
     hal()
-    stroke(0, 0, 0); noFill(); strokeWeight(1)
-    let c = showcodeall(leftmargin * 4.2, bottommargin)
-    text(artname+"[automne]", c[0], c[1] + fSize)
-    text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize)
+    stroke(0, 0, 100); noFill(); 
+    // let c = showcodeall(leftmargin * 4.2, bottommargin)
+    // text(artname+"[automne]", c[0], c[1] + fSize)
+    text("almyre", rightmargin*0.9, h*0.96)
     noLoop()
 }
 
