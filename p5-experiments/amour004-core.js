@@ -12,7 +12,7 @@ function hal() {
         while (x2 < rightmargin) {
             section(x1, y1, x2, y2, left)
             x1 = x2; x2 = x1 + noise(xoff, yoff) * stepx; xoff += noiseres
-            left = !left;console.log(left)
+            left = !left
         }
         y1 = y2; y2 = y1 + stepy; yoff += noiseres
 }}

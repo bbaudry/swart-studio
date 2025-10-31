@@ -1,40 +1,39 @@
-var xoff, yoff, noiseres, resolutiony, resolutionx
 function hal() {
-    let cx,cy,d,a1,a2,a3,a4,a5,a6,x1,y1,x2,y2,x3,y3,x4,y4
-    angleMode(DEGREES) 
-    cx=leftmargin+actualwidth*0.5
-    cy=topmargin+actualheight*0.5
-    d=actualwidth
-    ellipse(cx,cy,d,d)
-    a1=1; a2=98; a3=99; a4=233; a5=234; a6=360
-    x1=cx+d*0.5*0.1*cos(a1)
-    y1=cy+d*0.5*0.1*sin(a1)
-    x2=cx+d*0.5*0.1*cos(a2)
-    y2=cy+d*0.5*0.1*sin(a2)
-    x3=cx+d*0.5*cos(a2)
-    y3=cy+d*0.5*sin(a2)
-    x4=cx+d*0.5*cos(a1)
-    y4=cy+d*0.5*sin(a1)
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    let x1,y1,px1,py1,px2,py2,x2,y2,x,y,t
+    let xoff,xinc
+    xoff=0.0
+    xinc=0.01
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    
+    x1=leftmargin+actualwidth*0.1;y1=topmargin
+    px1=leftmargin;py1=topmargin+actualheight*0.1
+    px2=leftmargin+actualwidth*0.8;py2=topmargin+actualheight*0.8
+    x2=x1+actualwidth*0.1;y2=bottommargin
+    bezier(x1,y1,px1,py1,px2,py2,x2,y2)
+    // fill(0,100,100);ellipse(x1,y1,17,17);ellipse(px1,py1,17,17)
+    // fill(50,100,100);ellipse(x2,y2,17,17);ellipse(px2,py2,17,17)
+    // noFill()
+    t=noise(xoff);xoff+=xinc
+    x=bezierPoint(x1,px1,px2,x2,t)
+    y=bezierPoint(y1,py1,py2,y2,t)
+    fill(50,100,100);ellipse(x,y,17,17);noFill()
 
-    x1=cx+d*0.5*0.1*cos(a3)
-    y1=cy+d*0.5*0.1*sin(a3)
-    x2=cx+d*0.5*0.1*cos(a4)
-    y2=cy+d*0.5*0.1*sin(a4)
-    x3=cx+d*0.5*cos(a4)
-    y3=cy+d*0.5*sin(a4)
-    x4=cx+d*0.5*cos(a3)
-    y4=cy+d*0.5*sin(a3)
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
 
-    x1=cx+d*0.5*0.1*cos(a5)
-    y1=cy+d*0.5*0.1*sin(a5)
-    x2=cx+d*0.5*0.1*cos(a6)
-    y2=cy+d*0.5*0.1*sin(a6)
-    x3=cx+d*0.5*cos(a6)
-    y3=cy+d*0.5*sin(a6)
-    x4=cx+d*0.5*cos(a5)
-    y4=cy+d*0.5*sin(a5)
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    x1=leftmargin+actualwidth*0.4;y1=topmargin
+    px1=x1-actualheight*0.1;py1=topmargin+actualheight*0.1
+    px2=leftmargin+actualwidth*0.8;py2=y-actualheight*0.1
+    x2=x;y2=y
+    bezier(x1,y1,px1,py1,px2,py2,x2,y2)
 
+    t=noise(xoff);xoff+=xinc
+    x=bezierPoint(x1,px1,px2,x2,t)
+    y=bezierPoint(y1,py1,py2,y2,t)
+    fill(50,100,100);ellipse(x,y,17,17);noFill()
+
+
+    x1=x;y1=y
+    px1=x1+actualheight*0.1;py1=y1+actualheight*0.1
+    px2=leftmargin+actualwidth*0.8;py2=y-actualheight*0.1
+    x2=x1+actualwidth*0.1;y2=bottommargin
+    bezier(x1,y1,px1,py1,px2,py2,x2,y2)
 }

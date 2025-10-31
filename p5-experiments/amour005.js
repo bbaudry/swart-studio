@@ -14,6 +14,7 @@ function preload() {
 function setup() {
     w = Math.floor(8.5 * 96)
     h = Math.floor(11 * 96)
+    angleMode(DEGREES) 
     //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
