@@ -4,7 +4,7 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 9
+var fSize = 19
 var artname = "amour006"
 
 function preload() {
@@ -49,17 +49,19 @@ function centerCanvas() {
 
 
 function draw() {
-    background(220, 100, 60)
+    background(220, 0, 0)
     noFill()
     textFont(font)
     textSize(fSize)
+    stroke(0,0,100);rect(0,0,w,h)
+    push()
     translate(leftmargin+actualwidth*0.5,topmargin+actualheight*0.5)
-    stroke(0,0,100);     hal()
     stroke(300,100,100);     hal()
-    stroke(0, 0, 0); noFill(); strokeWeight(1)
+    pop()
+    stroke(0,0,100); strokeWeight(1)
     let c = showcodeall(leftmargin * 4.2, bottommargin)
     text(artname+"[automne]", c[0], c[1] + fSize)
-    text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize);console.log("credits at"+c[0])
+    text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize)
     noLoop()
 }
 
@@ -73,19 +75,4 @@ function showcodeall(posx, posy) {
         y += fSize
     }
     return ([x, y])
-}
-
-function clemence() {
-    fill(330, 50, 100)
-    noStroke()
-    let x, y, rayon
-    rayon = w * 0.3
-    x = w * 0.5
-    y = topmargin + rayon
-    arc(x, y, rayon * 2, rayon * 2, PI, 2 * PI)
-
-    fill(50, 80, 100)
-    x -= rayon
-    y += h * 0.1
-    rect(x, y, rayon, rayon)
 }
