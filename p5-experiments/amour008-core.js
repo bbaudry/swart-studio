@@ -1,6 +1,6 @@
 let xoff, xinc, east, south, west, north
 xoff = 0.0
-xinc = 0.001
+xinc = 0.01
 
 function hal() {
     push()
@@ -29,26 +29,22 @@ function center() {
         south.push(y2)
         north.push(y4)
 
-        if (random() < 0.5) { fill(0, 0, 100) }
-        else { fill(0, 0, 0) }
+        setfill(0.5)
         rect(x1, y1, stepx, rowheight)
         x1 += stepx
         stepx += ampli * noise(xoff); xoff += xinc
 
-        if(random()<0.5){fill(0,0,100)}
-        else{fill(0,0,0)}
+        setfill(0.5)
         rect(x2, y2, columnwidth, stepy)
         y2 += stepy
         stepy += ampli * noise(xoff); xoff += xinc; 
 
-        if (random() < 0.5) { fill(0, 0, 100) }
-        else { fill(0, 0, 0) }
+        setfill(0.5)
         rect(x3, y3, stepx, rowheight); 
         x3 -= stepx
         stepx += ampli * noise(xoff); xoff += xinc
 
-        if(random()<0.5){fill(0,0,100)}
-        else{fill(0,0,0)}
+        setfill(0.5)
         rect(x4, y4, columnwidth, stepy)
         y4 -= stepy
         stepy += ampli * noise(xoff); xoff += xinc; 
@@ -63,8 +59,7 @@ function periphery(){
         for(let j=0;j<south.length-1; j++){
             y1=south[j]
             y2=south[j+1]
-            if(random()<0.3){fill(0,0,100)}
-            else{fill(0,0,0)}
+            setfill(0.3)
             quad(x1,y1,x2,y1,x2,y2,x1,y2)
         }
     }
@@ -74,10 +69,15 @@ function periphery(){
         for(let j=0;j<north.length-1; j++){
             y1=north[j]
             y2=north[j+1]
-            if(random()<0.3){fill(0,0,100)}
-            else{fill(0,0,0)}
+            setfill(0.3)
             console.log("go west")
             quad(x1,y1,x2,y1,x2,y2,x1,y2)
         }
     }
+}
+
+function setfill(proba){
+    if(random()<proba){fill(0,0,100)}
+    else{fill(0,0,0)}
+    
 }
