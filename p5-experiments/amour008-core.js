@@ -11,10 +11,11 @@ function hal() {
 }
 
 function center() {
-    let x1, y1, x2, y2, x3, y3, x4, y4, stepx, stepy, columnwidth, rowheight
+    let x1, y1, x2, y2, x3, y3, x4, y4, stepx, stepy, columnwidth, rowheight, ampli
     east = []; south = []; west = []; north = []
-    rowheight = 42
-    columnwidth = 42
+    rowheight = 18
+    columnwidth = 18
+    ampli = 7
     stepx = 1; stepy = 4;
     x1 = columnwidth * 0.5; y1 = -rowheight * 0.5 // going east
     x2 = -columnwidth * 0.5; y2 = rowheight * 0.5 // going south
@@ -32,25 +33,25 @@ function center() {
         else { fill(0, 0, 0) }
         rect(x1, y1, stepx, rowheight)
         x1 += stepx
-        stepx += 2 * noise(xoff); xoff += xinc
+        stepx += ampli * noise(xoff); xoff += xinc
 
         if(random()<0.5){fill(0,0,100)}
         else{fill(0,0,0)}
         rect(x2, y2, columnwidth, stepy)
         y2 += stepy
-        stepy += 2 * noise(xoff); xoff += xinc; 
+        stepy += ampli * noise(xoff); xoff += xinc; 
 
         if (random() < 0.5) { fill(0, 0, 100) }
         else { fill(0, 0, 0) }
         rect(x3, y3, stepx, rowheight); 
         x3 -= stepx
-        stepx += 2 * noise(xoff); xoff += xinc
+        stepx += ampli * noise(xoff); xoff += xinc
 
         if(random()<0.5){fill(0,0,100)}
         else{fill(0,0,0)}
         rect(x4, y4, columnwidth, stepy)
         y4 -= stepy
-        stepy += 2 * noise(xoff); xoff += xinc; 
+        stepy += ampli * noise(xoff); xoff += xinc; 
     }
 }
 
@@ -59,12 +60,23 @@ function periphery(){
     for(let i=0; i< east.length-1; i++){
         x1=east[i]
         x2=east[i+1]
-    console.log("go east")
         for(let j=0;j<south.length-1; j++){
             y1=south[j]
             y2=south[j+1]
             if(random()<0.3){fill(0,0,100)}
             else{fill(0,0,0)}
+            quad(x1,y1,x2,y1,x2,y2,x1,y2)
+        }
+    }
+    for(let i=0; i< west.length-1; i++){
+        x1=west[i]
+        x2=west[i+1]
+        for(let j=0;j<north.length-1; j++){
+            y1=north[j]
+            y2=north[j+1]
+            if(random()<0.3){fill(0,0,100)}
+            else{fill(0,0,0)}
+            console.log("go west")
             quad(x1,y1,x2,y1,x2,y2,x1,y2)
         }
     }
