@@ -67,9 +67,9 @@ function periphery(){
         for(let j=0;j<south.length-1; j++){
             y1=south[j]
             y2=south[j+1]
-            setfill(0.5)
+            t=setfill(0.5)
             //noFill()
-            plottablequad(x1,y1,x2,y1,x2,y2,x1,y2)
+            plottablequad(x1,y1,x2,y1,x2,y2,x1,y2,t)
         }
     }
     //north west
@@ -108,18 +108,24 @@ function periphery(){
 }
 
 function setfill(proba){
-    if(random()<proba){fill(0,0,100)}
-    else{fill(0,0,0)}
+    if(random()<proba){fill(0,0,100);return true}
+    else{fill(0,0,0);return false}
     
 }
 
-function plottablequad(x1,y1,x2,y2,x3,y3,x4,y4){
+function plottablequad(x1,y1,x2,y2,x3,y3,x4,y4,fil){
     let largeur=x2-x1
     let hauteur=y4-y1
     console.log('hi')
     push()
     stroke(0,0,100)
     strokeWeight(penwidth)
+    noFill()
+    if(fil){
+    for(let x=penwidth*0.5;x<largeur-penwidth;x+=penwidth){
+        line(x1+x,y1+penwidth*0.5,x1+x,y4-penwidth*0.5)
     rect(x1+penwidth*0.5,y1+penwidth*0.5,largeur,hauteur)
+    }
+    }
     pop()
 }
