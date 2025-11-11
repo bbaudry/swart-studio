@@ -12,28 +12,29 @@ function hal() {
 
 function balle(){
     let cx, cy, r, rdist, angle
+    ellipse(0,0,actualwidth*0.9,actualwidth*0.9)
     r=actualwidth*0.1
     //ellipse(0,0,r*2,r*2)
-    hexag(0,0,r)
+    hexag(0,0,r*1.15)
     rdist=actualwidth*0.2
     for(angle=30;angle<390;angle+=60){
         cx=rdist*cos(angle)
         cy=rdist*sin(angle)
-        ellipse(cx,cy,r*2,r*2)
-        hexag(cx,cy,r)
+        //ellipse(cx,cy,r*2,r*2)
+        hexag(cx,cy,r*1.15)
     }
     rdist=actualwidth*0.35
     for(angle=0;angle<360;angle+=60){
         cx=rdist*cos(angle)
         cy=rdist*sin(angle)
-        ellipse(cx,cy,r*2,r*2)
-        hexag(cx,cy,r)
+        //ellipse(cx,cy,r*2,r*2)
+        hexag(cx,cy,r*1.15)
     }
     rdist=actualwidth*0.4
     for(angle=30;angle<390;angle+=60){
         cx=rdist*cos(angle)
         cy=rdist*sin(angle)
-        hexag(cx,cy,r)
+        hexag(cx,cy,r*1.15)
     }
 }
 
