@@ -27,7 +27,7 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
-    penwidth =96*1.0/25.4
+    penwidth =96*1.2/25.4
     strokeWeight(penwidth)
 }
 

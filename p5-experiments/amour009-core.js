@@ -5,8 +5,24 @@ xinc = 0.01
 function hal() {
     push()
     translate(w * 0.5, h * 0.5)
-    balle()
+    grille()
     pop()
+}
+
+function grille(){
+    let cx,cy,rdist,angle,r
+    cx=0
+    cy=0
+    rdist=Math.floor(actualwidth*0.42)
+    ellipse(cx,cy,rdist*2,rdist*2)
+    r=rdist*0.3
+    ellipse(cx,cy,r*2,r*2)
+    r=rdist*0.6
+    for(angle=0;angle<360;angle+=60){
+        cx=r*cos(angle)
+        cy=r*sin(angle)
+        ellipse(cx,cy,rdist*0.6,rdist*0.6)
+    }
 }
 
 
