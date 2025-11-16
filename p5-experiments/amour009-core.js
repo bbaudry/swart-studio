@@ -1,66 +1,98 @@
-let xoff, xinc, east, south, west, north
+let xoff, xinc
 xoff = 0.0
-xinc = 0.01
+xinc = 0.0001
 
 function hal() {
-    push()
-    translate(w * 0.5, h * 0.5)
-    grille()
-    pop()
+    flaque1()
+}
+function flaque1(){
+    let cx, cy, r1, r2, a1, a2, x1, y1, cx1, cy1, cx2, cy2, x2, y2, rseed
+    cx=w*0.4
+    cy=h*0.3
+    ellipse(cx,cy,7,7)
+    rseed=10    
+    while(rseed<11){
+    beginShape()
+    a1=40
+    a2=120
+    r1=rseed*noise(xoff);xoff+=xinc
+    x1=cx+r1*cos(a1)
+    y1=cy+r1*sin(a1)
+    vertex(x1,y1)
+
+    cx1=cx+(r1+100)*cos(a1)
+    cy1=cy+(r1+100)*sin(a1)
+    r2=rseed*noise(xoff);xoff+=xinc
+    x2=cx+r1*cos(a2)
+    y2=cy+r1*sin(a2)
+    cx2=cx+(r1+100)*cos(a2)
+    cy2=cy+(r1+100)*sin(a2)
+    bezierVertex(x1, y1, cx1, cy1, cx2, cy2, x2, y2)
+    
+    a1=120
+    a2=200
+    x1=x2
+    y1=y2
+    cx1=cx+(r1+100)*cos(a1)
+    cy1=cy+(r1+100)*sin(a1)
+    r2=rseed*noise(xoff);xoff+=xinc
+    x2=cx+r1*cos(a2)
+    y2=cy+r1*sin(a2)
+    cx2=cx+(r1+100)*cos(a2)
+    cy2=cy+(r1+100)*sin(a2)
+    bezierVertex(x1, y1, cx1, cy1, cx2, cy2, x2, y2)
+
+    a1=200
+    a2=300
+    x1=x2
+    y1=y2
+    cx1=cx+(r1+100)*cos(a1)
+    cy1=cy+(r1+100)*sin(a1)
+    r2=rseed*noise(xoff);xoff+=xinc
+    x2=cx+r1*cos(a2)
+    y2=cy+r1*sin(a2)
+    cx2=cx+(r1+100)*cos(a2)
+    cy2=cy+(r1+100)*sin(a2)
+    bezierVertex(x1, y1, cx1, cy1, cx2, cy2, x2, y2)
+
+    a1=300
+    a2=360
+    x1=x2
+    y1=y2
+    cx1=cx+(r1+100)*cos(a1)
+    cy1=cy+(r1+100)*sin(a1)
+    r2=rseed*noise(xoff);xoff+=xinc
+    x2=cx+r1*cos(a2)
+    y2=cy+r1*sin(a2)
+    cx2=cx+(r1+100)*cos(a2)
+    cy2=cy+(r1+100)*sin(a2)
+    bezierVertex(x1, y1, cx1, cy1, cx2, cy2, x2, y2)
+
+    endShape(CLOSE)
+    rseed+=17
+    }
+
 }
 
-function grille(){
-    let cx,cy,rdist,angle,r
-    cx=0
-    cy=0
-    rdist=Math.floor(actualwidth*0.42)
-    ellipse(cx,cy,rdist*2,rdist*2)
-    r=rdist*0.3
-    ellipse(cx,cy,r*2,r*2)
-    r=rdist*0.6
-    for(angle=0;angle<360;angle+=60){
-        cx=r*cos(angle)
-        cy=r*sin(angle)
-        ellipse(cx,cy,rdist*0.6,rdist*0.6)
+function flaque(){
+    let cx, cy, r1, r2, a1, a2, x1, y1, cx1, cy1, cx2, cy2, x2, y2 
+    cx=w*0.4
+    cy=h*0.3
+    rseed=7
+    ellipse(cx,cy,2,2)
+    while(rseed<100){
+    beginShape()
+    for(a1=0;a1<360;a1+=2){
+        r1=rseed+sin(a1)*300*noise(xoff); xoff+=xinc
+        r2=rseed+sin(a1+6)*300*noise(xoff); xoff+=xinc
+        x1=cx+r1*cos(a1)
+        y1=cy+r1*sin(a1)
+        x2=cx+r1*cos(a1+2)
+        y2=cy+r1*sin(a1+2)
+        vertex(x1,y1)
     }
+    vertex(x2,y2)
+    endShape()
+    rseed+=7
 }
-
-
-function balle(){
-    let cx, cy, r, rdist, angle
-    ellipse(0,0,actualwidth*0.9,actualwidth*0.9)
-    r=actualwidth*0.1
-    //ellipse(0,0,r*2,r*2)
-    hexag(0,0,r*1.15)
-    rdist=actualwidth*0.2
-    for(angle=30;angle<390;angle+=60){
-        cx=rdist*cos(angle)
-        cy=rdist*sin(angle)
-        //ellipse(cx,cy,r*2,r*2)
-        hexag(cx,cy,r*1.15)
-    }
-    rdist=actualwidth*0.35
-    for(angle=0;angle<360;angle+=60){
-        cx=rdist*cos(angle)
-        cy=rdist*sin(angle)
-        //ellipse(cx,cy,r*2,r*2)
-        hexag(cx,cy,r*1.15)
-    }
-    rdist=actualwidth*0.4
-    for(angle=30;angle<390;angle+=60){
-        cx=rdist*cos(angle)
-        cy=rdist*sin(angle)
-        hexag(cx,cy,r*1.15)
-    }
-}
-
-function hexag(x,y,r){
-    let x1,y1,x2,y2
-    for(let a=0;a<360;a+=60){
-        x1=x+r*cos(a)
-        y1=y+r*sin(a)
-        x2=x+r*cos(a+60)
-        y2=y+r*sin(a+60)
-        line(x1,y1,x2,y2)
-    }
 }
