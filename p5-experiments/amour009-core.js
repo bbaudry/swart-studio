@@ -12,9 +12,9 @@ function flaque2() {
     let xe, ye, xs, ys, xw, yw, xn, yn, x1, y1, cx1, cy1, cx2, cy2, x2, y2, offset, pad, flaquewidth, flaqueheight
     offset = 6
     pad=0.2
-    xe = leftmargin + actualwidth * noise(xoff); ye = topmargin + actualheight * 0.3; xoff += xinc
-    xs = leftmargin + actualwidth * 0.3; ys = topmargin + actualheight * 0.5 * noise(xoff); xoff += xinc
-    xw = leftmargin + actualwidth * 0.1; yw = topmargin + actualheight * 0.36;
+    xe = leftmargin + actualwidth * 0.3 * noise(xoff); ye = topmargin + actualheight * 0.3; xoff += xinc
+    xs = xe - (xe-leftmargin) * noise(xoff); ys = topmargin + actualheight * 0.5 * noise(xoff); xoff += xinc
+    xw = leftmargin+(xs-leftmargin) * noise(xoff); yw = topmargin + actualheight * 0.36; xoff += xinc
     xn = leftmargin + actualwidth * 0.5; yn = topmargin + actualheight * 0.1;
     flaquewidth = xe - xw; flaqueheight = ys - yn
     let xeast, yeast, xsouth, ysouth, xwest, ywest, xnorth, ynorth
