@@ -9,11 +9,11 @@ function hal() {
 
 function fleur2(cx,cy) {
     let  x1, y1, x2, y2, x3, y3, x4, y4, r1, r2, a1, a2, anglemax, high
-    r1 = 184 * noise(xoff); xoff += xinc
-    r2 = 242
+    r1 = (actualwidth*0.3) * noise(xoff); xoff += xinc
+    r2 = actualwidth*0.42
     a1 = 0
     a2 = 0
-    anglemax = 6
+    anglemax = 3
     high = true
     while (a1 < 360 - anglemax) {
         x1 = cx + r1 * cos(a1)
