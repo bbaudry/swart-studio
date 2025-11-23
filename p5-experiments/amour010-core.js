@@ -4,13 +4,13 @@ xinc = 0.01
 
 function hal() {
     // fleur1()
-    fleur2(w*0.5,h*0.5)
+    fleur2(w * 0.5, h * 0.5)
 }
 
-function fleur2(cx,cy) {
-    let  x1, y1, x2, y2, x3, y3, x4, y4, r1, r2, a1, a2, anglemax, high
-    r1 = (actualwidth*0.3) * noise(xoff); xoff += xinc
-    r2 = actualwidth*0.42
+function fleur2(cx, cy) {
+    let x1, y1, x2, y2, x3, y3, x4, y4, r1, r2, a1, a2, anglemax, high
+    r1 = (actualwidth * 0.3) * noise(xoff); xoff += xinc
+    r2 = actualwidth * 0.5
     a1 = 0
     a2 = 0
     anglemax = 3
@@ -27,10 +27,15 @@ function fleur2(cx,cy) {
         x4 = cx + (r2 * noise(xoff)) * cos(a2)
         y4 = cy + (r2 * noise(xoff)) * sin(a2)
         if (high) {
-            line(x1, y1, x2, y2)
-            line(x2, y2, x4, y4)
-            line(x4, y4, x3, y3)
-            if (random() < 0.1 ) {
+            if (random() < 0.1) {
+                line(x1, y1, x2, y2)
+                blow(cx,cy,a1,a2,x2,y2,x4,y4)
+                line(x4, y4, x3, y3)
+            }
+            else {
+                line(x1, y1, x2, y2)
+                line(x2, y2, x4, y4)
+                line(x4, y4, x3, y3)
             }
         }
         else {
@@ -62,6 +67,15 @@ function fleur2(cx,cy) {
         y3 = cy + r1 * sin(a2)
         line(x1, y1, x3, y3)
     }
+}
+
+function blow(cx,cy,a1,a2,x2,y2,x4,y4){
+    let r1,r2,dx1,dy1,dx2,dy2
+    r1=dist(cx,cy,x2,y2)
+    r2=dist(cx,cy,x4,y4)
+    dx1=cx+actualheight*cos(a1); dx11=constrain(dx1,leftmargin,leftmargin+actualwidth)
+    dy1=cy+actualheight*sin(a1); dy11=constrain(dy1,topmargin,topmargin+actualheight)
+    line(x2,y2,dx1,dy1)
 }
 
 function fleur1() {
