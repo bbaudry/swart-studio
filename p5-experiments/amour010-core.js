@@ -92,7 +92,7 @@ function blow(cx, cy, a1, a2, x2, y2, x4, y4) {
 // https://www.alloprof.qc.ca/fr/eleves/bv/mathematiques/les-rapports-trigonometriques-m1287
 function onedge(cx, cy, a) {
     let b, r, x, y
-    a = 315.2
+    a = 134.2
     console.log("cx: " + cx + "; cy: " + cy + "; a: " + a + "; left:  " + leftmargin + "; right:  " + rightmargin + "; top:  " + topmargin + "; bottom:  " + bottommargin)
     if (a <= 45 || a > 315) {
         b = rightmargin - cx
@@ -100,15 +100,17 @@ function onedge(cx, cy, a) {
     } else {
         if (a <= 135 || a > 45) {
             b = bottommargin - cy
-                r=b/cos(Math.abs(90-a))
+            r=b/cos(Math.abs(90-a))
 
         } else {
             if (a <= 225 || a > 135) {
                 b = cx - leftmargin
+                r=b/cos(Math.abs(180-a))
             }
             else {
                 if (a <= 315 || a > 225) {
                     b = cy - topmargin
+                    r=b/Math.abs(cos(Math.abs(270-a)))
                 }
             }
         }
