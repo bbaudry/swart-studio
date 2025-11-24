@@ -4,7 +4,17 @@ xinc = 0.01
 
 function hal() {
     // fleur1()
-    fleur2(w * 0.5, h * 0.5)
+    // fleur2(w * 0.5, h * 0.5)
+    test()
+}
+
+function test(){
+    cx=w*0.5
+    cy=h*0.5
+    a=random(0,360)
+    p=onedge(cx,cy,a)
+    ellipse(cx,cy,7,7)
+    ellipse(p.x,p.y,7,7)
 }
 
 function fleur2(cx, cy) {
@@ -76,6 +86,28 @@ function blow(cx,cy,a1,a2,x2,y2,x4,y4){
     dx1=cx+actualheight*cos(a1); dx11=constrain(dx1,leftmargin,leftmargin+actualwidth)
     dy1=cy+actualheight*sin(a1); dy11=constrain(dy1,topmargin,topmargin+actualheight)
     line(x2,y2,dx1,dy1)
+}
+
+function onedge(cx,cy,a){
+    let b,r,x,y
+    if(a<=45 || a>315){
+        b=rightmargin-cx
+    }
+    if(a<=135 || a>45){
+        b=bottommargin-cy
+    }
+    if(a<=225 || a>135){
+        b=cx-leftmargin
+    }
+    if(a<=315 || a>225){
+        b=cy-topmargin
+    }
+    r=b/cos(a)
+    x=cx+r*cos(a)
+    y=cy+r*sin(a)
+    console.log(a+" "+x+" "+y+" "+leftmargin+" "+rightmargin+" "+topmargin+" "+bottommargin)
+    ellipse(x,y,7,7)
+    return createVector(x,y)
 }
 
 function fleur1() {
