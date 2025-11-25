@@ -12,8 +12,11 @@ function hal() {
 function test() {
     cx = w * 0.5
     cy = h * 0.5
+    r = actualwidth * 0.5
     a = 42//random(0,360)
-    p = onedge(cx, cy, a)
+    for(a=0;a<360;a+=2){
+        p = onedge(cx, cy, r, a)
+    }
     ellipse(cx, cy, 7, 7)
     ellipse(p.x, p.y, 7, 7)
 }
@@ -91,27 +94,25 @@ function blow(cx, cy, a1, a2, x2, y2, x4, y4) {
 
 // determine coordinates of a point on the edge of the canvas
 // https://www.alloprof.qc.ca/fr/eleves/bv/mathematiques/les-rapports-trigonometriques-m1287
-function onedge(cx, cy, a) {
+function onedge(cx, cy, rayon, a) {
     let b, r, x, y
-    a = 90
-    actuala = a%45
-    console.log("cx: " + cx + "; cy: " + cy + "; a: " + a + "; actual a: "+actuala+"; left:  " + leftmargin + "; right:  " + rightmargin + "; top:  " + topmargin + "; bottom:  " + bottommargin)
+    console.log("cx: " + cx + "; cy: " + cy + "; a: " + a + "; left:  " + leftmargin + "; right:  " + rightmargin + "; top:  " + topmargin + "; bottom:  " + bottommargin)
     if (a <= 45 || a > 315) {
-        b = rightmargin - cx
+        b = rayon//rightmargin - cx
             r=b/cos(a)
     } else {
         if (a <= 135 && a > 45) {
-            b = bottommargin - cy
+            b = rayon//rightmargin - cx//bottommargin - cy
             r=b/cos(Math.abs(90-a))
 
         } else {
             if (a <= 225 && a > 135) {
-                b = cx - leftmargin
+                b = rayon//cx - leftmargin
                 r=b/cos(Math.abs(180-a))
             }
             else {
                 if (a <= 315 && a > 225) {
-                    b = cy - topmargin
+                    b = rayon//cx - leftmargin
                     r=b/Math.abs(cos(Math.abs(270-a)))
                 }
             }
