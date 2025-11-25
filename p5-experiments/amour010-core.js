@@ -93,10 +93,10 @@ function blow(cx, cy, a1, a2, x2, y2, x4, y4) {
 // https://www.alloprof.qc.ca/fr/eleves/bv/mathematiques/les-rapports-trigonometriques-m1287
 function onedge(cx, cy, a) {
     let b, r, x, y
-    a = 135
+    a = 90
     actuala = a%45
     console.log("cx: " + cx + "; cy: " + cy + "; a: " + a + "; actual a: "+actuala+"; left:  " + leftmargin + "; right:  " + rightmargin + "; top:  " + topmargin + "; bottom:  " + bottommargin)
-    if (a <= 45 && a > 315) {
+    if (a <= 45 || a > 315) {
         b = rightmargin - cx
             r=b/cos(a)
     } else {
