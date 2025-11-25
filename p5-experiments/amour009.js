@@ -4,7 +4,7 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 19
+var fSize = 13
 var artname = "amour009"
 
 function preload() {
@@ -54,11 +54,11 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(0,0,100);rect(0,0,w,h)
-    stroke(300,100,100);     hal()
+    stroke(300,100,100);     //hal()
     stroke(0,0,100); strokeWeight(1)
-//    let c = showcodeall(leftmargin * 4.2, bottommargin)
-//    text(artname+"[automne]", c[0], c[1] + fSize)
-//    text("p5.js + axidraw [almyre::2025]", leftmargin, bottommargin + fSize)
+   let c = showcodeall(leftmargin, topmargin)
+   text(artname+"[automne]", c[0], c[1] + fSize)
+   text("p5.js + axidraw [almyre::2025]", leftmargin, bottommargin + fSize)
     noLoop()
 }
 
