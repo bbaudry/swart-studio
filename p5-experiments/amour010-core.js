@@ -4,22 +4,9 @@ xinc = 0.01
 
 function hal() {
     // fleur1()
-    // fleur2(w * 0.5, h * 0.5)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
-    test()
+     fleur2(w * 0.5, h * 0.5)
 }
 
-function test() {
-    cx = w * 0.5
-    cy = h * 0.5
-    r = actualwidth * 0.5
-    a = 42//random(0,360)
-    for(a=0;a<360;a+=2){
-        p = onedge(cx, cy, r, a)
-    }
-    ellipse(cx, cy, 7, 7)
-    ellipse(p.x, p.y, 7, 7)
-}
 
 function fleur2(cx, cy) {
     let x1, y1, x2, y2, x3, y3, x4, y4, r1, r2, a1, a2, anglemax, high
@@ -27,7 +14,7 @@ function fleur2(cx, cy) {
     r2 = actualwidth * 0.5
     a1 = 0
     a2 = 0
-    anglemax = 3
+    anglemax = 2
     high = true
     while (a1 < 360 - anglemax) {
         x1 = cx + r1 * cos(a1)
@@ -84,19 +71,18 @@ function fleur2(cx, cy) {
 }
 
 function blow(cx, cy, a1, a2, x2, y2, x4, y4) {
-    let r1, r2, dx1, dy1, dx2, dy2
-    r1 = dist(cx, cy, x2, y2)
-    r2 = dist(cx, cy, x4, y4)
-    dx1 = cx + actualheight * cos(a1); dx11 = constrain(dx1, leftmargin, leftmargin + actualwidth)
-    dy1 = cy + actualheight * sin(a1); dy11 = constrain(dy1, topmargin, topmargin + actualheight)
-    line(x2, y2, dx1, dy1)
+    let p1,p2
+    p1=onedge(cx,cy,actualwidth*0.5,a1)
+    line(x2,y2,p1.x,p1.y)
+    p2=onedge(cx,cy,actualwidth*0.5,a2)
+    line(x4,y4,p2.x,p2.y)
+    line(p1.x,p1.y,p2.x,p2.y)
 }
 
 // determine coordinates of a point on the edge of the canvas
 // https://www.alloprof.qc.ca/fr/eleves/bv/mathematiques/les-rapports-trigonometriques-m1287
 function onedge(cx, cy, rayon, a) {
     let b, r, x, y
-    console.log("cx: " + cx + "; cy: " + cy + "; a: " + a + "; left:  " + leftmargin + "; right:  " + rightmargin + "; top:  " + topmargin + "; bottom:  " + bottommargin)
     if (a <= 45 || a > 315) {
         b = rayon//rightmargin - cx
             r=b/cos(a)
@@ -118,14 +104,8 @@ function onedge(cx, cy, rayon, a) {
             }
         }
     }
-    x = cx + b * cos(180)
-    y = cy + b * sin(180)
-    ellipse(x, y, 7, 7)
-    console.log("x: " + x + "; y: " + y + "; b: " + b)
     x=cx+r*cos(a)
     y=cy+r*sin(a)
-    console.log("x: "+x+"; y: "+y+"; r: "+r)
-    ellipse(x, y, 7, 7)
     return createVector(x, y)
 }
 
