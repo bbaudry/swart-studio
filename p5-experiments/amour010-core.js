@@ -4,23 +4,79 @@ xinc = 0.01
 
 function hal() {
     // fleur1()
-    r1 = (actualwidth * 0.18) * noise(xoff); xoff += xinc
-    r2 = actualwidth * 0.25
-    fleur2(w * 0.25, h * 0.25, r1, r2)
-    fleur2(w * 0.75, h * 0.25, r1, r2)
-    fleur2(w * 0.25, h * 0.25+w * 0.5, r1, r2)
-    fleur2(w * 0.75, h * 0.25+w * 0.5, r1, r2)
+    r1 = (actualwidth * 0.4) * 0.8//noise(xoff); xoff += xinc
+    r2 = actualwidth * 0.5
+    fleur3(w * 0.5, h * 0.5, r1, r2)
 }
 
 
-function fleur2(cx, cy, r1, r2) {
-    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high
-    //r1 = (actualwidth * 0.3) * noise(xoff); xoff += xinc
-    //r2 = actualwidth * 0.5
+function fleur3(cx, cy, r1, r2) {
+    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high, r3, mem
     a1 = 0
     a2 = 0
-    anglemax = 4
+    anglemax = 3
     high = true
+    mem = []
+    while (a1 < 360) {
+        x1 = cx + r1 * cos(a1)
+        y1 = cy + r1 * sin(a1)
+        r3 = r2 * noise(xoff)
+        x2 = cx + r3 * cos(a1)
+        y2 = cy + r3 * sin(a1)
+        mem.push({"angle":a1,"rayon":r3})
+        xoff += xinc
+        a2 = a1 + anglemax
+        r3 = r2 * noise(xoff)
+        x3 = cx + r1 * cos(a2)
+        y3 = cy + r1 * sin(a2)
+        x4 = cx + r3 * cos(a2)
+        y4 = cy + r3 * sin(a2)
+        if (high) {
+            if (random() < 0.1) {
+                line(x1, y1, x2, y2)
+                blow(cx, cy, a1, a2, x2, y2, x4, y4, r2)
+                line(x4, y4, x3, y3)
+            }
+            else {
+                line(x1, y1, x2, y2)
+                line(x2, y2, x4, y4)
+                line(x4, y4, x3, y3)
+            }
+        }
+        else {
+            line(x1, y1, x3, y3)
+        }
+        high = !high
+        a1 = a2
+    }
+    interieur(cx, cy, mem)
+}
+function interieur(cx, cy, mem){
+    let a1, r1, a2, r2, x1, y1, x2, y2, index
+    a1=0
+    r1=mem[0].rayon
+    for(let i=0; i<42; i++){
+        console.log(mem.length)
+        index=Math.floor(noise(xoff)*mem.length);xoff+=1
+        a2=mem[index].angle
+        r2=mem[index].rayon
+        x1=cx+r1*cos(a1)
+        y1=cy+r1*sin(a1)
+        x2=cx+r2*cos(a2)
+        y2=cy+r2*sin(a2)
+        line(x1, y1, x2, y2)
+        a1=a2
+        r1=r2
+    }
+}
+
+function fleur2(cx, cy, r1, r2) {
+    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high
+    a1 = 0
+    a2 = 0
+    anglemax = 3
+    high = true
+    
     while (a1 < 360 - anglemax) {
         x1 = cx + r1 * cos(a1)
         y1 = cy + r1 * sin(a1)
