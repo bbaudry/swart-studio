@@ -52,12 +52,14 @@ function fleur3(cx, cy, r1, r2) {
     interieur(cx, cy, mem)
 }
 function interieur(cx, cy, mem){
-    let a1, r1, a2, r2, x1, y1, x2, y2, index
+    let a1, r1, a2, r2, x1, y1, x2, y2, j, index
     a1=0
     r1=mem[0].rayon
-    for(let i=0; i<42; i++){
-        console.log(mem.length)
-        index=Math.floor(noise(xoff)*mem.length);xoff+=1
+    j=0
+    for(let i=0; i<142; i++){
+        j+=Math.floor(noise(xoff)*82);xoff+=1
+        index=j%mem.length
+        console.log(index)
         a2=mem[index].angle
         r2=mem[index].rayon
         x1=cx+r1*cos(a1)
