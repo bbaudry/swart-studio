@@ -14,7 +14,7 @@ function fleur3(cx, cy, r1, r2) {
     let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high, r3, innerradii, outerradii
     a1 = 0
     a2 = 0
-    anglemax = 3
+    anglemax = 4
     high = true
     innerradii = []
     outerradii = []
@@ -58,29 +58,30 @@ function fleur3(cx, cy, r1, r2) {
         a1 = a2
     }
     interieur(cx, cy, innerradii)
+    exterieur(cx,cy,outerradii)
 }
-function interieur(cx, cy, mem){
+function interieur(cx, cy, innerradii){
     let a1, r1, a2, r2, x1, y1, x2, y2, x3, y3, x4, y4, jump, index
     a1=0
-    r1=mem[0].rayon
+    r1=innerradii[0].rayon
     jump=0
-    for(let i=0; i<60; i++){
+    for(let i=0; i<Math.floor(innerradii.length*0.5); i++){
         jump+=Math.floor(noise(xoff)*62);xoff+=xinc//0.001
-        index=jump%mem.length
-        a2=mem[index].angle
-        r2=mem[index].rayon
+        index=jump%innerradii.length
+        a2=innerradii[index].angle
+        r2=innerradii[index].rayon
         x1=cx+r1*cos(a1)
         y1=cy+r1*sin(a1)
         x2=cx+r2*cos(a2)
         y2=cy+r2*sin(a2)
         x3=x1;y3=y1
-        x4=lerp(x1,x2,0.5);y4=lerp(y1,y2,0.25)+Math.abs(y2-y1)*0.2//noise(xoff);xoff+=xinc
+        x4=lerp(x1,x2,0.5);y4=lerp(y1,y2,0.25)+Math.abs(y2-y1)*0.1
         line(x3, y3, x4, y4)
         x3=x4;y3=y4
         x4=lerp(x1,x2,0.5);y4=lerp(y1,y2,0.5)
         line(x3, y3, x4, y4)
         x3=x4;y3=y4
-        x4=lerp(x1,x2,0.5);y4=lerp(y1,y2,0.75)-Math.abs(y2-y1)*0.2//*noise(xoff);xoff+=xinc
+        x4=lerp(x1,x2,0.5);y4=lerp(y1,y2,0.75)-Math.abs(y2-y1)*0.1
         line(x3, y3, x4, y4)
         x3=x4;y3=y4
         x4=lerp(x1,x2,1);y4=lerp(y1,y2,1)
@@ -88,6 +89,17 @@ function interieur(cx, cy, mem){
         a1=a2
         r1=r2
     }
+}
+
+function exterieur(cx,cy,outerradii){
+    let a, r, x1, y1
+    for(o in outerradii){
+        a=outerradii[o].angle
+        r=outerradii[o].rayon
+        x1=cx+r*cos(a)
+        y1=cy+r*sin(a)
+        ellipse(x1,y1,7,7)
+    }   
 }
 
 function fleur2(cx, cy, r1, r2) {
