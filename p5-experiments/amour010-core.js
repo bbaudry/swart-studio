@@ -1,17 +1,22 @@
-let xoff, xinc
+let xoff, xinc, innerradii, outerradii
 xoff = 0.0
 xinc = 0.01
 
 function hal() {
-    // fleur1()
+    let cx, cy, r1, r2
     r1 = (actualwidth * 0.4) * 0.8//noise(xoff); xoff += xinc
     r2 = actualwidth * 0.5
-    fleur3(w * 0.5, h * 0.5, r1, r2)
+    cx = w * 0.5
+    cy = h * 0.5
+    fleur3(cx, cy, r1, r2)
+    interieur(cx, cy)
+    exterieur(cx, cy)
+
 }
 
 
 function fleur3(cx, cy, r1, r2) {
-    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high, r3, innerradii, outerradii
+    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high, r3
     a1 = 0
     a2 = 0
     anglemax = 4
@@ -57,16 +62,15 @@ function fleur3(cx, cy, r1, r2) {
         high = !high
         a1 = a2
     }
-    interieur(cx, cy, innerradii)
-    exterieur(cx, cy, outerradii)
 }
-function interieur(cx, cy, innerradii) {
-    let a1, r1, a2, r2, x1, y1, x2, y2, x3, y3, x4, y4, jump, index
+
+function interieur(cx, cy) {
+    let a1, r1, a2, r2, x1, y1, x2, y2, x3, y3, x4, y4, x5
     a1 = 0
     r1 = innerradii[0].rayon
     jump = 0
     for (let i = 0; i < Math.floor(innerradii.length * 0.5); i++) {
-        jump += Math.floor(noise(xoff) * 62); xoff += xinc//0.001
+        jump += Math.floor(innerradii.length * 0.5) + Math.floor(noise(xoff) * 17); xoff += xinc//0.001
         index = jump % innerradii.length
         a2 = innerradii[index].angle
         r2 = innerradii[index].rayon
@@ -74,55 +78,39 @@ function interieur(cx, cy, innerradii) {
         y1 = cy + r1 * sin(a1)
         x2 = cx + r2 * cos(a2)
         y2 = cy + r2 * sin(a2)
-        if ((x1 > cx && x2 < cx) || (x1 < cx && x2 > cx)) {
-            stroke(300,100,100)
-            x3 = x1; y3 = y1
-            x4 = lerp(x1, cx, 0.5); y4 = lerp(y1, y2, 0.25) + Math.abs(y2 - y1) * 0.1
-            line(x3, y3, x4, y4)
-            x3 = x4; y3 = y4
-            x4 = cx; y4 = lerp(y1, y2, 0.5)
-            line(x3, y3, x4, y4)
-            x3 = x4; y3 = y4
-            x4 = lerp(cx, x2, 0.5); y4 = lerp(y1, y2, 0.75) - Math.abs(y2 - y1) * 0.1
-            line(x3, y3, x4, y4)
-            x3 = x4; y3 = y4
-            x4 = lerp(x1, x2, 1); y4 = lerp(y1, y2, 1)
-            line(x3, y3, x4, y4)
-        }
-        else {
-            stroke(300,100,100)
-            x3 = x1; y3 = y1
-            x4 = lerp(x1, x2, 0.5); y4 = lerp(y1, y2, 0.25) + Math.abs(y2 - y1) * 0.1
-            line(x3, y3, x4, y4)
-            x3 = x4; y3 = y4
-            x4 = lerp(x1, x2, 0.5); y4 = lerp(y1, y2, 0.5)
-            line(x3, y3, x4, y4)
-            x3 = x4; y3 = y4
-            x4 = lerp(x1, x2, 0.5); y4 = lerp(y1, y2, 0.75) - Math.abs(y2 - y1) * 0.1
-            line(x3, y3, x4, y4)
-            x3 = x4; y3 = y4
-            x4 = lerp(x1, x2, 1); y4 = lerp(y1, y2, 1)
-            line(x3, y3, x4, y4)
-        }
+        if ((x1 > cx && x2 < cx) || (x1 < cx && x2 > cx)) { x5 = cx } else { x5 = lerp(x1, x2, 0.5) }
+        x3 = x1; y3 = y1
+        x4 = x5; y4 = lerp(y1, y2, 0.25) + Math.abs(y2 - y1) * 0.1
+        line(x3, y3, x4, y4)
+        x3 = x4; y3 = y4
+        x4 = x5; y4 = lerp(y1, y2, 0.5)
+        line(x3, y3, x4, y4)
+        x3 = x4; y3 = y4
+        x4 = x5; y4 = lerp(y1, y2, 0.75) - Math.abs(y2 - y1) * 0.1
+        line(x3, y3, x4, y4)
+        x3 = x4; y3 = y4
+        x4 = lerp(x1, x2, 1); y4 = lerp(y1, y2, 1)
+        line(x3, y3, x4, y4)
         a1 = a2
         r1 = r2
     }
 }
 
-function exterieur(cx, cy, outerradii) {
+function exterieur(cx, cy) {
     let a1, r1, x1, y1, a2, r2, x2, y2, x3
-    for (i=0;i<outerradii.length-2;i++) {
+    for (i = 0; i < outerradii.length - 2; i++) {
         a1 = outerradii[i].angle
         r1 = outerradii[i].rayon
         x1 = cx + r1 * cos(a1)
         y1 = cy + r1 * sin(a1)
 
-        a2 = outerradii[i+1].angle
-        r2 = outerradii[i+1].rayon
+        a2 = outerradii[i + 1].angle
+        r2 = outerradii[i + 1].rayon
         x2 = cx + r2 * cos(a2)
         y2 = cy + r2 * sin(a2)
 
-        x1<cx ? x3=x1-42 : x3=x1+42
+        x1 < cx ? x3 = x1 - (42 + 42 * noise(xoff)) : x3 = x1 + 42 + 42 * noise(xoff)
+        xoff += xinc
         line(x1, y1, x3, y1)
         line(x3, y1, x3, y2)
         line(x3, y2, x2, y2)
