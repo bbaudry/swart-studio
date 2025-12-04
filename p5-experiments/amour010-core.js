@@ -78,7 +78,17 @@ function interieur(cx, cy) {
         y1 = cy + r1 * sin(a1)
         x2 = cx + r2 * cos(a2)
         y2 = cy + r2 * sin(a2)
-        if ((x1 > cx && x2 < cx) || (x1 < cx && x2 > cx)) { x5 = cx } else { x5 = lerp(x1, x2, 0.5) }
+        if ((x1 > cx && x2 < cx) || (x1 < cx && x2 > cx)){ 
+            x5 = cx 
+        } 
+        else{ 
+            if(Math.abs(cx-x1)<Math.abs(cx-x2)){
+                x5 = lerp(x1, x2, 0.25) 
+            }
+            else{
+                x5 = lerp(x2, x1, 0.25) 
+            }
+        }
         x3 = x1; y3 = y1
         x4 = x5; y4 = lerp(y1, y2, 0.25) + Math.abs(y2 - y1) * 0.1
         line(x3, y3, x4, y4)
@@ -97,7 +107,8 @@ function interieur(cx, cy) {
 }
 
 function exterieur(cx, cy) {
-    let a1, r1, x1, y1, a2, r2, x2, y2, x3
+    let a1, r1, x1, y1, a2, r2, x2, y2, extension, x3
+    extension = actualwidth*0.1
     for (i = 0; i < outerradii.length - 2; i++) {
         a1 = outerradii[i].angle
         r1 = outerradii[i].rayon
@@ -109,7 +120,7 @@ function exterieur(cx, cy) {
         x2 = cx + r2 * cos(a2)
         y2 = cy + r2 * sin(a2)
 
-        x1 < cx ? x3 = x1 - (42 + 42 * noise(xoff)) : x3 = x1 + 42 + 42 * noise(xoff)
+        x1 < cx ? x3 = x1 - (extension + extension * noise(xoff)) : x3 = x1 + extension + extension * noise(xoff)
         xoff += xinc
         line(x1, y1, x3, y1)
         line(x3, y1, x3, y2)
