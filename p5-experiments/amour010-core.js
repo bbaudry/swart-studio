@@ -9,21 +9,26 @@ function hal() {
     cx = w * 0.5
     cy = h * 0.5
     fleur3(cx, cy, r1, r2)
-    interieur(cx, cy)
-    exterieur(cx, cy)
-
+    //interieur(cx, cy)
+    last=interieur2(cx, cy)
+    x1=last[0]
+    y1=last[1]
+    x2=cx+outerradii[0].rayon*cos(outerradii[0].angle)
+    y2=cy+outerradii[0].rayon*sin(outerradii[0].angle)
+    exterieur(cx, cy, last[2])
 }
 
 
 function fleur3(cx, cy, r1, r2) {
-    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high, r3
-    a1 = 0
+    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high, a1init, r3
+    a1init = Math.floor(random(90))
+    a1 = a1init
     a2 = 0
     anglemax = 4
     high = true
     innerradii = []
     outerradii = []
-    while (a1 < 360) {
+    while (a1 < a1init + 360) {
         x1 = cx + r1 * cos(a1)
         y1 = cy + r1 * sin(a1)
         r3 = r2 * noise(xoff)
@@ -63,7 +68,21 @@ function fleur3(cx, cy, r1, r2) {
         a1 = a2
     }
 }
-
+function interieur2(cx, cy) {
+    let x1, y1, x2, y2, i1, i2
+    i1=0
+    i2=Math.floor(innerradii.length)-1
+    while(i1<i2){
+        x1=cx+innerradii[i1].rayon*cos(innerradii[i1].angle)
+        y1=cy+innerradii[i1].rayon*sin(innerradii[i1].angle)
+        x2=cx+innerradii[i2].rayon*cos(innerradii[i2].angle)
+        y2=cy+innerradii[i2].rayon*sin(innerradii[i2].angle)
+        line(x1, y1, x2, y2)
+        i1++
+        i2--
+    }
+    return([x2,y2,i2])
+}
 function interieur(cx, cy) {
     let a1, r1, a2, r2, x1, y1, x2, y2, x3, y3, x4, y4, x5
     a1 = 0
@@ -104,23 +123,27 @@ function interieur(cx, cy) {
         a1 = a2
         r1 = r2
     }
+    x3=cx+innerradii[0].rayon*cos(innerradii[0].angle)
+    y3=cy+innerradii[0].rayon*sin(innerradii[0].angle)
+    line(x4,y4,x3,y3)
 }
 
-function exterieur(cx, cy) {
-    let a1, r1, x1, y1, a2, r2, x2, y2, extension, x3
-    extension = actualwidth*0.1
-    for (i = 0; i < outerradii.length - 2; i++) {
-        a1 = outerradii[i].angle
-        r1 = outerradii[i].rayon
+function exterieur(cx, cy, initialindex) {
+    let a1, r1, x1, y1, a2, r2, x2, y2, extension, x3, index
+    extension = actualwidth*0.2
+    for (i = initialindex; i < outerradii.length - 2; i++) {
+        index = i%outerradii.length
+        a1 = outerradii[index].angle
+        r1 = outerradii[index].rayon
         x1 = cx + r1 * cos(a1)
         y1 = cy + r1 * sin(a1)
 
-        a2 = outerradii[i + 1].angle
-        r2 = outerradii[i + 1].rayon
+        a2 = outerradii[index + 1].angle
+        r2 = outerradii[index + 1].rayon
         x2 = cx + r2 * cos(a2)
         y2 = cy + r2 * sin(a2)
 
-        x1 < cx ? x3 = x1 - (extension + extension * noise(xoff)) : x3 = x1 + extension + extension * noise(xoff)
+        x1 < cx ? x3 = x1 - (extension * noise(xoff)) : x3 = x1 + extension * noise(xoff)
         xoff += xinc
         line(x1, y1, x3, y1)
         line(x3, y1, x3, y2)
