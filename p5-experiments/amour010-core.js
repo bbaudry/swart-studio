@@ -24,7 +24,7 @@ function fleur3(cx, cy, r1, r2) {
     a1init = Math.floor(random(90))
     a1 = a1init
     a2 = 0
-    anglemax = 4
+    anglemax = 6
     high = true
     innerradii = []
     outerradii = []

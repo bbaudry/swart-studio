@@ -12,8 +12,9 @@ function preload() {
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
-    w = Math.floor(8.5 * 96)//Math.floor(96*297/25.4)//
-    h = Math.floor(11 * 96)//Math.floor(96*420/25.4)//
+    //letter: w = Math.floor(8.5 * 96); h = Math.floor(11 * 96)
+    w = Math.floor(96*297/25.4)//
+    h = Math.floor(96*420/25.4)//
     angleMode(DEGREES) 
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
