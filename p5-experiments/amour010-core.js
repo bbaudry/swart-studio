@@ -131,8 +131,8 @@ function interieur(cx, cy) {
 function exterieur(cx, cy, initialindex) {
     let a1, r1, x1, y1, a2, r2, x2, y2, extension, x3, index
     extension = actualwidth*0.2
-    for (i = initialindex; i < outerradii.length - 2; i++) {
-        index = i%outerradii.length
+    for (i = initialindex; i < initialindex+outerradii.length - 1; i++) {
+        index = i%(outerradii.length-1)
         a1 = outerradii[index].angle
         r1 = outerradii[index].rayon
         x1 = cx + r1 * cos(a1)
