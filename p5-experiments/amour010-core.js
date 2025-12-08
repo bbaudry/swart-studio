@@ -4,7 +4,7 @@ xinc = 0.01
 
 function hal() {
     let cx, cy, r1, r2
-    r1 = (actualwidth * 0.4) * 0.8//noise(xoff); xoff += xinc
+    r1 = (actualwidth * 0.4) * noise(xoff); xoff += xinc
     r2 = actualwidth * 0.5
     cx = w * 0.5
     cy = h * 0.5
@@ -24,7 +24,7 @@ function fleur3(cx, cy, r1, r2) {
     a1init = Math.floor(random(90))
     a1 = a1init
     a2 = 0
-    anglemax = 6
+    anglemax = 4
     high = true
     innerradii = []
     outerradii = []
@@ -101,12 +101,7 @@ function interieur(cx, cy) {
             x5 = cx 
         } 
         else{ 
-            if(Math.abs(cx-x1)<Math.abs(cx-x2)){
-                x5 = lerp(x1, x2, 0.25) 
-            }
-            else{
-                x5 = lerp(x2, x1, 0.25) 
-            }
+           Math.abs(cx-x1)<Math.abs(cx-x2) ? x5 = lerp(x1, x2, 0.25):x5 = lerp(x2, x1, 0.25) 
         }
         x3 = x1; y3 = y1
         x4 = x5; y4 = lerp(y1, y2, 0.25) + Math.abs(y2 - y1) * 0.1
@@ -151,79 +146,18 @@ function exterieur(cx, cy, initialindex) {
     }
 }
 
-function fleur2(cx, cy, r1, r2) {
-    let x1, y1, x2, y2, x3, y3, x4, y4, a1, a2, anglemax, high
-    a1 = 0
-    a2 = 0
-    anglemax = 3
-    high = true
-
-    while (a1 < 360 - anglemax) {
-        x1 = cx + r1 * cos(a1)
-        y1 = cy + r1 * sin(a1)
-        x2 = cx + (r2 * noise(xoff)) * cos(a1)
-        y2 = cy + (r2 * noise(xoff)) * sin(a1)
-        xoff += xinc
-        a2 = a1 + anglemax
-        x3 = cx + r1 * cos(a2)
-        y3 = cy + r1 * sin(a2)
-        x4 = cx + (r2 * noise(xoff)) * cos(a2)
-        y4 = cy + (r2 * noise(xoff)) * sin(a2)
-        if (high) {
-            if (random() < 0.1) {
-                line(x1, y1, x2, y2)
-                blow(cx, cy, a1, a2, x2, y2, x4, y4, r2)
-                line(x4, y4, x3, y3)
-            }
-            else {
-                line(x1, y1, x2, y2)
-                line(x2, y2, x4, y4)
-                line(x4, y4, x3, y3)
-            }
-        }
-        else {
-            line(x1, y1, x3, y3)
-        }
-        high = !high
-        //        quad(x1, y1, x2, y2, x4, y4, x3, y3)
-        a1 = a2
-    }
-    if (high) {
-        x1 = cx + r1 * cos(a1)
-        y1 = cy + r1 * sin(a1)
-        x2 = cx + (r2 * noise(xoff)) * cos(a1)
-        y2 = cy + (r2 * noise(xoff)) * sin(a1)
-        a2 = 0
-        x3 = cx + r1 * cos(a2)
-        y3 = cy + r1 * sin(a2)
-        x4 = cx + (r2 * noise(xoff)) * cos(a2)
-        y4 = cy + (r2 * noise(xoff)) * sin(a2)
-        line(x1, y1, x2, y2)
-        line(x2, y2, x4, y4)
-        line(x4, y4, x3, y3)
-    }
-    else {
-        x1 = cx + r1 * cos(a1)
-        y1 = cy + r1 * sin(a1)
-        a2 = 0
-        x3 = cx + r1 * cos(a2)
-        y3 = cy + r1 * sin(a2)
-        line(x1, y1, x3, y3)
-    }
-}
-
 function blow(cx, cy, a1, a2, x2, y2, x4, y4, r) {
     let p1, p2
-    p1 = onedge(cx, cy, r, a1)
+    p1 = on_edge(cx, cy, r, a1)
     line(x2, y2, p1.x, p1.y)
-    p2 = onedge(cx, cy, r, a2)
+    p2 = on_edge(cx, cy, r, a2)
     line(x4, y4, p2.x, p2.y)
     line(p1.x, p1.y, p2.x, p2.y)
 }
 
 // determine coordinates of a point on the edge of the canvas
 // https://www.alloprof.qc.ca/fr/eleves/bv/mathematiques/les-rapports-trigonometriques-m1287
-function onedge(cx, cy, rayon, a) {
+function on_edge(cx, cy, rayon, a) {
     let b, r, x, y
     if (a <= 45 || a > 315) {
         b = rayon//rightmargin - cx
@@ -249,21 +183,4 @@ function onedge(cx, cy, rayon, a) {
     x = cx + r * cos(a)
     y = cy + r * sin(a)
     return createVector(x, y)
-}
-
-function fleur1() {
-    let cx, cy, x1, y1, x2, y2, r1, r2, a, a1, a2
-    cx = w * 0.42
-    cy = h * 0.42
-    r1 = 42 * random()
-    r2 = 342
-    for (a = 0; a < 360; a += 3 * noise(xoff)) {
-        xoff += xinc
-        x1 = cx + r1 * cos(a)
-        y1 = cy + r1 * sin(a)
-        x2 = cx + (r2 * noise(xoff)) * cos(a)
-        y2 = cy + (r2 * noise(xoff)) * sin(a)
-        line(x1, y1, x2, y2)
-        xoff += xinc
-    }
 }
