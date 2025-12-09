@@ -4,7 +4,7 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 19
+var fSize = 33
 var artname = "amour010"
 
 function preload() {
@@ -55,16 +55,20 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(0,0,100);rect(0,0,w,h)
-    stroke(300,100,100);     hal()
-    stroke(0,0,100); strokeWeight(1)
-//    let c = showcodeall(leftmargin * 4.2, bottommargin)
-//    text(artname+"[automne]", c[0], c[1] + fSize)
-//    text("p5.js + axidraw [almyre::2025]", leftmargin, bottommargin + fSize)
+    stroke(300,100,100);     
+    // draw the gen art on full page
+    hal()
+    // draw the gen art code on page that's 3cm more narrow
+    // rightmargin -= Math.floor(96*30/25.4)
+    // stroke(0,0,100); strokeWeight(1)
+    // let c = showcodeallwithoutindentation(leftmargin, fSize)
+    // text(artname+"[automne]", c[0], c[1] + fSize)
+    // text("p5.js + axidraw [almyre::2025]", leftmargin, c[1] + 2*fSize)
     noLoop()
 }
 
 
-function showcodeall(posx, posy) {
+function showcodeallwithindentation(posx, posy) {
     var x, y
     x = posx
     y = posy
@@ -73,4 +77,28 @@ function showcodeall(posx, posy) {
         y += fSize
     }
     return ([x, y])
+}
+
+function showcodeallwithoutindentation(posx, posy) {
+    var allcode, c, tw, initx 
+    initx = posx
+    allcode = ''
+    for (var i = 0; i < sourcecode.length; i++) {
+        var token = sourcecode[i]
+        var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
+        allcode += notab
+    }
+    for (let i = 0; i < allcode.length; i++) {
+        c = allcode.charAt(i)
+        tw = textWidth(c)
+        if (posx + tw > rightmargin) {
+            posx = initx
+            posy += fSize + 1
+        }
+        text(c, posx, posy)
+        posx += tw
+    }
+    posx = initx
+    posy += fSize + 1
+    return([posx,posy])
 }
