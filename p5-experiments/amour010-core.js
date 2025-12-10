@@ -10,8 +10,10 @@ function hal() {
     fleur3(cx, cy, r1, r2)
     jonction = interieur(cx, cy)
     x1 = jonction[0]; y1 = jonction[1]
-    x2 = cx + outerradii[0].rayon * cos(outerradii[0].angle)
-    y2 = cy + outerradii[0].rayon * sin(outerradii[0].angle)
+    index = jonction[2]
+    x2 = cx + outerradii[index].rayon * cos(outerradii[index].angle)
+    y2 = cy + outerradii[index].rayon * sin(outerradii[index].angle)
+    line(x1,y1,x2,y2)
     exterieur(cx, cy, jonction[2])
 }
 
@@ -40,7 +42,9 @@ function fleur3(cx, cy, r1, r2) {
         x4 = cx + r3 * cos(a2); y4 = cy + r3 * sin(a2)
         if (high) {
             if (random() < 0.1) {
-                line(x1, y1, x2, y2); blow(cx, cy, a1, a2, x2, y2, x4, y4, r2); line(x4, y4, x3, y3)
+                line(x1, y1, x2, y2); 
+                blow(cx, cy, a1, a2, x2, y2, x4, y4, r2); 
+                line(x4, y4, x3, y3)
             } else {
                 line(x1, y1, x2, y2); line(x2, y2, x4, y4); line(x4, y4, x3, y3)
             }
@@ -64,6 +68,7 @@ function interieur(cx, cy) {
         i1++
         i2--
     }
+    i2++
     return ([x2, y2, i2])
 }
 
@@ -84,8 +89,9 @@ function exterieur(cx, cy, initialindex) {
 function blow(cx, cy, a1, a2, x2, y2, x4, y4, r) {
     let p1, p2
     p1 = on_edge(cx, cy, r, a1); p2 = on_edge(cx, cy, r, a2)
-    line(x2, y2, p1.x, p1.y); line(x4, y4, p2.x, p2.y)
+    line(x2, y2, p1.x, p1.y)
     line(p1.x, p1.y, p2.x, p2.y)
+    line(p2.x, p2.y, x4, y4)
 }
 
 // determine coordinates of a point on the edge of the canvas
