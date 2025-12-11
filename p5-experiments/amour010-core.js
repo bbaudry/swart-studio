@@ -1,6 +1,6 @@
 let xoff, xinc, innerradii, outerradii
 xoff = 0.0
-xinc = 0.01
+xinc = 0.02
 
 function hal() {
     let cx, cy, r1, r2, jonction
