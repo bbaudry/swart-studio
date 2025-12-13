@@ -25,7 +25,7 @@ function setup() {
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.95)
+    bottommargin = Math.floor(h * 0.89)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
