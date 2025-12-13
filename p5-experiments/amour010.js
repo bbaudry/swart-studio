@@ -4,7 +4,7 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 33
+var fSize = 17
 var artname = "amour010"
 
 function preload() {
@@ -57,15 +57,16 @@ function draw() {
     stroke(0,0,100);rect(0,0,w,h)
     stroke(300,100,100);     
     // draw the gen art on full page
-    hal()
+//    hal()
 //    draw the gen art code on page that's 3cm more narrow
     rightmargin -= Math.floor(96*30/25.4)
     stroke(0,0,100); strokeWeight(1)
-    //let c = showcodeallwithoutindentation(leftmargin, fSize)
-    // text(artname+"[automne]", c[0], c[1] + fSize)
-    // text("p5.js + axidraw [almyre::2025]", leftmargin, c[1] + 2*fSize)
+    // let c = showcodeallwithoutindentation(leftmargin, fSize)
+    // text("p5.js + axidraw", c[0], c[1] + fSize)
     // text(artname+"[automne]", leftmargin, bottommargin)
-    // text("p5.js + axidraw [almyre::2025]", leftmargin, bottommargin + fSize)
+    let c = "code source pour \"une ligne avec angles\" [al.my.re :: 2025]"
+    let tw=textWidth(c)
+    text(c, rightmargin-tw, bottommargin + 3*fSize)
     noLoop()
 }
 
