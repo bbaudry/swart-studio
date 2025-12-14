@@ -22,10 +22,10 @@ function setup() {
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    leftmargin = Math.floor(w * 0.05)
-    rightmargin = Math.floor(w * 0.95)
-    topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.79)
+    leftmargin = Math.floor(w * 0.02)
+    rightmargin = Math.floor(w * 0.98)
+    topmargin = Math.floor(h * 0.02)
+    bottommargin = Math.floor(h * 0.84)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -84,8 +84,6 @@ function showcodeallwithoutindentation(posx, posy) {
     initx = posx
     inity = posy
     allcode = ''
-    console.log(sourcecode.length)
-    console.log(sourcecode)
     for (let i = 0; i < sourcecode.length; i++) {//
         var token = sourcecode[i]
         var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
