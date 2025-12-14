@@ -1,6 +1,6 @@
 let xoff, xinc, yoff, yinc, innerradii, outerradii
 xoff = 0.0; yoff = 0.0
-xinc = 0.01; yinc = 0.3
+xinc = 0.01; yinc = 0.6
 
 function hal() {
     push()
@@ -13,8 +13,8 @@ function hal() {
 function ligneavecdouceur() {
     let x1, y1, cx1, cy1, cx2, cy2, x2, y2, epaisseur, vera, avance
     epaisseur = 0.1//random(0.1, 0.3)
-    vera = 0.5
-    for (let i = 0; i < 420; i++) {
+    vera = 0.3
+    for (let i = 0; i < 520; i++) {
         if(random()<0.7){
         yoff = 0.0
         xoff = 0.0
@@ -27,9 +27,9 @@ function ligneavecdouceur() {
             beginShape()
             vertex(x1, y1)
             cx2 = cx1 + w * noise(xoff) * epaisseur; xoff += xinc
-            cy2 = topmargin + noise(yoff) * actualwidth * vera + i; yoff += yinc
+            cy2 = actualwidth*0.5//topmargin + noise(yoff) * actualwidth * vera + i; yoff += yinc
             x2 = cx2 + w * noise(xoff) * epaisseur; xoff += xinc
-            y2 = topmargin + noise(yoff) * actualwidth * vera + i*0.8; yoff += yinc
+            y2 = topmargin + noise(yoff) * actualwidth * vera + i; yoff += yinc
             if (x2 < actualheight) {
                 bezierVertex(cx1, cy1, cx2, cy2, x2, y2)
                 x1 = x2
