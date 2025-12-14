@@ -15,7 +15,7 @@ function ligneavecdouceur() {
         yoff = 0.0
         xoff = 0.0
         avance=true
-        x1 = leftmargin
+        x1 = topmargin
         y1 = noise(yoff) * actualwidth * vera + i; yoff += yinc
         cx1 = x1 + w * noise(xoff) * epaisseur; xoff += xinc
         cy1 = topmargin + noise(yoff) * actualwidth * vera + i; yoff += yinc

@@ -25,7 +25,7 @@ function setup() {
     leftmargin = Math.floor(w * 0.05)
     rightmargin = Math.floor(w * 0.95)
     topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.89)
+    bottommargin = Math.floor(h * 0.79)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -63,9 +63,10 @@ function draw() {
     rotate(90)
     rect(topmargin,leftmargin,actualheight,actualwidth)
     hal()
-    let c = showcodeallwithoutindentation(bottommargin, fSize)
-    text(artname+"[hiver]", c[0], c[1] + fSize)
-    text("p5.js + axidraw [almyre::2025]", leftmargin, c[1] + 2*fSize)
+    let c = showcodeallwithoutindentation(bottommargin, leftmargin+fSize)
+    text("la vie en rose", c[0], c[1] + 4*fSize)
+    text("p5.js + axidraw [al.my.re::2025]", c[0], c[1] + 5*fSize)
+    //text("p5.js + axidraw [almyre::2025]", bottommargin, leftmargin)
     noLoop()
 }
 
@@ -82,10 +83,13 @@ function showcodeallwithindentation(posx, posy) {
 }
 
 function showcodeallwithoutindentation(posx, posy) {
-    var allcode, c, tw, initx 
+    var allcode, c, tw, initx, inity
     initx = posx
+    inity = posy
     allcode = ''
-    for (var i = 0; i < sourcecode.length; i++) {
+    console.log(sourcecode.length)
+    console.log(sourcecode)
+    for (let i = 0; i < sourcecode.length; i++) {//
         var token = sourcecode[i]
         var notab = token.toString().replace(/\s/g, '').split('\r\n')[0]
         allcode += notab
@@ -93,7 +97,7 @@ function showcodeallwithoutindentation(posx, posy) {
     for (let i = 0; i < allcode.length; i++) {
         c = allcode.charAt(i)
         tw = textWidth(c)
-        if (posx + tw > topmargin) {
+        if (posx + tw > h*0.98) {
             posx = initx
             posy += fSize + 1
         }
@@ -101,6 +105,6 @@ function showcodeallwithoutindentation(posx, posy) {
         posx += tw
     }
     posx = initx
-    posy += fSize + 1
+    posy += fSize+1
     return([posx,posy])
 }
