@@ -57,16 +57,13 @@ function draw() {
     noFill()
     textFont(font)
     textSize(fSize)
-    stroke(0,0,100);rect(0,0,w,h)
     stroke(300,100,100);  
     translate(w, 0)
     rotate(90)
-    rect(topmargin,leftmargin,actualheight,actualwidth)
     hal()
     let c = showcodeallwithoutindentation(bottommargin, leftmargin+fSize)
     text("la vie en rose", c[0], c[1] + 4*fSize)
     text("p5.js + axidraw [al.my.re::2025]", c[0], c[1] + 5*fSize)
-    //text("p5.js + axidraw [almyre::2025]", bottommargin, leftmargin)
     noLoop()
 }
 
