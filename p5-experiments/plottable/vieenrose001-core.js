@@ -3,11 +3,7 @@ xoff = 0.0; yoff = 0.0
 xinc = 0.01; yinc = 0.6
 
 function hal() {
-    push()
-    translate(actualwidth, 0)
-    rotate(90)
     ligneavecdouceur()
-    pop()
 }
 
 function ligneavecdouceur() {

@@ -58,9 +58,12 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(0,0,100);rect(0,0,w,h)
-    stroke(300,100,100);     
+    stroke(300,100,100);  
+    translate(w, 0)
+    rotate(90)
+    rect(topmargin,leftmargin,actualheight,actualwidth)
     hal()
-    let c = showcodeallwithoutindentation(leftmargin, bottommargin+fSize)
+    let c = showcodeallwithoutindentation(bottommargin, fSize)
     text(artname+"[hiver]", c[0], c[1] + fSize)
     text("p5.js + axidraw [almyre::2025]", leftmargin, c[1] + 2*fSize)
     noLoop()
@@ -90,7 +93,7 @@ function showcodeallwithoutindentation(posx, posy) {
     for (let i = 0; i < allcode.length; i++) {
         c = allcode.charAt(i)
         tw = textWidth(c)
-        if (posx + tw > rightmargin) {
+        if (posx + tw > topmargin) {
             posx = initx
             posy += fSize + 1
         }
