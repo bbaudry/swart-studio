@@ -10,7 +10,7 @@ function ligneavecdouceur() {
     let x1, y1, cx1, cy1, cx2, cy2, x2, y2, epaisseur, vera, avance
     epaisseur = 0.2//random(0.1, 0.3)
     vera = 0.2
-    for (let i = Math.floor(actualwidth*0.8); i > 0 ; i--) {
+    for (let i = Math.floor(actualwidth*0.8); i > 0 ; i-=penwidth) {
         if(random()<0.6){
         yoff = 0.0
         xoff = 0.0
