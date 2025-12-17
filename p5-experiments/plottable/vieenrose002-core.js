@@ -34,7 +34,7 @@ function ribbon2() {
         x1 = topmargin
         y1 = leftmargin + i * 2
         cx1 = topmargin + actualheight * 0.4 * noise(xoff); xoff += xinc
-        cy1 = y1+0.3*noise(xoff)//leftmargin + actualwidth * 0.1 * (1 - 2 * noise(xoff)); 
+        cy1 = y1-7*noise(xoff)//leftmargin + actualwidth * 0.1 * (1 - 2 * noise(xoff)); 
         xoff += xinc
         cx2 = topmargin + actualheight * 0.5 * noise(xoff); xoff += xinc
         cy2 = cy1+1.7*noise(xoff)// * (1-2*noise(xoff));xoff+=xinc
