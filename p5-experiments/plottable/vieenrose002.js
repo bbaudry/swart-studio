@@ -4,7 +4,7 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 12
+var fSize = 11
 var artname = "vieenrose002"
 
 function preload() {
@@ -22,10 +22,10 @@ function setup() {
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    leftmargin = Math.floor(w * 0.02)
-    rightmargin = Math.floor(w * 0.98)
-    topmargin = Math.floor(h * 0.02)
-    bottommargin = Math.floor(h * 0.82)
+    leftmargin = Math.floor(w * 0.05)
+    rightmargin = Math.floor(w * 0.85)
+    topmargin = Math.floor(h * 0.05)
+    bottommargin = Math.floor(h * 0.95)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -61,9 +61,11 @@ function draw() {
     translate(w, 0)
     rotate(90)
     hal()
-    // text("la vie en rose [al.my.re::2025]", bottommargin+fSize, rightmargin - fSize)
-    // text("p5.js + axidraw", bottommargin+fSize, rightmargin - 5*fSize)
-    // let c = showcodeallwithoutindentation(bottommargin+fSize, rightmargin - 7*fSize)
+    strokeWeight(1)
+    let c = showcodeallwithoutindentation(topmargin,rightmargin+fSize)
+    text("p5.js + axidraw", topmargin, c[1]+fSize)
+    let signature="la vie en rose [al.my.re::2025]"
+    text(signature,bottommargin-textWidth(signature), c[1]+fSize)
     noLoop()
 }
 
@@ -92,14 +94,14 @@ function showcodeallwithoutindentation(posx, posy) {
     for (let i = 0; i < allcode.length; i++) {
         c = allcode.charAt(i)
         tw = textWidth(c)
-        if (posx + tw > h*0.98) {
+        if (posx + tw > bottommargin) {
             posx = initx
-            posy -= fSize + 1
+            posy += fSize + 1
         }
         text(c, posx, posy)
         posx += tw
     }
     posx = initx
-    posy -= fSize+1
+    posy += fSize+1
     return([posx,posy])
 }
