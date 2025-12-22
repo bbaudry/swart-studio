@@ -5,7 +5,7 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 12
-var artname = "toile001"
+var artname = "toile002"
 
 function preload() {
     font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
