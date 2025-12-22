@@ -29,25 +29,25 @@ function cell(x, y, s, d) {
         cell(x, y + s, s, d)
     }
     else {
-        if (d == 0) {
-            line(x, y, x + s, y + s)
-            line(x, y + s, x + s, y)
-        }
-        else {
-            une(x, y, s)
-        }
+        une(x, y, s)
     }
 }
 
 function une(x,y,s){
-//    rect(x,y,s,s)
-    let x1,y1,x2,y2,x0,y0,monte,t,stept
+    let x1,y1,x2,y2,x0,y0,monte,t,stept,dice
     t=0;stept=0.01
-    if(random()<0.5){x0=x;y0=y;monte=false}
-    else{x0=x;y0=y+s,monte=true}
+    if(random()<0.5){y0=y;monte=false}
+    else{y0=y+s,monte=true}
+    dice=random([1,2,3])
     while(t<1){
-        x1=x//lerp(x0,x0+s,t)
-        x2=x+s
+        switch (dice){
+            case 1:x1=x;x2=x+s
+                break
+            case 2:x1=lerp(x,x+s,t);x2=x+s
+                break
+            case 3:x1=x;x2=lerp(x+s,x,t)
+                break
+        }
         monte?y1=lerp(y0,y0-s,t):y1=lerp(y0,y0+s,t)
         y2=y1
         line(x1,y1,x2,y2)
