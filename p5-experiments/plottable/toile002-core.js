@@ -1,6 +1,9 @@
-let xoff, xinc, yoff, yinc, innerradii, outerradii
-xoff = 0.0; yoff = 0.0
-xinc = 0.001; yinc = 0.6
+// exactly the same as toile001-core except for one instruction swap: 
+// dice=random([1,2,3]) is in the while loop instead of out, in function une()
+
+let xoff, xinc
+xoff = 0.0
+xinc = 0.001 
 
 function hal() {
     profondeur()
@@ -14,7 +17,6 @@ function profondeur() {
     for (let i = 0; i < resolution; i++) {
         for (let j = 0; j < resolution; j++) {
             cell(leftmargin + i * step, topmargin + j * step, step, niveau)
-            //une(leftmargin + i * step, topmargin + j * step, step)
         }
     }
 }

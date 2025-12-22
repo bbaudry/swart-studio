@@ -1,6 +1,6 @@
-let xoff, xinc, yoff, yinc, innerradii, outerradii
-xoff = 0.0; yoff = 0.0
-xinc = 0.001; yinc = 0.6
+let xoff, xinc
+xoff = 0.0
+xinc = 0.001 
 
 function hal() {
     profondeur()
@@ -14,7 +14,6 @@ function profondeur() {
     for (let i = 0; i < resolution; i++) {
         for (let j = 0; j < resolution; j++) {
             cell(leftmargin + i * step, topmargin + j * step, step, niveau)
-            //une(leftmargin + i * step, topmargin + j * step, step)
         }
     }
 }
