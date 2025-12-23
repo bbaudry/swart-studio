@@ -8,14 +8,14 @@ function hal() {
 
 function ruban() {
     let x1,y1,cx1,cy1,cx2,cy2,x2,y2
-for(let i=0; i<11; i++){
-    x1=w*noise(xoff); xoff+=xinc  //*0.5
+for(let i=0; i<42; i++){
+    x1=leftmargin+actualwidth*noise(xoff)*0.5; xoff+=xinc  //*0.5
     y1=topmargin
     cx1=x1+actualwidth*noise(xoff); xoff+=xinc  //*0.4
     cy1=y1+actualheight*0.1
     cx2=x1-actualwidth*0.2
     cy2=y1+actualheight*noise(xoff); xoff+=xinc  //*0.6
-    x2=x1-actualwidth*0.2
+    x2=x1*0.2
     y2=y1+actualheight*0.8
     beginShape()
     vertex(x1,y1)
