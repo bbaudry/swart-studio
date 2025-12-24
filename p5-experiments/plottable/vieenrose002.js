@@ -4,7 +4,7 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 11
+var fSize = 17
 var artname = "vieenrose002"
 
 function preload() {
@@ -13,17 +13,17 @@ function preload() {
 }
 function setup() {
     // letter 
-    w = Math.floor(8.5 * 96); 
-    h = Math.floor(11 * 96)
+    // w = Math.floor(8.5 * 96); 
+    // h = Math.floor(11 * 96)
     // A3
-    // w = Math.floor(96*297/25.4)
-    // h = Math.floor(96*420/25.4)
+    w = Math.floor(96*297/25.4)
+    h = Math.floor(96*420/25.4)
     angleMode(DEGREES) 
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     leftmargin = Math.floor(w * 0.05)
-    rightmargin = Math.floor(w * 0.85)
+    rightmargin = Math.floor(w * 0.9)
     topmargin = Math.floor(h * 0.05)
     bottommargin = Math.floor(h * 0.95)
     actualwidth = rightmargin - leftmargin
@@ -62,10 +62,10 @@ function draw() {
     rotate(90)
     hal()
     strokeWeight(1)
-    let c = showcodeallwithoutindentation(topmargin,rightmargin+fSize)
-    text("p5.js + axidraw", topmargin, c[1]+fSize)
+    // let c = showcodeallwithoutindentation(topmargin,rightmargin+fSize)
+    // text("p5.js + axidraw", topmargin, c[1]+fSize)
     let signature="la vie en rose [al.my.re::2025]"
-    text(signature,bottommargin-textWidth(signature), c[1]+fSize)
+    text(signature,bottommargin-textWidth(signature), rightmargin+fSize)
     noLoop()
 }
 

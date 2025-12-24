@@ -3,48 +3,86 @@ xoff = 0.0; yoff = 0.0
 xinc = 0.01; yinc = 0.6
 
 function hal() {
-    ruban()
+    let x=ruban1()
+    ruban2(x,topmargin+actualheight*0.01,200)
+    ruban2(x,topmargin+actualheight*0.03,100)
 }
 
-function ruban() {
-    let x1,y1,cx1,cy1,cx2,cy2,x2,y2
-for(let i=0; i<42; i++){
-    x1=leftmargin+actualwidth*noise(xoff)*0.5; xoff+=xinc  //*0.5
-    y1=topmargin
-    cx1=x1+actualwidth*noise(xoff); xoff+=xinc  //*0.4
-    cy1=y1+actualheight*0.1
-    cx2=x1-actualwidth*0.2
-    cy2=y1+actualheight*noise(xoff); xoff+=xinc  //*0.6
-    x2=x1*0.2
-    y2=y1+actualheight*0.8
-    beginShape()
-    vertex(x1,y1)
-    bezierVertex(cx1,cy1,cx2,cy2,x2,y2)
-    endShape()
 
-    x1=x2
-    y1=y2
-    cx1=x1 + (x2 - cx2)
-    cy1=y1 + (y2 - cy2)
-    cx2=x1+actualwidth*0.4
-    cy2=y1+actualheight*0.3
-    x2=x1+actualwidth*0.3
-    y2=y1
-    beginShape()
-    vertex(x1,y1)
-    bezierVertex(cx1,cy1,cx2,cy2,x2,y2)
-    endShape()
+function ruban1() {
+    let x1, y1, cx1, cy1, cx2, cy2, x2, y2,xinit
+    xinit = leftmargin + actualwidth *0.7*noise(xoff);xoff+=xinc
+    for (let i = 0; i < 42; i+=penwidth) {
+        xoff=0.0
+        x1 = xinit+i//leftmargin + actualwidth *0.8*noise(xoff) + i;xoff+=xinc
+        y1 = topmargin
+        cx1 = x1 + (actualwidth - x1) *0.4*noise(xoff) + i;xoff+=xinc
+        cy1 = y1 + actualheight * 0.4 *noise(xoff) + i;xoff+=xinc
+        cx2 = x1 - (actualwidth - x1) * 0.2*noise(xoff) + i;xoff+=xinc
+        cy2 = y1 + actualheight * 0.6
+        x2 = (actualwidth - x1) * 0.4+i
+        y2 = y1 + actualheight * 0.8
+        beginShape()
+        vertex(x1, y1)
+        bezierVertex(cx1, cy1, cx2, cy2, x2, y2)
 
-    x1=x2
-    y1=y2
-    cx1=x1 + (x2 - cx2)
-    cy1=y1 + (y2 - cy2)
-    cx2=x1+actualwidth*0.24
-    cy2=y1-actualheight*0.3
-    x2=x1+actualwidth*0.3
-    y2=y1
-    beginShape()
-    vertex(x1,y1)
-    bezierVertex(cx1,cy1,cx2,cy2,x2,y2)
-    endShape()
-}}
+        x1 = x2
+        y1 = y2
+        cx1 = x1 + (x2 - cx2)
+        cy1 = y1 + (y2 - cy2)
+        cx2 = x1 + (actualwidth - x1) * 0.4*noise(xoff) + i;xoff+=xinc
+        cy2 = y1 + actualheight * 0.3*noise(xoff) + i;xoff+=xinc
+        x2 = x1 + actualwidth * 0.5*noise(xoff) + i;xoff+=xinc
+        y2 = y1
+        bezierVertex(cx1, cy1, cx2, cy2, x2, y2)
+
+        x1 = x2
+        y1 = y2
+        cx1 = x1 + (x2 - cx2)
+        cy1 = y1 + (y2 - cy2)
+        cx2 = x1 + (actualwidth - x1) * 0.24*noise(xoff) + i;xoff+=xinc
+        cy2 = y1 - actualheight * 0.3*noise(xoff) + i;xoff+=xinc
+        x2 = x1 + actualwidth * 0.3*noise(xoff) + i;xoff+=xinc
+        y2 = bottommargin
+        bezierVertex(cx1, cy1, cx2, cy2, x2, y2)
+        endShape()
+    }
+    return xinit
+}
+function ruban2(x,y,xoffinit){
+    for (let i = 0; i < 42; i+=penwidth) {
+        xoff=xoffinit
+        x1 = x+actualwidth*0.05-i//rightmargin - actualwidth *0.8*noise(xoff) - i;xoff+=xinc
+        y1 = y
+        cx1 = x1 - (actualwidth - x1) *0.4*noise(xoff) + i;xoff+=xinc
+        cy1 = y1 + actualheight * 0.8 *noise(xoff) + i;xoff+=xinc
+        cx2 = x1 + (actualwidth - x1) * 0.6*noise(xoff) + i;xoff+=xinc
+        cy2 = y1 + actualheight * 0.6
+        x2 = rightmargin-(actualwidth - x1) * 0.4+i
+        y2 = y1 + actualheight * 0.8
+        beginShape()
+        vertex(x1, y1)
+        bezierVertex(cx1, cy1, cx2, cy2, x2, y2)
+
+        x1 = x2
+        y1 = y2
+        cx1 = x1 + (x2 - cx2)
+        cy1 = y1 + (y2 - cy2)
+        cx2 = x1 - (actualwidth - x1) * 0.4*noise(xoff) + i;xoff+=xinc
+        cy2 = y1 + actualheight * 0.3*noise(xoff) + i;xoff+=xinc
+        x2 = x1 - actualwidth * 0.5*noise(xoff) + i;xoff+=xinc
+        y2 = y1
+        bezierVertex(cx1, cy1, cx2, cy2, x2, y2)
+
+        x1 = x2
+        y1 = y2
+        cx1 = x1 + (x2 - cx2)
+        cy1 = y1 + (y2 - cy2)
+        cx2 = x1 - (actualwidth - x1) * 0.24*noise(xoff) + i;xoff+=xinc
+        cy2 = y1 - actualheight * 0.8*noise(xoff) + i;xoff+=xinc
+        x2 = x1 - actualwidth * 0.3*noise(xoff) + i;xoff+=xinc
+        y2 = bottommargin
+        bezierVertex(cx1, cy1, cx2, cy2, x2, y2)
+        endShape()
+    }}
+

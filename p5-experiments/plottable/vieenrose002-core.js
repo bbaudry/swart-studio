@@ -10,9 +10,9 @@ function hal() {
 
 function ribbon() {
     let x1, y1, cx1, cy1, cx2, cy2, x2, y2
-    for (i = 0; i < penwidth*42; i += penwidth) {
+    for (i = 0; i < penwidth*61; i += penwidth) {
         x1 = topmargin
-        y1 = leftmargin + actualwidth * 0.42 + i * 2
+        y1 = leftmargin + actualwidth * 0.49 + i * 2
         cx1 = topmargin + actualheight * 0.3 * noise(xoff); xoff += xinc
         cy1 = y1-i*1.3
         xoff += xinc
@@ -29,7 +29,7 @@ function ribbon() {
 
 function ribbon2() {
     let x1, y1, cx1, cy1, cx2, cy2, x2, y2
-    for (i = 0; i < penwidth*52; i += penwidth) {
+    for (i = 0; i < penwidth*69; i += penwidth) {
         x1 = topmargin
         y1 = leftmargin + i*1.3
         cx1 = topmargin + actualheight * 0.4 * noise(xoff); xoff += xinc
