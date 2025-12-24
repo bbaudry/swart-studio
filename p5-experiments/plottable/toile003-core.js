@@ -3,17 +3,19 @@ xoff = 0.0; yoff = 0.0
 xinc = 0.01; yinc = 0.6
 
 function hal() {
-    let x=ruban1()
+    let x
+    x=ruban1(0)
+    x=ruban1(50)
     ruban2(x,topmargin+actualheight*0.01,200)
     ruban2(x,topmargin+actualheight*0.03,100)
 }
 
 
-function ruban1() {
+function ruban1(xoffinit) {
     let x1, y1, cx1, cy1, cx2, cy2, x2, y2,xinit
     xinit = leftmargin + actualwidth *0.7*noise(xoff);xoff+=xinc
     for (let i = 0; i < 42; i+=penwidth) {
-        xoff=0.0
+        xoff=xoffinit
         x1 = xinit+i//leftmargin + actualwidth *0.8*noise(xoff) + i;xoff+=xinc
         y1 = topmargin
         cx1 = x1 + (actualwidth - x1) *0.4*noise(xoff) + i;xoff+=xinc
