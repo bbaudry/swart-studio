@@ -22,17 +22,20 @@ function setup() {
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    leftmargin = Math.floor(w * 0.02)
-    rightmargin = Math.floor(w * 0.98)
-    topmargin = Math.floor(h * 0.02)
-    bottommargin = Math.floor(h * 0.82)
+    leftmargin = Math.floor(w * 0.05)
+    rightmargin = Math.floor(w * 0.95)
     actualwidth = rightmargin - leftmargin
+    topmargin = Math.floor(h * 0.05)
+    bottommargin = topmargin + actualwidth
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
     penwidth =96*0.4/25.4
     strokeWeight(penwidth)
+        background(220, 0, 0)
+        frameRate(10)
+
 }
 
 function savesvg() {
@@ -53,16 +56,15 @@ function centerCanvas() {
 
 
 function draw() {
-    background(220, 0, 0)
     noFill()
     textFont(font)
     textSize(fSize)
     stroke(300,0,100);  
     rect(0,0,w,h)
     hal()
-    text("la vie en rose [al.my.re::2025]", bottommargin, rightmargin - fSize)
-    text("p5.js + axidraw", bottommargin, rightmargin - 5*fSize)
-    let c = showcodeallwithoutindentation(bottommargin, rightmargin - 7*fSize)
+    // text("la vie en rose [al.my.re::2025]", bottommargin, rightmargin - fSize)
+    // text("p5.js + axidraw", bottommargin, rightmargin - 5*fSize)
+    // let c = showcodeallwithoutindentation(bottommargin, rightmargin - 7*fSize)
     noLoop()
 }
 
