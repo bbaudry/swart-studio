@@ -1,14 +1,16 @@
 
 var w, h
 var cnv
-var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
+var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth, count
 var sourcecode
 var font
 var fSize = 99
-var artname = "amour001"
+var characters = ['#','[',']','A','R','T','A','A','L','G','O','I','M','Q','Q','U','+','-','=']
+var linelength = 7
+var beat = 42
 
 function preload() {
-    font = loadFont("./fonts/ChunkFive-Regular.otf");
+    font = loadFont("./fonts/FreeMonoBold.otf");
 }
 function setup() {
     w = Math.floor(8.5 * 96)
@@ -27,6 +29,7 @@ function setup() {
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
     penwidth =96*0.2/25.4
     strokeWeight(penwidth)
+    count=0
 }
 
 function savesvg() {
@@ -50,21 +53,27 @@ function draw() {
     background(200, 100, 100)
     noStroke()
     fill(30,100,100)
-    fSize=actualheight*0.27
+    fSize=actualheight*0.26
     textFont(font)
     textSize(fSize)
-    a="art"
-    x=(actualwidth-textWidth(a))*0.5
-    y=topmargin+fSize
-    text(a,x,y)
-    a="géné"
-    x=(actualwidth-textWidth(a))*0.5
-    y=topmargin+fSize*2
-    text(a,x,y)
-    a="ratif"
-    x=(actualwidth-textWidth(a))*0.5
-    y=topmargin+fSize*3
-    text(a,x,y)
-    noLoop()
+    textline("__ART__",fSize)
+    textline("ALGORI_",fSize*2)
+    textline("THMIQUE",fSize*3)
+    count++
 }
 
+function textline(arg,posy){
+    let a=""
+    if(count%beat<27){
+        for(let i=0;i<linelength;i++){
+            a+=random(characters)
+        }
+    }
+    else{
+        for(let i=0;i<arg.length;i++){
+            arg.charAt(i)=='_'?a+=random(characters):a+=arg.charAt(i)
+        }
+    }
+    y=topmargin+fSize
+    text(a,leftmargin,posy)   
+}
