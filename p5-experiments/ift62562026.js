@@ -5,7 +5,7 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 99
-var characters = ['#','[',']','A','R','T','A','A','L','G','O','I','M','Q','Q','U','+','-','=']
+var characters = ['#', '[', ']', 'A', 'R', 'T', 'A', 'A', 'L', 'G', 'O', 'I', 'M', 'Q', 'Q', 'U', '+', '-', '=']
 var linelength = 7
 var beat = 42
 
@@ -27,18 +27,23 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
-    penwidth =96*0.2/25.4
+    penwidth = 96 * 0.2 / 25.4
     strokeWeight(penwidth)
-    count=0
+    count = 0
+    noStroke()
+    fSize = actualheight * 0.1
+        textFont(font)
+        textSize(fSize)
+
 }
 
 function savesvg() {
-    save(artname+".svg");
+    save(artname + ".svg");
 }
 
 
 function savepng() {
-    save(artname+".png");
+    save(artname + ".png");
 }
 
 
@@ -50,30 +55,50 @@ function centerCanvas() {
 
 
 function draw() {
-    background(200, 100, 100)
-    noStroke()
-    fill(30,100,100)
-    fSize=actualheight*0.26
-    textFont(font)
-    textSize(fSize)
-    textline("__ART__",fSize)
-    textline("ALGORI_",fSize*2)
-    textline("THMIQUE",fSize*3)
+    if (count % beat < 21) {
+    //if(false){
+        background(200, 100, 100)
+        fill(30, 100, 100)
+        textlinerand("__________________", fSize)
+        textlinerand("___ART____________", fSize * 2)
+        textlinerand("__________________", fSize * 3)
+        textlinerand("__________AL______", fSize * 4)
+        textlinerand("_________GORI______", fSize * 5)
+        textlinerand("____THMI__________", fSize * 6)
+        textlinerand("____________QUE___", fSize * 7)
+        textlinerand("__________________", fSize * 8)
+        textlinerand("__________________", fSize * 9)
+    }
+    else {
+        background(0, 100, 100)
+        fill(100, 100, 100)
+        textlinefix("__________________", fSize)
+        textlinefix("___ART____________", fSize * 2)
+        textlinefix("__________________", fSize * 3)
+        textlinefix("__________AL______", fSize * 4)
+        textlinefix("_________GORI______", fSize * 5)
+        textlinefix("____THMI__________", fSize * 6)
+        textlinefix("____________QUE___", fSize * 7)
+        textlinefix("__________________", fSize * 8)
+        textlinefix("__________________", fSize * 9)
+    noLoop()
+    }
     count++
 }
 
-function textline(arg,posy){
-    let a=""
-    if(count%beat<27){
-        for(let i=0;i<linelength;i++){
-            a+=random(characters)
-        }
+function textlinerand(arg,posy) {
+    let a = ""
+    for (let i = 0; i < arg.length; i++) {
+        a += random(characters)
     }
-    else{
-        for(let i=0;i<arg.length;i++){
-            arg.charAt(i)=='_'?a+=random(characters):a+=arg.charAt(i)
-        }
+    y = topmargin + fSize
+    text(a, leftmargin, posy)
+}
+function textlinefix(arg, posy) {
+    let a = ""
+    for (let i = 0; i < arg.length; i++) {
+        arg.charAt(i) == '_' ? a += random(characters) : a += arg.charAt(i)
     }
-    y=topmargin+fSize
-    text(a,leftmargin,posy)   
+    y = topmargin + fSize
+    text(a, leftmargin, posy)
 }
