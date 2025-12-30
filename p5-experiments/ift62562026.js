@@ -1,12 +1,10 @@
 
 var w, h
 var cnv
-var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth, count, charsperline
-var sourcecode
+var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, charsperline
 var font
 var fSize
 var characters = [ '|', '+', '/', '-', '=', '\\']
-var beat = 84
 var lines = [
     "__________",
     "__ART_____",
@@ -26,11 +24,10 @@ function preload() {
     font = loadFont("./fonts/FreeMonoBold.otf");
 }
 function setup() {
-    fSize = 42//actualheight * 0.08
+    fSize = 42
     charsperline = 10
     w = fSize * 10 + fSize * 2
     h = fSize * 10 + fSize * 2
-    //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     leftmargin = fSize
@@ -40,20 +37,14 @@ function setup() {
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
-    //96*0.2/25.4 : 0.2mm is the width of a fineliner
-    //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
     template = []
     for (i in lines) {
         for(j in lines[i]){
         template.push({ c: lines[i][j], flip: true })}
     }
-    penwidth = 96 * 0.2 / 25.4
-    strokeWeight(penwidth)
-    count = 0
     noStroke()
     textFont(font)
     textSize(fSize)
-
 }
 
 function savesvg() {
@@ -74,17 +65,23 @@ function centerCanvas() {
 
 
 function draw() {
-    flip()
+    stillflipping=flip()
+    if(!stillflipping){
+        console.log("done")
+        noLoop()
+    }
+
 }
 
 function flip() {
-    background(0,0,0)
-    fill(0, 0, 100)
-    let x, y, t, i
+    background(0,100,100)
+    fill(30, 0, 0)
+    let x, y, t, i, stillflipping
     i = Math.floor(random(template.length))
     template[i].flip=false
+    stillflipping=false
     x = leftmargin
-    y = topmargin
+    y = topmargin*0.6
 
 
     for (let ind=0;ind<template.length;ind++) {
@@ -97,6 +94,7 @@ function flip() {
         }
         if (template[ind].flip) {
             t=random(characters)
+            stillflipping=true
         }
         else {
             if(template[ind].c=='_'){
@@ -108,4 +106,5 @@ function flip() {
         }
         text(t,x,y)
     }
+    return stillflipping
 }
