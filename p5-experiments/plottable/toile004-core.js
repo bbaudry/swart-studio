@@ -6,11 +6,13 @@ function hal() {
     rect(leftmargin, topmargin, actualwidth, actualheight)
     push()
     translate(leftmargin + actualwidth * 0.5, topmargin + actualheight * 0.5)
-    multihelice()
+    gear=random([0,1,2,3,4])
+    text(gear,actualwidth*0.51,0)
+    helicoide(gear)
     pop()
 }
 
-function multihelice() {
+function helicoide(gear) {
     let cx, cy, x, y, inrad, inangle, inangleinc, inradinc, outrad, outangle, outangleinc, outradinc, diam
     inangle = 0
     inrad = 42
@@ -20,13 +22,21 @@ function multihelice() {
     outrad = actualwidth * 0.1
     outangleinc = 0.6
     outradinc = 0.1
-    diam = 142
-    for (let i = 0; i < 2.5 * 360; i++) {
+    diam = actualwidth*0.32//*noise(xoff);xoff+=xinc
+    for (let i = 0; i < 2 * 360; i++) {
         cx = inrad * cos(inangle)
         cy = inrad * sin(inangle)
         x = cx + outrad * cos(outangle)
         y = cy + outrad * sin(outangle)
-        ellipse(x, y, diam, diam)
+        switch (gear){
+            case 0:ellipse(x,y,y,y); break;
+            case 1:ellipse(x,y,x,x); break;
+            case 2:ellipse(x,y,cy,cy); break;
+            case 3:ellipse(x,y,x,cx); break;
+            case 4:ellipse(x,y,diam,diam); break;
+        }
+        // ellipse(x,y,y,y)
+//        ellipse(x, y, diam, diam)
         inangle += inangleinc;
         inrad += inradinc
         outangle += outangleinc
