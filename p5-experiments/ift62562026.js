@@ -5,16 +5,26 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 99
-var characters = ['#', '[', ']', 'A', 'R', 'T', 'A', 'A', 'L', 'G', 'O', 'I', 'M', 'Q', 'Q', 'U', '+', '-', '=']
-var linelength = 7
-var beat = 42
+var characters = ['#', '|', ':', '+', '/', '-', '=']
+var beat = 84
+var lines = [
+    "_______________",
+    "__ART____GEN___",
+    "____ERATIF_____",
+    "_______________",
+    "_______ALGO____",
+    "___RITHMI______",
+    "_________QUE___",
+    "_______________",
+    "_______________"
+]
 
 function preload() {
     font = loadFont("./fonts/FreeMonoBold.otf");
 }
 function setup() {
-    w = Math.floor(8.5 * 96)
-    h = Math.floor(11 * 96)
+    w = 600
+    h = 600
     //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
@@ -31,9 +41,9 @@ function setup() {
     strokeWeight(penwidth)
     count = 0
     noStroke()
-    fSize = actualheight * 0.1
-        textFont(font)
-        textSize(fSize)
+    fSize = actualheight * 0.155
+    textFont(font)
+    textSize(fSize)
 
 }
 
@@ -55,43 +65,29 @@ function centerCanvas() {
 
 
 function draw() {
-    if (count % beat < 21) {
-    //if(false){
+    if (count % beat < 42) {
         background(200, 100, 100)
         fill(30, 100, 100)
-        textlinerand("__________________", fSize)
-        textlinerand("___ART____________", fSize * 2)
-        textlinerand("__________________", fSize * 3)
-        textlinerand("__________AL______", fSize * 4)
-        textlinerand("_________GORI______", fSize * 5)
-        textlinerand("____THMI__________", fSize * 6)
-        textlinerand("____________QUE___", fSize * 7)
-        textlinerand("__________________", fSize * 8)
-        textlinerand("__________________", fSize * 9)
+        for (let ind = 0; ind < lines.length; ind++) {
+            textlinerand(lines[ind], fSize * (1 + ind))
+        }
     }
     else {
         background(0, 100, 100)
-        fill(100, 100, 100)
-        textlinefix("__________________", fSize)
-        textlinefix("___ART____________", fSize * 2)
-        textlinefix("__________________", fSize * 3)
-        textlinefix("__________AL______", fSize * 4)
-        textlinefix("_________GORI______", fSize * 5)
-        textlinefix("____THMI__________", fSize * 6)
-        textlinefix("____________QUE___", fSize * 7)
-        textlinefix("__________________", fSize * 8)
-        textlinefix("__________________", fSize * 9)
-    noLoop()
+        fill(180, 0, 0)
+        for (let ind = 0; ind < lines.length; ind++) {
+            textlinefix(lines[ind], fSize * (1 + ind))
+        }
+        //noLoop()
     }
     count++
 }
 
-function textlinerand(arg,posy) {
+function textlinerand(arg, posy) {
     let a = ""
     for (let i = 0; i < arg.length; i++) {
         a += random(characters)
     }
-    y = topmargin + fSize
     text(a, leftmargin, posy)
 }
 function textlinefix(arg, posy) {
@@ -99,6 +95,5 @@ function textlinefix(arg, posy) {
     for (let i = 0; i < arg.length; i++) {
         arg.charAt(i) == '_' ? a += random(characters) : a += arg.charAt(i)
     }
-    y = topmargin + fSize
     text(a, leftmargin, posy)
 }
