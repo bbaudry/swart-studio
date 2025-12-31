@@ -1,7 +1,7 @@
 
 var w, h
 var cnv
-var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, charsperline
+var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, charsperline, pause, pauseduration
 var font
 var fSize
 var characters = ['|', '+', '/', '-', '=', '\\']
@@ -50,6 +50,8 @@ function setup() {
     noStroke()
     textFont(font)
     textSize(fSize)
+    pause=0
+    pauseduration=42
 }
 
 
@@ -65,20 +67,18 @@ function draw() {
         capturer.start();
         capture = true
     }
-    stillflipping = flip()
+    if (pause==0){stillflipping = flip()}
     if (capture) {
         capturer.capture(canvas); // if capture is 'true', save the frame
-        if (!stillflipping) { //stop and save after NUM_FRAMES
+        if (!stillflipping) { 
+            pause++
+        }
+        if (pause==pauseduration) {
             capturer.stop();
             capturer.save();
             noLoop();
         }
     }
-    // if (!stillflipping) {
-    //     console.log("done")
-    //     noLoop()
-    // }
-
 }
 
 function flip() {
