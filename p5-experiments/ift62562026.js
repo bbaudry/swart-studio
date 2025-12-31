@@ -12,7 +12,7 @@ var lines = [
     "__ERATIF__",
     "__________",
     "___ALGO___",
-    "___RITHMI_",
+    "__RITHMI__",
     "_____QUE__",
     "__________",
     "__________"
@@ -21,7 +21,7 @@ var lines = [
 var template
 
 function preload() {
-    font = loadFont("./fonts/FreeMonoBold.otf");
+    font = loadFont("./fonts/MapleMono-Bold.ttf");
 }
 function setup() {
     fSize = 42
@@ -74,16 +74,19 @@ function draw() {
 }
 
 function flip() {
+    if(random()<0.95){
     background(0,100,100)
-    fill(30, 0, 0)
+    fill(30, 0, 0)}
+    else{
+    background(0,0,0)
+    fill(30, 0, 100)
+    }
     let x, y, t, i, stillflipping
     i = Math.floor(random(template.length))
     template[i].flip=false
     stillflipping=false
     x = leftmargin
-    y = topmargin*0.6
-
-
+    y = topmargin
     for (let ind=0;ind<template.length;ind++) {
         if (ind % charsperline == 0) {
             x = leftmargin
@@ -104,7 +107,7 @@ function flip() {
             }
             else{t=template[ind].c}
         }
-        text(t,x,y)
+        text(t,x+textWidth(t)*0.25,y-fSize*0.25)
     }
     return stillflipping
 }
