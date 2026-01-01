@@ -18,9 +18,9 @@ function helicoide(gear) {
     inrad = 21
     inangleinc = random(1, 3)
     inradinc = 0.05
-    outangle = 0
+    outangle = random(360)
     outrad = actualwidth * 0.1
-    outangleinc = 0.5
+    outangleinc = 0.45
     outradinc = 0.05
     diam = actualwidth*0.2//*noise(xoff);xoff+=xinc
     for (let i = 0; i < 1.8* 360; i++) {
@@ -28,11 +28,13 @@ function helicoide(gear) {
         cy = inrad * sin(inangle)
         x = cx + outrad * cos(outangle)
         y = cy + outrad * sin(outangle)
-        //if(random()>0.99){gear=random([0,1,2,3,4,5])}
         switch (gear){
             case 0:ellipse(x,y,y,y); break;
             case 1:ellipse(x,y,x,x); break;
-            case 2:ellipse(x,y,Math.abs(y),Math.abs(y)); break;
+            case 2:
+                dm=Math.abs(y)
+                ellipse(x,y,dm,dm); 
+            break;
             case 3:ellipse(x,y,cx,cx); break;
             case 4:ellipse(x,y,diam,diam); break;
             case 5:ellipse(x,y,Math.abs(x*cos(x)),Math.abs(y*sin(y))); break;
@@ -40,6 +42,6 @@ function helicoide(gear) {
         inangle += inangleinc;
         inrad += inradinc
         outangle += outangleinc
-        outrad += 0.17 * noise(xoff); xoff += xinc
+        outrad += 0.14 * noise(xoff); xoff += xinc
     }
 }
