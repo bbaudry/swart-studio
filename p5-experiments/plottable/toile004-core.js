@@ -6,7 +6,7 @@ function hal() {
     rect(leftmargin, topmargin, actualwidth, actualheight)
     push()
     translate(leftmargin + actualwidth * 0.5, topmargin + actualheight * 0.5)
-    gear=random([0,1,2,4,5])
+    gear=3//random([0,1,2,3,4,5])
     text(gear,actualwidth*0.51,0)
     helicoide(gear)
     pop()
@@ -35,9 +35,9 @@ function helicoide(gear) {
                 dm=Math.abs(y)
                 ellipse(x,y,dm,dm); 
             break;
-            case 3:ellipse(x,y,cx,cx); break;
+            case 3:ellipse(x,y,Math.abs(x*cos(outangle)),Math.abs(x*cos(outangle))); break;
             case 4:ellipse(x,y,diam,diam); break;
-            case 5:ellipse(x,y,Math.abs(x*cos(x)),Math.abs(y*sin(y))); break;
+            case 5:ellipse(x,y,Math.abs(x*cos(outangle)),Math.abs(y*sin(outangle))); break;
         }
         inangle += inangleinc;
         inrad += inradinc
