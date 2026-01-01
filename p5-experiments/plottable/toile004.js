@@ -16,20 +16,18 @@ function setup() {
     // w = Math.floor(8.5 * 96); 
     // h = Math.floor(11 * 96)
     // A3
-    // w = Math.floor(96*297/25.4)
-    // h = Math.floor(96*420/25.4)
-    w = Math.floor((96*297/25.4)/2)
-    h = Math.floor((96*420/25.4)/4)
+    w = Math.floor(96*297/25.4)
+    h = Math.floor(96*420/25.4)
     angleMode(DEGREES) 
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.95)
+    topmargin = Math.floor(h * 0.02)
+    bottommargin = Math.floor(h * 0.98)
     actualheight = bottommargin - topmargin
-    leftmargin = Math.floor(w * 0.05)
-    rightmargin = leftmargin+actualheight
-    actualwidth = actualheight
+    leftmargin = Math.floor(w * 0.02)
+    rightmargin = Math.floor(w * 0.98)
+    actualwidth = rightmargin-leftmargin
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
@@ -63,7 +61,21 @@ function draw() {
     textSize(fSize)
     stroke(300,0,100);  
     rect(0,0,w,h)
-    hal()
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    cardwidth=actualwidth*0.5
+    cardheight=actualheight*0.25
+    carddrawheight=cardheight*0.94
+    carddrawwidth=carddrawheight
+    for(let i=0;i<2;i++){
+        for(let j=0;j<4;j++){
+            rect(leftmargin+i*cardwidth,topmargin+j*cardheight,cardwidth,cardheight)
+            hal(leftmargin+i*cardwidth+cardwidth*0.03,topmargin+j*cardheight+cardheight*0.03,carddrawwidth,carddrawheight)
+        }
+    }
+    // rect(leftmargin,topmargin,cardwidth,cardheight)
+    // hal(leftmargin+cardwidth*0.03,topmargin+cardheight*0.03,carddrawwidth,carddrawheight)
+    // rect(leftmargin+cardwidth,topmargin,cardwidth,cardheight)
+    // hal(leftmargin+cardwidth+cardwidth*0.03,topmargin+cardheight*0.03,carddrawwidth,carddrawheight)
     // text("la vie en rose [al.my.re::2025]", bottommargin, rightmargin - fSize)
     // text("p5.js + axidraw", bottommargin, rightmargin - 5*fSize)
     // let c = showcodeallwithoutindentation(bottommargin, rightmargin - 7*fSize)

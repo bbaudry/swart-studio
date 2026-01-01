@@ -2,27 +2,27 @@ let xoff, xinc
 xoff = 0.0;
 xinc = 0.001;
 
-function hal() {
-    rect(leftmargin, topmargin, actualwidth, actualheight)
+function hal(x,y,drawwidth,drawheight) {
+    //rect(x, y, drawwidth, drawheight)
     push()
-    translate(leftmargin + actualwidth * 0.5, topmargin + actualheight * 0.5)
-    gear=3//random([0,1,2,3,4,5])
-    text(gear,actualwidth*0.51,0)
-    helicoide(gear)
+    translate(x + drawwidth * 0.5, y + drawheight * 0.5)
+    gear=random([0,1,2,3,4,5])
+    text(gear,drawwidth*0.51,0)
+    helicoide(gear,drawwidth,drawheight)
     pop()
 }
 
-function helicoide(gear) {
+function helicoide(gear,drawwidth,drawheight) {
     let cx, cy, x, y, inrad, inangle, inangleinc, inradinc, outrad, outangle, outangleinc, outradinc, diam
     inangle = 0
     inrad = 21
     inangleinc = random(1, 3)
     inradinc = 0.05
     outangle = random(360)
-    outrad = actualwidth * 0.1
+    outrad = drawwidth * 0.1
     outangleinc = 0.45
     outradinc = 0.05
-    diam = actualwidth*0.2//*noise(xoff);xoff+=xinc
+    diam = drawwidth*0.2//*noise(xoff);xoff+=xinc
     for (let i = 0; i < 1.8* 360; i++) {
         cx = inrad * cos(inangle)
         cy = inrad * sin(inangle)
@@ -42,6 +42,6 @@ function helicoide(gear) {
         inangle += inangleinc;
         inrad += inradinc
         outangle += outangleinc
-        outrad += 0.14 * noise(xoff); xoff += xinc
+        outrad += 0.17 * noise(xoff); xoff += xinc
     }
 }
