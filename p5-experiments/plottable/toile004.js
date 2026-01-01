@@ -13,21 +13,23 @@ function preload() {
 }
 function setup() {
     // letter 
-    w = Math.floor(8.5 * 96); 
-    h = Math.floor(11 * 96)
+    // w = Math.floor(8.5 * 96); 
+    // h = Math.floor(11 * 96)
     // A3
     // w = Math.floor(96*297/25.4)
     // h = Math.floor(96*420/25.4)
+    w = Math.floor((96*297/25.4)/2)
+    h = Math.floor((96*420/25.4)/4)
     angleMode(DEGREES) 
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    leftmargin = Math.floor(w * 0.05)
-    rightmargin = Math.floor(w * 0.95)
-    actualwidth = rightmargin - leftmargin
     topmargin = Math.floor(h * 0.05)
-    bottommargin = topmargin + actualwidth
+    bottommargin = Math.floor(h * 0.95)
     actualheight = bottommargin - topmargin
+    leftmargin = Math.floor(w * 0.05)
+    rightmargin = leftmargin+actualheight
+    actualwidth = actualheight
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
