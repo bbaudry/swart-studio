@@ -5,10 +5,10 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 12
-var artname = "toile004"
+var artname = "card"
 
 function preload() {
-    font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
+    font = loadFont("../p5-experiments/fonts/1CAMBam_Stick_9.ttf");
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
@@ -61,7 +61,21 @@ function draw() {
     textSize(fSize)
     stroke(300,0,100);  
     rect(0,0,w,h)
-    hal(leftmargin,topmargin,actualwidth,actualwidth)
+    rect(leftmargin,topmargin,actualwidth,actualheight)
+    cardwidth=actualwidth*0.5
+    cardheight=actualheight*0.25
+    carddrawheight=cardheight*0.94
+    carddrawwidth=carddrawheight
+    for(let i=0;i<2;i++){
+        for(let j=0;j<4;j++){
+            rect(leftmargin+i*cardwidth,topmargin+j*cardheight,cardwidth,cardheight)
+            hal(leftmargin+i*cardwidth+cardwidth*0.03,topmargin+j*cardheight+cardheight*0.03,carddrawwidth,carddrawheight)
+        }
+    }
+    // rect(leftmargin,topmargin,cardwidth,cardheight)
+    // hal(leftmargin+cardwidth*0.03,topmargin+cardheight*0.03,carddrawwidth,carddrawheight)
+    // rect(leftmargin+cardwidth,topmargin,cardwidth,cardheight)
+    // hal(leftmargin+cardwidth+cardwidth*0.03,topmargin+cardheight*0.03,carddrawwidth,carddrawheight)
     // text("la vie en rose [al.my.re::2025]", bottommargin, rightmargin - fSize)
     // text("p5.js + axidraw", bottommargin, rightmargin - 5*fSize)
     // let c = showcodeallwithoutindentation(bottommargin, rightmargin - 7*fSize)
