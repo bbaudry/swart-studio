@@ -22,11 +22,11 @@ function setup() {
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    topmargin = Math.floor(h * 0.02)
-    bottommargin = Math.floor(h * 0.98)
+    topmargin = Math.floor(h * 0.01)
+    bottommargin = Math.floor(h * 0.99)
     actualheight = bottommargin - topmargin
-    leftmargin = Math.floor(w * 0.02)
-    rightmargin = Math.floor(w * 0.98)
+    leftmargin = Math.floor(w * 0.01)
+    rightmargin = Math.floor(w * 0.99)
     actualwidth = rightmargin-leftmargin
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
@@ -61,15 +61,15 @@ function draw() {
     textSize(fSize)
     stroke(300,0,100);  
     rect(0,0,w,h)
-    rect(leftmargin,topmargin,actualwidth,actualheight)
     cardwidth=actualwidth*0.5
     cardheight=actualheight*0.25
     carddrawheight=cardheight*0.94
     carddrawwidth=carddrawheight
-    for(let i=0;i<2;i++){
+    for(let i=1;i<2;i++){
         for(let j=0;j<4;j++){
-            rect(leftmargin+i*cardwidth,topmargin+j*cardheight,cardwidth,cardheight)
+            //rect(leftmargin+i*cardwidth,topmargin+j*cardheight,cardwidth,cardheight)
             hal(leftmargin+i*cardwidth+cardwidth*0.03,topmargin+j*cardheight+cardheight*0.03,carddrawwidth,carddrawheight)
+            text("al.my.re [2026]", leftmargin+i*cardwidth+cardheight,topmargin+j*cardheight+cardheight*0.95)
         }
     }
     // rect(leftmargin,topmargin,cardwidth,cardheight)

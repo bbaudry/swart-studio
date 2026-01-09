@@ -9,6 +9,7 @@ members = [
 "torg004",
 "supply-chain-in-chrome",
 "demo3",
-"stream"
+"stream",
+"repeat"
 ]
 resolver="2"
