@@ -18,22 +18,25 @@ function centerCanvas() {
 }
 
 function draw() {
-    var cx,cy, pas, vera, molnar, jaune
-    noStroke()
-    cx=w*0.5
-    cy=h*0.5
+    background(0,0,0)
+    stroke(0,0,100)
+    noFill()
+    rect(0,0,w,h)
     fill(50,100,100)
+    noStroke()
+    let cx,cy,vera,molnar,jaune,pas
+    cx=w*0.5
+    cy=0.5*h
     vera=300//random(42,300)
-    molnar=20
-    pas=20
+    molnar=17
     jaune=true
-    for(vera=350;vera>pas;vera-=pas){
-        jaune?     fill(50,100,100):fill(50,0,0)
-
-        quad(cx-vera+random(-molnar,molnar),cy-vera+random(-molnar,molnar),
+    pas=Math.floor(random(27,42))
+    for(vera=300;vera>42;vera-=pas){
+        jaune?fill(230,100,100):fill(0,0,0)
+    quad(cx-vera+random(-molnar,molnar),cy-vera+random(-molnar,molnar),
         cx+vera+random(-molnar,molnar),cy-vera+random(-molnar,molnar),
         cx+vera+random(-molnar,molnar),cy+vera+random(-molnar,molnar),
-        cx-vera+random(-molnar,molnar),cy+vera+random(-molnar,molnar)
-    )
-    jaune=!jaune}
+        cx-vera+random(-molnar,molnar),cy+vera+random(-molnar,molnar))
+        jaune=!jaune
+}
 }

@@ -1,3 +1,64 @@
+//pixel = dpi * mm / 25.4 mm
+//A3: 297mm × 420mm
+//96dpi is for plotting on the UUNA TEK iDraw
+//A3
+//w=96*297/25.4=1122.5
+//h=96*420/25.4=1587.4
+//letter
+//w=96*8.5=816
+//h=96*11=1056
+
+var echelle = 1
+var w = 96*160/25.4//816 * echelle
+var h = 96*210/25.4//1056 * echelle
+var win = 96*120/25.4
+var hin = 96*170/25.4
+var rightmargin = w-96*23/25.4
+var leftmargin = 96*23/25.4
+var topmargin = 96*23/25.4
+var bottommargin = h-96*23/25.4
+var actualwidth = rightmargin - leftmargin
+var actualheight = bottommargin - topmargin
+var cnv, imgbtn
+
+function setup() {
+    getsvg()
+    //getpng()
+    centerCanvas();
+    colorMode(HSB, 360, 100, 100, 250);
+    strokeCap(SQUARE)
+    noFill()
+    maxcount = random(39, 45)
+    strokeWeight(96*0.1/25.4)
+}
+
+function getsvg() {
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    imgbtn = createButton("save svg");
+    placebtn();
+    imgbtn.mouseClicked(savesvg);
+}
+function getpng() {
+    cnv = createCanvas(w, h);
+    imgbtn = createButton("save png");
+    placebtn();
+    imgbtn.mouseClicked(savepng);
+}
+
+function centerCanvas() {
+    var x = (windowWidth - w) / 2;
+    var y = 0//(windowHeight - h) / 2;
+    cnv.position(x, y);
+}
+
+function placebtn() {
+    var x = (windowWidth - w) / 2;
+    var y = (windowHeight - h) / 2;
+    imgbtn.position(x - 200, y + h / 2 + 42)
+}
+
+
+
 function savesvg() {
     save("trottoir004.svg");
 }
@@ -21,12 +82,18 @@ function draw() {
     background(0, 0, 0)
     stroke(0, 0, 100)
     noFill()
-    rect(0, 0, w, h)
+    // rect(0, 0, w, h)
+    // stroke(0, 100, 100);rect((w-win)*0.5,(h-hin)*0.5,win,hin)
+    // stroke(50, 100, 100);rect(leftmargin,topmargin,actualwidth,actualheight)
+    // stroke(0, 0, 100)
     nucleus()
     textFont(font)
-    textSize(fSize)
-    coords=showcode(leftmargin,bottommargin+fSize)
-    showcredits(coords[0],coords[1])
+    textSize(fSize);
+    var c = "al.my.re :: 2026]"
+    text(c, rightmargin-textWidth(c), bottommargin-fSize)
+
+    // coords=showcode(leftmargin,bottommargin+fSize)
+    // showcredits(coords[0],coords[1])
     noLoop()
 }
 
@@ -39,7 +106,7 @@ function nucleus() {
     xpos3 = leftmargin + actualwidth * random(); ypos3 = topmargin
     xpos4 = rightmargin; ypos4 = topmargin + actualheight * random()
 
-    for (var t = 1; t > 0.6; t-=0.003) {
+    for (var t = 1; t > 0.65; t-=0.003) {
         x1 = (1 - t) * xpos1 + (t * xpos3); y1 = (1 - t) * ypos1 + (t * ypos3)
         x2 = (1 - t) * xpos2 + (t * xpos4); y2 = (1 - t) * ypos2 + (t * ypos4)
         x3 = (1 - t) * xpos3 + (t * xpos1); y3 = (1 - t) * ypos3 + (t * ypos1)
