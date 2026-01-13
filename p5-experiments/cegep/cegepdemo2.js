@@ -2,9 +2,8 @@
 var w, h
 var cnv
 var x, y
-var xoff, yoff, xinc
-var step, stepx, stepy
-
+var xoff, xinc
+var count, white
 function setup() {
     w = windowWidth
     h = windowHeight
@@ -14,7 +13,9 @@ function setup() {
     noFill();
     background(0, 0, 0)
     xoff=0.0
-    xinc=0.0001}
+    xinc=0.0001
+    count=1
+}
 
 function centerCanvas() {
     var x = (windowWidth - w) / 2;
@@ -23,27 +24,40 @@ function centerCanvas() {
 }
 
 function draw() {
-    background(0, 0, 0)
-    ikeda(0,0,w*0.5,true)
-    ikeda(w * 0.5, 0,w*0.5,false)
+    if(count%20==0){
+    fill(0,0,0)
+    rect(0,0,w*0.5,h)
+    ikeda(0,0,w*0.5,true)}
+    if(count%19==0){
+    fill(0,0,0)
+    rect(w*0.5,0,w*0.5,h)
+    ikeda(w*0.5,0,w*0.5,false)}
+    count++
     //noLoop()
 }
 
-
-function ikeda(cx, cy, ikedaw,left) {
-    let y=cy
-    let ryoji=h*0.05
-    noStroke()
+function ikeda(x,y,ikedaw,left){
+    let cy=y
+    let ryoji=random()*h*0.01
+    let blanc=true
     if(left){
-    while(y<h){
-        random()<0.1?fill(0,0,100):fill(0,0,0)
-        rect(cx,y,ikedaw,ryoji)
-        y+=noise(xoff)*(h*0.001);xoff+=xinc
+    while(cy<h){
+        blanc?fill(0,0,100):fill(0,0,0)
+        ryoji=random()*h*0.01
+        rect(x,cy,ikedaw,ryoji)
+        cy+=ryoji
+        blanc=!blanc
+
     }}
     else{
-    while(y<h){
-        random()<0.4?fill(0,0,100):fill(0,0,0)
-        rect(cx,y,ikedaw,ryoji)
-        y+=noise(xoff)*(h*0.2);xoff+=xinc
-    }}
+
+    while(cy<h){
+        blanc?fill(0,0,100):fill(0,0,0)
+        ryoji=random()*h*0.1
+        rect(x,cy,ikedaw,ryoji)
+        cy+=ryoji
+        blanc=!blanc
+
+    }
+    }
 }

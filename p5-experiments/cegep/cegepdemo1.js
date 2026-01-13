@@ -19,24 +19,21 @@ function centerCanvas() {
 
 function draw() {
     background(0,0,0)
-    stroke(0,0,100)
-    noFill()
-    rect(0,0,w,h)
-    fill(50,100,100)
+    fill(230,100,100)
     noStroke()
-    let cx,cy,vera,molnar,jaune,pas
-    cx=w*0.5
-    cy=0.5*h
-    vera=300//random(42,300)
-    molnar=17
-    jaune=true
-    pas=Math.floor(random(27,42))
+    let noir=false
+    let cx=w*0.5
+    let cy=h*0.5
+    let vera=random(42,300)
+    let molnar=17
+    let pas=9
     for(vera=300;vera>42;vera-=pas){
-        jaune?fill(230,100,100):fill(0,0,0)
+        noir?fill(0,0,0):fill(230,100,100)
     quad(cx-vera+random(-molnar,molnar),cy-vera+random(-molnar,molnar),
         cx+vera+random(-molnar,molnar),cy-vera+random(-molnar,molnar),
         cx+vera+random(-molnar,molnar),cy+vera+random(-molnar,molnar),
-        cx-vera+random(-molnar,molnar),cy+vera+random(-molnar,molnar))
-        jaune=!jaune
+        cx-vera+random(-molnar,molnar),cy+vera+random(-molnar,molnar)
+    )
+    noir=!noir
 }
 }

@@ -77,3 +77,22 @@ function ikeda(cx,cy){
     rect(cx-xoff,cy-yoff,ikedawidth,ikedaheight)
 }
 
+
+
+function ikeda2(cx, cy, ikedaw,left) {
+    let y=cy
+    let ryoji=h*0.05
+    noStroke()
+    if(left){
+    while(y<h){
+        random()<0.1?fill(0,0,100):fill(0,0,0)
+        rect(cx,y,ikedaw,ryoji)
+        y+=noise(xoff)*(h*0.001);xoff+=xinc
+    }}
+    else{
+    while(y<h){
+        random()<0.4?fill(0,0,100):fill(0,0,0)
+        rect(cx,y,ikedaw,ryoji)
+        y+=noise(xoff)*(h*0.2);xoff+=xinc
+    }}
+}
