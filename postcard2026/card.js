@@ -65,7 +65,7 @@ function draw() {
     cardheight=actualheight*0.25
     carddrawheight=cardheight*0.94
     carddrawwidth=carddrawheight
-    for(let i=1;i<2;i++){
+    for(let i=0;i<2;i++){
         for(let j=0;j<4;j++){
             //rect(leftmargin+i*cardwidth,topmargin+j*cardheight,cardwidth,cardheight)
             hal(leftmargin+i*cardwidth+cardwidth*0.03,topmargin+j*cardheight+cardheight*0.03,carddrawwidth,carddrawheight)

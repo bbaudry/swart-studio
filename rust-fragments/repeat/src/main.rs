@@ -146,25 +146,16 @@ fn view(app: &App, model: &Model, frame: Frame){
     if model.option==4{
         for x in (-450..450).step_by(20){
             for y in (-450..450).step_by(20){
-        // Store the radius of the circle we want to make.
-let radius = 15.0;
-// Map over an array of integers from 0 to 360 to represent the degrees in a circle.
-let points = (0..=120).map(|i| {
-    // Convert each degree to radians.
-    let radian = deg_to_rad(i as f32);
-    // Get the sine of the radian to find the x co-ordinate of this point of the circle
-    // and multiply it by the radius.
-    let px = x as f32+radian.sin() * radius;
-    // Do the same with cosine to find the y co-ordinate.
-    let py = y as f32+radian.cos() * radius;
-    // Construct and return a point object with a color.
-    (pt2(px,py), hsl(model.hue/360.0,1.0,0.5))
-});
-// Create a polyline builder. Hot-tip: polyline is short-hand for a path that is
-// drawn via "stroke" tessellation rather than "fill" tessellation.
-draw.polyline()
-    .weight(3.0)
-    .points_colored(points); // Submit our points.
+                let radius = 15.0;
+                let points = (0..=120).map(|i| {
+                    let radian = deg_to_rad(i as f32);
+                    let px = x as f32+radian.cos() * radius;
+                    let py = y as f32+radian.sin() * radius;
+                    (pt2(px,py), hsl(model.hue/360.0,1.0,0.5))
+                });
+                        draw.polyline()
+                    .weight(3.0)
+                    .points_colored(points); // Submit our points.
 
             }
         }
