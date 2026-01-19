@@ -5,28 +5,34 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 12
-var artname = "card"
+var artname = "toile004"
 
 function preload() {
-    font = loadFont("../p5-experiments/fonts/1CAMBam_Stick_9.ttf");
+    font = loadFont("../fonts/1CamBam_Stick_4.ttf");
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
     // letter 
-    // w = Math.floor(8.5 * 96); 
-    // h = Math.floor(11 * 96)
+    w = Math.floor(8.5 * 96); 
+    h = Math.floor(11 * 96)
     // A3
-    w = Math.floor(96*297/25.4)
-    h = Math.floor(96*420/25.4)
+    // w = Math.floor(96*297/25.4)
+    // h = Math.floor(96*420/25.4)
     angleMode(DEGREES) 
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
-    topmargin = Math.floor(h * 0.01)
-    bottommargin = Math.floor(h * 0.99)
+    // margins for the area in frame
+    frameleft=0
+    frametop=0
+    frameright=w
+    framebottom=h
+    // margins for the drawing area
+    topmargin = frametop+Math.floor((framebottom-frametop) * 0.02)
+    bottommargin = frametop+Math.floor((framebottom-frametop) * 0.98)
     actualheight = bottommargin - topmargin
-    leftmargin = Math.floor(w * 0.01)
-    rightmargin = Math.floor(w * 0.99)
+    leftmargin = frameleft+Math.floor((frameright-frameleft) * 0.02)
+    rightmargin = frameleft+Math.floor((frameright-frameleft)    * 0.98)
     actualwidth = rightmargin-leftmargin
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
@@ -60,23 +66,9 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(300,0,100);  
-    rect(0,0,w,h)
-    cardwidth=actualwidth*0.5
-    cardheight=actualheight*0.25
-    carddrawheight=cardheight*0.94
-    carddrawwidth=carddrawheight
-    for(let i=1;i<2;i++){
-        for(let j=0;j<4;j++){
-            //rect(leftmargin+i*cardwidth,topmargin+j*cardheight,cardwidth,cardheight)
-            hal(leftmargin+i*cardwidth+cardwidth*0.03,topmargin+j*cardheight+cardheight*0.03,carddrawwidth,carddrawheight)
-            text("al.my.re [2026]", leftmargin+i*cardwidth+cardheight,topmargin+j*cardheight+cardheight*0.95)
-        }
-    }
-    // rect(leftmargin,topmargin,cardwidth,cardheight)
-    // hal(leftmargin+cardwidth*0.03,topmargin+cardheight*0.03,carddrawwidth,carddrawheight)
-    // rect(leftmargin+cardwidth,topmargin,cardwidth,cardheight)
-    // hal(leftmargin+cardwidth+cardwidth*0.03,topmargin+cardheight*0.03,carddrawwidth,carddrawheight)
-    // text("la vie en rose [al.my.re::2025]", bottommargin, rightmargin - fSize)
+      hal(leftmargin,topmargin,actualwidth,actualwidth)
+    credit="confused shapes [al.my.re::2026]"
+    text(credit, rightmargin-(textWidth(credit) + 2*fSize) , bottommargin - 2*fSize)
     // text("p5.js + axidraw", bottommargin, rightmargin - 5*fSize)
     // let c = showcodeallwithoutindentation(bottommargin, rightmargin - 7*fSize)
     noLoop()
