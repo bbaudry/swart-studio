@@ -11,10 +11,10 @@ use nannou::rand::random_range;
 
 fn main() {
     nannou::app(model)
-        //.loop_mode(LoopMode::loop_ntimes(499))
+        .loop_mode(LoopMode::loop_ntimes(499))
         .update(update)
         .view(view)
-        //.simple_window(view)
+        .simple_window(view)
         .run();
 }
 
