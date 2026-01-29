@@ -3,7 +3,7 @@ var xinc = 0.001
 
 function hal() {
     let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon, hinc
-    rayon=5; hinc=0.1
+    rayon=4; hinc=0.05
     for (let t = 0; t < 290; t+=1) {
         ax1 = leftmargin; ay1 = lerp(bottommargin, topmargin, hinc)-t
         ax2 = rightmargin; ay2 = lerp(bottommargin, topmargin, hinc)-t
