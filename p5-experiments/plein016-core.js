@@ -11,6 +11,7 @@ function hal() {
 function star(){
     let x1,y1,x2,y2,x3,y3,x4,y4,rad,radmax,angle,a,anglestep
     radmax=w*0.49
+    ellipse(0,0,radmax*2,radmax*2)
     anglestep=Math.floor(random(5,17))
     for(angle=5;angle<180-anglestep;angle+=anglestep){
         rad=random(radmax*0.5,radmax)
@@ -25,7 +26,7 @@ function star(){
         y4=y1
         hu=random([30,330,180])
         fill(hu,100,100)
-        
+
         if(random()<0.5){
             quad(x1,y1,x2,y2,x3,y3,x4,y4)
             console.log("ok")
