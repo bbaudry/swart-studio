@@ -14,7 +14,7 @@ function star() {
     //ellipse(0, 0, radmax * 2, radmax * 2)
     anglestep = Math.floor(random(11, 17))
     for (angle = 5; angle < 180 - anglestep; angle += anglestep) {
-        rad = random(radmax * 0.6, radmax)
+        rad = random(radmax * 0.8, radmax)
         a = angle
         x1 = rad * cos(a)
         y1 = rad * sin(a)
@@ -28,7 +28,7 @@ function star() {
         random() < 0.1 ? stroke(0, 0, 0) : stroke(hu, 100, 100)
         noFill()
 
-        if (random() < 0.6) {
+        if (random() < 0.8) {
 
             quadwlines(x1, y1, x2, y2, x3, y3, x4, y4)
         }
