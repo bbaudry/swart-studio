@@ -324,6 +324,7 @@ Ref: <https://www.sainsmart.com/blogs/news/grbl-v1-1-quick-reference>
 
 **vpype** (python) works out-of-the-box to do two things:
 - post-process and optimize SVG files, see doc
+  - separate layers by color and generate one svg for each color: `vpype read --attr stroke input.svg forlayer write output_%_lid%.svg end`
 - generate Gcode with vpype-gcode `vpype --config vpype-flavor.toml read input.svg gwrite --profile idrawv2 output.gcode` [doc](https://pypi.org/project/vpype-gcode/). note that it does not support G02/G03 curve commands
 
 **juicy-gcode** (haskell ) works to transform SVG to gcode
