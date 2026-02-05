@@ -28,7 +28,7 @@ function star() {
         random() < 0.1 ? stroke(0, 0, 0) : stroke(hu, 100, 100)
         noFill()
 
-        if (random() < 0.8) {
+        if (random() < 0.7) {
 
             quadwlines(x1, y1, x2, y2, x3, y3, x4, y4)
         }
