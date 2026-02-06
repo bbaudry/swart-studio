@@ -11,7 +11,25 @@ function initgrid(){
     stroke(30,100,100)
     noFill()
     console.log("w: "+gridwidth+"; h: "+gridheight)
-    splittile(leftmargin,topmargin,gridwidth,gridheight,0)
+    splittile2(leftmargin,topmargin,
+        leftmargin+gridwidth,topmargin,
+        leftmargin+gridwidth,topmargin+gridheight,
+        leftmargin,topmargin+gridheight,0)
+}
+
+function splittile2(x1,y1,x2,y2,x3,y3,x4,y4,d){
+    if(d<3){
+        let largeur=x2-x1
+        let tiers=largeur/3
+        d++
+        let nextx2=x2-2*tiers
+        let nextx3=x3-2*tiers
+        splittile2(x1,y1,nextx2,y2,nextx3,y3,x4,y4,d)
+        splittile2(nextx2,y1,x2,y2,x3,y3,nextx3,y4,d)
+    }
+    else{
+        quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    }
 }
 
 function splittile(x,y,localw,localh,d){
