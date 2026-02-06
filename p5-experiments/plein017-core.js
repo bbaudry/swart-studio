@@ -24,16 +24,16 @@ function splittile2(x1, y1, x2, y2, x3, y3, x4, y4, d) {
         if (random() < 0.5) {
             let largeur = x2 - x1
             let tiers = r*largeur / 3
-            let nextx2 = x2 - 2 * tiers
-            let nextx3 = x3 - 2 * tiers
+            let nextx2 = x2 - (3-r) * tiers
+            let nextx3 = x3 - (3-r) * tiers
             splittile2(x1, y1, nextx2, y2, nextx3, y3, x4, y4, d)
             splittile2(nextx2, y1, x2, y2, x3, y3, nextx3, y4, d)
         }
         else{
             let hauteur = y3 - y2
             let tiers = r*hauteur / 3
-            let nexty3 = y3 - 2 * tiers
-            let nexty4 = y4 - 2 * tiers
+            let nexty3 = y3 - (3-r) * tiers
+            let nexty4 = y4 - (3-r) * tiers
             splittile2(x1, y1, x2, y2, x3, nexty3, x4, nexty4, d)
             splittile2(x1, nexty4, x2, nexty3, x3, y3, x4, y4, d)
         }
