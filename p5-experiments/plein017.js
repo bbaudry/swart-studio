@@ -12,22 +12,22 @@ function preload() {
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
-    w = Math.floor(96*210/25.4)
-    h = Math.floor(96*297/25.4)
+    w = Math.floor(96*120/25.4)
+    h = Math.floor(96*120/25.4)
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     angleMode(DEGREES)
-    leftmargin = Math.floor(w * 0.05)
-    rightmargin = Math.floor(w * 0.95)
-    topmargin = Math.floor(h * 0.05)
-    bottommargin = Math.floor(h * 0.95)
+    leftmargin = Math.floor(96*15/25.4)
+    rightmargin = Math.floor(96*105/25.4)
+    topmargin = Math.floor(96*15/25.4)
+    bottommargin = Math.floor(96*105/25.4)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     //96*0.2/25.4 : 0.2mm is the width of a fineliner
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
-    penwidth =96*0.25/25.4 //0.25mm is pigman micron 01
+    penwidth =96*0.26/25.4 //0.25mm is pigman micron 01
     strokeWeight(penwidth)
 }
 
