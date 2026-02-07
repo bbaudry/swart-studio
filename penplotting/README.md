@@ -35,6 +35,45 @@ Grbl 1.1h DrawCore V2.09 ['$' for help]
 **`$$` - View All Current Settings**
 This command displays all configuration parameters and their current values. When you send this command, GRBL responds with a complete list showing each parameter number and its set value. This is useful for checking your machine's configuration or troubleshooting issues. You'll see output like `$0=10`, `$1=25`, etc.
 
+Today's config:
+```
+$$ 
+$0=5
+$1=254
+$2=0
+$3=1
+$4=0
+$5=0
+$6=0
+$10=2
+$11=0.010
+$12=0.002
+$13=0
+$20=0
+$21=0
+$22=1
+$23=5
+$24=200.000
+$25=5000.000
+$26=250
+$27=1.000
+$30=1000
+$31=0
+$32=1
+$100=100.000
+$101=100.000
+$102=85.800
+$110=15000.000
+$111=12000.000
+$112=15000.000
+$120=3000.000
+$121=3000.000
+$122=3000.000
+$130=297.000
+$131=420.000
+$132=10.000
+```
+
 **`$#` - View Coordinate System Offsets**
 This displays all work coordinate systems (G54-G59) and their offsets from the machine coordinate system. It also shows G28 and G30 predefined positions, tool length offset (G92), and probe position. These offsets define where your workpiece zero points are relative to the machine's home position. This is critical for understanding where your machine thinks the workpiece is located.
 
