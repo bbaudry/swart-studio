@@ -28,6 +28,144 @@ Grbl 1.1h DrawCore V2.09 ['$' for help]
 
 ```
 
+### GRBL configuration commands
+
+**View Settings Commands**
+
+**`$$` - View All Current Settings**
+This command displays all configuration parameters and their current values. When you send this command, GRBL responds with a complete list showing each parameter number and its set value. This is useful for checking your machine's configuration or troubleshooting issues. You'll see output like `$0=10`, `$1=25`, etc.
+
+**`$#` - View Coordinate System Offsets**
+This displays all work coordinate systems (G54-G59) and their offsets from the machine coordinate system. It also shows G28 and G30 predefined positions, tool length offset (G92), and probe position. These offsets define where your workpiece zero points are relative to the machine's home position. This is critical for understanding where your machine thinks the workpiece is located.
+
+**`$G` - View Parser State**
+This shows the current modal state of the G-code parser. It tells you which modes are active, such as motion mode (G0, G1, G2, G3), coordinate system (G54, G55, etc.), plane selection (G17, G18, G19), distance mode (G90, G91), feed rate mode (G93, G94), units (G20, G21), cutter compensation, tool length offset, spindle state (M3, M4, M5), and coolant state (M7, M8, M9). This is essential for knowing the machine's current state.
+
+**`$I` - View Build Info**
+This displays the GRBL version number and build date. It may also show optional build information like firmware version, compile date, and source code version. This helps you identify which version of GRBL you're running, which is important for compatibility and troubleshooting.
+
+**`$N` - View Startup Blocks**
+This shows the two startup blocks (N0 and N1) that GRBL executes automatically when it powers up or resets. These blocks can contain any valid G-code commands you want to run at startup, such as setting units, coordinate systems, or turning on coolant. If no startup blocks are programmed, this returns empty.
+
+**`$C` - Check Mode (Toggle)**
+This toggles check mode on or off. In check mode, GRBL processes all G-code commands without moving the machine or changing outputs. It checks for syntax errors, validates commands, and simulates the parser state changes. This is useful for testing new G-code programs safely before running them on the actual machine.
+
+**`$X` - Kill Alarm Lock**
+This clears the alarm state that locks GRBL after certain error conditions. GRBL enters alarm mode when hard limits are triggered, during startup if homing is enabled but not performed, or after other critical errors. You must clear the alarm with this command before GRBL will accept motion commands again. However, you should first fix the underlying problem that caused the alarm.
+
+**`$H` - Run Homing Cycle**
+This initiates the homing cycle sequence. GRBL moves each axis to its limit switch in the order and direction specified by settings `$23`. It first performs a fast seek to find the switches, then backs off and does a slow precise approach. After homing, GRBL sets the machine position to the values defined in `$130`, `$131`, and `$132`. Homing establishes a known reference position for the machine coordinate system.
+
+**Configuration Parameters**
+
+**`$0` - Step Pulse Time (microseconds)**
+This sets the minimum duration of each step pulse sent to the stepper drivers. Typical values range from 2 to 10 microseconds. If set too low, stepper drivers may miss steps because the pulse is too short to register. If set too high, it limits maximum step rates. Most modern drivers work fine with 2-5 microseconds. Check your driver specifications for the minimum pulse width requirement.
+
+**`$1` - Step Idle Delay (milliseconds)**
+This determines how long GRBL waits after motion stops before disabling the stepper motors. The value is in milliseconds, with 255 keeping motors always enabled. Disabling motors reduces heat and power consumption but allows the machine to move freely. Setting this too low might cause the machine to lose position if it's bumped before the idle time expires. Values between 25-255 are common.
+
+**`$2` - Step Pulse Invert (mask)**
+This is a binary mask that inverts the step pulse signal for each axis. Bit 0 is X, bit 1 is Y, bit 2 is Z. Some stepper drivers require active-low pulses while others need active-high. If your motor runs backward or doesn't run at all, you may need to change this setting. For example, a value of 0 means no inversion, while 7 (binary 111) inverts all three axes.
+
+**`$3` - Step Direction Invert (mask)**
+This binary mask inverts the direction signal for each axis. Like `$2`, bit 0 is X, bit 1 is Y, bit 2 is Z. If an axis moves in the wrong direction, you can flip its direction bit here instead of physically rewiring the motor. For example, if X moves backward, set bit 0 to invert it. A value of 5 (binary 101) would invert X and Z but not Y.
+
+**`$4` - Invert Step Enable Pin (boolean)**
+This inverts the stepper enable signal. Set to 0 for normal, 1 for inverted. Some stepper drivers are enabled with a low signal, others with a high signal. If your motors are always disabled or always enabled regardless of motion, toggle this setting. This applies to all axes together, not individually.
+
+**`$5` - Invert Limit Pins (boolean)**
+This inverts the limit switch input signals. Set to 0 for normally-open switches, 1 for normally-closed switches. Normally-open switches are more common and safer because a broken wire appears as an open switch (safe state). Normally-closed switches continuously conduct and trigger when opened, which means a broken wire triggers a false limit alarm. Most setups use 0.
+
+**`$6` - Invert Probe Pin (boolean)**
+This inverts the probe input signal. Set to 0 for normally-open probe, 1 for normally-closed probe. Normally-open is standard for most touch probes and tool setters. The probe triggers when the circuit closes (tool touches workpiece). If your probe behaves backward, toggle this setting.
+
+**`$10` - Status Report Options (mask)**
+This configures what information appears in status reports. Bit 0 enables machine position reporting, bit 1 enables work position reporting. Set to 0 for machine position only, 1 for both machine and work positions, 2 for work position only. Most users prefer value 1 to see both coordinate systems.
+
+**`$11` - Junction Deviation (mm)**
+This controls how GRBL handles cornering speed. Lower values make the machine slow down more at corners, higher values allow faster cornering but with less precision. The value represents how much the tool path can deviate from the programmed path at junctions. Typical values are 0.01 to 0.05 mm. Lower values give smoother motion and better dimensional accuracy but slower overall speed.
+
+**`$12` - Arc Tolerance (mm)**
+This sets the maximum allowable deviation when converting arc commands (G2/G3) into linear segments. GRBL breaks arcs into many small straight lines. Lower values create smoother arcs with more segments but require more processing. Higher values use fewer segments but create more angular paths. Typical values are 0.002 to 0.01 mm. This affects arc quality and processing speed.
+
+**`$13` - Report in Inches (boolean)**
+This sets the units for position reports and some parameters. Set to 0 for millimeters, 1 for inches. This doesn't change how G-code is interpreted (use G20/G21 for that). It only affects how GRBL reports positions back to you. Most users keep this at 0 and use millimeters.
+
+**`$20` - Soft Limits Enable (boolean)**
+This enables software limit checking. Set to 1 to enable, 0 to disable. When enabled, GRBL prevents motion beyond the maximum travel distances set in `$130-132`. If a G-code command would exceed these boundaries, GRBL triggers an alarm and stops. This requires homing to be performed first to establish the machine coordinate system. Soft limits protect your machine from crashes.
+
+**`$21` - Hard Limits Enable (boolean)**
+This enables hard limit switches. Set to 1 to enable, 0 to disable. When enabled, GRBL monitors the limit switch inputs and immediately stops all motion if any switch is triggered. This provides emergency crash protection. However, electrical noise can cause false triggers, so proper wiring and shielding are important. Hard limits require a machine reset and homing cycle after triggering.
+
+**`$22` - Homing Cycle Enable (boolean)**
+This enables the homing cycle on startup and with `$H` command. Set to 1 to enable, 0 to disable. When enabled, GRBL requires a homing cycle after startup before it will execute motion commands. Homing establishes the machine's reference position. If you don't have limit switches installed, keep this at 0.
+
+**`$23` - Homing Direction Invert (mask)**
+This binary mask sets which direction each axis moves during homing. Bit 0 is X, bit 1 is Y, bit 2 is Z. A 0 bit homes toward negative coordinates, a 1 bit homes toward positive coordinates. For example, value 1 (binary 001) homes X positive, Y and Z negative. This should match where your limit switches are physically located.
+
+**`$24` - Homing Locate Feed Rate (mm/min)**
+This sets the slower, precise feed rate used during the second homing approach. After the initial fast seek finds the limit switch, GRBL backs off and approaches again at this slower rate for accurate positioning. Typical values are 25 to 100 mm/min. Slower is more accurate but takes longer. This should be much slower than `$25`.
+
+**`$25` - Homing Search Seek Rate (mm/min)**
+This sets the fast feed rate used during the initial homing search. GRBL moves rapidly at this speed until it finds the limit switch. Typical values are 500 to 2000 mm/min. Faster saves time but may overshoot more. This should be significantly faster than `$24` to make homing efficient.
+
+**`$26` - Homing Switch Debounce Delay (ms)**
+This sets a delay in milliseconds after the limit switch triggers to filter out electrical noise. Mechanical switches can bounce and create multiple false triggers. This delay ensures the switch signal is stable before GRBL accepts it. Typical values are 50 to 250 milliseconds. Too low may cause false triggers, too high wastes time.
+
+**`$27` - Homing Switch Pull-Off Distance (mm)**
+This sets how far each axis backs off from the limit switch after homing. After finding the precise switch position, GRBL moves this distance away to clear the switch. This prevents the machine from sitting on the switch, which could cause false alarms. Typical values are 1 to 5 mm. Must be large enough to reliably clear the switch.
+
+**`$30` - Max Spindle Speed (RPM)**
+This sets the spindle speed that corresponds to maximum PWM output (100% duty cycle or S-value at maximum). When you command S1000 in G-code, GRBL calculates the PWM percentage by dividing S1000 by this `$30` value. For example, if `$30=10000` and you command S5000, GRBL outputs 50% PWM. This should match your spindle's maximum rated RPM.
+
+**`$31` - Min Spindle Speed (RPM)**
+This sets the spindle speed that corresponds to minimum PWM output (lowest useful duty cycle or minimum S-value). Speeds below this may not provide enough power to turn the spindle. When you command an S-value between `$31` and `$30`, GRBL maps it linearly to the PWM range. Values below `$31` are clamped to the minimum PWM. Typical values are 0 to 1000 RPM.
+
+**`$32` - Laser Mode Enable (boolean)**
+This enables special laser mode features. Set to 1 for lasers, 0 for spindles. In laser mode, the spindle output turns off during G0 rapid moves automatically to prevent unwanted burns. It also enables dynamic power scaling where laser power adjusts based on actual feed rate, so slowing down doesn't over-burn material. Only use this for laser cutters/engravers, not regular spindles.
+
+**`$100` - X Axis Steps Per mm**
+This defines how many stepper motor steps are needed to move the X axis 1 millimeter. Calculate this by multiplying motor steps per revolution, microstepping setting, and any gear reduction, then dividing by the distance traveled per revolution (lead screw pitch or belt pitch times pulley teeth). For example, 200 steps/rev * 8 microsteps * 1 gear ratio / 2mm pitch = 800 steps/mm. This calibrates X axis motion accuracy.
+
+**`$101` - Y Axis Steps Per mm**
+This defines steps per millimeter for the Y axis. Calculation is identical to `$100` but uses Y axis mechanical parameters. If your Y axis uses different mechanics than X (different belt pulleys, lead screw pitch, or gearing), this value will differ. Accurate calibration is critical for dimensional accuracy and square parts.
+
+**`$102` - Z Axis Steps Per mm**
+This defines steps per millimeter for the Z axis. Calculation is identical to `$100` but uses Z axis mechanical parameters. Z often uses different mechanics than X/Y, typically a finer-pitch lead screw for better resolution and holding power against gravity. Accurate Z calibration is essential for correct cutting depths and layer heights.
+
+**`$110` - X Max Rate (mm/min)**
+This sets the maximum allowed feed rate for the X axis in millimeters per minute. GRBL will not allow motion faster than this speed, even if commanded in G-code. Set this based on your mechanical limits, considering maximum safe speed before losing steps, mechanical resonance, and acceleration limits. Typical values range from 1000 to 10000 mm/min depending on the machine. Going too fast causes lost steps and position errors.
+
+**`$111` - Y Max Rate (mm/min)**
+This sets the maximum allowed feed rate for the Y axis. Same considerations as `$110`. If your Y axis has different mechanical capabilities than X (heavier gantry, different belt length, different motor), adjust this accordingly. Both axes should be set conservatively to ensure reliable operation without skipping steps.
+
+**`$112` - Z Max Rate (mm/min)**
+This sets the maximum allowed feed rate for the Z axis. Z typically has a much lower maximum rate than X/Y because it's fighting gravity and usually has higher gear reduction for better torque and resolution. Typical values are 200 to 1000 mm/min. Setting this too high can cause the Z axis to stall or lose steps, especially when plunging into material.
+
+**`$120` - X Acceleration (mm/sec²)**
+This sets how quickly the X axis can accelerate and decelerate in millimeters per second squared. Higher values make the machine more responsive and faster for short moves, but can cause mechanical stress, skipped steps, or excessive vibration. Lower values provide smoother motion. Typical values range from 50 to 500 mm/sec². Find the highest value that doesn't cause problems for optimal performance.
+
+**`$121` - Y Acceleration (mm/sec²)**
+This sets the Y axis acceleration. Same considerations as `$120`. The Y axis may support different acceleration than X due to different moving mass or mechanical stiffness. Heavy gantries require lower acceleration settings. Test to find the maximum reliable value for your machine.
+
+**`$122` - Z Acceleration (mm/sec²)**
+This sets the Z axis acceleration. Z typically uses much lower acceleration than X/Y because of higher moving mass (spindle, mount) and fighting gravity. Typical values are 20 to 200 mm/sec². Too high causes vibration and poor surface finish. Too low makes Z moves unnecessarily slow. Balance speed and smoothness for your application.
+
+**`$130` - X Max Travel (mm)**
+This defines the maximum travel distance for the X axis in millimeters. After homing, this sets the machine coordinate at the homed end. With soft limits enabled, GRBL prevents motion beyond this range. Measure your actual usable travel and set this value accordingly. Also used to set the machine coordinate system origin after homing.
+
+**`$131` - Y Max Travel (mm)**
+This defines the maximum travel distance for the Y axis. Same purpose and considerations as `$130`. Measure carefully to set the correct working envelope. This should reflect actual usable space, accounting for any mechanical limits or obstacles.
+
+**`$132` - Z Max Travel (mm)**
+This defines the maximum travel distance for the Z axis. Typically smaller than X and Y. Measure from fully retracted (top) to lowest safe position. Account for tool length and work holding to avoid crashes. This sets your maximum cutting depth capability and safe working range.
+
+**Startup Blocks**
+
+**`$N0=line` and `$N1=line` - Save Startup Blocks**
+These store G-code commands that execute automatically whenever GRBL starts up or resets. You can save one line of G-code in each block (N0 and N1). Common uses include setting preferred units (G20/G21), selecting a default coordinate system (G54), or initializing machine state. For example, `$N0=G21 G54` would set millimeter mode and work coordinate system 1. These help ensure consistent machine state after power-up. To clear a block, send the command with no value, like `$N0=`.
+
+**`?` returns the current state including the position?
 
 
 ## Drawing
