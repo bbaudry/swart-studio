@@ -24,16 +24,16 @@ function splittile(x1, y1, x2, y2, x3, y3, x4, y4, d) {
         if (random() < 0.5) {
             let largeur = x2 - x1
             let tiers = r*largeur / denominator
-            let nextx2 = x2 - (3-r) * tiers
-            let nextx3 = x3 - (3-r) * tiers
+            let nextx2 = x2 - (denominator-r) * tiers
+            let nextx3 = x3 - (denominator-r) * tiers
             splittile(x1, y1, nextx2, y2, nextx3, y3, x4, y4, d)
             splittile(nextx2, y1, x2, y2, x3, y3, nextx3, y4, d)
         }
         else{
             let hauteur = y3 - y2
             let tiers = r*hauteur / denominator
-            let nexty3 = y3 - (3-r) * tiers
-            let nexty4 = y4 - (3-r) * tiers
+            let nexty3 = y3 - (denominator-r) * tiers
+            let nexty4 = y4 - (denominator-r) * tiers
             splittile(x1, y1, x2, y2, x3, nexty3, x4, nexty4, d)
             splittile(x1, nexty4, x2, nexty3, x3, y3, x4, y4, d)
         }
