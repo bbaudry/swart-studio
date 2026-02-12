@@ -1,25 +1,28 @@
 var xoff = 0.0
 var xinc = 1
 var grid = []
-var resolution = 5
+var resolution = 8
 
 function hal() {
-    grille()    
+    grille()
 }
 
-function grille(){
-    let x,y,stepx,stepy,hauteur
-    stepx=Math.floor(actualwidth/resolution)
-    stepy=Math.floor(actualheight/resolution)
-    for(let i=0;i<resolution;i++){
-        x=leftmargin+i*stepx
-        y=topmargin
-            hauteur=Math.floor(random(1,3))*stepy
-        while(y+hauteur<bottommargin){
-            rect(x,y,stepx,hauteur)
-            y+=hauteur
-            hauteur=Math.floor(random(1,3))*stepy
+function grille() {
+    let x, y, stepx, stepy, hauteur
+    stepx = Math.floor(actualwidth / 15)
+    stepy = Math.floor(actualheight / resolution)
+    x = leftmargin
+    largeur = Math.floor(random(1, 5)) * stepx
+    while (x + largeur < rightmargin) {
+        y = topmargin
+        hauteur = Math.floor(random(1, 5)) * stepy
+        while (y + hauteur < bottommargin) {
+            rect(x, y, largeur, hauteur)
+            y += hauteur
+            hauteur = Math.floor(random(1, 5)) * stepy
         }
-            rect(x,y,stepx,bottommargin-y)
+        rect(x, y, largeur, bottommargin - y)
+        x += largeur
+        largeur = Math.floor(random(1, 5)) * stepx
     }
 }
