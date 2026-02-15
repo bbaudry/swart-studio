@@ -4,24 +4,24 @@ var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 9
-var artname = "plein015"
+var fSize = 8
+var artname = "plein018"
 
 function preload() {
-    font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
+    font = loadFont("./fonts/1CamBam_Stick_4.ttf");
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
-    w = Math.floor(96*280/25.4)
-    h = Math.floor(96*280/25.4)
+    w = Math.floor(96*120/25.4)
+    h = Math.floor(96*120/25.4)
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = Math.floor(96*15/25.4)
-    rightmargin = Math.floor(96*265/25.4)
+    rightmargin = Math.floor(96*105/25.4)
     topmargin = Math.floor(96*15/25.4)
-    bottommargin = Math.floor(96*265/25.4)
+    bottommargin = Math.floor(96*105/25.4)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -54,37 +54,10 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(300,100,100)   
-    hal()
-    // stroke(0, 0, 0); noFill(); strokeWeight(1)
+    //hal()
+    stroke(0, 0, 0); noFill(); strokeWeight(1)
     // let c = showcodeall(leftmargin * 4.2, bottommargin)
-    // text("plein014[automne]", c[0], c[1] + fSize)
-    // text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize)
+    titre="plus fort que l'ocean [al.my.re :: 2026]"
+    text(titre, rightmargin-textWidth(titre), bottommargin+fSize*1.2)
     noLoop()
-}
-
-
-function showcodeall(posx, posy) {
-    var x, y
-    x = posx
-    y = posy
-    for (b in sourcecode) {
-        text(sourcecode[b], x, y)
-        y += fSize
-    }
-    return ([x, y])
-}
-
-function clemence() {
-    fill(330, 50, 100)
-    noStroke()
-    let x, y, rayon
-    rayon = w * 0.3
-    x = w * 0.5
-    y = topmargin + rayon
-    arc(x, y, rayon * 2, rayon * 2, PI, 2 * PI)
-
-    fill(50, 80, 100)
-    x -= rayon
-    y += h * 0.1
-    rect(x, y, rayon, rayon)
 }
