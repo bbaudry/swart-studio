@@ -12,16 +12,16 @@ function preload() {
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
-    w = Math.floor(96*120/25.4)
-    h = Math.floor(96*120/25.4)
+    w = Math.floor(96*210/25.4)
+    h = Math.floor(96*297/25.4)
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = Math.floor(96*15/25.4)
-    rightmargin = Math.floor(96*105/25.4)
+    rightmargin = Math.floor(96*195/25.4)
     topmargin = Math.floor(96*15/25.4)
-    bottommargin = Math.floor(96*105/25.4)
+    bottommargin = Math.floor(96*280/25.4)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -54,7 +54,7 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(300,100,100)   
-    //hal()
+    hal()
     stroke(0, 0, 0); noFill(); strokeWeight(1)
     // let c = showcodeall(leftmargin * 4.2, bottommargin)
     titre="plus fort que l'ocean [al.my.re :: 2026]"
