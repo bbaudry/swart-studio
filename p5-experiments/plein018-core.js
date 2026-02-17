@@ -25,7 +25,7 @@ function grille() {
 //    quad(x1+gap,y1,x2,y1,x2,y2-gap,x1+gap,y2-gap)
     random()<0.9?splitquad(x1+gap,y1,x2,y1,x2,y2-gap,x1+gap,y2-gap):splittri(x1+gap,y1,x2,y1,x2,y2-gap,x1+gap,y2-gap)
     quad(x1+gap,y2+gap,x2,y2+gap,x2,y3,x3+gap,y3)
-    quad(x4,y4+gap,x1-gap,y2+gap,x3-gap,y3,x4,y3)
+    splitquad(x4,y4+gap,x1-gap,y2+gap,x3-gap,y3,x4,y3)
 }
 function splitquad(x1,y1,x2,y2,x3,y3,x4,y4){
     let resx,resy,i,j,stepx,stepy,ix1,iy1,ix2,iy2,ix3,iy3,ix4,iy4,largeur,hauteur
