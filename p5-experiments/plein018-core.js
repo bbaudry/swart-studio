@@ -1,7 +1,7 @@
 var xoff = 0.0
 var xinc = 0.1
 var grid = []
-var resolution = 8
+var resolution = 3
 
 function hal() {
     grille()
@@ -11,16 +11,21 @@ function hal() {
 function grille() {
     let stepx, stepy, x, y, offset
     offset=3
-    stepx = actualwidth/11 
-    stepy = actualwidth/11
-    for (let i = 0; i < 11; i++) {
+    stepx = actualwidth/resolution 
+    stepy = actualwidth/resolution
+    for (let i = 0; i < resolution; i++) {
         x = leftmargin + i * stepx
-        for (let j = 0; j < 11; j++) {
+        for (let j = 0; j < resolution; j++) {
             y = topmargin + j * stepy
-            pad = offset*noise(xoff)*2;xoff+=xinc
+            pad = offset*noise(xoff)*resolution;xoff+=xinc
             push()
-            //if(random()<0.01){translate(x+stepx*0.5,y+stepy*0.5);rotate(1)}
-            rect(x+pad, y+pad, stepx-2*pad, stepy-2*pad)
+            translate(x+stepx*0.5,y+stepy*0.5)
+            if(random()<0.1){;rotate(random(-11,11));stroke(220,100,100)}
+            quadwlines(-stepx*0.5+pad,-stepy*0.5+pad,
+                stepx*0.5-pad,-stepy*0.5+pad,
+                stepx*0.5-pad,stepy*0.5-pad,
+                -stepx*0.5+pad,stepy*0.5-pad)
+//            rect(x+pad, y+pad, stepx-2*pad, stepy-2*pad)
             pop()
         }
     }
