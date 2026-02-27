@@ -4,67 +4,42 @@ var grid = []
 var resolution = 3
 
 function hal() {
-    let dice, x1,y1,x2,y2,x3,y3,x4,y4,pad
-    dice=Math.floor(random(2,5))
-    pad=7
-    switch (dice){
-        case 2: //fill(0,100,100);ellipse(w*0.5,h*0.5,42,42)
-            x1=leftmargin;y1=topmargin
-            x2=leftmargin+actualwidth*0.5-pad;y2=topmargin
-            x3=leftmargin+actualwidth*0.5-pad;y3=bottommargin
-            x4=leftmargin;y4=bottommargin
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            x1=rightmargin-actualwidth*0.5+pad;y1=topmargin
-            x2=rightmargin;y2=topmargin
-            x3=rightmargin;y3=bottommargin
-            x4=rightmargin-actualwidth*0.5+pad;y4=bottommargin
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            break;
-        case 3: //fill(300,100,100);ellipse(w*0.5,h*0.5,420,420)
-            x1=leftmargin;y1=topmargin
-            x2=leftmargin+actualwidth*0.5-pad;y2=topmargin
-            x3=leftmargin+actualwidth*0.5-pad;y3=topmargin+actualheight*0.5-pad
-            x4=leftmargin;y4=topmargin+actualheight*0.5-pad
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            x1=rightmargin-actualwidth*0.5+pad;y1=topmargin
-            x2=rightmargin;y2=topmargin
-            x3=rightmargin;y3=topmargin+actualheight*0.5-pad
-            x4=rightmargin-actualwidth*0.5+pad;y4=topmargin+actualheight*0.5-pad
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            x1=leftmargin;y1=topmargin+actualheight*0.5+pad
-            x2=rightmargin;y2=topmargin+actualheight*0.5+pad
-            x3=rightmargin;y3=bottommargin
-            x4=leftmargin;y4=bottommargin
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            break;
-        case 4: //fill(180,100,100);ellipse(w*0.5,h*0.5,142,142)
-            x1=leftmargin;y1=topmargin
-            x2=leftmargin+actualwidth*0.5-pad;y2=topmargin
-            x3=leftmargin+actualwidth*0.5-pad;y3=topmargin+actualheight*0.5-pad
-            x4=leftmargin;y4=topmargin+actualheight*0.5-pad
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            x1=rightmargin-actualwidth*0.5+pad;y1=topmargin
-            x2=rightmargin;y2=topmargin
-            x3=rightmargin;y3=topmargin+actualheight*0.5-pad
-            x4=rightmargin-actualwidth*0.5+pad;y4=topmargin+actualheight*0.5-pad
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            x1=leftmargin;y1=topmargin+actualheight*0.5+pad
-            x2=leftmargin+actualwidth*0.5-pad;y2=topmargin+actualheight*0.5+pad
-            x3=leftmargin+actualwidth*0.5-pad;y3=bottommargin
-            x4=leftmargin;y4=bottommargin
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            x1=rightmargin-actualwidth*0.5+pad;y1=topmargin+actualheight*0.5+pad
-            x2=rightmargin;y2=topmargin+actualheight*0.5+pad
-            x3=rightmargin;y3=bottommargin
-            x4=rightmargin-actualwidth*0.5+pad;y4=bottommargin
-            quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            break;
+    vera()
+}
+
+function vera(){
+    var resolution,x,y,step,alicex, alicey,clemencex,clemencey
+    resolution = 46
+    step = Math.floor(actualwidth / resolution)
+    console.log("step size: "+step)
+    for (var i = 0; i < resolution; i++) {
+        x = leftmargin + i * step
+        for (var j = 0; j < resolution+4; j++) {
+            ((i==27 && j==30)||(i==27 && j==31)||(i==24 && j==27))?stroke(0,100,100):stroke(330,100,100)
+            
+            y = topmargin + j * step
+            molnar(x, y, step)
+        }
     }
+}
+
+
+function molnar(x, y, step) {
+    var off, inc, desordre, horizon
+    off = 0; inc = penwidth*0.9; horizon = 0
+    desordre = random(-4.6, 4.6); 
+    push()
+    translate(x, y); rotate(desordre)
+    // for (let i = 0; i < step; i += inc) {
+    //     line(0, horizon, step, horizon)
+    //     horizon += inc    }
+    quadwlines(0,0,step,0,step,step,0,step)
+    pop()
 }
 
 function quadwlines(x1, y1, x2, y2, x3, y3, x4, y4) {
     let d, t, tinc, ox, oy, dx, dy, amp
-    amp = 1//random(1,2)
+    amp = 1.1//random(1,2)
     dist(x1, y1, x4, y4) > dist(x2, y2, x3, y3) ? d = dist(x1, y1, x4, y4) : d = dist(x2, y2, x3, y3)
     //penwidth<1?tinc=d*penwidth:
     tinc = 1 / (d / penwidth) * amp
