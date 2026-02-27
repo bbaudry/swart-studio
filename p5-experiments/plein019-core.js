@@ -8,14 +8,20 @@ function hal() {
 }
 
 function vera(){
-    var resolution,x,y,step,alicex, alicey,clemencex,clemencey
-    resolution = 46
+    var resolution,x,y,step,alicex, alicey,clemencex,clemencey,benoitx,benoity
+    resolution = 40
     step = Math.floor(actualwidth / resolution)
+    alicex = Math.floor(random(25,40))
+    clemencex = alicex
+    alicey = Math.floor(random(18,40))
+    clemencey = alicey+1
+    benoitx = Math.floor(random(15,25))
+    benoity = Math.floor(random(15,25))
     console.log("step size: "+step)
     for (var i = 0; i < resolution; i++) {
         x = leftmargin + i * step
         for (var j = 0; j < resolution+4; j++) {
-            ((i==27 && j==30)||(i==27 && j==31)||(i==24 && j==27))?stroke(0,100,100):stroke(330,100,100)
+            ((i==alicex && j==alicey)||(i==clemencex && j==clemencey)||(i==benoitx && j==benoity))?stroke(0,100,100):stroke(330,100,100)
             
             y = topmargin + j * step
             molnar(x, y, step)
@@ -27,7 +33,7 @@ function vera(){
 function molnar(x, y, step) {
     var off, inc, desordre, horizon
     off = 0; inc = penwidth*0.9; horizon = 0
-    desordre = random(-4.6, 4.6); 
+    desordre = random(-4.6, 4.6);//noise(xoff)*18.4-9.2;xoff+=xinc// 
     push()
     translate(x, y); rotate(desordre)
     // for (let i = 0; i < step; i += inc) {
@@ -44,6 +50,7 @@ function quadwlines(x1, y1, x2, y2, x3, y3, x4, y4) {
     //penwidth<1?tinc=d*penwidth:
     tinc = 1 / (d / penwidth) * amp
     console.log("d: " + d + "; tinc: " + tinc + "; penwidth: " + penwidth)
+    quad(x1+penwidth, y1+penwidth, x2-penwidth, y2+penwidth, x3-penwidth, y3-penwidth, x4+penwidth, y4-penwidth)
     for (t = tinc; t < 1; t += tinc) {
         ox = lerp(x1, x4, t)
         oy = lerp(y1, y4, t)
