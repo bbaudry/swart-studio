@@ -8,17 +8,25 @@ function hal() {
 }
 
 function vera(){
-    var resolution,x,y,step,othercol,pad
-    resolution = 21
-    othercol = 0
+    var resolution,x,y,step,othercolor,maxothercolor,pad,cx,cy,i,maxi,j,maxj,maxdist
+    resolution = 36
+    maxi = resolution
+    maxj = resolution+1
+    othercolor = 0
+    maxothercolor = 3
     step = Math.floor(actualwidth / resolution)
-    for (var i = 0; i < resolution; i++) {
+    cx=leftmargin+actualwidth*0.5
+    cy=topmargin+(step*maxj)*0.5
+    maxdist=dist(0,0,cx,cy)
+    for (i = 0; i < maxi; i++) {
         x = leftmargin + i * step
-        for (var j = 0; j < resolution+1; j++) {
-            if(random()<0.1 && othercol<3){stroke(0,100,100);othercol++}
+        for (j = 0; j < maxj; j++) {
+            if(random()<0.05 && othercolor<maxothercolor){stroke(0,100,100);othercolor++}
             else{stroke(330,100,100)}
             y = topmargin + j * step
-            pad = Math.floor(random(1,7))
+//            pad = dist(x,y,cx,cy)*0.01
+            a=map(dist(x,y,cx,cy),0,maxdist,0,90)
+            pad=5-7*sin(a)
             molnar(x+pad, y+pad, step-2*pad)
         }
     }
@@ -28,12 +36,9 @@ function vera(){
 function molnar(x, y, step) {
     var off, inc, desordre, horizon
     off = 0; inc = penwidth*0.9; horizon = 0
-    desordre = random(-4.6, 4.6);//noise(xoff)*18.4-9.2;xoff+=xinc// 
+    desordre = noise(xoff)*7.2-3.6;xoff+=xinc// random(-3.6, 3.6);
     push()
     translate(x, y); rotate(desordre)
-    // for (let i = 0; i < step; i += inc) {
-    //     line(0, horizon, step, horizon)
-    //     horizon += inc    }
     quadwlines(0,0,step,0,step,step,0,step)
     pop()
 }
