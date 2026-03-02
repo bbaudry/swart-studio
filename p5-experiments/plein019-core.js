@@ -9,25 +9,34 @@ function hal() {
 
 function vera(){
     var resolution,x,y,step,othercolor,maxothercolor,pad,cx,cy,i,maxi,j,maxj,maxdist
-    resolution = 36
+    resolution = 22
     maxi = resolution
-    maxj = resolution+1
+    maxj = resolution+3
     othercolor = 0
     maxothercolor = 3
     step = Math.floor(actualwidth / resolution)
-    cx=leftmargin+actualwidth*0.5
-    cy=topmargin+(step*maxj)*0.5
+    cx=leftmargin+actualwidth*random(0.4,0.8)
+    cy=topmargin+(step*maxj)*random(0.4,0.8)
     maxdist=dist(0,0,cx,cy)
     for (i = 0; i < maxi; i++) {
         x = leftmargin + i * step
         for (j = 0; j < maxj; j++) {
-            if(random()<0.05 && othercolor<maxothercolor){stroke(0,100,100);othercolor++}
-            else{stroke(330,100,100)}
             y = topmargin + j * step
 //            pad = dist(x,y,cx,cy)*0.01
-            a=map(dist(x,y,cx,cy),0,maxdist,0,90)
-            pad=5-7*sin(a)
-            molnar(x+pad, y+pad, step-2*pad)
+            maxangle=180
+            a=map(dist(x,y,cx,cy),0,maxdist,0,maxangle)
+            b=map(dist(x+step,y,cx,cy),0,maxdist,0,maxangle)
+            c=map(dist(x+step,y+step,cx,cy),0,maxdist,0,maxangle)
+            d=map(dist(x,y+step,cx,cy),0,maxdist,0,maxangle)
+            pad=8-7*sin(a) // the further from the center, the smaller the pad value, follow a sin function
+            m=-5;amp=-9 //dense in the center
+            //m=7;amp=6 //dense towards the edge
+            pada=m-amp*sin(a)
+            padb=m-amp*sin(b)
+            padc=m-amp*sin(c)
+            padd=m-amp*sin(d) 
+            quadwlines(x+pada,y+pada,x+step-padb,y+padb,x+step-padc,y+step-padc,x+padd,y+step-padd)
+            //molnar(x+pad, y+pad, step-2*pad)
         }
     }
 }

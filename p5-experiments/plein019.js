@@ -12,16 +12,18 @@ function preload() {
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
-    w = Math.floor(96*297/25.4)
-    h = Math.floor(96*420/25.4)
+    w = Math.floor(96*12)//(96*297/25.4)
+    h = Math.floor(96*15)//(96*420/25.4)
+    visiblew = Math.floor(96*11)//(96*297/25.4)
+    visibleh = Math.floor(96*14)//(96*420/25.4)
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     angleMode(DEGREES)
-    leftmargin = Math.floor(96*15/25.4)
-    rightmargin = Math.floor(96*282/25.4)
-    topmargin = Math.floor(96*15/25.4)
-    bottommargin = Math.floor(96*400/25.4)
+    leftmargin = Math.floor(96*0.7)
+    rightmargin = Math.floor(96*11.3)
+    topmargin = Math.floor(96*0.7)
+    bottommargin = Math.floor(96*13.3)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -54,10 +56,11 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(300,100,100)   
+    rect(Math.floor(96*0.5),Math.floor(96*0.5),visiblew,visibleh)
     hal()
     stroke(0, 0, 0); noFill(); strokeWeight(1)
     // let c = showcodeall(leftmargin * 4.2, bottommargin)
-    titre="plus fort que l'ocean [al.my.re :: 2026]"
-    text(titre, rightmargin-textWidth(titre), bottommargin+fSize*1.2)
+    titre="plenty [al.my.re :: 2026]"
+    //text(titre, rightmargin-textWidth(titre), bottommargin+fSize*1.2)
     noLoop()
 }
