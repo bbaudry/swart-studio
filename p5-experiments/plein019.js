@@ -56,7 +56,7 @@ function draw() {
     textFont(font)
     textSize(fSize)
     stroke(300,100,100)   
-    rect(Math.floor(96*0.5),Math.floor(96*0.5),visiblew,visibleh)
+    //rect(Math.floor(96*0.5),Math.floor(96*0.5),visiblew,visibleh)
     hal()
     stroke(0, 0, 0); noFill(); strokeWeight(1)
     // let c = showcodeall(leftmargin * 4.2, bottommargin)
