@@ -12,18 +12,16 @@ function preload() {
         sourcecode = loadStrings(artname+'-core.js');
 }
 function setup() {
-    w = Math.floor(96*12)//(96*297/25.4)
-    h = Math.floor(96*15)//(96*420/25.4)
-    visiblew = Math.floor(96*11)//(96*297/25.4)
-    visibleh = Math.floor(96*14)//(96*420/25.4)
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
-    //cnv = createCanvas(w, h).mousePressed(savepng);
-    centerCanvas();
+    w = windowWidth
+    h = windowHeight
+    //  cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    cnv = createCanvas(w, h).mousePressed(savepng);
+//    centerCanvas();
     angleMode(DEGREES)
-    leftmargin = Math.floor(96*0.7)
-    rightmargin = Math.floor(96*11.3)
-    topmargin = Math.floor(96*0.7)
-    bottommargin = Math.floor(96*13.3)
+    leftmargin = Math.floor(w*0.01)
+    rightmargin = Math.floor(w*0.99)
+    topmargin = Math.floor(h*0.01)
+    bottommargin = Math.floor(h*0.99)
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -60,7 +58,7 @@ function draw() {
     hal()
     stroke(0, 0, 0); noFill(); strokeWeight(1)
     // let c = showcodeall(leftmargin * 4.2, bottommargin)
-    titre="savaryle [al.my.re :: 2026]"
-    text(titre, rightmargin-textWidth(titre), bottommargin)
+    // titre="savaryle [al.my.re :: 2026]"
+    // text(titre, rightmargin-textWidth(titre), bottommargin)
     noLoop()
 }
