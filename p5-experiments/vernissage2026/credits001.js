@@ -34,6 +34,7 @@ function draw() {
     // }
     initgridcenter()
     showgrid()
+    noLoop()
 }
 
 let grid,resx,resy
@@ -71,8 +72,10 @@ function initgridcenter(){
 function showgrid(){
     let index1,index2,index3,index4,white
     white=true
-    for(let i=0;i<resx;i++){
-        for(let j=0; j<resy;j++){
+    push()
+    translate(w*0.5,h*0.5)
+    for(let i=0;i<resx*2+1;i++){
+        for(let j=0; j<resy*2+1;j++){
             index1=i*(resy+1)+j
             index2=(i+1)*(resy+1)+j
             index3=(i+1)*(resy+1)+j+1
@@ -85,11 +88,12 @@ function showgrid(){
                 fill(0,0,0)
                 stroke(0,0,0)
             }
-
+            console.log("x: "+grid[index1].x+"; y: "+grid[index1].y)
             quad(grid[index1].x,grid[index1].y,
                 grid[index2].x,grid[index2].y,
                 grid[index3].x,grid[index3].y,
                 grid[index4].x,grid[index4].y)
         }
     }
+    pop()
 }
