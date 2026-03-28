@@ -27,16 +27,18 @@ function setup() {
 function draw() {
     background(0, 0, 0)
     fill(0,0,100)
-    initgrid()
+    // initgridleft()
+    // showgrid()
+    // if(resx<111){
+    //     resx++;resy++
+    // }
+    initgridcenter()
     showgrid()
-    if(resx<42){
-        resx++;resy++
-    }
 }
 
 let grid,resx,resy
 
-function initgrid(){
+function initgridleft(){
     grid=[]
     let stepx=Math.floor(w/resx)
     let stepy=Math.floor(h/resy)
@@ -48,6 +50,24 @@ function initgrid(){
     }
 }
 
+function initgridcenter(){
+    grid=[]
+    push()
+    translate(w*0.5,h*0.5)
+    let stepx=Math.floor(w*0.5/resx)
+    let stepy=Math.floor(h*0.5/resy)
+    for(let i=-resx-1;i<resx+1;i++){
+        for(let j=-resy-1; j<resy+1;j++){
+            let pos=createVector(i*stepx,j*stepy)
+            grid.push(pos)
+        }
+    }
+
+    pop()
+}
+
+
+
 function showgrid(){
     let index1,index2,index3,index4,white
     white=true
@@ -57,7 +77,15 @@ function showgrid(){
             index2=(i+1)*(resy+1)+j
             index3=(i+1)*(resy+1)+j+1
             index4=i*(resy+1)+j+1
-            random()<0.5?fill(0,0,100):fill(0,0,0)
+            if(random()<0.5){
+                fill(0,0,100)
+                stroke(0,0,100)
+            }
+            else{
+                fill(0,0,0)
+                stroke(0,0,0)
+            }
+
             quad(grid[index1].x,grid[index1].y,
                 grid[index2].x,grid[index2].y,
                 grid[index3].x,grid[index3].y,
