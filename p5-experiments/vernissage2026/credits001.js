@@ -18,8 +18,10 @@ function setup() {
     cnv = createCanvas(w, h)
     angleMode(DEGREES)
     colorMode(HSB, 360, 100, 100, 250);
-    resx=42
-    resy=43
+    resx=6
+    resy=4
+//    frameRate(11)
+    initgridcenter()
 
 }
 
@@ -27,14 +29,9 @@ function setup() {
 function draw() {
     background(0, 0, 0)
     fill(0,0,100)
-    // initgridleft()
-    // showgrid()
-    if(resx<111){
-        resx++;resy++
-    }
-    initgridcenter()
     showgrid()
-    noLoop()
+    updategridcenter()
+//    noLoop()
 }
 
 let grid,resx,resy
@@ -57,29 +54,41 @@ function initgridcenter(){
     translate(w*0.5,h*0.5)
     let stepx=Math.floor(w*0.5/resx)
     let stepy=Math.floor(h*0.5/resy)
-    for(let i=-resx-1;i<resx+1;i++){
-        for(let j=-resy-1; j<resy+1;j++){
+    for(let i=-resx;i<resx+1;i++){
+        for(let j=-resy; j<resy+1;j++){
             let pos=createVector(i*stepx,j*stepy)
             grid.push(pos)
         }
     }
-
     pop()
 }
 
 
+function updategridcenter(){
+    let index
+    push()
+    translate(w*0.5,h*0.5)
+    for(let i=1;i<resx*2;i++){
+        for(let j=0; j<resy*2+1;j++){
+            index=i*(resy*2+1)+j
+            if(grid[index].x<0){grid[index].x--}
+            if(grid[index].x>0){grid[index].x++}
+        }
+    }
+    pop()
+}
+
 
 function showgrid(){
     let index1,index2,index3,index4,white
-    white=true
     push()
     translate(w*0.5,h*0.5)
-    for(let i=0;i<resx*2+1;i++){
-        for(let j=0; j<resy*2+1;j++){
-            index1=i*(resy*2+2)+j
-            index2=(i+1)*(resy*2+2)+j
-            index3=(i+1)*(resy*2+2)+j+1
-            index4=i*(resy*2+2)+j+1
+    for(let i=0;i<resx*2;i++){
+        for(let j=0; j<resy*2;j++){
+            index1=i*(resy*2+1)+j
+            index2=(i+1)*(resy*2+1)+j
+            index3=(i+1)*(resy*2+1)+j+1
+            index4=i*(resy*2+1)+j+1
             if(random()<0.5){
                 fill(0,0,100)
                 stroke(0,0,100)
@@ -100,4 +109,8 @@ function showgrid(){
         }
     }
     pop()
+}
+
+function mousePressed() {
+    noLoop()
 }
