@@ -19,12 +19,10 @@ function setup() {
     angleMode(DEGREES)
     colorMode(HSB, 360, 100, 100, 250);
     resx=6
-    resy=4
-//    frameRate(11)
+    resy=42
     initgridcenter()
-
+    
 }
-
 
 function draw() {
     background(0, 0, 0)
@@ -71,8 +69,12 @@ function updategridcenter(){
     for(let i=1;i<resx*2;i++){
         for(let j=0; j<resy*2+1;j++){
             index=i*(resy*2+1)+j
-            if(grid[index].x<0){grid[index].x--}
-            if(grid[index].x>0){grid[index].x++}
+            if(grid[index].x<0){
+                grid[index].x=grid[index].x-100/grid[index].x
+            }
+            if(grid[index].x>0){
+                grid[index].x=grid[index].x-100/grid[index].x
+            }
         }
     }
     pop()
@@ -81,22 +83,25 @@ function updategridcenter(){
 
 function showgrid(){
     let index1,index2,index3,index4,white
+    frameCount%2==0?white=true:white=false
     push()
     translate(w*0.5,h*0.5)
     for(let i=0;i<resx*2;i++){
+            white=!white
         for(let j=0; j<resy*2;j++){
             index1=i*(resy*2+1)+j
             index2=(i+1)*(resy*2+1)+j
             index3=(i+1)*(resy*2+1)+j+1
             index4=i*(resy*2+1)+j+1
-            if(random()<0.5){
+            if(white){
                 fill(0,0,100)
-                stroke(0,0,100)
+                stroke(0,0,0)
             }
             else{
                 fill(0,0,0)
-                stroke(0,0,0)
+                stroke(0,0,100)
             }
+            white=!white
             console.log("x: "+grid[index1].x+"; y: "+grid[index1].y+"; i: "+i+"; j: "+j+"; index: "+index1)
             quad(grid[index1].x,grid[index1].y,
                 grid[index2].x,grid[index2].y,
