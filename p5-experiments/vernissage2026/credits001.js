@@ -8,9 +8,10 @@ var fSize = 17
 var res=42
 var xoff=0.0
 var xinc=0.0001
+var textx,textspeed,texty,fSize
 
 function preload() {
-    font = loadFont("../fonts/1CamBam_Stick_4.ttf");
+    font = loadFont("../fonts/ChunkFive-Regular.otf");
 }
 function setup() {
     w = windowWidth
@@ -21,7 +22,9 @@ function setup() {
     resx=21
     resy=21
     initgridcenter()
-    
+    texty=h*0.99
+    textspeed=1
+    fSize=300
 }
 
 function draw() {
@@ -29,6 +32,14 @@ function draw() {
     fill(0,0,100)
     showgrid()
     updategridcenter()
+    stroke(0,100,100)
+    strokeWeight(11)
+    noFill()
+    textFont(font)
+    textSize(fSize)
+    text("code",w*0.4,texty)
+    texty-=textspeed
+    fSize-=textspeed*0.5
 //    noLoop()
 }
 
