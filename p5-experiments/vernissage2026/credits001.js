@@ -18,8 +18,8 @@ function setup() {
     cnv = createCanvas(w, h)
     angleMode(DEGREES)
     colorMode(HSB, 360, 100, 100, 250);
-    resx=6
-    resy=42
+    resx=21
+    resy=21
     initgridcenter()
     
 }
