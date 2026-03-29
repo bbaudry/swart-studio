@@ -18,8 +18,8 @@ function setup() {
     cnv = createCanvas(w, h)
     angleMode(DEGREES)
     colorMode(HSB, 360, 100, 100, 250);
-    resx=4
-    resy=3
+    resx=42
+    resy=43
 
 }
 
@@ -29,9 +29,9 @@ function draw() {
     fill(0,0,100)
     // initgridleft()
     // showgrid()
-    // if(resx<111){
-    //     resx++;resy++
-    // }
+    if(resx<111){
+        resx++;resy++
+    }
     initgridcenter()
     showgrid()
     noLoop()
@@ -76,10 +76,10 @@ function showgrid(){
     translate(w*0.5,h*0.5)
     for(let i=0;i<resx*2+1;i++){
         for(let j=0; j<resy*2+1;j++){
-            index1=i*(resy+1)+j
-            index2=(i+1)*(resy+1)+j
-            index3=(i+1)*(resy+1)+j+1
-            index4=i*(resy+1)+j+1
+            index1=i*(resy*2+2)+j
+            index2=(i+1)*(resy*2+2)+j
+            index3=(i+1)*(resy*2+2)+j+1
+            index4=i*(resy*2+2)+j+1
             if(random()<0.5){
                 fill(0,0,100)
                 stroke(0,0,100)
@@ -88,11 +88,15 @@ function showgrid(){
                 fill(0,0,0)
                 stroke(0,0,0)
             }
-            console.log("x: "+grid[index1].x+"; y: "+grid[index1].y)
+            console.log("x: "+grid[index1].x+"; y: "+grid[index1].y+"; i: "+i+"; j: "+j+"; index: "+index1)
             quad(grid[index1].x,grid[index1].y,
                 grid[index2].x,grid[index2].y,
                 grid[index3].x,grid[index3].y,
                 grid[index4].x,grid[index4].y)
+            // ellipse(grid[index1].x,grid[index1].y,11,11)
+            // ellipse(grid[index2].x,grid[index2].y,11,11)
+            // ellipse(grid[index3].x,grid[index3].y,11,11)
+            // ellipse(grid[index4].x,grid[index4].y,11,11)
         }
     }
     pop()
