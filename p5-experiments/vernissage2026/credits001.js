@@ -8,10 +8,11 @@ var fSize = 17
 var res=42
 var xoff=0.0
 var xinc=0.0001
-var textx,textspeed,texty,fSize
+var textx,textspeed,texty,fSize,begin,end,nbindex
 
 function preload() {
-    font = loadFont("../fonts/ChunkFive-Regular.otf");
+    font = loadFont("../fonts/FreeMono.otf");
+    sourcecode = loadStrings('credits001.js');
 }
 function setup() {
     w = windowWidth
@@ -24,23 +25,29 @@ function setup() {
     initgridcenter()
     texty=h*0.99
     textspeed=1
-    fSize=300
+    fSize=30
+    nbindex=Math.floor(h/fSize)
+    begin=0
+    end=nbindex
 }
 
 function draw() {
     background(0, 0, 0)
     fill(0,0,100)
-    showgrid()
-    updategridcenter()
+    // if(random()<0.1){showgrid()}
+    // updategridcenter()
     stroke(0,100,100)
-    strokeWeight(11)
     noFill()
     textFont(font)
     textSize(fSize)
-    text("code",w*0.4,texty)
-    texty-=textspeed
-    fSize-=textspeed*0.5
-//    noLoop()
+    showcode(0,0,begin,end)
+    begin++
+    end++
+    if(begin==sourcecode.length){
+        begin=0
+        end=nbindex
+    }
+    //    noLoop()
 }
 
 let grid,resx,resy
@@ -129,4 +136,16 @@ function showgrid(){
 
 function mousePressed() {
     noLoop()
+}
+
+
+function showcode(posx, posy, begin, end) {
+    var x, y
+    x = posx
+    y = posy
+    for (let b=begin;b<end;b++) {
+        text(sourcecode[b], x, y)
+        y += fSize
+    }
+    return ([x, y])
 }
