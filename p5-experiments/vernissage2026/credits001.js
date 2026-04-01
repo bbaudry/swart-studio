@@ -23,7 +23,7 @@ function setup() {
     resx=21
     resy=21
     initgridcenter()
-    texty=h*0.99
+    texty=-1
     textspeed=1
     fSize=30
     nbindex=Math.floor(h/fSize)
@@ -40,9 +40,15 @@ function draw() {
     noFill()
     textFont(font)
     textSize(fSize)
-    showcode(0,0,begin,end)
+    showcode(0,texty,begin,end)
+    if(texty%fSize==0){
     begin++
     end++
+    texty=-1
+    }
+    else{
+        texty--
+    }
     if(begin==sourcecode.length){
         begin=0
         end=nbindex
