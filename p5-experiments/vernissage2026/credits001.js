@@ -34,7 +34,7 @@ function setup() {
 function draw() {
     background(0, 0, 0)
     fill(0,0,100)
-    if(random()<0.042){
+    if(random()<0.001){
         showgrid()
         updategridcenter()
     }
@@ -160,10 +160,14 @@ function writecode(posx, posy, begin, end) {
     random()<0.99?center=true:center=false
     for (let b=begin;b<end;b++) {
         loc=sourcecode[b]
-        center?
-        text(loc,w*0.5-textWidth(loc)*0.5, y):
+        center?x=w*0.5-textWidth(loc)*0.5:x=0
+        for(c in loc){
+        //     loc[c]==' '?fill(0,100,100):text(loc[c],x, y)
+        //     rect(x,y-fSize*0.8,fSize,fSize)
+        //     noFill()
+        //     x+=fSize
+        }
         text(loc,x, y)
         y += fSize
     }
-    return ([x, y])
 }
