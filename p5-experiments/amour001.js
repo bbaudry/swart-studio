@@ -55,14 +55,14 @@ function draw() {
     stroke(300,100,100)   
     hal()
     stroke(0, 0, 0); noFill(); strokeWeight(1)
-    let c = showcode(leftmargin * 4.2, bottommargin)
+    let c = writecode(leftmargin * 4.2, bottommargin)
     text(artname+"[automne]", c[0], c[1] + fSize)
     text("p5.js + axidraw [almyre::2025]", c[0], c[1] + 2*fSize)
     noLoop()
 }
 
 
-function showcode(posx, posy) {
+function writecode(posx, posy) {
     var x, y
     x = posx
     y = posy

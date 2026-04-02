@@ -25,8 +25,8 @@ function setup() {
     initgridcenter()
     texty=-1
     textspeed=1
-    fSize=30
-    nbindex=Math.floor(h/fSize)
+    fSize=21
+    nbindex=Math.floor(h/fSize)+2
     begin=0
     end=nbindex
 }
@@ -34,25 +34,13 @@ function setup() {
 function draw() {
     background(0, 0, 0)
     fill(0,0,100)
-    // if(random()<0.1){showgrid()}
-    // updategridcenter()
-    stroke(0,100,100)
-    noFill()
-    textFont(font)
-    textSize(fSize)
-    showcode(0,texty,begin,end)
-    if(texty%fSize==0){
-    begin++
-    end++
-    texty=-1
+    if(random()<0.042){
+        showgrid()
+        updategridcenter()
     }
-    else{
-        texty--
-    }
-    if(begin==sourcecode.length){
-        begin=0
-        end=nbindex
-    }
+    showcode()
+    // fill(0,100,100); noStroke()
+    // rect(w*0.5-21,0,42,h)
     //    noLoop()
 }
 
@@ -143,14 +131,38 @@ function showgrid(){
 function mousePressed() {
     noLoop()
 }
+function showcode(){
+    stroke(0,0,100)
+    noFill()
+    textFont(font)
+    textSize(fSize)
+    writecode(0,texty,begin,end)
+    // if still showing one line of code
+    if(texty%fSize==0){
+        begin++
+        end++
+        texty=-1
+    }
+    else{
+        texty-=2
+    }
+    // if we have reached the end of the code, then start over
+    if(begin==sourcecode.length){
+        begin=0
+        end=nbindex
+    }
+}
 
-
-function showcode(posx, posy, begin, end) {
-    var x, y
+function writecode(posx, posy, begin, end) {
+    var x, y, loc,center
     x = posx
     y = posy
+    random()<0.99?center=true:center=false
     for (let b=begin;b<end;b++) {
-        text(sourcecode[b], x, y)
+        loc=sourcecode[b]
+        center?
+        text(loc,w*0.5-textWidth(loc)*0.5, y):
+        text(loc,x, y)
         y += fSize
     }
     return ([x, y])
