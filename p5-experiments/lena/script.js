@@ -11,14 +11,25 @@ var xinc=0.0001
 var textx,textspeed,texty,begin,end,nbindex
 
 function preload() {
-    font = loadFont("../fonts/FreeMono.otf");
+    font = loadFont("../fonts/1CamBam_Stick_4.ttf");
     sourcecode = loadStrings('dataCleaning_notebookExcerpt.js');
 }
 function setup() {
-    getpng()
+//    getpng()
+    getsvg()
     centerCanvas();
     angleMode(DEGREES)
     colorMode(HSB, 360, 100, 100, 250);
+}
+
+function getsvg() {
+    //A3
+    w=Math.floor(96*297/25.4)
+    h=Math.floor(96*420/25.4)
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    imgbtn = createButton("save svg");
+    placebtn();
+    imgbtn.mouseClicked(savesvg);
 }
 
 function getpng() {
@@ -47,6 +58,10 @@ function placebtn() {
 
 function savepng() {
     save("clean.png");
+}
+
+function savesvg() {
+    save("clean.svg");
 }
 
 

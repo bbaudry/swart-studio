@@ -1,14 +1,12 @@
 
 var w, h
 var cnv
-var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
 var font
-var fSize = 17
 var res=42
 var xoff=0.0
 var xinc=0.0001
-var textx,textspeed,texty,fSize,begin,end,nbindex
+var textx,textspeed,texty,fSize,begin,end,nbindex,count
 
 function preload() {
     font = loadFont("../fonts/FreeMono.otf");
@@ -22,6 +20,7 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
     resx=21
     resy=21
+    count=0
     initgridcenter()
     texty=-1
     textspeed=1
@@ -34,14 +33,18 @@ function setup() {
 function draw() {
     background(0, 0, 0)
     fill(0,0,100)
-    if(random()<0.001){
-        showgrid()
-        updategridcenter()
-    }
+    // if(random()<0.01){
+    //     showgrid()
+    //     updategridcenter()
+    // }
+    // if(random()<0.01){
+    //     fill(0,100,100); noStroke()
+    //     rect(w*0.5-21,0,42,h)
+    // }
+    updategridcenterikeda()
     showcode()
-    // fill(0,100,100); noStroke()
-    // rect(w*0.5-21,0,42,h)
-    //    noLoop()
+    count++
+    noLoop()
 }
 
 let grid,resx,resy
@@ -73,6 +76,30 @@ function initgridcenter(){
     pop()
 }
 
+function updategridcenterikeda(){
+    grid=[]
+    let x,y,stepx,stepy,stepinc
+    stepinc=42
+    noStroke()
+    push()
+    translate(w*0.5,h*0.5)
+    x=-w*0.5
+    y=-h*0.5
+    stepx=0
+    stepy=0
+    while(x<w*0.5-stepx){
+        stepx=Math.abs(Math.floor(random(0.05,0.1)*x)+4)
+        while(y<h*0.5-stepy){
+            random()<Math.abs(x/w*0.5)?fill(0,0,100):fill(0,0,0)
+            stepy=Math.abs(Math.floor(random(0.1,0.2)*y)+4)
+            quad(x,y,x+stepx,y,x+stepx,y+stepy,x,y+stepy)
+            y+=stepy   
+        }
+        x+=stepx
+        y=-h*0.5
+    }
+    pop()
+}
 
 function updategridcenter(){
     let index
