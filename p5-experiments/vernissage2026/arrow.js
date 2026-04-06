@@ -56,23 +56,39 @@ function draw() {
     noFill()
     stroke(0, 100, 100)
     strokeWeight(11)
-    
-    writecode()
+    arrow()    
     noLoop()
 }
 
 
-function writecode() {
-    var x, y, t, stepy, postertext
-    textSize(fSize)
-    textFont(font)
-    stepy = fSize * 1.2
-    y = 0
-    postertext = ["ART", "ALGO", "RITH", "MI", "QUE"]
-    for (i in postertext) {
-        t = postertext[i]
-        x = w * 0.5 - textWidth(t) * 0.5
-        y += stepy
-        text(t, x, y)
+function arrow() {
+    let x1,y1,x2,y2,x3,y3,ox,oy,dx,dy
+    //triangle(w*0.5,42,w*0.9,h*0.4,w*0.1,h*0.4)
+    x1=w*0.5;y1=42
+    x2=w*0.1;y2=h*0.4
+    x3=w*0.5;y3=42
+    x4=w*0.9;y4=h*0.4
+    for(let t=0;t<1;t+=0.01){
+        ox=lerp(x1,x2,t)
+        oy=lerp(y1,y2,t)
+        dx=lerp(x3,x4,t)
+        dy=lerp(y3,y4,t)
+        if(random()<0.42){
+            line(ox,oy,dx,dy)
+        }
+    }
+    //quad(w*0.32,h*0.4,w*0.68,h*0.4,w*0.63,h*0.9,w*0.37,h*0.9)
+    x1=w*0.32;y1=h*0.4
+    x2=w*0.37;y2=h*0.9
+    x3=w*0.68;y3=h*0.4
+    x4=w*0.63;y4=h*0.9
+    for(let t=0;t<1;t+=0.01){
+        ox=lerp(x1,x2,t)
+        oy=lerp(y1,y2,t)
+        dx=lerp(x3,x4,t)
+        dy=lerp(y3,y4,t)
+        if(random()<0.42){
+            line(ox,oy,dx,dy)
+        }
     }
 }
