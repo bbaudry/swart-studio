@@ -49,7 +49,7 @@ function draw() {
     if(count%36000<1800){updategridcenterikeda()}
     if(count%36000==1800){white=true;blackh=0;blackw=0}
     if(count%36000>=1800 && count%36000<3600){space()}
-    //showcode()
+    showcode()
     count++
     text(count+" "+frameRate(),0,h-fSize)
 
