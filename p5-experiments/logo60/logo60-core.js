@@ -2,7 +2,7 @@ var xoff = 0.0
 var xinc = 0.01
 var grid = []
 var minWeight = 4
-var maxWeight = 11
+var maxWeight = 10
 var resolution = 3
 var inradx, inrady, outradx, outrady
 var angleleft, angleright
@@ -46,18 +46,18 @@ function hal() {
 }
 
 function trunk() {
-    let x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, ystep
+    let x1, y1, x2, y2, x3, y3, x4, y4, x5, y5
     let anglestartroots, angleendroots, anglerootsspan, anglerootsstep
     let anglestarttoptrunk, angleendtoptrunk, angletoptrunkspan, angletoptrunkstep
     let anglestarttrunk, angleendtrunk, radtrunk, angletrunkspan, angletrunkstep
     let nbroots
-    nbroots = 7
+    nbroots = 11
     anglestarttoptrunk = 90 - 55; angleendtoptrunk = 90 + 55
     angletoptrunkspan = angleendtoptrunk - anglestarttoptrunk
     angletoptrunkstep = angletoptrunkspan / nbroots
 
     radtrunk = inrady + Math.abs(outrady - inrady) * 0.1
-    anglestarttrunk = 90 - 20; angleendtrunk = 90 + 20
+    anglestarttrunk = 90 - 30; angleendtrunk = 90 + 30
     angletrunkspan = angleendtrunk - anglestarttrunk
     angletrunkstep = angletrunkspan / nbroots
 
@@ -67,14 +67,14 @@ function trunk() {
 
     for (let i = 0; i < nbroots; i++) {
         x1 = inradx * cos(anglestarttoptrunk + i * angletoptrunkstep)
-        y1 = (inrady + random(-0.2, 0.1) * inrady) * sin(anglestarttoptrunk)
+        y1 = (inrady + random(0.2,0.3) * inrady) * sin(anglestarttoptrunk)
 
         x2 = radtrunk * cos(anglestarttrunk + i * angletrunkstep)
         y2 = radtrunk * sin(anglestarttrunk + i * angletrunkstep)
 
         ystep = Math.abs(outrady - inrady) * random(0.42, 0.48)
         x3 = x2
-        y3 = (inrady + Math.abs(outrady - inrady) * random(0.52, 0.58))* sin(anglestarttrunk + i * angletrunkstep)
+        y3 = (inrady + Math.abs(outrady - inrady) * 0.52)* sin(anglestarttrunk + i * angletrunkstep)
 
         x5 = outradx * cos(anglestartroots + i * anglerootsstep)
         y5 = outrady * sin(anglestartroots + i * anglerootsstep)
