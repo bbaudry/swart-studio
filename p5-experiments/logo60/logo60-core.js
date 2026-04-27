@@ -7,11 +7,25 @@ var resolution = 3
 var inradx, inrady, outradx, outrady
 var angleleft, angleright
 var backcolor, branchcolor, leafcolor
+var palettes = [
+    {
+        back:[230, 100, 40],
+        branch:[190, 100, 100],
+        leaf:[280, 100, 100]
+    },
+    {
+        back:[230, 100, 40],
+        branch:[330, 100, 100],
+        leaf:[30, 100, 100]
+    }
+    
+]
 
 function hal() {
-    backcolor = [230, 100, 40]
-    branchcolor = [190, 100, 100]
-    leafcolor = [280, 100, 100]
+    let paletteindex = 0
+    backcolor = palettes[paletteindex].back
+    branchcolor = palettes[paletteindex].branch
+    leafcolor = palettes[paletteindex].leaf
     fill(backcolor[0], backcolor[1], backcolor[2])
     noStroke()
     rect(0, 0, w, h)
