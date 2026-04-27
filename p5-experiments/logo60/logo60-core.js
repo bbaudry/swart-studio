@@ -43,6 +43,10 @@ function hal() {
     // ellipse(0, 0, inradx * 2, inrady * 2)
     branches()
     trunk()
+    textSize(200)
+    let soixante="60"
+    strokeWeight(27)
+    text(soixante,-textWidth(soixante)*0.5,65)
 }
 
 function trunk() {
