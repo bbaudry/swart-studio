@@ -3,7 +3,7 @@ var w, h
 var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
-var font
+var font, slider
 var fSize = 17
 var artname = "logo60"
 

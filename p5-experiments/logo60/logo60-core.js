@@ -22,7 +22,7 @@ var palettes = [
 ]
 
 function hal() {
-    let paletteindex = 0
+    let paletteindex = 1;
     backcolor = palettes[paletteindex].back
     branchcolor = palettes[paletteindex].branch
     leafcolor = palettes[paletteindex].leaf
@@ -46,6 +46,9 @@ function hal() {
     textSize(200)
     let soixante="60"
     strokeWeight(27)
+    text(soixante,-textWidth(soixante)*0.5,65)
+    stroke(0,0,100)
+    strokeWeight(7)
     text(soixante,-textWidth(soixante)*0.5,65)
 }
 
