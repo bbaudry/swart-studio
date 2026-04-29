@@ -14,25 +14,44 @@ function setup() {
     w = 800
     h = 800
     // cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
-    cnv = createCanvas(w, h).mousePressed(savepng);
+    // cnv = createCanvas(w, h).mousePressed(savepng);
+    getpng()
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = 20
-    rightmargin = w-leftmargin
+    rightmargin = w - leftmargin
     topmargin = 20
-    bottommargin = h-leftmargin
+    bottommargin = h - leftmargin
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
 }
 
-function savesvg() {
-    save(artname+".svg");
+function getsvg() {
+    cnv = createCanvas(w, h, SVG);
+    imgbtn = createButton("save svg");
+    placebtn();
+    imgbtn.mouseClicked(savesvg);
+}
+function getpng() {
+    cnv = createCanvas(w, h);
+    imgbtn = createButton("save png");
+    placebtn();
+    imgbtn.mouseClicked(savepng);
 }
 
+function savesvg() {
+    save(artname + ".svg");
+}
 
 function savepng() {
-    save(artname+".png");
+    save(artname + ".png");
+}
+
+function placebtn() {
+    var x = (windowWidth - w) / 2;
+    var y = (windowHeight - h) / 2;
+    imgbtn.position(x - 200, y + h / 2 + 42)
 }
 
 
@@ -48,7 +67,7 @@ function draw() {
     noFill()
     textFont(font)
     textSize(fSize)
-    stroke(300,100,100)   
+    stroke(300, 100, 100)
     //rect(Math.floor(96*0.5),Math.floor(96*0.5),visiblew,visibleh)
     hal()
     noLoop()
