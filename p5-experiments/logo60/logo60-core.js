@@ -7,6 +7,7 @@ var resolution = 3
 var inradx, inrady, outradx, outrady
 var angleleft, angleright
 var backcolor, branchcolor, leafcolor
+let paletteindex
 var palettes = [
     {
         back:[230, 100, 40],
@@ -21,8 +22,13 @@ var palettes = [
     
 ]
 
+function changepalette(){
+    paletteindex=Math.floor(random(palettes.length))
+    hal()
+}
+
 function hal() {
-    let paletteindex = 1;
+    paletteindex = 0
     backcolor = palettes[paletteindex].back
     branchcolor = palettes[paletteindex].branch
     leafcolor = palettes[paletteindex].leaf

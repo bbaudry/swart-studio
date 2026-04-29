@@ -15,7 +15,9 @@ function setup() {
     h = 800
     // cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     // cnv = createCanvas(w, h).mousePressed(savepng);
-    getpng()
+    // getpng()
+    getsvg()
+    //buttonforcolor()
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = 20
@@ -30,14 +32,26 @@ function setup() {
 function getsvg() {
     cnv = createCanvas(w, h, SVG);
     imgbtn = createButton("save svg");
-    placebtn();
+    var x = (windowWidth - w) / 2 -100;
+    var y = h *0.1
+    imgbtn.position(x, y)
     imgbtn.mouseClicked(savesvg);
 }
 function getpng() {
     cnv = createCanvas(w, h);
     imgbtn = createButton("save png");
-    placebtn();
+    var x = (windowWidth - w) / 2 -100;
+    var y = h *0.1
+    imgbtn.position(x, y)
     imgbtn.mouseClicked(savepng);
+}
+
+function buttonforcolor(){
+    var colbtn = createButton("other palette");
+    var x = (windowWidth - w) / 2 -100;
+    var y = h *0.15
+    colbtn.position(x, y)
+    colbtn.mouseClicked(changepalette);
 }
 
 function savesvg() {
@@ -47,13 +61,6 @@ function savesvg() {
 function savepng() {
     save(artname + ".png");
 }
-
-function placebtn() {
-    var x = (windowWidth - w) / 2;
-    var y = (windowHeight - h) / 2;
-    imgbtn.position(x - 200, y + h / 2 + 42)
-}
-
 
 function centerCanvas() {
     var x = (windowWidth - windowHeight) / 2;
