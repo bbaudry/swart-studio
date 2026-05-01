@@ -55,7 +55,7 @@ fn model(app: &App) -> Model {
 }
 
 fn initgrid(res:i32,w:f32,h:f32) -> Vec<Cell>{
-    let step=h*1.8 as f32/res as f32;
+    let step=h*1.75 as f32/res as f32;
     let initx=-step*res as f32*0.5+step*0.5;
     let inity=-step*res as f32*0.5+step*0.5;
     let mut g:Vec<Cell>=Vec::new();
