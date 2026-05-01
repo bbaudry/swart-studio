@@ -1,4 +1,3 @@
-// Rust version of https://formandcode.com/code-examples/repeat-embedded
 use std::array;
 use std::ptr::null;
 
@@ -42,7 +41,7 @@ fn model(app: &App) -> Model {
         .fullscreen()
         .build()
         .unwrap();
-    let mut ha=Vec::new();
+    let mut ha:Vec<String>=Vec::new();
     ha.push(String::from("48d5ee7bfb46ee177d865ace846b1cb6695b3cd7"));
     let res=8;
     let w: f32 = app.window_rect().w();
@@ -55,7 +54,7 @@ fn model(app: &App) -> Model {
 }
 
 fn initgrid(res:i32,w:f32,h:f32) -> Vec<Cell>{
-    let step=h*1.75 as f32/res as f32;
+    let step=h*2 as f32/res as f32;
     let initx=-step*res as f32*0.5+step*0.5;
     let inity=-step*res as f32*0.5+step*0.5;
     let mut g:Vec<Cell>=Vec::new();
@@ -116,6 +115,9 @@ fn event(_app: &App, _model: &mut Model, event: WindowEvent) {
 }
 
 fn update(app: &App, model: &mut Model, _update: Update) {
+    for mut cell in model.grid.iter_mut() {
+        cell.l=random_range(0.0,1.0)
+    }   
 
 }
 
@@ -134,6 +136,10 @@ fn view(app: &App, model: &Model, frame: Frame) {
         .color(hsl(cell.hu / 360.0, cell.s, cell.l))
         .x_y(cell.x as f32,cell.y as f32)
         .w_h(cell.w,cell.h);
+        draw.ellipse()
+            .color(hsl(230.0 / 360.0, 1.0, 0.5))
+            .x_y(cell.x,cell.y)
+            .w_h(10.0, 10.0);
     }   
     draw.rect()
         .color(hsl(330.0 / 360.0, 1.0, 0.5))

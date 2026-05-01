@@ -12,7 +12,7 @@ var palettes = [
     {
         back:[230, 100, 40],
         branch:[190, 100, 100],
-        leaf:[280, 100, 100]
+        leaf:[30, 100, 100]
     },
     {
         back:[230, 100, 40],
@@ -28,7 +28,7 @@ function changepalette(){
 }
 
 function hal() {
-    paletteindex = 0
+    paletteindex = 1
     backcolor = palettes[paletteindex].back
     branchcolor = palettes[paletteindex].branch
     leafcolor = palettes[paletteindex].leaf
@@ -39,9 +39,9 @@ function hal() {
     stroke(branchcolor[0], branchcolor[1], branchcolor[2])
     translate(leftmargin + actualwidth * 0.5, topmargin + actualheight * 0.5)
     outradx = actualwidth * 0.5
-    outrady = actualheight * 0.5 * 0.9
+    outrady = actualheight * 0.5 * 0.8
     inradx = actualwidth * 0.5 * 0.4
-    inrady = actualheight * 0.5 * 0.3
+    inrady = actualheight * 0.5 * 0.32
     angleleft = 140
     angleright = 60
 
@@ -49,7 +49,7 @@ function hal() {
     // ellipse(0, 0, inradx * 2, inrady * 2)
     branches()
     trunk()
-    textSize(200)
+    textSize(180)
     let soixante="60"
     strokeWeight(27)
     text(soixante,-textWidth(soixante)*0.5,65)
@@ -89,8 +89,8 @@ function trunk() {
         x3 = x2
         y3 = (inrady + Math.abs(outrady - inrady) * 0.52)* sin(anglestarttrunk + i * angletrunkstep)
 
-        x5 = outradx * cos(anglestartroots + i * anglerootsstep)
-        y5 = outrady * sin(anglestartroots + i * anglerootsstep)
+        x5 = outradx*random(0.77,1) * cos(anglestartroots + i * anglerootsstep)
+        y5 = outrady*random(0.9,1) * sin(anglestartroots + i * anglerootsstep)
 
         x4 = lerp(x3,x5,random(0.7,0.9))
         y4 = lerp(y3,y5,random(0.3,0.5))
@@ -153,7 +153,7 @@ function onebranch(angle, leaf) {
     let xin, yin, xout, yout, x1, y1, x3, y3, seg1, seg2, seg3, iregular
     iregular = 1//map(noise(xoff),0,1,0.75,0.95);xoff+=0.01
     push()
-    stroke(branchcolor[0], branchcolor[1] * random(), branchcolor[2])
+    stroke(branchcolor[0], branchcolor[1] * random(0.5,1), branchcolor[2])
     seg1 = random(0.5, 0.7)
     seg2 = random(0.28, 0.42)
     seg3 = random(0.01, 0.1)
@@ -163,8 +163,8 @@ function onebranch(angle, leaf) {
     outrady = outrady * iregular
     xin = inradx * cos(angle)
     yin = inrady * sin(angle)
-    xout = outradx * cos(angle)
-    yout = outrady * sin(angle)
+    xout = outradx*random(0.9,1) * cos(angle)
+    yout = outrady*random(0.9,1) * sin(angle)
     ellipse(xin, yin, 7, 7)
     if (angle % 360 <= 180) {//low branches
         x1 = (inradx + (outradx - inradx) * seg1) * cos(angle)
