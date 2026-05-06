@@ -49,14 +49,14 @@ function hal() {
     // ellipse(0, 0, inradx * 2, inrady * 2)
     branches()
     trunk()
-    textSize(180)
+    textSize(190)
     let soixante="60"
     strokeWeight(27)
-    text(soixante,-textWidth(soixante)*0.5,65)
+    text(soixante,-textWidth(soixante)*0.5,57)
     stroke(0,0,100)
     strokeWeight(7)
     noFill()
-    text(soixante,-textWidth(soixante)*0.5,65)
+    text(soixante,-textWidth(soixante)*0.5,57)
 }
 
 function trunk() {
@@ -98,8 +98,9 @@ function trunk() {
         y4 = lerp(y3,y5,random(0.3,0.5))
 5
         strokeWeight(random(minWeight, maxWeight))
+        let hu=branchcolor[0] + random(-42,42)
         let sat=branchcolor[1] * random()
-        stroke(branchcolor[0], sat, branchcolor[2])
+        stroke(hu, sat, branchcolor[2])
 
         line(x1, y1, x2, y2)
         line(x2, y2, x3, y3)
@@ -163,7 +164,9 @@ function onebranch(angle, leaf) {
     let xin, yin, xout, yout, x1, y1, x3, y3, seg1, seg2, seg3, iregular
     iregular = 1//map(noise(xoff),0,1,0.75,0.95);xoff+=0.01
     push()
-    stroke(branchcolor[0], branchcolor[1] * random(0.5,1), branchcolor[2])
+        let hu=branchcolor[0] + random(-84,84)
+        let sat=branchcolor[1] * random()
+        stroke(hu, sat, branchcolor[2])
     seg1 = random(0.5, 0.7)
     seg2 = random(0.28, 0.42)
     seg3 = random(0.01, 0.1)
