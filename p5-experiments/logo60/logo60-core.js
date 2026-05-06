@@ -3,31 +3,35 @@ var xinc = 0.01
 var grid = []
 var minWeight = 4
 var maxWeight = 10
-var resolution = 3
+var minhurange, maxhurange
 var inradx, inrady, outradx, outrady
 var angleleft, angleright
 var backcolor, branchcolor, leafcolor
 let paletteindex
 var palettes = [
     {
-        back:[230, 100, 40],
-        branch:[190, 100, 100],
-        leaf:[30, 100, 100]
+        back: [230, 100, 40],
+        branch: [190, 100, 100],
+        leaf: [30, 100, 100]
     },
     {
-        back:[230, 100, 40],
-        branch:[330, 100, 100],
-        leaf:[30, 100, 100]
+        back: [230, 100, 40],
+        branch: [330, 100, 100],
+        leaf: [30, 100, 100]
     }
-    
+
 ]
 
-function changepalette(){
-    paletteindex=Math.floor(random(palettes.length))
+function changepalette() {
+    paletteindex = Math.floor(random(palettes.length))
     hal()
 }
 
 function hal() {
+    push()
+    minhurange = -slider.value()
+    maxhurange = slider.value()
+    console.log(minhurange+"; "+maxhurange)
     paletteindex = 1
     backcolor = palettes[paletteindex].back
     branchcolor = palettes[paletteindex].branch
@@ -49,14 +53,16 @@ function hal() {
     // ellipse(0, 0, inradx * 2, inrady * 2)
     branches()
     trunk()
+    textFont(font)
     textSize(190)
-    let soixante="60"
+    let soixante = "60"
     strokeWeight(27)
-    text(soixante,-textWidth(soixante)*0.5,57)
-    stroke(0,0,100)
+    text(soixante, -textWidth(soixante) * 0.5, 57)
+    stroke(0, 0, 100)
     strokeWeight(7)
     noFill()
-    text(soixante,-textWidth(soixante)*0.5,57)
+    text(soixante, -textWidth(soixante) * 0.5, 57)
+    pop()
 }
 
 function trunk() {
@@ -64,7 +70,7 @@ function trunk() {
     let anglestartroots, angleendroots, anglerootsspan, anglerootsstep
     let anglestarttoptrunk, angleendtoptrunk, angletoptrunkspan, angletoptrunkstep
     let anglestarttrunk, angleendtrunk, radtrunk, angletrunkspan, angletrunkstep
-    let fortytwo = [1,0,1,0,1,0]
+    let fortytwo = [1, 0, 1, 0, 1, 0]
     let ifortytwo = 0
     let nbroots = fortytwo.length
     anglestarttoptrunk = 90 - 55; angleendtoptrunk = 90 + 55
@@ -82,24 +88,24 @@ function trunk() {
 
     for (let i = 0; i < nbroots; i++) {
         x1 = inradx * cos(anglestarttoptrunk + i * angletoptrunkstep)
-        y1 = (inrady + random(0.2,0.3) * inrady) * sin(anglestarttoptrunk)
+        y1 = (inrady + random(0.2, 0.3) * inrady) * sin(anglestarttoptrunk)
 
         x2 = radtrunk * cos(anglestarttrunk + i * angletrunkstep)
         y2 = radtrunk * sin(anglestarttrunk + i * angletrunkstep)
 
         ystep = Math.abs(outrady - inrady) * random(0.42, 0.48)
         x3 = x2
-        y3 = (inrady + Math.abs(outrady - inrady) * 0.52)* sin(anglestarttrunk + i * angletrunkstep)
+        y3 = (inrady + Math.abs(outrady - inrady) * 0.52) * sin(anglestarttrunk + i * angletrunkstep)
 
-        x5 = outradx*random(0.77,1) * cos(anglestartroots + i * anglerootsstep)
-        y5 = outrady*random(0.9,1) * sin(anglestartroots + i * anglerootsstep)
+        x5 = outradx * random(0.77, 1) * cos(anglestartroots + i * anglerootsstep)
+        y5 = outrady * random(0.9, 1) * sin(anglestartroots + i * anglerootsstep)
 
-        x4 = lerp(x3,x5,random(0.7,0.9))
-        y4 = lerp(y3,y5,random(0.3,0.5))
-5
+        x4 = lerp(x3, x5, random(0.7, 0.9))
+        y4 = lerp(y3, y5, random(0.3, 0.5))
+        5
         strokeWeight(random(minWeight, maxWeight))
-        let hu=branchcolor[0] + random(-42,42)
-        let sat=branchcolor[1] * random()
+        let hu = branchcolor[0] + random(minhurange, maxhurange)
+        let sat = branchcolor[1] * random()
         stroke(hu, sat, branchcolor[2])
 
         line(x1, y1, x2, y2)
@@ -107,14 +113,14 @@ function trunk() {
         line(x3, y3, x4, y4)
         line(x4, y4, x5, y5)
 
-        if (fortytwo[ifortytwo]==0){
+        if (fortytwo[ifortytwo] == 0) {
             noFill()
-        }        
-        else{
+        }
+        else {
             fill(branchcolor[0], sat, branchcolor[2])
         }
         strokeWeight(3)
-        ellipse(x5, y5, 18, 18)
+        ellipse(x5, y5+9, 18, 18)
         ifortytwo++
     }
 
@@ -164,9 +170,9 @@ function onebranch(angle, leaf) {
     let xin, yin, xout, yout, x1, y1, x3, y3, seg1, seg2, seg3, iregular
     iregular = 1//map(noise(xoff),0,1,0.75,0.95);xoff+=0.01
     push()
-        let hu=branchcolor[0] + random(-84,84)
-        let sat=branchcolor[1] * random()
-        stroke(hu, sat, branchcolor[2])
+    let hu = branchcolor[0] + random(minhurange, maxhurange)//random(-124,124)// random(-minhurange, maxhurange)
+    let sat = branchcolor[1] * random()
+    stroke(hu, sat, branchcolor[2])
     seg1 = random(0.5, 0.7)
     seg2 = random(0.28, 0.42)
     seg3 = random(0.01, 0.1)
@@ -176,8 +182,8 @@ function onebranch(angle, leaf) {
     outrady = outrady * iregular
     xin = inradx * cos(angle)
     yin = inrady * sin(angle)
-    xout = outradx*random(0.9,1) * cos(angle)
-    yout = outrady*random(0.9,1) * sin(angle)
+    xout = outradx * random(0.9, 1) * cos(angle)
+    yout = outrady * random(0.9, 1) * sin(angle)
     ellipse(xin, yin, 7, 7)
     if (angle % 360 <= 180) {//low branches
         x1 = (inradx + (outradx - inradx) * seg1) * cos(angle)

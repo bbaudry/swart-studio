@@ -8,7 +8,7 @@ var fSize = 17
 var artname = "logo60"
 
 function preload() {
-    font = loadFont("../fonts/1CamBam_Stick_4.ttf");
+    font = loadFont("./1CamBam_Stick_4.ttf");
 }
 function setup() {
     w = 800
@@ -17,7 +17,8 @@ function setup() {
     // cnv = createCanvas(w, h).mousePressed(savepng);
     // getpng()
     getsvg()
-    //buttonforcolor()
+    setslider()
+    generatebutton()
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = 20
@@ -29,30 +30,41 @@ function setup() {
     colorMode(HSB, 360, 100, 100, 250);
 }
 
+function setslider(){
+    slider = createSlider(0, 124, 42);
+    slider.changed(() => {
+        console.log("Final Value:", slider.value());
+        hal()
+    });
+    label = createSpan("Value: color randomness");
+    var x = (windowWidth - w) / 2 - 200;
+    var y = h * 0.6
+    slider.position(x, y)
+}
+function generatebutton() {
+    genbtn = createButton("generate new");
+    var x = (windowWidth - w) / 2 - 200;
+    var y = h * 0.5
+    genbtn.position(x, y)
+    genbtn.mouseClicked(hal);
+}
 function getsvg() {
     cnv = createCanvas(w, h, SVG);
     imgbtn = createButton("save svg");
-    var x = (windowWidth - w) / 2 -100;
-    var y = h *0.1
+    var x = (windowWidth - w) / 2 - 200;
+    var y = h * 0.4
     imgbtn.position(x, y)
     imgbtn.mouseClicked(savesvg);
 }
 function getpng() {
     cnv = createCanvas(w, h);
     imgbtn = createButton("save png");
-    var x = (windowWidth - w) / 2 -100;
-    var y = h *0.1
+    var x = (windowWidth - w) / 2 - 100;
+    var y = h * 0.4
     imgbtn.position(x, y)
     imgbtn.mouseClicked(savepng);
 }
 
-function buttonforcolor(){
-    var colbtn = createButton("other palette");
-    var x = (windowWidth - w) / 2 -100;
-    var y = h *0.15
-    colbtn.position(x, y)
-    colbtn.mouseClicked(changepalette);
-}
 
 function savesvg() {
     save(artname + ".svg");
