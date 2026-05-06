@@ -55,6 +55,7 @@ function hal() {
     text(soixante,-textWidth(soixante)*0.5,65)
     stroke(0,0,100)
     strokeWeight(7)
+    noFill()
     text(soixante,-textWidth(soixante)*0.5,65)
 }
 
@@ -63,8 +64,9 @@ function trunk() {
     let anglestartroots, angleendroots, anglerootsspan, anglerootsstep
     let anglestarttoptrunk, angleendtoptrunk, angletoptrunkspan, angletoptrunkstep
     let anglestarttrunk, angleendtrunk, radtrunk, angletrunkspan, angletrunkstep
-    let nbroots
-    nbroots = 11
+    let fortytwo = [1,0,1,0,1,0]
+    let ifortytwo = 0
+    let nbroots = fortytwo.length
     anglestarttoptrunk = 90 - 55; angleendtoptrunk = 90 + 55
     angletoptrunkspan = angleendtoptrunk - anglestarttoptrunk
     angletoptrunkstep = angletoptrunkspan / nbroots
@@ -96,15 +98,23 @@ function trunk() {
         y4 = lerp(y3,y5,random(0.3,0.5))
 5
         strokeWeight(random(minWeight, maxWeight))
-        stroke(branchcolor[0], branchcolor[1] * random(), branchcolor[2])
+        let sat=branchcolor[1] * random()
+        stroke(branchcolor[0], sat, branchcolor[2])
 
         line(x1, y1, x2, y2)
         line(x2, y2, x3, y3)
         line(x3, y3, x4, y4)
         line(x4, y4, x5, y5)
 
-
-        ellipse(x5, y5, 8, 8)
+        if (fortytwo[ifortytwo]==0){
+            noFill()
+        }        
+        else{
+            fill(branchcolor[0], sat, branchcolor[2])
+        }
+        strokeWeight(3)
+        ellipse(x5, y5, 18, 18)
+        ifortytwo++
     }
 
 

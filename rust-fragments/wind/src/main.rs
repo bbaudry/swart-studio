@@ -115,6 +115,8 @@ fn event(_app: &App, _model: &mut Model, event: WindowEvent) {
 }
 
 fn update(app: &App, model: &mut Model, _update: Update) {
+    let index = random_range(0.0,model.hashes.len() as f64).floor() as i64;
+    let hash = model.hashes.get(0);
     for mut cell in model.grid.iter_mut() {
         cell.l=random_range(0.0,1.0)
     }   
