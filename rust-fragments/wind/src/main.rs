@@ -146,6 +146,9 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     for mut cell in model.grid.iter_mut() {
         cell.l=random_range(0.0,1.0)
     }   
+    let w: f32 = app.window_rect().w();
+    let files=initFile(random_range(1,300), w);
+    model.files=files;
 
 }
 
