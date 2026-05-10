@@ -178,7 +178,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
 fn drawfiles(model: &Model, draw:Draw){
     for f in model.files.iter(){
         draw.ellipse()
-            .color(hsl(0.0, 1.0, 0.5))
+            .color(hsl(0.0, 0.0, 0.5))
             .x_y(f.cx,f.cy)
             .w_h(f.rad,f.rad);
         println!("one file at x {}, y {}", f.cx, f.cy);
