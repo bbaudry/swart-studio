@@ -2,6 +2,7 @@ use std::array;
 use std::ptr::null;
 
 use nannou::color::Alpha;
+use nannou::draw::background::new;
 use nannou::draw::mesh::vertex::Color;
 use nannou::image::Frames;
 use nannou::lyon::geom::arrayvec::Array;
@@ -20,7 +21,8 @@ fn main() {
 struct Model {
     // .size(1000,1000)
     hashes: Vec<String>,
-    grid:Vec<Cell>
+    grid:Vec<Cell>,
+    files:Vec<Particle>
 }
 
 struct Cell{
@@ -31,6 +33,12 @@ struct Cell{
     hu:f32,
     s:f32,
     l:f32
+}
+
+struct Particle{
+    cx:f32,
+    cy:f32,
+    rad:f32
 }
 
 fn model(app: &App) -> Model {
@@ -47,10 +55,12 @@ fn model(app: &App) -> Model {
     let w: f32 = app.window_rect().w();
     let h: f32 = app.window_rect().h();
     let grid=initgrid(res,w,h);
+    let files=initFile(7, w);
     Model {
         hashes:ha,
-        grid:grid
-    }
+        grid:grid,
+        files:files
+    }   
 }
 
 fn initgrid(res:i32,w:f32,h:f32) -> Vec<Cell>{
@@ -76,6 +86,22 @@ fn initgrid(res:i32,w:f32,h:f32) -> Vec<Cell>{
     }
 
     return g;
+}
+
+fn initFile(nbfiles: i32, w:f32) -> Vec<Particle>{
+    let blast = map_range(nbfiles, 1, 300, 1, (w * 0.2).floor() as i32) as f32;
+    let mut res:Vec<Particle>=Vec::new();
+    for i in 0..nbfiles{
+        let x=random_range(-blast,blast);
+        let y=random_range(-blast,blast);
+        let p=Particle{
+            cx:x,
+            cy:y,
+            rad:7.0
+        };
+        res.push(p);
+    }
+    return res;
 }
 
 fn event(_app: &App, _model: &mut Model, event: WindowEvent) {
@@ -125,7 +151,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
 
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
-    draw.background().color(WHITE);
+    draw.background().color(BLACK);
     // let h = app.window_rect().h();
     // let w = app.window_rect().w();
     let s = model.hashes.get(0).unwrap().to_string();
@@ -133,6 +159,30 @@ fn view(app: &App, model: &Model, frame: Frame) {
     for c in char_vec {
         // println!("{}", c);
     }
+    //drawcells(model,draw.clone());
+    draw.rect()
+        .color(hsl(330.0 / 360.0, 1.0, 0.5))
+        .x_y(0.0,0.0)
+        .w_h(110.0, 110.0);
+    draw.ellipse()
+        .color(hsl(230.0 / 360.0, 1.0, 0.5))
+        .x_y(-0.0,-0.0)
+        .w_h(10.0, 10.0);
+    drawfiles(model,draw.clone());
+    draw.to_frame(app, &frame).unwrap();
+}
+
+fn drawfiles(model: &Model, draw:Draw){
+    for f in model.files.iter(){
+        draw.ellipse()
+            .color(hsl(0.0, 1.0, 0.5))
+            .x_y(f.cx,f.cy)
+            .w_h(f.rad,f.rad);
+        println!("one file at x {}, y {}", f.cx, f.cy);
+    } 
+}
+
+fn drawcells(model: &Model, draw:Draw){
     for cell in model.grid.iter() {
         draw.rect()
         .color(hsl(cell.hu / 360.0, cell.s, cell.l))
@@ -143,13 +193,5 @@ fn view(app: &App, model: &Model, frame: Frame) {
             .x_y(cell.x,cell.y)
             .w_h(10.0, 10.0);
     }   
-    draw.rect()
-        .color(hsl(330.0 / 360.0, 1.0, 0.5))
-        .x_y(0.0,0.0)
-        .w_h(110.0, 110.0);
-    draw.ellipse()
-        .color(hsl(230.0 / 360.0, 1.0, 0.5))
-        .x_y(-0.0,-0.0)
-        .w_h(10.0, 10.0);
-    draw.to_frame(app, &frame).unwrap();
+
 }

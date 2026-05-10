@@ -84,10 +84,6 @@ function centerCanvas() {
 function draw() {
     background(0, 0, 100)
     noFill()
-    textFont(font)
-    textSize(fSize)
-    stroke(300, 100, 100)
-    //rect(Math.floor(96*0.5),Math.floor(96*0.5),visiblew,visibleh)
     hal()
     noLoop()
 }
