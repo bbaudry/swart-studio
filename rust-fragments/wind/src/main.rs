@@ -52,8 +52,9 @@ fn model(app: &App) -> Model {
     let mut ha:Vec<String>=Vec::new();
     ha.push(String::from("48d5ee7bfb46ee177d865ace846b1cb6695b3cd7"));
     let res=8;
-    let w: f32 = app.window_rect().w();
-    let h: f32 = app.window_rect().h();
+    let w: u32 = app.main_window().inner_size_pixels().0;
+    let h: u32 = app.main_window().inner_size_pixels().1;
+//    let h: f32 = app.window_rect().h();
     let grid=initgrid(res,w,h);
     let files=initFile(7, w);
     Model {
@@ -63,8 +64,8 @@ fn model(app: &App) -> Model {
     }   
 }
 
-fn initgrid(res:i32,w:f32,h:f32) -> Vec<Cell>{
-    let step=h*2 as f32/res as f32;
+fn initgrid(res:i32,w:u32,h:u32) -> Vec<Cell>{
+    let step=(h as i32/res) as f32;
     let initx=-step*res as f32*0.5+step*0.5;
     let inity=-step*res as f32*0.5+step*0.5;
     let mut g:Vec<Cell>=Vec::new();
@@ -88,8 +89,8 @@ fn initgrid(res:i32,w:f32,h:f32) -> Vec<Cell>{
     return g;
 }
 
-fn initFile(nbfiles: i32, w:f32) -> Vec<Particle>{
-    let blast = map_range(nbfiles, 1, 300, 1, (w * 0.2).floor() as i32) as f32;
+fn initFile(nbfiles: i32, w:u32) -> Vec<Particle>{
+    let blast = map_range(nbfiles, 1, 300, 1, (w as f32 * 0.1).floor() as i32) as f32;
     let mut res:Vec<Particle>=Vec::new();
     for i in 0..nbfiles{
         let x=random_range(-blast,blast);
@@ -146,7 +147,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     for mut cell in model.grid.iter_mut() {
         cell.l=random_range(0.0,1.0)
     }   
-    let w: f32 = app.window_rect().w();
+    let w =app.main_window().inner_size_pixels().0;
     let files=initFile(random_range(1,300), w);
     model.files=files;
 
