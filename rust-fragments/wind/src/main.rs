@@ -90,15 +90,18 @@ fn initgrid(res:i32,w:u32,h:u32) -> Vec<Cell>{
 }
 
 fn initFile(nbfiles: i32, w:u32) -> Vec<Particle>{
-    let blast = map_range(nbfiles, 1, 300, 1, (w as f32 * 0.1).floor() as i32) as f32;
+    // blast determines the range inside which we place the particles, the larger nbfiles, the larger the blast
+    let blast = map_range(nbfiles, 1, 300, 10, (w as f32 * 0.1).floor() as i32) as f32;
     let mut res:Vec<Particle>=Vec::new();
     for i in 0..nbfiles{
-        let x=random_range(-blast,blast);
-        let y=random_range(-blast,blast);
+        let angle:f32 = random_range(0.0,2.0*PI);
+        let rayon= random_range(-blast,blast);
+        let x=rayon*angle.cos();
+        let y=rayon*angle.sin();
         let p=Particle{
             cx:x,
             cy:y,
-            rad:7.0
+            rad:3.0
         };
         res.push(p);
     }
@@ -155,7 +158,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
 
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
-    draw.background().color(BLACK);
+    draw.background().color(hsla(330.0 / 360.0, 1.0, 0.0,0.1));
     // let h = app.window_rect().h();
     // let w = app.window_rect().w();
     let s = model.hashes.get(0).unwrap().to_string();
@@ -164,14 +167,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
         // println!("{}", c);
     }
     //drawcells(model,draw.clone());
-    draw.rect()
-        .color(hsl(330.0 / 360.0, 1.0, 0.5))
-        .x_y(0.0,0.0)
-        .w_h(110.0, 110.0);
-    draw.ellipse()
-        .color(hsl(230.0 / 360.0, 1.0, 0.5))
-        .x_y(-0.0,-0.0)
-        .w_h(10.0, 10.0);
+    //markcenter(model,draw.clone());
     drawfiles(model,draw.clone());
     draw.to_frame(app, &frame).unwrap();
 }
@@ -184,6 +180,20 @@ fn drawfiles(model: &Model, draw:Draw){
             .w_h(f.rad,f.rad);
         println!("one file at x {}, y {}", f.cx, f.cy);
     } 
+}
+
+/* helper method to mark the center of the window
+ */
+fn markcenter(model: &Model, draw:Draw){
+    draw.rect()
+        .color(hsl(330.0 / 360.0, 1.0, 0.5))
+        .x_y(0.0,0.0)
+        .w_h(110.0, 110.0);
+    draw.ellipse()
+        .color(hsl(230.0 / 360.0, 1.0, 0.5))
+        .x_y(-0.0,-0.0)
+        .w_h(10.0, 10.0);
+
 }
 
 fn drawcells(model: &Model, draw:Draw){
