@@ -130,13 +130,28 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     }   
     let w =app.main_window().inner_size_pixels().0;
     let h =app.main_window().inner_size_pixels().1;
-    let files=initFile(random_range(1,300), w);
-    model.files=files;
-    let y = (h as f32) * random_range(-0.5,0.5);
+    model.files=initFile(random_range(1,300), w);
+    let (x1,y1,x2,y2,x3,y3):(f32,f32,f32,f32,f32,f32);
+    x1=model.files.get(0).unwrap().cx;
+    y1=model.files.get(0).unwrap().cy;
+    if x1>0.0 {
+        x2=(w as f32)*0.25;
+        x3=w as f32;
+    }
+    else{
+        x2=-(w as f32)*0.25;
+        x3=-1.0*(w as f32);
+    }
+    if y1>0.0 {
+        y2=(h as f32) * random_range(0.0,0.5);
+    }
+    else{
+        y2=(h as f32) * random_range(-0.5,0.0);
+    }
     model.connect = Connect { 
-        p1: pt2(0.0,0.0), 
-        p2: pt2((w as f32)*0.25, y), 
-        p3: pt2((w as f32), y) 
+        p1: pt2(x1,y1), 
+        p2: pt2(x2, y2), 
+        p3: pt2(x3, y2) 
     }
 
 }
