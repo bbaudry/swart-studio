@@ -8,6 +8,7 @@ use nannou::image::Frames;
 use nannou::lyon::geom::arrayvec::Array;
 use nannou::prelude::*;
 use nannou::rand::random_range;
+use std::io;
 
 fn main() {
     nannou::app(model)
@@ -85,7 +86,6 @@ fn initgrid(res:i32,w:u32,h:u32) -> Vec<Cell>{
             g.push(c);
         }
     }
-
     return g;
 }
 
@@ -108,41 +108,6 @@ fn initFile(nbfiles: i32, w:u32) -> Vec<Particle>{
     return res;
 }
 
-fn event(_app: &App, _model: &mut Model, event: WindowEvent) {
-    // Print events as they occur to the console
-    println!("{:?}", event);
-
-    // We can `match` on the event to do something different depending on the kind of event.
-    match event {
-        // Keyboard events
-        KeyPressed(_key) => {}
-        KeyReleased(_key) => {}
-        ReceivedCharacter(_char) => {}
-
-        // Mouse events
-        MouseMoved(_pos) => {}
-        MouseReleased(_button) => {}
-        MouseWheel(_amount, _phase) => {}
-        MouseEntered => {}
-        MouseExited => {}
-
-        // Touch events
-        Touch(_touch) => {}
-        TouchPressure(_pressure) => {}
-
-        // Window events
-        Moved(_pos) => {}
-        Resized(_size) => {}
-        HoveredFile(_path) => {}
-        DroppedFile(_path) => {}
-        HoveredFileCancelled => {}
-        Focused => {}
-        Unfocused => {}
-        Closed => {}
-
-        MousePressed(_button) => {}
-    }
-}
 
 fn update(app: &App, model: &mut Model, _update: Update) {
     let index = random_range(0.0,model.hashes.len() as f64).floor() as i64;
@@ -159,13 +124,16 @@ fn update(app: &App, model: &mut Model, _update: Update) {
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
     draw.background().color(hsla(330.0 / 360.0, 1.0, 0.0,0.1));
-    // let h = app.window_rect().h();
-    // let w = app.window_rect().w();
     let s = model.hashes.get(0).unwrap().to_string();
     let char_vec: Vec<char> = s.chars().collect();   
-    for c in char_vec {
-        // println!("{}", c);
-    }
+    let w: u32 = app.main_window().inner_size_pixels().0;
+    let h: u32 = app.main_window().inner_size_pixels().1;
+    draw.line()
+        .start(app.window_rect().bottom_left())
+        .end(app.window_rect().top_right())
+        .weight(1.0)
+        .color(WHITE)
+        .caps_round();
     //drawcells(model,draw.clone());
     //markcenter(model,draw.clone());
     drawfiles(model,draw.clone());
@@ -207,5 +175,40 @@ fn drawcells(model: &Model, draw:Draw){
             .x_y(cell.x,cell.y)
             .w_h(10.0, 10.0);
     }   
+}
 
+fn event(_app: &App, _model: &mut Model, event: WindowEvent) {
+    // Print events as they occur to the console
+    println!("{:?}", event);
+
+    // We can `match` on the event to do something different depending on the kind of event.
+    match event {
+        // Keyboard events
+        KeyPressed(_key) => {}
+        KeyReleased(_key) => {}
+        ReceivedCharacter(_char) => {}
+
+        // Mouse events
+        MouseMoved(_pos) => {}
+        MouseReleased(_button) => {}
+        MouseWheel(_amount, _phase) => {}
+        MouseEntered => {}
+        MouseExited => {}
+
+        // Touch events
+        Touch(_touch) => {}
+        TouchPressure(_pressure) => {}
+
+        // Window events
+        Moved(_pos) => {}
+        Resized(_size) => {}
+        HoveredFile(_path) => {}
+        DroppedFile(_path) => {}
+        HoveredFileCancelled => {}
+        Focused => {}
+        Unfocused => {}
+        Closed => {}
+
+        MousePressed(_button) => {}
+    }
 }
