@@ -129,7 +129,8 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let w: u32 = app.main_window().inner_size_pixels().0;
     let h: u32 = app.main_window().inner_size_pixels().1;
     draw.line()
-        .start(app.window_rect().bottom_left())
+//        .start(app.window_rect().bottom_left())
+        .start(pt2((0-w) as f32,(0-h) as f32))
         .end(app.window_rect().top_right())
         .weight(1.0)
         .color(WHITE)
