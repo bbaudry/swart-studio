@@ -23,7 +23,8 @@ struct Model {
     // .size(1000,1000)
     hashes: Vec<String>,
     grid:Vec<Cell>,
-    files:Vec<Particle>
+    files:Vec<Particle>,
+    connect:Connect
 }
 
 struct Cell{
@@ -42,6 +43,12 @@ struct Particle{
     rad:f32
 }
 
+struct Connect{
+    p1:Point2,
+    p2:Point2,
+    p3:Point2
+}
+
 fn model(app: &App) -> Model {
     // Create a window that can receive user input like mouse and keyboard events.
     app.new_window()
@@ -58,10 +65,16 @@ fn model(app: &App) -> Model {
 //    let h: f32 = app.window_rect().h();
     let grid=initgrid(res,w,h);
     let files=initFile(7, w);
+    let connect = Connect{
+        p1:pt2(0.0,0.0),
+        p2:pt2(40.0,0.0),
+         p3:pt2(40.0,0.0)
+    };
     Model {
         hashes:ha,
         grid:grid,
-        files:files
+        files:files,
+        connect:connect
     }   
 }
 
@@ -116,8 +129,15 @@ fn update(app: &App, model: &mut Model, _update: Update) {
         cell.l=random_range(0.0,1.0)
     }   
     let w =app.main_window().inner_size_pixels().0;
+    let h =app.main_window().inner_size_pixels().1;
     let files=initFile(random_range(1,300), w);
     model.files=files;
+    let y = (h as f32) * random_range(-0.5,0.5);
+    model.connect = Connect { 
+        p1: pt2(0.0,0.0), 
+        p2: pt2((w as f32)*0.25, y), 
+        p3: pt2((w as f32), y) 
+    }
 
 }
 
@@ -130,11 +150,16 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let h: u32 = app.main_window().inner_size_pixels().1;
     draw.line()
 //        .start(app.window_rect().bottom_left())
-        .start(pt2((0-w) as f32,(0-h) as f32))
-        .end(app.window_rect().top_right())
+        .start(model.connect.p1)
+        .end(model.connect.p2)
         .weight(1.0)
-        .color(WHITE)
-        .caps_round();
+        .color(RED);
+    draw.line()
+//        .start(app.window_rect().bottom_left())
+        .start(model.connect.p2)
+        .end(model.connect.p3)
+        .weight(1.0)
+        .color(RED);
     //drawcells(model,draw.clone());
     //markcenter(model,draw.clone());
     drawfiles(model,draw.clone());
