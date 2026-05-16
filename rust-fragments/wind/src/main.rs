@@ -163,6 +163,21 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let char_vec: Vec<char> = s.chars().collect();   
     let w: u32 = app.main_window().inner_size_pixels().0;
     let h: u32 = app.main_window().inner_size_pixels().1;
+    //drawcells(model,draw.clone());
+    //markcenter(model,draw.clone());
+    drawfiles(model,draw.clone());
+    drawconnect(model,draw.clone());
+        // Create a text primitive with styling
+    draw.text("Styled Text")
+        .font_size(8)
+//        .font("Courier") // Specify a font
+        .color(BLUE)
+        .x_y(model.connect.p2.x-400.0, model.connect.p3.y); // Position at center
+ 
+    draw.to_frame(app, &frame).unwrap();
+}
+
+fn drawconnect(model: &Model, draw:Draw){
     draw.line()
 //        .start(app.window_rect().bottom_left())
         .start(model.connect.p1)
@@ -175,10 +190,6 @@ fn view(app: &App, model: &Model, frame: Frame) {
         .end(model.connect.p3)
         .weight(1.0)
         .color(RED);
-    //drawcells(model,draw.clone());
-    //markcenter(model,draw.clone());
-    drawfiles(model,draw.clone());
-    draw.to_frame(app, &frame).unwrap();
 }
 
 fn drawfiles(model: &Model, draw:Draw){
