@@ -76,7 +76,7 @@ fn model(app: &App) -> Model {
         .filter_map(|r| r.ok())
         .collect();
 
-    println!("There are {} records",data.len());
+    println!("There are {} records, incl. {}",data.len(),&data[1][0]);
 
     Model {
         hashes: ha,
