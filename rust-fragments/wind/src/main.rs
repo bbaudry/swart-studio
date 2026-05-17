@@ -1,15 +1,8 @@
-use std::array;
-use std::ptr::null;
-
-use nannou::color::Alpha;
-use nannou::draw::background::new;
-use nannou::draw::mesh::vertex::Color;
-use nannou::image::Frames;
-use nannou::lyon::geom::arrayvec::Array;
 use nannou::prelude::*;
 use nannou::rand::random_range;
-use std::io;
-
+use std::error::Error;
+use csv::ReaderBuilder;
+use csv::{StringRecord};
 fn main() {
     nannou::app(model)
         // .loop_mode(LoopMode::loop_ntimes(499))
@@ -71,6 +64,20 @@ fn model(app: &App) -> Model {
         p2: pt2(40.0, 0.0),
         p3: pt2(40.0, 0.0),
     };
+
+    // Load CSV during initialization
+    let mut rdr = ReaderBuilder::new()
+        .has_headers(true) // Set true if your CSV has a header row
+        .from_path("./wind/src/agentlogs.csv")
+        .expect("Failed to open CSV");
+
+    let data: Vec<StringRecord> = rdr
+        .records()
+        .filter_map(|r| r.ok())
+        .collect();
+
+    println!("There are {} records",data.len());
+
     Model {
         hashes: ha,
         grid: grid,
@@ -199,7 +206,6 @@ fn drawfiles(model: &Model, draw: Draw) {
             .color(hsl(0.0, 0.0, 0.5))
             .x_y(f.cx, f.cy)
             .w_h(f.rad, f.rad);
-        println!("one file at x {}, y {}", f.cx, f.cy);
     }
 }
 
