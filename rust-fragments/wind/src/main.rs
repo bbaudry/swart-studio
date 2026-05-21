@@ -18,6 +18,7 @@ struct Model {
     grid: Vec<Cell>,
     files: Vec<Particle>,
     connect: Connect,
+    data: Vec<StringRecord>,
     count:u32,
 }
 
@@ -76,13 +77,14 @@ fn model(app: &App) -> Model {
         .filter_map(|r| r.ok())
         .collect();
 
-    println!("There are {} records, incl. {}",data.len(),&data[1][0]);
+    println!("There are {} records, incl. {} adding {} files",data.len(),&data[1][0],&data[1][4]);
 
     Model {
         hashes: ha,
         grid: grid,
         files: files,
         connect: connect,
+        data:data,
         count:0,
     }
 }
@@ -159,6 +161,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
         p2: pt2(x2, y2),
         p3: pt2(x3, y2),
     };
+    println!("There are {} records, incl. {} adding {} files",model.data.len(),&model.data[490][0],&model.data[1][4]);
     model.count=model.count+1;
 }
 
@@ -171,7 +174,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let h: u32 = app.main_window().inner_size_pixels().1;
     //drawcells(model,draw.clone());
     //markcenter(model,draw.clone());
-    if model.count == 1 {
+    //if model.count == 1 {
         drawfiles(model, draw.clone());
         drawconnect(model, draw.clone());
         // Create a text primitive with styling
@@ -182,7 +185,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
             .x_y(model.connect.p3.x * 0.85, model.connect.p3.y);
 
         draw.to_frame(app, &frame).unwrap();
-    }
+    //}
 }
 
 fn drawconnect(model: &Model, draw: Draw) {
