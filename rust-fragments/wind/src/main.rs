@@ -1,6 +1,6 @@
+use csv::Reader;
 use nannou::prelude::*;
 use nannou::rand::random_range;
-use csv::Reader;
 use serde::Deserialize;
 
 fn main() {
@@ -18,22 +18,22 @@ struct Commit {
     commithash: String,
     committimestamp: String,
     timestamp_unix: String,
-    timedifference:u64,
-    additions:u64,
-    deletions:u64,
-    changes:u64,
-    fileschanged:u64,
-    committername:String
+    timedifference: u64,
+    additions: u64,
+    deletions: u64,
+    changes: u64,
+    fileschanged: u64,
+    committername: String,
 }
 
 struct Model {
     // .size(1000,1000)
     hashes: Vec<String>,
     grid: Vec<Cell>,
-    files: Vec<Particle>,
+    changes: Vec<Particle>,
     connect: Connect,
     data: Vec<Commit>,
-    count:u32,
+    count: u32,
 }
 
 struct Cell {
@@ -73,7 +73,7 @@ fn model(app: &App) -> Model {
     let h: u32 = app.main_window().inner_size_pixels().1;
     //    let h: f32 = app.window_rect().h();
     let grid = initgrid(res, w, h);
-    let files = initFile(7, w);
+    let files = initChange(7, w);
     let connect = Connect {
         p1: pt2(0.0, 0.0),
         p2: pt2(40.0, 0.0),
@@ -87,18 +87,15 @@ fn model(app: &App) -> Model {
         .join("agentlogs.csv");
 
     let mut rdr = Reader::from_path(path).expect("could not open CSV");
-    let records: Vec<Commit> = rdr
-        .deserialize()
-        .filter_map(|r| r.ok())
-        .collect();
-    
+    let records: Vec<Commit> = rdr.deserialize().filter_map(|r| r.ok()).collect();
+
     Model {
         hashes: ha,
         grid: grid,
-        files: files,
+        changes: files,
         connect: connect,
-        data:records,
-        count:0,
+        data: records,
+        count: 0,
     }
 }
 
@@ -126,11 +123,18 @@ fn initgrid(res: i32, w: u32, h: u32) -> Vec<Cell> {
     return g;
 }
 
-fn initFile(nbfiles: u64, w: u32) -> Vec<Particle> {
+/*
+## Parameters
+nbchanges: an integer that determines the number of particles; in this sketch this number is usually a number of changes done within a commit
+w: width inside which particle coordinates should be collected
+## Returns
+a vector of coordinates for nbchanges particles
+ */
+fn initChange(nbchanges: u64, w: u32) -> Vec<Particle> {
     // blast determines the range inside which we place the particles, the larger nbfiles, the larger the blast
-    let blast = map_range(nbfiles, 1, 300, 10, (w as f32 * 0.1).floor() as i32) as f32;
+    let blast = map_range(nbchanges, 1, 3000, 10, (w as f32 * 0.2).floor() as i32) as f32;
     let mut res: Vec<Particle> = Vec::new();
-    for i in 0..nbfiles {
+    for i in 0..nbchanges {
         let angle: f32 = random_range(0.0, 2.0 * PI);
         let rayon = random_range(-blast, blast);
         let x = rayon * angle.cos();
@@ -153,29 +157,33 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     }
     let w = app.main_window().inner_size_pixels().0;
     let h = app.main_window().inner_size_pixels().1;
-    model.files = initFile(model.data[model.count % model.data.len()].fileschanged, w);
-    let (x1, y1, x2, y2, x3, y3): (f32, f32, f32, f32, f32, f32);
-    x1 = model.files.get(0).unwrap().cx;
-    y1 = model.files.get(0).unwrap().cy;
-    if x1 > 0.0 {
-        x2 = (w as f32) * 0.25;
-        x3 = (w as f32) * 0.5;
-    } else {
-        x2 = -(w as f32) * 0.25;
-        x3 = -1.0 * (w as f32) * 0.5;
+    //get data from the next element in the list of commit objects
+    let i: usize = model.count as usize % model.data.len();
+    model.changes = initChange(model.data[i].additions, w);
+    println!("{}", model.changes.len());
+    if model.changes.len() != 0 {
+        let (x1, y1, x2, y2, x3, y3): (f32, f32, f32, f32, f32, f32);
+        x1 = model.changes.get(0).unwrap().cx;
+        y1 = model.changes.get(0).unwrap().cy;
+        if x1 > 0.0 {
+            x2 = (w as f32) * 0.25;
+            x3 = (w as f32) * 0.5;
+        } else {
+            x2 = -(w as f32) * 0.25;
+            x3 = -1.0 * (w as f32) * 0.5;
+        }
+        if y1 > 0.0 {
+            y2 = (h as f32) * random_range(0.0, 0.5);
+        } else {
+            y2 = (h as f32) * random_range(-0.5, 0.0);
+        }
+        model.connect = Connect {
+            p1: pt2(x1, y1),
+            p2: pt2(x2, y2),
+            p3: pt2(x3, y2),
+        };
     }
-    if y1 > 0.0 {
-        y2 = (h as f32) * random_range(0.0, 0.5);
-    } else {
-        y2 = (h as f32) * random_range(-0.5, 0.0);
-    }
-    model.connect = Connect {
-        p1: pt2(x1, y1),
-        p2: pt2(x2, y2),
-        p3: pt2(x3, y2),
-    };
-    println!("There are {} records, incl. {} adding {} files",model.data.len(),&model.data[490].commithash,&model.data[1].fileschanged);
-    model.count=model.count+1;
+    model.count = model.count + 1;
 }
 
 fn view(app: &App, model: &Model, frame: Frame) {
@@ -188,16 +196,16 @@ fn view(app: &App, model: &Model, frame: Frame) {
     //drawcells(model,draw.clone());
     //markcenter(model,draw.clone());
     //if model.count == 1 {
-        drawfiles(model, draw.clone());
-        drawconnect(model, draw.clone());
-        // Create a text primitive with styling
-        draw.text("48d5ee7bfb46ee177d865ace846b1cb6695b3cd7")
-            .font_size(10)
-            //        .font("Courier") // Specify a font
-            .color(WHITE)
-            .x_y(model.connect.p3.x * 0.85, model.connect.p3.y);
+    drawfiles(model, draw.clone());
+    drawconnect(model, draw.clone());
+    // Create a text primitive with styling
+    draw.text("48d5ee7bfb46ee177d865ace846b1cb6695b3cd7")
+        .font_size(10)
+        //        .font("Courier") // Specify a font
+        .color(WHITE)
+        .x_y(model.connect.p3.x * 0.85, model.connect.p3.y);
 
-        draw.to_frame(app, &frame).unwrap();
+    draw.to_frame(app, &frame).unwrap();
     //}
 }
 
@@ -217,7 +225,7 @@ fn drawconnect(model: &Model, draw: Draw) {
 }
 
 fn drawfiles(model: &Model, draw: Draw) {
-    for f in model.files.iter() {
+    for f in model.changes.iter() {
         draw.ellipse()
             .color(hsl(0.0, 0.0, 0.5))
             .x_y(f.cx, f.cy)
