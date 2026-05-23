@@ -1,8 +1,8 @@
 use nannou::prelude::*;
 use nannou::rand::random_range;
-use std::error::Error;
-use csv::ReaderBuilder;
-use csv::{StringRecord};
+use csv::Reader;
+use serde::Deserialize;
+
 fn main() {
     nannou::app(model)
         // .loop_mode(LoopMode::loop_ntimes(499))
@@ -12,13 +12,27 @@ fn main() {
         .run();
 }
 
+#[derive(Debug, Deserialize)]
+struct Commit {
+    //commithash,committimestamp,timestamp_unix,timedifference,additions,deletions,changes,fileschanged,committername
+    commithash: String,
+    committimestamp: String,
+    timestamp_unix: String,
+    timedifference:u64,
+    additions:u64,
+    deletions:u64,
+    changes:u64,
+    fileschanged:u64,
+    committername:String
+}
+
 struct Model {
     // .size(1000,1000)
     hashes: Vec<String>,
     grid: Vec<Cell>,
     files: Vec<Particle>,
     connect: Connect,
-    data: Vec<StringRecord>,
+    data: Vec<Commit>,
     count:u32,
 }
 
@@ -65,26 +79,25 @@ fn model(app: &App) -> Model {
         p2: pt2(40.0, 0.0),
         p3: pt2(40.0, 0.0),
     };
+    //let path = app.assets_path()
+    //.expect("assets folder not found")
+    //.join("agentlogs.csv");
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("assets")
+        .join("agentlogs.csv");
 
-    // Load CSV during initialization
-    let mut rdr = ReaderBuilder::new()
-        .has_headers(true) // Set true if your CSV has a header row
-        .from_path("./wind/src/agentlogs.csv")
-        .expect("Failed to open CSV");
-
-    let data: Vec<StringRecord> = rdr
-        .records()
+    let mut rdr = Reader::from_path(path).expect("could not open CSV");
+    let records: Vec<Commit> = rdr
+        .deserialize()
         .filter_map(|r| r.ok())
         .collect();
-
-    println!("There are {} records, incl. {} adding {} files",data.len(),&data[1][0],&data[1][4]);
-
+    
     Model {
         hashes: ha,
         grid: grid,
         files: files,
         connect: connect,
-        data:data,
+        data:records,
         count:0,
     }
 }
@@ -113,7 +126,7 @@ fn initgrid(res: i32, w: u32, h: u32) -> Vec<Cell> {
     return g;
 }
 
-fn initFile(nbfiles: i32, w: u32) -> Vec<Particle> {
+fn initFile(nbfiles: u64, w: u32) -> Vec<Particle> {
     // blast determines the range inside which we place the particles, the larger nbfiles, the larger the blast
     let blast = map_range(nbfiles, 1, 300, 10, (w as f32 * 0.1).floor() as i32) as f32;
     let mut res: Vec<Particle> = Vec::new();
@@ -140,7 +153,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     }
     let w = app.main_window().inner_size_pixels().0;
     let h = app.main_window().inner_size_pixels().1;
-    model.files = initFile(random_range(1, 300), w);
+    model.files = initFile(model.data[model.count % model.data.len()].fileschanged, w);
     let (x1, y1, x2, y2, x3, y3): (f32, f32, f32, f32, f32, f32);
     x1 = model.files.get(0).unwrap().cx;
     y1 = model.files.get(0).unwrap().cy;
@@ -161,7 +174,7 @@ fn update(app: &App, model: &mut Model, _update: Update) {
         p2: pt2(x2, y2),
         p3: pt2(x3, y2),
     };
-    println!("There are {} records, incl. {} adding {} files",model.data.len(),&model.data[490][0],&model.data[1][4]);
+    println!("There are {} records, incl. {} adding {} files",model.data.len(),&model.data[490].commithash,&model.data[1].fileschanged);
     model.count=model.count+1;
 }
 
