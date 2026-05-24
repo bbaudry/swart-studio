@@ -157,10 +157,11 @@ fn update(app: &App, model: &mut Model, _update: Update) {
     }
     let w = app.main_window().inner_size_pixels().0;
     let h = app.main_window().inner_size_pixels().1;
+
     //get data from the next element in the list of commit objects
     let i: usize = model.count as usize % model.data.len();
     model.changes = initChange(model.data[i].additions, w);
-    println!("{}", model.changes.len());
+
     if model.changes.len() != 0 {
         let (x1, y1, x2, y2, x3, y3): (f32, f32, f32, f32, f32, f32);
         x1 = model.changes.get(0).unwrap().cx;
@@ -196,7 +197,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     //drawcells(model,draw.clone());
     //markcenter(model,draw.clone());
     //if model.count == 1 {
-    drawfiles(model, draw.clone());
+    drawchanges(model, draw.clone());
     drawconnect(model, draw.clone());
     // Create a text primitive with styling
     draw.text("48d5ee7bfb46ee177d865ace846b1cb6695b3cd7")
@@ -224,12 +225,20 @@ fn drawconnect(model: &Model, draw: Draw) {
         .color(RED);
 }
 
-fn drawfiles(model: &Model, draw: Draw) {
+fn drawchanges(model: &Model, draw: Draw) {
+    if model.changes.len()<3000{
     for f in model.changes.iter() {
         draw.ellipse()
             .color(hsl(0.0, 0.0, 0.5))
             .x_y(f.cx, f.cy)
             .w_h(f.rad, f.rad);
+    }}
+    else{
+        draw.ellipse()
+            .color(hsl(0.0, 1.0, 0.5))
+            .x_y(0.0,0.0)
+            .w_h(200.0,200.0);
+
     }
 }
 
