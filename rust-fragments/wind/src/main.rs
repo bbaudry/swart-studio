@@ -203,8 +203,10 @@ fn view(app: &App, model: &Model, frame: Frame) {
     draw.text("48d5ee7bfb46ee177d865ace846b1cb6695b3cd7")
         .font_size(10)
         //        .font("Courier") // Specify a font
+        .wrap_by_word() // Enables wrapping at word boundaries
+        .width(400.0) // Specify the width to wrap around
         .color(WHITE)
-        .x_y(model.connect.p3.x * 0.85, model.connect.p3.y);
+        .x_y(model.connect.p3.x * 0.88, model.connect.p3.y);
 
     draw.to_frame(app, &frame).unwrap();
     //}
