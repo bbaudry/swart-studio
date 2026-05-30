@@ -228,19 +228,32 @@ fn drawconnect(model: &Model, draw: Draw) {
 }
 
 fn drawchanges(model: &Model, draw: Draw) {
-    if model.changes.len()<3000{
-    for f in model.changes.iter() {
-        draw.ellipse()
-            .color(hsl(0.0, 0.0, 0.5))
-            .x_y(f.cx, f.cy)
-            .w_h(f.rad, f.rad);
-    }}
-    else{
+    if model.changes.len() < 3000 {
+        let draw_points = draw.point_mode();
+        for f in model.changes.iter() {
+            draw_points.ellipse()
+                .x_y(f.cx, f.cy)
+                .w_h(f.rad, f.rad)
+                .color(WHITE);
+
+
+        //     draw.ellipse()
+        //         .color(hsl(0.0, 0.0, 0.5))
+        //         .x_y(f.cx, f.cy)
+        //         .w_h(f.rad, f.rad);
+        }
+        // let mesh = draw
+    //    .mesh()
+        // .point_mode()
+        // .points(vec![pt2(0.0, 0.0), pt2(100.0, 100.0)]
+        // );
+
+
+    } else {
         draw.ellipse()
             .color(hsl(0.0, 1.0, 0.5))
-            .x_y(0.0,0.0)
-            .w_h(200.0,200.0);
-
+            .x_y(0.0, 0.0)
+            .w_h(200.0, 200.0);
     }
 }
 
