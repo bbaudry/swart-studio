@@ -235,12 +235,6 @@ fn drawchanges(model: &Model, draw: Draw) {
                 .x_y(f.cx, f.cy)
                 .w_h(f.rad, f.rad)
                 .color(WHITE);
-
-
-        //     draw.ellipse()
-        //         .color(hsl(0.0, 0.0, 0.5))
-        //         .x_y(f.cx, f.cy)
-        //         .w_h(f.rad, f.rad);
         }
         // let mesh = draw
     //    .mesh()
