@@ -1,11 +1,5 @@
 // Rust version of https://formandcode.com/code-examples/repeat-embedded
-use std::array;
-
-use nannou::color::Alpha;
-use nannou::draw::mesh::vertex::Color;
-use nannou::image::Frames;
 use nannou::prelude::*;
-use nannou::rand::random_range;
 
 fn main() {
     nannou::app(model)
@@ -16,35 +10,28 @@ fn main() {
         .run();
 }
 
-struct Model {    
+struct Model {
     option: i32,
-    hue:f32,
-    cx:f32,
-    cy:f32
+    hue: f32,
 }
 
 fn model(app: &App) -> Model {
     // Create a window that can receive user input like mouse and keyboard events.
     app.new_window()
-    .event(event)
-    .size(1000,1000)
-    .build()
-    .unwrap();
-    Model{
-        option:1,
-        hue:1.0,
-        cx:0.0,
-        cy:0.0
+        .event(event)
+        .size(1000, 1000)
+        .build()
+        .unwrap();
+    Model {
+        option: 1,
+        hue: 1.0,
     }
 }
 
-
 fn event(_app: &App, model: &mut Model, event: WindowEvent) {
-    // Print events as they occur to the console
-    println!("{:?}", event);
-
     // We can `match` on the event to do something different depending on the kind of event.
-    match event {        // Keyboard events
+    match event {
+        // Keyboard events
         KeyPressed(_key) => {}
         KeyReleased(_key) => {}
         ReceivedCharacter(_char) => {}
@@ -71,94 +58,111 @@ fn event(_app: &App, model: &mut Model, event: WindowEvent) {
         Closed => {}
 
         MousePressed(_button) => {
-            model.option+=1;
-            if model.option>4{model.option=1}
-            model.hue+=2.0;
-            println!("format {0}",model.option);
+            model.option += 1;
+            if model.option > 5 {
+                model.option = 1
+            }
+            model.hue += 2.0;
         }
     }
 }
-
 
 fn update(app: &App, model: &mut Model, _update: Update) {
     // model.option+=1.0;
     // println!("format {0}",model.option);
 }
 
-fn view(app: &App, model: &Model, frame: Frame){
+fn view(app: &App, model: &Model, frame: Frame) {
     let draw = app.draw();
     draw.background().color(BLACK);
-    let h = app.window_rect().h();
-    let w = app.window_rect().w();
-            draw.rect()
-            .color(hsl(model.hue/360.0,1.0,0.5))
-            .x_y(model.cx,model.cy)
-            .w_h(111.0,111.0);
-    if model.option==1 {
-        for x in (-450..450).step_by(20){
-            for y in (-450..450).step_by(20){
-                let mut start_point = pt2(x as f32-5.0, y as f32-5.0);
-                let mut end_point   = pt2(x as f32+5.0, y as f32+5.0);
+    if model.option == 1 {
+        for x in (-450..450).step_by(20) {
+            for y in (-450..450).step_by(20) {
+                let mut start_point = pt2(x as f32 - 5.0, y as f32 - 5.0);
+                let mut end_point = pt2(x as f32 + 5.0, y as f32 + 5.0);
 
                 draw.line()
                     .start(start_point)
                     .end(end_point)
                     .weight(1.0)
-                    .color(hsl(model.hue/360.0,1.0,0.5));
-                start_point = pt2(x as f32+5.0, y as f32-5.0);
-                end_point   = pt2(x as f32-5.0, y as f32+5.0);
+                    .color(hsl(model.hue / 360.0, 1.0, 0.5));
+                start_point = pt2(x as f32 + 5.0, y as f32 - 5.0);
+                end_point = pt2(x as f32 - 5.0, y as f32 + 5.0);
 
                 draw.line()
                     .start(start_point)
                     .end(end_point)
                     .weight(1.0)
-                    .color(hsl(model.hue/360.0,1.0,0.5));
+                    .color(hsl(model.hue / 360.0, 1.0, 0.5));
             }
         }
     }
-    if model.option==2{
-        for x in (-450..450).step_by(20){
-            for y in (-450..450).step_by(20){
-                let mut start_point = pt2(x as f32, y as f32);
-                let mut end_point   = pt2(0.0,0.0);
+    if model.option == 2 {
+        for x in (-450..450).step_by(20) {
+            for y in (-450..450).step_by(20) {
+                let start_point = pt2(x as f32, y as f32);
+                let end_point = pt2(0.0, 0.0);
 
                 draw.line()
                     .start(start_point)
                     .end(end_point)
                     .weight(1.0)
-                    .color(hsl(model.hue/360.0,1.0,0.5));
+                    .color(hsl(model.hue / 360.0, 1.0, 0.5));
             }
         }
     }
-    if model.option==3{
-        for x in (-450..450).step_by(20){
-            for y in (-450..450).step_by(20){
+    if model.option == 3 {
+        for x in (-450..450).step_by(20) {
+            for y in (-450..450).step_by(20) {
                 draw.ellipse()
                     .no_fill()
-                    .stroke(hsl(model.hue/360.0,1.0,0.5))
+                    .stroke(hsl(model.hue / 360.0, 1.0, 0.5))
                     .stroke_weight(1.0)
                     .w(40.0)
                     .h(40.0)
-                    .x_y(x as f32, y as f32);            
+                    .x_y(x as f32, y as f32);
             }
         }
     }
-    if model.option==4{
-        for x in (-450..450).step_by(20){
-            for y in (-450..450).step_by(20){
+    if model.option == 4 {
+        for x in (-450..450).step_by(20) {
+            for y in (-450..450).step_by(20) {
                 let radius = 15.0;
                 let points = (0..=120).map(|i| {
                     let radian = deg_to_rad(i as f32);
-                    let px = x as f32+radian.cos() * radius;
-                    let py = y as f32+radian.sin() * radius;
-                    (pt2(px,py), hsl(model.hue/360.0,1.0,0.5))
+                    let px = x as f32 + radian.cos() * radius;
+                    let py = y as f32 + radian.sin() * radius;
+                    (pt2(px, py), hsl(model.hue / 360.0, 1.0, 0.5))
                 });
-                        draw.polyline()
-                    .weight(3.0)
-                    .points_colored(points); // Submit our points.
-
+                draw.polyline().weight(3.0).points_colored(points); // Submit our points.
             }
         }
     }
-    draw.to_frame(app,&frame).unwrap();
+    if model.option == 5 {
+        let off = 6.0;
+        for x in (-450..450).step_by(20) {
+            for y in (-450..450).step_by(20) {
+                let mut start_point = pt2(x as f32 + off, y as f32 - off);
+                let mut end_point = pt2(x as f32 - off, y as f32 + off);
+
+                draw.line()
+                    .start(start_point)
+                    .end(end_point)
+                    .weight(1.0)
+                    .color(hsl(model.hue / 360.0, 1.0, 0.5));
+
+                for i in 0..5 {
+                    start_point = pt2(x as f32 - off + i as f32 *3.0, y as f32 - off);
+                    end_point = pt2(x as f32 - off + i as f32 * 3.0, y as f32 + off);
+
+                    draw.line()
+                        .start(start_point)
+                        .end(end_point)
+                        .weight(1.0)
+                        .color(hsl(model.hue / 360.0, 1.0, 0.5));
+                }
+            }
+        }
+    }
+    draw.to_frame(app, &frame).unwrap();
 }
