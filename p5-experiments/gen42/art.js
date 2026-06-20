@@ -3,21 +3,22 @@ let palettes = [
     [30, 220],
     [330, 180],
     [220,30],
-    [180,30]
+    [180,30],
+    [180,0],
+    [150,330]
 ]
 let palette_index
 
 function hal() {
-    let res = 3
-    let stepx = actualwidth / res
-    let stepy = actualheight / res
+    let res = random(3,5)
+    let iter = Math.floor(random(2,5))
     let xoff=0
-    let xinc=0.001
+    let xinc=random(0.001,0.005)
     palette_index=Math.floor(random(palettes.length))
     background(palettes[palette_index][0],100,100)
     fill(palettes[palette_index][1],100,100)
     noStroke()
-    for(let i=0;i<Math.floor(random(2,5));i++){
+    for(let i=0;i<iter;i++){
     let x=leftmargin
     while(x<rightmargin){
         let large=noise(xoff)*res; 
