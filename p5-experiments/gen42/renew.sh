@@ -3,5 +3,7 @@
 # Description: this script generates two random numbers and saves them in a file
 # Author: almyre
 
-
-echo $((1 + $RANDOM % 10))
+echo $((1 + $RANDOM % 100000))
+rs=$((1 + $RANDOM % 100000))
+ns=$((1 + $RANDOM % 100000))
+printf "{\"randomseed\": $rs,\"nnoiseseed\": $ns}" > seeds.json
