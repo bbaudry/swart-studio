@@ -3,10 +3,11 @@ var w, h
 var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
-var font
+var font, seeds
 var fSize = 11
 
 function preload() {
+    seeds = loadJSON("./seeds.json")
     font = loadFont("./FreeMono.otf");
 }
 function setup() {
@@ -20,8 +21,10 @@ function setup() {
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
-    noiseSeed(3)
-    randomSeed(3)
+    noiseSeed(seeds.noiseseed)
+    randomSeed(seeds.randomseed)
+    console.log(seeds.noiseseed)
+    console.log(seeds.randomseed)
 }
 
 

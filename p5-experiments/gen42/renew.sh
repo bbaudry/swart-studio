@@ -6,4 +6,4 @@
 echo $((1 + $RANDOM % 100000))
 rs=$((1 + $RANDOM % 100000))
 ns=$((1 + $RANDOM % 100000))
-printf "{\"randomseed\": $rs,\"nnoiseseed\": $ns}" > seeds.json
+printf "{\"randomseed\": $rs,\"noiseseed\": $ns}" > seeds.json
