@@ -3,9 +3,10 @@ var w, h
 var cnv
 var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
 var sourcecode
-var font, seeds
+var font, seeds, xoff, xinc
 var fSize = 11
 var collection_of_works
+var index_collection
 
 function preload() {
     artworks = loadJSON("./Artworks.json")
@@ -23,7 +24,10 @@ function setup() {
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
     collection_of_works = getArtData()
-    frameRate(2)
+    xoff = 0.0
+    xinc = 0.01
+    index_collection = 0
+    //frameRate(2)
 }
 
 
@@ -48,6 +52,7 @@ function getArtData(){
 function draw() {
     background(0, 0, 0)
     hal()
+    index_collection<collection_of_works.length-1?index_collection++:index_collection=0
     noFill()
     stroke(0,0,100)
     textFont(font)

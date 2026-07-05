@@ -15,10 +15,9 @@ function hal() {
 }
 
 function oneyear(){
-    let i = Math.floor(random(collection_of_works.length))
+    //let i = Math.floor(random(collection_of_works.length))
+    let i = index_collection
     let works = collection_of_works[i].value
-    let xoff = 0
-    let xinc = 0.01
     let x,y,workheight,workwidth,yoff
     x=leftmargin
     workwidth = (actualwidth - (works.length-1)) / (works.length)
