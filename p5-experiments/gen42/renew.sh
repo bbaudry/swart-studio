@@ -6,5 +6,7 @@
 echo $((1 + $RANDOM % 100000))
 rs=$((1 + $RANDOM % 100000))
 ns=$((1 + $RANDOM % 100000))
-filen="$(date).json"
-printf "{\"randomseed\": $rs,\"noiseseed\": $ns}" > "${filen}" #seeds.json
+filewithdate="$(date).json"
+fileseeds="seeds.json"
+printf "{\"randomseed\": $rs,\"noiseseed\": $ns}" > "${filewithdate}"
+printf "{\"randomseed\": $rs,\"noiseseed\": $ns}" > "${fileseeds}"
