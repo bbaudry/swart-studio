@@ -16,26 +16,25 @@ function hal() {
 
 function paint2() {
     let res,iter,x,y,top,boxwidth,boxheight,widthratio,dice
-    res = random(3, 5)
-    iter = Math.floor(random(2, 5))
+    res = random(1, 3)
+    iter = Math.floor(random(1, 4))
     let xoff = 0
     let xinc = random(0.001, 0.005)
     for (let i = 0; i < iter; i++) {
         x = leftmargin
         while(x<rightmargin){
-            dice=noise(xoff)
-            xoff+=xinc
+            dice=noise(xoff); xoff+=xinc
             top = noise(xoff) * actualheight
             boxheight = noise(xoff) * (bottommargin - top)
+            xoff += xinc
             if (dice < 0.5) {
-                boxwidth = noise(xoff) * res;
-                xoff += xinc
+                boxwidth = noise(xoff) * res; xoff += xinc
                 rect(x, top, boxwidth, boxheight)
                 x += boxwidth * 2
             }
             else{
                 y = top
-                boxwidth = noise(xoff) * (rightmargin-x) * 0.5;
+                boxwidth = noise(xoff) * (rightmargin-x);
                 xoff += xinc
                 while (y<top+boxheight) {
                     let large = noise(xoff) * res;
