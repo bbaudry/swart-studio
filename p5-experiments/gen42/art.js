@@ -17,7 +17,7 @@ function hal() {
 function paint2() {
     let res,iter,x,y,top,boxwidth,boxheight,widthratio,dice
     res = random(3, 5)
-    iter = Math.floor(random(2, 5))
+    iter = 1//Math.floor(random(2, 5))
     let xoff = 0
     let xinc = random(0.001, 0.005)
     for (let i = 0; i < iter; i++) {
