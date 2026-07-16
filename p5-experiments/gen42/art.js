@@ -7,7 +7,7 @@ let palettes = [
     [180, 0],
     [150, 330]
 ]
-let palette_index
+let palette_index, xinc, xoff
 
 function hal() {
     setcolors()
@@ -15,22 +15,23 @@ function hal() {
 }
 
 function remixingsaintevictoire(){
-    let res, iter, xoff, xinc, dice
+    let res, iter, dice
     res = random(1, 3)
     iter = Math.floor(random(1, 4))
-    xoff = 0
+    xoff = random()
     xinc = random(0.001, 0.005)
     dice = noise(xoff); xoff += xinc
     if(dice<0.5){
-        vic2(res, iter, xoff, xinc)
+        vic2(res, iter)
     }   
     else{
-        vic1(res, iter, xoff, xinc)
+        vic1(res, iter)
 
     }  
 }
 
-function vic2() {
+function vic2(res, iter) {
+    console.log(vic2)
     let x, y, top, boxwidth, boxheight, widthratio, dice
     for (let i = 0; i < iter; i++) {
         x = leftmargin
@@ -47,14 +48,15 @@ function vic2() {
             else {
                 boxwidth = noise(xoff) * (rightmargin - x);
                 xoff += xinc
-                xoff = painthorizon(x,top,boxheight,res,boxwidth,xoff,xinc)
+                painthorizon(x,top,boxheight,res,boxwidth)
                 x += boxwidth
             }
         }
     }
 }
 
-function vic1() {
+function vic1(res, iter) {
+    console.log(vic1)
     let x, y, top, boxwidth, boxheight, widthratio
     for (let i = 0; i < iter; i++) {
         x = leftmargin
@@ -68,11 +70,11 @@ function vic1() {
             x += boxwidth * 2
         }        
         boxwidth = rightmargin - x
-        painthorizon(x,top,boxheight,res,boxwidth,xoff,xinc)
+        painthorizon(x,top,boxheight,res,boxwidth)
     }
 }
 
-function painthorizon(x,top,boxheight,res,boxwidth,xoff,xinc) {
+function painthorizon(x,top,boxheight,res,boxwidth) {
     let y,large
     y = top
     while (y < top + boxheight) {
@@ -81,7 +83,6 @@ function painthorizon(x,top,boxheight,res,boxwidth,xoff,xinc) {
         rect(x, y, boxwidth, large)
         y += large * 2
     }
-    return xoff
 }
 
 function setcolors() {
