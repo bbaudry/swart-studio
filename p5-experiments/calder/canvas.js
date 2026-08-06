@@ -39,4 +39,5 @@ function draw() {
     textSize(fSize)
     text(w*0.5,leftmargin,topmargin)
     text(x,leftmargin,topmargin+fSize)
+    noLoop()
 }
