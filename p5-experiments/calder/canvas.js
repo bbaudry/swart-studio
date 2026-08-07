@@ -25,7 +25,7 @@ function setup() {
     y=h*0.5
     xoff=0
     yoff=0
-    xinc=0.001
+    xinc=0.01
     yinc=0.001
 }
 

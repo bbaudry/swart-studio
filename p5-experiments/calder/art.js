@@ -1,12 +1,14 @@
 let seuil=0.42*2
-let maxdepth=8
+let maxdepth=3
+let black=true
 function hal() {
     dig(0,leftmargin,topmargin,actualwidth,actualheight)
 }
 
 function dig(depth,x,y,large,haut){
     noStroke()
-    random()<0.5?fill(0,0,0):fill(0,0,100)
+    black?fill(0,0,0):fill(0,0,100)
+    black=!black
     rect(x,y,large,haut)
     if(depth<maxdepth){
         let d=depth+1
