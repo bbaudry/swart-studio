@@ -1,4 +1,4 @@
-let seuil = 0.42
+let seuil = 0.42*2
 let maxdepth = 6
 let black = true
 function hal() {
@@ -12,7 +12,7 @@ function dig(depth, x, y, large, haut) {
     rect(x, y, large, haut)
     let d = depth + 1
     let rl = noise(xoff); xoff += xinc;//random()
-    let rh = noise(xoff); xoff += xinc;//random()
+    let rh = 1/(depth+1)//noise(xoff); xoff += xinc;//random()
     if(depth==0){
             dig(d, x, y, large * rl, haut * rh); dig(d, x + large * rl, y, large * (1 - rl), haut * rh)
             dig(d, x + large * rl, y + haut * rh, large * (1 - rl), haut * (1 - rh)); dig(d, x, y + haut * rh, large * rl, haut * (1 - rh))
