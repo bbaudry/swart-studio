@@ -5,7 +5,7 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 17
-var artname = "savaryle003"
+var artname = "savaryle004"
 
 function preload() {
         sourcecode = loadStrings(artname+'-core.js');

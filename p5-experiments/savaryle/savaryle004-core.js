@@ -48,7 +48,40 @@ function vera() {
             padd = m - amp * sin(d)
             random()<0.01?stroke(0,100,100):stroke(0,0,0)
             stroke(0,0,100)
+            // random()<0.5?
+            // drawcell_horizon(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd):
+            // drawcell_vertical(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
         quad(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
         }
+    }
+}
+
+// this function fills the cell with horizontal lines
+function drawcell_horizon(x1, y1, x2, y2, x3, y3, x4, y4) {
+    let d, t, tinc, ox, oy, dx, dy, amp
+    amp = Math.floor(random(2,3))
+    dist(x1, y1, x4, y4) > dist(x2, y2, x3, y3) ? d = dist(x1, y1, x4, y4) : d = dist(x2, y2, x3, y3)
+    tinc = 1 / (d / penwidth) * amp
+    for (t = tinc; t < 1; t += tinc) {
+        ox = lerp(x1, x4, t)
+        oy = lerp(y1, y4, t)
+        dx = lerp(x2, x3, t)
+        dy = lerp(y2, y3, t)
+        line(ox, oy, dx, dy)
+    }
+}
+
+// this function fills the cell with vertical lines
+function drawcell_vertical(x1, y1, x2, y2, x3, y3, x4, y4) {
+    let d, t, tinc, ox, oy, dx, dy, amp
+    amp = Math.floor(random(2,3))
+    dist(x1, y1, x4, y4) > dist(x2, y2, x3, y3) ? d = dist(x1, y1, x4, y4) : d = dist(x2, y2, x3, y3)
+    tinc = 1 / (d / penwidth) * amp
+    for (t = tinc; t < 1; t += tinc) {
+        ox = lerp(x1, x2, t)
+        oy = lerp(y1, y2, t)
+        dx = lerp(x4, x3, t)
+        dy = lerp(y4, y3, t)
+        line(ox, oy, dx, dy)
     }
 }
