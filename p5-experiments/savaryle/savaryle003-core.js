@@ -4,7 +4,7 @@ var grid = []
 var resolution 
 
 function hal() {
-    resolution = Math.floor(random(11,19))
+    resolution = 84//Math.floor(random(11,17))
     vera()
 }
 
@@ -20,7 +20,7 @@ function vera() {
     // m and amp are two hyperparameters of the algorithm 
     // m determines if the cells grow (neg. value) or decreases (pos. value) when the cell is close to (cx,cy)
     // amp determines the amount of distorsion of each cell
-    m = -7; amp = 17 //dense in the center
+    m = Math.floor(random(1,17)); amp = Math.floor(random(21,67)) //dense in the center
     //m=7;amp=46 //dense towards the edge
     maxi = resolution
     maxj = resolution + 3
@@ -46,9 +46,10 @@ function vera() {
             padc = m - amp * sin(c)
             padd = m - amp * sin(d)
             random()<0.01?stroke(0,100,100):stroke(0,0,0)
-            random()<0.5?
-            drawcell_horizon(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd):
-            drawcell_vertical(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
+            // random()<0.5?
+            // drawcell_horizon(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd):
+            // drawcell_vertical(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
+        quad(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
         }
     }
 }
@@ -56,7 +57,7 @@ function vera() {
 // this function fills the cell with horizontal lines
 function drawcell_horizon(x1, y1, x2, y2, x3, y3, x4, y4) {
     let d, t, tinc, ox, oy, dx, dy, amp
-    amp = Math.floor(random(2,4))
+    amp = Math.floor(random(2,3))
     dist(x1, y1, x4, y4) > dist(x2, y2, x3, y3) ? d = dist(x1, y1, x4, y4) : d = dist(x2, y2, x3, y3)
     tinc = 1 / (d / penwidth) * amp
     for (t = tinc; t < 1; t += tinc) {
@@ -71,7 +72,7 @@ function drawcell_horizon(x1, y1, x2, y2, x3, y3, x4, y4) {
 // this function fills the cell with vertical lines
 function drawcell_vertical(x1, y1, x2, y2, x3, y3, x4, y4) {
     let d, t, tinc, ox, oy, dx, dy, amp
-    amp = Math.floor(random(2,4))
+    amp = Math.floor(random(2,3))
     dist(x1, y1, x4, y4) > dist(x2, y2, x3, y3) ? d = dist(x1, y1, x4, y4) : d = dist(x2, y2, x3, y3)
     tinc = 1 / (d / penwidth) * amp
     for (t = tinc; t < 1; t += tinc) {
