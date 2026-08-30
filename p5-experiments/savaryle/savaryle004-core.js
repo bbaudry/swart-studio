@@ -5,7 +5,7 @@ var resolution
 
 function hal() {
     background(0,0,0)
-    resolution =  Math.floor(random(77,99))
+    resolution =  Math.floor(random(9,17))
     vera()
 }
 
@@ -28,8 +28,8 @@ function vera() {
     othercolor = 0
     maxothercolor = 3
     step = Math.floor(actualwidth / resolution)
-    cx = leftmargin + actualwidth * random(0.4,0.8)
-    cy = topmargin + (step * maxj) * random(0.4,0.8)
+    cx = leftmargin + actualwidth * 0.5// random(0.4,0.8)
+    cy = topmargin + (step * maxj) * 0.5//random(0.4,0.8)
     maxdist = dist(0, 0, cx, cy)
     for (i = 0; i < maxi; i++) {
         x = leftmargin + i * step
@@ -46,12 +46,10 @@ function vera() {
             padb = m - amp * sin(b)
             padc = m - amp * sin(c)
             padd = m - amp * sin(d)
-            random()<0.01?stroke(0,100,100):stroke(0,0,0)
-            stroke(0,0,100)
-            // random()<0.5?
-            // drawcell_horizon(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd):
-            // drawcell_vertical(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
-        quad(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
+            random()<0.01?stroke(0,100,100):stroke(0,0,100)
+            random()<0.5?
+            drawcell_horizon(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd):
+            drawcell_vertical(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd)
         }
     }
 }
