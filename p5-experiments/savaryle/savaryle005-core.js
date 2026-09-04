@@ -54,8 +54,15 @@ function vera() {
 
 // this function fills the cell with vertical lines
 function drawcell(x1, y1, x2, y2, x3, y3, x4, y4) {
-    push()
-    rotate(random(-1,1))
-    quad(x1, y1, x2, y2, x3, y3, x4, y4)
-    pop()
+    let xo,yo,xd,yd,t,tinc
+    t=0
+    tinc=0.03
+    while(t<1){
+        xo=lerp(x1,x4,t)
+        yo=lerp(y1,y4,t)
+        xd=lerp(x3,x4,t)
+        yd=lerp(y3,y4,t)
+        line(xo,yo,xd,yd)
+        t+=tinc
+    }
 }
