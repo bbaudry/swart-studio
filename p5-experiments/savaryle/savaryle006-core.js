@@ -5,9 +5,54 @@ var resolution
 
 function hal() {
     background(0,0,0)
-    resolution = 14// Math.floor(random(9,17))
-    vera()
+//    resolution = Math.floor(random(9,17))
+//    vera()
+    test()
 }
+
+
+
+function test(){
+    let res=11
+    let x,y,pad,stepx,stepy,cx,cy,tx,ty
+    stepx=Math.floor(actualwidth/res)
+    stepy=stepx
+    pad=7
+    cx=Math.floor(w*0.5)
+    cy=Math.floor(w*0.5)
+    stroke(0,100,100)
+    fill(0,100,100)
+    ellipse(cx,cy,11,11)
+    noFill()
+    stroke(0,0,100)
+    for(let i=0;i<res;i++){
+        for(let j=0;j<res;j++){
+            x=leftmargin+stepx*i
+            y=topmargin+stepy*j
+            push()
+            tx=x+stepx*0.5
+            ty=y+stepy*0.5
+            translate(tx,ty)
+            let angle = acos((tx-cx)/dist(tx,ty,cx,cy)); console.log(angle)
+            //translate(x,y)
+            rotate(angle)
+            // quad(
+            //     x+pad,y+pad,
+            //     x+stepx-pad,y+pad,
+            //     x+stepx-pad,y+stepy-pad,
+            //     x+pad,y+stepy-pad
+            // )
+            quad(
+                -stepx*0.5+pad,-stepy*0.5+pad,
+                stepx*0.5-pad,-stepy*0.5+pad,
+                stepx*0.5-pad,stepy*0.5-pad,
+                -stepx*0.5+pad,stepy*0.5-pad
+            )
+            pop()
+        }
+    }
+}
+
 
 /*
 * assumes a rectangle canvas in portrait orientation (width < height)
