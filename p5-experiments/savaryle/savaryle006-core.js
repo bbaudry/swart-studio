@@ -1,53 +1,67 @@
 var xoff = 0.0
 var xinc = 0.1
 var grid = []
-var resolution 
+var resolution
 
 function hal() {
-    background(0,0,0)
-//    resolution = Math.floor(random(9,17))
-//    vera()
-    test()
+    background(0, 0, 0)
+    //    resolution = Math.floor(random(9,17))
+    //    vera()
+//    test()
+    testInter()
+}
+
+function testInter(){
+    let x1,y1,x2,y2,x3,y3,x4,y4, inter
+    x1=100+random(-50,50)
+    y1=42
+    x2=250+random(-50,50)
+    y2=80
+    x3=240+random(-50,50)
+    y3=380
+    x4=30+random(-50,50)
+    y4=250
+    inter=getCentroid(x1,y1,x2,y2,x3,y3,x4,y4)
+    if(inter.x != null && inter.y!=null){
+        ellipse(inter.x, inter.y, 7, 7)
+    }
 }
 
 
-
-function test(){
-    let res=11
-    let x,y,pad,stepx,stepy,cx,cy,tx,ty
-    stepx=Math.floor(actualwidth/res)
-    stepy=stepx
-    pad=7
-    cx=Math.floor(w*0.5)
-    cy=Math.floor(w*0.5)
-    stroke(0,100,100)
-    fill(0,100,100)
-    ellipse(cx,cy,11,11)
+function test() {
+    let res = Math.floor(random(21,42))
+    let x, y, pad, stepx, stepy, cx, cy, tx, ty, d2centre, angle, vie
+    stepx = Math.floor(actualwidth / res)
+    stepy = stepx
+    pad = 3
+    vie = 0
+    cx = Math.floor(leftmargin + stepx * (res * 0.5))
+    cy = Math.floor(topmargin + stepy * (res * 0.5))
+    stroke(0, 100, 100)
+    fill(0, 100, 100)
+    ellipse(cx, cy, 11, 11)
     noFill()
-    stroke(0,0,100)
-    for(let i=0;i<res;i++){
-        for(let j=0;j<res;j++){
-            x=leftmargin+stepx*i
-            y=topmargin+stepy*j
+    stroke(0, 0, 100)
+    for (let i = 0; i < res; i++) {
+        for (let j = 0; j < res; j++) {
+            x = leftmargin + stepx * i
+            y = topmargin + stepy * j
             push()
-            tx=x+stepx*0.5
-            ty=y+stepy*0.5
-            translate(tx,ty)
-            let angle = acos((tx-cx)/dist(tx,ty,cx,cy)); console.log(angle)
-            //translate(x,y)
-            rotate(angle)
-            // quad(
-            //     x+pad,y+pad,
-            //     x+stepx-pad,y+pad,
-            //     x+stepx-pad,y+stepy-pad,
-            //     x+pad,y+stepy-pad
-            // )
-            quad(
-                -stepx*0.5+pad,-stepy*0.5+pad,
-                stepx*0.5-pad,-stepy*0.5+pad,
-                stepx*0.5-pad,stepy*0.5-pad,
-                -stepx*0.5+pad,stepy*0.5-pad
-            )
+            tx = x + stepx * 0.5
+            ty = y + stepy * 0.5
+            d2centre = dist(tx, ty, cx, cy)
+            if (d2centre < cx * 0.85) {
+                angle = acos((tx - cx) / d2centre); console.log(angle)
+                ty < cy ? angle = 360 - angle : angle = angle
+                translate(tx, ty)
+                rotate(angle)
+                quad(
+                    -stepx * 0.5 + pad + random(-vie,vie), -stepy * 0.5 + pad+ random(-vie,vie),
+                    stepx * 0.5 - pad- random(-vie,vie), -stepy * 0.5 + pad+ random(-vie,vie),
+                    stepx * 0.5 - pad- random(-vie,vie), stepy * 0.5 - pad- random(-vie,vie),
+                    -stepx * 0.5 + pad+ random(-vie,vie), stepy * 0.5 - pad- random(-vie,vie)
+                )
+            }
             pop()
         }
     }
@@ -66,10 +80,10 @@ function vera() {
     // m and amp are two hyperparameters of the algorithm 
     // m determines if the cells grow (neg. value) or decreases (pos. value) when the cell is close to (cx,cy)
     // amp determines the amount of distorsion of each cell
-    m = Math.floor(random(1,17)); amp = Math.floor(random(21,67)) //dense in the center
+    m = Math.floor(random(1, 17)); amp = Math.floor(random(21, 67)) //dense in the center
     //m=17;amp=19 //dense towards the edge
     maxi = resolution
-    maxj = resolution +3
+    maxj = resolution + 3
     othercolor = 0
     maxothercolor = 3
     step = Math.floor(actualwidth / resolution)
@@ -87,31 +101,90 @@ function vera() {
             b = map(dist(x + step, y, cx, cy), 0, maxdist, 0, maxangle)
             c = map(dist(x + step, y + step, cx, cy), 0, maxdist, 0, maxangle)
             d = map(dist(x, y + step, cx, cy), 0, maxdist, 0, maxangle)
-            angle=acos((Math.abs(x-cx))/dist(x, y, cx, cy)); console.log(angle)
+            angle = acos((Math.abs(x - cx)) / dist(x, y, cx, cy)); console.log(angle)
             pada = m - amp * sin(a)
             padb = m - amp * sin(b)
             padc = m - amp * sin(c)
             padd = m - amp * sin(d)
-            random()<0.01?stroke(0,100,100):stroke(0,0,100)
-            drawcell(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd, angle)        }
+            random() < 0.01 ? stroke(0, 100, 100) : stroke(0, 0, 100)
+            drawcell(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd, angle)
+        }
     }
 }
 
 
 // this function fills the cell with vertical lines
 function drawcell(x1, y1, x2, y2, x3, y3, x4, y4, angle) {
-    let xo,yo,xd,yd,t,tinc
-    t=0
-    tinc=0.03
+    let xo, yo, xd, yd, t, tinc
+    t = 0
+    tinc = 0.03
     push()
     //rotate(angle)
-    while(t<1){
-        xo=lerp(x1,x4,t)
-        yo=lerp(y1,y4,t)
-        xd=lerp(x3,x4,t)
-        yd=lerp(y3,y4,t)
-        line(xo,yo,xd,yd)
-        t+=tinc
+    while (t < 1) {
+        xo = lerp(x1, x4, t)
+        yo = lerp(y1, y4, t)
+        xd = lerp(x3, x4, t)
+        yd = lerp(y3, y4, t)
+        line(xo, yo, xd, yd)
+        t += tinc
     }
     pop()
+}
+
+
+function getCentroid(x1,y1,x2,y2,x3,y3,x4,y4){
+    noFill()
+    stroke(0,0,100)
+    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    let ix1, iy1, ix2, iy2, ix3, iy3, ix4, iy4, inter
+    ix1 = (x1+x2+x3)/3
+    iy1 = (y1+y2+y3)/3
+    ix2 = (x2+x3+x4)/3
+    iy2 = (y2+y3+y4)/3
+    ix3 = (x3+x4+x1)/3
+    iy3 = (y3+y4+y1)/3
+    ix4 = (x4+x1+x2)/3
+    iy4 = (y4+y1+y2)/3
+    inter = intersect(ix1, iy1, ix3, iy3, ix2, iy2, ix4, iy4)
+    return inter
+}
+
+
+// found here https://jsfiddle.net/justin_c_rounds/Gd2S2/
+function intersect(ix1, iy1, ix3, iy3, ix2, iy2, ix4, iy4){
+var denominator, a, b, numerator1, numerator2, result = {
+        x: null,
+        y: null,
+        onLine1: false,
+        onLine2: false
+    };
+    denominator = ((iy4 - iy2) * (ix3 - ix1)) - ((ix4 - ix2) * (iy3 - iy1));
+    if (denominator == 0) {
+        return result;
+    }
+    a = iy1 - iy2;
+    b = ix1 - ix2;
+    numerator1 = ((ix4 - ix2) * a) - ((iy4 - iy2) * b);
+    numerator2 = ((ix3 - ix1) * a) - ((iy3 - iy1) * b);
+    a = numerator1 / denominator;
+    b = numerator2 / denominator;
+
+    // if we cast these lines infinitely in both directions, they intersect here:
+    result.x = ix1 + (a * (ix3 - ix1));
+    result.y = iy1 + (a * (iy3 - iy1));
+/*
+        // it is worth noting that this should be the same as:
+        x = line2StartX + (b * (line2EndX - line2StartX));
+        y = line2StartX + (b * (line2EndY - line2StartY));
+        */
+    // if line1 is a segment and line2 is infinite, they intersect if:
+    if (a > 0 && a < 1) {
+        result.onLine1 = true;
+    }
+    // if line2 is a segment and line1 is infinite, they intersect if:
+    if (b > 0 && b < 1) {
+        result.onLine2 = true;
+    }
+    // if line1 and line2 are segments, they intersect if both of the above are true
+    return result;
 }
