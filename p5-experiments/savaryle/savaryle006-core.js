@@ -7,34 +7,35 @@ function hal() {
     background(0, 0, 0)
     //    resolution = Math.floor(random(9,17))
     //    vera()
-//    test()
-    testInter()
+    test()
+    //    testInter()
 }
 
-function testInter(){
-    let x1,y1,x2,y2,x3,y3,x4,y4, inter
-    x1=100+random(-50,50)
-    y1=42
-    x2=250+random(-50,50)
-    y2=80
-    x3=240+random(-50,50)
-    y3=380
-    x4=30+random(-50,50)
-    y4=250
-    inter=getCentroid(x1,y1,x2,y2,x3,y3,x4,y4)
-    if(inter.x != null && inter.y!=null){
+function testInter() {
+    let x1, y1, x2, y2, x3, y3, x4, y4, inter
+    x1 = 100 + random(-50, 50)
+    y1 = 42
+    x2 = 250 + random(-50, 50)
+    y2 = 80
+    x3 = 240 + random(-50, 50)
+    y3 = 380
+    x4 = 30 + random(-50, 50)
+    y4 = 250
+    inter = getCentroid(x1, y1, x2, y2, x3, y3, x4, y4)
+    if (inter.x != null && inter.y != null) {
         ellipse(inter.x, inter.y, 7, 7)
     }
 }
 
 
 function test() {
-    let res = Math.floor(random(21,42))
+    let res = Math.floor(random(21, 42))
     let x, y, pad, stepx, stepy, cx, cy, tx, ty, d2centre, angle, vie
+    let x1, y1, x2, y2, x3, y3, x4, y4
     stepx = Math.floor(actualwidth / res)
     stepy = stepx
     pad = 3
-    vie = 0
+    vie = 7
     cx = Math.floor(leftmargin + stepx * (res * 0.5))
     cy = Math.floor(topmargin + stepy * (res * 0.5))
     stroke(0, 100, 100)
@@ -51,16 +52,23 @@ function test() {
             ty = y + stepy * 0.5
             d2centre = dist(tx, ty, cx, cy)
             if (d2centre < cx * 0.85) {
+                translate(tx, ty)
+                x1 = -stepx * 0.5 + pad + random(-vie, vie)
+                y1 = -stepy * 0.5 + pad + random(-vie, vie)
+                x2 = stepx * 0.5 - pad - random(-vie, vie)
+                y2 = -stepy * 0.5 + pad + random(-vie, vie)
+                x3 = stepx * 0.5 - pad - random(-vie, vie)
+                y3 = stepy * 0.5 - pad - random(-vie, vie)
+                x4 = -stepx * 0.5 + pad + random(-vie, vie)
+                y4 = stepy * 0.5 - pad - random(-vie, vie)
+                let c = getCentroid(x1, y1, x2, y2, x3, y3, x4, y4)
+                console.log(c.x, c.y)
+                tx = c.x
+                ty = c.y
                 angle = acos((tx - cx) / d2centre); console.log(angle)
                 ty < cy ? angle = 360 - angle : angle = angle
-                translate(tx, ty)
                 rotate(angle)
-                quad(
-                    -stepx * 0.5 + pad + random(-vie,vie), -stepy * 0.5 + pad+ random(-vie,vie),
-                    stepx * 0.5 - pad- random(-vie,vie), -stepy * 0.5 + pad+ random(-vie,vie),
-                    stepx * 0.5 - pad- random(-vie,vie), stepy * 0.5 - pad- random(-vie,vie),
-                    -stepx * 0.5 + pad+ random(-vie,vie), stepy * 0.5 - pad- random(-vie,vie)
-                )
+                quad(x1, y1, x2, y2, x3, y3, x4, y4)
             }
             pop()
         }
@@ -132,27 +140,27 @@ function drawcell(x1, y1, x2, y2, x3, y3, x4, y4, angle) {
 }
 
 
-function getCentroid(x1,y1,x2,y2,x3,y3,x4,y4){
+function getCentroid(x1, y1, x2, y2, x3, y3, x4, y4) {
     noFill()
-    stroke(0,0,100)
-    quad(x1,y1,x2,y2,x3,y3,x4,y4)
+    stroke(0, 0, 100)
+    quad(x1, y1, x2, y2, x3, y3, x4, y4)
     let ix1, iy1, ix2, iy2, ix3, iy3, ix4, iy4, inter
-    ix1 = (x1+x2+x3)/3
-    iy1 = (y1+y2+y3)/3
-    ix2 = (x2+x3+x4)/3
-    iy2 = (y2+y3+y4)/3
-    ix3 = (x3+x4+x1)/3
-    iy3 = (y3+y4+y1)/3
-    ix4 = (x4+x1+x2)/3
-    iy4 = (y4+y1+y2)/3
+    ix1 = (x1 + x2 + x3) / 3
+    iy1 = (y1 + y2 + y3) / 3
+    ix2 = (x2 + x3 + x4) / 3
+    iy2 = (y2 + y3 + y4) / 3
+    ix3 = (x3 + x4 + x1) / 3
+    iy3 = (y3 + y4 + y1) / 3
+    ix4 = (x4 + x1 + x2) / 3
+    iy4 = (y4 + y1 + y2) / 3
     inter = intersect(ix1, iy1, ix3, iy3, ix2, iy2, ix4, iy4)
     return inter
 }
 
 
 // found here https://jsfiddle.net/justin_c_rounds/Gd2S2/
-function intersect(ix1, iy1, ix3, iy3, ix2, iy2, ix4, iy4){
-var denominator, a, b, numerator1, numerator2, result = {
+function intersect(ix1, iy1, ix3, iy3, ix2, iy2, ix4, iy4) {
+    var denominator, a, b, numerator1, numerator2, result = {
         x: null,
         y: null,
         onLine1: false,
@@ -172,11 +180,11 @@ var denominator, a, b, numerator1, numerator2, result = {
     // if we cast these lines infinitely in both directions, they intersect here:
     result.x = ix1 + (a * (ix3 - ix1));
     result.y = iy1 + (a * (iy3 - iy1));
-/*
-        // it is worth noting that this should be the same as:
-        x = line2StartX + (b * (line2EndX - line2StartX));
-        y = line2StartX + (b * (line2EndY - line2StartY));
-        */
+    /*
+            // it is worth noting that this should be the same as:
+            x = line2StartX + (b * (line2EndX - line2StartX));
+            y = line2StartX + (b * (line2EndY - line2StartY));
+            */
     // if line1 is a segment and line2 is infinite, they intersect if:
     if (a > 0 && a < 1) {
         result.onLine1 = true;
