@@ -8,33 +8,17 @@ function hal() {
     //    resolution = Math.floor(random(9,17))
     //    vera()
     test()
-    //    testInter()
 }
 
-function testInter() {
-    let x1, y1, x2, y2, x3, y3, x4, y4, inter
-    x1 = 100 + random(-50, 50)
-    y1 = 42
-    x2 = 250 + random(-50, 50)
-    y2 = 80
-    x3 = 240 + random(-50, 50)
-    y3 = 380
-    x4 = 30 + random(-50, 50)
-    y4 = 250
-    inter = getCentroid(x1, y1, x2, y2, x3, y3, x4, y4)
-    if (inter.x != null && inter.y != null) {
-        ellipse(inter.x, inter.y, 7, 7)
-    }
-}
 
 
 function test() {
-    let res = Math.floor(random(21, 42))
+    let res = Math.floor(actualwidth*0.05)//Math.floor(random(21, 42))
     let x, y, pad, stepx, stepy, cx, cy, tx, ty, d2centre, angle, vie
     let x1, y1, x2, y2, x3, y3, x4, y4
     stepx = Math.floor(actualwidth / res)
     stepy = stepx
-    pad = 3
+    pad = -7
     vie = 7
     cx = Math.floor(leftmargin + stepx * (res * 0.5))
     cy = Math.floor(topmargin + stepy * (res * 0.5))
@@ -53,18 +37,18 @@ function test() {
             d2centre = dist(tx, ty, cx, cy)
             if (d2centre < cx * 0.85) {
                 translate(tx, ty)
-                x1 = -stepx * 0.5 + pad + random(-vie, vie)
-                y1 = -stepy * 0.5 + pad + random(-vie, vie)
-                x2 = stepx * 0.5 - pad - random(-vie, vie)
-                y2 = -stepy * 0.5 + pad + random(-vie, vie)
-                x3 = stepx * 0.5 - pad - random(-vie, vie)
-                y3 = stepy * 0.5 - pad - random(-vie, vie)
-                x4 = -stepx * 0.5 + pad + random(-vie, vie)
-                y4 = stepy * 0.5 - pad - random(-vie, vie)
+                x1 = -stepx * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
+                y1 = -stepy * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
+                x2 = stepx * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
+                y2 = -stepy * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
+                x3 = stepx * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
+                y3 = stepy * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
+                x4 = -stepx * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
+                y4 = stepy * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
                 let c = getCentroid(x1, y1, x2, y2, x3, y3, x4, y4)
-                console.log(c.x, c.y)
                 tx = c.x
                 ty = c.y
+                translate(tx, ty)
                 angle = acos((tx - cx) / d2centre); console.log(angle)
                 ty < cy ? angle = 360 - angle : angle = angle
                 rotate(angle)
@@ -141,9 +125,6 @@ function drawcell(x1, y1, x2, y2, x3, y3, x4, y4, angle) {
 
 
 function getCentroid(x1, y1, x2, y2, x3, y3, x4, y4) {
-    noFill()
-    stroke(0, 0, 100)
-    quad(x1, y1, x2, y2, x3, y3, x4, y4)
     let ix1, iy1, ix2, iy2, ix3, iy3, ix4, iy4, inter
     ix1 = (x1 + x2 + x3) / 3
     iy1 = (y1 + y2 + y3) / 3
