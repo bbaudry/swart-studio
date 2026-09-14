@@ -1,5 +1,5 @@
 var xoff = 0.0
-var xinc = 0.1
+var xinc = 0.042
 var grid = []
 var resolution
 
@@ -13,18 +13,15 @@ function hal() {
 
 
 function test() {
-    let res = Math.floor(actualwidth*0.05)//Math.floor(random(21, 42))
+    let res = Math.floor(actualwidth*random(0.05,0.2))//Math.floor(random(21, 42))
     let x, y, pad, stepx, stepy, cx, cy, tx, ty, d2centre, angle, vie
     let x1, y1, x2, y2, x3, y3, x4, y4
     stepx = Math.floor(actualwidth / res)
     stepy = stepx
-    pad = -7
-    vie = 7
+    pad = -Math.floor(1,11)
+    vie = Math.floor(3,11)
     cx = Math.floor(leftmargin + stepx * (res * 0.5))
     cy = Math.floor(topmargin + stepy * (res * 0.5))
-    stroke(0, 100, 100)
-    fill(0, 100, 100)
-    ellipse(cx, cy, 11, 11)
     noFill()
     stroke(0, 0, 100)
     for (let i = 0; i < res; i++) {
