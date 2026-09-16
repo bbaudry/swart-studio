@@ -1,0 +1,58 @@
+
+var w, h
+var cnv
+var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth, penwidth
+var sourcecode
+var font
+var fSize = 17
+var artname = "savaryle007"
+
+function preload() {
+        sourcecode = loadStrings(artname+'-core.js');
+}
+function setup() {
+    w = Math.floor(96*12)//(96*297/25.4)
+    h = Math.floor(96*15)//(96*420/25.4)
+    visiblew = Math.floor(96*11)//(96*297/25.4)
+    visibleh = Math.floor(96*14)//(96*420/25.4)
+    //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    cnv = createCanvas(w, h).mousePressed(savepng);
+    centerCanvas();
+    angleMode(DEGREES)
+    leftmargin = Math.floor(96*0.7)
+    rightmargin = Math.floor(96*11.3)
+    topmargin = Math.floor(96*0.7)
+    bottommargin = Math.floor(96*13.3)
+    actualwidth = rightmargin - leftmargin
+    actualheight = bottommargin - topmargin
+    colorMode(HSB, 360, 100, 100, 250);
+    //96*0.2/25.4 : 0.2mm is the width of a fineliner
+    //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
+    penwidth =96*0.26/25.4 //0.25mm is pigman micron 01
+    strokeWeight(penwidth)
+}
+
+function savesvg() {
+    save(artname+".svg");
+}
+
+
+function savepng() {
+    save(artname+".png");
+}
+
+
+function centerCanvas() {
+    var x = (windowWidth - windowHeight) / 2;
+    var y = (windowHeight - windowHeight) / 2;
+    cnv.position(x, y);
+}
+
+
+function draw() {
+    background(0, 0, 100)
+    noFill()
+    stroke(0,0,0)
+    hal()
+    noLoop()
+}
