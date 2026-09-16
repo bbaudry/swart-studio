@@ -1,7 +1,7 @@
 var xoff = 0.0
 var xinc = 0.09
 var grid = []
-var resolution
+var resolution = 42
 
 function hal() {
     background(0, 0, 0)
@@ -10,7 +10,7 @@ function hal() {
 
 
 
-function vera() {
+function test() {
     let res = Math.floor(actualwidth*random(0.05,0.1))//Math.floor(random(21, 42))
     let x, y, pad, stepx, stepy, cx, cy, tx, ty, d2centre, angle, vie
     let x1, y1, x2, y2, x3, y3, x4, y4
@@ -62,7 +62,7 @@ function vera() {
 * these distorted cells create an optical illusion that circles emerge from the grid
 * this design is inspired by the work of Victor Vasarely
 */
-function verasav() {
+function vera() {
     var x, y, step, othercolor, maxothercolor, cx, cy, i, maxi, j, maxj, maxdist, m, amp, angle
     // m and amp are two hyperparameters of the algorithm 
     // m determines if the cells grow (neg. value) or decreases (pos. value) when the cell is close to (cx,cy)

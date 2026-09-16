@@ -5,7 +5,7 @@ var resolution
 
 function hal() {
     background(0,0,0)
-    resolution = 14// Math.floor(random(9,17))
+    resolution = Math.floor(random(17,42))
     vera()
 }
 
