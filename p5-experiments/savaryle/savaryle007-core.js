@@ -1,7 +1,7 @@
 var xoff = 0.0
 var xinc = 0.09
 var grid = []
-var resolution = 42
+var resolution = 17
 
 function hal() {
     background(0, 0, 0)
@@ -67,8 +67,8 @@ function vera() {
     // m and amp are two hyperparameters of the algorithm 
     // m determines if the cells grow (neg. value) or decreases (pos. value) when the cell is close to (cx,cy)
     // amp determines the amount of distorsion of each cell
-    m = Math.floor(random(1, 17)); amp = Math.floor(random(21, 67)) //dense in the center
-    //m=17;amp=19 //dense towards the edge
+    //m = Math.floor(random(1, 17)); amp = Math.floor(random(21, 67)) //dense in the center
+    m=11;amp=19 //dense towards the edge
     maxi = resolution
     maxj = resolution + 3
     othercolor = 0
@@ -88,30 +88,52 @@ function vera() {
             b = map(dist(x + step, y, cx, cy), 0, maxdist, 0, maxangle)
             c = map(dist(x + step, y + step, cx, cy), 0, maxdist, 0, maxangle)
             d = map(dist(x, y + step, cx, cy), 0, maxdist, 0, maxangle)
-            angle = acos((Math.abs(x - cx)) / dist(x, y, cx, cy)); console.log(angle)
             pada = m - amp * sin(a)
             padb = m - amp * sin(b)
             padc = m - amp * sin(c)
             padd = m - amp * sin(d)
             random() < 0.01 ? stroke(0, 100, 100) : stroke(0, 0, 100)
-            drawcell(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd, angle)
+            tx=x+step*0.5
+            ty=y+step*0.5
+            angle = acos((Math.abs(tx - cx)) / dist(tx, ty, cx, cy)); console.log(angle)
+            push()
+            translate(tx,ty)
+            rotate(angle)
+            //drawcell(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd, angle)
+            // quad(-step*0.5+pada, -step*0.5 + pada, 
+            //     step*0.5 - padb, -step*0.5+ padb, 
+            //     step*0.5 - padc, step*0.5 - padc, 
+            //     -step*0.5 + padd, step*0.5 - padd)
+            drawcell(-step*0.5+pada, -step*0.5 + pada, 
+                step*0.5 - padb, -step*0.5+ padb, 
+                step*0.5 - padc, step*0.5 - padc, 
+                -step*0.5 + padd, step*0.5 - padd)
+            pop()
         }
     }
 }
 
 
 // this function fills the cell with vertical lines
-function drawcell(x1, y1, x2, y2, x3, y3, x4, y4, angle) {
+function drawcell(x1, y1, x2, y2, x3, y3, x4, y4) {
     let xo, yo, xd, yd, t, tinc
     t = 0
-    tinc = 0.03
+    tinc = 0.07
     push()
-    //rotate(angle)
     while (t < 1) {
         xo = lerp(x1, x4, t)
         yo = lerp(y1, y4, t)
         xd = lerp(x3, x4, t)
         yd = lerp(y3, y4, t)
+        line(xo, yo, xd, yd)
+        t += tinc
+    }
+    t = 0
+    while (t < 1) {
+        xo = lerp(x1, x2, t)
+        yo = lerp(y1, y2, t)
+        xd = lerp(x3, x2, t)
+        yd = lerp(y3, y2, t)
         line(xo, yo, xd, yd)
         t += tinc
     }
