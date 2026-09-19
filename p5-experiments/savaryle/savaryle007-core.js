@@ -1,57 +1,10 @@
 var xoff = 0.0
 var xinc = 0.09
 var grid = []
-var resolution = 17
+var resolution = 19
 
 function hal() {
-    background(0, 0, 0)
     vera()
-}
-
-
-
-function test() {
-    let res = Math.floor(actualwidth*random(0.05,0.1))//Math.floor(random(21, 42))
-    let x, y, pad, stepx, stepy, cx, cy, tx, ty, d2centre, angle, vie
-    let x1, y1, x2, y2, x3, y3, x4, y4
-    stepx = Math.floor(actualwidth / res)
-    stepy = stepx
-    pad = -Math.floor(1,11)
-    vie = Math.floor(3,9)
-    cx = Math.floor(leftmargin + stepx * (res * 0.5))
-    cy = Math.floor(topmargin + stepy * (res * 0.5))
-    noFill()
-    stroke(0, 0, 100)
-    for (let i = 0; i < res; i++) {
-        for (let j = 0; j < res; j++) {
-            x = leftmargin + stepx * i
-            y = topmargin + stepy * j
-            push()
-            tx = x + stepx * 0.5
-            ty = y + stepy * 0.5
-            d2centre = dist(tx, ty, cx, cy)
-            if (d2centre < cx * 0.85) {
-                translate(tx, ty)
-                x1 = -stepx * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                y1 = -stepy * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                x2 = stepx * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                y2 = -stepy * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                x3 = stepx * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                y3 = stepy * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                x4 = -stepx * 0.5 + pad + vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                y4 = stepy * 0.5 - pad - vie-noise(xoff)*2*vie; xoff+=xinc//random(-vie, vie)
-                let c = getCentroid(x1, y1, x2, y2, x3, y3, x4, y4)
-                tx = c.x
-                ty = c.y
-                translate(tx, ty)
-                angle = acos((tx - cx) / d2centre); console.log(angle)
-                ty < cy ? angle = 360 - angle : angle = angle
-                rotate(angle)
-                quad(x1, y1, x2, y2, x3, y3, x4, y4)
-            }
-            pop()
-        }
-    }
 }
 
 
@@ -67,19 +20,21 @@ function vera() {
     // m and amp are two hyperparameters of the algorithm 
     // m determines if the cells grow (neg. value) or decreases (pos. value) when the cell is close to (cx,cy)
     // amp determines the amount of distorsion of each cell
-    //m = Math.floor(random(1, 17)); amp = Math.floor(random(21, 67)) //dense in the center
-    m=11;amp=19 //dense towards the edge
+    m = Math.floor(random(1, 17)); amp = 17//Math.floor(random(21, 42)) //dense in the center
+    // let magic="m: "+m+"; amp: "+amp
+    // text(magic,0,h)
+    // //m=11;amp=19 //dense towards the edge  
     maxi = resolution
-    maxj = resolution + 3
+    maxj = resolution
     othercolor = 0
     maxothercolor = 3
     step = Math.floor(actualwidth / resolution)
-    cx = leftmargin + actualwidth * 0.5// random(0.4,0.8)
-    cy = topmargin + (step * maxj) * 0.5//random(0.4,0.8)
+    cx = leftmargin+actualwidth *  0.5//random(0.4,0.8)
+    cy = topmargin+actualheight * 0.5//random(0.4,0.8)
     maxdist = dist(0, 0, cx, cy)
-    for (i = 0; i < maxi; i++) {
+    for (let i = 0; i < maxi; i++) {
         x = leftmargin + i * step
-        for (j = 0; j < maxj; j++) {
+        for (let j = 0; j < maxj; j++) {
             y = topmargin + j * step
             maxangle = 360
             // (x,y) is the upper left corner of the cell
@@ -92,22 +47,22 @@ function vera() {
             padb = m - amp * sin(b)
             padc = m - amp * sin(c)
             padd = m - amp * sin(d)
-            random() < 0.01 ? stroke(0, 100, 100) : stroke(0, 0, 100)
-            tx=x+step*0.5
-            ty=y+step*0.5
-            angle = acos((Math.abs(tx - cx)) / dist(tx, ty, cx, cy)); console.log(angle)
+            tx = x + step * 0.5
+            ty = y + step * 0.5
+            angle = acos((Math.abs(tx - cx)) / dist(tx, ty, cx, cy));
             push()
-            translate(tx,ty)
+            translate(tx, ty)
+            ty < cy ? angle = 360 - angle : angle = angle
             rotate(angle)
             //drawcell(x + pada, y + pada, x + step - padb, y + padb, x + step - padc, y + step - padc, x + padd, y + step - padd, angle)
             // quad(-step*0.5+pada, -step*0.5 + pada, 
             //     step*0.5 - padb, -step*0.5+ padb, 
             //     step*0.5 - padc, step*0.5 - padc, 
             //     -step*0.5 + padd, step*0.5 - padd)
-            drawcell(-step*0.5+pada, -step*0.5 + pada, 
-                step*0.5 - padb, -step*0.5+ padb, 
-                step*0.5 - padc, step*0.5 - padc, 
-                -step*0.5 + padd, step*0.5 - padd)
+            drawcell(-step * 0.5 + pada, -step * 0.5 + pada,
+                step * 0.5 - padb, -step * 0.5 + padb,
+                step * 0.5 - padc, step * 0.5 - padc,
+                -step * 0.5 + padd, step * 0.5 - padd)
             pop()
         }
     }
@@ -118,13 +73,13 @@ function vera() {
 function drawcell(x1, y1, x2, y2, x3, y3, x4, y4) {
     let xo, yo, xd, yd, t, tinc
     t = 0
-    tinc = 0.07
+    tinc = 0.04
     push()
     while (t < 1) {
-        xo = lerp(x1, x4, t)
-        yo = lerp(y1, y4, t)
-        xd = lerp(x3, x4, t)
-        yd = lerp(y3, y4, t)
+        xo = lerp(x4, x1, t)
+        yo = lerp(y4, y1, t)
+        xd = lerp(x4, x3, t)
+        yd = lerp(y4, y3, t)
         line(xo, yo, xd, yd)
         t += tinc
     }
