@@ -5,23 +5,23 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 17
-var artname = "savaryle007"
+var artname = "savaryle008"
 
 function preload() {
         sourcecode = loadStrings(artname+'-core.js');
 font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     }
 function setup() {
-    w = 96*8//(96*297/25.4)
-    h = 96*8//(96*420/25.4)
+    w = 96*12//(96*297/25.4)
+    h = 96*12//(96*420/25.4)
     cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
     // cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = 96*0.5
-    rightmargin = 96*7.5
+    rightmargin = 96*11.5
     topmargin = 96*0.5
-    bottommargin = 96*7.5
+    bottommargin = 96*11.5
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -51,11 +51,11 @@ function centerCanvas() {
 
 
 function draw() {
-    background(0, 0, 100)
+    background(0, 0, 0)
     noFill()
-    stroke(220,100,100)
+    stroke(220,0,100)
     hal()
-    text("savaryle 007",w*0.05,h*0.97)
+    text("savaryle 008",w*0.05,h*0.97)
     text("al.my.re :: 2026",w*0.80,h*0.97)
     noLoop()
 }
