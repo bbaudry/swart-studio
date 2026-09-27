@@ -1,5 +1,5 @@
 var xoff = 0.0
-var xinc = 0.09
+var xinc = 0.01
 var grid = []
 var resolution = 20
 
@@ -12,17 +12,20 @@ function hal() {
 }
 
 function vera(cx, cy, r) {
-    let x1, y1, x2, y2, a, ainc, step
+    let x1, y1, x2, y2, a, ainc, rondeur
     translate(cx,cy)
     a = 90
-    ainc = 0.2
+    ainc = 0.5
     while (a > 0) {
+        rondeur=a
         y1=r*sin(a)
         y2=r*sin(-a)
         x1=r*cos(a)
         x2=r*cos(180-a)
         push()
-        rotate(random(-a,a))
+//        rotate(random(-a,a))
+        rondeur=a-noise(xoff)*2*a;xoff+=xinc
+        rotate(rondeur)
         line(x1,y1,x1,y2)
         line(x1,y1,x2,y1)
         line(x2,y1,x2,y2)
@@ -31,22 +34,3 @@ function vera(cx, cy, r) {
         a-=ainc 
     }
 }
-
-function courbe(x1,y1,x2,y2,r){
-    let ax1,ay1,ax2,ay2
-    if(x1==x2){
-        ax1=r; ax2=r
-        ay1=y1;ay2=y2
-    }
-    else{
-        ax1=x1;ax2=x2
-        ay1=r;ay2=r
-    }
-    beginShape()
-    bezierVertex(x1,y1)
-    bezierVertex(ax1,ay1)
-    bezierVertex(ax2,ay2)
-    bezierVertex(x2,y2)
-    endShape()
-}
-
