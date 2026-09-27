@@ -14,8 +14,8 @@ font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
 function setup() {
     w = 96*12//(96*297/25.4)
     h = 96*12//(96*420/25.4)
-    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
-    // cnv = createCanvas(w, h).mousePressed(savepng);
+    //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = 96*0.5
