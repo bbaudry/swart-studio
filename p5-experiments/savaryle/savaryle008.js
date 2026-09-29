@@ -6,6 +6,9 @@ var sourcecode
 var font
 var fSize = 17
 var artname = "savaryle008"
+var xoff = 0.0
+var xinc = 0.0001
+
 
 function preload() {
         sourcecode = loadStrings(artname+'-core.js');
@@ -31,6 +34,7 @@ function setup() {
     strokeWeight(penwidth)
     textFont(font)
     textSize(17)
+    frameRate(5)
 }
 
 function savesvg() {

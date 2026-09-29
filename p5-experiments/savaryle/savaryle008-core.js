@@ -1,8 +1,3 @@
-var xoff = 0.0
-var xinc = 0.0001
-var grid = []
-var resolution = 20
-
 function hal() {
     let cx, cy, r
     cx = leftmargin + Math.floor(actualwidth * 0.5)
@@ -15,9 +10,8 @@ function vera(cx, cy, r) {
     let x1, y1, x2, y2, a, ainc
     translate(cx, cy)
     a = 90
-    ainc = 0.2
+    ainc = 0.5
     while (a >= 0) {
-        rondeur = a
         y1 = r * sin(a)
         y2 = r * sin(-a)
         x1 = r * cos(a)
