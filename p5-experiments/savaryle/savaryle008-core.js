@@ -21,6 +21,8 @@ function vera(cx, cy, r) {
     }
 }
 
+// three variants of the basic algorithm, with more or less state (with push and pop)
+
 function molnar1(x1, y1, x2, y2, a) {
     let rondeur
     push()
