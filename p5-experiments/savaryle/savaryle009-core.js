@@ -1,7 +1,7 @@
 var xoff = 0.0
 var xinc = 0.1
 var grid = []
-var resolution = 21
+var resolution = 11
 
 function hal() {
     vera()
@@ -38,32 +38,35 @@ function vera() {
             y = topmargin + j * step + step * 0.5
             maxangle = 180
             if (dist(x, y, cx, cy) < actualheight * 0.5) {
-                drawcell(x, y, cx, cy,step) 
-                // a = map(dist(x, y, cx, cy), 0, maxdist, 0, maxangle)
-                // angle = asin((Math.abs(x - cx)) / dist(x, y, cx, cy));
-                // y < cy ? angle = 360 - angle : angle = angle
-                // x < cx ? angle = angle : angle = 360 - angle
-                // push()
-                // translate(x, y)
-                // rotate(angle)
-                // let padx = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc
-                // let pady = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc//random(0.3,0.6)
-                // quad(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
-                // pop()
+                drawcell(x, y, cx, cy, step)
             }
         }
     }
 }
 
-function drawcell(x, y, cx, cy,step) {
-    angle = asin((Math.abs(x - cx)) / dist(x, y, cx, cy));
-    y < cy ? angle = 360 - angle : angle = angle
-    x < cx ? angle = angle : angle = 360 - angle
-    push()
-    translate(x, y)
-    rotate(angle)
-    let padx = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc
-    let pady = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc//random(0.3,0.6)
-    quad(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
-    pop()
+function drawcell(x, y, cx, cy, step) {
+    dive(x, y, cx, cy, step, 0)
+}
+
+function dive(x, y, cx, cy, step, level) {
+    if (level < 3 && random()<0.8) {
+        let l=level+1
+        dive(x, y, cx, cy, step*0.5, l)
+        dive(x+step*0.5, y, cx, cy, step*0.5, l)
+        dive(x+step*0.5, y+step*0.5, cx, cy, step*0.5, l)
+        dive(x, y+step*0.5, cx, cy, step*0.5, l)
+
+    }
+    else{
+        angle = asin((Math.abs(x - cx)) / dist(x, y, cx, cy));
+        y < cy ? angle = 360 - angle : angle = angle
+        x < cx ? angle = angle : angle = 360 - angle
+        push()
+        translate(x, y)
+        rotate(angle)
+        let padx = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc
+        let pady = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc//random(0.3,0.6)
+        quad(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
+        pop()
+    }
 }
