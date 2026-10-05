@@ -1,7 +1,7 @@
 var xoff = 0.0
 var xinc = 0.1
 var grid = []
-var resolution = 11
+var resolution = 17
 
 function hal() {
     vera()
@@ -31,6 +31,7 @@ function vera() {
     step = Math.floor(actualwidth / resolution)
     cx = leftmargin + actualwidth * 0.5//random(0.4,0.8)
     cy = topmargin + actualheight * 0.5//random(0.4,0.8)
+    ellipse(cx,cy,actualheight,actualheight)
     maxdist = dist(leftmargin, topmargin, cx, cy)
     for (let i = 0; i < maxi; i++) {
         x = leftmargin + i * step + step * 0.5
@@ -49,12 +50,12 @@ function drawcell(x, y, cx, cy, step) {
 }
 
 function dive(x, y, cx, cy, step, level) {
-    if (level < 3 && random()<0.8) {
+    if (level < 4){
         let l=level+1
-        dive(x, y, cx, cy, step*0.5, l)
-        dive(x+step*0.5, y, cx, cy, step*0.5, l)
-        dive(x+step*0.5, y+step*0.5, cx, cy, step*0.5, l)
-        dive(x, y+step*0.5, cx, cy, step*0.5, l)
+        if(random()<0.85) {dive(x, y, cx, cy, step*0.5, l)}
+        if(random()<0.85) {dive(x+step*0.5, y, cx, cy, step*0.5, l)}
+        if(random()<0.85) {dive(x+step*0.5, y+step*0.5, cx, cy, step*0.5, l)}
+        if(random()<0.85) {dive(x, y+step*0.5, cx, cy, step*0.5, l)}
 
     }
     else{
@@ -64,8 +65,8 @@ function dive(x, y, cx, cy, step, level) {
         push()
         translate(x, y)
         rotate(angle)
-        let padx = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc
-        let pady = step * map(noise(xoff), 0, 1, 0.3, 0.6); xoff += xinc//random(0.3,0.6)
+        let padx = step * map(noise(xoff), 0, 1, 0.3, 0.8); xoff += xinc
+        let pady = step * map(noise(xoff), 0, 1, 0.3, 0.8); xoff += xinc//random(0.3,0.6)
         quad(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
         pop()
     }
