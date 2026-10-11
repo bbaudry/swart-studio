@@ -55,7 +55,7 @@ function draw() {
     noFill()
     stroke(220,100,100)
     hal()
-    text("savaryle 007",w*0.05,h*0.97)
+    text("savaryle 009",w*0.05,h*0.97)
     text("al.my.re :: 2026",w*0.80,h*0.97)
     noLoop()
 }
