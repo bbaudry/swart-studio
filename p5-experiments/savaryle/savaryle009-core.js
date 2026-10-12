@@ -1,7 +1,7 @@
 var xoff = 0.0
 var xinc = 0.1
 var grid = []
-var resolution = 8
+var resolution = 22
 
 function hal() {
     vera()
@@ -57,7 +57,7 @@ function drawcell(x, y, cx, cy, step) {
 }
 
 function divebis(x, y, step, level) {
-    if (level < 3) {
+    if (level < 2) {
         let l = level + 1
         if (random() < 0.66) {
             divebis(x - step * 0.5, y, step * 0.5, l)
@@ -66,19 +66,20 @@ function divebis(x, y, step, level) {
             divebis(x, y + step * 0.5, step * 0.5, l)
         }
         else {
-            onecell(x, y, step)
+            onecell(x, y, step,level)
         }
     }
     else {
-        onecell(x, y, step)
+        onecell(x, y, step,level)
     }
 }
 
-function onecell(x, y, step) {
-    let padx = step * map(noise(xoff), 0, 1, 0.3, 1.1); xoff += xinc
-    let pady = step * map(noise(xoff), 0, 1, 0.3, 1.1); xoff += xinc
+function onecell(x, y, step, level) {
+    let padx = step * map(noise(xoff), 0, 1, 0.2, 1.2); xoff += xinc
+    let pady = step * map(noise(xoff), 0, 1, 0.2, 1.2); xoff += xinc
     push()
     translate(x, y)
+    rotate(45*level)
     hache(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
     pop()
 }
