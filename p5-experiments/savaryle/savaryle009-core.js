@@ -1,7 +1,7 @@
 var xoff = 0.0
 var xinc = 0.1
 var grid = []
-var resolution = 22
+var resolution = 12
 
 function hal() {
     vera()
@@ -42,6 +42,10 @@ function vera() {
             }
         }
     }
+    push()
+    stroke(0, 100, 100)
+    ellipse(cx, cy, actualwidth, actualwidth)
+    pop()
 }
 
 function drawcell(x, y, cx, cy, step) {
@@ -57,20 +61,20 @@ function drawcell(x, y, cx, cy, step) {
 }
 
 function divebis(x, y, step, level) {
-    if (level < 2) {
+    if (level < 1) {
         let l = level + 1
-        if (random() < 0.66) {
-            divebis(x - step * 0.5, y, step * 0.5, l)
-            divebis(x, y - step * 0.5, step * 0.5, l)
-            divebis(x + step * 0.5, y, step * 0.5, l)
-            divebis(x, y + step * 0.5, step * 0.5, l)
+        if (random() < 0.82) {
+            divebis(x - step * 0.25, y - step * 0.25, step * 0.5, l)
+            divebis(x + step * 0.25, y - step * 0.25, step * 0.5, l)
+            divebis(x + step * 0.25, y + step * 0.25, step * 0.5, l)
+            divebis(x - step * 0.25, y + step * 0.25, step * 0.5, l)
         }
         else {
-            onecell(x, y, step,level)
+            onecell(x, y, step, level)
         }
     }
     else {
-        onecell(x, y, step,level)
+        onecell(x, y, step, level)
     }
 }
 
@@ -79,20 +83,20 @@ function onecell(x, y, step, level) {
     let pady = step * map(noise(xoff), 0, 1, 0.2, 1.2); xoff += xinc
     push()
     translate(x, y)
-    rotate(45*level)
+    rotate(90*level)
     hache(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
     pop()
 }
 
-function hache(x1,y1,x2,y2,x3,y3,x4,y4){
-    let ox1,oy1,ox2,oy2
-    let t=0
-    while(t<1){
-        ox1=lerp(x1,x4,t)
-        oy1=lerp(y1,y4,t)
-        ox2=lerp(x2,x3,t)
-        oy2=lerp(y2,y3,t)
-        line(ox1,oy1,ox2,oy2)
-        t+=random(0.04,0.1)
+function hache(x1, y1, x2, y2, x3, y3, x4, y4) {
+    let ox1, oy1, ox2, oy2
+    let t = 0
+    while (t < 1) {
+        ox1 = lerp(x1, x4, t)
+        oy1 = lerp(y1, y4, t)
+        ox2 = lerp(x2, x3, t)
+        oy2 = lerp(y2, y3, t)
+        line(ox1, oy1, ox2, oy2)
+        t += random(0.02, 0.1)
     }
 }

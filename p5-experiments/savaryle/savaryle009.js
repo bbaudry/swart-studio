@@ -51,9 +51,9 @@ function centerCanvas() {
 
 
 function draw() {
-    background(0, 0, 100)
+    background(0, 0, 0)
     noFill()
-    stroke(220,100,100)
+    stroke(220,0,100)
     hal()
     text("savaryle 009",w*0.05,h*0.97)
     text("al.my.re :: 2026",w*0.80,h*0.97)
