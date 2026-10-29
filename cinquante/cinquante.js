@@ -5,6 +5,7 @@ var leftmargin, rightmargin, topmargin, bottommargin, actualheight, actualwidth,
 var sourcecode
 var font
 var fSize = 17
+var xoff, xinc, resolution
 
 function setup() {
     w = 96*11//(96*297/25.4)
@@ -23,6 +24,11 @@ function setup() {
     //0.04 * 96 : 0.04 inch is 1 mm, the width of stabilo 68/32
     penwidth =96*0.26/25.4 //0.25mm is pigman micron 01
     strokeWeight(penwidth)
+    frameRate(11)
+     xoff = 0.0
+ xinc = 0.0001
+ resolution = 184
+
 }
 
 function savesvg() {
@@ -49,5 +55,5 @@ function draw() {
     hal()
     text("savaryle 009",w*0.05,h*0.97)
     text("al.my.re :: 2026",w*0.80,h*0.97)
-    noLoop()
+//    noLoop()
 }

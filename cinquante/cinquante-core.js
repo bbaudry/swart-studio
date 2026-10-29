@@ -1,10 +1,8 @@
-var xoff = 0.0
-var xinc = 0.1
-var grid = []
-var resolution = 11
 
 function hal() {
     vera()
+    if(resolution>21){resolution-=1}
+    console.log(resolution)
 }
 
 
@@ -24,6 +22,7 @@ function vera() {
     // let magic="m: "+m+"; amp: "+amp
     // text(magic,0,h)
     // //m=11;amp=19 //dense towards the edge  
+    xinc+=0.000000001
     maxi = resolution
     maxj = resolution
     othercolor = 0
@@ -40,22 +39,27 @@ function vera() {
             if (dist(x+step*0.5,y+step*0.5, cx, cy) < actualwidth * 0.5) {
                 drawcell(x+step*0.5, y+step*0.5, cx, cy, step * 0.8)
             }
+            else{
+                rect(x,y,step,step)
+            }
         }
     }
 }
 
 function drawcell(x, y, cx, cy, step) {
     // dive(x, y, cx, cy, step, 0)
-    let angle = asin((Math.abs(x - cx)) / dist(x, y, cx, cy));
+    let angle = 0//asin((Math.abs(x - cx)) / dist(x, y, cx, cy));
     y < cy ? angle = 360 - angle : angle = angle
     x < cx ? angle = angle : angle = 360 - angle
     push()
     translate(x, y)
     rotate(angle)
-    divebis(0, 0, step, 0)
+    onecell(0, 0, step, 0)
+//    divebis(0, 0, step, 0)
     pop()
 }
 
+// recursive function to draw in a cell
 function divebis(x, y, step, level) {
     if (level < 2) {
         let l = level + 1
@@ -75,15 +79,16 @@ function divebis(x, y, step, level) {
 }
 
 function onecell(x, y, step, level) {
-    let padx = step * map(noise(xoff), 0, 1, 0.2, 1.2); xoff += xinc
-    let pady = step * map(noise(xoff), 0, 1, 0.2, 1.2); xoff += xinc
+    let padx = step * map(noise(xoff), 0, 1, 0.1, 1); xoff += xinc
+    let pady = step * map(noise(xoff), 0, 1, 0.1, 1); xoff += xinc
     push()
     translate(x, y)
     rotate(90*level)
-    // quad(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
+    fill(0,0,100)
+     quad(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
     // ellipse(0,0,5,5)
 
-    hache(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
+    //hache(-padx, -pady, padx, -pady, padx, pady, -padx, pady)
     pop()
 }
 
