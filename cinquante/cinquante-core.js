@@ -1,7 +1,7 @@
 
 function hal() {
     vera()
-    if(resolution>21){resolution-=1}
+    if(resolution>42){resolution-=1}
     console.log(resolution)
 }
 
@@ -36,12 +36,14 @@ function vera() {
         for (let j = 0; j < maxj; j++) {
             y = topmargin + j * step + step * 0.5
             maxangle = 180
-            if (dist(x+step*0.5,y+step*0.5, cx, cy) < actualwidth * 0.5) {
+            if (dist(x+step*0.5,y+step*0.5, cx, cy) < actualheight * 0.5) {
                 drawcell(x+step*0.5, y+step*0.5, cx, cy, step * 0.8)
             }
             else{
+                if(random()<0.01){
+                    fill(0,100,100)
                 rect(x,y,step,step)
-            }
+}            }
         }
     }
 }

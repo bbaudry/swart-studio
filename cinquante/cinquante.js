@@ -8,15 +8,15 @@ var fSize = 17
 var xoff, xinc, resolution
 
 function setup() {
-    w = 96*11//(96*297/25.4)
-    h = 96*11//(96*420/25.4)
+    w = windowWidth
+    h = windowHeight
     cnv = createCanvas(w, h).mousePressed(savepng);
-    centerCanvas();
+    //centerCanvas();
     angleMode(DEGREES)
-    leftmargin = 96*0.5
-    rightmargin = 96*10.5
-    topmargin = 96*0.5
-    bottommargin = 96*10.5
+    leftmargin = w*0
+    rightmargin = w
+    topmargin = h*0
+    bottommargin = h
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
@@ -27,7 +27,7 @@ function setup() {
     frameRate(11)
      xoff = 0.0
  xinc = 0.0001
- resolution = 184
+ resolution = 131
 
 }
 
@@ -42,8 +42,8 @@ function savepng() {
 
 
 function centerCanvas() {
-    var x = (windowWidth - windowHeight) / 2;
-    var y = (windowHeight - windowHeight) / 2;
+    var x = (windowWidth - w) / 2;
+    var y = (windowHeight - h) / 2;
     cnv.position(x, y);
 }
 
@@ -53,7 +53,7 @@ function draw() {
     noFill()
     stroke(220,0,100)
     hal()
-    text("savaryle 009",w*0.05,h*0.97)
-    text("al.my.re :: 2026",w*0.80,h*0.97)
+    // text("savaryle 009",w*0.05,h*0.97)
+    // text("al.my.re :: 2026",w*0.80,h*0.97)
 //    noLoop()
 }
