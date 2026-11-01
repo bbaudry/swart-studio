@@ -1,5 +1,11 @@
 [
   {
-    "mouvement": "ouverture"
+    "movement": "ouverture",
+    "duration" : 142
+  },
+    {
+    "movement": "closure",
+    "duration" : 42
   }
+
 ]
