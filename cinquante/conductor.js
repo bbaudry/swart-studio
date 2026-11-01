@@ -59,12 +59,14 @@ function draw() {
 function drawcorpse(){
   // Check if we completed a movement
   if (counter % currentduration == 0 && index==nbmovements) {
-    background(0,0,0)
-    fill(330,100,100),noStroke()
-    ellipse(w*0.5,h*0.5,100,100)
-    noLoop()
+    index=0
+    // background(0,0,0)
+    // fill(330,100,100),noStroke()
+    // ellipse(w*0.5,h*0.5,100,100)
+    // noLoop()
   }
   if (counter % currentduration == 0 && index < nbmovements) {
+    console.log(counter)
     background(0,0,0)
     let artCode = score[index].movement;
     window[artCode]["init"]();
