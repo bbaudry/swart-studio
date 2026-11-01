@@ -40,7 +40,8 @@ function vera() {
                 drawcell(x+step*0.5, y+step*0.5, cx, cy, step * 0.8)
             }
             else{
-                if(random()<0.01){
+                if(noise(xoff)<0.2){
+                    xoff+=xinc
                     fill(0,100,100)
                 rect(x,y,step,step)
 }            }

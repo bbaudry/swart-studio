@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/p5@2.0.0-beta.4/lib/p5.min.js"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="conductor.js"></script>
+    <script>
+      function fetchJSONData() {
+        fetch("./score.json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Create JS module for each mouvement file
+            for (const s of data) {
+              let js = document.createElement("script");
+              js.type = "module";
+              js.src = "./" + s.mouvement + ".js";
+              document.body.appendChild(js);
+            }
+          })
+          .catch((error) => console.error("Failed to fetch data:", error));
+      }
+      fetchJSONData();
+    </script>
+
+  </body>
+</html>
