@@ -48,10 +48,10 @@ async function initallworks(){
     promises.push(promise);
   }
   await Promise.all(promises);
+  currentduration=score[0].duration
 }
 
 function draw() {
-  currentduration=score[0].duration
    drawcorpse()
 }
 
@@ -63,7 +63,7 @@ function drawcorpse(){
     // background(0,0,0)
     // fill(330,100,100),noStroke()
     // ellipse(w*0.5,h*0.5,100,100)
-    // noLoop()
+     noLoop()
   }
   if (counter % currentduration == 0 && index < nbmovements) {
     background(0,0,0)
@@ -72,10 +72,12 @@ function drawcorpse(){
     currentduration=score[index].duration;
     console.log(currentduration)
     index++;
+    counter=1
   }
 
   // Draw the current section
   if (counter % currentduration > 0) {
+    console.log("draw")
     let artCode = score[index - 1].movement;
     window[artCode]["draw"]();
   }

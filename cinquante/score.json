@@ -2,7 +2,13 @@
 [
     {
         "movement": "ouverture",
-        "duration": 7200
+        "duration": 50,
+        "_comment": "should last 5000 frames"
+    },
+    {
+        "movement": "refrain",
+        "duration": 5000,
+        "_comment": "should last 5000 frames"
     },
     {
         "movement": "closure",
