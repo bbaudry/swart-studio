@@ -1,11 +1,11 @@
-[
-  {
-    "movement": "ouverture",
-    "duration" : 142
-  },
-    {
-    "movement": "closure",
-    "duration" : 42
-    }
 
+[
+    {
+        "movement": "ouverture",
+        "duration": 7200
+    },
+    {
+        "movement": "closure",
+        "duration": 42
+    }
 ]

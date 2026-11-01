@@ -66,11 +66,11 @@ function drawcorpse(){
     // noLoop()
   }
   if (counter % currentduration == 0 && index < nbmovements) {
-    console.log(counter)
     background(0,0,0)
     let artCode = score[index].movement;
     window[artCode]["init"]();
     currentduration=score[index].duration;
+    console.log(currentduration)
     index++;
   }
 
