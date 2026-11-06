@@ -44,6 +44,7 @@ async function initallworks(){
   for (let i = 0; i < nbmovements; i++) {
     // Initialize all sketches
     let artCode = score[i].movement;
+    console.log("init "+artCode+" now")
     let promise = window[artCode]["init"]();
     promises.push(promise);
   }

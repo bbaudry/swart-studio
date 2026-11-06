@@ -6,6 +6,16 @@
         "_comment": "should last 5000 frames"
     },
     {
+        "movement": "refrain",
+        "duration": 50,
+        "_comment": "should last 5000 frames"
+    },
+    {
+        "movement": "_1_",
+        "duration": 500,
+        "_comment": "should last 5000 frames"
+    },
+    {
         "movement": "refrain2",
         "duration": 5000,
         "_comment": "should last 5000 frames"
