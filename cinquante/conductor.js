@@ -63,7 +63,7 @@ function drawcorpse(){
     // background(0,0,0)
     // fill(330,100,100),noStroke()
     // ellipse(w*0.5,h*0.5,100,100)
-     noLoop()
+    // noLoop()
   }
   if (counter % currentduration == 0 && index < nbmovements) {
     background(0,0,0)

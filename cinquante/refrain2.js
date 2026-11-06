@@ -13,7 +13,7 @@
         resx = 84
         resy = Math.floor(h / (w / resx))
         xoff = 0.0
-        xinc = 0.005
+        xinc = 0.0005
         noStroke()
         initgrid()
     }
@@ -46,8 +46,9 @@
     function drawgrid() {
         for(let c in grid){
             grid[c].display()
-            grid[c].update()
+            grid[c].update(noise(xoff));
         }
+        xoff+=xinc
     }
 
 
@@ -67,7 +68,7 @@ class Cell{
     }
 
     display() {
-        this.inside?fill(0,0,100):fill(0,100,100)
+        this.inside?fill(0,0,100,50):fill(0,100,100)
         push()
         translate(this.x,this.y)
         rotate(this.angle)
@@ -80,7 +81,15 @@ class Cell{
         pop()
     }
 
-    update(){
-        this.angle+=0.001
+    update(noise){
+        if(this.inside){
+        this.pad=noise*this.stepx*2
+        this.angle-=random(0.02)
+        }
+        else{
+            this.pad=noise*0.5*this.stepx
+//        this.angle-=0.005
+
+        }
     }
 }
