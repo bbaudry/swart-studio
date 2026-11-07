@@ -17,6 +17,7 @@
         background(0, 0, 0, 10)
         stroke(0,0,100)
         noFill()
+        rad = h * 0.42 * random(0.5,1)
         ellipse(cx,cy,rad,rad)
         localcounter++
     }

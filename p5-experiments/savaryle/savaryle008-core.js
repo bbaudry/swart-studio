@@ -16,7 +16,7 @@ function vera(cx, cy, r) {
         y2 = r * sin(-a)
         x1 = r * cos(a)
         x2 = r * cos(180 - a)
-        molnar1(x1, y1, x2, y2, a)
+        molnar3(x1, y1, x2, y2, a)
         a -= ainc
     }
 }

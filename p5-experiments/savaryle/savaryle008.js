@@ -15,16 +15,16 @@ function preload() {
 font = loadFont("../fonts/1CAMBam_Stick_9.ttf");
     }
 function setup() {
-    w = 96*12//(96*297/25.4)
-    h = 96*12//(96*420/25.4)
-    //cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
-    cnv = createCanvas(w, h).mousePressed(savepng);
+    w = 96*8//(96*297/25.4)
+    h = 96*8//(96*420/25.4)
+    cnv = createCanvas(w, h, SVG).mousePressed(savesvg);
+    //cnv = createCanvas(w, h).mousePressed(savepng);
     centerCanvas();
     angleMode(DEGREES)
     leftmargin = 96*0.5
-    rightmargin = 96*11.5
+    rightmargin = 96*7.5
     topmargin = 96*0.5
-    bottommargin = 96*11.5
+    bottommargin = 96*7.5
     actualwidth = rightmargin - leftmargin
     actualheight = bottommargin - topmargin
     colorMode(HSB, 360, 100, 100, 250);
