@@ -9,17 +9,37 @@
         cx = w * 0.5
         cy = h * 0.5
         rad = h * 0.42
-        xoff=0.0
-        xinc=0.001
+        xoff = 0.0
+        xinc = 0.001
+        background(0, 0, 0)
     }
 
     function draw() {
-        background(0, 0, 0, 10)
-        stroke(0,0,100)
-        noFill()
-        rad = h * 0.42 * random(0.5,1)
-        ellipse(cx,cy,rad,rad)
+        if(localcounter==0){
+        drawgrid()}
         localcounter++
+    }
+
+
+    function drawgrid() {
+        let x, y, blanc
+        let resx = 5
+        let resy = 42
+        let stepx = w / 5
+        let stepy = h / 33*random(0.5,1.2)
+        blanc = true
+        y = 0
+        while (y < h) {
+            for (let i = 0; i < resx; i++) {
+                x = i * stepx
+                blanc ? fill(0, 0, 100) : noFill()
+                blanc = !blanc
+                rect(x, y, stepx, stepy)
+            }
+            y += stepy
+            stepy = h / 33*random(0.5,1.2)
+
+        }
     }
 
     window._1_ = { init, draw };
