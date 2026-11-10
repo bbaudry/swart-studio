@@ -24,9 +24,9 @@
     function drawgrid() {
         let x, y, blanc
         let resx = 5
-        let resy = 42
+        let resy = 21 
         let stepx = w / 5
-        let stepy = h / 33*random(0.5,1.2)
+        let stepy = h / resy*random(0.5,2.1)
         blanc = true
         y = 0
         while (y < h) {
@@ -37,7 +37,7 @@
                 rect(x, y, stepx, stepy)
             }
             y += stepy
-            stepy = h / 33*random(0.5,1.2)
+            stepy = h / resy*random(0.5,2.1)
 
         }
     }

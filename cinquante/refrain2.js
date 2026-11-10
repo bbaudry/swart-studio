@@ -63,12 +63,12 @@ class Cell{
         this.inside=inside
         this.stepx=stepx
         this.stepy=stepy
-        this.pad=0
+        inside?this.pad=0:this.pad=random(11,42)
         this.angle=0
     }
 
     display() {
-        this.inside?fill(0,0,100,50):fill(0,100,100)
+        this.inside?fill(0,0,100,80):fill(0,0,90)
         push()
         translate(this.x,this.y)
         rotate(this.angle)
@@ -87,7 +87,7 @@ class Cell{
         this.angle-=random(0.02)
         }
         else{
-            this.pad=noise*0.5*this.stepx
+            //this.pad=noise*this.pad
 //        this.angle-=0.005
 
         }
