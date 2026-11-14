@@ -17,6 +17,7 @@ function setup(){
     //getpng()
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
+    angleMode(DEGREES);
     noFill()
 }
 
@@ -71,8 +72,9 @@ function draw(){
     stroke(0,0,0)
     resx=3
     resy=4  
-    cellside=96*90/25.4
+    cellside=Math.floor(96*90/25.4)
     drawgrid()
+    drawcards()
     noLoop()
 }
 
@@ -81,11 +83,52 @@ function drawgrid(){
     noFill()
     for(let i=0;i<resx;i++){
         for(let j=0;j<resy;j++){
-            console.log(x+" "+y)
             x=leftmargin+i*cellside
             y=topmargin+j*cellside
             rect(x,y,cellside,cellside)
         }
     }
+}
 
+function drawcards(){
+    let x,y
+    noFill()
+    for(let i=0;i<resx;i++){
+        for(let j=0;j<resy;j++){
+            x=leftmargin+i*cellside
+            y=topmargin+j*cellside
+            push()
+            translate(x,y)
+            drawcard()
+            pop()
+        }
+    }
+}
+
+function drawcard(){
+    let pad=cellside*0.06
+    let arete=cellside-2*pad
+    let res=3
+    let step=arete/3
+    let angle=11
+    let nbpasses=Math.floor(random(1,9))
+    let x,y,cx,cy,localstep
+    push()
+    translate(pad,pad)
+    for(let passes=0;passes<nbpasses;passes++){
+    for(let i=0;i<res;i++){
+        x=i*step
+        cx=x+step/2
+        for(let j=0;j<3;j++){
+            y=j*step
+            cy=y+step/2
+            localstep=step*random(0.8,1.0)
+            push()
+            translate(cx,cy)
+            rotate(random(-angle,angle))
+            rect(-localstep/2,-localstep/2,localstep,localstep)
+            pop()
+        }
+    }}
+    pop()
 }
