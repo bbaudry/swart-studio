@@ -113,6 +113,7 @@ async function drawcards() {
 }
 
 /** 
+ * curves, remixing plein-011
  * @returns an array of random numbers generated to draw the piece
  */
 function drawcard_curves() {
@@ -123,7 +124,8 @@ function drawcard_curves() {
     rayon=45
     push()
     translate(pad, pad)
-    for (let t = 0; t < 250; t+=3) {
+    for (let t = 0; t < 242; t+=3) {
+        stroke(330,100,100)
         ax1 = 0; ay1 = lerp(arete, 0, 0.05)-t
         ax2 = arete; ay2 = lerp(arete, 0, 0.05)-t
         px1 = lerp(ax1,ax2,0.25)
@@ -131,7 +133,7 @@ function drawcard_curves() {
         px2 = lerp(ax1,ax2,0.75)
         py2 = lerp(ay1,ay2,0.75)-rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc 
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-
+        stroke(0,100,100)
         ax1 = 0; ay1 = lerp(0, arete, 0.05)+t
         ax2 = arete; ay2 = lerp(0, arete, 0.05)+t
         px1 = lerp(ax1,ax2,0.25)
