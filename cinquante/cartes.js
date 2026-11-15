@@ -101,46 +101,74 @@ async function drawcards() {
             const y = topmargin + j * cellside
             push()
             translate(x, y)
-//            let empreinte = drawcard_vera()
+            //let empreinte = drawcard_vera()
             let empreinte = drawcard_chiharu()
+            //let empreinte = drawcard_curves()
             pop()
+            stroke(0,0,0)
             const h = await hashgenerativeparameters(empreinte)
-            text(h.toUpperCase(),  x+9, y + cellside -7)
+            text(h.toUpperCase(), x + 9, y + cellside - 7)
         }
     }
 }
 
-
+/** 
+ * random red threads in the card. tribute to chiharu shiota
+ * grid with randomly chosen resolution; central points of the cells are saved, shuffled and connected with a single continuous lines
+*/
 function drawcard_chiharu() {
     let pad = cellside * 0.07
     let arete = cellside - 2 * pad
-    let res = 7// Math.floor(random(5,21))
-    let step = arete / res
     let empreinte = []
-    let x, y, cx, cy, anchors
-    anchors=[]
+    let res = Math.floor(random(3, 17)); empreinte.push(res)
+    let step = arete / res
+    let x, y, cx, cy, anchors, horizon
+    anchors = []
     push()
+
     translate(pad, pad)
+    random() < 0.5 ? horizon = true : horizon = false
+    empreinte.push(horizon)
     for (let i = 0; i < res; i++) {
-        x = i * step
-        cx = x + step / 2
-        for (let j = 0; j < res; j++) {
-            y = j * step
+        if (horizon) {
+            y = i * step
             cy = y + step / 2
-            anchors.push(createVector(cx,cy))
+        }
+        else {
+            x = i * step
+            cx = x + step / 2
+        }
+        for (let j = 0; j < res; j++) {
+            if (horizon) {
+                x = j * step
+                cx = x + step / 2
+            }
+            else {
+                y = j * step
+                cy = y + step / 2
+            }
+            anchors.push(createVector(cx, cy))
         }
     }
-    let randanchors=shuffleCoords(anchors)
-    let x1,y1,x2,y2
-    x1=randanchors[0].x
-    y1=randanchors[0].y
-    for(let i=1;i<anchors.length;i++){
-        x2=randanchors[i].x
-        y2=randanchors[i].y
-        line(x1,y1,x2,y2)
-        x1=x2
-        y1=y2
+    // shuffle the points. rate controls the amount of shuffling, pass multiple times to account for the small variations of noise
+    let randanchors = anchors
+    let rate = Math.floor(random(3, 11)) * randanchors.length
+    for (var i = rate; i > 0; i--) {
+        var j = Math.floor(noise(xoff) * (randanchors.length)); xoff += xinc
+        var k = Math.floor(noise(xoff) * (randanchors.length)); xoff += xinc
+        empreinte.push(j)
+        empreinte.push(k)
+        var temp = randanchors[k];
+        randanchors[k] = randanchors[j];
+        randanchors[j] = temp;
     }
+    // connect points with a single red line
+    stroke(0,100,100)
+    beginShape()
+    for (let i = 0; i < anchors.length; i++) {
+        vertex(randanchors[i].x, randanchors[i].y)
+    }
+    endShape()
     pop()
     return empreinte
 }
@@ -193,25 +221,22 @@ async function hashgenerativeparameters(alea) {
     return hashHex
 }
 
-    let xoff=0.0
-    let xinc=0.00001
+let xoff = 0.0
+let xinc = 0.01
 /* Randomize array using Durstenfeld shuffle algorithm */
 function shuffleCoords(array) {
-    console.log("hey")
-    let arraytoshuffle=array
-    let indices=[]
-    let rate = Math.floor(random(7,84))
+    let arraytoshuffle = array
+    let indices = []
+    let rate = Math.floor(random(3, 42)) * array.length
     for (var i = rate; i > 0; i--) {
-//        var j = Math.floor(Math.random() * (i + 1));
-        var j = Math.floor(random() * (array.length-i));xoff+=xinc
-        var k = Math.floor(random() * (array.length-i));xoff+=xinc
+        var j = Math.floor(noise(xoff) * (array.length)); xoff += xinc
+        var k = Math.floor(noise(xoff) * (array.length)); xoff += xinc
         indices.push(j)
-        console.log("j "+j)
-        console.log("k "+k)
+        indices.push(k)
         var temp = arraytoshuffle[k];
         arraytoshuffle[k] = arraytoshuffle[j];
         arraytoshuffle[j] = temp;
     }
-    console.log("hey " +indices)
+    console.log("hey " + indices)
     return arraytoshuffle
 }
