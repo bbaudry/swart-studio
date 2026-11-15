@@ -1,18 +1,18 @@
-let w,h
-var rightmargin , leftmargin , topmargin , bottommargin, actualwidth , actualheight 
+let w, h
+var rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
 var cnv, imgbtn
 
-function setup(){
-    w=297
+function setup() {
+    w = 297
     //A3
-    w=96*297/25.4//=1122.5
-    h=96*420/25.4//=1587.4
-    rightmargin=w*0.98
-    leftmargin=w*0.02
-    topmargin=h*0.02
-    bottommargin=h*0.98
-    actualwidth=rightmargin-leftmargin
-    actualheight=bottommargin-topmargin
+    w = 96 * 297 / 25.4//=1122.5
+    h = 96 * 420 / 25.4//=1587.4
+    rightmargin = w * 0.98
+    leftmargin = w * 0.02
+    topmargin = h * 0.02
+    bottommargin = h * 0.98
+    actualwidth = rightmargin - leftmargin
+    actualheight = bottommargin - topmargin
     getsvg()
     //getpng()
     colorMode(HSB, 360, 100, 100, 250);
@@ -64,71 +64,91 @@ function preload() {
     font = loadFont("../p5-experiments/fonts/1CamBam_Stick_4.ttf");
 }
 
-let resx,resy
+let resx, resy
 let cellside
 
-function draw(){
-    background(0,0,100)
-    stroke(0,0,0)
-    resx=3
-    resy=4  
-    cellside=Math.floor(96*90/25.4)
+function draw() {
+    background(0, 0, 100)
+    stroke(0, 0, 0)
+    resx = 3
+    resy = 4
+    cellside = Math.floor(96 * 95 / 25.4)
     drawgrid()
     drawcards()
     noLoop()
 }
 
-function drawgrid(){
-    let x,y
+function drawgrid() {
+    let x, y
     noFill()
-    for(let i=0;i<resx;i++){
-        for(let j=0;j<resy;j++){
-            x=leftmargin+i*cellside
-            y=topmargin+j*cellside
-            rect(x,y,cellside,cellside)
+    for (let i = 0; i < resx; i++) {
+        for (let j = 0; j < resy; j++) {
+            x = leftmargin + i * cellside
+            y = topmargin + j * cellside
+            rect(x, y, cellside, cellside)
         }
     }
 }
 
-function drawcards(){
-    let x,y
+function drawcards() {
+    let x, y
     noFill()
-    for(let i=0;i<resx;i++){
-        for(let j=0;j<resy;j++){
-            x=leftmargin+i*cellside
-            y=topmargin+j*cellside
+    for (let i = 0; i < resx; i++) {
+        for (let j = 0; j < resy; j++) {
+            x = leftmargin + i * cellside
+            y = topmargin + j * cellside
             push()
-            translate(x,y)
-            drawcard()
+            translate(x, y)
+            let empreinte = drawcard()
             pop()
+            hashValue(empreinte.toString()).then(
+                (value) => {
+                    text(value, x, y+cellside - 12);
+                },
+            )
         }
     }
 }
 
-function drawcard(){
-    let pad=cellside*0.06
-    let arete=cellside-2*pad
-    let res=3
-    let step=arete/3
-    let angle=11
-    let nbpasses=Math.floor(random(1,9))
-    let x,y,cx,cy,localstep
+function drawcard() {
+    let pad = cellside * 0.06
+    let arete = cellside - 2 * pad
+    let res = 3
+    let step = arete / 3
+    let empreinte = []
+    let angle = Math.floor(random(5, 11)); empreinte.push(angle)
+    let nbpasses = Math.floor(random(1, 9)); empreinte.push(nbpasses)
+    let x, y, cx, cy, localstep, decalage
     push()
-    translate(pad,pad)
-    for(let passes=0;passes<nbpasses;passes++){
-    for(let i=0;i<res;i++){
-        x=i*step
-        cx=x+step/2
-        for(let j=0;j<3;j++){
-            y=j*step
-            cy=y+step/2
-            localstep=step*random(0.8,1.0)
-            push()
-            translate(cx,cy)
-            rotate(random(-angle,angle))
-            rect(-localstep/2,-localstep/2,localstep,localstep)
-            pop()
+    translate(pad, pad)
+    for (let i = 0; i < res; i++) {
+        x = i * step
+        cx = x + step / 2
+        for (let j = 0; j < 3; j++) {
+            y = j * step
+            cy = y + step / 2
+            for (let passes = 0; passes < nbpasses; passes++) {
+                localstep = step * random(0.8, 1.0); empreinte.push(localstep)
+                decalage = random(-angle, angle); empreinte.push(decalage)
+                push()
+                translate(cx, cy)
+                rotate(decalage)
+                rect(-localstep / 2, -localstep / 2, localstep, localstep)
+                pop()
+            }
         }
-    }}
+    }
     pop()
+    return empreinte
 }
+
+const hashValue = val =>
+    crypto.subtle
+        .digest('SHA-256', new TextEncoder('utf-8').encode(val))
+        .then(h => {
+            let hexes = [],
+                view = new DataView(h);
+            for (let i = 0; i < view.byteLength; i += 4)
+                hexes.push(('00000000' + view.getUint32(i).toString(16)).slice(-8));
+            return hexes.join('');
+        });
