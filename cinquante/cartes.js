@@ -101,11 +101,15 @@ function drawcards() {
             translate(x, y)
             let empreinte = drawcard()
             pop()
-            hashValue(empreinte.toString()).then(
-                (value) => {
-                    text(value, x, y+cellside - 12);
-                },
-            )
+            // hashValue(empreinte.toString()).then(
+            //     (value) => {
+            //         text(value,x, y+cellside - 12);
+            //     }
+            // )
+            hashValue(empreinte.toString()).then((h) => {
+        text(h.toUpperCase(),x, y+cellside-12)
+        })    
+
         }
     }
 }
