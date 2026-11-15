@@ -102,8 +102,8 @@ async function drawcards() {
             push()
             translate(x, y)
             //let empreinte = drawcard_vera()
-            let empreinte = drawcard_chiharu()
-            //let empreinte = drawcard_curves()
+            //let empreinte = drawcard_chiharu()
+            let empreinte = drawcard_curves()
             pop()
             stroke(0,0,0)
             const h = await hashgenerativeparameters(empreinte)
@@ -111,6 +111,41 @@ async function drawcards() {
         }
     }
 }
+
+/** 
+ * @returns an array of random numbers generated to draw the piece
+ */
+function drawcard_curves() {
+    let pad = cellside * 0.07
+    let arete = cellside - 2 * pad
+    let empreinte = []
+    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon
+    rayon=45
+    push()
+    translate(pad, pad)
+    for (let t = 0; t < 250; t+=3) {
+        ax1 = 0; ay1 = lerp(arete, 0, 0.05)-t
+        ax2 = arete; ay2 = lerp(arete, 0, 0.05)-t
+        px1 = lerp(ax1,ax2,0.25)
+        py1 = lerp(ay1,ay2,0.25)+rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc
+        px2 = lerp(ax1,ax2,0.75)
+        py2 = lerp(ay1,ay2,0.75)-rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc 
+        bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
+
+        ax1 = 0; ay1 = lerp(0, arete, 0.05)+t
+        ax2 = arete; ay2 = lerp(0, arete, 0.05)+t
+        px1 = lerp(ax1,ax2,0.25)
+        py1 = lerp(ay1,ay2,0.25)+rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc 
+        px2 = lerp(ax1,ax2,0.75)
+        py2 = lerp(ay1,ay2,0.75)-rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc 
+        bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
+        rayon+=11
+    }
+
+    pop()
+    return empreinte
+}
+
 
 let xoff = 0.0
 let xinc = 0.01
@@ -129,7 +164,6 @@ function drawcard_chiharu() {
     let x, y, cx, cy, anchors, horizon
     anchors = []
     push()
-
     translate(pad, pad)
     random() < 0.5 ? horizon = true : horizon = false
     empreinte.push(horizon)
