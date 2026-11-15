@@ -112,10 +112,14 @@ async function drawcards() {
     }
 }
 
+let xoff = 0.0
+let xinc = 0.01
+
 /** 
  * random red threads in the card. tribute to chiharu shiota
  * grid with randomly chosen resolution; central points of the cells are saved, shuffled and connected with a single continuous lines
-*/
+ * @returns an array of random numbers generated to draw the piece
+ */
 function drawcard_chiharu() {
     let pad = cellside * 0.07
     let arete = cellside - 2 * pad
@@ -173,6 +177,10 @@ function drawcard_chiharu() {
     return empreinte
 }
 
+/**
+ * tribute to Vera Molnar. squares and randomness to rotate the squares and decide on their size
+ * @returns an array of random numbers generated to draw the piece
+ */
 function drawcard_vera() {
     let pad = cellside * 0.07
     let arete = cellside - 2 * pad
@@ -205,6 +213,10 @@ function drawcard_vera() {
     return empreinte
 }
 
+/**
+ * @param alea: an array of objects
+ * @returns a hash of the array's content
+ */
 async function hashgenerativeparameters(alea) {
     var bruit = new Float64Array(1);
     var tout = 0.0
@@ -221,22 +233,3 @@ async function hashgenerativeparameters(alea) {
     return hashHex
 }
 
-let xoff = 0.0
-let xinc = 0.01
-/* Randomize array using Durstenfeld shuffle algorithm */
-function shuffleCoords(array) {
-    let arraytoshuffle = array
-    let indices = []
-    let rate = Math.floor(random(3, 42)) * array.length
-    for (var i = rate; i > 0; i--) {
-        var j = Math.floor(noise(xoff) * (array.length)); xoff += xinc
-        var k = Math.floor(noise(xoff) * (array.length)); xoff += xinc
-        indices.push(j)
-        indices.push(k)
-        var temp = arraytoshuffle[k];
-        arraytoshuffle[k] = arraytoshuffle[j];
-        arraytoshuffle[j] = temp;
-    }
-    console.log("hey " + indices)
-    return arraytoshuffle
-}
