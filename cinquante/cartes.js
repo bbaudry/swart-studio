@@ -1,6 +1,10 @@
 let w, h
 var rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
-var cnv, imgbtn
+var cnv, imgbtn, font
+
+function preload() {
+    font = loadFont("../p5-experiments/fonts/1CamBam_Stick_4.ttf");
+}
 
 function setup() {
     w = 297
@@ -15,6 +19,8 @@ function setup() {
     actualheight = bottommargin - topmargin
     getsvg()
     //getpng()
+    textFont(font)
+    textSize(10)
     colorMode(HSB, 360, 100, 100, 250);
     strokeCap(SQUARE)
     angleMode(DEGREES);
@@ -60,9 +66,6 @@ function savepng() {
     save("cartes.png");
 }
 
-function preload() {
-    font = loadFont("../p5-experiments/fonts/1CamBam_Stick_4.ttf");
-}
 
 let resx, resy
 let cellside
@@ -90,35 +93,63 @@ function drawgrid() {
     }
 }
 
-function drawcards() {
-    let x, y
+async function drawcards() {
     noFill()
     for (let i = 0; i < resx; i++) {
         for (let j = 0; j < resy; j++) {
-            x = leftmargin + i * cellside
-            y = topmargin + j * cellside
+            const x = leftmargin + i * cellside
+            const y = topmargin + j * cellside
             push()
             translate(x, y)
-            let empreinte = drawcard()
+//            let empreinte = drawcard_vera()
+            let empreinte = drawcard_chiharu()
             pop()
-            // hashValue(empreinte.toString()).then(
-            //     (value) => {
-            //         text(value,x, y+cellside - 12);
-            //     }
-            // )
-            hashValue(empreinte.toString()).then((h) => {
-        text(h.toUpperCase(),x, y+cellside-12)
-        })    
-
+            const h = await hashgenerativeparameters(empreinte)
+            text(h.toUpperCase(),  x+9, y + cellside -7)
         }
     }
 }
 
-function drawcard() {
-    let pad = cellside * 0.06
+
+function drawcard_chiharu() {
+    let pad = cellside * 0.07
+    let arete = cellside - 2 * pad
+    let res = 7// Math.floor(random(5,21))
+    let step = arete / res
+    let empreinte = []
+    let x, y, cx, cy, anchors
+    anchors=[]
+    push()
+    translate(pad, pad)
+    for (let i = 0; i < res; i++) {
+        x = i * step
+        cx = x + step / 2
+        for (let j = 0; j < res; j++) {
+            y = j * step
+            cy = y + step / 2
+            anchors.push(createVector(cx,cy))
+        }
+    }
+    let randanchors=shuffleCoords(anchors)
+    let x1,y1,x2,y2
+    x1=randanchors[0].x
+    y1=randanchors[0].y
+    for(let i=1;i<anchors.length;i++){
+        x2=randanchors[i].x
+        y2=randanchors[i].y
+        line(x1,y1,x2,y2)
+        x1=x2
+        y1=y2
+    }
+    pop()
+    return empreinte
+}
+
+function drawcard_vera() {
+    let pad = cellside * 0.07
     let arete = cellside - 2 * pad
     let res = 3
-    let step = arete / 3
+    let step = arete / res
     let empreinte = []
     let angle = Math.floor(random(5, 11)); empreinte.push(angle)
     let nbpasses = Math.floor(random(1, 9)); empreinte.push(nbpasses)
@@ -146,13 +177,41 @@ function drawcard() {
     return empreinte
 }
 
-const hashValue = val =>
-    crypto.subtle
-        .digest('SHA-256', new TextEncoder('utf-8').encode(val))
-        .then(h => {
-            let hexes = [],
-                view = new DataView(h);
-            for (let i = 0; i < view.byteLength; i += 4)
-                hexes.push(('00000000' + view.getUint32(i).toString(16)).slice(-8));
-            return hexes.join('');
-        });
+async function hashgenerativeparameters(alea) {
+    var bruit = new Float64Array(1);
+    var tout = 0.0
+    for (i = 0; i < alea.length; i++) {//sum all random numbers used for the piece
+        tout += alea[i]
+    }
+    bruit[0] = tout//pass the sum to the typedArray
+    h = await window.crypto.subtle.digest("SHA-1", bruit)//hash the sum of all random numbers
+    //console.log("raw "+h)
+    const hashArray = Array.from(new Uint8Array(h)); // convert buffer to byte array
+    const hashHex = hashArray
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join(""); // convert bytes to hex string
+    return hashHex
+}
+
+    let xoff=0.0
+    let xinc=0.00001
+/* Randomize array using Durstenfeld shuffle algorithm */
+function shuffleCoords(array) {
+    console.log("hey")
+    let arraytoshuffle=array
+    let indices=[]
+    let rate = Math.floor(random(7,84))
+    for (var i = rate; i > 0; i--) {
+//        var j = Math.floor(Math.random() * (i + 1));
+        var j = Math.floor(random() * (array.length-i));xoff+=xinc
+        var k = Math.floor(random() * (array.length-i));xoff+=xinc
+        indices.push(j)
+        console.log("j "+j)
+        console.log("k "+k)
+        var temp = arraytoshuffle[k];
+        arraytoshuffle[k] = arraytoshuffle[j];
+        arraytoshuffle[j] = temp;
+    }
+    console.log("hey " +indices)
+    return arraytoshuffle
+}
