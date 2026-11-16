@@ -1,6 +1,8 @@
 let w, h
 var rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
 var cnv, imgbtn, font
+let xoff = 0.0
+let xinc = 0.01
 
 function preload() {
     font = loadFont("../p5-experiments/fonts/1CamBam_Stick_4.ttf");
@@ -104,14 +106,43 @@ async function drawcards() {
             //let empreinte = drawcard_vera()
             //let empreinte = drawcard_chiharu()
             //let empreinte = drawcard_curves()
-            let empreinte = drawcard_ascii()
+            //let empreinte = drawcard_ascii()
+            let empreinte = drawcard_boxes()
             pop()
-            stroke(0,0,0)
+            stroke(0, 0, 0)
             const h = await hashgenerativeparameters(empreinte)
             text(h.toUpperCase(), x + 9, y + cellside - 7)
         }
     }
 }
+
+/** 
+ * 
+ * @returns an array of random numbers generated to draw the piece
+ */
+function drawcard_boxes() {
+    let pad = cellside * 0.09
+    let arete = cellside - 2 * pad
+    let empreinte = []
+    let res = Math.floor(random(2, 5)); empreinte.push(res)
+    let step = arete / res
+    let x1, y1, x2, y2
+    push()
+    translate(pad, pad)
+    x1 = 0
+    for (let i = 0; i < res-1; i++) {
+        x2 = x1+step* random(0.8,1.2)
+        y1 = 0
+        for (let j = 0; j < res; j++) {
+            y1=j*step
+            quad(x1,y1,x2,y1,x2,y1+step,x1,y1+step)
+        }
+        x1=x2
+    }
+    pop()
+    return empreinte
+}
+
 
 /** 
  * curves, remixing plein-011
@@ -122,71 +153,65 @@ function drawcard_curves() {
     let arete = cellside - 2 * pad
     let empreinte = []
     let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon
-    rayon=45
+    rayon = 45
     push()
     translate(pad, pad)
-    for (let t = 0; t < 242; t+=3) {
-        stroke(330,100,100)
-        ax1 = 0; ay1 = lerp(arete, 0, 0.05)-t
-        ax2 = arete; ay2 = lerp(arete, 0, 0.05)-t
-        px1 = lerp(ax1,ax2,0.25)
-        py1 = lerp(ay1,ay2,0.25)+rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc
-        px2 = lerp(ax1,ax2,0.75)
-        py2 = lerp(ay1,ay2,0.75)-rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc 
+    for (let t = 0; t < 242; t += 3) {
+        stroke(330, 100, 100)
+        ax1 = 0; ay1 = lerp(arete, 0, 0.05) - t
+        ax2 = arete; ay2 = lerp(arete, 0, 0.05) - t
+        px1 = lerp(ax1, ax2, 0.25)
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        px2 = lerp(ax1, ax2, 0.75)
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-        stroke(0,100,100)
-        ax1 = 0; ay1 = lerp(0, arete, 0.05)+t
-        ax2 = arete; ay2 = lerp(0, arete, 0.05)+t
-        px1 = lerp(ax1,ax2,0.25)
-        py1 = lerp(ay1,ay2,0.25)+rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc 
-        px2 = lerp(ax1,ax2,0.75)
-        py2 = lerp(ay1,ay2,0.75)-rayon*sin(radians(rayon*noise(xoff)));empreinte.push(rayon*noise(xoff));xoff+=xinc 
+        stroke(0, 100, 100)
+        ax1 = 0; ay1 = lerp(0, arete, 0.05) + t
+        ax2 = arete; ay2 = lerp(0, arete, 0.05) + t
+        px1 = lerp(ax1, ax2, 0.25)
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        px2 = lerp(ax1, ax2, 0.75)
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-        rayon+=11
+        rayon += 11
     }
 
     pop()
     return empreinte
 }
 
-function drawcard_ascii(){
+/** 
+ * noise field, remixing the gaspe variants
+ * @returns an array of random numbers generated to draw the piece
+ */
+function drawcard_ascii() {
     let pad = cellside * 0.09
     let arete = cellside - 2 * pad
     let empreinte = []
-    let res = Math.floor(random(9,17)); empreinte.push(res)
+    let res = Math.floor(random(9, 17)); empreinte.push(res)
     let step = arete / res
-    let x, y, xnoise, ynoise,noise_inc,xnoiseinit,cx,cy
-    xnoiseinit=random(100.0)
-    ynoise=random(100.0)
-    noise_inc=0.15
+    let x, y, xnoise, ynoise, noise_inc, xnoiseinit, cx, cy
+    xnoiseinit = random(100.0)
+    ynoise = random(100.0)
+    noise_inc = 0.15
     push()
-    translate(pad,pad)
+    translate(pad, pad)
     for (let j = 0; j < res; j++) {
-        xnoise=xnoiseinit
-        ynoise+=noise_inc
-        x=j*step
-        cx=x+step*0.5
+        xnoise = xnoiseinit
+        ynoise += noise_inc
+        x = j * step
+        cx = x + step * 0.5
         for (let i = 0; i < res; i++) {
-            xnoise+=noise_inc
-            y=i*step
-            cy=y+step*0.5
-            const v = noise(xnoise,ynoise); empreinte.push(v)
-            // if(v<0.21){ellipse(cx,cy,step,step)}
-            // if(v>=0.21&&v<0.42){ellipse(cx,cy,step,step)}
-            // if(v>=0.42&&v<0.63){ellipse(cx,cy,step,step)}
-            // if(v>=0.63&&v<0.84){ellipse(cx,cy,step,step)}
-            // if(v>=0.84){c='°'}
-            quad(cx-step*v,cy-step*v,cx+step*v,cy-step*v,cx+step*v,cy+step*v,cx-step*v,cy+step*v,)
+            xnoise += noise_inc
+            y = i * step
+            cy = y + step * 0.5
+            const v = noise(xnoise, ynoise); empreinte.push(v)
+            quad(cx - step * v, cy - step * v, cx + step * v, cy - step * v, cx + step * v, cy + step * v, cx - step * v, cy + step * v,)
         }
     }
     pop()
     return empreinte
 }
-
-
-
-let xoff = 0.0
-let xinc = 0.01
 
 /** 
  * random red threads in the card. tribute to chiharu shiota
@@ -239,7 +264,7 @@ function drawcard_chiharu() {
         randanchors[j] = temp;
     }
     // connect points with a single red line
-    stroke(0,100,100)
+    stroke(0, 100, 100)
     beginShape()
     for (let i = 0; i < anchors.length; i++) {
         vertex(randanchors[i].x, randanchors[i].y)
