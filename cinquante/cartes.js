@@ -103,7 +103,8 @@ async function drawcards() {
             translate(x, y)
             //let empreinte = drawcard_vera()
             //let empreinte = drawcard_chiharu()
-            let empreinte = drawcard_curves()
+            //let empreinte = drawcard_curves()
+            let empreinte = drawcard_ascii()
             pop()
             stroke(0,0,0)
             const h = await hashgenerativeparameters(empreinte)
@@ -147,6 +148,41 @@ function drawcard_curves() {
     pop()
     return empreinte
 }
+
+function drawcard_ascii(){
+    let pad = cellside * 0.09
+    let arete = cellside - 2 * pad
+    let empreinte = []
+    let res = Math.floor(random(9,17)); empreinte.push(res)
+    let step = arete / res
+    let x, y, xnoise, ynoise,noise_inc,xnoiseinit,cx,cy
+    xnoiseinit=random(100.0)
+    ynoise=random(100.0)
+    noise_inc=0.15
+    push()
+    translate(pad,pad)
+    for (let j = 0; j < res; j++) {
+        xnoise=xnoiseinit
+        ynoise+=noise_inc
+        x=j*step
+        cx=x+step*0.5
+        for (let i = 0; i < res; i++) {
+            xnoise+=noise_inc
+            y=i*step
+            cy=y+step*0.5
+            const v = noise(xnoise,ynoise); empreinte.push(v)
+            // if(v<0.21){ellipse(cx,cy,step,step)}
+            // if(v>=0.21&&v<0.42){ellipse(cx,cy,step,step)}
+            // if(v>=0.42&&v<0.63){ellipse(cx,cy,step,step)}
+            // if(v>=0.63&&v<0.84){ellipse(cx,cy,step,step)}
+            // if(v>=0.84){c='°'}
+            quad(cx-step*v,cy-step*v,cx+step*v,cy-step*v,cx+step*v,cy+step*v,cx-step*v,cy+step*v,)
+        }
+    }
+    pop()
+    return empreinte
+}
+
 
 
 let xoff = 0.0

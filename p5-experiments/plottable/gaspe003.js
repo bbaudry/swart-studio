@@ -44,7 +44,7 @@ function backgrid() {
         xoff=0.0
         for (i = 0; i < nbhorizontalsteps; i++) {
             xoff+=inc
-            backgrid.push(noise(xoff,yoff))
+            grid.push(noise(xoff,yoff))
         }
     }
 }
@@ -53,7 +53,7 @@ function drawgrid() {
     for (j = 0; j < nbvertcicalsteps; j++) {
         for (i = 0; i < nbhorizontalsteps; i++) {
             var index=i+j*nbhorizontalsteps
-            var v = backgrid[index]
+            var v = grid[index]
             var x=leftmargin+i*stepsize+stepsize*0.5
             var y=topmargin+j*stepsize+stepsize*0.5
             var c
