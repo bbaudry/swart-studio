@@ -123,9 +123,9 @@ function drawcard_boxes() {
     let pad = cellside * 0.09
     let arete = cellside - 2 * pad
     let empreinte = []
-    let res = Math.floor(random(2, 5)); empreinte.push(res)
+    let res = Math.floor(random(1, 4)); empreinte.push(res)
     let step = arete / res
-    let x1,x2,x3,x4,y,xcoords
+    let x1,x2,x3,x4,y1,y2,y3,y4,xcoords
     push()
     translate(pad, pad)
     xcoords = []
@@ -147,8 +147,13 @@ function drawcard_boxes() {
                 x1=xcoords[j].top;x4=xcoords[j].bottom
                 x2 = arete; x3 = arete
             }
-            y=j*step
-            quad(x1,y,x2,y,x3,y+step,x4,y+step)
+            y1=j*step;y2=j*step;y3=y2+step;y4=y1+step
+            let offset = dist(x1,y1,x2,y2)*0.05
+            for(let i=0;i<10;i++){
+                x1+=offset;y1+=offset;x2-=offset;y2+=offset
+                x3-=offset;y3-=offset;x4+=offset;y4-=offset
+                quad(x1,y1,x2,y2,x3,y3,x4,y4)
+            }
         }
     }
     pop()
