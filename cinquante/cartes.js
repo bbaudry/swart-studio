@@ -105,8 +105,8 @@ async function drawcards() {
             //let empreinte = drawcard_vera()
             //let empreinte = drawcard_chiharu()
             //let empreinte = drawcard_curves()
-            let empreinte = drawcard_vasarely()
-            //let empreinte = drawcard_boxes()
+            //let empreinte = drawcard_vasarely()
+            let empreinte = drawcard_boxes()
             pop()
             stroke(0, 0, 0)
             const h = await hashgenerativeparameters(empreinte)
@@ -125,18 +125,31 @@ function drawcard_boxes() {
     let empreinte = []
     let res = Math.floor(random(2, 5)); empreinte.push(res)
     let step = arete / res
-    let x1, y1, x2, y2
+    let x1,x2,x3,x4,y,xcoords
     push()
     translate(pad, pad)
-    x1 = 0
-    for (let i = 0; i < res-1; i++) {
-        x2 = x1+step* random(0.8,1.2)
-        y1 = 0
+    xcoords = []
+    for (let i = 0; i < res+1; i++) {
         for (let j = 0; j < res; j++) {
-            y1=j*step
-            quad(x1,y1,x2,y1,x2,y1+step,x1,y1+step)
+            if(i==0){
+                x1=0;x4=0
+                x2 = x1+step* random(0.1,0.9); empreinte.push(x2)
+                x3 = x4+step* random(0.1,0.9); empreinte.push(x3)
+                xcoords.push({"top":x2,"bottom":x3})
+            }
+            if(i>0&&i<res){
+                x1=xcoords[j].top;x4=xcoords[j].bottom
+                x2 = x1+step
+                x3 = x4+step
+                xcoords[j]={"top":x2,"bottom":x3}
+            }
+            if(i==res){
+                x1=xcoords[j].top;x4=xcoords[j].bottom
+                x2 = arete; x3 = arete
+            }
+            y=j*step
+            quad(x1,y,x2,y,x3,y+step,x4,y+step)
         }
-        x1=x2
     }
     pop()
     return empreinte
