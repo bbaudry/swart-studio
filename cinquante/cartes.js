@@ -9,10 +9,9 @@ function preload() {
 }
 
 function setup() {
-    w = 297
     //A3
-    w = 96 * 297 / 25.4//=1122.5
-    h = 96 * 420 / 25.4//=1587.4
+    w = Math.floor(96 * 297 / 25.4)//=1122.5
+    h = Math.floor(96 * 420 / 25.4)//=1587.4
     rightmargin = w * 0.98
     leftmargin = w * 0.02
     topmargin = h * 0.02
@@ -106,8 +105,8 @@ async function drawcards() {
             //let empreinte = drawcard_vera()
             //let empreinte = drawcard_chiharu()
             //let empreinte = drawcard_curves()
-            //let empreinte = drawcard_ascii()
-            let empreinte = drawcard_boxes()
+            let empreinte = drawcard_vasarely()
+            //let empreinte = drawcard_boxes()
             pop()
             stroke(0, 0, 0)
             const h = await hashgenerativeparameters(empreinte)
@@ -117,7 +116,7 @@ async function drawcards() {
 }
 
 /** 
- * 
+ * remix plottable017
  * @returns an array of random numbers generated to draw the piece
  */
 function drawcard_boxes() {
@@ -152,28 +151,34 @@ function drawcard_curves() {
     let pad = cellside * 0.07
     let arete = cellside - 2 * pad
     let empreinte = []
-    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon
-    rayon = 45
+    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon, xoffinit
+    stroke(330, 100, 100)
+    xoffinit=random(1000)
+    xoff=xoffinit
+    rayon = 0
     push()
     translate(pad, pad)
-    for (let t = 0; t < 242; t += 3) {
-        stroke(330, 100, 100)
+    for (let t = 0; t < 233; t += 3) {
         ax1 = 0; ay1 = lerp(arete, 0, 0.05) - t
         ax2 = arete; ay2 = lerp(arete, 0, 0.05) - t
         px1 = lerp(ax1, ax2, 0.25)
-        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
         px2 = lerp(ax1, ax2, 0.75)
-        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-        stroke(0, 100, 100)
+        rayon += 4
+    }
+    xoff=xoffinit
+    rayon=0
+    for (let t = 0; t < 233; t += 3) {
         ax1 = 0; ay1 = lerp(0, arete, 0.05) + t
         ax2 = arete; ay2 = lerp(0, arete, 0.05) + t
         px1 = lerp(ax1, ax2, 0.25)
-        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
         px2 = lerp(ax1, ax2, 0.75)
-        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(radians(rayon * noise(xoff))); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-        rayon += 11
+        rayon += 4
     }
 
     pop()
@@ -181,10 +186,10 @@ function drawcard_curves() {
 }
 
 /** 
- * noise field, remixing the gaspe variants
+ * tribute to vasarely's op-art with distorted squares
  * @returns an array of random numbers generated to draw the piece
  */
-function drawcard_ascii() {
+function drawcard_vasarely() {
     let pad = cellside * 0.09
     let arete = cellside - 2 * pad
     let empreinte = []
