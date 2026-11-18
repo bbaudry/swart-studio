@@ -26,7 +26,7 @@ function draw() {
     textFont(font)
     textSize(fSize)
     showcredits(leftmargin, bottommargin + fSize)
-    //noLoop()
+    noLoop()
 }
 
 function nucleus() {

@@ -119,7 +119,11 @@ async function drawcards() {
         }
     }
 }
-
+/**
+ * remix trottoir003, in single line. draws a spiral instead of nested independent shapes
+ * spirals are cool and single line is nice for the pen
+ * @returns set of random numbers generated for the piece
+ */
 
 function nucleus() {
     var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, tours
@@ -136,17 +140,17 @@ function nucleus() {
     xpos2=noise(xoff);xoff+=xinc;empreinte.push(xpos2)
     ypos1=noise(yoff);yoff+=yinc;empreinte.push(ypos1)
     ypos2=noise(yoff);yoff+=yinc;empreinte.push(ypos2)
-    stroke(0,0,0)
     tours=Math.floor(random(19,29));empreinte.push(tours)
+    stroke(0,0,0)
+    x1 = arete * xpos1; y1 = arete -amp*0.5
+    beginShape()
+    apx1 = x1
+    apy1 = y1
+    vertex(apx1, apy1)
     for (i = 0; i < tours; i+=0.5) {
-        x1 = arete * xpos1; y1 = arete - i*amp
         x2 = i*amp; y2 = arete * ypos1
         x3 = arete * xpos2; y3 = i*amp;
         x4 = arete-i*amp; y4 =  arete * ypos2
-        beginShape()
-        apx1 = x1
-        apy1 = y1
-        vertex(apx1, apy1)
 
         cpx1 = x2
         cpy1 = y1
@@ -171,7 +175,10 @@ function nucleus() {
         apx2 = cpx1
         apy2 = cpy2
         bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
-
+        
+        /** main change for the spiral: increment these points before drawing the last vertex of the iteration */
+        x1 = arete * xpos1; 
+        y1 = arete - (i+1)*amp
         cpx1 = x4
         cpy1 = y1
         cpx2 = x1
@@ -179,8 +186,10 @@ function nucleus() {
         apx2 = cpx2
         apy2 = cpy1
         bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
-        endShape()
+
+ 
     }
+    endShape()
     pop()
     return empreinte
 }
