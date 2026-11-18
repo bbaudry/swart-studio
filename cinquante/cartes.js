@@ -137,7 +137,7 @@ function nucleus() {
     ypos1=noise(yoff);yoff+=yinc;empreinte.push(ypos1)
     ypos2=noise(yoff);yoff+=yinc;empreinte.push(ypos2)
     stroke(0,0,0)
-    tours=Math.floor(random(21,42));empreinte.push(tours)
+    tours=Math.floor(random(19,29));empreinte.push(tours)
     for (i = 0; i < tours; i+=0.5) {
         x1 = arete * xpos1; y1 = arete - i*amp
         x2 = i*amp; y2 = arete * ypos1
