@@ -111,13 +111,78 @@ async function drawcards() {
             //let empreinte = drawcard_chiharu()
             //let empreinte = drawcard_curves()
             //let empreinte = drawcard_vasarely()
-            let empreinte = drawcard_boxes()
+            let empreinte = nucleus()
             pop()
             stroke(0, 0, 0)
             const h = await hashgenerativeparameters(empreinte)
-            text(h.toUpperCase(), x + 9, y + cellside - 7)
+            text(h.toUpperCase(), x + 9, y + cellside - 11)
         }
     }
+}
+
+
+function nucleus() {
+    var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, tours
+        let pad = cellside * 0.09
+    let arete = cellside - 2 * pad
+    let empreinte = []
+    xoff=random(100.0);empreinte.push(xoff)
+    let yoff=random(100.0);empreinte.push(yoff)
+    let yinc=1
+    push()
+    translate(pad,pad)
+    amp=7
+    xpos1=noise(xoff);xoff+=xinc;empreinte.push(xpos1)
+    xpos2=noise(xoff);xoff+=xinc;empreinte.push(xpos2)
+    ypos1=noise(yoff);yoff+=yinc;empreinte.push(ypos1)
+    ypos2=noise(yoff);yoff+=yinc;empreinte.push(ypos2)
+    stroke(0,0,0)
+    tours=Math.floor(random(21,42));empreinte.push(tours)
+    for (i = 0; i < tours; i+=0.5) {
+        x1 = arete * xpos1; y1 = arete - i*amp
+        x2 = i*amp; y2 = arete * ypos1
+        x3 = arete * xpos2; y3 = i*amp;
+        x4 = arete-i*amp; y4 =  arete * ypos2
+        beginShape()
+        apx1 = x1
+        apy1 = y1
+        vertex(apx1, apy1)
+
+        cpx1 = x2
+        cpy1 = y1
+        cpx2 = cpx1
+        cpy2 = y2
+        apx2 = cpx1
+        apy2 = cpy2
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x2
+        cpy1 = y3
+        cpx2 = x3
+        cpy2 = cpy1
+        apx2 = cpx2
+        apy2 = cpy1
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x4
+        cpy1 = y3
+        cpx2 = cpx1
+        cpy2 = y4
+        apx2 = cpx1
+        apy2 = cpy2
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+
+        cpx1 = x4
+        cpy1 = y1
+        cpx2 = x1
+        cpy2 = cpy1
+        apx2 = cpx2
+        apy2 = cpy1
+        bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
+        endShape()
+    }
+    pop()
+    return empreinte
 }
 
 /** 
