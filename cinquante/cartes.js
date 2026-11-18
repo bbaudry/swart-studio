@@ -1,3 +1,8 @@
+/**
+ * Five different algorithms for cards plotted on A3
+ * comment / uncomment the different variants in drawcards
+ */
+
 let w, h
 var rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
 var cnv, imgbtn, font
