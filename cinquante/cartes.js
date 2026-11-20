@@ -5,7 +5,7 @@
 
 let w, h
 var rightmargin, leftmargin, topmargin, bottommargin, actualwidth, actualheight
-var cnv, imgbtn, font
+var cnv, imgbtn, font, gensvg
 let xoff = 0.0
 let xinc = 0.01
 
@@ -39,6 +39,7 @@ function getsvg() {
     imgbtn = createButton("save svg");
     placebtn();
     imgbtn.mouseClicked(savesvg);
+    gensvg=true
 }
 
 function getpng() {
@@ -47,6 +48,7 @@ function getpng() {
     centerCanvas()
     placebtn();
     imgbtn.mouseClicked(savepng);
+    gensvg=false
 }
 
 
@@ -82,9 +84,13 @@ function draw() {
     resx = 3
     resy = 4
     cellside = Math.floor(96 * 95 / 25.4)
-    drawgrid()
-    drawcards()
-    noLoop()
+    //drawgrid()
+    // drawcards(drawcard_nucleus)
+    // drawcards(drawcard_vera)
+    // drawcards(drawcard_vasarely)
+    draw2colors(drawcard_curves)
+    //drawback()
+    // noLoop()
 }
 
 function drawgrid() {
@@ -99,7 +105,30 @@ function drawgrid() {
     }
 }
 
-async function drawcards() {
+/**
+ * writes credits in the back of the card
+ */
+function drawback() {
+    let x, y
+    noFill()
+    for (let i = 0; i < resx; i++) {
+        for (let j = 0; j < resy; j++) {
+            x = leftmargin + i * cellside
+            y = topmargin + j * cellside
+            push()
+            translate(x, y)
+            text("(code encre alea)", cellside * 0.2, cellside * 0.7)
+            text("11.2026 :: al.my.re", cellside * 0.5, cellside * 0.8)
+            pop()
+        }
+    }
+}
+
+/**
+ * the function draws one gen piece in each cell of the grid
+ * @param cardfunction: a function that draws inside a cellside x cellside square 
+ */
+async function drawcards(cardfunction) {
     noFill()
     for (let i = 0; i < resx; i++) {
         for (let j = 0; j < resy; j++) {
@@ -107,11 +136,7 @@ async function drawcards() {
             const y = topmargin + j * cellside
             push()
             translate(x, y)
-            //let empreinte = drawcard_vera()
-            //let empreinte = drawcard_chiharu()
-            //let empreinte = drawcard_curves()
-            //let empreinte = drawcard_vasarely()
-            let empreinte = nucleus()
+            let empreinte = cardfunction()
             pop()
             stroke(0, 0, 0)
             const h = await hashgenerativeparameters(empreinte)
@@ -119,38 +144,92 @@ async function drawcards() {
         }
     }
 }
+
+let empreintes = []
+/**
+ * the function draws one gen piece in each cell of the grid
+ * @param cardfunction: a function that draws inside a cellside x cellside square 
+ */
+async function draw2colors(cardfunction) {
+    noFill()
+    if (frameCount == 1) {
+        for (let i = 0; i < resx; i++) {
+            for (let j = 0; j < resy; j++) {
+                const x = leftmargin + i * cellside
+                const y = topmargin + j * cellside
+                push()
+                translate(x, y)
+                let empreinte = cardfunction()
+                pop()
+                empreintes.push(empreinte)
+            }
+        }
+                if (gensvg) { save("cartes-curves.svg") }
+
+    }
+    if (frameCount == 2) {
+        noLoop()      
+        finishBack()
+    }
+}
+
+async function finishBack() {
+    try {
+        await drawhashes()
+        if (gensvg) { save("cartes-hashes.svg") }
+    } catch (e) {
+        console.error("hashing failed:", e)
+    }
+}
+
+async function drawhashes() {
+    noFill()
+    let x, y, h
+    stroke(0, 0, 0);
+    for (let i = 0; i < resx; i++) {
+        for (let j = 0; j < resy; j++) {
+            const x = leftmargin + i * cellside
+            const y = topmargin + j * cellside
+            h = await hashgenerativeparameters(empreintes[i * resy + j])
+            text(h.toUpperCase(), x + 9, y + cellside - 11)
+        }
+    }
+}
+
+
+
 /**
  * remix trottoir003, in single line. draws a spiral instead of nested independent shapes
  * spirals are cool and single line is nice for the pen
  * @returns set of random numbers generated for the piece
  */
 
-function nucleus() {
+function drawcard_nucleus() {
     var apx1, apy1, apx2, apy2, cpx1, cpy1, cpx2, cpy2, x1, y1, x2, y2, x3, y3, x4, y4, amp, xpos1, xpos2, ypos1, ypos2, tours
-        let pad = cellside * 0.09
+    let pad = cellside * 0.09
     let arete = cellside - 2 * pad
     let empreinte = []
-    xoff=random(100.0);empreinte.push(xoff)
-    let yoff=random(100.0);empreinte.push(yoff)
-    let yinc=1
+    xoff = random(100.0); empreinte.push(xoff)
+    let yoff = random(100.0); empreinte.push(yoff)
+    let yinc = 1
     push()
-    translate(pad,pad)
-    amp=7
-    xpos1=noise(xoff);xoff+=xinc;empreinte.push(xpos1)
-    xpos2=noise(xoff);xoff+=xinc;empreinte.push(xpos2)
-    ypos1=noise(yoff);yoff+=yinc;empreinte.push(ypos1)
-    ypos2=noise(yoff);yoff+=yinc;empreinte.push(ypos2)
-    tours=Math.floor(random(19,29));empreinte.push(tours)
-    stroke(0,0,0)
-    x1 = arete * xpos1; y1 = arete -amp*0.5
+    translate(pad, pad)
+    amp = 5
+    xpos1 = noise(xoff); xoff += xinc; empreinte.push(xpos1)
+    xpos2 = noise(xoff); xoff += xinc; empreinte.push(xpos2)
+    ypos1 = noise(yoff); yoff += yinc; empreinte.push(ypos1)
+    ypos2 = noise(yoff); yoff += yinc; empreinte.push(ypos2)
+    tours = Math.floor(random(19, 42)); empreinte.push(tours)
+    stroke(0, 0, 0)
+    x1 = arete * xpos1; y1 = arete - amp * 0.5
     beginShape()
     apx1 = x1
     apy1 = y1
     vertex(apx1, apy1)
-    for (i = 0; i < tours; i+=0.5) {
-        x2 = i*amp; y2 = arete * ypos1
-        x3 = arete * xpos2; y3 = i*amp;
-        x4 = arete-i*amp; y4 =  arete * ypos2
+    for (i = 0; i < tours; i += 0.5) {
+        x2 = i * amp; y2 = arete * ypos1
+        x3 = arete * xpos2; y3 = i * amp;
+        x4 = arete - i * amp; y4 = arete * ypos2
 
         cpx1 = x2
         cpy1 = y1
@@ -175,10 +254,10 @@ function nucleus() {
         apx2 = cpx1
         apy2 = cpy2
         bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
-        
+
         /** main change for the spiral: increment these points before drawing the last vertex of the iteration */
-        x1 = arete * xpos1; 
-        y1 = arete - (i+1)*amp
+        x1 = arete * xpos1;
+        y1 = arete - (i + 1) * amp
         cpx1 = x4
         cpy1 = y1
         cpx2 = x1
@@ -186,8 +265,6 @@ function nucleus() {
         apx2 = cpx2
         apy2 = cpy1
         bezierVertex(cpx1, cpy1, cpx2, cpy2, apx2, apy2)
-
- 
     }
     endShape()
     pop()
@@ -195,89 +272,77 @@ function nucleus() {
 }
 
 /** 
- * remix plottable017
- * @returns an array of random numbers generated to draw the piece
- */
-function drawcard_boxes() {
-    let pad = cellside * 0.09
-    let arete = cellside - 2 * pad
-    let empreinte = []
-    let res = Math.floor(random(1, 4)); empreinte.push(res)
-    let step = arete / res
-    let x1,x2,x3,x4,y1,y2,y3,y4,xcoords
-    push()
-    translate(pad, pad)
-    xcoords = []
-    for (let i = 0; i < res+1; i++) {
-        for (let j = 0; j < res; j++) {
-            if(i==0){
-                x1=0;x4=0
-                x2 = x1+step* random(0.1,0.9); empreinte.push(x2)
-                x3 = x4+step* random(0.1,0.9); empreinte.push(x3)
-                xcoords.push({"top":x2,"bottom":x3})
-            }
-            if(i>0&&i<res){
-                x1=xcoords[j].top;x4=xcoords[j].bottom
-                x2 = x1+step
-                x3 = x4+step
-                xcoords[j]={"top":x2,"bottom":x3}
-            }
-            if(i==res){
-                x1=xcoords[j].top;x4=xcoords[j].bottom
-                x2 = arete; x3 = arete
-            }
-            y1=j*step;y2=j*step;y3=y2+step;y4=y1+step
-            let offset = dist(x1,y1,x2,y2)*0.05
-            for(let i=0;i<10;i++){
-                x1+=offset;y1+=offset;x2-=offset;y2+=offset
-                x3-=offset;y3-=offset;x4+=offset;y4-=offset
-                quad(x1,y1,x2,y2,x3,y3,x4,y4)
-            }
-        }
-    }
-    pop()
-    return empreinte
-}
-
-
-/** 
- * curves, remixing plein-011
+ * curves, remixing plein-011. simplify the drawing for plotting: two separate sections (bottom-up, then top-down), each section is a single line
  * @returns an array of random numbers generated to draw the piece
  */
 function drawcard_curves() {
     let pad = cellside * 0.07
     let arete = cellside - 2 * pad
     let empreinte = []
-    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, rayon, xoffinit
-    stroke(330, 100, 100)
-    xoffinit=random(1000)
-    xoff=xoffinit
-    rayon = 0
+    let ax1, ay1, px1, py1, px2, py2, ax2, ay2, nextay, rayoninit, rayoninc, rayon, xoffinit, tinc, maxt
+    tinc = 2//3
+    maxt = 233//233
+    rayoninc = 2//4
+    rayoninit = Math.floor(random(42, 63))
+    xoffinit = random(1000)
+    xoff = xoffinit
+    xinc = 0.02
+    stroke(0, 100, 100)
+    rayon = rayoninit
     push()
     translate(pad, pad)
-    for (let t = 0; t < 233; t += 3) {
-        ax1 = 0; ay1 = lerp(arete, 0, 0.05) - t
-        ax2 = arete; ay2 = lerp(arete, 0, 0.05) - t
+    beginShape()
+    nextay = lerp(arete, 0, 0.05)
+    for (let t = 0; t < maxt; t += tinc * 2) {
+        ax1 = 0; ay1 = nextay
+        ax2 = arete; ay2 = nextay
         px1 = lerp(ax1, ax2, 0.25)
-        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
         px2 = lerp(ax1, ax2, 0.75)
-        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
         bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-        rayon += 4
-    }
-    xoff=xoffinit
-    rayon=0
-    for (let t = 0; t < 233; t += 3) {
-        ax1 = 0; ay1 = lerp(0, arete, 0.05) + t
-        ax2 = arete; ay2 = lerp(0, arete, 0.05) + t
+        nextay = lerp(arete, 0, 0.05) - (t + tinc)
+        line(ax2, ay2, ax2, nextay)
+        rayon += rayoninc
+        ax1 = 0; ay1 = nextay
+        ax2 = arete; ay2 = nextay
         px1 = lerp(ax1, ax2, 0.25)
-        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
         px2 = lerp(ax1, ax2, 0.75)
-        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff),0.0,1.0,0.3,1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
-        bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
-        rayon += 4
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        bezier(ax2, ay2, px2, py2, px1, py1, ax1, ay1)
+        nextay = lerp(arete, 0, 0.05) - t - (tinc * 2)
+        line(ax1, ay1, ax1, nextay)
+        rayon += rayoninc
     }
-
+    endShape()
+    xoff = xoffinit
+    rayon = rayoninit
+    beginShape()
+    nextay = lerp(0, arete, 0.05)
+    for (let t = 0; t < maxt; t += tinc * 2) {
+        ax1 = 0; ay1 = nextay
+        ax2 = arete; ay2 = nextay
+        px1 = lerp(ax1, ax2, 0.25)
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        px2 = lerp(ax1, ax2, 0.75)
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        bezier(ax1, ay1, px1, py1, px2, py2, ax2, ay2)
+        nextay = lerp(0, arete, 0.05) + t + tinc
+        line(ax2, ay2, ax2, nextay)
+        rayon += rayoninc
+        ax1 = 0; ay1 = nextay
+        ax2 = arete; ay2 = nextay
+        px1 = lerp(ax1, ax2, 0.25)
+        py1 = lerp(ay1, ay2, 0.25) + rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        px2 = lerp(ax1, ax2, 0.75)
+        py2 = lerp(ay1, ay2, 0.75) - rayon * sin(rayon * map(noise(xoff), 0.0, 1.0, 0.3, 1.0)); empreinte.push(rayon * noise(xoff)); xoff += xinc
+        bezier(ax2, ay2, px2, py2, px1, py1, ax1, ay1)
+        nextay = lerp(0, arete, 0.05) + t + tinc * 2
+        line(ax1, ay1, ax1, nextay)
+        rayon += rayoninc
+    }
+    endShape()
     pop()
     return empreinte
 }
@@ -290,12 +355,12 @@ function drawcard_vasarely() {
     let pad = cellside * 0.09
     let arete = cellside - 2 * pad
     let empreinte = []
-    let res = Math.floor(random(9, 17)); empreinte.push(res)
+    let res = Math.floor(random(7, 19)); empreinte.push(res)
     let step = arete / res
-    let x, y, xnoise, ynoise, noise_inc, xnoiseinit, cx, cy
+    let x, y, ynoise, noise_inc, xnoiseinit, cx, cy
     xnoiseinit = random(100.0)
     ynoise = random(100.0)
-    noise_inc = 0.15
+    noise_inc = 0.1
     push()
     translate(pad, pad)
     for (let j = 0; j < res; j++) {
