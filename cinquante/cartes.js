@@ -39,7 +39,7 @@ function getsvg() {
     imgbtn = createButton("save svg");
     placebtn();
     imgbtn.mouseClicked(savesvg);
-    gensvg=true
+    gensvg = true
 }
 
 function getpng() {
@@ -48,7 +48,7 @@ function getpng() {
     centerCanvas()
     placebtn();
     imgbtn.mouseClicked(savepng);
-    gensvg=false
+    gensvg = false
 }
 
 
@@ -85,10 +85,11 @@ function draw() {
     resy = 4
     cellside = Math.floor(96 * 95 / 25.4)
     //drawgrid()
-    // drawcards(drawcard_nucleus)
+    // drawcards(drawcard_nucleus)"cartes-hashes.svg"
     // drawcards(drawcard_vera)
     // drawcards(drawcard_vasarely)
-    draw2colors(drawcard_curves)
+    // draw2colors(drawcard_curves)
+    draw2colors(drawcard_chiharu)
     //drawback()
     // noLoop()
 }
@@ -106,7 +107,7 @@ function drawgrid() {
 }
 
 /**
- * writes credits in the back of the card
+ * writes credits in the back of the ca"cartes-hashes.svg"rd
  */
 function drawback() {
     let x, y
@@ -143,6 +144,7 @@ async function drawcards(cardfunction) {
             text(h.toUpperCase(), x + 9, y + cellside - 11)
         }
     }
+    noLoop()
 }
 
 let empreintes = []
@@ -152,6 +154,7 @@ let empreintes = []
  */
 async function draw2colors(cardfunction) {
     noFill()
+    console.log(cardfunction.name)
     if (frameCount == 1) {
         for (let i = 0; i < resx; i++) {
             for (let j = 0; j < resy; j++) {
@@ -164,19 +167,21 @@ async function draw2colors(cardfunction) {
                 empreintes.push(empreinte)
             }
         }
-                if (gensvg) { save("cartes-curves.svg") }
+        let filename=cardfunction.name+".svg"
+        if (gensvg) { save(filename) }
 
     }
     if (frameCount == 2) {
-        noLoop()      
-        finishBack()
+        noLoop()
+        finishBack(cardfunction)
     }
 }
 
-async function finishBack() {
+async function finishBack(cardfunction) {
     try {
         await drawhashes()
-        if (gensvg) { save("cartes-hashes.svg") }
+        let filename=cardfunction.name+"-hashes.svg"
+        if (gensvg) { save(filename) }
     } catch (e) {
         console.error("hashing failed:", e)
     }
